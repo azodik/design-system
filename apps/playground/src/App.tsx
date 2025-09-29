@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { SidebarToggleIcon, ChevronDownIcon, ChevronUpIcon, ChevronDownSmallIcon } from "./icons";
+import { menuItems } from "./data/menuItems";
 import {
   Alert,
   Avatar,
@@ -26,7 +28,12 @@ import {
   TabTrigger,
   TabContent,
   Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
   SidebarItem,
+  SidebarBrand,
   Table,
   TableHeader,
   TableBody,
@@ -42,6 +49,10 @@ export default function App() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     message: "",
@@ -52,6 +63,60 @@ export default function App() {
   });
 
   const { deviceType, isMobile } = useResponsive();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Check screen size on mount and resize
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      const smallScreen = window.innerWidth <= 1024;
+      setIsSmallScreen(smallScreen);
+      
+      // If it's a small screen, ensure sidebar is closed initially
+      if (smallScreen) {
+        setIsSidebarOpen(false);
+      }
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const handleGroupToggle = (groupName: string) => {
+    setOpenGroup(openGroup === groupName ? null : groupName);
+  };
+
+  const handleUserDropdownToggle = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
+  };
+
+  const handleSidebarToggle = () => {
+    if (isSmallScreen) {
+      setIsSidebarOpen(!isSidebarOpen);
+    } else {
+      setIsSidebarCollapsed(!isSidebarCollapsed);
+    }
+  };
+
+  const closeSidebar = () => {
+    if (isSmallScreen) {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as Element;
+    if (!target.closest('.sidebar-user-dropdown')) {
+      setIsUserDropdownOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    if (isUserDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [isUserDropdownOpen]);
 
   // Sample data for DataTable
   const users = [
@@ -351,23 +416,191 @@ export default function App() {
       {/* Sidebar Example */}
       <section className="mb-lg">
         <h2>Sidebar Navigation</h2>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <Sidebar title="Navigation" width={200}>
-            <SidebarItem href="#dashboard" icon="🏠" active>
-              Dashboard
-            </SidebarItem>
-            <SidebarItem href="#users" icon="👥">
-              Users
-            </SidebarItem>
-            <SidebarItem href="#settings" icon="⚙️">
-              Settings
-            </SidebarItem>
+        <div style={{ display: "flex", gap: "1rem", height: "500px" }}>
+          {/* Mobile & Tablet Overlay */}
+          {isSmallScreen && isSidebarOpen && (
+            <div 
+              className="sidebar-overlay open"
+              onClick={closeSidebar}
+            />
+          )}
+          
+          <Sidebar 
+            width={isSmallScreen ? 280 : (isSidebarCollapsed ? 60 : 280)} 
+            className={`${!isSmallScreen && isSidebarCollapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""}`}
+          >
+            <SidebarHeader>
+              <SidebarBrand logo="A" subtitle="Enterprise">
+                Azodik Inc
+              </SidebarBrand>
+            </SidebarHeader>
+            
+              <SidebarContent>
+                <ul className="sidebar-nav">
+                  {menuItems.map((item, index) => (
+                    <React.Fragment key={index}>
+                      {item.isAccordion ? (
+                        <SidebarGroup 
+                          title={item.name} 
+                          collapsible 
+                          icon={item.icon ? <item.icon size={16} /> : undefined}
+                          chevronDownIcon={<ChevronDownIcon size={20} />}
+                          isOpen={openGroup === item.name}
+                          onToggle={() => handleGroupToggle(item.name)}
+                        >
+                          <ul className="sidebar-nav">
+                            {item.subItems?.map((subItem, subIndex) => (
+                              <SidebarItem 
+                                key={subIndex} 
+                                href={subItem.href} 
+                                icon={subItem.icon ? <subItem.icon size={16} /> : undefined}
+                              >
+                                {subItem.name}
+                              </SidebarItem>
+                            ))}
+                          </ul>
+                        </SidebarGroup>
+                      ) : (
+                        <SidebarItem 
+                          href={item.href} 
+                          icon={item.icon ? <item.icon size={16} /> : undefined}
+                        >
+                          {item.name}
+                        </SidebarItem>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </ul>
+              </SidebarContent>
+            
+            <SidebarFooter>
+              <div className={`sidebar-user-dropdown ${isUserDropdownOpen ? 'open' : ''}`}>
+                <div 
+                  className="sidebar-user-trigger"
+                  onClick={handleUserDropdownToggle}
+                >
+                  <Avatar 
+                    size="md" 
+                    initials="A" 
+                    className="sidebar-user-avatar"
+                  />
+                  {!isSidebarCollapsed && (
+                    <div className="sidebar-user-info">
+                      <div className="sidebar-user-name">azodik</div>
+                      <div className="sidebar-user-email">m@example.com</div>
+                    </div>
+                  )}
+                  {!isSidebarCollapsed && (
+                    <div className="sidebar-user-chevrons">
+                      <ChevronUpIcon size={15} />
+                      <ChevronDownSmallIcon size={15} />
+                    </div>
+                  )}
+                </div>
+                
+                {/* Popover Content */}
+                <div className="sidebar-user-dropdown-content">
+                  <div className="sidebar-user-dropdown-header">
+                    <Avatar 
+                      size="md" 
+                      initials="A" 
+                      className="sidebar-user-dropdown-avatar"
+                    />
+                    <div className="sidebar-user-dropdown-info">
+                      <div className="sidebar-user-dropdown-name">Azodik Inc</div>
+                      <div className="sidebar-user-dropdown-email">m@example.com</div>
+                    </div>
+                  </div>
+                  <ul className="sidebar-user-dropdown-menu">
+                    <li className="sidebar-user-dropdown-item">
+                      <a href="#" onClick={(e) => { e.preventDefault(); console.log("Upgrade to Pro clicked"); }}>
+                        Upgrade to Pro
+                      </a>
+                    </li>
+                    <li className="sidebar-user-dropdown-item">
+                      <a href="#" onClick={(e) => { e.preventDefault(); console.log("Account clicked"); }}>
+                        Account
+                      </a>
+                    </li>
+                    <li className="sidebar-user-dropdown-item">
+                      <a href="#" onClick={(e) => { e.preventDefault(); console.log("Billing clicked"); }}>
+                        Billing
+                      </a>
+                    </li>
+                    <li className="sidebar-user-dropdown-item">
+                      <a href="#" onClick={(e) => { e.preventDefault(); console.log("Notifications clicked"); }}>
+                        Notifications
+                      </a>
+                    </li>
+                    <li className="sidebar-user-dropdown-item">
+                      <div className="sidebar-user-dropdown-divider" />
+                    </li>
+                    <li className="sidebar-user-dropdown-item">
+                      <a href="#" onClick={(e) => { e.preventDefault(); console.log("Log out clicked"); }}>
+                        Log out
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </SidebarFooter>
           </Sidebar>
-          <div style={{ flex: 1 }}>
-            <Card className="p-md">
-              <h3>Main Content</h3>
-              <p>This is the main content area next to the sidebar.</p>
-            </Card>
+          
+          <div className="main-content-area">
+             {/* Breadcrumb */}
+             <div className="breadcrumb-container">
+               <button
+                 className="sidebar-toggle-button"
+                 onClick={handleSidebarToggle}
+               >
+                 <SidebarToggleIcon 
+                   size={16} 
+                   isCollapsed={isSidebarCollapsed}
+                 />
+               </button>
+               <Breadcrumb
+                 items={[
+                   { label: "Building Your Application", href: "/building" },
+                   { label: "Data Fetching", current: true },
+                 ]}
+               />
+             </div>
+            
+            {/* Blank Cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)", flex: 1 }}>
+              {/* First Card - Smaller */}
+              <div style={{ 
+                height: "250px", 
+                background: "var(--color-surface)", 
+                borderRadius: "var(--radius-lg)", 
+                border: "1px solid var(--color-border)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "var(--color-text)",
+                opacity: 0.5,
+                fontSize: "var(--font-size-sm)"
+              }}>
+                Content placeholder
+              </div>
+              
+              {/* Second Card - Larger */}
+              <div style={{ 
+                flex: 1,
+                minHeight: "300px",
+                background: "var(--color-surface)", 
+                borderRadius: "var(--radius-lg)", 
+                border: "1px solid var(--color-border)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "var(--color-text)",
+                opacity: 0.5,
+                fontSize: "var(--font-size-sm)"
+              }}>
+                Content placeholder
+              </div>
+            </div>
           </div>
         </div>
       </section>

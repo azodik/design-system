@@ -285,19 +285,109 @@ export function TabContent({
 // Sidebar Component
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  title?: string;
   width?: number;
+  collapsed?: boolean;
 }
 
-export function Sidebar({ children, title, width = 250, className = "", ...props }: SidebarProps) {
+export function Sidebar({ children, width = 250, collapsed = false, className = "", ...props }: SidebarProps) {
   return (
-    <div className={`sidebar ${className}`} style={{ width: `${width}px` }} {...props}>
+    <div 
+      className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''} ${className}`} 
+      style={{ width: collapsed ? '60px' : `${width}px` }} 
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+// Sidebar Header Component
+export interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+export function SidebarHeader({ children, className = "", ...props }: SidebarHeaderProps) {
+  return (
+    <div className={`sidebar-header ${className}`} {...props}>
+      {children}
+    </div>
+  );
+}
+
+// Sidebar Content Component
+export interface SidebarContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+export function SidebarContent({ children, className = "", ...props }: SidebarContentProps) {
+  return (
+    <div className={`sidebar-content ${className}`} {...props}>
+      {children}
+    </div>
+  );
+}
+
+// Sidebar Footer Component
+export interface SidebarFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+export function SidebarFooter({ children, className = "", ...props }: SidebarFooterProps) {
+  return (
+    <div className={`sidebar-footer ${className}`} {...props}>
+      {children}
+    </div>
+  );
+}
+
+// Sidebar Group Component
+export interface SidebarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  title?: string;
+  collapsible?: boolean;
+  icon?: React.ReactNode;
+  chevronRightIcon?: React.ReactNode;
+  chevronDownIcon?: React.ReactNode;
+  isOpen?: boolean;
+  onToggle?: () => void;
+}
+
+export function SidebarGroup({ children, title, collapsible = false, icon, chevronRightIcon, chevronDownIcon, isOpen = false, onToggle, className = "", ...props }: SidebarGroupProps) {
+  const [isCollapsed, setIsCollapsed] = React.useState(!isOpen);
+
+  React.useEffect(() => {
+    setIsCollapsed(!isOpen);
+  }, [isOpen]);
+
+  return (
+    <div className={`sidebar-group ${className}`} {...props}>
       {title && (
-        <div className="sidebar-header">
-          <h3 className="sidebar-title">{title}</h3>
+        <div 
+          className={`sidebar-group-header ${collapsible ? 'collapsible' : ''}`}
+          onClick={() => {
+            if (collapsible) {
+              if (onToggle) {
+                onToggle();
+              } else {
+                setIsCollapsed(!isCollapsed);
+              }
+            }
+          }}
+        >
+          <div className="sidebar-group-title">
+            {icon && <span className="sidebar-item-icon">{icon}</span>}
+            <span>{title}</span>
+          </div>
+          {collapsible && (
+            <span className={`sidebar-group-arrow ${isCollapsed ? 'collapsed' : ''}`}>
+              {chevronDownIcon || '▼'}
+            </span>
+          )}
         </div>
       )}
-      <ul className="sidebar-nav">{children}</ul>
+      <div className={`sidebar-group-content ${isCollapsed ? 'collapsed' : ''}`}>
+        {children}
+      </div>
     </div>
   );
 }
@@ -307,23 +397,70 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   children: React.ReactNode;
   icon?: React.ReactNode;
   active?: boolean;
+  badge?: string | number;
+  tooltip?: string;
 }
 
 export function SidebarItem({
   children,
   icon,
   active = false,
+  badge,
+  tooltip,
   className = "",
   ...props
 }: SidebarItemProps) {
   const itemClasses = [active && "active", className].filter(Boolean).join(" ");
 
   return (
-    <li>
-      <a className={itemClasses} {...props}>
-        {icon && <span className="icon">{icon}</span>}
-        {children}
+    <li className="sidebar-item">
+      <a className={itemClasses} title={tooltip} {...props}>
+        {icon && <span className="sidebar-item-icon">{icon}</span>}
+        <span className="sidebar-item-text">{children}</span>
+        {badge && <span className="sidebar-item-badge">{badge}</span>}
       </a>
     </li>
+  );
+}
+
+// Sidebar Brand Component
+export interface SidebarBrandProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  logo?: React.ReactNode;
+  subtitle?: string;
+}
+
+export function SidebarBrand({ children, logo, subtitle, className = "", ...props }: SidebarBrandProps) {
+  return (
+    <div className={`sidebar-brand ${className}`} {...props}>
+      {logo && <div className="sidebar-brand-logo">{logo}</div>}
+      <div className="sidebar-brand-content">
+        <div className="sidebar-brand-title">{children}</div>
+        {subtitle && <div className="sidebar-brand-subtitle">{subtitle}</div>}
+      </div>
+    </div>
+  );
+}
+
+// Sidebar User Component
+export interface SidebarUserProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  avatar?: string;
+  email?: string;
+  actions?: React.ReactNode;
+}
+
+export function SidebarUser({ children, avatar, email, actions, className = "", ...props }: SidebarUserProps) {
+  return (
+    <div className={`sidebar-user ${className}`} {...props}>
+      <div className="sidebar-user-info">
+        {avatar && <div className="sidebar-user-avatar">{avatar}</div>}
+        <div className="sidebar-user-content">
+          <div className="sidebar-user-name">{children}</div>
+          {email && <div className="sidebar-user-email">{email}</div>}
+        </div>
+      </div>
+      {actions && <div className="sidebar-user-actions">{actions}</div>}
+    </div>
   );
 }

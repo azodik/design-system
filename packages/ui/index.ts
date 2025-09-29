@@ -16,7 +16,13 @@ export {
   TabTrigger,
   TabContent,
   Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
   SidebarItem,
+  SidebarBrand,
+  SidebarUser,
 } from "./components/Navigation";
 export {
   default as Table,
@@ -63,7 +69,13 @@ export type {
   TabTriggerProps,
   TabContentProps,
   SidebarProps,
+  SidebarHeaderProps,
+  SidebarContentProps,
+  SidebarFooterProps,
+  SidebarGroupProps,
   SidebarItemProps,
+  SidebarBrandProps,
+  SidebarUserProps,
 } from "./components/Navigation";
 export type {
   TableProps,
