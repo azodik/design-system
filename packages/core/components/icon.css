@@ -1,0 +1,282 @@
+/* Icon Components */
+
+/* Icon Base */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+/* Icon Sizes */
+.icon-xs {
+  font-size: 0.75rem;
+}
+.icon-sm {
+  font-size: 0.875rem;
+}
+.icon-md {
+  font-size: 1rem;
+}
+.icon-lg {
+  font-size: 1.25rem;
+}
+.icon-xl {
+  font-size: 1.5rem;
+}
+.icon-2xl {
+  font-size: 2rem;
+}
+.icon-3xl {
+  font-size: 3rem;
+}
+
+/* Icon Colors */
+.icon-primary {
+  color: var(--color-primary);
+}
+.icon-secondary {
+  color: var(--color-secondary);
+}
+.icon-success {
+  color: #16a34a;
+}
+.icon-warning {
+  color: #f59e0b;
+}
+.icon-error {
+  color: #dc2626;
+}
+.icon-info {
+  color: #3b82f6;
+}
+.icon-muted {
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+/* Icon with Background */
+.icon-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs);
+}
+
+.icon-bg-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.icon-bg-secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.icon-bg-success {
+  background: #16a34a;
+  color: white;
+}
+
+.icon-bg-warning {
+  background: #f59e0b;
+  color: white;
+}
+
+.icon-bg-error {
+  background: #dc2626;
+  color: white;
+}
+
+.icon-bg-info {
+  background: #3b82f6;
+  color: white;
+}
+
+.icon-bg-neutral {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* Icon Button */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+.icon-button.primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.icon-button.primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.icon-button.secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.icon-button.secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.icon-button.outline {
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.icon-button.outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Icon Sizes for Buttons */
+.icon-button-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-button-lg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Icon Group */
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.icon-group .icon-button {
+  margin: 0;
+}
+
+.icon-group .icon-button:not(:last-child) {
+  margin-right: var(--space-xs);
+}
+
+/* Loading Icon */
+.icon-loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon with Text */
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.icon-text .icon {
+  flex-shrink: 0;
+}
+
+.icon-text .text {
+  flex: 1;
+}
+
+/* Icon List */
+.icon-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  color: var(--color-text);
+}
+
+.icon-list-item .icon {
+  color: var(--color-primary);
+}
+
+.icon-list-item .text {
+  flex: 1;
+}
+
+/* Icon Grid */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+.icon-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  transition: background-color 0.3s ease;
+}
+
+.icon-grid-item:hover {
+  background: var(--color-surface);
+}
+
+.icon-grid-item .icon {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.icon-grid-item .label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Responsive Icons */
+@media (max-width: 768px) {
+  .icon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .icon-grid-item {
+    padding: var(--space-sm);
+  }
+
+  .icon-grid-item .icon {
+    font-size: 1.5rem;
+  }
+}

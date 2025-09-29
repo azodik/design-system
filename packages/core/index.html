@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Azodik Design System Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./tokens/tokens.css" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./components/button.css" />
+    <link rel="stylesheet" href="./components/card.css" />
+    <link rel="stylesheet" href="./components/input.css" />
+    <link rel="stylesheet" href="./components/alert.css" />
+    <link rel="stylesheet" href="./components/badge.css" />
+    <link rel="stylesheet" href="./components/avatar.css" />
+    <link rel="stylesheet" href="./components/navigation.css" />
+    <link rel="stylesheet" href="./components/modal.css" />
+    <link rel="stylesheet" href="./components/layout.css" />
+    <link rel="stylesheet" href="./components/table.css" />
+    <link rel="stylesheet" href="./components/icon.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <div>
+            <h1>Azodik Design System Test</h1>
+            <p>Testing our orange color palette and components</p>
+          </div>
+          <button id="theme-toggle" class="btn btn-outline theme-toggle">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Dark Mode</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="color-palette">
+        <h2>Color Palette</h2>
+        <div class="color-grid">
+          <div class="color-swatch primary">
+            <span>Primary</span>
+            <code>#f97316</code>
+          </div>
+          <div class="color-swatch secondary">
+            <span>Secondary</span>
+            <code>#ea580c</code>
+          </div>
+          <div class="color-swatch background">
+            <span>Background</span>
+            <code class="bg-code">#ffffff</code>
+          </div>
+          <div class="color-swatch text">
+            <span>Text</span>
+            <code class="text-code">#111827</code>
+          </div>
+          <div class="color-swatch surface">
+            <span>Surface</span>
+            <code class="surface-code">#f9fafb</code>
+          </div>
+          <div class="color-swatch border">
+            <span>Border</span>
+            <code class="border-code">#e5e7eb</code>
+          </div>
+          <div class="color-swatch primary-hover">
+            <span>Primary Hover</span>
+            <code class="primary-hover-code">#ea580c</code>
+          </div>
+          <div class="color-swatch secondary-hover">
+            <span>Secondary Hover</span>
+            <code class="secondary-hover-code">#dc2626</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="components">
+        <h2>Components</h2>
+
+        <div class="button-showcase">
+          <h3>Buttons</h3>
+          <div class="button-group">
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary Button</button>
+            <button class="btn btn-outline">Outline Button</button>
+          </div>
+        </div>
+
+        <div class="card-showcase">
+          <h3>Cards</h3>
+          <div class="card-grid">
+            <div class="card">
+              <h4>Card Title</h4>
+              <p>This is a sample card component using our design system colors and spacing.</p>
+              <button class="btn btn-primary">Action</button>
+            </div>
+            <div class="card">
+              <h4>Another Card</h4>
+              <p>Cards can contain various content and maintain consistent styling.</p>
+              <button class="btn btn-secondary">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-components">
+        <h2>Form Components</h2>
+
+        <div class="form-showcase">
+          <h3>Input Fields</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="input" placeholder="Enter your email" />
+              <div class="form-help">We'll never share your email</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="input" placeholder="Enter your password" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="textarea" placeholder="Enter your message"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Country</label>
+              <select class="select">
+                <option>Select a country</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+              </select>
+            </div>
+          </div>
+
+          <h3>Checkboxes & Radio</h3>
+          <div class="form-options">
+            <div class="checkbox">
+              <input type="checkbox" id="newsletter" />
+              <span class="checkbox-custom"></span>
+              <label for="newsletter">Subscribe to newsletter</label>
+            </div>
+
+            <div class="radio">
+              <input type="radio" id="option1" name="option" />
+              <span class="radio-custom"></span>
+              <label for="option1">Option 1</label>
+            </div>
+
+            <div class="radio">
+              <input type="radio" id="option2" name="option" />
+              <span class="radio-custom"></span>
+              <label for="option2">Option 2</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alert-components">
+        <h2>Alert Components</h2>
+
+        <div class="alert-showcase">
+          <div class="alert alert-success">
+            <span class="alert-icon">✓</span>
+            <div class="alert-content">
+              <div class="alert-title">Success!</div>
+              <div class="alert-message">Your changes have been saved successfully.</div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <span class="alert-icon">⚠</span>
+            <div class="alert-content">
+              <div class="alert-title">Warning</div>
+              <div class="alert-message">Please review your information before proceeding.</div>
+            </div>
+          </div>
+
+          <div class="alert alert-error">
+            <span class="alert-icon">✕</span>
+            <div class="alert-content">
+              <div class="alert-title">Error</div>
+              <div class="alert-message">Something went wrong. Please try again.</div>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">ℹ</span>
+            <div class="alert-content">
+              <div class="alert-title">Information</div>
+              <div class="alert-message">Here's some helpful information for you.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="badge-components">
+        <h2>Badge Components</h2>
+
+        <div class="badge-showcase">
+          <div class="badge-group">
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-secondary">Secondary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-error">Error</span>
+            <span class="badge badge-info">Info</span>
+            <span class="badge badge-neutral">Neutral</span>
+          </div>
+
+          <h3>Badge Sizes</h3>
+          <div class="badge-sizes">
+            <span class="badge badge-sm badge-primary">Small</span>
+            <span class="badge badge-primary">Medium</span>
+            <span class="badge badge-lg badge-primary">Large</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="avatar-components">
+        <h2>Avatar Components</h2>
+
+        <div class="avatar-showcase">
+          <h3>Avatar Sizes</h3>
+          <div class="avatar-sizes">
+            <div class="avatar avatar-xs">JD</div>
+            <div class="avatar avatar-sm">JD</div>
+            <div class="avatar avatar-md">JD</div>
+            <div class="avatar avatar-lg">JD</div>
+            <div class="avatar avatar-xl">JD</div>
+            <div class="avatar avatar-2xl">JD</div>
+          </div>
+
+          <h3>Avatar with Status</h3>
+          <div class="avatar-statuses">
+            <div class="avatar avatar-md avatar-status online">JD</div>
+            <div class="avatar avatar-md avatar-status away">JD</div>
+            <div class="avatar avatar-md avatar-status offline">JD</div>
+            <div class="avatar avatar-md avatar-status busy">JD</div>
+          </div>
+
+          <h3>Avatar Group</h3>
+          <div class="avatar-group">
+            <div class="avatar avatar-md">JD</div>
+            <div class="avatar avatar-md">AB</div>
+            <div class="avatar avatar-md">CD</div>
+            <div class="avatar-more">+5</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="navigation-components">
+        <h2>Navigation Components</h2>
+
+        <div class="nav-showcase">
+          <h3>Navigation Bar</h3>
+          <nav class="navbar">
+            <a href="#" class="navbar-brand">Brand</a>
+            <ul class="navbar-nav">
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+
+          <h3>Breadcrumbs</h3>
+          <nav class="breadcrumb">
+            <div class="breadcrumb-item">
+              <a href="#">Home</a>
+            </div>
+            <div class="breadcrumb-item">
+              <a href="#">Products</a>
+            </div>
+            <div class="breadcrumb-item current">Design System</div>
+          </nav>
+
+          <h3>Pagination</h3>
+          <nav class="pagination">
+            <div class="pagination-item">
+              <a href="#" class="pagination-link disabled">‹</a>
+            </div>
+            <div class="pagination-item">
+              <a href="#" class="pagination-link active">1</a>
+            </div>
+            <div class="pagination-item">
+              <a href="#" class="pagination-link">2</a>
+            </div>
+            <div class="pagination-item">
+              <a href="#" class="pagination-link">3</a>
+            </div>
+            <div class="pagination-item">
+              <a href="#" class="pagination-link">›</a>
+            </div>
+          </nav>
+
+          <h3>Tabs</h3>
+          <div class="tabs">
+            <ul class="tabs-list">
+              <li><button class="tabs-trigger active">Overview</button></li>
+              <li><button class="tabs-trigger">Details</button></li>
+              <li><button class="tabs-trigger">Settings</button></li>
+            </ul>
+            <div class="tabs-content">
+              <p>This is the overview tab content.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="modal-components">
+        <h2>Modal & Feedback Components</h2>
+
+        <div class="modal-showcase">
+          <h3>Loading & Progress</h3>
+          <div class="flex items-center gap-md mb-lg">
+            <div class="spinner"></div>
+            <div class="spinner spinner-lg"></div>
+            <div class="spinner spinner-sm"></div>
+          </div>
+
+          <div class="progress-text">
+            <span>Progress</span>
+            <span>75%</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+
+          <h3>Tooltips & Popovers</h3>
+          <div class="flex gap-md">
+            <div class="tooltip">
+              <button class="btn btn-primary">Hover me</button>
+              <div class="tooltip-content">This is a tooltip</div>
+            </div>
+
+            <div class="popover">
+              <button class="btn btn-secondary">Click me</button>
+              <div class="popover-content">
+                <div class="popover-title">Popover Title</div>
+                <div class="popover-text">This is a popover with some content.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout-components">
+        <h2>Layout Components</h2>
+
+        <div class="layout-showcase">
+          <h3>Grid System</h3>
+          <div class="grid grid-cols-3 gap-md">
+            <div class="p-3 bg-primary text-center text-white rounded">1</div>
+            <div class="p-3 bg-secondary text-center text-white rounded">2</div>
+            <div class="p-3 bg-success text-center text-white rounded">3</div>
+          </div>
+
+          <h3>Flex Utilities</h3>
+          <div class="flex justify-between items-center p-3 border rounded">
+            <span>Left</span>
+            <span>Center</span>
+            <span>Right</span>
+          </div>
+
+          <h3>Spacing Utilities</h3>
+          <div class="p-4 border rounded">
+            <div class="mb-2 p-2 bg-surface">Margin bottom</div>
+            <div class="mt-2 p-2 bg-surface">Margin top</div>
+          </div>
+
+          <h3>Hero Section</h3>
+          <div class="hero">
+            <h1 class="hero-title">Welcome to Our Design System</h1>
+            <p class="hero-subtitle">A comprehensive collection of components and utilities</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary">Get Started</button>
+              <button class="btn btn-outline">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-components">
+        <h2>Data Display Components</h2>
+
+        <div class="table-showcase">
+          <h3>Table</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td>john@example.com</td>
+                <td>Admin</td>
+                <td><span class="badge badge-success">Active</span></td>
+              </tr>
+              <tr>
+                <td>Jane Smith</td>
+                <td>jane@example.com</td>
+                <td>User</td>
+                <td><span class="badge badge-warning">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Bob Johnson</td>
+                <td>bob@example.com</td>
+                <td>User</td>
+                <td><span class="badge badge-error">Inactive</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>List</h3>
+          <ul class="list list-bordered">
+            <li class="list-item">
+              <div class="list-item-content">
+                <div class="list-item-title">List Item 1</div>
+                <div class="list-item-description">Description for the first item</div>
+              </div>
+              <div class="list-item-actions">
+                <button class="btn btn-sm btn-outline">Edit</button>
+              </div>
+            </li>
+            <li class="list-item">
+              <div class="list-item-content">
+                <div class="list-item-title">List Item 2</div>
+                <div class="list-item-description">Description for the second item</div>
+              </div>
+              <div class="list-item-actions">
+                <button class="btn btn-sm btn-outline">Edit</button>
+              </div>
+            </li>
+          </ul>
+
+          <h3>Stats</h3>
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-icon">📊</div>
+              <div class="stat-value">1,234</div>
+              <div class="stat-label">Total Users</div>
+              <div class="stat-change positive">+12%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💰</div>
+              <div class="stat-value">$5,678</div>
+              <div class="stat-label">Revenue</div>
+              <div class="stat-change positive">+8%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📈</div>
+              <div class="stat-value">89%</div>
+              <div class="stat-label">Growth</div>
+              <div class="stat-change negative">-2%</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="icon-components">
+        <h2>Icon Components</h2>
+
+        <div class="icon-showcase">
+          <h3>Icon Sizes</h3>
+          <div class="flex items-center gap-md">
+            <span class="icon icon-xs">🔍</span>
+            <span class="icon icon-sm">🔍</span>
+            <span class="icon icon-md">🔍</span>
+            <span class="icon icon-lg">🔍</span>
+            <span class="icon icon-xl">🔍</span>
+            <span class="icon icon-2xl">🔍</span>
+          </div>
+
+          <h3>Icon Colors</h3>
+          <div class="flex items-center gap-md">
+            <span class="icon icon-primary">⭐</span>
+            <span class="icon icon-secondary">⭐</span>
+            <span class="icon icon-success">⭐</span>
+            <span class="icon icon-warning">⭐</span>
+            <span class="icon icon-error">⭐</span>
+            <span class="icon icon-info">⭐</span>
+          </div>
+
+          <h3>Icon Buttons</h3>
+          <div class="flex items-center gap-md">
+            <button class="icon-button">
+              <span class="icon">⚙️</span>
+            </button>
+            <button class="icon-button primary">
+              <span class="icon">❤️</span>
+            </button>
+            <button class="icon-button secondary">
+              <span class="icon">📝</span>
+            </button>
+            <button class="icon-button outline">
+              <span class="icon">🔗</span>
+            </button>
+          </div>
+
+          <h3>Icon Grid</h3>
+          <div class="icon-grid">
+            <div class="icon-grid-item">
+              <span class="icon">🏠</span>
+              <span class="label">Home</span>
+            </div>
+            <div class="icon-grid-item">
+              <span class="icon">👤</span>
+              <span class="label">Profile</span>
+            </div>
+            <div class="icon-grid-item">
+              <span class="icon">⚙️</span>
+              <span class="label">Settings</span>
+            </div>
+            <div class="icon-grid-item">
+              <span class="icon">📊</span>
+              <span class="label">Analytics</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="typography">
+        <h2>Typography</h2>
+        <div class="text-showcase">
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <p>
+            This is a paragraph with regular text. It should be readable and well-spaced using our
+            design system tokens.
+          </p>
+          <p class="text-sm">Small text for captions and secondary information.</p>
+          <p class="text-lg">Large text for emphasis and important content.</p>
+        </div>
+      </section>
+    </div>
+
+    <style>
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-lg);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: var(--space-md);
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: var(--space-md);
+          text-align: center;
+        }
+
+        .color-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .button-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .avatar-sizes,
+        .avatar-statuses {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: var(--space-sm);
+        }
+
+        .color-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-title {
+          font-size: 1.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: var(--font-size-md);
+        }
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-xl);
+      }
+
+      header {
+        text-align: left;
+        margin-bottom: var(--space-xl);
+      }
+
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
+        border: 2px solid var(--color-border);
+        background: var(--color-surface);
+        color: var(--color-text);
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        background: var(--color-primary);
+        color: white;
+        border-color: var(--color-primary);
+      }
+
+      .theme-icon {
+        font-size: 1.2em;
+      }
+
+      header h1 {
+        color: var(--color-primary);
+        margin-bottom: var(--space-sm);
+      }
+
+      section {
+        margin-bottom: var(--space-xl);
+      }
+
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-md);
+        margin-top: var(--space-md);
+      }
+
+      .color-swatch {
+        padding: var(--space-lg);
+        border-radius: var(--radius-md);
+        text-align: center;
+        color: white;
+        font-weight: 600;
+      }
+
+      .color-swatch.primary {
+        background-color: var(--color-primary);
+      }
+
+      .color-swatch.secondary {
+        background-color: var(--color-secondary);
+      }
+
+      .color-swatch.background {
+        background-color: var(--color-background);
+        color: var(--color-text);
+        border: 2px solid var(--color-border);
+      }
+
+      .color-swatch.text {
+        background-color: var(--color-text);
+        color: var(--color-background);
+      }
+
+      .color-swatch.surface {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        border: 2px solid var(--color-border);
+      }
+
+      .color-swatch.border {
+        background-color: var(--color-border);
+        color: var(--color-text);
+      }
+
+      .color-swatch.primary-hover {
+        background-color: var(--color-primary-hover);
+        color: white;
+      }
+
+      .color-swatch.secondary-hover {
+        background-color: var(--color-secondary-hover);
+        color: white;
+      }
+
+      .color-swatch code {
+        display: block;
+        margin-top: var(--space-sm);
+        font-family: monospace;
+        font-size: 0.875rem;
+      }
+
+      .button-group {
+        display: flex;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+        margin-top: var(--space-md);
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin-top: var(--space-md);
+      }
+
+      .text-showcase {
+        margin-top: var(--space-md);
+      }
+
+      .text-showcase h1,
+      .text-showcase h2,
+      .text-showcase h3 {
+        margin-bottom: var(--space-sm);
+      }
+
+      .text-showcase p {
+        margin-bottom: var(--space-md);
+      }
+
+      .text-sm {
+        font-size: var(--font-size-sm);
+      }
+
+      .text-lg {
+        font-size: var(--font-size-lg);
+      }
+
+      /* Form Components */
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-xl);
+        margin-top: var(--space-md);
+        align-items: start;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-lg);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .form-grid {
+          gap: var(--space-md);
+        }
+      }
+
+      .form-options {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        margin-top: var(--space-md);
+      }
+
+      /* Alert Components */
+      .alert-showcase {
+        margin-top: var(--space-md);
+      }
+
+      /* Badge Components */
+      .badge-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+
+      .badge-sizes {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-top: var(--space-md);
+      }
+
+      /* Avatar Components */
+      .avatar-sizes {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-top: var(--space-md);
+      }
+
+      .avatar-statuses {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-top: var(--space-md);
+      }
+    </style>
+
+    <script>
+      // Theme switching functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.querySelector(".theme-icon");
+      const themeText = document.querySelector(".theme-text");
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      html.setAttribute("data-theme", currentTheme);
+      updateThemeUI(currentTheme);
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeUI(newTheme);
+        updateColorCodes(newTheme);
+      });
+
+      function updateThemeUI(theme) {
+        if (theme === "dark") {
+          themeIcon.textContent = "☀️";
+          themeText.textContent = "Light Mode";
+        } else {
+          themeIcon.textContent = "🌙";
+          themeText.textContent = "Dark Mode";
+        }
+      }
+
+      function updateColorCodes(theme) {
+        const bgCode = document.querySelector(".bg-code");
+        const textCode = document.querySelector(".text-code");
+        const surfaceCode = document.querySelector(".surface-code");
+        const borderCode = document.querySelector(".border-code");
+        const primaryHoverCode = document.querySelector(".primary-hover-code");
+        const secondaryHoverCode = document.querySelector(".secondary-hover-code");
+
+        if (theme === "dark") {
+          bgCode.textContent = "#0f172a";
+          textCode.textContent = "#f1f5f9";
+          surfaceCode.textContent = "#1e293b";
+          borderCode.textContent = "#334155";
+          primaryHoverCode.textContent = "#fb923c";
+          secondaryHoverCode.textContent = "#f97316";
+        } else {
+          bgCode.textContent = "#ffffff";
+          textCode.textContent = "#111827";
+          surfaceCode.textContent = "#f9fafb";
+          borderCode.textContent = "#e5e7eb";
+          primaryHoverCode.textContent = "#ea580c";
+          secondaryHoverCode.textContent = "#dc2626";
+        }
+      }
+    </script>
+  </body>
+</html>
