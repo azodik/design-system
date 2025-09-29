@@ -6,18 +6,53 @@ body {
   font-size: var(--font-size-md);
   color: var(--color-text);
   background: var(--color-background);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .text-center {
   text-align: center;
 }
+
+/* Spacing utilities */
 .mt-md {
   margin-top: var(--space-md);
+}
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+.ml-sm {
+  margin-left: var(--space-sm);
 }
 .p-md {
   padding: var(--space-md);
 }
+
+/* Layout utilities */
 .rounded-md {
   border-radius: var(--radius-md);
+}
+
+/* Additional utility classes */
+.mt-sm {
+  margin-top: var(--space-sm);
+}
+.mb-sm {
+  margin-bottom: var(--space-sm);
+}
+.ml-md {
+  margin-left: var(--space-md);
+}
+.mr-sm {
+  margin-right: var(--space-sm);
+}
+.p-sm {
+  padding: var(--space-sm);
+}
+.p-lg {
+  padding: var(--space-lg);
 }
