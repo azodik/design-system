@@ -5,16 +5,23 @@ export { default as Badge } from "./components/Badge";
 export { default as Button } from "./components/Button";
 export { default as Card } from "./components/Card";
 export { default as Input, Textarea, Select, Checkbox, Radio, Switch } from "./components/Input";
-export { default as Modal, ModalFooter, Toast, Tooltip, Popover } from "./components/Modal";
+export { default as Modal, ModalFooter } from "./components/Modal";
+export { Toast } from "./components/Toast";
+export { Tooltip } from "./components/Tooltip";
+export { Popover } from "./components/Popover";
 export {
   default as Navigation,
   NavItem,
-  Breadcrumb,
-  Pagination,
+} from "./components/Navigation";
+export { Breadcrumb } from "./components/Breadcrumb";
+export { Pagination } from "./components/Pagination";
+export {
   Tabs,
   TabList,
   TabTrigger,
   TabContent,
+} from "./components/Tabs";
+export {
   Sidebar,
   SidebarHeader,
   SidebarContent,
@@ -23,7 +30,14 @@ export {
   SidebarItem,
   SidebarBrand,
   SidebarUser,
-} from "./components/Navigation";
+  SidebarUserDropdown,
+  SidebarMainContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+} from "./components/Sidebar";
 export {
   default as Table,
   TableHeader,
@@ -52,22 +66,23 @@ export type {
   RadioProps,
   SwitchProps,
 } from "./components/Input";
-export type {
-  ModalProps,
-  ModalFooterProps,
-  ToastProps,
-  TooltipProps,
-  PopoverProps,
-} from "./components/Modal";
+export type { ModalProps, ModalFooterProps } from "./components/Modal";
+export type { ToastProps } from "./components/Toast";
+export type { TooltipProps } from "./components/Tooltip";
+export type { PopoverProps } from "./components/Popover";
 export type {
   NavigationProps,
   NavItemProps,
-  BreadcrumbProps,
-  PaginationProps,
+} from "./components/Navigation";
+export type { BreadcrumbProps } from "./components/Breadcrumb";
+export type { PaginationProps } from "./components/Pagination";
+export type {
   TabsProps,
   TabListProps,
   TabTriggerProps,
   TabContentProps,
+} from "./components/Tabs";
+export type {
   SidebarProps,
   SidebarHeaderProps,
   SidebarContentProps,
@@ -76,7 +91,14 @@ export type {
   SidebarItemProps,
   SidebarBrandProps,
   SidebarUserProps,
-} from "./components/Navigation";
+  SidebarUserDropdownProps,
+  SidebarMainContentProps,
+  SidebarMenuProps,
+  SidebarMenuItemProps,
+  SidebarMenuButtonProps,
+  SidebarGroupLabelProps,
+  SidebarGroupContentProps,
+} from "./components/Sidebar";
 export type {
   TableProps,
   TableHeaderProps,

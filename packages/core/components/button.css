@@ -2,13 +2,32 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-sm) var(--space-md);
-  font-size: var(--font-size-md);
   font-weight: 500;
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  gap: var(--space-xs);
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  min-height: 32px;
+}
+
+.btn-md {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-md);
+  min-height: 40px;
+}
+
+.btn-lg {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-lg);
+  min-height: 48px;
 }
 
 .btn-primary {
