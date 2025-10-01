@@ -429,3 +429,26 @@ input:checked + .switch-slider:before {
   color: #dc2626;
   margin-top: var(--space-xs);
 }
+
+/* Custom scrollbar for form containers */
+.form-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
+}
+
+.form-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.form-scroll-container::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+
+.form-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

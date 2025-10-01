@@ -10,7 +10,7 @@
   width: 100%;
   overflow: auto;
   scrollbar-width: auto;
-  scrollbar-color: #64748b transparent;
+  scrollbar-color: #d1d5db transparent;
 }
 
 .scroll-area-horizontal .scroll-area-content {
@@ -29,14 +29,14 @@
 }
 
 .scroll-area-content::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg, #64748b) !important;
+  background: var(--scrollbar-thumb-bg, #d1d5db) !important;
   border-radius: var(--scrollbar-thumb-radius, 8px) !important;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 .scroll-area-content::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-bg, #475569) !important;
+  background: var(--scrollbar-thumb-bg, #9ca3af) !important;
   background-clip: content-box;
   opacity: 0.8;
 }

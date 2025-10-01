@@ -55,7 +55,7 @@ export default function GettingStarted() {
                     background: '#111827',
                     color: '#f9fafb',
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#94a3b8 transparent'
+                    scrollbarColor: '#d1d5db transparent'
                   }}
                   wrapLines={true}
                   wrapLongLines={true}

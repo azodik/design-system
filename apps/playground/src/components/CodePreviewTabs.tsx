@@ -92,7 +92,7 @@ export default function CodePreviewTabs({
                 height: '100%',
                 minHeight: '100%',
                 scrollbarWidth: 'thin',
-                scrollbarColor: '#94a3b8 transparent'
+                scrollbarColor: '#d1d5db transparent'
               }}
               wrapLines={true}
               wrapLongLines={true}

@@ -17,18 +17,18 @@ export const ScrollArea: React.FC<ScrollAreaProps> = ({
   const scrollbarStyles = {
     sm: {
       scrollbarWidth: 'thin' as const,
-      scrollbarColor: '#94a3b8 transparent',
+      scrollbarColor: '#d1d5db transparent',
       '--scrollbar-width': '4px',
       '--scrollbar-height': '4px',
-      '--scrollbar-thumb-bg': '#94a3b8',
+      '--scrollbar-thumb-bg': '#d1d5db',
       '--scrollbar-thumb-radius': '2px'
     },
     md: {
       scrollbarWidth: 'auto' as const,
-      scrollbarColor: '#64748b transparent',
+      scrollbarColor: '#d1d5db transparent',
       '--scrollbar-width': '12px',
       '--scrollbar-height': '12px',
-      '--scrollbar-thumb-bg': '#64748b',
+      '--scrollbar-thumb-bg': '#d1d5db',
       '--scrollbar-thumb-radius': '6px'
     }
   };
