@@ -39,3 +39,17 @@
   font-size: var(--font-size-sm);
   line-height: 1.5;
 }
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .popover-content {
+    min-width: 150px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    max-width: calc(100vw - 2rem);
+  }
+
+  .popover.open .popover-content {
+    transform: translateX(-50%) translateY(0);
+  }
+}

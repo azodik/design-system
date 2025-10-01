@@ -1,41 +1,37 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import SidebarLayout from "./sidebar/Sidebar";
+import CodePreviewTabs from "./CodePreviewTabs";
+import GettingStarted from "./getting-started/GettingStarted";
 import {
-  Alert,
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Button,
   Card,
-  Input,
-  Textarea,
-  Select,
-  Checkbox,
-  Radio,
-  Switch,
-  Modal,
-  ModalFooter,
-  Toast,
-  Tooltip,
-  Popover,
-  Navigation,
-  NavItem,
   Breadcrumb,
-  Pagination,
-  Tabs,
-  TabList,
-  TabTrigger,
-  TabContent,
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHeaderCell,
-  TableCell,
-  DataTable,
   useResponsive,
 } from "@azodik/ui";
+import { AlertPreview, AlertCode } from "./view-components/AlertPreview";
+import { AvatarPreview, AvatarCode } from "./view-components/AvatarPreview";
+import { BadgePreview, BadgeCode } from "./view-components/BadgePreview";
+import { ButtonPreview, ButtonCode } from "./view-components/ButtonPreview";
+import { CardPreview, CardCode } from "./view-components/CardPreview";
+import { FormPreview, FormCode } from "./view-components/FormPreview";
+import { ModalPreview, ModalCode } from "./view-components/ModalPreview";
+import { NavigationPreview, NavigationCode } from "./view-components/NavigationPreview";
+import { PaginationPreview, PaginationCode } from "./view-components/PaginationPreview";
+import { SidebarPreview, SidebarCode } from "./view-components/SidebarPreview";
+import { TablePreview, TableCode } from "./view-components/TablePreview";
+import { DataTablePreview, DataTableCode } from "./view-components/DataTablePreview";
+import { TabsPreview, TabsCode } from "./view-components/TabsPreview";
+import { ToastPreview, ToastCode } from "./view-components/ToastPreview";
+import { BreadcrumbPreview, BreadcrumbCode } from "./view-components/BreadcrumbPreview";
+import { ScrollAreaPreview, ScrollAreaCode } from "./view-components/ScrollAreaPreview";
+import { InputPreview, InputCode } from "./view-components/InputPreview";
+import { TextareaPreview, TextareaCode } from "./view-components/TextareaPreview";
+import { SelectPreview, SelectCode } from "./view-components/SelectPreview";
+import { CheckboxPreview, CheckboxCode } from "./view-components/CheckboxPreview";
+import { RadioPreview, RadioCode } from "./view-components/RadioPreview";
+import { SwitchPreview, SwitchCode } from "./view-components/SwitchPreview";
+import { TooltipPreview, TooltipCode } from "./view-components/TooltipPreview";
+import { PopoverPreview, PopoverCode } from "./view-components/PopoverPreview";
 
 interface ComponentShowcaseProps {
   showAll?: boolean; // If true, shows all components; if false, shows specific component
@@ -43,540 +39,335 @@ interface ComponentShowcaseProps {
 
 export default function ComponentShowcase({ showAll = false }: ComponentShowcaseProps) {
   const { componentName } = useParams<{ componentName: string }>();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("tab1");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [formData, setFormData] = useState({
-    email: "",
-    message: "",
-    country: "",
-    newsletter: false,
-    gender: "",
-    notifications: false,
-  });
+  const [activeTab, setActiveTab] = useState("preview");
 
-  const { deviceType, isMobile } = useResponsive();
-
-  // Sample data for DataTable
-  const users = [
-    { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User" },
-    { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "User" },
-  ];
-
-  const columns = [
-    { key: "name" as const, label: "Name", sortable: true },
-    { key: "email" as const, label: "Email", sortable: true },
-    { key: "role" as const, label: "Role" },
-  ];
+  // Redirect /components to /components/getting-started
+  React.useEffect(() => {
+    if (showAll) {
+      window.history.replaceState(null, '', '/components/getting-started');
+    }
+  }, [showAll]);
 
   // Individual component demos
-  const renderAlertDemo = () => (
-    <section className="mb-lg">
-      <h2>Alerts</h2>
-      <Alert variant="success" title="Success!" onClose={() => {}}>
-        Your changes have been saved successfully.
-      </Alert>
-      <Alert variant="warning" title="Warning">
-        Please review your information before proceeding.
-      </Alert>
-      <Alert variant="error" title="Error">
-        Something went wrong. Please try again.
-      </Alert>
-      <Alert variant="info" title="Info">
-        Here's some helpful information for you.
-      </Alert>
-    </section>
+
+  const renderAlertComponent = () => (
+    <CodePreviewTabs
+      title="Alerts"
+      description="Displays a callout for user attention."
+      preview={<AlertPreview />}
+      code={AlertCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderAvatarDemo = () => (
-    <section className="mb-lg">
-      <h2>Avatars</h2>
-      <div className="mb-md">
-        <Avatar size="sm" initials="JD" />
-        <Avatar size="md" initials="JS" className="ml-sm" />
-        <Avatar size="lg" initials="BJ" className="ml-sm" />
-        <Avatar size="xl" initials="XL" className="ml-sm" />
-      </div>
-      <div className="mb-md">
-        <AvatarGroup max={3}>
-          <Avatar size="md" initials="A" />
-          <Avatar size="md" initials="B" />
-          <Avatar size="md" initials="C" />
-          <Avatar size="md" initials="D" />
-          <Avatar size="md" initials="E" />
-        </AvatarGroup>
-      </div>
-    </section>
+  const renderAvatarComponent = () => (
+    <CodePreviewTabs
+      title="Avatars"
+      description="User profile images and initials for personal identification."
+      preview={<AvatarPreview />}
+      code={AvatarCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderBadgeDemo = () => (
-    <section className="mb-lg">
-      <h2>Badges</h2>
-      <div className="mb-md">
-        <Badge variant="primary">Primary</Badge>
-        <Badge variant="success" className="ml-sm">Success</Badge>
-        <Badge variant="warning" className="ml-sm">Warning</Badge>
-        <Badge variant="error" className="ml-sm">Error</Badge>
-        <Badge variant="info" className="ml-sm">Info</Badge>
-        <Badge variant="neutral" className="ml-sm">Neutral</Badge>
-      </div>
-    </section>
+  const renderBadgeComponent = () => (
+    <CodePreviewTabs
+      title="Badges"
+      description="Small status indicators for labels, counts, and notifications."
+      preview={<BadgePreview />}
+      code={BadgeCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderButtonDemo = () => (
-    <section className="mb-lg">
-      <h2>Buttons & Badges</h2>
-      
-      {/* Button Variants */}
-      <div className="mb-md">
-        <h3>Button Variants</h3>
-        <div className="mb-sm">
-          <Button variant="primary" onClick={() => alert("Primary clicked!")}>
-            Primary Button
-          </Button>
-          <Button variant="secondary" className="ml-sm">
-            Secondary Button
-          </Button>
-          <Button variant="tertiary" className="ml-sm">
-            Tertiary Button
-          </Button>
-        </div>
-      </div>
-
-      {/* Button Sizes */}
-      <div className="mb-md">
-        <h3>Button Sizes</h3>
-        <div style={{ display: 'flex', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
-          {/* Primary Buttons */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', alignItems: 'flex-start' }}>
-            <h4 style={{ margin: '0 0 var(--space-sm) 0', fontSize: 'var(--font-size-sm)', fontWeight: '600', color: 'var(--color-text)' }}>Primary</h4>
-            <Button size="sm" variant="primary">
-              Small Button
-            </Button>
-            <Button size="md" variant="primary">
-              Medium Button
-            </Button>
-            <Button size="lg" variant="primary">
-              Large Button
-            </Button>
-          </div>
-          
-          {/* Secondary Buttons */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', alignItems: 'flex-start' }}>
-            <h4 style={{ margin: '0 0 var(--space-sm) 0', fontSize: 'var(--font-size-sm)', fontWeight: '600', color: 'var(--color-text)' }}>Secondary</h4>
-            <Button size="sm" variant="secondary">
-              Small Secondary
-            </Button>
-            <Button size="md" variant="secondary">
-              Medium Secondary
-            </Button>
-            <Button size="lg" variant="secondary">
-              Large Secondary
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Badge Variants */}
-      <div className="mb-md">
-        <h3>Badge Variants</h3>
-        <div className="mb-sm">
-          <Badge variant="primary">Primary</Badge>
-          <Badge variant="success" className="ml-sm">
-            Success
-          </Badge>
-          <Badge variant="warning" className="ml-sm">
-            Warning
-          </Badge>
-          <Badge variant="error" className="ml-sm">
-            Error
-          </Badge>
-          <Badge variant="info" className="ml-sm">
-            Info
-          </Badge>
-          <Badge variant="neutral" className="ml-sm">
-            Neutral
-          </Badge>
-        </div>
-      </div>
-    </section>
+  const renderButtonComponent = () => (
+    <CodePreviewTabs
+      title="Buttons"
+      description="Interactive elements for user actions and navigation."
+      preview={<ButtonPreview />}
+      code={ButtonCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderCardDemo = () => (
-    <section className="mb-lg">
-      <h2>Cards</h2>
-      <div className="mb-md">
-        <Card className="p-md">
-          <h3>Card Title</h3>
-          <p>This is a card component with some content.</p>
-        </Card>
-      </div>
-    </section>
+  const renderCardComponent = () => (
+    <CodePreviewTabs
+      title="Cards"
+      description="Flexible containers for grouping related content and actions."
+      preview={<CardPreview />}
+      code={CardCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderFormDemo = () => (
-    <section className="mb-lg">
-      <h2>Form Components</h2>
-      <Card className="p-md">
-        <Input
-          label="Email"
-          type="email"
-          placeholder="Enter your email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="mb-md"
-        />
-        <Textarea
-          label="Message"
-          placeholder="Enter your message"
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="mb-md"
-        />
-        <Select
-          label="Country"
-          options={[
-            { value: "us", label: "United States" },
-            { value: "ca", label: "Canada" },
-            { value: "uk", label: "United Kingdom" },
-          ]}
-          value={formData.country}
-          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-          className="mb-md"
-        />
-        <Checkbox
-          label="Subscribe to newsletter"
-          checked={formData.newsletter}
-          onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
-          className="mb-md"
-        />
-        <div className="mb-md">
-          <label className="form-label">Gender</label>
-          <Radio
-            name="gender"
-            value="male"
-            label="Male"
-            checked={formData.gender === "male"}
-            onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-          />
-          <Radio
-            name="gender"
-            value="female"
-            label="Female"
-            checked={formData.gender === "female"}
-            onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-          />
-        </div>
-        <Switch
-          label="Enable notifications"
-          checked={formData.notifications}
-          onChange={(e) => setFormData({ ...formData, notifications: e.target.checked })}
-        />
-      </Card>
-    </section>
+  const renderFormComponent = () => (
+    <CodePreviewTabs
+      title="Form Components"
+      description="Input fields, controls, and validation for user data collection."
+      preview={<FormPreview />}
+      code={FormCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderModalDemo = () => (
-    <section className="mb-lg">
-      <h2>Modal & Overlays</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
-        <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
-        
-        <Tooltip content="This is a helpful tooltip">
-          <Button>Hover for tooltip</Button>
-        </Tooltip>
-
-        <Popover
-          isOpen={isPopoverOpen}
-          onClose={() => setIsPopoverOpen(false)}
-          content="This is popover content"
-          title="Popover Title"
-        >
-          <Button onClick={() => setIsPopoverOpen(!isPopoverOpen)}>Toggle Popover</Button>
-        </Popover>
-      </div>
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Confirm Action"
-        size="md"
-      >
-        <p>Are you sure you want to proceed with this action?</p>
-        <ModalFooter>
-          <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={() => setIsModalOpen(false)}>
-            Confirm
-          </Button>
-        </ModalFooter>
-      </Modal>
-    </section>
+  const renderModalComponent = () => (
+    <CodePreviewTabs
+      title="Modal & Overlays"
+      description="Overlay components for dialogs, tooltips, and popovers."
+      preview={<ModalPreview />}
+      code={ModalCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderTabsDemo = () => (
-    <section className="mb-lg">
-      <h2>Tabs</h2>
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabList>
-          <TabTrigger value="tab1">Tab 1</TabTrigger>
-          <TabTrigger value="tab2">Tab 2</TabTrigger>
-          <TabTrigger value="tab3">Tab 3</TabTrigger>
-        </TabList>
-        <TabContent value="tab1">
-          <Card className="p-md">
-            <h3>Tab 1 Content</h3>
-            <p>This is the content for tab 1.</p>
-          </Card>
-        </TabContent>
-        <TabContent value="tab2">
-          <Card className="p-md">
-            <h3>Tab 2 Content</h3>
-            <p>This is the content for tab 2.</p>
-          </Card>
-        </TabContent>
-        <TabContent value="tab3">
-          <Card className="p-md">
-            <h3>Tab 3 Content</h3>
-            <p>This is the content for tab 3.</p>
-          </Card>
-        </TabContent>
-      </Tabs>
-    </section>
+  const renderTabsComponent = () => (
+    <CodePreviewTabs
+      title="Tabs"
+      description="Organize content into multiple panels with tab navigation."
+      preview={<TabsPreview />}
+      code={TabsCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderTableDemo = () => (
-    <section className="mb-lg">
-      <h2>Tables</h2>
-      <Card className="p-md">
-        <h3>Basic Table</h3>
-        <Table striped hover>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>Email</TableHeaderCell>
-              <TableHeaderCell>Role</TableHeaderCell>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>John Doe</TableCell>
-              <TableCell>john@example.com</TableCell>
-              <TableCell>Admin</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Jane Smith</TableCell>
-              <TableCell>jane@example.com</TableCell>
-              <TableCell>User</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Card>
-
-      <Card className="p-md mt-md">
-        <h3>Data Table with Sorting</h3>
-        <DataTable
-          data={users}
-          columns={columns}
-          onSort={(key) => console.log("Sort by:", key)}
-          onRowClick={(row) => console.log("Row clicked:", row)}
-          selectable
-          striped
-          hover
-        />
-      </Card>
-    </section>
+  const renderTableComponent = () => (
+    <CodePreviewTabs
+      title="Tables"
+      description="Basic table structure for displaying data in rows and columns."
+      preview={<TablePreview />}
+      code={TableCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderPaginationDemo = () => (
-    <section className="mb-lg">
-      <h2>Pagination</h2>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={10}
-        onPageChange={setCurrentPage}
-        showFirstLast
-        showPrevNext
-      />
-    </section>
+  const renderDataTableComponent = () => (
+    <CodePreviewTabs
+      title="DataTable"
+      description="Advanced table with sorting, selection, and interactive features."
+      preview={<DataTablePreview />}
+      code={DataTableCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
-  const renderBreadcrumbDemo = () => (
-    <section className="mb-lg">
-      <h2>Breadcrumb</h2>
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Components", href: "/components" },
-          { label: "Breadcrumb", current: true },
-        ]}
-      />
-    </section>
+  const renderPaginationComponent = () => (
+    <CodePreviewTabs
+      title="Pagination"
+      description="Navigate through multiple pages of content with page controls."
+      preview={<PaginationPreview />}
+      code={PaginationCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderBreadcrumbComponent = () => (
+    <CodePreviewTabs
+      title="Breadcrumb"
+      description="Show the current page location within the site hierarchy."
+      preview={<BreadcrumbPreview />}
+      code={BreadcrumbCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderScrollAreaComponent = () => (
+    <CodePreviewTabs
+      title="ScrollArea"
+      description="Customizable scrollable areas with different scrollbar sizes."
+      preview={<ScrollAreaPreview />}
+      code={ScrollAreaCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderInputComponent = () => (
+    <CodePreviewTabs
+      title="Input"
+      description="Text input fields for user data entry with various types and validation."
+      preview={<InputPreview />}
+      code={InputCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderTextareaComponent = () => (
+    <CodePreviewTabs
+      title="Textarea"
+      description="Multi-line text input for longer content and messages."
+      preview={<TextareaPreview />}
+      code={TextareaCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderSelectComponent = () => (
+    <CodePreviewTabs
+      title="Select"
+      description="Dropdown selection menus for choosing from predefined options."
+      preview={<SelectPreview />}
+      code={SelectCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderCheckboxComponent = () => (
+    <CodePreviewTabs
+      title="Checkbox"
+      description="Binary choice controls for enabling or disabling options."
+      preview={<CheckboxPreview />}
+      code={CheckboxCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderRadioComponent = () => (
+    <CodePreviewTabs
+      title="Radio"
+      description="Single-choice controls for selecting one option from a group."
+      preview={<RadioPreview />}
+      code={RadioCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderSwitchComponent = () => (
+    <CodePreviewTabs
+      title="Switch"
+      description="Toggle switches for binary on/off states and settings."
+      preview={<SwitchPreview />}
+      code={SwitchCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderTooltipComponent = () => (
+    <CodePreviewTabs
+      title="Tooltip"
+      description="Contextual information that appears on hover for enhanced user guidance."
+      preview={<TooltipPreview />}
+      code={TooltipCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
+  );
+
+  const renderPopoverComponent = () => (
+    <CodePreviewTabs
+      title="Popover"
+      description="Floating panels that appear on click for additional content and actions."
+      preview={<PopoverPreview />}
+      code={PopoverCode}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    />
   );
 
   // Render specific component or all components
   const renderContent = () => {
     if (showAll) {
-      // Show all components (Components page)
-      return (
-        <>
-          <section id="alerts" className="mb-lg">
-            {renderAlertDemo()}
-          </section>
-          <section id="buttons" className="mb-lg">
-            {renderButtonDemo()}
-          </section>
-          <section className="mb-lg">
-            {renderAvatarDemo()}
-          </section>
-          <section id="forms" className="mb-lg">
-            {renderFormDemo()}
-          </section>
-          <section className="mb-lg">
-            {renderModalDemo()}
-          </section>
-          <section className="mb-lg">
-            {renderTabsDemo()}
-          </section>
-          <section id="tables" className="mb-lg">
-            {renderTableDemo()}
-          </section>
-          <section className="mb-lg">
-            {renderPaginationDemo()}
-          </section>
-        </>
-      );
+      // Show getting started content when on /components route
+      return <GettingStarted />;
     } else {
       // Show specific component (ComponentDetail page)
       if (!componentName) return null;
 
       switch (componentName.toLowerCase()) {
+        case "getting-started":
+          return <GettingStarted />;
         case "alert":
-          return renderAlertDemo();
+          return renderAlertComponent();
         case "avatar":
-          return renderAvatarDemo();
+          return renderAvatarComponent();
         case "badge":
-          return renderBadgeDemo();
+          return renderBadgeComponent();
         case "breadcrumb":
-          return renderBreadcrumbDemo();
+          return renderBreadcrumbComponent();
+        case "scroll-area":
+          return renderScrollAreaComponent();
         case "button":
-          return (
-            <section className="mb-lg">
-              <h2>Buttons</h2>
-              
-              {/* Button Variants */}
-              <div className="mb-md">
-                <h3>Button Variants</h3>
-                <div className="mb-sm">
-                  <Button variant="primary" onClick={() => alert("Primary clicked!")}>
-                    Primary Button
-                  </Button>
-                  <Button variant="secondary" className="ml-sm">
-                    Secondary Button
-                  </Button>
-                  <Button variant="tertiary" className="ml-sm">
-                    Tertiary Button
-                  </Button>
-                </div>
-              </div>
-
-              {/* Button Sizes */}
-              <div className="mb-md">
-                <h3>Button Sizes</h3>
-                <div style={{ display: 'flex', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
-                  {/* Primary Buttons */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', alignItems: 'flex-start' }}>
-                    <h4 style={{ margin: '0 0 var(--space-sm) 0', fontSize: 'var(--font-size-sm)', fontWeight: '600', color: 'var(--color-text)' }}>Primary</h4>
-                    <Button size="sm" variant="primary">
-                      Small Button
-                    </Button>
-                    <Button size="md" variant="primary">
-                      Medium Button
-                    </Button>
-                    <Button size="lg" variant="primary">
-                      Large Button
-                    </Button>
-                  </div>
-                  
-                  {/* Secondary Buttons */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', alignItems: 'flex-start' }}>
-                    <h4 style={{ margin: '0 0 var(--space-sm) 0', fontSize: 'var(--font-size-sm)', fontWeight: '600', color: 'var(--color-text)' }}>Secondary</h4>
-                    <Button size="sm" variant="secondary">
-                      Small Secondary
-                    </Button>
-                    <Button size="md" variant="secondary">
-                      Medium Secondary
-                    </Button>
-                    <Button size="lg" variant="secondary">
-                      Large Secondary
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          );
+           return renderButtonComponent();
         case "card":
-          return renderCardDemo();
+          return renderCardComponent();
         case "checkbox":
-          return renderFormDemo();
+          return renderCheckboxComponent();
+        case "form":
+          return renderFormComponent();
         case "input":
-          return renderFormDemo();
+          return renderInputComponent();
         case "modal":
-          return renderModalDemo();
+          return renderModalComponent();
         case "navigation":
           return (
-            <section className="mb-lg">
-              <h2>Navigation</h2>
-              
-              {/* Basic Navigation Demo */}
-              <div className="mb-md">
-                <h3>Basic Navigation</h3>
-                <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                  <Navigation brand="Azodik">
-                    <NavItem href="#" active>Home</NavItem>
-                    <NavItem href="#">About</NavItem>
-                    <NavItem href="#">Services</NavItem>
-                    <NavItem href="#">Contact</NavItem>
-                  </Navigation>
-                </div>
-              </div>
-            </section>
+            <CodePreviewTabs
+              title="Navigation"
+              description="Horizontal navigation bars for site-wide navigation."
+              preview={<NavigationPreview />}
+              code={NavigationCode}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
           );
         case "pagination":
-          return renderPaginationDemo();
+          return renderPaginationComponent();
         case "popover":
-          return renderModalDemo();
+          return renderPopoverComponent();
         case "radio":
-          return renderFormDemo();
+          return renderRadioComponent();
         case "select":
-          return renderFormDemo();
+          return renderSelectComponent();
         case "sidebar":
           return (
-            <section className="mb-lg">
-              <h2>Sidebar</h2>
-              <p>Sidebar component demo would go here.</p>
-            </section>
+            <CodePreviewTabs
+              title="Sidebar"
+              description="Vertical navigation panels for app layouts and navigation."
+              preview={<SidebarPreview />}
+              code={SidebarCode}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
           );
         case "switch":
-          return renderFormDemo();
+          return renderSwitchComponent();
         case "table":
-          return renderTableDemo();
+          return renderTableComponent();
+        case "datatable":
+          return renderDataTableComponent();
         case "tabs":
-          return renderTabsDemo();
+          return renderTabsComponent();
         case "textarea":
-          return renderFormDemo();
+          return renderTextareaComponent();
         case "toast":
           return (
-            <section className="mb-lg">
-              <h2>Toast</h2>
-              <p>Toast component demo would go here.</p>
-            </section>
+            <CodePreviewTabs
+              title="Toast"
+              description="Temporary notifications that appear and disappear automatically."
+              preview={<ToastPreview />}
+              code={ToastCode}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
           );
         case "tooltip":
-          return renderModalDemo();
+          return renderTooltipComponent();
         default:
           return (
             <section className="mb-lg">
@@ -593,13 +384,14 @@ export default function ComponentShowcase({ showAll = false }: ComponentShowcase
     if (showAll) {
       return [
         { label: "Components", href: "/components" },
-        { label: "Design System", current: true },
+        { label: "Getting Started", current: true },
       ];
     } else {
       return [
         { label: "Components", href: "/components" },
         { 
-          label: componentName ? componentName.charAt(0).toUpperCase() + componentName.slice(1) : "Component", 
+          label: componentName === 'getting-started' ? 'Getting Started' : 
+                 (componentName ? componentName.charAt(0).toUpperCase() + componentName.slice(1) : "Component"), 
           current: true 
         },
       ];
@@ -621,10 +413,10 @@ export default function ComponentShowcase({ showAll = false }: ComponentShowcase
       breadcrumb={<Breadcrumb items={getBreadcrumbItems()} />}
     >
       <div className="p-md">
-        <h1 className="text-center">{getTitle()}</h1>
+        {/* <h1 className="text-center">{getTitle()}</h1>
         <p className="text-center">
           Device: {deviceType} {isMobile && "(Mobile)"}
-        </p>
+        </p> */}
 
         {renderContent()}
       </div>

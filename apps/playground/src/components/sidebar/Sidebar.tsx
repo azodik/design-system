@@ -84,6 +84,9 @@ export default function SidebarLayout({
   const getCurrentComponent = () => {
     const pathParts = location.pathname.split('/');
     if (pathParts[1] === 'components' && pathParts[2]) {
+      if (pathParts[2] === 'getting-started') {
+        return 'Getting Started';
+      }
       return pathParts[2].charAt(0).toUpperCase() + pathParts[2].slice(1);
     }
     return null;
@@ -148,7 +151,7 @@ export default function SidebarLayout({
                 <SidebarMenuItem key={index} show={true}>
                   <SidebarMenuButton 
                     onClick={() => handleComponentClick(item.href)}
-                    className={isActive ? "active" : ""}
+                    active={isActive}
                     style={{ cursor: 'pointer' }}
                   >
                     {item.name}

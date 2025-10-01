@@ -15,6 +15,7 @@ export {
 } from "./components/Navigation";
 export { Breadcrumb } from "./components/Breadcrumb";
 export { Pagination } from "./components/Pagination";
+export { ScrollArea } from "./components/ScrollArea";
 export {
   Tabs,
   TabList,
@@ -76,6 +77,7 @@ export type {
 } from "./components/Navigation";
 export type { BreadcrumbProps } from "./components/Breadcrumb";
 export type { PaginationProps } from "./components/Pagination";
+export type { ScrollAreaProps } from "./components/ScrollArea";
 export type {
   TabsProps,
   TabListProps,

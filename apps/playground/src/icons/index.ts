@@ -15,3 +15,5 @@ export { default as ChevronRightIcon } from './ChevronRightIcon';
 export { default as ChevronDownIcon } from './ChevronDownIcon';
 export { default as ChevronUpIcon } from './ChevronUpIcon';
 export { default as ChevronDownSmallIcon } from './ChevronDownSmallIcon';
+export { default as CopyIcon } from './CopyIcon';
+export { default as TickIcon } from './TickIcon';

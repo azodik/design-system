@@ -317,3 +317,14 @@
     padding: 0.4rem 0.8rem;
   }
 }
+
+/* Sidebar Active State */
+.sidebar-item.active {
+  background-color: #fef3e7;
+  color: #ea580c;
+  font-weight: 600;
+}
+
+.sidebar-item.active:hover {
+  background-color: #fed7aa;
+}

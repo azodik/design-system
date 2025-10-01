@@ -169,6 +169,7 @@ export interface DataTableProps<T = any> extends Omit<TableProps, "children"> {
   onRowClick?: (row: T) => void;
   selectedRows?: T[];
   onRowSelect?: (row: T, selected: boolean) => void;
+  onSelectAll?: (selected: boolean) => void;
   selectable?: boolean;
 }
 
@@ -181,6 +182,7 @@ export function DataTable<T = any>({
   onRowClick,
   selectedRows = [],
   onRowSelect,
+  onSelectAll,
   selectable = false,
   className = "",
   ...props
@@ -211,7 +213,11 @@ export function DataTable<T = any>({
                 type="checkbox"
                 checked={selectedRows.length === data.length && data.length > 0}
                 onChange={(e) => {
-                  data.forEach((row) => handleRowSelect(row, e.target.checked));
+                  if (onSelectAll) {
+                    onSelectAll(e.target.checked);
+                  } else {
+                    data.forEach((row) => handleRowSelect(row, e.target.checked));
+                  }
                 }}
               />
             </TableHeaderCell>
