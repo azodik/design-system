@@ -8,32 +8,29 @@ export const CheckboxPreview = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '220px',
-          maxWidth: '500px'
-        }}
-      >
+      <div>
+        <h3 className="text-lg font-semibold mb-3">Checkbox Sizes</h3>
         <div className="space-y-4">
           <Checkbox
-            label="Subscribe to newsletter"
+            label="Small checkbox"
+            size="sm"
             checked={newsletter}
             onChange={(e) => setNewsletter(e.target.checked)}
           />
           <Checkbox
-            label="I agree to the terms and conditions"
+            label="Medium checkbox (default)"
+            size="md"
             checked={terms}
             onChange={(e) => setTerms(e.target.checked)}
           />
           <Checkbox
-            label="Send me marketing emails"
+            label="Large checkbox"
+            size="lg"
             checked={marketing}
             onChange={(e) => setMarketing(e.target.checked)}
           />
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
@@ -48,32 +45,29 @@ export const CheckboxExample = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '320px',
-          maxWidth: '500px'
-        }}
-      >
+      <div>
+        <h3 className="text-lg font-semibold mb-3">Checkbox Sizes</h3>
         <div className="space-y-4">
           <Checkbox
-            label="Subscribe to newsletter"
+            label="Small checkbox"
+            size="sm"
             checked={newsletter}
             onChange={(e) => setNewsletter(e.target.checked)}
           />
           <Checkbox
-            label="I agree to the terms and conditions"
+            label="Medium checkbox (default)"
+            size="md"
             checked={terms}
             onChange={(e) => setTerms(e.target.checked)}
           />
           <Checkbox
-            label="Send me marketing emails"
+            label="Large checkbox"
+            size="lg"
             checked={marketing}
             onChange={(e) => setMarketing(e.target.checked)}
           />
         </div>
-      </Card>
+      </div>
     </div>
   );
 };`;

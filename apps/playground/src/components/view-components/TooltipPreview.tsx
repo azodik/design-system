@@ -4,14 +4,7 @@ import { Button, Tooltip, Card } from "@azodik/ui";
 export const TooltipPreview = () => {
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '700px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-4">
           <div className="flex gap-4 flex-wrap tooltip-buttons">
             <Tooltip content="This is a helpful tooltip">
@@ -38,14 +31,7 @@ import { Button, Tooltip, Card } from "@azodik/ui";
 export const TooltipExample = () => {
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-4">
           <div className="flex gap-4 flex-wrap tooltip-buttons">
             <Tooltip content="This is a helpful tooltip">

@@ -5,8 +5,8 @@ export const BreadcrumbPreview = () => (
   <div className="space-y-4">
     <Breadcrumb
       items={[
-        { label: "Home", href: "/" },
-        { label: "Components", href: "/components" },
+        { label: "Home" },
+        { label: "Components" },
         { label: "Breadcrumb", current: true },
       ]}
     />

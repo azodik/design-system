@@ -4,9 +4,7 @@ import SidebarLayout from "./sidebar/Sidebar";
 import CodePreviewTabs from "./CodePreviewTabs";
 import GettingStarted from "./getting-started/GettingStarted";
 import {
-  Card,
   Breadcrumb,
-  useResponsive,
 } from "@azodik/ui";
 import { AlertPreview, AlertCode } from "./view-components/AlertPreview";
 import { AvatarPreview, AvatarCode } from "./view-components/AvatarPreview";

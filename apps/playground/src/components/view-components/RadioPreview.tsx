@@ -7,14 +7,7 @@ export const RadioPreview = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-6">
           <div>
             <label className="form-label">Gender</label>
@@ -84,14 +77,7 @@ export const RadioExample = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-6">
           <div>
             <label className="form-label">Gender</label>

@@ -3,7 +3,15 @@ export { default as Alert } from "./components/Alert";
 export { default as Avatar, AvatarGroup } from "./components/Avatar";
 export { default as Badge } from "./components/Badge";
 export { default as Button } from "./components/Button";
-export { default as Card } from "./components/Card";
+export { 
+  default as Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  CardAction
+} from "./components/Card";
 export { default as Input, Textarea, Select, Checkbox, Radio, Switch } from "./components/Input";
 export { default as Modal, ModalFooter } from "./components/Modal";
 export { Toast } from "./components/Toast";
@@ -58,7 +66,15 @@ export type { AlertProps } from "./components/Alert";
 export type { AvatarProps, AvatarGroupProps } from "./components/Avatar";
 export type { BadgeProps } from "./components/Badge";
 export type { ButtonProps } from "./components/Button";
-export type { CardProps } from "./components/Card";
+export type { 
+  CardProps,
+  CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
+  CardContentProps,
+  CardFooterProps,
+  CardActionProps
+} from "./components/Card";
 export type {
   InputProps,
   TextareaProps,

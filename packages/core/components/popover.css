@@ -7,8 +7,6 @@
 
 .popover-content {
   position: absolute;
-  top: 100%;
-  left: 0;
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);

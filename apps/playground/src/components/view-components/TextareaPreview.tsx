@@ -7,14 +7,7 @@ export const TextareaPreview = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-4">
           <Textarea
             label="Message"
@@ -45,14 +38,7 @@ export const TextareaExample = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-4">
           <Textarea
             label="Message"

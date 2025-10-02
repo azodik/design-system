@@ -163,6 +163,43 @@
   position: relative;
 }
 
+/* Checkbox Sizes */
+.checkbox-sm {
+  gap: var(--space-xs);
+}
+
+.checkbox-sm .checkbox-custom {
+  width: 14px;
+  height: 14px;
+}
+
+.checkbox-sm input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+}
+
+.checkbox-sm label {
+  font-size: var(--font-size-sm);
+}
+
+.checkbox-lg {
+  gap: var(--space-md);
+}
+
+.checkbox-lg .checkbox-custom {
+  width: 24px;
+  height: 24px;
+}
+
+.checkbox-lg input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+}
+
+.checkbox-lg label {
+  font-size: var(--font-size-lg);
+}
+
 .checkbox input[type="checkbox"] {
   position: absolute;
   opacity: 0;
@@ -326,8 +363,13 @@
 
 .switch input {
   opacity: 0;
-  width: 0;
-  height: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .switch-slider {

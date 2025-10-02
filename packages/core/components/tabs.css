@@ -16,15 +16,16 @@
 .tabs-trigger {
   display: flex;
   align-items: center;
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm) var(--space-md) var(--space-md) var(--space-md);
   color: var(--color-text);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
   cursor: pointer;
   background: none;
   border: none;
   font-size: var(--font-size-md);
+  font-weight: 500;
 }
 
 .tabs-trigger:hover {
@@ -33,7 +34,7 @@
 
 .tabs-trigger.active {
   color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  font-weight: 600;
 }
 
 .tabs-content {

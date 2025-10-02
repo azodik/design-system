@@ -4,6 +4,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
   size?: "sm" | "md" | "lg";
+  rounded?: "xs" | "sm" | "md" | "lg" | "xl";
   icon?: React.ReactNode;
   onRemove?: () => void;
 }
@@ -12,6 +13,7 @@ export default function Badge({
   children,
   variant = "primary",
   size = "md",
+  rounded = "md",
   icon,
   onRemove,
   className = "",
@@ -21,6 +23,7 @@ export default function Badge({
     "badge",
     `badge-${variant}`,
     size !== "md" && `badge-${size}`,
+    rounded !== "md" && `badge-rounded-${rounded}`,
     icon && "badge-icon",
     onRemove && "badge-close",
     className,

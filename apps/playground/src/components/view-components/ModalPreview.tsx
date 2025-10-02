@@ -8,16 +8,9 @@ export const ModalPreview = () => {
   return (
     <>
       <div className="space-y-6">
-        <Card 
-          className="p-6"
-          style={{ 
-            width: '100%',
-            minWidth: '400px',
-            maxWidth: '500px'
-          }}
-        >
+        <Card className="p-4">
           <div className="space-y-4">
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex gap-4 flex-wrap" style={{ gap: 'var(--space-sm)' }}>
               <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
               <Button 
                 variant="secondary" 
@@ -36,8 +29,8 @@ export const ModalPreview = () => {
         title="Confirm Action"
         size="md"
       >
-        <p>Are you sure you want to proceed with this action?</p>
-        <ModalFooter>
+        <p>This is the modal of size="md"</p>
+        <ModalFooter className="items-center justify-center">
           <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
             Cancel
           </Button>
@@ -53,8 +46,8 @@ export const ModalPreview = () => {
         title="Delete Item"
         size="sm"
       >
-        <p>This action cannot be undone. Are you sure you want to delete this item?</p>
-        <ModalFooter>
+        <p>This is the modal of size="sm"</p>
+        <ModalFooter className="items-center justify-center">
           <Button variant="secondary" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel
           </Button>
@@ -81,7 +74,7 @@ export const ModalExample = () => {
   return (
     <>
       <div className="space-y-6">
-        <Card className="p-6">
+        <Card className="p-4">
           <div className="space-y-4">
             <div className="flex gap-4 flex-wrap">
               <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
@@ -102,7 +95,7 @@ export const ModalExample = () => {
         title="Confirm Action"
         size="md"
       >
-        <p>Are you sure you want to proceed with this action?</p>
+        <p>This is the modal of size="md"</p>
         <ModalFooter>
           <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
             Cancel
@@ -119,7 +112,7 @@ export const ModalExample = () => {
         title="Delete Item"
         size="sm"
       >
-        <p>This action cannot be undone. Are you sure you want to delete this item?</p>
+        <p>This is the modal of size="sm"</p>
         <ModalFooter>
           <Button variant="secondary" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel

@@ -94,17 +94,22 @@ export function Select({
 }
 
 // Checkbox Component
-export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "size"> {
   label?: string;
   help?: string;
   error?: string;
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 
-export function Checkbox({ label, help, error, className = "", ...props }: CheckboxProps) {
+export function Checkbox({ label, help, error, size = "md", className = "", ...props }: CheckboxProps) {
+  const checkboxClasses = ["checkbox", size !== "md" && `checkbox-${size}`, className]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <div className="form-group">
-      <div className={`checkbox ${className}`}>
+      <div className={checkboxClasses}>
         <input type="checkbox" {...props} />
         <span className="checkbox-custom" />
         {label && <label>{label}</label>}
@@ -145,11 +150,16 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   className?: string;
 }
 
-export function Switch({ label, help, error, className = "", ...props }: SwitchProps) {
+export function Switch({ label, help, error, className = "", checked, onChange, ...props }: SwitchProps) {
   return (
     <div className="form-group">
       <div className={`switch ${className}`}>
-        <input type="checkbox" {...props} />
+        <input 
+          type="checkbox" 
+          checked={checked}
+          onChange={onChange}
+          {...props} 
+        />
         <span className="switch-slider" />
       </div>
       {label && <label className="form-label">{label}</label>}

@@ -8,14 +8,7 @@ export const InputPreview = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-            width: '100%',
-            minWidth: '220px',
-            maxWidth: '500px'
-          }}
-      >
+      <Card className="p-4">
         <div className="space-y-4">
           <Input
             label="Email"
@@ -54,7 +47,7 @@ export const InputExample = () => {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
+      <Card className="p-4">
         <div className="space-y-4">
           <Input
             label="Email"

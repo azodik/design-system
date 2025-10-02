@@ -12,18 +12,9 @@ export const FormPreview = () => {
   });
 
   return (
-    <Card 
-      className="p-6"
-      style={{ 
-        width: '100%',
-        minWidth: '280px',
-        maxWidth: '500px',
-        height: '400px',
-        overflow: 'hidden'
-      }}
-    >
+    <Card width="75%" height="75%">
       <ScrollArea className="h-full" scrollbarSize="sm">
-        <div className="space-y-4 p-1">
+        <div className="space-y-4 p-4">
         <Input
           label="Email"
           type="email"

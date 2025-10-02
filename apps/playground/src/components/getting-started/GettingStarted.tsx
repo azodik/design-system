@@ -1,9 +1,29 @@
 import React from "react";
-import { Card } from "@azodik/ui";
+import { Card, Button } from "@azodik/ui";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useNavigate } from 'react-router-dom';
+import { componentsMenuItems } from '../../data/componentsMenu';
+import { RightLongArrowIcon } from '../../icons';
 
 export default function GettingStarted() {
+  const navigate = useNavigate();
+
+  // Get navigation info for Getting Started (first item)
+  const getNavigationInfo = () => {
+    const currentIndex = 0; // Getting Started is always first
+    const next = componentsMenuItems[currentIndex + 1]; // Next is Alert
+    return { previous: null, next };
+  };
+
+  const { next } = getNavigationInfo();
+
+  const handleNext = () => {
+    if (next) {
+      navigate(next.href);
+    }
+  };
+
   return (
     <section className="max-w-4xl mx-auto">
       <div className="text-center mb-16">
@@ -32,56 +52,52 @@ export default function GettingStarted() {
 
         <div className="mb-16">
           <h2 className="text-3xl font-semibold text-gray-900 mb-8">Installation</h2>
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-2xl border border-gray-200">
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Start</h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                Install the Azodik UI package using your preferred package manager. Our components are built with modern React patterns and include full TypeScript support.
-              </p>
-            </div>
-            
-            <div className="mb-6">
-              <p className="text-gray-700 mb-4 text-sm font-medium">Install the package:</p>
-              <Card className="p-0 bg-gray-900 border border-gray-700 rounded-lg overflow-hidden shadow-lg">
-                <SyntaxHighlighter
-                  language="bash"
-                  style={vscDarkPlus}
-                  customStyle={{
-                    margin: 0,
-                    borderRadius: '0.5rem',
-                    fontSize: '0.875rem',
-                    lineHeight: '1.6',
-                    padding: '1.25rem',
-                    background: '#111827',
-                    color: '#f9fafb',
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: '#d1d5db transparent'
-                  }}
-                  wrapLines={true}
-                  wrapLongLines={true}
-                >
-                  {`npm install @azodik/ui`}
-                </SyntaxHighlighter>
-              </Card>
-            </div>
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Start</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              Install the Azodik UI package using your preferred package manager. Our components are built with modern React patterns and include full TypeScript support.
+            </p>
+          </div>
+          
+          <div className="mb-6">
+            <p className="text-gray-700 mb-4 text-sm font-medium">Install the package:</p>
+            <SyntaxHighlighter
+              language="bash"
+              style={vscDarkPlus}
+              customStyle={{
+                margin: 0,
+                borderRadius: '0.5rem',
+                fontSize: '0.875rem',
+                lineHeight: '1.6',
+                padding: '1.25rem',
+                background: '#111827',
+                color: '#f9fafb',
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#d1d5db transparent'
+              }}
+              wrapLines={true}
+              wrapLongLines={true}
+            >
+              {`npm install @azodik/ui`}
+            </SyntaxHighlighter>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-xl border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-3">Requirements</h4>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>• React 16.8+ (hooks support)</li>
-                  <li>• TypeScript 4.5+ (optional but recommended)</li>
-                  <li>• Node.js 14+ for development</li>
-                </ul>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-3">Bundle Size</h4>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>• Tree-shakeable components</li>
-                  <li>• ~15KB gzipped (core)</li>
-                  <li>• Individual component imports</li>
-                </ul>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-3">Requirements</h4>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• React 16.8+ (hooks support)</li>
+                <li>• TypeScript 4.5+ (optional but recommended)</li>
+                <li>• Node.js 14+ for development</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-3">Bundle Size</h4>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Tree-shakeable components</li>
+                <li>• ~15KB gzipped (core)</li>
+                <li>• Individual component imports</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -189,6 +205,19 @@ export default function GettingStarted() {
             </ol>
           </div>
         </div>
+      </div>
+      
+      {/* Navigation Button */}
+      <div className="flex justify-end items-center mt-8">
+        <Button
+          onClick={handleNext}
+          variant="primary"
+          size="md"
+          className="flex items-center gap-2"
+        >
+          <span className="font-medium">{next?.name || 'Next'}</span>
+          <RightLongArrowIcon size={16} color="currentColor" />
+        </Button>
       </div>
     </section>
   );

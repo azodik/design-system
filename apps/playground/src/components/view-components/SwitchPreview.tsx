@@ -8,14 +8,7 @@ export const SwitchPreview = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-4">
           <Switch
             label="Enable notifications"
@@ -48,14 +41,7 @@ export const SwitchExample = () => {
 
   return (
     <div className="space-y-6">
-      <Card 
-        className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '500px'
-        }}
-      >
+      <Card className="p-6">
         <div className="space-y-4">
           <Switch
             label="Enable notifications"

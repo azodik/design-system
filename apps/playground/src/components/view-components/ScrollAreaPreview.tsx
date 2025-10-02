@@ -5,15 +5,10 @@ export const ScrollAreaPreview = () => (
   <div className="space-y-6" style={{ width: '100%', maxWidth: '800px' }}>
     <div>
       <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
-      <Card 
-        className="border border-gray-200 rounded-lg p-4"
-        style={{ 
-          width: '100%',
-          minWidth: '250px',
-          maxWidth: '100%',
-          height: '200px',
-          backgroundColor: '#f8fafc'
-        }}
+      <Card className="border border-gray-200 rounded-lg p-4"
+        width="100%"
+        height="200px"
+        backgroundColor="#f8fafc"
       >
         <ScrollArea className="h-24 w-full" scrollbarSize="sm">
           <div className="p-4">
@@ -41,15 +36,10 @@ export const ScrollAreaExample = () => {
     <div className="space-y-6" style={{ width: '100%', maxWidth: '800px' }}>
       <div>
         <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
-        <Card 
-          className="border border-gray-200 rounded-lg p-4"
-          style={{ 
-            width: '100%',
-            minWidth: '280px',
-            maxWidth: '100%',
-            height: '200px',
-            backgroundColor: '#f8fafc'
-          }}
+        <Card className="border border-gray-200 rounded-lg p-4"
+          width="100%"
+          height="200px"
+          backgroundColor="#f8fafc"
         >
           <ScrollArea className="h-24 w-full" scrollbarSize="sm">
             <div className="p-4">

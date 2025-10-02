@@ -78,19 +78,36 @@ export interface TabTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   children: React.ReactNode;
   value: string;
   active?: boolean;
+  borderWidth?: number;
+  borderColor?: string;
+  width?: string | number;
 }
 
 export function TabTrigger({
   children,
   value,
   active = false,
+  borderWidth = 3,
+  borderColor,
+  width,
   className = "",
   ...props
 }: TabTriggerProps) {
   const triggerClasses = ["tabs-trigger", active && "active", className].filter(Boolean).join(" ");
 
+  const customStyle = {
+    ...(active ? {
+      borderBottom: borderColor ? `${borderWidth}px solid ${borderColor}` : `${borderWidth}px solid var(--color-primary)`
+    } : {}),
+    ...(width ? { width: typeof width === 'number' ? `${width}px` : width } : {})
+  };
+
   return (
-    <button className={triggerClasses} {...props}>
+    <button 
+      className={triggerClasses} 
+      style={customStyle}
+      {...props}
+    >
       {children}
     </button>
   );

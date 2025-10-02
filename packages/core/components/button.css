@@ -65,3 +65,51 @@
   background: var(--color-surface);
   border-color: var(--color-primary);
 }
+
+.btn-link {
+  background: transparent;
+  color: var(--color-primary);
+  border: none;
+  text-decoration: underline;
+  padding: 0;
+  min-height: auto;
+}
+.btn-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: none;
+}
+.btn-ghost:hover {
+  background: var(--color-surface);
+}
+
+.btn-destructive {
+  background: #dc2626;
+  color: white;
+  border: none;
+}
+.btn-destructive:hover {
+  background: #b91c1c;
+}
+
+/* Disabled Button Styles */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: #e5e7eb !important;
+  color: #9ca3af !important;
+  border-color: #d1d5db !important;
+}
+
+.btn:disabled:hover {
+  background: #e5e7eb !important;
+  color: #9ca3af !important;
+  border-color: #d1d5db !important;
+  transform: none;
+}
