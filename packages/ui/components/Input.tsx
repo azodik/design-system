@@ -37,9 +37,12 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   error?: string;
   status?: "success" | "error";
   className?: string;
+  autoResize?: boolean;
+  minRows?: number;
+  maxRows?: number;
 }
 
-export function Textarea({ label, help, error, status, className = "", ...props }: TextareaProps) {
+export function Textarea({ label, help, error, status, className = "", autoResize, minRows, maxRows, ...props }: TextareaProps) {
   const textareaClasses = ["textarea", status && status, error && "error", className]
     .filter(Boolean)
     .join(" ");
@@ -157,7 +160,8 @@ export function Switch({ label, help, error, className = "", checked, onChange, 
         <input 
           type="checkbox" 
           checked={checked}
-          onChange={onChange}
+          onChange={onChange || (() => {})}
+          readOnly={!onChange}
           {...props} 
         />
         <span className="switch-slider" />

@@ -4,7 +4,7 @@
 .sidebar {
   width: 250px;
   height: 100vh;
-  background: var(--color-surface);
+  background: var(--sidebar-bg-color, var(--color-surface));
   border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@
     transform: translateX(-100%);
     z-index: 1000;
     box-shadow: var(--shadow-lg);
-    background: var(--color-background);
+    background: var(--sidebar-bg-color, var(--color-background));
     transition: transform 0.3s ease;
   }
   

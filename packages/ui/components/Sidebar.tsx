@@ -10,6 +10,13 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   showHeader?: boolean;
   showFooter?: boolean;
   showBreadcrumb?: boolean;
+  color?: string;
+  userProfile?: {
+    name: string;
+    email: string;
+    avatar?: string;
+  };
+  onUserAction?: (action: string) => void;
 }
 
 export function Sidebar({ 
@@ -19,13 +26,21 @@ export function Sidebar({
   showHeader = true,
   showFooter = true,
   showBreadcrumb = true,
+  color,
+  userProfile,
+  onUserAction,
   className = "", 
   ...props 
 }: SidebarProps) {
+  const sidebarStyle = {
+    width: collapsed ? '60px' : `${width}px`,
+    ...(color && { '--sidebar-bg-color': color } as React.CSSProperties)
+  };
+
   return (
     <div 
       className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''} ${className}`} 
-      style={{ width: collapsed ? '60px' : `${width}px` }} 
+      style={sidebarStyle}
       {...props}
     >
       {children}

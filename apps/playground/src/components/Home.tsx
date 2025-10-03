@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Badge } from "@azodik/ui";
+import { Button, Badge, Alert } from "@azodik/ui";
 
 export default function Home() {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate("/components");
+    navigate("/components/getting-started");
   };
 
   const handlePlayground = () => {

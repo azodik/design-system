@@ -1,0 +1,361 @@
+import { Tabs, TabList, TabTrigger, TabContent, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+# Tabs Component
+
+The Tabs component organizes content into multiple panels with tab navigation. It provides a clean way to group related content and improve user experience.
+
+## Overview
+
+Tabs help organize content into logical sections, making it easier for users to find and navigate through different types of information without leaving the current page.
+
+### When to use
+- Organizing related content into sections
+- Switching between different views or modes
+- Grouping form fields or settings
+- Displaying different data sets
+- Creating wizard-like interfaces
+
+### When not to use
+- For navigation between pages (use navigation components)
+- When content is not related
+- For simple content that doesn't need organization
+- When you have only one or two sections
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="tabs" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Tabs Variants"
+  preview={
+    <Tabs defaultValue="tab1">
+      <TabList>
+        <TabTrigger value="tab1">Tab 1</TabTrigger>
+        <TabTrigger value="tab2">Tab 2</TabTrigger>
+        <TabTrigger value="tab3">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <div className="p-4">
+          <h3>Content for Tab 1</h3>
+          <p>This is the content for the first tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <div className="p-4">
+          <h3>Content for Tab 2</h3>
+          <p>This is the content for the second tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <div className="p-4">
+          <h3>Content for Tab 3</h3>
+          <p>This is the content for the third tab.</p>
+        </div>
+      </TabContent>
+    </Tabs>
+  }
+>
+{`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';
+
+export const TabsExamples = () => {
+  return (
+    <Tabs defaultValue="tab1">
+      <TabList>
+        <TabTrigger value="tab1">Tab 1</TabTrigger>
+        <TabTrigger value="tab2">Tab 2</TabTrigger>
+        <TabTrigger value="tab3">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <div className="p-4">
+          <h3>Content for Tab 1</h3>
+          <p>This is the content for the first tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <div className="p-4">
+          <h3>Content for Tab 2</h3>
+          <p>This is the content for the second tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <div className="p-4">
+          <h3>Content for Tab 3</h3>
+          <p>This is the content for the third tab.</p>
+        </div>
+      </TabContent>
+    </Tabs>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic Tabs"
+  preview={
+    <Tabs defaultValue="tab1">
+      <TabList>
+        <TabTrigger value="tab1">Tab 1</TabTrigger>
+        <TabTrigger value="tab2">Tab 2</TabTrigger>
+        <TabTrigger value="tab3">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <div className="p-4">
+          <h3>Content for Tab 1</h3>
+          <p>This is the content for the first tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <div className="p-4">
+          <h3>Content for Tab 2</h3>
+          <p>This is the content for the second tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <div className="p-4">
+          <h3>Content for Tab 3</h3>
+          <p>This is the content for the third tab.</p>
+        </div>
+      </TabContent>
+    </Tabs>
+  }
+>
+{`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';
+import { useState } from 'react';
+
+export const TabsExample = () => {
+  const [activeTab, setActiveTab] = useState('tab1');
+
+  return (
+    <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <TabList>
+        <TabTrigger value="tab1">Tab 1</TabTrigger>
+        <TabTrigger value="tab2">Tab 2</TabTrigger>
+        <TabTrigger value="tab3">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <div className="p-4">
+          <h3>Content for Tab 1</h3>
+          <p>This is the content for the first tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <div className="p-4">
+          <h3>Content for Tab 2</h3>
+          <p>This is the content for the second tab.</p>
+        </div>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <div className="p-4">
+          <h3>Content for Tab 3</h3>
+          <p>This is the content for the third tab.</p>
+        </div>
+      </TabContent>
+    </Tabs>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Different Sizes
+
+<CodeBlockWithPreview 
+  title="Tab Sizes"
+  preview={
+    <div className="space-y-6">
+      <div>
+        <h4>Small Tabs</h4>
+        <Tabs defaultValue="small">
+          <TabList size="sm">
+            <TabTrigger value="small">Small</TabTrigger>
+            <TabTrigger value="medium">Medium</TabTrigger>
+          </TabList>
+          <TabContent value="small">
+            <div className="p-4">Small tab content</div>
+          </TabContent>
+          <TabContent value="medium">
+            <div className="p-4">Medium tab content</div>
+          </TabContent>
+        </Tabs>
+      </div>
+    </div>
+  }
+>
+{`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';
+import { useState } from 'react';
+
+export const TabSizesExample = () => {
+  const [activeTab, setActiveTab] = useState('small');
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h4>Small Tabs</h4>
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabList size="sm">
+            <TabTrigger value="small">Small</TabTrigger>
+            <TabTrigger value="medium">Medium</TabTrigger>
+          </TabList>
+          <TabContent value="small">
+            <div className="p-4">Small tab content</div>
+          </TabContent>
+          <TabContent value="medium">
+            <div className="p-4">Medium tab content</div>
+          </TabContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Icons
+
+<CodeBlockWithPreview 
+  title="Tabs with Icons"
+  preview={
+    <Tabs defaultValue="home">
+      <TabList>
+        <TabTrigger value="home">
+          🏠 Home
+        </TabTrigger>
+        <TabTrigger value="profile">
+          👤 Profile
+        </TabTrigger>
+        <TabTrigger value="settings">
+          ⚙️ Settings
+        </TabTrigger>
+      </TabList>
+      
+      <TabContent value="home">
+        <div className="p-4">Home content</div>
+      </TabContent>
+      <TabContent value="profile">
+        <div className="p-4">Profile content</div>
+      </TabContent>
+      <TabContent value="settings">
+        <div className="p-4">Settings content</div>
+      </TabContent>
+    </Tabs>
+  }
+>
+{`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';
+import { useState } from 'react';
+
+export const IconTabsExample = () => {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <TabList>
+        <TabTrigger value="home">
+          <HomeIcon className="w-4 h-4 mr-2" />
+          Home
+        </TabTrigger>
+        <TabTrigger value="profile">
+          <UserIcon className="w-4 h-4 mr-2" />
+          Profile
+        </TabTrigger>
+        <TabTrigger value="settings">
+          <SettingsIcon className="w-4 h-4 mr-2" />
+          Settings
+        </TabTrigger>
+      </TabList>
+      
+      <TabContent value="home">
+        <div className="p-4">Home content</div>
+      </TabContent>
+      <TabContent value="profile">
+        <div className="p-4">Profile content</div>
+      </TabContent>
+      <TabContent value="settings">
+        <div className="p-4">Settings content</div>
+      </TabContent>
+    </Tabs>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value*',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Currently active tab value'
+  },
+  {
+    name: 'onValueChange*',
+    type: '(value: string) => void',
+    required: true,
+    default: '-',
+    description: 'Function called when tab changes'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Default active tab value'
+  },
+  {
+    name: 'orientation',
+    type: '"horizontal" | "vertical"',
+    required: false,
+    default: '-',
+    description: 'Orientation of the tabs'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Tab content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Tabs have proper ARIA attributes
+- Keyboard navigation is supported
+- Screen readers can identify active tab
+- Focus management is handled correctly
+- Tab content is properly associated
+
+## Design Guidelines
+
+- Use clear and descriptive tab labels
+- Keep the number of tabs reasonable (3-5 tabs max)
+- Ensure tab content is related and meaningful
+- Use consistent styling across all tabs
+- Consider mobile responsiveness for tab navigation

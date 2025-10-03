@@ -1,0 +1,283 @@
+import { Modal, ModalFooter, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+# Modal Component
+
+The Modal component provides overlay dialogs for displaying important information, forms, or interactive content that requires user attention.
+
+## Overview
+
+Modals are overlay components that appear above the main content to display important information or collect user input. They help focus user attention on specific tasks.
+
+### When to use
+- Display important information or confirmations
+- Show forms that need focused attention
+- Display detailed content without navigation
+- Confirm destructive actions
+- Show image galleries or media
+
+### When not to use
+- For simple notifications (use Toast instead)
+- For navigation (use regular pages instead)
+- For content that should be always visible
+- For mobile-first experiences (consider bottom sheets)
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Modal } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="modal" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Modal Variants"
+  preview={
+    <div className="space-y-4">
+      <Button onClick={() => {}}>Open Modal</Button>
+    </div>
+  }
+>
+{`import { Modal, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ModalExamples = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Open Modal
+      </Button>
+      
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2>Modal Title</h2>
+          </div>
+          <div className="p-6">
+            <p>This is the modal content.</p>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic Modal"
+  preview={
+    <div className="space-y-4">
+      <Button onClick={() => {}}>Open Modal</Button>
+    </div>
+  }
+>
+{`import { Modal, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ModalExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Open Modal
+      </Button>
+      
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2>Modal Title</h2>
+          </div>
+          <div className="p-6">
+            <p>This is the modal content.</p>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Form
+
+<CodeBlock title="Modal with Form">
+{`import { Modal, ModalFooter, Button, Input } from '@azodik/ui';
+import { useState } from 'react';
+
+export const FormModalExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Add User
+      </Button>
+      
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2>Add New User</h2>
+          </div>
+          <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <div>
+              <label htmlFor="name">Name</label>
+              <Input 
+                id="name"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <Input 
+                id="email-preview"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+              />
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit">
+                Add User
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+    </>
+  );
+}`}
+</CodeBlock>
+
+## Confirmation Modal
+
+<CodeBlock title="Confirmation Modal">
+{`import { Modal, ModalFooter, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ConfirmationModalExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleConfirm = () => {
+    // Handle confirmation
+    console.log('Action confirmed');
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <Button variant="destructive" onClick={() => setIsOpen(true)}>
+        Delete Item
+      </Button>
+      
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2>Confirm Deletion</h2>
+          </div>
+          <div className="p-6">
+            <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+            <div className="flex justify-end gap-2 mt-4">
+              <Button variant="outline" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="destructive" onClick={handleConfirm}>
+                Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+}`}
+</CodeBlock>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'isOpen*',
+    type: 'boolean',
+    required: true,
+    default: '-',
+    description: 'Whether the modal is open'
+  },
+  {
+    name: 'onClose*',
+    type: '() => void',
+    required: true,
+    default: '-',
+    description: 'Function called when modal should close'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg" | "xl" | "full"',
+    required: false,
+    default: '-',
+    description: 'Size of the modal'
+  },
+  {
+    name: 'closeOnOverlayClick',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether clicking overlay closes modal'
+  },
+  {
+    name: 'closeOnEscape',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether pressing Escape closes modal'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Content to display inside the modal'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Modals trap focus within the dialog
+- Screen readers announce modal content
+- Escape key closes the modal
+- Focus returns to trigger element when closed
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Use modals sparingly to avoid overwhelming users
+- Provide clear close actions
+- Keep modal content focused and concise
+- Use appropriate sizing for content
+- Consider mobile responsiveness

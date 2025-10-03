@@ -1,0 +1,412 @@
+import { Sidebar, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+# Sidebar Component
+
+The Sidebar component provides vertical navigation panels for app layouts and navigation. It's perfect for creating consistent navigation experiences in web applications.
+
+## Overview
+
+Sidebars are vertical navigation panels that provide consistent access to different sections of your application. They help users navigate and understand the structure of your app.
+
+### When to use
+- Main application navigation
+- Dashboard layouts
+- Admin interfaces
+- Multi-section applications
+- Desktop-focused applications
+
+### When not to use
+- For mobile-first applications
+- When horizontal space is limited
+- For simple single-page applications
+- When you need horizontal navigation
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Sidebar } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="sidebar" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Sidebar Variants"
+  preview={
+    <div className="space-y-4">
+      <Sidebar items={[
+        { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+        { label: 'Users', href: '/users', icon: '👥' },
+        { label: 'Settings', href: '/settings', icon: '⚙️' },
+        { label: 'Reports', href: '/reports', icon: '📊' }
+      ]} />
+    </div>
+  }
+>
+{`import { Sidebar } from '@azodik/ui';
+
+export const SidebarExamples = () => {
+  const sidebarItems = [
+    { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+    { label: 'Users', href: '/users', icon: '👥' },
+    { label: 'Settings', href: '/settings', icon: '⚙️' },
+    { label: 'Reports', href: '/reports', icon: '📊' }
+  ];
+
+  return (
+    <Sidebar items={sidebarItems} />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic Sidebar"
+  preview={
+    <Sidebar items={[
+      { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+      { label: 'Users', href: '/users', icon: '👥' },
+      { label: 'Settings', href: '/settings', icon: '⚙️' },
+      { label: 'Reports', href: '/reports', icon: '📊' }
+    ]} />
+  }
+>
+{`import { Sidebar } from '@azodik/ui';
+
+export const SidebarExample = () => {
+  const sidebarItems = [
+    { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+    { label: 'Users', href: '/users', icon: '👥' },
+    { label: 'Settings', href: '/settings', icon: '⚙️' },
+    { label: 'Reports', href: '/reports', icon: '📊' }
+  ];
+
+  return (
+    <Sidebar items={sidebarItems} />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Nested Navigation
+
+<CodeBlockWithPreview 
+  title="Sidebar with Nested Items"
+  preview={
+    <Sidebar items={[
+      { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+      { 
+        label: 'Users', 
+        href: '/users', 
+        icon: '👥',
+        children: [
+          { label: 'All Users', href: '/users/all' },
+          { label: 'Add User', href: '/users/add' },
+          { label: 'User Roles', href: '/users/roles' }
+        ]
+      },
+      { 
+        label: 'Settings', 
+        href: '/settings', 
+        icon: '⚙️',
+        children: [
+          { label: 'General', href: '/settings/general' },
+          { label: 'Security', href: '/settings/security' },
+          { label: 'Notifications', href: '/settings/notifications' }
+        ]
+      },
+      { label: 'Reports', href: '/reports', icon: '📊' }
+    ]} />
+  }
+>
+{`import { Sidebar } from '@azodik/ui';
+
+export const NestedSidebarExample = () => {
+  const sidebarItems = [
+    { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+    { 
+      label: 'Users', 
+      href: '/users', 
+      icon: '👥',
+      children: [
+        { label: 'All Users', href: '/users/all' },
+        { label: 'Add User', href: '/users/add' },
+        { label: 'User Roles', href: '/users/roles' }
+      ]
+    },
+    { 
+      label: 'Settings', 
+      href: '/settings', 
+      icon: '⚙️',
+      children: [
+        { label: 'General', href: '/settings/general' },
+        { label: 'Security', href: '/settings/security' },
+        { label: 'Notifications', href: '/settings/notifications' }
+      ]
+    },
+    { label: 'Reports', href: '/reports', icon: '📊' }
+  ];
+
+  return (
+    <Sidebar items={sidebarItems} />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With User Profile
+
+<CodeBlockWithPreview 
+  title="Sidebar with User Profile"
+  preview={
+    <Sidebar
+      items={[
+        { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+        { label: 'Users', href: '/users', icon: '👥' },
+        { label: 'Settings', href: '/settings', icon: '⚙️' },
+        { label: 'Reports', href: '/reports', icon: '📊' }
+      ]}
+      userProfile={{
+        name: 'John Doe',
+        email: 'john@example.com',
+        avatar: '/avatar.jpg'
+      }}
+      onUserAction={(action) => {
+        if (action === 'profile') {
+          console.log('Navigate to profile');
+        } else if (action === 'logout') {
+          console.log('Logout user');
+        }
+      }}
+    />
+  }
+>
+{`import { Sidebar, Avatar, Button } from '@azodik/ui';
+
+export const SidebarWithProfileExample = () => {
+  const sidebarItems = [
+    { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+    { label: 'Users', href: '/users', icon: '👥' },
+    { label: 'Settings', href: '/settings', icon: '⚙️' },
+    { label: 'Reports', href: '/reports', icon: '📊' }
+  ];
+
+  const userProfile = {
+    name: 'John Doe',
+    email: 'john@example.com',
+    avatar: '/avatar.jpg'
+  };
+
+  return (
+    <Sidebar
+      items={sidebarItems}
+      userProfile={userProfile}
+      onUserAction={(action) => {
+        if (action === 'profile') {
+          console.log('Navigate to profile');
+        } else if (action === 'logout') {
+          console.log('Logout user');
+        }
+      }}
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Collapsible Sidebar
+
+<CodeBlockWithPreview 
+  title="Collapsible Sidebar"
+  preview={
+    <div className="flex">
+      <Sidebar
+        items={[
+          { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+          { label: 'Users', href: '/users', icon: '👥' },
+          { label: 'Settings', href: '/settings', icon: '⚙️' },
+          { label: 'Reports', href: '/reports', icon: '📊' }
+        ]}
+        collapsed={false}
+        onToggle={() => console.log('Toggle sidebar')}
+      />
+      
+      <div className="flex-1 p-4">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded">
+          Toggle Sidebar
+        </button>
+        <p>Main content area</p>
+      </div>
+    </div>
+  }
+>
+{`import { Sidebar, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export const CollapsibleSidebarExample = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  
+  const sidebarItems = [
+    { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
+    { label: 'Users', href: '/users', icon: '👥' },
+    { label: 'Settings', href: '/settings', icon: '⚙️' },
+    { label: 'Reports', href: '/reports', icon: '📊' }
+  ];
+
+  return (
+    <div className="flex">
+      <Sidebar
+        items={sidebarItems}
+        collapsed={isCollapsed}
+        onToggle={() => setIsCollapsed(!isCollapsed)}
+      />
+      
+      <div className="flex-1 p-4">
+        <Button onClick={() => setIsCollapsed(!isCollapsed)}>
+          Toggle Sidebar
+        </Button>
+        <p>Main content area</p>
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items*',
+    type: 'SidebarItem[]',
+    required: true,
+    default: '-',
+    description: 'Array of sidebar navigation items'
+  },
+  {
+    name: 'userProfile',
+    type: 'UserProfile',
+    required: false,
+    default: '-',
+    description: 'User profile information to display'
+  },
+  {
+    name: 'onUserAction',
+    type: '(action: string) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when user actions are triggered'
+  },
+  {
+    name: 'collapsed',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the sidebar is collapsed'
+  },
+  {
+    name: 'onToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when sidebar toggle is clicked'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Custom background color for the sidebar'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## SidebarItem Interface
+
+<PropsTable props={[
+  {
+    name: 'label*',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Display text for the sidebar item'
+  },
+  {
+    name: 'href',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL for the sidebar item'
+  },
+  {
+    name: 'icon',
+    type: 'string | React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display with the sidebar item'
+  },
+  {
+    name: 'children',
+    type: 'SidebarItem[]',
+    required: false,
+    default: '-',
+    description: 'Sub-navigation items for nested menus'
+  },
+  {
+    name: 'active',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether this item is currently active'
+  }
+]} />
+
+## UserProfile Interface
+
+<PropsTable props={[
+  {
+    name: 'name*',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'User display name'
+  },
+  {
+    name: 'email',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'User email address'
+  },
+  {
+    name: 'avatar',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL of user avatar image'
+  }
+]} />
+
+## Accessibility
+
+- Sidebar has proper semantic structure
+- Screen readers can navigate menu items
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Use clear and descriptive navigation labels
+- Keep the number of top-level items reasonable
+- Provide clear visual feedback for active states
+- Use consistent icons and styling
+- Consider mobile responsiveness

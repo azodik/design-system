@@ -1,0 +1,336 @@
+import { ScrollArea, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+export const SizedScrollAreaExample = () => {
+  return (
+    <div className="space-y-4">
+      <div>
+        <h4>Small ScrollArea</h4>
+        <ScrollArea className="h-32 w-64 border rounded" size="sm">
+          <div className="p-4 space-y-2">
+            <p>Small scrollbar</p>
+            <p>Content here</p>
+            <p>More content</p>
+            <p>Even more content</p>
+          </div>
+        </ScrollArea>
+      </div>
+      
+      <div>
+        <h4>Large ScrollArea</h4>
+        <ScrollArea className="h-32 w-64 border rounded" size="lg">
+          <div className="p-4 space-y-2">
+            <p>Large scrollbar</p>
+            <p>Content here</p>
+            <p>More content</p>
+            <p>Even more content</p>
+          </div>
+        </ScrollArea>
+      </div>
+    </div>
+  );
+};
+
+export const HorizontalScrollAreaExample = () => {
+  return (
+    <ScrollArea className="w-full border rounded" orientation="horizontal">
+      <div className="flex space-x-4 p-4" style={{ width: 'max-content' }}>
+        <div className="w-32 h-20 bg-blue-100 rounded flex items-center justify-center">
+          Item 1
+        </div>
+        <div className="w-32 h-20 bg-green-100 rounded flex items-center justify-center">
+          Item 2
+        </div>
+        <div className="w-32 h-20 bg-red-100 rounded flex items-center justify-center">
+          Item 3
+        </div>
+        <div className="w-32 h-20 bg-yellow-100 rounded flex items-center justify-center">
+          Item 4
+        </div>
+        <div className="w-32 h-20 bg-purple-100 rounded flex items-center justify-center">
+          Item 5
+        </div>
+      </div>
+    </ScrollArea>
+  );
+};
+
+export const CustomStyledScrollAreaExample = () => {
+  return (
+    <ScrollArea 
+      className="h-64 w-64 border rounded"
+      style={{
+        '--scrollbar-thumb': '#3b82f6',
+        '--scrollbar-track': '#f1f5f9'
+      }}
+    >
+      <div className="p-4 space-y-4">
+        <h3>Custom Styled ScrollArea</h3>
+        <p>This scroll area has custom colors.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+        <p>Excepteur sint occaecat cupidatat non proident.</p>
+        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </ScrollArea>
+  );
+};
+
+# ScrollArea Component
+
+The ScrollArea component provides customizable scrollable areas with different scrollbar sizes and styles. It's perfect for creating smooth scrolling experiences.
+
+## Overview
+
+ScrollArea components provide enhanced scrolling functionality with customizable scrollbars and smooth scrolling behavior. They're ideal for content that needs to be scrollable within a fixed container.
+
+### When to use
+- Create scrollable content areas
+- Customize scrollbar appearance
+- Implement smooth scrolling
+- Handle overflow content gracefully
+- Create consistent scrolling experiences
+
+### When not to use
+- For simple content that doesn't overflow
+- When native scrolling is sufficient
+- For very small content areas
+- When performance is critical
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { ScrollArea } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="scrollarea" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All ScrollArea Variants"
+  preview={
+    <div className="space-y-4">
+      <ScrollArea className="h-32 w-64 border rounded">
+        <div className="p-4 space-y-2">
+          <h3>Scrollable Content</h3>
+          <p>This is some content that will scroll when it overflows.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </ScrollArea>
+    </div>
+  }
+>
+{`import { ScrollArea } from '@azodik/ui';
+
+export const ScrollAreaExamples = () => {
+  return (
+    <div className="space-y-4">
+      <ScrollArea className="h-32 w-64 border rounded">
+        <div className="p-4 space-y-2">
+          <h3>Scrollable Content</h3>
+          <p>This is some content that will scroll when it overflows.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </ScrollArea>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic ScrollArea"
+  preview={
+    <ScrollArea className="h-32 w-64 border rounded">
+      <div className="p-4 space-y-2">
+        <h3>Scrollable Content</h3>
+        <p>This is some content that will scroll when it overflows.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </ScrollArea>
+  }
+>
+{`import { ScrollArea } from '@azodik/ui';
+
+export const ScrollAreaExample = () => {
+  return (
+    <ScrollArea className="h-64 w-64 border rounded">
+      <div className="p-4 space-y-4">
+        <h3>Scrollable Content</h3>
+        <p>This is some content that will scroll when it overflows.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+        <p>Excepteur sint occaecat cupidatat non proident.</p>
+        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </ScrollArea>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Different Sizes
+
+<CodeBlockWithPreview 
+  title="ScrollArea Sizes"
+  preview={<SizedScrollAreaExample />}
+>
+{`import { ScrollArea } from '@azodik/ui';
+
+export const ScrollAreaSizesExample = () => {
+  return (
+    <div className="space-y-4">
+      <div>
+        <h4>Small ScrollArea</h4>
+        <ScrollArea className="h-32 w-64 border rounded" size="sm">
+          <div className="p-4 space-y-2">
+            <p>Small scrollbar</p>
+            <p>Content here</p>
+            <p>More content</p>
+            <p>Even more content</p>
+          </div>
+        </ScrollArea>
+      </div>
+      
+      <div>
+        <h4>Large ScrollArea</h4>
+        <ScrollArea className="h-32 w-64 border rounded" size="lg">
+          <div className="p-4 space-y-2">
+            <p>Large scrollbar</p>
+            <p>Content here</p>
+            <p>More content</p>
+            <p>Even more content</p>
+          </div>
+        </ScrollArea>
+      </div>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Horizontal Scrolling
+
+<CodeBlockWithPreview 
+  title="Horizontal ScrollArea"
+  preview={<HorizontalScrollAreaExample />}
+>
+{`import { ScrollArea } from '@azodik/ui';
+
+export const HorizontalScrollAreaExample = () => {
+  return (
+    <ScrollArea className="w-full border rounded" orientation="horizontal">
+      <div className="flex space-x-4 p-4" style={{ width: 'max-content' }}>
+        <div className="w-32 h-20 bg-blue-100 rounded flex items-center justify-center">
+          Item 1
+        </div>
+        <div className="w-32 h-20 bg-green-100 rounded flex items-center justify-center">
+          Item 2
+        </div>
+        <div className="w-32 h-20 bg-red-100 rounded flex items-center justify-center">
+          Item 3
+        </div>
+        <div className="w-32 h-20 bg-yellow-100 rounded flex items-center justify-center">
+          Item 4
+        </div>
+        <div className="w-32 h-20 bg-purple-100 rounded flex items-center justify-center">
+          Item 5
+        </div>
+      </div>
+    </ScrollArea>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## With Custom Styling
+
+<CodeBlockWithPreview 
+  title="Custom Styled ScrollArea"
+  preview={<CustomStyledScrollAreaExample />}
+>
+{`import { ScrollArea } from '@azodik/ui';
+
+export const CustomStyledScrollAreaExample = () => {
+  return (
+    <ScrollArea 
+      className="h-64 w-64 border rounded"
+      style={{
+        '--scrollbar-thumb': '#3b82f6',
+        '--scrollbar-track': '#f1f5f9'
+      }}
+    >
+      <div className="p-4 space-y-4">
+        <h3>Custom Styled ScrollArea</h3>
+        <p>This scroll area has custom colors.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+        <p>Excepteur sint occaecat cupidatat non proident.</p>
+        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </ScrollArea>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    description: 'Content to display inside the scroll area'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    description: 'Size of the scrollbar'
+  },
+  {
+    name: 'orientation',
+    type: '"vertical" | "horizontal"',
+    required: false,
+    description: 'Orientation of the scroll area'
+  },
+  {
+    name: 'autoHide',
+    type: 'boolean',
+    required: false,
+    description: 'Whether to auto-hide the scrollbar'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- ScrollArea maintains keyboard navigation
+- Screen readers can access scrollable content
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+- Scroll position is announced when needed
+
+## Design Guidelines
+
+- Use appropriate sizing for your content
+- Ensure sufficient contrast for scrollbars
+- Consider mobile touch interactions
+- Use consistent styling across your application
+- Test scrolling behavior on different devices

@@ -1,0 +1,422 @@
+import { Pagination, Card, CardContent, Button } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import { useState } from 'react';
+
+export const PageSizePaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const totalItems = 100;
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handlePageSizeChange = (size) => {
+    setPageSize(size);
+    setCurrentPage(1); // Reset to first page when size changes
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-4">
+        <span>Items per page:</span>
+        <select 
+          value={pageSize} 
+          onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+          className="border rounded px-2 py-1"
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
+      </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        showPageSize
+        pageSize={pageSize}
+        onPageSizeChange={handlePageSizeChange}
+      />
+    </div>
+  );
+};
+
+export const CustomStyledPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 15;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      className="custom-pagination"
+      showFirstLast
+      showPrevNext
+      maxVisiblePages={5}
+    />
+  );
+};
+
+export const JumpPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 20;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleJumpToPage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2">
+        <span>Jump to page:</span>
+        <input
+          type="number"
+          min="1"
+          max={totalPages}
+          value={currentPage}
+          onChange={(e) => handleJumpToPage(Number(e.target.value))}
+          className="border rounded px-2 py-1 w-20"
+        />
+      </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        showFirstLast
+        showPrevNext
+      />
+    </div>
+  );
+};
+
+# Pagination Component
+
+The Pagination component provides navigation controls for moving through multiple pages of content. It helps users navigate large datasets efficiently.
+
+## Overview
+
+Pagination breaks large datasets into manageable pages, making it easier for users to navigate through content. It provides clear navigation controls and shows the current position within the dataset.
+
+### When to use
+- Navigate through large lists or datasets
+- Display search results across multiple pages
+- Browse through content collections
+- Navigate data tables with many rows
+- Show content in manageable chunks
+
+### When not to use
+- For small datasets that fit on one page
+- When you need infinite scrolling
+- For content that should be continuously scrollable
+- When space is very limited
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Pagination } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="pagination" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Pagination Variants"
+  preview={
+    <div className="space-y-4">
+      <Pagination
+        currentPage={1}
+        totalPages={5}
+        onPageChange={() => {}}
+      />
+    </div>
+  }
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export const PaginationExamples = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    console.log('Page changed to:', page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic Pagination"
+  preview={
+    <Pagination
+      currentPage={1}
+      totalPages={5}
+      onPageChange={() => {}}
+    />
+  }
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export const PaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    console.log('Page changed to:', page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Page Size Selection
+
+<CodeBlockWithPreview 
+  title="Pagination with Page Size"
+  preview={<PageSizePaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export const PaginationWithSizeExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const totalItems = 100;
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handlePageSizeChange = (size) => {
+    setPageSize(size);
+    setCurrentPage(1); // Reset to first page when size changes
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-4">
+        <span>Items per page:</span>
+        <select 
+          value={pageSize} 
+          onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+          className="border rounded px-2 py-1"
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
+      </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        showPageSize
+        pageSize={pageSize}
+        onPageSizeChange={handlePageSizeChange}
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## With Custom Styling
+
+<CodeBlockWithPreview 
+  title="Custom Styled Pagination"
+  preview={<CustomStyledPaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export const CustomStyledPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 15;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      className="custom-pagination"
+      showFirstLast
+      showPrevNext
+      maxVisiblePages={5}
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+## With Jump to Page
+
+<CodeBlockWithPreview 
+  title="Pagination with Jump"
+  preview={<JumpPaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export const JumpPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 20;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleJumpToPage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2">
+        <span>Jump to page:</span>
+        <input
+          type="number"
+          min="1"
+          max={totalPages}
+          value={currentPage}
+          onChange={(e) => handleJumpToPage(Number(e.target.value))}
+          className="border rounded px-2 py-1 w-20"
+        />
+      </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        showFirstLast
+        showPrevNext
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'currentPage',
+    type: 'number',
+    required: true,
+    description: 'Currently active page number'
+  },
+  {
+    name: 'totalPages',
+    type: 'number',
+    required: true,
+    description: 'Total number of pages'
+  },
+  {
+    name: 'onPageChange',
+    type: '(page: number) => void',
+    required: true,
+    description: 'Function called when page changes'
+  },
+  {
+    name: 'showFirstLast',
+    type: 'boolean',
+    required: false,
+    description: 'Whether to show first and last page buttons'
+  },
+  {
+    name: 'showPrevNext',
+    type: 'boolean',
+    required: false,
+    description: 'Whether to show previous and next page buttons'
+  },
+  {
+    name: 'maxVisiblePages',
+    type: 'number',
+    required: false,
+    description: 'Maximum number of page buttons to show'
+  },
+  {
+    name: 'showPageSize',
+    type: 'boolean',
+    required: false,
+    description: 'Whether to show page size selector'
+  },
+  {
+    name: 'pageSize',
+    type: 'number',
+    required: false,
+    description: 'Current page size'
+  },
+  {
+    name: 'onPageSizeChange',
+    type: '(size: number) => void',
+    required: false,
+    description: 'Function called when page size changes'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Pagination controls are keyboard accessible
+- Screen readers can identify current page
+- Navigation buttons have proper labels
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Use clear and intuitive navigation controls
+- Show current page clearly
+- Provide first/last page buttons for large datasets
+- Use consistent styling across your application
+- Consider mobile touch targets

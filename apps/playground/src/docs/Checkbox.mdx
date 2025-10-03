@@ -1,0 +1,340 @@
+import { Checkbox, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+# Checkbox Component
+
+The Checkbox component provides binary choice controls for enabling or disabling options. It's perfect for forms that require multiple selections or toggles.
+
+## Overview
+
+Checkboxes allow users to select one or more options from a set of choices. They provide clear visual feedback for selected states and are essential for forms and settings.
+
+### When to use
+- Multiple selections from a list
+- Enabling or disabling features
+- Agreeing to terms and conditions
+- Filtering options
+- Settings and preferences
+
+### When not to use
+- For single choice selection (use Radio instead)
+- For primary actions (use Button instead)
+- When you need immediate action (use Switch instead)
+- For navigation (use other navigation components)
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Checkbox } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="checkbox" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Checkbox Variants"
+  preview={
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <label htmlFor="terms">I agree to the terms and conditions</label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="newsletter" checked />
+        <label htmlFor="newsletter">Subscribe to newsletter</label>
+      </div>
+    </div>
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxExamples = () => {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <label htmlFor="terms">I agree to the terms and conditions</label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="newsletter" checked />
+        <label htmlFor="newsletter">Subscribe to newsletter</label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="disabled" disabled />
+        <label htmlFor="disabled">Disabled checkbox</label>
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic Checkbox"
+  preview={
+    <div className="flex items-center space-x-2">
+      <Checkbox id="terms" />
+      <label htmlFor="terms">I agree to the terms and conditions</label>
+    </div>
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxExample = () => {
+  return (
+    <div className="flex items-center space-x-2">
+      <Checkbox id="terms" />
+      <label htmlFor="terms">I agree to the terms and conditions</label>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Controlled State
+
+<CodeBlockWithPreview 
+  title="Controlled Checkbox"
+  preview={
+    <div className="flex items-center space-x-2">
+      <Checkbox id="newsletter" />
+      <label htmlFor="newsletter">Subscribe to newsletter</label>
+    </div>
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ControlledCheckboxExample = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange = (e) => {
+    setIsChecked(e.target.checked);
+  };
+
+  return (
+    <div className="flex items-center space-x-2">
+      <Checkbox
+        id="newsletter"
+        checked={isChecked}
+        onChange={handleChange}
+      />
+      <label htmlFor="newsletter">Subscribe to newsletter</label>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Multiple Checkboxes
+
+<CodeBlock title="Multiple Checkboxes">
+{`import { Checkbox } from '@azodik/ui';
+import { useState } from 'react';
+
+export const MultipleCheckboxesExample = () {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const items = [
+    { id: 'item1', label: 'Option 1' },
+    { id: 'item2', label: 'Option 2' },
+    { id: 'item3', label: 'Option 3' },
+    { id: 'item4', label: 'Option 4' }
+  ];
+
+  const handleChange = (itemId, checked) => {
+    if (checked) {
+      setSelectedItems([...selectedItems, itemId]);
+    } else {
+      setSelectedItems(selectedItems.filter(id => id !== itemId));
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <h3>Select your preferences:</h3>
+      {items.map(item => (
+        <div key={item.id} className="flex items-center space-x-2">
+          <Checkbox
+            id={item.id}
+            checked={selectedItems.includes(item.id)}
+            onChange={(e) => handleChange(item.id, e.target.checked)}
+          />
+          <label htmlFor={item.id}>{item.label}</label>
+        </div>
+      ))}
+      <p className="text-sm text-gray-500">
+        Selected: {selectedItems.length} items
+      </p>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+## With Indeterminate State
+
+<CodeBlock title="Indeterminate Checkbox">
+{`import { Checkbox } from '@azodik/ui';
+import { useState } from 'react';
+
+export const IndeterminateCheckboxExample = () {
+  const [items, setItems] = useState([
+    { id: 'item1', label: 'Item 1', checked: false },
+    { id: 'item2', label: 'Item 2', checked: false },
+    { id: 'item3', label: 'Item 3', checked: false }
+  ]);
+
+  const allChecked = items.every(item => item.checked);
+  const someChecked = items.some(item => item.checked);
+  const indeterminate = someChecked && !allChecked;
+
+  const handleSelectAll = (checked) => {
+    setItems(items.map(item => ({ ...item, checked })));
+  };
+
+  const handleItemChange = (itemId, checked) => {
+    setItems(items.map(item => 
+      item.id === itemId ? { ...item, checked } : item
+    ));
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center space-x-2">
+        <Checkbox
+          id="select-all"
+          checked={allChecked}
+          indeterminate={indeterminate}
+          onChange={(e) => handleSelectAll(e.target.checked)}
+        />
+        <label htmlFor="select-all">Select All</label>
+      </div>
+      
+      {items.map(item => (
+        <div key={item.id} className="flex items-center space-x-2 ml-4">
+          <Checkbox
+            id={item.id}
+            checked={item.checked}
+            onChange={(e) => handleItemChange(item.id, e.target.checked)}
+          />
+          <label htmlFor={item.id}>{item.label}</label>
+        </div>
+      ))}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+## With Different Sizes
+
+<CodeBlock title="Checkbox Sizes">
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxSizesExample = () {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="small" size="sm" />
+        <label htmlFor="small">Small checkbox</label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Checkbox id="medium" size="md" />
+        <label htmlFor="medium">Medium checkbox</label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Checkbox id="large" size="lg" />
+        <label htmlFor="large">Large checkbox</label>
+      </div>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'checked',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the checkbox is checked'
+  },
+  {
+    name: 'onChange',
+    type: '(e: ChangeEvent<HTMLInputElement>) => void',
+    required: false,
+    default: '-',
+    description: 'Change event handler'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the checkbox is disabled'
+  },
+  {
+    name: 'indeterminate',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the checkbox is in indeterminate state'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '-',
+    description: 'Size of the checkbox'
+  },
+  {
+    name: 'id',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'HTML id attribute'
+  },
+  {
+    name: 'name',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'HTML name attribute'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'HTML value attribute'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Checkboxes have proper labels and associations
+- Screen readers can identify checkbox states
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Always provide clear labels
+- Use consistent sizing across your application
+- Provide clear visual feedback for all states
+- Group related checkboxes together
+- Ensure sufficient touch targets on mobile

@@ -36,6 +36,7 @@ export const CardPreview = () => (
                 type="password" 
                 required
                 placeholder="*************"
+                autoComplete="current-password"
               />
             </div>
           </div>
@@ -88,6 +89,7 @@ export const CardPreview = () => (
                 type="password" 
                 required
                 placeholder="*************"
+                autoComplete="current-password"
               />
             </div>
           </div>

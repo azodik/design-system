@@ -1,0 +1,185 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+# Card Component
+
+The Card component provides flexible containers for grouping related content and actions. It's perfect for displaying information in a structured and visually appealing way.
+
+## Overview
+
+Cards are versatile containers that help organize and present content in a structured format. They can contain text, images, actions, and other components.
+
+### When to use
+- Display related information together
+- Create content blocks or sections
+- Show product information or user profiles
+- Group form elements or settings
+- Display statistics or metrics
+
+### When not to use
+- For simple text content (use paragraphs instead)
+- When you need a full-page layout
+- For navigation elements (use navigation components)
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Card } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="card" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Card Variants"
+  preview={
+    <div className="space-y-4">
+      <Card padding="sm">
+        <CardContent>Small padding card</CardContent>
+      </Card>
+      <Card padding="md">
+        <CardContent>Medium padding card</CardContent>
+      </Card>
+    </div>
+  }
+>
+{`import { Card, CardContent } from '@azodik/ui';
+
+export const CardExamples = () => {
+  return (
+    <div className="space-y-4">
+      <Card padding="sm">
+        <CardContent>Small padding card</CardContent>
+      </Card>
+      <Card padding="md">
+        <CardContent>Medium padding card</CardContent>
+      </Card>
+      <Card padding="lg">
+        <CardContent>Large padding card</CardContent>
+      </Card>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Header and Title
+
+<CodeBlockWithPreview 
+  title="Card with Header"
+  preview={
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>This is the card content with a header.</p>
+      </CardContent>
+    </Card>
+  }
+>
+{`import { Card, CardContent, CardHeader, CardTitle } from '@azodik/ui';
+
+export const CardWithHeaderExample = () => {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>This is the card content with a header.</p>
+      </CardContent>
+    </Card>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Actions
+
+<CodeBlockWithPreview 
+  title="Card with Actions"
+  preview={
+    <Card>
+      <CardHeader>
+        <CardTitle>Product Card</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Product description goes here.</p>
+        <div className="flex gap-2 mt-4">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded">Buy Now</button>
+          <button className="px-4 py-2 border border-gray-300 rounded">Learn More</button>
+        </div>
+      </CardContent>
+    </Card>
+  }
+>
+{`import { Card, CardContent, CardHeader, CardTitle, Button } from '@azodik/ui';
+
+export const CardWithActionsExample = () => {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Product Card</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Product description goes here.</p>
+        <div className="flex gap-2 mt-4">
+          <Button variant="primary">Buy Now</Button>
+          <Button variant="outline">Learn More</Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'padding',
+    type: '"sm" | "md" | "lg" | "none"',
+    required: false,
+    default: '-',
+    description: 'Padding size for the card'
+  },
+  {
+    name: 'elevation',
+    type: '"none" | "sm" | "md" | "lg"',
+    required: false,
+    default: '-',
+    description: 'Shadow elevation level'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Content to display inside the card'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Cards have proper semantic structure
+- Focus management for interactive cards
+- Screen readers can navigate card content
+- Proper heading hierarchy when using CardTitle
+
+## Design Guidelines
+
+- Use consistent padding and spacing
+- Group related content together
+- Provide clear visual hierarchy
+- Use appropriate elevation for depth
+- Ensure sufficient contrast for readability

@@ -1,0 +1,172 @@
+import { Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+
+# Button Component
+
+The Button component provides interactive elements for user actions and navigation. It supports multiple variants, sizes, and states to fit different use cases.
+
+## Overview
+
+Buttons are the primary interactive elements in your application. They allow users to perform actions, submit forms, and navigate through your interface.
+
+### When to use
+- Primary actions and calls-to-action
+- Form submissions
+- Navigation between pages or sections
+- Confirming or canceling actions
+- Triggering modals or dropdowns
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Button } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="button" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Button Variants"
+  preview={
+    <div className="flex gap-4" style={{ gap: 'var(--space-sm)' }}>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const ButtonExamples = () => {
+  return (
+    <div className="space-y-4">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="destructive">Destructive</Button>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Icons
+
+<CodeBlockWithPreview 
+  title="Button with Icons"
+  preview={
+    <Button variant="primary" size="md">
+      + Add
+    </Button>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const IconButton = () => {
+  return (
+    <Button variant="primary" size="md">
+      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+      </svg>
+      Add Item
+    </Button>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Disabled State
+
+<CodeBlockWithPreview 
+  title="Disabled Button"
+  preview={
+    <Button variant="primary" disabled>
+      Disabled Button
+    </Button>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const DisabledButton = () => {
+  return (
+    <Button variant="primary" disabled>
+      Disabled Button
+    </Button>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'variant',
+    type: '"primary" | "secondary" | "outline" | "ghost" | "destructive"',
+    required: false,
+    default: '-',
+    description: 'Visual style variant of the button'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '-',
+    description: 'Size of the button'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the button is disabled'
+  },
+  {
+    name: 'type',
+    type: '"button" | "submit" | "reset"',
+    required: false,
+    default: '-',
+    description: 'HTML button type'
+  },
+  {
+    name: 'onClick',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Click handler function'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Content to display inside the button'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Buttons have proper focus states
+- Screen readers can identify button purpose
+- Disabled buttons are properly announced
+- Keyboard navigation is supported
+- Color contrast meets WCAG guidelines
+
+## Design Guidelines
+
+- Use primary buttons for main actions
+- Use secondary buttons for secondary actions
+- Use destructive buttons for dangerous actions
+- Keep button text concise and action-oriented
+- Ensure sufficient touch targets on mobile devices

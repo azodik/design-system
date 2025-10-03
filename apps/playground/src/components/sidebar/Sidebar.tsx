@@ -130,6 +130,7 @@ export default function SidebarLayout({
         showHeader={true}
         showFooter={true}
         showBreadcrumb={true}
+        color="white"
       >
         <SidebarHeader show={true}>
           <SidebarBrand 
@@ -170,7 +171,7 @@ export default function SidebarLayout({
         showBreadcrumb={showBreadcrumb}
         showToggleButton={showToggleButton}
         hideToggleOnDesktop={hideToggleOnDesktop}
-        breadcrumb={breadcrumb || <Breadcrumb items={getBreadcrumbItems()} />}
+        breadcrumb={breadcrumb || <div className="breadcrumb-container"><Breadcrumb items={getBreadcrumbItems()} /></div>}
       >
         {children}
       </SidebarMainContent>
