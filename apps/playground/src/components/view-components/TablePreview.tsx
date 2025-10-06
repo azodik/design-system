@@ -5,11 +5,6 @@ export const TablePreview = () => (
   <div className="space-y-6">
     <Card 
       className="p-6"
-      style={{ 
-        width: '100%',
-        minWidth: '280px',
-        maxWidth: '100%'
-      }}
     >
       <Table striped hover>
         <TableHeader>

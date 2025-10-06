@@ -1,6 +1,8 @@
-import { Modal, ModalFooter, Button, Card, CardContent } from '@azodik/ui';
+import { Modal, ModalHeader, ModalFooter, Button, Card, CardContent, Input } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+import { ModalPreview, FormModalExample, ModalHeaderExample } from '../components/view-components/ModalPreview';
 
 # Modal Component
 
@@ -17,12 +19,6 @@ Modals are overlay components that appear above the main content to display impo
 - Confirm destructive actions
 - Show image galleries or media
 
-### When not to use
-- For simple notifications (use Toast instead)
-- For navigation (use regular pages instead)
-- For content that should be always visible
-- For mobile-first experiences (consider bottom sheets)
-
 ## Usage
 
 <CodeBlock language="tsx">
@@ -33,83 +29,16 @@ Modals are overlay components that appear above the main content to display impo
 
 <ComponentRenderer componentName="modal" />
 
-## Some Variants Example
+## Some Example With Form
 
 <CodeBlockWithPreview 
-  title="All Modal Variants"
+  title="Modal with Form"
   preview={
     <div className="space-y-4">
-      <Button onClick={() => {}}>Open Modal</Button>
+      <FormModalExample />
     </div>
   }
 >
-{`import { Modal, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ModalExamples = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Modal
-      </Button>
-      
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <div className="modal-content">
-          <div className="modal-header">
-            <h2>Modal Title</h2>
-          </div>
-          <div className="p-6">
-            <p>This is the modal content.</p>
-          </div>
-        </div>
-      </Modal>
-    </>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic Modal"
-  preview={
-    <div className="space-y-4">
-      <Button onClick={() => {}}>Open Modal</Button>
-    </div>
-  }
->
-{`import { Modal, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ModalExample = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Modal
-      </Button>
-      
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <div className="modal-content">
-          <div className="modal-header">
-            <h2>Modal Title</h2>
-          </div>
-          <div className="p-6">
-            <p>This is the modal content.</p>
-          </div>
-        </div>
-      </Modal>
-    </>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## With Form
-
-<CodeBlock title="Modal with Form">
 {`import { Modal, ModalFooter, Button, Input } from '@azodik/ui';
 import { useState } from 'react';
 
@@ -166,51 +95,37 @@ export const FormModalExample = () => {
     </>
   );
 }`}
-</CodeBlock>
+</CodeBlockWithPreview>
 
-## Confirmation Modal
+## ModalHeader Component
 
-<CodeBlock title="Confirmation Modal">
-{`import { Modal, ModalFooter, Button } from '@azodik/ui';
-import { useState } from 'react';
+The ModalHeader component provides a consistent header structure for modals with optional close button.
 
-export const ConfirmationModalExample = () => {
+<CodeBlockWithPreview 
+  title="ModalHeader Usage"
+  preview={
+    <div className="space-y-4">
+      <ModalHeaderExample />
+    </div>
+  }
+>
+{`import { Modal, ModalHeader, Button } from '@azodik/ui';
+
+export const ModalHeaderExample = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleConfirm = () => {
-    // Handle confirmation
-    console.log('Action confirmed');
-    setIsOpen(false);
-  };
-
   return (
-    <>
-      <Button variant="destructive" onClick={() => setIsOpen(true)}>
-        Delete Item
-      </Button>
-      
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <div className="modal-content">
-          <div className="modal-header">
-            <h2>Confirm Deletion</h2>
-          </div>
-          <div className="p-6">
-            <p>Are you sure you want to delete this item? This action cannot be undone.</p>
-            <div className="flex justify-end gap-2 mt-4">
-              <Button variant="outline" onClick={() => setIsOpen(false)}>
-                Cancel
-              </Button>
-              <Button variant="destructive" onClick={handleConfirm}>
-                Delete
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Modal>
-    </>
+    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <ModalHeader onClose={() => setIsOpen(false)}>
+        <h2 className="modal-title">Custom Header</h2>
+      </ModalHeader>
+      <div className="p-6">
+        <p>Modal content goes here.</p>
+      </div>
+    </Modal>
   );
-}`}
-</CodeBlock>
+};`}
+</CodeBlockWithPreview>
 
 ## Props
 
@@ -266,6 +181,39 @@ export const ConfirmationModalExample = () => {
   }
 ]} />
 
+## ModalHeader Props
+
+<PropsTable props={[
+  {
+    name: 'children*',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display in the header'
+  },
+  {
+    name: 'showCloseButton',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the close button'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when close button is clicked'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
 ## Accessibility
 
 - Modals trap focus within the dialog
@@ -281,3 +229,5 @@ export const ConfirmationModalExample = () => {
 - Keep modal content focused and concise
 - Use appropriate sizing for content
 - Consider mobile responsiveness
+
+<ComponentNavigation />

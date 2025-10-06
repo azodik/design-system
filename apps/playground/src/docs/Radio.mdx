@@ -13,36 +13,30 @@ export const ControlledRadioExample = () => {
   return (
     <div className="space-y-2">
       <h3>Choose your preferred language:</h3>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="english" 
-          name="language" 
-          value="english"
-          checked={selectedLanguage === 'english'}
-          onChange={handleChange}
-        />
-        <label htmlFor="english">English</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="spanish" 
-          name="language" 
-          value="spanish"
-          checked={selectedLanguage === 'spanish'}
-          onChange={handleChange}
-        />
-        <label htmlFor="spanish">Spanish</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="french" 
-          name="language" 
-          value="french"
-          checked={selectedLanguage === 'french'}
-          onChange={handleChange}
-        />
-        <label htmlFor="french">French</label>
-      </div>
+      <Radio 
+        id="english" 
+        name="language" 
+        value="english"
+        label="English"
+        checked={selectedLanguage === 'english'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="spanish" 
+        name="language" 
+        value="spanish"
+        label="Spanish"
+        checked={selectedLanguage === 'spanish'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="french" 
+        name="language" 
+        value="french"
+        label="French"
+        checked={selectedLanguage === 'french'}
+        onChange={handleChange}
+      />
       <p className="text-sm text-gray-500">
         Selected: {selectedLanguage || 'None'}
       </p>
@@ -60,36 +54,30 @@ export const DefaultRadioExample = () => {
   return (
     <div className="space-y-2">
       <h3>Choose your size:</h3>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="small" 
-          name="size" 
-          value="small"
-          checked={selectedSize === 'small'}
-          onChange={handleChange}
-        />
-        <label htmlFor="small">Small</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="medium" 
-          name="size" 
-          value="medium"
-          checked={selectedSize === 'medium'}
-          onChange={handleChange}
-        />
-        <label htmlFor="medium">Medium</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="large" 
-          name="size" 
-          value="large"
-          checked={selectedSize === 'large'}
-          onChange={handleChange}
-        />
-        <label htmlFor="large">Large</label>
-      </div>
+      <Radio 
+        id="small" 
+        name="size" 
+        value="small"
+        label="Small"
+        checked={selectedSize === 'small'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="medium" 
+        name="size" 
+        value="medium"
+        label="Medium"
+        checked={selectedSize === 'medium'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="large" 
+        name="size" 
+        value="large"
+        label="Large"
+        checked={selectedSize === 'large'}
+        onChange={handleChange}
+      />
     </div>
   );
 };
@@ -209,12 +197,6 @@ Radio buttons allow users to select exactly one option from a set of mutually ex
 - Form fields with limited, exclusive options
 - Survey questions with single answers
 
-### When not to use
-- For multiple selections (use Checkbox instead)
-- For binary on/off states (use Switch instead)
-- For primary actions (use Button instead)
-- When you have only two options (consider Switch)
-
 ## Usage
 
 <CodeBlock language="tsx">
@@ -224,147 +206,6 @@ Radio buttons allow users to select exactly one option from a set of mutually ex
 ## Variants
 
 <ComponentRenderer componentName="radio" />
-
-## Some Variants Example
-
-<CodeBlockWithPreview 
-  title="All Radio Variants"
-  preview={
-    <div className="space-y-4">
-      <div className="space-y-2">
-        <h3>Choose your preferred language:</h3>
-        <div className="flex items-center space-x-2">
-          <Radio id="english" name="language" value="english" />
-          <label htmlFor="english">English</label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Radio id="spanish" name="language" value="spanish" />
-          <label htmlFor="spanish">Spanish</label>
-        </div>
-      </div>
-    </div>
-  }
->
-{`import { Radio } from '@azodik/ui';
-
-export const RadioExamples = () => {
-  return (
-    <div className="space-y-2">
-      <h3>Choose your preferred language:</h3>
-      <div className="flex items-center space-x-2">
-        <Radio id="english" name="language" value="english" />
-        <label htmlFor="english">English</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio id="spanish" name="language" value="spanish" />
-        <label htmlFor="spanish">Spanish</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio id="french" name="language" value="french" />
-        <label htmlFor="french">French</label>
-      </div>
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic Radio Group"
-  preview={
-    <div className="space-y-2">
-      <h3>Choose your preferred language:</h3>
-      <div className="flex items-center space-x-2">
-        <Radio id="english" name="language" value="english" />
-        <label htmlFor="english">English</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio id="spanish" name="language" value="spanish" />
-        <label htmlFor="spanish">Spanish</label>
-      </div>
-    </div>
-  }
->
-{`import { Radio } from '@azodik/ui';
-
-export const RadioExample = () => {
-  return (
-    <div className="space-y-2">
-      <h3>Choose your preferred language:</h3>
-      <div className="flex items-center space-x-2">
-        <Radio id="english" name="language" value="english" />
-        <label htmlFor="english">English</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio id="spanish" name="language" value="spanish" />
-        <label htmlFor="spanish">Spanish</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio id="french" name="language" value="french" />
-        <label htmlFor="french">French</label>
-      </div>
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## With Controlled State
-
-<CodeBlockWithPreview 
-  title="Controlled Radio Group"
-  preview={<ControlledRadioExample />}
->
-{`import { Radio } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ControlledRadioGroupExample = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState('');
-
-  const handleChange = (e) => {
-    setSelectedLanguage(e.target.value);
-  };
-
-  return (
-    <div className="space-y-2">
-      <h3>Choose your preferred language:</h3>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="english" 
-          name="language" 
-          value="english"
-          checked={selectedLanguage === 'english'}
-          onChange={handleChange}
-        />
-        <label htmlFor="english">English</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="spanish" 
-          name="language" 
-          value="spanish"
-          checked={selectedLanguage === 'spanish'}
-          onChange={handleChange}
-        />
-        <label htmlFor="spanish">Spanish</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="french" 
-          name="language" 
-          value="french"
-          checked={selectedLanguage === 'french'}
-          onChange={handleChange}
-        />
-        <label htmlFor="french">French</label>
-      </div>
-      <p className="text-sm text-gray-500">
-        Selected: {selectedLanguage || 'None'}
-      </p>
-    </div>
-  );
-}`}
-</CodeBlockWithPreview>
 
 ## With Default Selection
 
@@ -414,125 +255,6 @@ export const DefaultRadioGroupExample = () => {
           onChange={handleChange}
         />
         <label htmlFor="large">Large</label>
-      </div>
-    </div>
-  );
-}`}
-</CodeBlockWithPreview>
-
-## With Validation
-
-<CodeBlockWithPreview 
-  title="Radio with Validation"
-  preview={<ValidatedRadioExample />}
->
-{`import { Radio } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ValidatedRadioGroupExample = () => {
-  const [selectedOption, setSelectedOption] = useState('');
-  const [error, setError] = useState('');
-
-  const handleChange = (e) => {
-    setSelectedOption(e.target.value);
-    if (e.target.value) {
-      setError('');
-    }
-  };
-
-  const handleBlur = () => {
-    if (!selectedOption) {
-      setError('Please select an option');
-    }
-  };
-
-  return (
-    <div className="space-y-2">
-      <h3>Choose your payment method: *</h3>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="credit" 
-          name="payment" 
-          value="credit"
-          checked={selectedOption === 'credit'}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <label htmlFor="credit">Credit Card</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="debit" 
-          name="payment" 
-          value="debit"
-          checked={selectedOption === 'debit'}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <label htmlFor="debit">Debit Card</label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Radio 
-          id="paypal" 
-          name="payment" 
-          value="paypal"
-          checked={selectedOption === 'paypal'}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <label htmlFor="paypal">PayPal</label>
-      </div>
-      {error && <p className="text-sm text-red-500">{error}</p>}
-    </div>
-  );
-}`}
-</CodeBlockWithPreview>
-
-## With Different Sizes
-
-<CodeBlockWithPreview 
-  title="Radio Sizes"
-  preview={<SizedRadioExample />}
->
-{`import { Radio } from '@azodik/ui';
-
-export const RadioSizesExample = () => {
-  return (
-    <div className="space-y-4">
-      <div>
-        <h4>Small Radio</h4>
-        <div className="flex items-center space-x-2">
-          <Radio id="small1" name="small" value="1" size="sm" />
-          <label htmlFor="small1">Option 1</label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Radio id="small2" name="small" value="2" size="sm" />
-          <label htmlFor="small2">Option 2</label>
-        </div>
-      </div>
-      
-      <div>
-        <h4>Medium Radio</h4>
-        <div className="flex items-center space-x-2">
-          <Radio id="medium1" name="medium" value="1" size="md" />
-          <label htmlFor="medium1">Option 1</label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Radio id="medium2" name="medium" value="2" size="md" />
-          <label htmlFor="medium2">Option 2</label>
-        </div>
-      </div>
-      
-      <div>
-        <h4>Large Radio</h4>
-        <div className="flex items-center space-x-2">
-          <Radio id="large1" name="large" value="1" size="lg" />
-          <label htmlFor="large1">Option 1</label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Radio id="large2" name="large" value="2" size="lg" />
-          <label htmlFor="large2">Option 2</label>
-        </div>
       </div>
     </div>
   );

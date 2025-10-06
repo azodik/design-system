@@ -7,9 +7,9 @@ export const TabsPreview = () => {
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab}>
       <TabList>
-        <TabTrigger value="tab1" borderWidth={4} width="100px" borderColor="#f97316">Tab 1</TabTrigger>
-        <TabTrigger value="tab2" borderWidth={2} width="100px" borderColor="#3b82f6">Tab 2</TabTrigger>
-        <TabTrigger value="tab3" borderWidth={5} width="100px" borderColor="#10b981">Tab 3</TabTrigger>
+        <TabTrigger value="tab1" borderWidth={4} width="100px">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={4} width="100px">Tab 2</TabTrigger>
+        <TabTrigger value="tab3" borderWidth={4} width="100px">Tab 3</TabTrigger>
       </TabList>
       
       <TabContent value="tab1">

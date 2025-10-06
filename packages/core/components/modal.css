@@ -44,8 +44,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-lg);
+  padding: 0 var(--space-sm);
   border-bottom: 1px solid var(--color-border);
+  line-height: 1;
+  height: 65px;
 }
 
 .modal-title {
@@ -53,6 +55,8 @@
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
+  padding: 0;
+  line-height: 1;
 }
 
 .modal-close {
@@ -73,7 +77,7 @@
 
 /* Modal Body */
 .modal-body {
-  padding: var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -84,7 +88,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--space-md);
-  padding: var(--space-sm) var(--space-md) var(--space-xs) var(--space-md);
+  padding: var(--space-xs) var(--space-lg);
   border-top: 1px solid var(--color-border);
   background: var(--color-background);
 }

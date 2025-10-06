@@ -61,7 +61,7 @@ export const PopoverPreview = () => {
               <Select
                 label="Position:"
                 value={selectedPosition}
-                onChange={(e) => setSelectedPosition(e.target.value)}
+                onChange={setSelectedPosition}
                 options={positionOptions}
                 className="min-w-[100px]"
               />
@@ -71,7 +71,7 @@ export const PopoverPreview = () => {
               <Select
                 label="Offset:"
                 value={selectedOffset.toString()}
-                onChange={(e) => setSelectedOffset(Number(e.target.value))}
+                onChange={(value) => setSelectedOffset(Number(value))}
                 options={offsetOptions}
                 className="min-w-[100px]"
               />
@@ -148,7 +148,7 @@ export const PopoverWithSharedState = ({
               <Select
                 label="Position:"
                 value={selectedPosition}
-                onChange={(e) => setSelectedPosition(e.target.value)}
+                onChange={setSelectedPosition}
                 options={positionOptions}
                 className="min-w-[100px]"
               />
@@ -158,7 +158,7 @@ export const PopoverWithSharedState = ({
               <Select
                 label="Offset:"
                 value={selectedOffset.toString()}
-                onChange={(e) => setSelectedOffset(Number(e.target.value))}
+                onChange={(value) => setSelectedOffset(Number(value))}
                 options={offsetOptions}
                 className="min-w-[100px]"
               />

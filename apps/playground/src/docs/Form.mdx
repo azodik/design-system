@@ -1,4 +1,4 @@
-import { Input, Button, Card, CardContent } from '@azodik/ui';
+import { Input, Button, Card, CardContent, Textarea } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 import { useState } from 'react';
@@ -75,9 +75,11 @@ export const ValidatedFormExample = () => {
         )}
       </div>
       
-      <Button type="submit" className="w-full">
-        Submit
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit">
+          Submit
+        </Button>
+      </div>
     </form>
   );
 };
@@ -133,12 +135,11 @@ export const VariousInputsFormExample = () => {
       </div>
       
       <div>
-        <label className="block text-sm font-medium mb-1">Bio</label>
-        <textarea
+        <Textarea
+          label="Bio"
           value={formData.bio}
           onChange={(e) => handleChange('bio', e.target.value)}
           placeholder="Tell us about yourself"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           rows={3}
         />
       </div>
@@ -156,9 +157,11 @@ export const VariousInputsFormExample = () => {
         </label>
       </div>
       
-      <Button type="submit" className="w-full">
-        Submit
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit">
+          Submit
+        </Button>
+      </div>
     </form>
   );
 };
@@ -178,11 +181,6 @@ Forms are essential for collecting user data and input. The Form component provi
 - Data entry and editing
 - Survey and feedback forms
 
-### When not to use
-- For simple single-field inputs
-- When you need custom form layouts
-- For non-interactive content display
-
 ## Usage
 
 <CodeBlock language="tsx">
@@ -193,7 +191,7 @@ Forms are essential for collecting user data and input. The Form component provi
 
 <ComponentRenderer componentName="form" />
 
-## Some Variants Example
+## Some Example
 
 <CodeBlockWithPreview 
   title="All Form Variants"
@@ -208,7 +206,11 @@ Forms are essential for collecting user data and input. The Form component provi
           <label htmlFor="email-preview">Email</label>
           <Input id="email-preview" name="email" type="email" placeholder="Enter your email" />
         </div>
-        <Button type="submit">Submit</Button>
+        <div className="flex justify-center">
+          <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
+        </div>
       </form>
     </div>
   }
@@ -271,92 +273,9 @@ export const FormExamples = () => {
           />
         </div>
         
-        <Button type="submit">Submit</Button>
-      </div>
-    </form>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic Form"
-  preview={
-    <form>
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="name">Name</label>
-          <Input id="name" name="name" placeholder="Enter your name" />
+        <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <Input id="email" name="email" type="email" placeholder="Enter your email" />
-        </div>
-        <Button type="submit">Submit</Button>
-      </div>
-    </form>
-  }
->
-{`import { Input, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const FormExample = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="name">Name</label>
-          <Input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="email">Email</label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="message">Message</label>
-          <Input
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-          />
-        </div>
-        
-        <Button type="submit">Submit</Button>
       </div>
     </form>
   );
@@ -447,7 +366,9 @@ export const ValidatedFormExample = () => {
           />
         </div>
         
-        <Button type="submit">Submit</Button>
+        <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
       </div>
     </form>
   );
@@ -460,7 +381,7 @@ export const ValidatedFormExample = () => {
   title="Form with Various Inputs"
   preview={<VariousInputsFormExample />}
 >
-{`import { Input, Button, Select, Checkbox, Radio } from '@azodik/ui';
+{`import { Input, Button, Select, Checkbox, Radio, Textarea } from '@azodik/ui';
 import { useState } from 'react';
 
 export const ComprehensiveFormExample = () => {
@@ -540,13 +461,12 @@ export const ComprehensiveFormExample = () => {
         </div>
         
         <div>
-          <label htmlFor="bio">Bio</label>
-          <Input
-            id="bio"
+          <Textarea
             name="bio"
             value={formData.bio}
             onChange={handleChange}
             placeholder="Tell us about yourself"
+            rows={3}
           />
         </div>
         
@@ -586,7 +506,9 @@ export const ComprehensiveFormExample = () => {
           </div>
         </div>
         
-        <Button type="submit">Submit</Button>
+        <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
       </div>
     </form>
   );

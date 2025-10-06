@@ -1,10 +1,10 @@
-import { DataTable, Card, CardContent, Button } from '@azodik/ui';
+import { DataTable, Card, CardContent, Button, Pagination } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 import { useState } from 'react';
 
 export const SelectableDataTableExample = () => {
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectedRowIds, setSelectedRowIds] = useState([]);
   
   const data = [
     { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
@@ -18,8 +18,23 @@ export const SelectableDataTableExample = () => {
     { key: 'role', label: 'Role', sortable: true }
   ];
 
-  const handleSelectionChange = (selected) => {
-    setSelectedRows(selected);
+  // Convert selectedRowIds back to actual row objects for the DataTable
+  const selectedRows = data.filter(row => selectedRowIds.includes(row.id));
+
+  const handleRowSelect = (row, selected) => {
+    if (selected) {
+      setSelectedRowIds(prev => [...prev, row.id]);
+    } else {
+      setSelectedRowIds(prev => prev.filter(id => id !== row.id));
+    }
+  };
+
+  const handleSelectAll = (selected) => {
+    if (selected) {
+      setSelectedRowIds(data.map(row => row.id));
+    } else {
+      setSelectedRowIds([]);
+    }
   };
 
   const handleBulkAction = () => {
@@ -32,6 +47,7 @@ export const SelectableDataTableExample = () => {
         <Button 
           onClick={handleBulkAction}
           disabled={selectedRows.length === 0}
+          variant="destructive"
         >
           Delete Selected ({selectedRows.length})
         </Button>
@@ -42,7 +58,8 @@ export const SelectableDataTableExample = () => {
         columns={columns}
         selectable
         selectedRows={selectedRows}
-        onSelectionChange={handleSelectionChange}
+        onRowSelect={handleRowSelect}
+        onSelectAll={handleSelectAll}
         onSort={(key, direction) => console.log('Sort:', key, direction)}
       />
     </div>
@@ -87,10 +104,10 @@ export const ActionDataTableExample = () => {
 
 export const PaginatedDataTableExample = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = 5; // Fixed to 5 entries per page
   
   // Mock data - in real app, this would come from API
-  const allData = Array.from({ length: 100 }, (_, i) => ({
+  const allData = Array.from({ length: 25 }, (_, i) => ({
     id: i + 1,
     name: 'User ' + (i + 1),
     email: 'user' + (i + 1) + '@example.com',
@@ -112,23 +129,9 @@ export const PaginatedDataTableExample = () => {
     setCurrentPage(page);
   };
 
-  const handlePageSizeChange = (newPageSize) => {
-    setPageSize(newPageSize);
-    setCurrentPage(1);
-  };
-
   return (
     <div>
-      <div className="mb-4 flex items-center gap-4">
-        <select 
-          value={pageSize} 
-          onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-          className="px-3 py-1 border rounded"
-        >
-          <option value={5}>5 per page</option>
-          <option value={10}>10 per page</option>
-          <option value={20}>20 per page</option>
-        </select>
+      <div className="mb-4">
         <span className="text-sm text-gray-600">
           Showing {startIndex + 1}-{Math.min(endIndex, allData.length)} of {allData.length} items
         </span>
@@ -141,25 +144,11 @@ export const PaginatedDataTableExample = () => {
       />
       
       <div className="mt-4 flex justify-center">
-        <div className="flex gap-2">
-          <Button 
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            size="sm"
-          >
-            Previous
-          </Button>
-          <span className="px-3 py-1 text-sm">
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button 
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            size="sm"
-          >
-            Next
-          </Button>
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
@@ -180,11 +169,6 @@ DataTable is an enhanced table component that provides advanced functionality li
 - Complex data grids with multiple columns
 - Administrative interfaces and dashboards
 
-### When not to use
-- For simple static data (use Table instead)
-- When you don't need interactive features
-- For very small datasets
-- When performance is critical
 
 ## Usage
 
@@ -196,7 +180,7 @@ DataTable is an enhanced table component that provides advanced functionality li
 
 <ComponentRenderer componentName="datatable" />
 
-## Some Variants Example
+## Some Example
 
 <CodeBlockWithPreview 
   title="All DataTable Variants"
@@ -243,51 +227,6 @@ export const DataTableExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic DataTable"
-  preview={
-    <DataTable 
-      data={[
-        { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-        { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' }
-      ]}
-      columns={[
-        { key: 'name', label: 'Name', sortable: true },
-        { key: 'email', label: 'Email', sortable: true },
-        { key: 'role', label: 'Role', sortable: true }
-      ]}
-      onSort={() => {}}
-    />
-  }
->
-{`import { DataTable } from '@azodik/ui';
-
-export const DataTableExample = () => {
-  const data = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Inactive' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User', status: 'Active' }
-  ];
-
-  const columns = [
-    { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
-    { key: 'role', label: 'Role', sortable: true },
-    { key: 'status', label: 'Status', sortable: true }
-  ];
-
-  return (
-    <DataTable
-      data={data}
-      columns={columns}
-      onSort={(key, direction) => console.log('Sort:', key, direction)}
-    />
-  );
-};`}
-</CodeBlockWithPreview>
-
 ## With Selection
 
 <CodeBlockWithPreview 
@@ -298,7 +237,7 @@ export const DataTableExample = () => {
 import { useState } from 'react';
 
 export const SelectableDataTableExample = () => {
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectedRowIds, setSelectedRowIds] = useState([]);
   
   const data = [
     { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
@@ -312,8 +251,23 @@ export const SelectableDataTableExample = () => {
     { key: 'role', label: 'Role', sortable: true }
   ];
 
-  const handleSelectionChange = (selected) => {
-    setSelectedRows(selected);
+  // Convert selectedRowIds back to actual row objects for the DataTable
+  const selectedRows = data.filter(row => selectedRowIds.includes(row.id));
+
+  const handleRowSelect = (row, selected) => {
+    if (selected) {
+      setSelectedRowIds(prev => [...prev, row.id]);
+    } else {
+      setSelectedRowIds(prev => prev.filter(id => id !== row.id));
+    }
+  };
+
+  const handleSelectAll = (selected) => {
+    if (selected) {
+      setSelectedRowIds(data.map(row => row.id));
+    } else {
+      setSelectedRowIds([]);
+    }
   };
 
   const handleBulkAction = () => {
@@ -336,55 +290,11 @@ export const SelectableDataTableExample = () => {
         columns={columns}
         selectable
         selectedRows={selectedRows}
-        onSelectionChange={handleSelectionChange}
+        onRowSelect={handleRowSelect}
+        onSelectAll={handleSelectAll}
         onSort={(key, direction) => console.log('Sort:', key, direction)}
       />
     </div>
-  );
-}`}
-</CodeBlockWithPreview>
-
-## With Custom Actions
-
-<CodeBlockWithPreview 
-  title="DataTable with Custom Actions"
-  preview={<ActionDataTableExample />}
->
-{`import { DataTable, Button } from '@azodik/ui';
-
-export const ActionDataTableExample = () => {
-  const data = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' }
-  ];
-
-  const columns = [
-    { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
-    { key: 'role', label: 'Role', sortable: true },
-    { 
-      key: 'actions', 
-      label: 'Actions',
-      render: (row) => (
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline" onClick={() => console.log('Edit:', row.id)}>
-            Edit
-          </Button>
-          <Button size="sm" variant="destructive" onClick={() => console.log('Delete:', row.id)}>
-            Delete
-          </Button>
-        </div>
-      )
-    }
-  ];
-
-  return (
-    <DataTable
-      data={data}
-      columns={columns}
-      onSort={(key, direction) => console.log('Sort:', key, direction)}
-    />
   );
 }`}
 </CodeBlockWithPreview>
@@ -395,24 +305,20 @@ export const ActionDataTableExample = () => {
   title="DataTable with Pagination"
   preview={<PaginatedDataTableExample />}
 >
-{`import { DataTable } from '@azodik/ui';
+{`import { DataTable, Pagination } from '@azodik/ui';
 import { useState } from 'react';
 
 export const PaginatedDataTableExample = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = 5; // Fixed to 5 entries per page
   
   // Mock data - in real app, this would come from API
-  const allData = Array.from({ length: 100 }, (_, i) => ({
+  const allData = Array.from({ length: 25 }, (_, i) => ({
     id: i + 1,
     name: 'User ' + (i + 1),
     email: 'user' + (i + 1) + '@example.com',
     role: i % 3 === 0 ? 'Admin' : 'User'
   }));
-
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const currentData = allData.slice(startIndex, endIndex);
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
@@ -420,27 +326,37 @@ export const PaginatedDataTableExample = () => {
     { key: 'role', label: 'Role', sortable: true }
   ];
 
+  const totalPages = Math.ceil(allData.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentData = allData.slice(startIndex, endIndex);
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const handlePageSizeChange = (size) => {
-    setPageSize(size);
-    setCurrentPage(1);
-  };
-
   return (
-    <DataTable
-      data={currentData}
-      columns={columns}
-      pagination
-      currentPage={currentPage}
-      pageSize={pageSize}
-      totalItems={allData.length}
-      onPageChange={handlePageChange}
-      onPageSizeChange={handlePageSizeChange}
-      onSort={(key, direction) => console.log('Sort:', key, direction)}
-    />
+    <div>
+      <div className="mb-4">
+        <span className="text-sm text-gray-600">
+          Showing {startIndex + 1}-{Math.min(endIndex, allData.length)} of {allData.length} items
+        </span>
+      </div>
+      
+      <DataTable
+        data={currentData}
+        columns={columns}
+        onSort={(key, direction) => console.log('Sort:', key, direction)}
+      />
+      
+      <div className="mt-4 flex justify-center">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
+    </div>
   );
 }`}
 </CodeBlockWithPreview>
@@ -531,35 +447,6 @@ export const PaginatedDataTableExample = () => {
     required: false,
     default: '-',
     description: 'Additional CSS classes to apply'
-  }
-]} />
-
-## Column Interface
-
-<PropsTable props={[
-  {
-    name: 'key',
-    type: 'string',
-    required: true,
-    description: 'Unique key for the column'
-  },
-  {
-    name: 'label',
-    type: 'string',
-    required: true,
-    description: 'Display label for the column header'
-  },
-  {
-    name: 'sortable',
-    type: 'boolean',
-    required: false,
-    description: 'Whether the column can be sorted'
-  },
-  {
-    name: 'render',
-    type: '(row: any) => React.ReactNode',
-    required: false,
-    description: 'Custom render function for cell content'
   }
 ]} />
 

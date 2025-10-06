@@ -1,6 +1,34 @@
 import { Input, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+import { useState } from 'react';
+
+export const ValidatedInputPreview = () => {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('Must be at least 3 characters');
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    
+    if (newValue.length < 3) {
+      setError('Must be at least 3 characters');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Input 
+      label="Validated Input"
+      value={value}
+      onChange={handleChange}
+      error={error}
+      placeholder="Enter at least 3 characters"
+    />
+  );
+};
 
 # Input Component
 
@@ -38,14 +66,16 @@ Input fields are essential for collecting user data. They support different inpu
   title="All Input Variants"
   preview={
     <div className="space-y-4">
-      <div>
-        <label htmlFor="text-preview">Text Input</label>
-        <Input id="text-preview" type="text" placeholder="Enter text" />
-      </div>
-      <div>
-        <label htmlFor="email-preview">Email Input</label>
-        <Input id="email-preview" type="email" placeholder="Enter email" />
-      </div>
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
     </div>
   }
 >
@@ -54,20 +84,22 @@ Input fields are essential for collecting user data. They support different inpu
 export const InputExamples = () => {
   return (
     <div className="space-y-4">
-      <div>
-        <label htmlFor="text">Text Input</label>
-        <Input id="text" type="text" placeholder="Enter text" />
-      </div>
-      <div>
-        <label htmlFor="email">Email Input</label>
-        <Input id="email" type="email" placeholder="Enter email" />
-      </div>
-      <form>
-        <div>
-          <label htmlFor="password">Password Input</label>
-          <Input id="password" type="password" placeholder="Enter password" autoComplete="current-password" />
-        </div>
-      </form>
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
     </div>
   );
 };`}
@@ -78,67 +110,95 @@ export const InputExamples = () => {
 <CodeBlockWithPreview 
   title="Basic Input"
   preview={
-    <div>
-      <label htmlFor="email">Email</label>
-      <Input 
-        id="email"
-        type="email" 
-        placeholder="Enter your email"
-      />
-    </div>
+    <Input 
+      type="email" 
+      label="Email"
+      placeholder="Enter your email"
+    />
   }
 >
 {`import { Input } from '@azodik/ui';
 
 export const InputExample = () => {
   return (
-    <div>
-      <label htmlFor="email">Email</label>
-      <Input 
-        id="email"
-        type="email" 
-        placeholder="Enter your email"
-      />
-    </div>
+    <Input 
+      type="email" 
+      label="Email"
+      placeholder="Enter your email"
+    />
   );
 };`}
 </CodeBlockWithPreview>
 
 ## With Different Types
 
-<CodeBlock title="Input Types">
+<CodeBlockWithPreview 
+  title="Input Types"
+  preview={
+    <div className="space-y-4">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+      <Input 
+        type="number" 
+        label="Number Input"
+        placeholder="Enter number" 
+      />
+    </div>
+  }
+>
 {`import { Input } from '@azodik/ui';
 
 export const InputTypesExample = () => {
   return (
     <div className="space-y-4">
-      <div>
-        <label htmlFor="text">Text Input</label>
-        <Input id="text" type="text" placeholder="Enter text" />
-      </div>
-      <div>
-        <label htmlFor="email">Email Input</label>
-        <Input id="email" type="email" placeholder="Enter email" />
-      </div>
-      <form>
-        <div>
-          <label htmlFor="password">Password Input</label>
-          <Input id="password" type="password" placeholder="Enter password" autoComplete="current-password" />
-        </div>
-      </form>
-      <div>
-        <label htmlFor="number">Number Input</label>
-        <Input id="number" type="number" placeholder="Enter number" />
-      </div>
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+      <Input 
+        type="number" 
+        label="Number Input"
+        placeholder="Enter number" 
+      />
     </div>
   );
 }`}
-</CodeBlock>
+</CodeBlockWithPreview>
 
 ## With Validation States
 
-<CodeBlock title="Input with Validation">
+<CodeBlockWithPreview 
+  title="Input with Validation"
+  preview={<ValidatedInputPreview />}
+>
 {`import { Input } from '@azodik/ui';
+import { useState } from 'react';
 
 export const ValidatedInputExample = () => {
   const [value, setValue] = useState('');
@@ -154,40 +214,16 @@ export const ValidatedInputExample = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="validated">Validated Input</label>
-      <Input 
-        id="validated"
-        value={value}
-        onChange={handleChange}
-        error={error}
-        placeholder="Enter at least 3 characters"
-      />
-    </div>
+    <Input 
+      label="Validated Input"
+      value={value}
+      onChange={handleChange}
+      error={error}
+      placeholder="Enter at least 3 characters"
+    />
   );
 }`}
-</CodeBlock>
-
-## With Icons
-
-<CodeBlock title="Input with Icons">
-{`import { Input } from '@azodik/ui';
-
-export const IconInputExample = () => {
-  return (
-    <div>
-      <label htmlFor="search">Search</label>
-      <Input 
-        id="search"
-        type="search"
-        placeholder="Search..."
-        startIcon={<SearchIcon />}
-        endIcon={<ClearIcon />}
-      />
-    </div>
-  );
-}`}
-</CodeBlock>
+</CodeBlockWithPreview>
 
 ## Props
 
@@ -272,3 +308,5 @@ export const IconInputExample = () => {
 - Provide helpful placeholder text
 - Show validation errors clearly
 - Ensure sufficient touch targets on mobile
+
+<ComponentNavigation />

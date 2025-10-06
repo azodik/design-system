@@ -1,6 +1,7 @@
 import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 # Tooltip Component
 
@@ -17,12 +18,6 @@ Tooltips are small popup windows that appear when users hover over or focus on a
 - Display additional information about icons or buttons
 - Guide users through complex interfaces
 
-### When not to use
-- For critical information that users must see
-- For interactive content (use Popover instead)
-- For long text content
-- When the information should be permanently visible
-
 ## Usage
 
 <CodeBlock language="tsx">
@@ -32,110 +27,6 @@ Tooltips are small popup windows that appear when users hover over or focus on a
 ## Variants
 
 <ComponentRenderer componentName="tooltip" />
-
-## Some Variants Example
-
-<CodeBlockWithPreview 
-  title="All Tooltip Variants"
-  preview={
-    <div className="space-y-4">
-      <Tooltip content="This is a helpful tooltip">
-        <Button>Hover me</Button>
-      </Tooltip>
-      <Tooltip content="Another tooltip with more text">
-        <Button variant="secondary">Hover me too</Button>
-      </Tooltip>
-    </div>
-  }
->
-{`import { Tooltip, Button } from '@azodik/ui';
-
-export const TooltipExamples = () => {
-  return (
-    <div className="space-y-4">
-      <Tooltip content="This is a helpful tooltip">
-        <Button>Hover me</Button>
-      </Tooltip>
-      <Tooltip content="Another tooltip with more text">
-        <Button variant="secondary">Hover me too</Button>
-      </Tooltip>
-      <Tooltip content="Disabled tooltip" disabled>
-        <Button disabled>Disabled</Button>
-      </Tooltip>
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic Tooltip"
-  preview={
-    <Tooltip content="This is a helpful tooltip">
-      <Button>Hover me</Button>
-    </Tooltip>
-  }
->
-{`import { Tooltip, Button } from '@azodik/ui';
-
-export const TooltipExample = () => {
-  return (
-    <Tooltip content="This is a helpful tooltip">
-      <Button>Hover me</Button>
-    </Tooltip>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## With Different Positions
-
-<CodeBlockWithPreview 
-  title="Tooltip Positions"
-  preview={
-    <div className="flex gap-4">
-      <Tooltip content="Top tooltip" position="top">
-        <Button>Top</Button>
-      </Tooltip>
-      
-      <Tooltip content="Right tooltip" position="right">
-        <Button>Right</Button>
-      </Tooltip>
-      
-      <Tooltip content="Bottom tooltip" position="bottom">
-        <Button>Bottom</Button>
-      </Tooltip>
-      
-      <Tooltip content="Left tooltip" position="left">
-        <Button>Left</Button>
-      </Tooltip>
-    </div>
-  }
->
-{`import { Tooltip, Button } from '@azodik/ui';
-
-export const TooltipPositionsExample = () => {
-  return (
-    <div className="flex gap-4">
-      <Tooltip content="Top tooltip" position="top">
-        <Button>Top</Button>
-      </Tooltip>
-      
-      <Tooltip content="Right tooltip" position="right">
-        <Button>Right</Button>
-      </Tooltip>
-      
-      <Tooltip content="Bottom tooltip" position="bottom">
-        <Button>Bottom</Button>
-      </Tooltip>
-      
-      <Tooltip content="Left tooltip" position="left">
-        <Button>Left</Button>
-      </Tooltip>
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
 
 ## With Rich Content
 
@@ -167,64 +58,6 @@ export const RichTooltipExample = () => {
       }
     >
       <Button variant="outline">Settings</Button>
-    </Tooltip>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## With Delay
-
-<CodeBlockWithPreview 
-  title="Tooltip with Delay"
-  preview={
-    <Tooltip 
-      content="This tooltip appears after a delay"
-      delay={500}
-    >
-      <Button>Delayed Tooltip</Button>
-    </Tooltip>
-  }
->
-{`import { Tooltip, Button } from '@azodik/ui';
-
-export const DelayedTooltipExample = () => {
-  return (
-    <Tooltip 
-      content="This tooltip appears after a delay"
-      delay={500}
-    >
-      <Button>Delayed Tooltip</Button>
-    </Tooltip>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## With Custom Trigger
-
-<CodeBlockWithPreview 
-  title="Custom Trigger Tooltip"
-  preview={
-    <Tooltip content="Click to see more information">
-      <Button 
-        onClick={() => console.log('Button clicked')}
-        onFocus={() => console.log('Button focused')}
-      >
-        Custom Trigger
-      </Button>
-    </Tooltip>
-  }
->
-{`import { Tooltip, Button } from '@azodik/ui';
-
-export const CustomTriggerTooltipExample = () => {
-  return (
-    <Tooltip content="Click to see more information">
-      <Button 
-        onClick={() => console.log('Button clicked')}
-        onFocus={() => console.log('Button focused')}
-      >
-        Custom Trigger
-      </Button>
     </Tooltip>
   );
 };`}
@@ -292,3 +125,5 @@ export const CustomTriggerTooltipExample = () => {
 - Ensure sufficient contrast for readability
 - Don't rely solely on tooltips for critical information
 - Consider mobile touch interactions
+
+<ComponentNavigation />

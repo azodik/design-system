@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Children, isValidElement } from "react";
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -55,26 +55,52 @@ export default function Modal({
     .filter(Boolean)
     .join(" ");
 
+  // Check if children contains ModalHeader to avoid duplicate headers
+  const hasModalHeader = React.Children.toArray(children).some(
+    child => React.isValidElement(child) && child.type === ModalHeader
+  );
+
   return (
     <div className={`modal-overlay ${isOpen ? "open" : ""}`} onClick={handleOverlayClick}>
       <div className={modalClasses} {...props}>
-        {title && (
-          <div className="modal-header">
+        {title && !hasModalHeader && (
+          <ModalHeader onClose={onClose} showCloseButton={showCloseButton}>
             <h2 className="modal-title">{title}</h2>
-            {showCloseButton && (
-              <button
-                type="button"
-                className="modal-close"
-                onClick={onClose}
-                aria-label="Close modal"
-              >
-                ×
-              </button>
-            )}
-          </div>
+          </ModalHeader>
         )}
         <div className="modal-body">{children}</div>
       </div>
+    </div>
+  );
+}
+
+// Modal Header Component
+export interface ModalHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  showCloseButton?: boolean;
+  onClose?: () => void;
+}
+
+export function ModalHeader({ 
+  children, 
+  className = "", 
+  showCloseButton = true, 
+  onClose,
+  ...props 
+}: ModalHeaderProps) {
+  return (
+    <div className={`modal-header ${className}`} {...props}>
+      {children}
+      {showCloseButton && onClose && (
+        <button
+          type="button"
+          className="modal-close"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Toast, Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 # Toast Component
 
@@ -17,12 +18,6 @@ Toasts are temporary notifications that provide feedback to users without blocki
 - Show confirmation messages
 - Display system notifications
 
-### When not to use
-- For critical errors that need immediate attention (use Modal instead)
-- For information that users need to reference later
-- For complex content that requires interaction
-- For persistent notifications
-
 ## Usage
 
 <CodeBlock language="tsx">
@@ -32,190 +27,6 @@ Toasts are temporary notifications that provide feedback to users without blocki
 ## Variants
 
 <ComponentRenderer componentName="toast" />
-
-## Some Variants Example
-
-<CodeBlockWithPreview 
-  title="All Toast Variants"
-  preview={
-    <div className="space-y-4">
-      <Toast variant="success" title="Success!" description="Operation completed successfully." />
-      <Toast variant="error" title="Error!" description="Something went wrong." />
-    </div>
-  }
->
-{`import { Toast } from '@azodik/ui';
-
-export const ToastExamples = () => {
-  return (
-    <div className="space-y-4">
-      <Toast variant="success" title="Success!" description="Operation completed successfully." />
-      <Toast variant="error" title="Error!" description="Something went wrong." />
-      <Toast variant="warning" title="Warning!" description="Please check your input." />
-      <Toast variant="info" title="Info" description="Here is some information." />
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic Toast"
-  preview={
-    <div className="space-y-4">
-      <Button onClick={() => {}}>Show Toast</Button>
-    </div>
-  }
->
-{`import { Toast, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ToastExample = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  const showSuccessToast = () => {
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
-  };
-
-  return (
-    <div>
-      <Button onClick={showSuccessToast}>
-        Show Toast
-      </Button>
-      
-      {showToast && (
-        <Toast
-          variant="success"
-          title="Success!"
-          description="Your action was completed successfully."
-          onClose={() => setShowToast(false)}
-        />
-      )}
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Different Variants
-
-<CodeBlock title="Toast Variants">
-{`import { Toast, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ToastVariantsExample = () => {
-  const [toast, setToast] = useState(null);
-
-  const showToast = (variant, title, description) => {
-    setToast({ variant, title, description });
-    setTimeout(() => setToast(null), 3000);
-  };
-
-  return (
-    <div className="space-x-2">
-      <Button onClick={() => showToast('success', 'Success!', 'Operation completed successfully.')}>
-        Success
-      </Button>
-      <Button onClick={() => showToast('error', 'Error!', 'Something went wrong.')}>
-        Error
-      </Button>
-      <Button onClick={() => showToast('warning', 'Warning!', 'Please check your input.')}>
-        Warning
-      </Button>
-      <Button onClick={() => showToast('info', 'Info', 'Here is some information.')}>
-        Info
-      </Button>
-      
-      {toast && (
-        <Toast
-          variant={toast.variant}
-          title={toast.title}
-          description={toast.description}
-          onClose={() => setToast(null)}
-        />
-      )}
-    </div>
-  );
-}`}
-</CodeBlock>
-
-## With Actions
-
-<CodeBlock title="Toast with Actions">
-{`import { Toast, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const ActionToastExample = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  const showActionToast = () => {
-    setShowToast(true);
-  };
-
-  const handleUndo = () => {
-    console.log('Undo action');
-    setShowToast(false);
-  };
-
-  return (
-    <div>
-      <Button onClick={showActionToast}>
-        Delete Item
-      </Button>
-      
-      {showToast && (
-        <Toast
-          variant="success"
-          title="Item Deleted"
-          description="The item has been moved to trash."
-          onClose={() => setShowToast(false)}
-          action={
-            <Button size="sm" variant="outline" onClick={handleUndo}>
-              Undo
-            </Button>
-          }
-        />
-      )}
-    </div>
-  );
-}`}
-</CodeBlock>
-
-## Auto-dismiss with Custom Duration
-
-<CodeBlock title="Custom Duration Toast">
-{`import { Toast, Button } from '@azodik/ui';
-import { useState } from 'react';
-
-export const CustomDurationToastExample = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  const showLongToast = () => {
-    setShowToast(true);
-    // Auto-dismiss after 5 seconds instead of default 3
-    setTimeout(() => setShowToast(false), 5000);
-  };
-
-  return (
-    <div>
-      <Button onClick={showLongToast}>
-        Show Long Toast
-      </Button>
-      
-      {showToast && (
-        <Toast
-          variant="info"
-          title="Long Duration"
-          description="This toast will stay for 5 seconds."
-          onClose={() => setShowToast(false)}
-          duration={5000}
-        />
-      )}
-    </div>
-  );
-}`}
-</CodeBlock>
 
 ## Props
 
@@ -286,3 +97,5 @@ export const CustomDurationToastExample = () => {
 - Don't show too many toasts at once
 - Provide clear close actions
 - Consider mobile positioning and sizing
+
+<ComponentNavigation />

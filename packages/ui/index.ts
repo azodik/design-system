@@ -13,7 +13,7 @@ export {
   CardAction
 } from "./components/Card";
 export { default as Input, Textarea, Select, Checkbox, Radio, Switch } from "./components/Input";
-export { default as Modal, ModalFooter } from "./components/Modal";
+export { default as Modal, ModalHeader, ModalFooter } from "./components/Modal";
 export { Toast } from "./components/Toast";
 export { Tooltip } from "./components/Tooltip";
 export { Popover } from "./components/Popover";
@@ -83,7 +83,7 @@ export type {
   RadioProps,
   SwitchProps,
 } from "./components/Input";
-export type { ModalProps, ModalFooterProps } from "./components/Modal";
+export type { ModalProps, ModalHeaderProps, ModalFooterProps } from "./components/Modal";
 export type { ToastProps } from "./components/Toast";
 export type { TooltipProps } from "./components/Tooltip";
 export type { PopoverProps } from "./components/Popover";

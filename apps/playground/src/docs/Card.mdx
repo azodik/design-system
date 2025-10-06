@@ -1,6 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@azodik/ui';
+import { Card, CardContent, CardHeader, CardTitle, Button } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 # Card Component
 
@@ -16,11 +17,6 @@ Cards are versatile containers that help organize and present content in a struc
 - Show product information or user profiles
 - Group form elements or settings
 - Display statistics or metrics
-
-### When not to use
-- For simple text content (use paragraphs instead)
-- When you need a full-page layout
-- For navigation elements (use navigation components)
 
 ## Usage
 
@@ -38,10 +34,13 @@ Cards are versatile containers that help organize and present content in a struc
   title="All Card Variants"
   preview={
     <div className="space-y-4">
-      <Card padding="sm">
+      <Card padding="sm" rounded="sm">
         <CardContent>Small padding card</CardContent>
       </Card>
-      <Card padding="lg">
+      <Card padding="md" rounded="sm" className="mt-5">
+        <CardContent>Medium padding card</CardContent>
+      </Card>
+      <Card padding="lg" rounded="sm" className="mt-5">
         <CardContent>Large padding card</CardContent>
       </Card>
     </div>
@@ -108,9 +107,9 @@ export const CardWithHeaderExample = () => {
       </CardHeader>
       <CardContent>
         <p>Product description goes here.</p>
-        <div className="flex gap-2 mt-4">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded">Buy Now</button>
-          <button className="px-4 py-2 border border-gray-300 rounded">Learn More</button>
+        <div className="flex gap-2 mt-4 justify-center item-center">
+          <Button variant="primary" size="sm" width="100px">Buy Now</Button>
+          <Button variant="outline" size="sm" className="ml-5">Learn More</Button>
         </div>
       </CardContent>
     </Card>
@@ -183,3 +182,5 @@ export const CardWithActionsExample = () => {
 - Provide clear visual hierarchy
 - Use appropriate elevation for depth
 - Ensure sufficient contrast for readability
+
+<ComponentNavigation />

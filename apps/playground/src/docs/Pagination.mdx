@@ -1,4 +1,4 @@
-import { Pagination, Card, CardContent, Button } from '@azodik/ui';
+import { Pagination, Card, CardContent, Button, Select } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 import { useState } from 'react';
@@ -75,23 +75,29 @@ export const JumpPaginationExample = () => {
     setCurrentPage(page);
   };
 
-  const handleJumpToPage = (page) => {
+  const handleJumpToPage = (e) => {
+    const page = Number(e.target.value);
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
+  // Generate page options for the select
+  const pageOptions = Array.from({ length: totalPages }, (_, i) => ({
+    value: (i + 1).toString(),
+    label: "Page " + (i + 1)
+  }));
+
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <span>Jump to page:</span>
-        <input
-          type="number"
-          min="1"
-          max={totalPages}
-          value={currentPage}
-          onChange={(e) => handleJumpToPage(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-20"
+        <Select
+          value={currentPage.toString()}
+          onChange={handleJumpToPage}
+          options={pageOptions}
+          placeholder="Select page"
+          className="w-32"
         />
       </div>
       
@@ -121,12 +127,6 @@ Pagination breaks large datasets into manageable pages, making it easier for use
 - Navigate data tables with many rows
 - Show content in manageable chunks
 
-### When not to use
-- For small datasets that fit on one page
-- When you need infinite scrolling
-- For content that should be continuously scrollable
-- When space is very limited
-
 ## Usage
 
 <CodeBlock language="tsx">
@@ -136,160 +136,6 @@ Pagination breaks large datasets into manageable pages, making it easier for use
 ## Variants
 
 <ComponentRenderer componentName="pagination" />
-
-## Some Variants Example
-
-<CodeBlockWithPreview 
-  title="All Pagination Variants"
-  preview={
-    <div className="space-y-4">
-      <Pagination
-        currentPage={1}
-        totalPages={5}
-        onPageChange={() => {}}
-      />
-    </div>
-  }
->
-{`import { Pagination } from '@azodik/ui';
-import { useState } from 'react';
-
-export const PaginationExamples = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    console.log('Page changed to:', page);
-  };
-
-  return (
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-    />
-  );
-};`}
-</CodeBlockWithPreview>
-
-## Basic Usage
-
-<CodeBlockWithPreview 
-  title="Basic Pagination"
-  preview={
-    <Pagination
-      currentPage={1}
-      totalPages={5}
-      onPageChange={() => {}}
-    />
-  }
->
-{`import { Pagination } from '@azodik/ui';
-import { useState } from 'react';
-
-export const PaginationExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    console.log('Page changed to:', page);
-  };
-
-  return (
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-    />
-  );
-};`}
-</CodeBlockWithPreview>
-
-## With Page Size Selection
-
-<CodeBlockWithPreview 
-  title="Pagination with Page Size"
-  preview={<PageSizePaginationExample />}
->
-{`import { Pagination } from '@azodik/ui';
-import { useState } from 'react';
-
-export const PaginationWithSizeExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const totalItems = 100;
-  const totalPages = Math.ceil(totalItems / pageSize);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handlePageSizeChange = (size) => {
-    setPageSize(size);
-    setCurrentPage(1); // Reset to first page when size changes
-  };
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-4">
-        <span>Items per page:</span>
-        <select 
-          value={pageSize} 
-          onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-          className="border rounded px-2 py-1"
-        >
-          <option value={5}>5</option>
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={50}>50</option>
-        </select>
-      </div>
-      
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        showPageSize
-        pageSize={pageSize}
-        onPageSizeChange={handlePageSizeChange}
-      />
-    </div>
-  );
-}`}
-</CodeBlockWithPreview>
-
-## With Custom Styling
-
-<CodeBlockWithPreview 
-  title="Custom Styled Pagination"
-  preview={<CustomStyledPaginationExample />}
->
-{`import { Pagination } from '@azodik/ui';
-import { useState } from 'react';
-
-export const CustomStyledPaginationExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 15;
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  return (
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-      className="custom-pagination"
-      showFirstLast
-      showPrevNext
-      maxVisiblePages={5}
-    />
-  );
-}`}
-</CodeBlockWithPreview>
 
 ## With Jump to Page
 
@@ -308,23 +154,29 @@ export const JumpPaginationExample = () => {
     setCurrentPage(page);
   };
 
-  const handleJumpToPage = (page) => {
+  const handleJumpToPage = (e) => {
+    const page = Number(e.target.value);
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
+  // Generate page options for the select
+  const pageOptions = Array.from({ length: totalPages }, (_, i) => ({
+    value: (i + 1).toString(),
+    label: "Page " + (i + 1)
+  }));
+
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <span>Jump to page:</span>
-        <input
-          type="number"
-          min="1"
-          max={totalPages}
-          value={currentPage}
-          onChange={(e) => handleJumpToPage(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-20"
+        <Select
+          value={currentPage.toString()}
+          onChange={handleJumpToPage}
+          options={pageOptions}
+          placeholder="Select page"
+          className="w-32"
         />
       </div>
       

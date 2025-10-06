@@ -19,7 +19,7 @@ export const SelectPreview = () => {
               { value: "au", label: "Australia" },
             ]}
             value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={setCountry}
           />
           <Select
             label="Size"
@@ -31,7 +31,7 @@ export const SelectPreview = () => {
               { value: "xl", label: "Extra Large" },
             ]}
             value={size}
-            onChange={(e) => setSize(e.target.value)}
+            onChange={setSize}
           />
         </div>
       </Card>
@@ -67,7 +67,7 @@ export const SelectExample = () => {
               { value: "au", label: "Australia" },
             ]}
             value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={setCountry}
           />
           <Select
             label="Size"
@@ -79,7 +79,7 @@ export const SelectExample = () => {
               { value: "xl", label: "Extra Large" },
             ]}
             value={size}
-            onChange={(e) => setSize(e.target.value)}
+            onChange={setSize}
           />
         </div>
       </Card>
