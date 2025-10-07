@@ -26,7 +26,7 @@
 @media (min-width: 768px) {
   .input {
     min-width: 300px;
-    max-width: 500px;
+    max-width: 100%;
   }
 }
 
@@ -89,7 +89,7 @@
 @media (min-width: 768px) {
   .textarea {
     min-width: 300px;
-    max-width: 500px;
+    max-width: 100%;
   }
 }
 

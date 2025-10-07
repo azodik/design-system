@@ -4,6 +4,7 @@ export const routes = {
 	components: '/components',
 	gettingStarted: '/components/getting-started',
 	playground: '/playground',
+	testComponents: '/test-components',
 	alertDocs: '/components/docs/alert',
 	avatarDocs: '/components/docs/avatar',
 	badgeDocs: '/components/docs/badge',

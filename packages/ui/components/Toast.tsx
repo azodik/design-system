@@ -7,6 +7,7 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode;
   onClose?: () => void;
   autoClose?: number;
+  position?: "top-center" | "top-right" | "bottom-right";
 }
 
 export function Toast({
@@ -16,15 +17,27 @@ export function Toast({
   icon,
   onClose,
   autoClose,
+  position = "top-right",
   className = "",
   ...props
 }: ToastProps) {
+  const [isClosing, setIsClosing] = React.useState(false);
+
   useEffect(() => {
     if (autoClose && onClose) {
-      const timer = setTimeout(onClose, autoClose);
+      const timer = setTimeout(() => {
+        handleClose();
+      }, autoClose);
       return () => clearTimeout(timer);
     }
   }, [autoClose, onClose]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose?.();
+    }, 300); // Match animation duration
+  };
 
   const getIcon = () => {
     if (icon) return icon;
@@ -43,14 +56,14 @@ export function Toast({
   };
 
   return (
-    <div className={`toast toast-${variant} show ${className}`} {...props}>
+    <div className={`toast toast-${variant} toast-${position} ${isClosing ? 'closing' : 'show'} ${className}`} {...props}>
       <div className="toast-icon">{getIcon()}</div>
       <div className="toast-content">
         {title && <div className="toast-title">{title}</div>}
         <div className="toast-message">{children}</div>
       </div>
       {onClose && (
-        <button type="button" className="toast-close" onClick={onClose} aria-label="Close toast">
+        <button type="button" className="toast-close" onClick={handleClose} aria-label="Close toast">
           ×
         </button>
       )}

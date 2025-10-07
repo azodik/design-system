@@ -36,7 +36,7 @@ export const FormPreview = () => {
             { value: "uk", label: "United Kingdom" },
           ]}
           value={formData.country}
-          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+          onChange={(value) => setFormData({ ...formData, country: value })}
         />
         <Checkbox
           label="Subscribe to newsletter"

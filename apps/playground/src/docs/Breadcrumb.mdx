@@ -62,7 +62,7 @@ export const BreadcrumbExamples = () => {
 
 <PropsTable props={[
   {
-    name: 'items*',
+    name: 'items',
     type: 'BreadcrumbItem[]',
     required: true,
     default: '-',
@@ -72,7 +72,7 @@ export const BreadcrumbExamples = () => {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />
@@ -81,7 +81,7 @@ export const BreadcrumbExamples = () => {
 
 <PropsTable props={[
   {
-    name: 'label*',
+    name: 'label',
     type: 'string',
     required: true,
     default: '-',
@@ -98,7 +98,7 @@ export const BreadcrumbExamples = () => {
     name: 'current',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'false',
     description: 'Whether this is the current page'
   }
 ]} />

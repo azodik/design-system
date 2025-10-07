@@ -199,60 +199,42 @@ export const JumpPaginationExample = () => {
     name: 'currentPage',
     type: 'number',
     required: true,
+    default: '-',
     description: 'Currently active page number'
   },
   {
     name: 'totalPages',
     type: 'number',
     required: true,
+    default: '-',
     description: 'Total number of pages'
   },
   {
     name: 'onPageChange',
     type: '(page: number) => void',
     required: true,
+    default: '-',
     description: 'Function called when page changes'
   },
   {
     name: 'showFirstLast',
     type: 'boolean',
     required: false,
+    default: 'true',
     description: 'Whether to show first and last page buttons'
   },
   {
     name: 'showPrevNext',
     type: 'boolean',
     required: false,
+    default: 'true',
     description: 'Whether to show previous and next page buttons'
-  },
-  {
-    name: 'maxVisiblePages',
-    type: 'number',
-    required: false,
-    description: 'Maximum number of page buttons to show'
-  },
-  {
-    name: 'showPageSize',
-    type: 'boolean',
-    required: false,
-    description: 'Whether to show page size selector'
-  },
-  {
-    name: 'pageSize',
-    type: 'number',
-    required: false,
-    description: 'Current page size'
-  },
-  {
-    name: 'onPageSizeChange',
-    type: '(size: number) => void',
-    required: false,
-    description: 'Function called when page size changes'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

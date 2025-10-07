@@ -7,7 +7,7 @@ export const RadioPreview = () => {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
+      <Card width={200}>
         <div className="space-y-6">
           <div>
             <label className="form-label">Gender</label>

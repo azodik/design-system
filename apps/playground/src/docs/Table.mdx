@@ -1,4 +1,15 @@
-import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell, Card, CardContent } from '@azodik/ui';
+import { 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableFooter,
+  TableRow, 
+  TableHeaderCell, 
+  TableCell,
+  DataTable,
+  Card, 
+  CardContent 
+} from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
 import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 import ComponentNavigation from '../components/docs/ComponentNavigation';
@@ -21,7 +32,16 @@ Tables are essential for displaying structured data in a readable format. They h
 ## Usage
 
 <CodeBlock language="tsx">
-{`import { Table } from '@azodik/ui';`}
+{`import { 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableFooter,
+  TableRow, 
+  TableHeaderCell, 
+  TableCell,
+  DataTable
+} from '@azodik/ui';`}
 </CodeBlock>
 
 ## Variants
@@ -34,15 +54,297 @@ Tables are essential for displaying structured data in a readable format. They h
   {
     name: 'children',
     type: 'React.ReactNode',
-    required: false,
+    required: true,
     default: '-',
     description: 'Table content (TableHeader, TableBody, etc.)'
+  },
+  {
+    name: 'striped',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show alternating row colors'
+  },
+  {
+    name: 'bordered',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show borders around cells'
+  },
+  {
+    name: 'hover',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to highlight rows on hover'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the table'
+  },
+  {
+    name: 'responsive',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to make the table responsive'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## TableHeader Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
     default: '-',
+    description: 'Header content (typically TableRow with TableHeaderCell)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## TableBody Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Body content (typically TableRow components)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## TableRow Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Row content (typically TableCell components)'
+  },
+  {
+    name: 'selected',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the row is selected'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## TableHeaderCell Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header cell content'
+  },
+  {
+    name: 'sortable',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the column is sortable'
+  },
+  {
+    name: 'sortDirection',
+    type: '"asc" | "desc"',
+    required: false,
+    default: '-',
+    description: 'Current sort direction'
+  },
+  {
+    name: 'onSort',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when sort is triggered'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## TableCell Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Cell content'
+  },
+  {
+    name: 'numeric',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the cell contains numeric data (right-aligned)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## DataTable Props
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'T[]',
+    required: true,
+    default: '-',
+    description: 'Array of data objects to display'
+  },
+  {
+    name: 'columns',
+    type: 'Array<{ key: keyof T; label: string; sortable?: boolean; render?: (value: any, row: T) => React.ReactNode }>',
+    required: true,
+    default: '-',
+    description: 'Column configuration array'
+  },
+  {
+    name: 'sortBy',
+    type: 'keyof T',
+    required: false,
+    default: '-',
+    description: 'Currently sorted column key'
+  },
+  {
+    name: 'sortDirection',
+    type: '"asc" | "desc"',
+    required: false,
+    default: '-',
+    description: 'Current sort direction'
+  },
+  {
+    name: 'onSort',
+    type: '(key: keyof T) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when column is sorted'
+  },
+  {
+    name: 'onRowClick',
+    type: '(row: T) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when row is clicked'
+  },
+  {
+    name: 'selectedRows',
+    type: 'T[]',
+    required: false,
+    default: '[]',
+    description: 'Array of selected rows'
+  },
+  {
+    name: 'onRowSelect',
+    type: '(row: T, selected: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when row selection changes'
+  },
+  {
+    name: 'onSelectAll',
+    type: '(selected: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when select all is triggered'
+  },
+  {
+    name: 'selectable',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether rows can be selected'
+  },
+  {
+    name: 'striped',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show alternating row colors (inherited from Table)'
+  },
+  {
+    name: 'bordered',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show borders around cells (inherited from Table)'
+  },
+  {
+    name: 'hover',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to highlight rows on hover (inherited from Table)'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the table (inherited from Table)'
+  },
+  {
+    name: 'responsive',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to make the table responsive (inherited from Table)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

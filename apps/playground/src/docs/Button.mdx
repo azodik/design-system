@@ -106,52 +106,52 @@ export const DisabledButton = () => {
 
 <PropsTable props={[
   {
-    name: 'variant',
-    type: '"primary" | "secondary" | "outline" | "ghost" | "destructive"',
-    required: false,
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
     default: '-',
+    description: 'Content to display inside the button'
+  },
+  {
+    name: 'variant',
+    type: '"primary" | "secondary" | "tertiary" | "outline" | "link" | "ghost" | "destructive"',
+    required: false,
+    default: '"primary"',
     description: 'Visual style variant of the button'
   },
   {
     name: 'size',
     type: '"sm" | "md" | "lg"',
     required: false,
-    default: '-',
+    default: '"md"',
     description: 'Size of the button'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Custom color for the button. Applies to background or border depending on variant'
   },
   {
     name: 'disabled',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'false',
     description: 'Whether the button is disabled'
   },
   {
-    name: 'type',
-    type: '"button" | "submit" | "reset"',
+    name: 'width',
+    type: 'string | number',
     required: false,
     default: '-',
-    description: 'HTML button type'
-  },
-  {
-    name: 'onClick',
-    type: '() => void',
-    required: false,
-    default: '-',
-    description: 'Click handler function'
-  },
-  {
-    name: 'children',
-    type: 'React.ReactNode',
-    required: false,
-    default: '-',
-    description: 'Content to display inside the button'
+    description: 'Custom width for the button. Numbers are converted to pixels'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

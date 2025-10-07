@@ -7,8 +7,7 @@ export const InputPreview = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="space-y-6">
-      <Card className="p-4">
+      <Card>
         <form>
           <div className="space-y-4">
             <Input
@@ -37,7 +36,6 @@ export const InputPreview = () => {
           </div>
         </form>
       </Card>
-    </div>
   );
 };
 
@@ -50,8 +48,7 @@ export const InputExample = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="space-y-6">
-      <Card className="p-4">
+    <Card>
         <form>
           <div className="space-y-4">
             <Input
@@ -79,7 +76,6 @@ export const InputExample = () => {
             />
           </div>
         </form>
-      </Card>
-    </div>
+    </Card>
   );
 };`;

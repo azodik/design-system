@@ -32,10 +32,17 @@ Toasts are temporary notifications that provide feedback to users without blocki
 
 <PropsTable props={[
   {
-    name: 'variant',
-    type: '"success" | "error" | "warning" | "info"',
-    required: false,
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
     default: '-',
+    description: 'Toast message content'
+  },
+  {
+    name: 'variant',
+    type: '"success" | "warning" | "error" | "info"',
+    required: false,
+    default: '"info"',
     description: 'Visual style variant of the toast'
   },
   {
@@ -46,11 +53,11 @@ Toasts are temporary notifications that provide feedback to users without blocki
     description: 'Title text for the toast'
   },
   {
-    name: 'description',
-    type: 'string',
+    name: 'icon',
+    type: 'React.ReactNode',
     required: false,
     default: '-',
-    description: 'Description text for the toast'
+    description: 'Custom icon for the toast (defaults to variant-based icon)'
   },
   {
     name: 'onClose',
@@ -60,24 +67,24 @@ Toasts are temporary notifications that provide feedback to users without blocki
     description: 'Function called when toast is closed'
   },
   {
-    name: 'duration',
+    name: 'autoClose',
     type: 'number',
     required: false,
     default: '-',
     description: 'Auto-dismiss duration in milliseconds'
   },
   {
-    name: 'action',
-    type: 'React.ReactNode',
+    name: 'position',
+    type: '"top-center" | "top-right" | "bottom-right"',
     required: false,
-    default: '-',
-    description: 'Action button or element to display'
+    default: '"top-right"',
+    description: 'Position of the toast on screen'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

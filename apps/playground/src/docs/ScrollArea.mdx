@@ -113,7 +113,7 @@ export const ScrollAreaSizesExample = () => {
     <div className="space-y-4">
       <div>
         <h4>Small ScrollArea</h4>
-        <ScrollArea className="h-32 w-64 border rounded" size="sm">
+        <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="sm">
           <div className="p-4 space-y-2">
             <p>Small scrollbar</p>
             <p>Content here</p>
@@ -124,10 +124,10 @@ export const ScrollAreaSizesExample = () => {
       </div>
       
       <div>
-        <h4>Large ScrollArea</h4>
-        <ScrollArea className="h-32 w-64 border rounded" size="lg">
+        <h4>Medium ScrollArea</h4>
+        <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="md">
           <div className="p-4 space-y-2">
-            <p>Large scrollbar</p>
+            <p>Medium scrollbar</p>
             <p>Content here</p>
             <p>More content</p>
             <p>Even more content</p>
@@ -178,30 +178,28 @@ export const HorizontalScrollAreaExample = () => {
     name: 'children',
     type: 'React.ReactNode',
     required: true,
+    default: '-',
     description: 'Content to display inside the scroll area'
   },
   {
-    name: 'size',
-    type: '"sm" | "md" | "lg"',
+    name: 'scrollbarSize',
+    type: '"sm" | "md"',
     required: false,
+    default: '"md"',
     description: 'Size of the scrollbar'
   },
   {
     name: 'orientation',
     type: '"vertical" | "horizontal"',
     required: false,
+    default: '"vertical"',
     description: 'Orientation of the scroll area'
-  },
-  {
-    name: 'autoHide',
-    type: 'boolean',
-    required: false,
-    description: 'Whether to auto-hide the scrollbar'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

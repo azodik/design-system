@@ -42,15 +42,9 @@ Alerts are used to communicate important information to users. They can be dismi
 >
 {`import { Alert } from '@azodik/ui';
 
-export const AlertExamples = () => {
+export default function AlertExamples() {
   return (
     <div className="space-y-4">
-      <Alert variant="success" title="Success!" onClose={() => {}}>
-        Your changes have been saved successfully.
-      </Alert>
-      <Alert variant="warning" title="Warning">
-        Please review your information before proceeding.
-      </Alert>
       <Alert variant="error" title="Error">
         Something went wrong. Please try again.
       </Alert>
@@ -59,7 +53,7 @@ export const AlertExamples = () => {
       </Alert>
     </div>
   );
-};`}
+}`}
 </CodeBlockWithPreview>
 
 ## With Close Button
@@ -78,7 +72,7 @@ export const AlertExamples = () => {
 >
 {`import { Alert } from '@azodik/ui';
 
-export const DismissibleAlert = () => {
+export default function DismissibleAlert() {
   const handleClose = () => {
     console.log('Alert closed');
   };
@@ -92,7 +86,7 @@ export const DismissibleAlert = () => {
       This alert can be dismissed.
     </Alert>
   );
-};`}
+}`}
 </CodeBlockWithPreview>
 
 ## Custom Sizing
@@ -136,7 +130,7 @@ export const DismissibleAlert = () => {
 >
 {`import { Alert } from '@azodik/ui';
 
-export const CustomSizedAlert = () => {
+export default function CustomSizedAlert() {
   return (
     <div className="space-y-4">
       {/* String values */}
@@ -153,8 +147,8 @@ export const CustomSizedAlert = () => {
         variant="success" 
         title="Numeric Values" 
         padding={16} 
-        width={300} 
-        height={80}
+        width="50%" 
+        height="100%"
       >
         Numeric values are automatically converted to pixels.
       </Alert>
@@ -171,17 +165,17 @@ export const CustomSizedAlert = () => {
       </Alert>
     </div>
   );
-};`}
+}`}
 </CodeBlockWithPreview>
 
 ## Props
 
 <PropsTable props={[
   {
-    name: 'variant*',
+    name: 'variant',
     type: '"success" | "warning" | "error" | "info"',
-    required: true,
-    default: '-',
+    required: false,
+    default: '"info"',
     description: 'The visual style variant of the alert'
   },
   {
@@ -194,9 +188,16 @@ export const CustomSizedAlert = () => {
   {
     name: 'children',
     type: 'React.ReactNode',
-    required: false,
+    required: true,
     default: '-',
     description: 'The main content of the alert'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'Auto-generated based on variant',
+    description: 'Custom icon for the alert. If not provided, uses default icon based on variant'
   },
   {
     name: 'onClose',
@@ -230,7 +231,7 @@ export const CustomSizedAlert = () => {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply to the alert'
   }
 ]} />

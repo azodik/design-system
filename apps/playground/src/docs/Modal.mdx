@@ -131,52 +131,66 @@ export const ModalHeaderExample = () => {
 
 <PropsTable props={[
   {
-    name: 'isOpen*',
+    name: 'isOpen',
     type: 'boolean',
     required: true,
     default: '-',
     description: 'Whether the modal is open'
   },
   {
-    name: 'onClose*',
+    name: 'onClose',
     type: '() => void',
     required: true,
     default: '-',
     description: 'Function called when modal should close'
   },
   {
-    name: 'size',
-    type: '"sm" | "md" | "lg" | "xl" | "full"',
+    name: 'title',
+    type: 'string',
     required: false,
     default: '-',
+    description: 'Title text for the modal (creates header if no ModalHeader provided)'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the modal'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg" | "xl"',
+    required: false,
+    default: '"md"',
     description: 'Size of the modal'
+  },
+  {
+    name: 'showCloseButton',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the close button in the header'
   },
   {
     name: 'closeOnOverlayClick',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'true',
     description: 'Whether clicking overlay closes modal'
   },
   {
     name: 'closeOnEscape',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'true',
     description: 'Whether pressing Escape closes modal'
-  },
-  {
-    name: 'children',
-    type: 'React.ReactNode',
-    required: false,
-    default: '-',
-    description: 'Content to display inside the modal'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />
@@ -185,7 +199,7 @@ export const ModalHeaderExample = () => {
 
 <PropsTable props={[
   {
-    name: 'children*',
+    name: 'children',
     type: 'React.ReactNode',
     required: true,
     default: '-',
@@ -209,7 +223,26 @@ export const ModalHeaderExample = () => {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## ModalFooter Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
     default: '-',
+    description: 'Content to display in the footer'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

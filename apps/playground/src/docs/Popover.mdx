@@ -16,16 +16,16 @@ export const PositionPopoverExample = () => {
           isOpen={openPopover === position}
           onClose={() => setOpenPopover(null)}
           position={position}
-          trigger={
-            <Button onClick={() => setOpenPopover(position)}>
-              {position}
-            </Button>
+          content={
+            <div className="p-4">
+              <h3 className="font-semibold mb-2">Popover {position}</h3>
+              <p>This popover appears on the {position}.</p>
+            </div>
           }
         >
-          <div className="p-4">
-            <h3 className="font-semibold mb-2">Popover {position}</h3>
-            <p>This popover appears on the {position}.</p>
-          </div>
+          <Button onClick={() => setOpenPopover(position)}>
+            {position}
+          </Button>
         </Popover>
       ))}
     </div>
@@ -44,32 +44,32 @@ export const ActionPopoverExample = () => {
     <Popover
       isOpen={isOpen}
       onClose={() => setIsOpen(false)}
-      trigger={
-        <Button onClick={() => setIsOpen(true)}>
-          User Menu
-        </Button>
+      content={
+        <div className="p-2">
+          <button
+            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            onClick={() => handleAction('profile')}
+          >
+            View Profile
+          </button>
+          <button
+            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            onClick={() => handleAction('settings')}
+          >
+            Settings
+          </button>
+          <button
+            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            onClick={() => handleAction('logout')}
+          >
+            Logout
+          </button>
+        </div>
       }
     >
-      <div className="p-2">
-        <button
-          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
-          onClick={() => handleAction('profile')}
-        >
-          View Profile
-        </button>
-        <button
-          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
-          onClick={() => handleAction('settings')}
-        >
-          Settings
-        </button>
-        <button
-          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
-          onClick={() => handleAction('logout')}
-        >
-          Logout
-        </button>
-      </div>
+      <Button onClick={() => setIsOpen(true)}>
+        User Menu
+      </Button>
     </Popover>
   );
 };
@@ -88,43 +88,43 @@ export const FormPopoverExample = () => {
     <Popover
       isOpen={isOpen}
       onClose={() => setIsOpen(false)}
-      trigger={
-        <Button onClick={() => setIsOpen(true)}>
-          Quick Add
-        </Button>
+      content={
+        <form onSubmit={handleSubmit} className="p-4 space-y-4 w-64">
+          <h3 className="font-semibold">Add New Item</h3>
+          
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+            <Input
+              id="name-preview"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              placeholder="Enter name"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+            <Input
+              id="email-preview"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              placeholder="Enter email"
+            />
+          </div>
+          
+          <div className="flex gap-2">
+            <Button type="submit" size="sm">Add</Button>
+            <Button type="button" variant="outline" size="sm" onClick={() => setIsOpen(false)}>
+              Cancel
+            </Button>
+          </div>
+        </form>
       }
     >
-      <form onSubmit={handleSubmit} className="p-4 space-y-4 w-64">
-        <h3 className="font-semibold">Add New Item</h3>
-        
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
-          <Input
-            id="name-preview"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
-            placeholder="Enter name"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
-          <Input
-            id="email-preview"
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            placeholder="Enter email"
-          />
-        </div>
-        
-        <div className="flex gap-2">
-          <Button type="submit" size="sm">Add</Button>
-          <Button type="button" variant="outline" size="sm" onClick={() => setIsOpen(false)}>
-            Cancel
-          </Button>
-        </div>
-      </form>
+      <Button onClick={() => setIsOpen(true)}>
+        Quick Add
+      </Button>
     </Popover>
   );
 };
@@ -136,19 +136,19 @@ export const CustomTriggerPopoverExample = () => {
     <Popover
       isOpen={isOpen}
       onClose={() => setIsOpen(false)}
-      trigger={
-        <div
-          className="p-4 border rounded cursor-pointer hover:bg-gray-50"
-          onClick={() => setIsOpen(true)}
-        >
-          <h3 className="font-semibold">Custom Trigger</h3>
-          <p className="text-sm text-gray-500">Click to open popover</p>
+      content={
+        <div className="p-4">
+          <h3 className="font-semibold mb-2">Custom Trigger Popover</h3>
+          <p>This popover was triggered by a custom element.</p>
         </div>
       }
     >
-      <div className="p-4">
-        <h3 className="font-semibold mb-2">Custom Trigger Popover</h3>
-        <p>This popover was triggered by a custom element.</p>
+      <div
+        className="p-4 border rounded cursor-pointer hover:bg-gray-50"
+        onClick={() => setIsOpen(true)}
+      >
+        <h3 className="font-semibold">Custom Trigger</h3>
+        <p className="text-sm text-gray-500">Click to open popover</p>
       </div>
     </Popover>
   );
@@ -183,51 +183,59 @@ Popovers are floating panels that appear when users click on a trigger element. 
 
 <PropsTable props={[
   {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Trigger element that opens the popover'
+  },
+  {
+    name: 'content',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the popover'
+  },
+  {
     name: 'isOpen',
     type: 'boolean',
     required: true,
+    default: '-',
     description: 'Whether the popover is open'
   },
   {
     name: 'onClose',
     type: '() => void',
     required: true,
+    default: '-',
     description: 'Function called when popover should close'
   },
   {
-    name: 'trigger',
-    type: 'React.ReactNode',
-    required: true,
-    description: 'Element that triggers the popover'
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Optional title for the popover'
   },
   {
     name: 'position',
-    type: '"top" | "right" | "bottom" | "left"',
+    type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
     required: false,
+    default: '"bottom"',
     description: 'Position of the popover relative to trigger'
   },
   {
-    name: 'closeOnOutsideClick',
-    type: 'boolean',
+    name: 'offset',
+    type: 'number',
     required: false,
-    description: 'Whether clicking outside closes the popover'
-  },
-  {
-    name: 'closeOnEscape',
-    type: 'boolean',
-    required: false,
-    description: 'Whether pressing Escape closes the popover'
-  },
-  {
-    name: 'children',
-    type: 'React.ReactNode',
-    required: false,
-    description: 'Content to display inside the popover'
+    default: '8',
+    description: 'Distance between trigger and popover in pixels'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

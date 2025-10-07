@@ -515,31 +515,22 @@ export const ComprehensiveFormExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+## Form Components
 
-<PropsTable props={[
-  {
-    name: 'onSubmit',
-    type: '(e: FormEvent) => void',
-    required: false,
-    default: '-',
-    description: 'Function called when form is submitted'
-  },
-  {
-    name: 'children',
-    type: 'React.ReactNode',
-    required: false,
-    default: '-',
-    description: 'Form content and input elements'
-  },
-  {
-    name: 'className',
-    type: 'string',
-    required: false,
-    default: '-',
-    description: 'Additional CSS classes to apply'
-  }
-]} />
+Forms are built using individual components from the design system. Here are the main components used in forms:
+
+### Input Components
+- **Input** - Text, email, password, and number inputs
+- **Textarea** - Multi-line text input
+- **Select** - Dropdown selection
+- **Checkbox** - Binary choice controls
+- **Radio** - Single choice from multiple options
+- **Switch** - Toggle controls
+
+### Form Actions
+- **Button** - Submit and action buttons
+
+Each component has its own props and documentation. See the individual component pages for detailed prop information.
 
 ## Accessibility
 

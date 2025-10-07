@@ -365,15 +365,15 @@ export const PaginatedDataTableExample = () => {
 
 <PropsTable props={[
   {
-    name: 'data*',
-    type: 'any[]',
+    name: 'data',
+    type: 'T[]',
     required: true,
     default: '-',
     description: 'Array of data objects to display'
   },
   {
-    name: 'columns*',
-    type: 'Column[]',
+    name: 'columns',
+    type: 'Array<{ key: keyof T; label: string; sortable?: boolean; render?: (value: any, row: T) => React.ReactNode }>',
     required: true,
     default: '-',
     description: 'Array of column definitions'
@@ -382,70 +382,98 @@ export const PaginatedDataTableExample = () => {
     name: 'selectable',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'false',
     description: 'Whether rows can be selected'
   },
   {
     name: 'selectedRows',
-    type: 'any[]',
+    type: 'T[]',
     required: false,
-    default: '-',
+    default: '[]',
     description: 'Array of selected row data'
   },
   {
-    name: 'onSelectionChange',
-    type: '(selected: any[]) => void',
+    name: 'onRowSelect',
+    type: '(row: T, selected: boolean) => void',
     required: false,
     default: '-',
-    description: 'Function called when selection changes'
+    description: 'Function called when a row is selected/deselected'
+  },
+  {
+    name: 'onSelectAll',
+    type: '(selected: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when select all is toggled'
   },
   {
     name: 'onSort',
-    type: '(key: string, direction: "asc" | "desc") => void',
+    type: '(key: keyof T) => void',
     required: false,
     default: '-',
     description: 'Function called when column is sorted'
   },
   {
-    name: 'pagination',
+    name: 'sortBy',
+    type: 'keyof T',
+    required: false,
+    default: '-',
+    description: 'Currently sorted column key'
+  },
+  {
+    name: 'sortDirection',
+    type: '"asc" | "desc"',
+    required: false,
+    default: '-',
+    description: 'Current sort direction'
+  },
+  {
+    name: 'onRowClick',
+    type: '(row: T) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when a row is clicked'
+  },
+  {
+    name: 'striped',
     type: 'boolean',
     required: false,
-    default: '-',
-    description: 'Whether to show pagination controls'
+    default: 'false',
+    description: 'Whether to show striped rows'
   },
   {
-    name: 'currentPage',
-    type: 'number',
+    name: 'bordered',
+    type: 'boolean',
     required: false,
-    default: '-',
-    description: 'Current page number'
+    default: 'false',
+    description: 'Whether to show table borders'
   },
   {
-    name: 'pageSize',
-    type: 'number',
+    name: 'hover',
+    type: 'boolean',
     required: false,
-    default: '-',
-    description: 'Number of items per page'
+    default: 'true',
+    description: 'Whether to show hover effects on rows'
   },
   {
-    name: 'totalItems',
-    type: 'number',
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
     required: false,
-    default: '-',
-    description: 'Total number of items for pagination'
+    default: '"md"',
+    description: 'Size of the table'
   },
   {
-    name: 'onPageChange',
-    type: '(page: number) => void',
+    name: 'responsive',
+    type: 'boolean',
     required: false,
-    default: '-',
-    description: 'Function called when page changes'
+    default: 'true',
+    description: 'Whether to make the table responsive'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

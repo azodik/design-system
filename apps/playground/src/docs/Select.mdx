@@ -162,57 +162,73 @@ Select components allow users to choose from a predefined list of options. They 
 
 <PropsTable props={[
   {
-    name: 'value',
+    name: 'options',
+    type: '{ value: string; label: string }[]',
+    required: true,
+    default: '-',
+    description: 'Array of options for the select dropdown'
+  },
+  {
+    name: 'label',
     type: 'string',
     required: false,
-    description: 'Controlled select value'
+    default: '-',
+    description: 'Label text for the select field'
   },
   {
-    name: 'onChange',
-    type: '(e: ChangeEvent<HTMLSelectElement>) => void',
+    name: 'help',
+    type: 'string',
     required: false,
-    description: 'Change event handler'
-  },
-  {
-    name: 'onBlur',
-    type: '(e: FocusEvent<HTMLSelectElement>) => void',
-    required: false,
-    description: 'Blur event handler'
-  },
-  {
-    name: 'size',
-    type: '"sm" | "md" | "lg"',
-    required: false,
-    description: 'Size of the select'
-  },
-  {
-    name: 'disabled',
-    type: 'boolean',
-    required: false,
-    description: 'Whether the select is disabled'
+    default: '-',
+    description: 'Help text to display below the select'
   },
   {
     name: 'error',
     type: 'string',
     required: false,
-    description: 'Error message to display'
+    default: '-',
+    description: 'Error message to display below the select'
   },
   {
-    name: 'multiple',
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Selected value of the select'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when selection changes'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Select an option"',
+    description: 'Placeholder text for the select'
+  },
+  {
+    name: 'disabled',
     type: 'boolean',
     required: false,
-    description: 'Whether multiple options can be selected'
-  },
-  {
-    name: 'children',
-    type: 'React.ReactNode',
-    required: false,
-    description: 'Option elements'
+    default: 'false',
+    description: 'Whether the select is disabled'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

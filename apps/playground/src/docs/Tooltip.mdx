@@ -47,7 +47,7 @@ Tooltips are small popup windows that appear when users hover over or focus on a
 >
 {`import { Tooltip, Button } from '@azodik/ui';
 
-export const RichTooltipExample = () => {
+export const BasicTooltipExample = () => {
   return (
     <Tooltip 
       content={
@@ -67,45 +67,31 @@ export const RichTooltipExample = () => {
 
 <PropsTable props={[
   {
-    name: 'content*',
-    type: 'React.ReactNode',
-    required: true,
-    default: '-',
-    description: 'Content to display in the tooltip'
-  },
-  {
-    name: 'position',
-    type: '"top" | "right" | "bottom" | "left"',
-    required: false,
-    default: '-',
-    description: 'Position of the tooltip relative to trigger'
-  },
-  {
-    name: 'delay',
-    type: 'number',
-    required: false,
-    default: '-',
-    description: 'Delay in milliseconds before showing tooltip'
-  },
-  {
-    name: 'disabled',
-    type: 'boolean',
-    required: false,
-    default: '-',
-    description: 'Whether the tooltip is disabled'
-  },
-  {
-    name: 'children*',
+    name: 'children',
     type: 'React.ReactNode',
     required: true,
     default: '-',
     description: 'Element that triggers the tooltip'
   },
   {
+    name: 'content',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Content to display in the tooltip'
+  },
+  {
+    name: 'position',
+    type: '"top" | "bottom" | "left" | "right"',
+    required: false,
+    default: '"top"',
+    description: 'Position of the tooltip relative to trigger'
+  },
+  {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />
