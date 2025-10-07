@@ -1,0 +1,129 @@
+import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+
+# Tooltip Component
+
+The Tooltip component provides contextual information that appears on hover or focus. It's perfect for providing additional details without cluttering the interface.
+
+## Overview
+
+Tooltips are small popup windows that appear when users hover over or focus on an element. They provide additional context, explanations, or helpful information without taking up permanent space in the UI.
+
+### When to use
+- Provide additional context or explanations
+- Show helpful hints or tips
+- Explain abbreviations or technical terms
+- Display additional information about icons or buttons
+- Guide users through complex interfaces
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Tooltip } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="tooltip" />
+
+## With Rich Content
+
+<CodeBlockWithPreview 
+  title="Rich Tooltip Content"
+  preview={
+    <Tooltip 
+      content={
+        <div>
+          <h4 className="font-semibold">Advanced Settings</h4>
+          <p className="text-sm">Configure advanced options for better performance.</p>
+        </div>
+      }
+    >
+      <Button variant="outline">Settings</Button>
+    </Tooltip>
+  }
+>
+{`import { Tooltip, Button } from '@azodik/ui';
+
+export const RichTooltipExample = () => {
+  return (
+    <Tooltip 
+      content={
+        <div>
+          <h4 className="font-semibold">Advanced Settings</h4>
+          <p className="text-sm">Configure advanced options for better performance.</p>
+        </div>
+      }
+    >
+      <Button variant="outline">Settings</Button>
+    </Tooltip>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'content*',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display in the tooltip'
+  },
+  {
+    name: 'position',
+    type: '"top" | "right" | "bottom" | "left"',
+    required: false,
+    default: '-',
+    description: 'Position of the tooltip relative to trigger'
+  },
+  {
+    name: 'delay',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Delay in milliseconds before showing tooltip'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the tooltip is disabled'
+  },
+  {
+    name: 'children*',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Element that triggers the tooltip'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Tooltips are announced to screen readers
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+- Color is not the only way to convey information
+
+## Design Guidelines
+
+- Keep tooltip content concise and helpful
+- Use appropriate positioning to avoid clipping
+- Ensure sufficient contrast for readability
+- Don't rely solely on tooltips for critical information
+- Consider mobile touch interactions
+
+<ComponentNavigation />

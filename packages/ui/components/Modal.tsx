@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Children, isValidElement } from "react";
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -55,26 +55,52 @@ export default function Modal({
     .filter(Boolean)
     .join(" ");
 
+  // Check if children contains ModalHeader to avoid duplicate headers
+  const hasModalHeader = React.Children.toArray(children).some(
+    child => React.isValidElement(child) && child.type === ModalHeader
+  );
+
   return (
     <div className={`modal-overlay ${isOpen ? "open" : ""}`} onClick={handleOverlayClick}>
       <div className={modalClasses} {...props}>
-        {title && (
-          <div className="modal-header">
+        {title && !hasModalHeader && (
+          <ModalHeader onClose={onClose} showCloseButton={showCloseButton}>
             <h2 className="modal-title">{title}</h2>
-            {showCloseButton && (
-              <button
-                type="button"
-                className="modal-close"
-                onClick={onClose}
-                aria-label="Close modal"
-              >
-                ×
-              </button>
-            )}
-          </div>
+          </ModalHeader>
         )}
         <div className="modal-body">{children}</div>
       </div>
+    </div>
+  );
+}
+
+// Modal Header Component
+export interface ModalHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  showCloseButton?: boolean;
+  onClose?: () => void;
+}
+
+export function ModalHeader({ 
+  children, 
+  className = "", 
+  showCloseButton = true, 
+  onClose,
+  ...props 
+}: ModalHeaderProps) {
+  return (
+    <div className={`modal-header ${className}`} {...props}>
+      {children}
+      {showCloseButton && onClose && (
+        <button
+          type="button"
+          className="modal-close"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+      )}
     </div>
   );
 }
@@ -92,129 +118,3 @@ export function ModalFooter({ children, className = "", ...props }: ModalFooterP
   );
 }
 
-// Toast Component
-export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  variant?: "success" | "warning" | "error" | "info";
-  title?: string;
-  icon?: React.ReactNode;
-  onClose?: () => void;
-  autoClose?: number;
-}
-
-export function Toast({
-  children,
-  variant = "info",
-  title,
-  icon,
-  onClose,
-  autoClose,
-  className = "",
-  ...props
-}: ToastProps) {
-  useEffect(() => {
-    if (autoClose && onClose) {
-      const timer = setTimeout(onClose, autoClose);
-      return () => clearTimeout(timer);
-    }
-  }, [autoClose, onClose]);
-
-  const getIcon = () => {
-    if (icon) return icon;
-
-    switch (variant) {
-      case "success":
-        return "✓";
-      case "warning":
-        return "⚠";
-      case "error":
-        return "✕";
-      case "info":
-      default:
-        return "ℹ";
-    }
-  };
-
-  return (
-    <div className={`toast toast-${variant} show ${className}`} {...props}>
-      <div className="toast-icon">{getIcon()}</div>
-      <div className="toast-content">
-        {title && <div className="toast-title">{title}</div>}
-        <div className="toast-message">{children}</div>
-      </div>
-      {onClose && (
-        <button type="button" className="toast-close" onClick={onClose} aria-label="Close toast">
-          ×
-        </button>
-      )}
-    </div>
-  );
-}
-
-// Tooltip Component
-export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  content: string;
-  position?: "top" | "bottom" | "left" | "right";
-}
-
-export function Tooltip({
-  children,
-  content,
-  position = "top",
-  className = "",
-  ...props
-}: TooltipProps) {
-  return (
-    <div className={`tooltip ${className}`} {...props}>
-      {children}
-      <div className={`tooltip-content tooltip-${position}`}>{content}</div>
-    </div>
-  );
-}
-
-// Popover Component
-export interface PopoverProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
-  children: React.ReactNode;
-  content: React.ReactNode;
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-}
-
-export function Popover({
-  children,
-  content,
-  isOpen,
-  onClose,
-  title,
-  className = "",
-  ...props
-}: PopoverProps) {
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (isOpen && !target.closest(".popover")) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, onClose]);
-
-  return (
-    <div className={`popover ${isOpen ? "open" : ""} ${className}`} {...props}>
-      {children}
-      <div className="popover-content">
-        {title && <div className="popover-title">{title}</div>}
-        <div className="popover-text">{content}</div>
-      </div>
-    </div>
-  );
-}

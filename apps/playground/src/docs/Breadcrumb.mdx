@@ -1,0 +1,122 @@
+import { Breadcrumb, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+
+# Breadcrumb Component
+
+The Breadcrumb component shows the current page location within the site hierarchy. It helps users understand where they are and navigate back to previous levels.
+
+## Overview
+
+Breadcrumbs provide a navigation trail that shows users their current location within a website or application. They help users understand the site structure and navigate back to previous levels.
+
+### When to use
+- Show hierarchical navigation paths
+- Help users understand their current location
+- Provide quick navigation to parent pages
+- Display the site structure
+- Aid in SEO and user experience
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Breadcrumb } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="breadcrumb" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Breadcrumb Variants"
+  preview={
+    <div className="space-y-4">
+      <Breadcrumb items={[
+        { label: 'Home', href: '/' },
+        { label: 'Products', href: '/products' },
+        { label: 'Laptops', current: true }
+      ]} />
+    </div>
+  }
+>
+{`import { Breadcrumb } from '@azodik/ui';
+
+export const BreadcrumbExamples = () => {
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Electronics', href: '/products/electronics' },
+    { label: 'Laptops', current: true }
+  ];
+
+  return (
+    <Breadcrumb items={breadcrumbItems} />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items*',
+    type: 'BreadcrumbItem[]',
+    required: true,
+    default: '-',
+    description: 'Array of breadcrumb items'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## BreadcrumbItem Interface
+
+<PropsTable props={[
+  {
+    name: 'label*',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Display text for the breadcrumb item'
+  },
+  {
+    name: 'href',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL for the breadcrumb item'
+  },
+  {
+    name: 'current',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether this is the current page'
+  }
+]} />
+
+## Accessibility
+
+- Breadcrumbs have proper semantic structure
+- Screen readers can navigate the breadcrumb trail
+- Keyboard navigation is supported
+- Proper ARIA attributes are applied
+- Current page is clearly identified
+
+## Design Guidelines
+
+- Keep breadcrumb labels concise and clear
+- Use consistent separators throughout the site
+- Ensure sufficient contrast for readability
+- Consider mobile responsiveness
+- Don't make breadcrumbs too deep (3-5 levels max)
+
+<ComponentNavigation />

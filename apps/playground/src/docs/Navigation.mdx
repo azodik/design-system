@@ -1,0 +1,214 @@
+import { Navigation, Card, CardContent, Button } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import { useState } from 'react';
+
+export const DropdownNavigationExample = () => {
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { 
+      label: 'Products', 
+      href: '/products',
+      children: [
+        { label: 'Software', href: '/products/software' },
+        { label: 'Hardware', href: '/products/hardware' },
+        { label: 'Services', href: '/products/services' }
+      ]
+    },
+    { 
+      label: 'Support', 
+      href: '/support',
+      children: [
+        { label: 'Documentation', href: '/support/docs' },
+        { label: 'Help Center', href: '/support/help' },
+        { label: 'Contact Us', href: '/support/contact' }
+      ]
+    },
+    { label: 'About', href: '/about' }
+  ];
+
+  return (
+    <Navigation items={navItems} />
+  );
+};
+
+export const LogoNavigationExample = () => {
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
+  ];
+
+  return (
+    <Navigation
+      items={navItems}
+      logo={
+        <div className="flex items-center">
+          <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-2" />
+          <span className="font-bold text-xl">MyApp</span>
+        </div>
+      }
+      actions={
+        <div className="flex items-center gap-2">
+          <Button variant="ghost">Login</Button>
+          <Button variant="primary">Sign Up</Button>
+        </div>
+      }
+    />
+  );
+};
+
+export const ResponsiveNavigationExample = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
+  ];
+
+  return (
+    <Navigation
+      items={navItems}
+      mobileMenuOpen={isMobileMenuOpen}
+      onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      logo={
+        <div className="flex items-center">
+          <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-2" />
+          <span className="font-bold text-xl">MyApp</span>
+        </div>
+      }
+      actions={
+        <div className="hidden md:flex items-center gap-2">
+          <Button variant="ghost">Login</Button>
+          <Button variant="primary">Sign Up</Button>
+        </div>
+      }
+    />
+  );
+};
+
+# Navigation Component
+
+The Navigation component provides horizontal navigation bars for site-wide navigation. It helps users navigate between different sections and pages of your application.
+
+## Overview
+
+Navigation components are essential for helping users move through your application. They provide clear pathways to different sections and maintain consistent navigation patterns.
+
+### When to use
+- Main site navigation
+- Section navigation within an app
+- Primary navigation menus
+- Header navigation bars
+- Top-level page navigation
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Navigation } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="navigation" />
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'NavItem[]',
+    required: true,
+    description: 'Array of navigation items'
+  },
+  {
+    name: 'logo',
+    type: 'React.ReactNode',
+    required: false,
+    description: 'Logo or brand element to display'
+  },
+  {
+    name: 'actions',
+    type: 'React.ReactNode',
+    required: false,
+    description: 'Action buttons or elements to display'
+  },
+  {
+    name: 'variant',
+    type: '"default" | "minimal" | "centered"',
+    required: false,
+    description: 'Visual style variant of the navigation'
+  },
+  {
+    name: 'mobileMenuOpen',
+    type: 'boolean',
+    required: false,
+    description: 'Whether mobile menu is open'
+  },
+  {
+    name: 'onMobileMenuToggle',
+    type: '() => void',
+    required: false,
+    description: 'Function called when mobile menu toggle is clicked'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## NavItem Interface
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: true,
+    description: 'Display text for the navigation item'
+  },
+  {
+    name: 'href',
+    type: 'string',
+    required: false,
+    description: 'URL for the navigation item'
+  },
+  {
+    name: 'children',
+    type: 'NavItem[]',
+    required: false,
+    description: 'Sub-navigation items for dropdown menus'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    description: 'Icon to display with the navigation item'
+  },
+  {
+    name: 'active',
+    type: 'boolean',
+    required: false,
+    description: 'Whether this item is currently active'
+  }
+]} />
+
+## Accessibility
+
+- Navigation has proper semantic structure
+- Screen readers can navigate menu items
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Use clear and descriptive navigation labels
+- Keep the number of top-level items reasonable
+- Provide clear visual feedback for active states
+- Ensure sufficient touch targets on mobile
+- Use consistent styling across your application

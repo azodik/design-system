@@ -5,6 +5,8 @@
   "types": "index.d.ts",
   "license": "MIT",
   "type": "module",
+  "author": "Bandna Paikaray <bandna.paikaray@azodik.com>",
+
   "files": [
     "*.css",
     "*.d.ts",

@@ -1,0 +1,101 @@
+import { Toast, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+
+# Toast Component
+
+The Toast component provides temporary notifications that appear and disappear automatically. It's perfect for showing success messages, errors, or other brief feedback to users.
+
+## Overview
+
+Toasts are temporary notifications that provide feedback to users without blocking their workflow. They appear briefly and automatically disappear, making them perfect for status updates and confirmations.
+
+### When to use
+- Show success messages after actions
+- Display error notifications
+- Provide brief status updates
+- Show confirmation messages
+- Display system notifications
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Toast } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="toast" />
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'variant',
+    type: '"success" | "error" | "warning" | "info"',
+    required: false,
+    default: '-',
+    description: 'Visual style variant of the toast'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Title text for the toast'
+  },
+  {
+    name: 'description',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Description text for the toast'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when toast is closed'
+  },
+  {
+    name: 'duration',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Auto-dismiss duration in milliseconds'
+  },
+  {
+    name: 'action',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Action button or element to display'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Toasts are announced to screen readers
+- Focus management is handled correctly
+- Keyboard navigation is supported
+- Color is not the only way to convey information
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Keep toast messages concise and clear
+- Use appropriate variants for different message types
+- Don't show too many toasts at once
+- Provide clear close actions
+- Consider mobile positioning and sizing
+
+<ComponentNavigation />

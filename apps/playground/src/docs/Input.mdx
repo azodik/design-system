@@ -1,0 +1,312 @@
+import { Input, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+import { useState } from 'react';
+
+export const ValidatedInputPreview = () => {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('Must be at least 3 characters');
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    
+    if (newValue.length < 3) {
+      setError('Must be at least 3 characters');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Input 
+      label="Validated Input"
+      value={value}
+      onChange={handleChange}
+      error={error}
+      placeholder="Enter at least 3 characters"
+    />
+  );
+};
+
+# Input Component
+
+The Input component provides text input fields for user data entry with various types, validation states, and interactive features.
+
+## Overview
+
+Input fields are essential for collecting user data. They support different input types, validation states, and provide a consistent user experience across your application.
+
+### When to use
+- Collecting text input from users
+- Form fields for data entry
+- Search inputs
+- Email, password, and other specific input types
+- User registration and login forms
+
+### When not to use
+- For multi-line text (use Textarea instead)
+- For selecting from options (use Select instead)
+- For binary choices (use Checkbox or Radio instead)
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Input } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="input" />
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Input Variants"
+  preview={
+    <div className="space-y-4">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+    </div>
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputExamples = () => {
+  return (
+    <div className="space-y-4">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Basic Usage
+
+<CodeBlockWithPreview 
+  title="Basic Input"
+  preview={
+    <Input 
+      type="email" 
+      label="Email"
+      placeholder="Enter your email"
+    />
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputExample = () => {
+  return (
+    <Input 
+      type="email" 
+      label="Email"
+      placeholder="Enter your email"
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Different Types
+
+<CodeBlockWithPreview 
+  title="Input Types"
+  preview={
+    <div className="space-y-4">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+      <Input 
+        type="number" 
+        label="Number Input"
+        placeholder="Enter number" 
+      />
+    </div>
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputTypesExample = () => {
+  return (
+    <div className="space-y-4">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+      <Input 
+        type="number" 
+        label="Number Input"
+        placeholder="Enter number" 
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## With Validation States
+
+<CodeBlockWithPreview 
+  title="Input with Validation"
+  preview={<ValidatedInputPreview />}
+>
+{`import { Input } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ValidatedInputExample = () => {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    if (e.target.value.length < 3) {
+      setError('Must be at least 3 characters');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Input 
+      label="Validated Input"
+      value={value}
+      onChange={handleChange}
+      error={error}
+      placeholder="Enter at least 3 characters"
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'type',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'HTML input type (text, email, password, etc.)'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Placeholder text for the input'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Controlled input value'
+  },
+  {
+    name: 'onChange',
+    type: '(e: ChangeEvent<HTMLInputElement>) => void',
+    required: false,
+    default: '-',
+    description: 'Change event handler'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the input is disabled'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display'
+  },
+  {
+    name: 'startIcon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display at the start of the input'
+  },
+  {
+    name: 'endIcon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display at the end of the input'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Inputs have proper labels and associations
+- Error messages are announced to screen readers
+- Focus management is handled correctly
+- Keyboard navigation is supported
+- Color contrast meets WCAG guidelines
+
+## Design Guidelines
+
+- Always provide clear labels
+- Use appropriate input types for better UX
+- Provide helpful placeholder text
+- Show validation errors clearly
+- Ensure sufficient touch targets on mobile
+
+<ComponentNavigation />

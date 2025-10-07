@@ -1,0 +1,66 @@
+import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+
+# Table Component
+
+The Table component provides a structured way to display data in rows and columns. It's perfect for presenting tabular data in a clean and organized format.
+
+## Overview
+
+Tables are essential for displaying structured data in a readable format. They help users compare information across different categories and find specific data points quickly.
+
+### When to use
+- Displaying structured data in rows and columns
+- Showing comparison data
+- Presenting lists with multiple attributes
+- Displaying financial or statistical data
+- Creating data grids
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Table } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="table" />
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Table content (TableHeader, TableBody, etc.)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Tables have proper semantic structure
+- Screen readers can navigate table content
+- Column headers are properly associated
+- Keyboard navigation is supported
+- Table captions can be added for context
+
+## Design Guidelines
+
+- Use clear and descriptive column headers
+- Keep tables scannable with proper spacing
+- Use consistent alignment for data types
+- Consider responsive design for mobile
+- Use alternating row colors for better readability
+
+<ComponentNavigation />

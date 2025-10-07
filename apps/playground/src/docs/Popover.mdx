@@ -1,0 +1,249 @@
+import { Popover, Button, Card, CardContent, Input } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import { useState } from 'react';
+
+export const PositionPopoverExample = () => {
+  const [openPopover, setOpenPopover] = useState(null);
+
+  const positions = ['top', 'right', 'bottom', 'left'];
+
+  return (
+    <div className="flex gap-4">
+      {positions.map(position => (
+        <Popover
+          key={position}
+          isOpen={openPopover === position}
+          onClose={() => setOpenPopover(null)}
+          position={position}
+          trigger={
+            <Button onClick={() => setOpenPopover(position)}>
+              {position}
+            </Button>
+          }
+        >
+          <div className="p-4">
+            <h3 className="font-semibold mb-2">Popover {position}</h3>
+            <p>This popover appears on the {position}.</p>
+          </div>
+        </Popover>
+      ))}
+    </div>
+  );
+};
+
+export const ActionPopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleAction = (action) => {
+    console.log('Action:', action);
+    setIsOpen(false);
+  };
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      trigger={
+        <Button onClick={() => setIsOpen(true)}>
+          User Menu
+        </Button>
+      }
+    >
+      <div className="p-2">
+        <button
+          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+          onClick={() => handleAction('profile')}
+        >
+          View Profile
+        </button>
+        <button
+          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+          onClick={() => handleAction('settings')}
+        >
+          Settings
+        </button>
+        <button
+          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+          onClick={() => handleAction('logout')}
+        >
+          Logout
+        </button>
+      </div>
+    </Popover>
+  );
+};
+
+export const FormPopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setIsOpen(false);
+  };
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      trigger={
+        <Button onClick={() => setIsOpen(true)}>
+          Quick Add
+        </Button>
+      }
+    >
+      <form onSubmit={handleSubmit} className="p-4 space-y-4 w-64">
+        <h3 className="font-semibold">Add New Item</h3>
+        
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+          <Input
+            id="name-preview"
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            placeholder="Enter name"
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+          <Input
+            id="email-preview"
+            type="email"
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            placeholder="Enter email"
+          />
+        </div>
+        
+        <div className="flex gap-2">
+          <Button type="submit" size="sm">Add</Button>
+          <Button type="button" variant="outline" size="sm" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </Popover>
+  );
+};
+
+export const CustomTriggerPopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      trigger={
+        <div
+          className="p-4 border rounded cursor-pointer hover:bg-gray-50"
+          onClick={() => setIsOpen(true)}
+        >
+          <h3 className="font-semibold">Custom Trigger</h3>
+          <p className="text-sm text-gray-500">Click to open popover</p>
+        </div>
+      }
+    >
+      <div className="p-4">
+        <h3 className="font-semibold mb-2">Custom Trigger Popover</h3>
+        <p>This popover was triggered by a custom element.</p>
+      </div>
+    </Popover>
+  );
+};
+
+# Popover Component
+
+The Popover component provides floating panels that appear on click for additional content and actions. It's perfect for displaying contextual information without navigating away.
+
+## Overview
+
+Popovers are floating panels that appear when users click on a trigger element. They provide additional content, actions, or information without navigating away from the current page.
+
+### When to use
+- Display additional content on demand
+- Show contextual actions or menus
+- Provide detailed information about elements
+- Create interactive overlays
+- Display forms or complex content
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Popover } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<ComponentRenderer componentName="popover" />
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'isOpen',
+    type: 'boolean',
+    required: true,
+    description: 'Whether the popover is open'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: true,
+    description: 'Function called when popover should close'
+  },
+  {
+    name: 'trigger',
+    type: 'React.ReactNode',
+    required: true,
+    description: 'Element that triggers the popover'
+  },
+  {
+    name: 'position',
+    type: '"top" | "right" | "bottom" | "left"',
+    required: false,
+    description: 'Position of the popover relative to trigger'
+  },
+  {
+    name: 'closeOnOutsideClick',
+    type: 'boolean',
+    required: false,
+    description: 'Whether clicking outside closes the popover'
+  },
+  {
+    name: 'closeOnEscape',
+    type: 'boolean',
+    required: false,
+    description: 'Whether pressing Escape closes the popover'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    description: 'Content to display inside the popover'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Popovers have proper focus management
+- Screen readers can access popover content
+- Keyboard navigation is supported
+- Escape key closes the popover
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Keep popover content focused and concise
+- Use appropriate positioning to avoid clipping
+- Provide clear close actions
+- Ensure sufficient contrast for readability
+- Consider mobile touch interactions
