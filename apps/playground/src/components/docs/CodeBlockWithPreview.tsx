@@ -42,6 +42,7 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
           className="border border-gray-200 rounded-lg p-4 w-full flex items-center justify-center"
           style={{ 
             backgroundColor: 'white',
+            minWidth: '500px',
           }}
         >
           <div className="flex items-center justify-center w-full">

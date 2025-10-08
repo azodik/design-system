@@ -75,8 +75,8 @@ export const JumpPaginationExample = () => {
     setCurrentPage(page);
   };
 
-  const handleJumpToPage = (e) => {
-    const page = Number(e.target.value);
+  const handleJumpToPage = (value) => {
+    const page = Number(value);
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -154,8 +154,8 @@ export const JumpPaginationExample = () => {
     setCurrentPage(page);
   };
 
-  const handleJumpToPage = (e) => {
-    const page = Number(e.target.value);
+  const handleJumpToPage = (value) => {
+    const page = Number(value);
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }

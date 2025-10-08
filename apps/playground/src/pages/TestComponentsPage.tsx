@@ -1,6 +1,22 @@
 import React, { useState } from "react";
-import { Button, Badge, Alert, Card, Input, Modal, Toast, Tooltip, Popover, Avatar, Breadcrumb, Checkbox, DataTable, TableBody, TableRow, TableCell, TableHeader, TableHeaderCell, Select, ModalHeader, ModalFooter, Navigation, NavItem, Pagination, Radio, ScrollArea, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarBrand, SidebarFooter, SidebarUser, SidebarMainContent, SidebarUserDropdown, Switch, Table, Tabs, TabContent, TabList, TabTrigger, Textarea } from "@azodik/ui";
+import { Button, Badge, Alert, Card, Input, Modal, Toast, Tooltip, Popover, Avatar, Breadcrumb, Checkbox, DataTable, TableBody, TableRow, TableCell, TableHeader, TableHeaderCell, Select, ModalHeader, ModalFooter, Navigation, NavItem, Pagination, Radio, ScrollArea, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarBrand, SidebarFooter, SidebarUser, SidebarMainContent, SidebarUserDropdown, Switch, Table, Tabs, TabContent, TabList, TabTrigger, Textarea, Accordion, AccordionItem, AccordionContent, AccordionTrigger, LineChart, AreaChart, BarChart, PieChart, Dialog, DialogContent, DialogTrigger, DialogFooter, DialogBody, DialogHeader, DialogDescription, DialogTitle, DialogClose, Drawer, DrawerContent, DrawerFooter, DrawerBody, DrawerHeader, DrawerTrigger } from "@azodik/ui";
 import { SidebarToggleIcon } from "../icons";
+
+const sampleData = [
+  { name: "Jan", value: 400, sales: 2400, revenue: 2400 },
+  { name: "Feb", value: 300, sales: 1398, revenue: 1398 },
+  { name: "Mar", value: 200, sales: 9800, revenue: 9800 },
+  { name: "Apr", value: 278, sales: 3908, revenue: 3908 },
+  { name: "May", value: 189, sales: 4800, revenue: 4800 },
+  { name: "Jun", value: 239, sales: 3800, revenue: 3800 },
+];
+
+const pieData = [
+  { name: "Desktop", value: 400, users: 400 },
+  { name: "Mobile", value: 300, users: 300 },
+  { name: "Tablet", value: 200, users: 200 },
+  { name: "Other", value: 100, users: 100 },
+];
 
 export default function TestComponentsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -327,6 +343,97 @@ export default function TestComponentsPage() {
                 >
                     <Button>Hover me</Button>
                 </Tooltip>
+            </Card>
+            <div>
+              <Accordion>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>What is this component?</AccordionTrigger>
+                  <AccordionContent>
+                    This is an accordion component that allows you to show and hide content sections.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>How do I use it?</AccordionTrigger>
+                  <AccordionContent>
+                    This is an accordion component that allows you to show and hide content sections.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>Can I customize it?</AccordionTrigger>
+                  <AccordionContent>
+                    This is an accordion component that allows you to show and hide content sections.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+            <Card width="50%">
+              <LineChart
+                data={sampleData}
+                dataKey="sales"
+                title="Sales Trend"
+                subtitle="Monthly sales performance"
+                height={400}
+              />
+              <AreaChart
+                data={sampleData}
+                dataKey="revenue"
+                title="Revenue Trend"
+                subtitle="Monthly revenue performance"
+                height={400}
+              />
+              <BarChart
+                data={sampleData}
+                dataKey="value"
+                title="Monthly Values"
+                subtitle="Value distribution by month"
+                height={400}
+              />
+              <PieChart
+                data={pieData}
+                dataKey="users"
+                nameKey="name"
+                title="Device Usage"
+                subtitle="User distribution by device"
+                height={400}
+              />
+            </Card>
+            <Card>
+              <Dialog>
+                <DialogTrigger>Open Dialog</DialogTrigger>
+                <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Edit profile</DialogTitle>
+                  <DialogDescription>
+                    Make changes to your profile here. Click save when you're done.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogBody>
+                  <div className="space-y-4">
+                      <Input
+                        label="Name"
+                        type="text"
+                        defaultValue="Pedro Duarte"
+                        placeholder="Enter your name"
+                      />
+                  </div>
+                </DialogBody>
+                <DialogFooter>
+                  <Button variant="outline">Cancel</Button>
+                  <Button>Save changes</Button>
+                </DialogFooter>
+                <DialogClose />
+                </DialogContent>
+              </Dialog>
+            </Card>
+            <Card>
+              <Drawer>
+                <DrawerTrigger>Open Drawer</DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>Drawer Header</DrawerHeader>
+                  <DrawerBody>Drawer Body</DrawerBody>
+                  <DrawerFooter>Drawer Footer</DrawerFooter>
+                </DrawerContent>
+              </Drawer>
             </Card>
         </div>
     </div>  

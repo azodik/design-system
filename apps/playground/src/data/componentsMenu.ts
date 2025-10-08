@@ -5,13 +5,17 @@ export interface ComponentMenuItem {
 
 export const componentsMenuItems: ComponentMenuItem[] = [
   { name: "Getting Started", href: "/components/getting-started" },
+  { name: "Accordion", href: "/components/docs/accordion" },
   { name: "Alert", href: "/components/docs/alert" },
   { name: "Avatar", href: "/components/docs/avatar" },
   { name: "Badge", href: "/components/docs/badge" },
   { name: "Breadcrumb", href: "/components/docs/breadcrumb" },
   { name: "Button", href: "/components/docs/button" },
   { name: "Card", href: "/components/docs/card" },
+  { name: "Charts", href: "/components/docs/charts" },
   { name: "Checkbox", href: "/components/docs/checkbox" },
+  { name: "Dialog", href: "/components/docs/dialog" },
+  { name: "Drawer", href: "/components/docs/drawer" },
   { name: "DataTable", href: "/components/docs/datatable" },
   { name: "Form", href: "/components/docs/form" },
   { name: "Input", href: "/components/docs/input" },

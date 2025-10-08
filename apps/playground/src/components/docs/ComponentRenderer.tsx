@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import CodePreviewTabs from '../CodePreviewTabs';
+import { AccordionPreview, AccordionCode } from '../view-components/AccordionPreview';
 import { AlertPreview, AlertCode } from '../view-components/AlertPreview';
+import { ChartsPreview, ChartsCode } from '../view-components/ChartsPreview';
+import { DialogPreview, DialogCode } from '../view-components/DialogPreview';
+import { DrawerPreview, DrawerCode } from '../view-components/DrawerPreview';
 import { AvatarPreview, AvatarCode } from '../view-components/AvatarPreview';
 import { BadgePreview, BadgeCode } from '../view-components/BadgePreview';
 import { ButtonPreview, ButtonCode } from '../view-components/ButtonPreview';
@@ -42,11 +46,35 @@ export const ComponentRenderer = ({ componentName }: ComponentRendererProps) => 
 
   // Component configuration mapping
   const componentConfig = {
+    accordion: {
+      title: "Accordion",
+      description: "Collapsible content sections for organizing information.",
+      preview: <AccordionPreview />,
+      code: AccordionCode
+    },
     alert: {
       title: "Alerts",
       description: "Displays a callout for user attention.",
       preview: <AlertPreview />,
       code: AlertCode
+    },
+    charts: {
+      title: "Charts",
+      description: "Data visualization components for displaying trends and metrics.",
+      preview: <ChartsPreview />,
+      code: ChartsCode
+    },
+    dialog: {
+      title: "Dialog",
+      description: "Modal dialog components for displaying content and forms.",
+      preview: <DialogPreview />,
+      code: DialogCode
+    },
+    drawer: {
+      title: "Drawer",
+      description: "Slide-up modal components for mobile-friendly interactions.",
+      preview: <DrawerPreview />,
+      code: DrawerCode
     },
     avatar: {
       title: "Avatars",
