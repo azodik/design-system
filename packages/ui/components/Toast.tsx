@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useMemo } from "react";
 
 export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -32,14 +32,14 @@ export function Toast({
     }
   }, [autoClose, onClose]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsClosing(true);
     setTimeout(() => {
       onClose?.();
     }, 300); // Match animation duration
-  };
+  }, [onClose]);
 
-  const getIcon = () => {
+  const getIcon = useCallback(() => {
     if (icon) return icon;
 
     switch (variant) {
@@ -53,10 +53,15 @@ export function Toast({
       default:
         return "ℹ";
     }
-  };
+  }, [icon, variant]);
+
+  const toastClassName = useMemo(() => 
+    `toast toast-${variant} toast-${position} ${isClosing ? 'closing' : 'show'} ${className}`,
+    [variant, position, isClosing, className]
+  );
 
   return (
-    <div className={`toast toast-${variant} toast-${position} ${isClosing ? 'closing' : 'show'} ${className}`} {...props}>
+    <div className={toastClassName} {...props}>
       <div className="toast-icon">{getIcon()}</div>
       <div className="toast-content">
         {title && <div className="toast-title">{title}</div>}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useRef, useEffect } from "react";
+import React, { createContext, useContext, useState, useRef, useEffect, useCallback, useMemo } from "react";
 
 // Interfaces
 export interface DrawerProps {
@@ -81,20 +81,22 @@ export const Drawer: React.FC<DrawerProps> = ({
     }
   }, [defaultOpen, isControlled]);
 
-  const setOpen = (newOpen: boolean) => {
+  const setOpen = useCallback((newOpen: boolean) => {
     if (isControlled) {
       onOpenChange?.(newOpen);
     } else {
       setInternalOpen(newOpen);
     }
-  };
+  }, [isControlled, onOpenChange]);
 
   if (!mounted) {
     return null;
   }
 
+  const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
+
   return (
-    <DrawerContext.Provider value={{ open, setOpen }}>
+    <DrawerContext.Provider value={contextValue}>
       {children}
     </DrawerContext.Provider>
   );
@@ -173,7 +175,7 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
     };
   }, [open, setOpen, onClose]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsClosing(true);
     setTimeout(() => {
       setOpen(false);
@@ -181,13 +183,13 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
       setShouldRender(false);
       onClose?.();
     }, 300); // Match animation duration
-  };
+  }, [setOpen, onClose]);
 
-  const handleOverlayClick = (e: React.MouseEvent) => {
+  const handleOverlayClick = useCallback((e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
-  };
+  }, [handleClose]);
 
   if (!shouldRender) return null;
 

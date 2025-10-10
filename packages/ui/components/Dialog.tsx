@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useRef, useEffect } from "react";
+import React, { createContext, useContext, useState, useRef, useEffect, useCallback, useMemo } from "react";
 
 // Interfaces
 export interface DialogProps {
@@ -81,20 +81,22 @@ export const Dialog: React.FC<DialogProps> = ({
     }
   }, [defaultOpen, isControlled]);
 
-  const setOpen = (newOpen: boolean) => {
+  const setOpen = useCallback((newOpen: boolean) => {
     if (isControlled) {
       onOpenChange?.(newOpen);
     } else {
       setInternalOpen(newOpen);
     }
-  };
+  }, [isControlled, onOpenChange]);
 
   if (!mounted) {
     return null;
   }
 
+  const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
+
   return (
-    <DialogContext.Provider value={{ open, setOpen }}>
+    <DialogContext.Provider value={contextValue}>
       {children}
     </DialogContext.Provider>
   );
