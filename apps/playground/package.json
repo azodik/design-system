@@ -12,7 +12,7 @@
     "clean": "node ../../scripts/clean.mjs"
   },
   "dependencies": {
-    "@azodik-ui/core": "workspace:*",
+    "azodik-ui-core": "workspace:*",
     "@azodik/ui": "workspace:*",
     "@mdx-js/react": "2.3.0",
     "@mdx-js/rollup": "^3.1.1",

@@ -27,9 +27,6 @@ importers:
 
   apps/playground:
     dependencies:
-      '@azodik-ui/core':
-        specifier: workspace:*
-        version: link:../../packages/core
       '@azodik/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -42,6 +39,9 @@ importers:
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
+      azodik-ui-core:
+        specifier: workspace:*
+        version: link:../../packages/core
       lucide:
         specifier: ^0.544.0
         version: 0.544.0
@@ -85,7 +85,7 @@ importers:
 
   packages/ui:
     dependencies:
-      '@azodik-ui/core':
+      azodik-ui-core:
         specifier: workspace:*
         version: link:../core
       react:
