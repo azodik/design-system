@@ -81,7 +81,7 @@ export const ActionDataTableExample = () => {
       key: 'actions', 
       label: 'Actions',
       render: (row) => (
-        <div className="flex gap-2">
+        <div className="flex gap-sm">
           <Button size="sm" variant="outline" onClick={() => console.log('Edit:', row.id)}>
             Edit
           </Button>
@@ -192,7 +192,7 @@ The DataTable component includes several complementary features to handle variou
 <CodeBlockWithPreview 
   title="All DataTable Variants"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <DataTable 
         data={[
           { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },

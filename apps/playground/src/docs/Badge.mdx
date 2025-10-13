@@ -39,7 +39,7 @@ The Badge component includes several complementary features to handle various st
 <CodeBlockWithPreview 
   title="All Badge Variants"
   preview={
-    <div className="flex gap-4" style={{ gap: 'var(--space-sm)' }}>
+    <div className="flex-horizontal">
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
       <Badge variant="error">Error</Badge>
@@ -51,7 +51,7 @@ The Badge component includes several complementary features to handle various st
 
 export const BadgeExamples = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
       <Badge variant="error">Error</Badge>
@@ -67,7 +67,7 @@ export const BadgeExamples = () => {
 <CodeBlockWithPreview 
   title="Badge Sizes"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical-lg">
       <Badge variant="success" size="sm">Small</Badge>
       <Badge variant="success" size="md">Medium</Badge>
       <Badge variant="success" size="lg">Large</Badge>
@@ -78,7 +78,7 @@ export const BadgeExamples = () => {
 
 export const BadgeSizesExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical-lg">
       <Badge variant="success" size="sm">Small</Badge>
       <Badge variant="success" size="md">Medium</Badge>
       <Badge variant="success" size="lg">Large</Badge>

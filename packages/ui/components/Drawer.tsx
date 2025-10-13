@@ -89,11 +89,11 @@ export const Drawer: React.FC<DrawerProps> = ({
     }
   }, [isControlled, onOpenChange]);
 
+  const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
+
   if (!mounted) {
     return null;
   }
-
-  const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
 
   return (
     <DrawerContext.Provider value={contextValue}>

@@ -9,7 +9,7 @@ export const InputPreview = () => {
   return (
       <Card>
         <form>
-          <div className="space-y-4">
+          <div className="flex-vertical">
             <Input
               label="Email"
               type="email"
@@ -50,7 +50,7 @@ export const InputExample = () => {
   return (
     <Card>
         <form>
-          <div className="space-y-4">
+          <div className="flex-vertical">
             <Input
               label="Email"
               type="email"

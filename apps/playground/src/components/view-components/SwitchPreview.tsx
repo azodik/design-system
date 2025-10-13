@@ -7,9 +7,9 @@ export const SwitchPreview = () => {
   const [autoSave, setAutoSave] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
+        <div className="flex-vertical">
           <Switch
             label="Enable notifications"
             checked={notifications}
@@ -40,9 +40,9 @@ export const SwitchExample = () => {
   const [autoSave, setAutoSave] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
+        <div className="flex-vertical">
           <Switch
             label="Enable notifications"
             checked={notifications}

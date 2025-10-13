@@ -2,7 +2,7 @@ import React from "react";
 import { Navigation, NavItem } from "@azodik/ui";
 
 export const NavigationPreview = () => (
-  <div className="space-y-4"
+  <div className="flex-vertical"
   style={{
     width: '100%',
     minWidth: '400px',
@@ -25,7 +25,7 @@ import { Navigation, NavItem } from "@azodik/ui";
 
 export const NavigationExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
         <Navigation brand="Azodik">
           <NavItem href="#" active>Home</NavItem>

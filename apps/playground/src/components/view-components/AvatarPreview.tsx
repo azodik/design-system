@@ -2,10 +2,10 @@ import React from "react";
 import { Avatar, AvatarGroup } from "@azodik/ui";
 
 export const AvatarPreview = () => (
-  <div className="space-y-6">
+  <div className="flex-vertical-lg">
     <div>
-      <h3 className="text-lg font-semibold mb-3">Avatar Sizes</h3>
-      <div className="flex gap-4 items-center">
+      <h3 className="section-title">Avatar Sizes</h3>
+      <div className="flex items-center gap-md">
         <Avatar size="sm" initials="JD" />
         <Avatar size="md" initials="JS" />
         <Avatar size="lg" initials="BJ" />
@@ -14,7 +14,7 @@ export const AvatarPreview = () => (
     </div>
     
     <div>
-      <h3 className="text-lg font-semibold mb-3">Avatar Group</h3>
+      <h3 className="section-title">Avatar Group</h3>
       <AvatarGroup max={3}>
         <Avatar size="md" initials="A" />
         <Avatar size="md" initials="B" />
@@ -31,10 +31,10 @@ import { Avatar, AvatarGroup } from "@azodik/ui";
 
 export const AvatarExample = () => {
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <div>
-        <h3 className="text-lg font-semibold mb-3">Avatar Sizes</h3>
-        <div className="flex gap-4 items-center">
+        <h3 className="section-title">Avatar Sizes</h3>
+        <div className="flex items-center gap-md">
           <Avatar size="sm" initials="JD" />
           <Avatar size="md" initials="JS" />
           <Avatar size="lg" initials="BJ" />
@@ -43,7 +43,7 @@ export const AvatarExample = () => {
       </div>
       
       <div>
-        <h3 className="text-lg font-semibold mb-3">Avatar Group</h3>
+        <h3 className="section-title">Avatar Group</h3>
         <AvatarGroup max={3}>
           <Avatar size="md" initials="A" />
           <Avatar size="md" initials="B" />

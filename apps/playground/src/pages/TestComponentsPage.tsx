@@ -34,7 +34,7 @@ export default function TestComponentsPage() {
           <p>Interactive playground to test all default components</p>
         </div>
 
-        <div className="test-components-grid" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div className="test-components-grid">
               <Alert>
                 Hello! This is an alert.
               </Alert>
@@ -291,7 +291,7 @@ export default function TestComponentsPage() {
                 />
             </Card>
             <Card>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <div className="flex-gap-sm">
                   <Button onClick={() => setShowTopRightToast(true)}>
                     Show Toast (Top Right)
                   </Button>
@@ -408,7 +408,7 @@ export default function TestComponentsPage() {
                   </DialogDescription>
                 </DialogHeader>
                 <DialogBody>
-                  <div className="space-y-4">
+                  <div className="flex-vertical">
                       <Input
                         label="Name"
                         type="text"

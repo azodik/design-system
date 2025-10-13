@@ -14,7 +14,7 @@ import {
 } from "@azodik/ui";
 
 export const DrawerPreview = () => (
-  <div className="space-y-4">
+  <div className="flex-vertical">
     {/* Basic Drawer */}
     <Drawer>
       <DrawerTrigger asChild>
@@ -29,7 +29,7 @@ export const DrawerPreview = () => (
             </DrawerDescription>
           </DrawerHeader>
             <DrawerBody>
-              <div className="space-y-4">
+              <div className="flex-vertical">
                   <Input
                     label="Name"
                     type="text"
@@ -67,7 +67,7 @@ import {
 
 export const DrawerExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       {/* Basic Drawer */}
       <Drawer>
         <DrawerTrigger asChild>
@@ -81,7 +81,7 @@ export const DrawerExample = () => {
             </DrawerDescription>
           </DrawerHeader>
           <DrawerBody>
-            <div className="space-y-4">
+            <div className="flex-vertical">
                 <Input
                   label="Name"
                   type="text"

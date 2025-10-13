@@ -31,7 +31,7 @@ Avatars are used to represent users in your application. They can display profil
 <CodeBlockWithPreview 
   title="All Avatar Variants"
   preview={
-    <div className="space-y-4">
+    <div className="flex-horizontal items-center justify-center">
       <Avatar name="Henna Morris" size="sm" initials="HM"/>
       <Avatar name="Shane John" size="md" initials="SJ"/>
       <Avatar name="Pedro Pascal" size="lg" initials="PP"/>
@@ -43,7 +43,7 @@ Avatars are used to represent users in your application. They can display profil
 
 export const AvatarExamples = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-horizontal items-center justify-center">
       <Avatar 
         src="/path/to/image.jpg"
         alt="John Doe"
@@ -85,7 +85,7 @@ export const UserAvatarExample = () => {
 <CodeBlockWithPreview 
   title="Avatar Sizes"
   preview={
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-md">
       <AvatarGroup max={3}>
         <Avatar size="md" initials="A" />
         <Avatar size="md" initials="B" />
@@ -101,7 +101,7 @@ export const UserAvatarExample = () => {
 
 export const AvatarSizesExample = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-md">
       <Avatar name="John Doe" size="sm" />
       <Avatar name="Jane Smith" size="md" />
       <Avatar name="Bob Wilson" size="lg" />

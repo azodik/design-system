@@ -3,10 +3,10 @@ import { Button, Tooltip, Card } from "@azodik/ui";
 
 export const TooltipPreview = () => {
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
-          <div className="flex gap-4 flex-wrap tooltip-buttons">
+        <div className="flex-vertical">
+          <div className="flex gap-md flex-wrap tooltip-buttons">
             <Tooltip content="This is a helpful tooltip">
               <Button>Hover for tooltip</Button>
             </Tooltip>
@@ -30,10 +30,10 @@ import { Button, Tooltip, Card } from "@azodik/ui";
 
 export const TooltipExample = () => {
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
-          <div className="flex gap-4 flex-wrap tooltip-buttons">
+        <div className="flex-vertical">
+          <div className="flex gap-md flex-wrap tooltip-buttons">
             <Tooltip content="This is a helpful tooltip">
               <Button>Hover for tooltip</Button>
             </Tooltip>

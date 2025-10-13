@@ -14,7 +14,7 @@ export const FormPreview = () => {
   return (
     <Card width="75%" height="75%">
       <ScrollArea className="h-full" scrollbarSize="sm">
-        <div className="space-y-4 p-4">
+        <div className="flex-vertical p-4">
         <Input
           label="Email"
           type="email"
@@ -45,7 +45,7 @@ export const FormPreview = () => {
         />
         <div>
           <label className="form-label">Gender</label>
-          <div className="mt-2 space-y-2">
+          <div className="mt-2 flex-vertical">
             <Radio
               name="gender"
               value="male"
@@ -98,7 +98,7 @@ export const FormExample = () => {
       }}
     >
       <ScrollArea className="h-full" scrollbarSize="sm">
-        <div className="space-y-4 p-1">
+        <div className="flex-vertical p-1">
           <Input
             label="Email"
             type="email"

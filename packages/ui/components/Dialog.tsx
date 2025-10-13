@@ -89,11 +89,11 @@ export const Dialog: React.FC<DialogProps> = ({
     }
   }, [isControlled, onOpenChange]);
 
+  const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
+
   if (!mounted) {
     return null;
   }
-
-  const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
 
   return (
     <DialogContext.Provider value={contextValue}>

@@ -3,7 +3,7 @@ import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarBrand, Si
 import { SidebarToggleIcon } from "../../icons";
 
 export const SidebarPreview = () => (
-  <div className="space-y-4">
+  <div className="flex-vertical">
     <div style={{ height: '450px', display: 'flex', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
       <Sidebar width={280} showHeader showFooter
       style={{ height: '100%' }}
