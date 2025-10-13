@@ -2,6 +2,7 @@ import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Sidebar from "../docs/Sidebar.mdx";
 import { Sidebar as SidebarComponent, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
 import SidebarLayout from "../components/sidebar/Sidebar";
 import "../styles/docs.css";
 
@@ -25,6 +26,7 @@ export default function SidebarDocsPage() {
           <MDXProvider components={components}>
             <Sidebar />
           </MDXProvider>
+          <ComponentNavigation />
         </div>
       </div>
     </SidebarLayout>

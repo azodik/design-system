@@ -1,7 +1,5 @@
 import { LineChart, AreaChart, BarChart, PieChart, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
-import { ComponentRenderer } from '../components/docs/ComponentRenderer';
-import { ChartsPreview } from '../components/view-components/ChartsPreview';
 
 # Charts Component
 
@@ -36,7 +34,29 @@ The Charts component includes several complementary features to handle various d
 
 <CodeBlockWithPreview 
   title="Charts with Tabs"
-  preview={<ChartsPreview />}
+  preview={
+    <div className="space-y-4">
+      <Card>
+        <CardContent className="p-6">
+          <h3 className="text-lg font-semibold mb-4">Sales Overview</h3>
+          <div className="h-64">
+            <LineChart 
+              data={[
+                { name: "Jan", value: 400 },
+                { name: "Feb", value: 300 },
+                { name: "Mar", value: 200 },
+                { name: "Apr", value: 278 },
+                { name: "May", value: 189 },
+                { name: "Jun", value: 239 }
+              ]}
+              dataKey="value"
+              height={200}
+            />
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  }
 >
 {`import React, { useState } from "react";
 import { LineChart, AreaChart, BarChart, PieChart, Tabs, TabList, TabTrigger, TabContent } from "@azodik/ui";

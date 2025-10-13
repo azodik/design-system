@@ -1,7 +1,5 @@
 import { Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
-import { ComponentRenderer } from '../components/docs/ComponentRenderer';
-import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 # Button Component
 
@@ -33,7 +31,25 @@ The Button component includes several complementary features to handle various i
 
 ## Variants
 
-<ComponentRenderer componentName="button" />
+<CodeBlockWithPreview 
+  title="Button Variants"
+  preview={
+    <div className="flex gap-4 flex-wrap">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  }
+  code={`import { Button } from '@azodik/ui';
+
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>`}
+/>
 
 ## Some Variants Example
 
@@ -178,5 +194,3 @@ export const DisabledButton = () => {
 - Use destructive buttons for dangerous actions
 - Keep button text concise and action-oriented
 - Ensure sufficient touch targets on mobile devices
-
-<ComponentNavigation />

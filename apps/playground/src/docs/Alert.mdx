@@ -1,6 +1,5 @@
 import { Alert, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
-import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 
 # Alert Component
 
@@ -30,7 +29,39 @@ The Alert component includes several complementary features to handle various no
 
 ## Variants
 
-<ComponentRenderer componentName="alert" />
+<CodeBlockWithPreview 
+  title="Alert Variants"
+  preview={
+    <div className="space-y-4">
+      <Alert variant="success" title="Success!">
+        Your changes have been saved successfully.
+      </Alert>
+      <Alert variant="error" title="Error!">
+        Something went wrong. Please try again.
+      </Alert>
+      <Alert variant="warning" title="Warning!">
+        Please check your input before proceeding.
+      </Alert>
+      <Alert variant="info" title="Info">
+        Here's some helpful information for you.
+      </Alert>
+    </div>
+  }
+  code={`import { Alert } from '@azodik/ui';
+
+<Alert variant="success" title="Success!">
+  Your changes have been saved successfully.
+</Alert>
+<Alert variant="error" title="Error!">
+  Something went wrong. Please try again.
+</Alert>
+<Alert variant="warning" title="Warning!">
+  Please check your input before proceeding.
+</Alert>
+<Alert variant="info" title="Info">
+  Here's some helpful information for you.
+</Alert>`}
+/>
 
 ## Some Variants Example
 
