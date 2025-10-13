@@ -1,0 +1,118 @@
+import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Tooltip Component
+
+The Tooltip component provides contextual information that appears on hover or focus. It's perfect for providing additional details without cluttering the interface.
+
+## Introduction
+
+The Tooltip component includes several complementary features to handle various contextual information and user guidance scenarios:
+
+- Tooltip: the main wrapper for creating contextual popup windows that provide additional information without cluttering the interface.
+- Tooltip Positioning: flexible positioning system with multiple placement options (top, bottom, left, right) and smart positioning logic.
+- Tooltip Triggers: hover and focus interactions with customizable trigger elements and timing controls for different use cases.
+- Tooltip Content: support for rich content including text, HTML, and React components for comprehensive information display.
+- Tooltip Customization: flexible styling, colors, sizing, and appearance options for different design contexts and brand needs.
+- Tooltip Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for contextual information consumption.
+
+### When to use
+- Provide additional context or explanations
+- Show helpful hints or tips
+- Explain abbreviations or technical terms
+- Display additional information about icons or buttons
+- Guide users through complex interfaces
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Tooltip } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## With Rich Content
+
+<CodeBlockWithPreview 
+  title="Rich Tooltip Content"
+  preview={
+    <Tooltip 
+      content={
+        <div>
+          <h4 className="font-semibold">Advanced Settings</h4>
+          <p className="text-sm">Configure advanced options for better performance.</p>
+        </div>
+      }
+    >
+      <Button variant="outline">Settings</Button>
+    </Tooltip>
+  }
+>
+{`import { Tooltip, Button } from '@azodik/ui';
+
+export const BasicTooltipExample = () => {
+  return (
+    <Tooltip 
+      content={
+        <div>
+          <h4 className="font-semibold">Advanced Settings</h4>
+          <p className="text-sm">Configure advanced options for better performance.</p>
+        </div>
+      }
+    >
+      <Button variant="outline">Settings</Button>
+    </Tooltip>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Element that triggers the tooltip'
+  },
+  {
+    name: 'content',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Content to display in the tooltip'
+  },
+  {
+    name: 'position',
+    type: '"top" | "bottom" | "left" | "right"',
+    required: false,
+    default: '"top"',
+    description: 'Position of the tooltip relative to trigger'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Tooltips are announced to screen readers
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+- Color is not the only way to convey information
+
+## Design Guidelines
+
+- Keep tooltip content concise and helpful
+- Use appropriate positioning to avoid clipping
+- Ensure sufficient contrast for readability
+- Don't rely solely on tooltips for critical information
+- Consider mobile touch interactions
+

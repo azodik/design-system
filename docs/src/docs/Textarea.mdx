@@ -1,0 +1,110 @@
+import { Textarea, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Textarea Component
+
+The Textarea component provides multi-line text input for longer content and messages. It's perfect for collecting detailed user input and comments.
+
+## Introduction
+
+The Textarea component includes several complementary features to handle various multi-line text input scenarios:
+
+- Textarea: the main wrapper for creating multi-line text input fields with larger input areas for longer content.
+- Textarea Sizing: flexible sizing options with auto-resize capabilities and configurable min/max rows for different content needs.
+- Textarea Validation: built-in validation support with error messages, success states, and form integration capabilities.
+- Textarea Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for multi-line text inputs.
+- Textarea Customization: flexible styling, placeholder text, and appearance options for different design contexts.
+- Textarea States: support for disabled, readonly, and interactive states with appropriate visual feedback and user guidance.
+
+### When to use
+- Collecting longer text input
+- Comment forms and feedback
+- Description fields
+- Message composition
+- Multi-line content entry
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Textarea } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the textarea field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the textarea'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the textarea'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the textarea (success or error)'
+  },
+  {
+    name: 'autoResize',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the textarea should auto-resize based on content'
+  },
+  {
+    name: 'minRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Minimum number of rows when auto-resizing'
+  },
+  {
+    name: 'maxRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Maximum number of rows when auto-resizing'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Textareas have proper labels and associations
+- Error messages are announced to screen readers
+- Focus management is handled correctly
+- Keyboard navigation is supported
+- Color contrast meets WCAG guidelines
+
+## Design Guidelines
+
+- Always provide clear labels
+- Use appropriate placeholder text
+- Show character limits when applicable
+- Provide clear validation feedback
+- Ensure sufficient touch targets on mobile

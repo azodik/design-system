@@ -1,0 +1,155 @@
+import { Badge, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Badge Component
+
+The Badge component displays small status indicators, labels, counts, and notifications. It's perfect for highlighting important information or showing quantities.
+
+## Introduction
+
+The Badge component includes several complementary features to handle various status and notification scenarios:
+
+- Badge: the main wrapper for displaying small status indicators and labels.
+- Badge Variants: different visual styles (primary, secondary, success, warning, error, info, neutral) to indicate status.
+- Badge Sizing: multiple size options (sm, md, lg) for different use cases and contexts.
+- Badge Customization: flexible border radius and styling options for different design needs.
+- Badge Icons: optional icon support to enhance visual communication and context.
+- Badge Actions: optional remove functionality for dismissible badges and interactive elements.
+
+### When to use
+- Display status indicators (success, warning, error)
+- Show counts or quantities
+- Label content with categories or tags
+- Highlight important information
+- Show notification counts
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Badge } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Badge Variants"
+  preview={
+    <div className="flex-horizontal">
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="error">Error</Badge>
+      <Badge variant="info">Info</Badge>
+    </div>
+  }
+>
+{`import { Badge } from '@azodik/ui';
+
+export const BadgeExamples = () => {
+  return (
+    <div className="flex-vertical">
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="error">Error</Badge>
+      <Badge variant="info">Info</Badge>
+      <Badge variant="neutral">Neutral</Badge>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Different Sizes
+
+<CodeBlockWithPreview 
+  title="Badge Sizes"
+  preview={
+    <div className="flex-vertical-lg">
+      <Badge variant="success" size="sm">Small</Badge>
+      <Badge variant="success" size="md">Medium</Badge>
+      <Badge variant="success" size="lg">Large</Badge>
+    </div>
+  }
+>
+{`import { Badge } from '@azodik/ui';
+
+export const BadgeSizesExample = () => {
+  return (
+    <div className="flex-vertical-lg">
+      <Badge variant="success" size="sm">Small</Badge>
+      <Badge variant="success" size="md">Medium</Badge>
+      <Badge variant="success" size="lg">Large</Badge>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the badge'
+  },
+  {
+    name: 'variant',
+    type: '"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"',
+    required: false,
+    default: '"primary"',
+    description: 'Visual style variant of the badge'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the badge'
+  },
+  {
+    name: 'rounded',
+    type: '"xs" | "sm" | "md" | "lg" | "xl"',
+    required: false,
+    default: '"md"',
+    description: 'Border radius of the badge'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display before the badge content'
+  },
+  {
+    name: 'onRemove',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when the remove button is clicked'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Badges have appropriate color contrast
+- Text content is readable at all sizes
+- Screen readers can access badge content
+- Color is not the only way to convey information
+
+## Design Guidelines
+
+- Use appropriate variants for different contexts
+- Keep badge text concise and clear
+- Ensure sufficient contrast for readability
+- Use consistent sizing across your application
+- Consider the background when choosing colors

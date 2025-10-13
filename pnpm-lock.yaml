@@ -25,11 +25,11 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2
 
-  apps/playground:
+  docs:
     dependencies:
       '@azodik/ui':
         specifier: workspace:*
-        version: link:../../packages/ui
+        version: link:../packages/ui
       '@mdx-js/react':
         specifier: 2.3.0
         version: 2.3.0(react@19.1.1)
@@ -41,7 +41,7 @@ importers:
         version: 2.0.13
       azodik-ui-core:
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../packages/core
       lucide:
         specifier: ^0.544.0
         version: 0.544.0
@@ -2682,7 +2682,7 @@ snapshots:
 
   '@types/hast@3.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/inquirer@6.5.0':
     dependencies:
@@ -2691,7 +2691,7 @@ snapshots:
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/mdx@2.0.13': {}
 

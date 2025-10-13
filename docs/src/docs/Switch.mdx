@@ -1,0 +1,136 @@
+import { Switch, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Switch Component
+
+The Switch component provides toggle switches for binary on/off states and settings. It's perfect for enabling or disabling features with immediate visual feedback.
+
+## Introduction
+
+The Switch component includes several complementary features to handle various toggle and binary state scenarios:
+
+- Switch: the main wrapper for creating toggle controls that enable or disable features with immediate visual feedback.
+- Switch States: multiple interaction states (on, off, disabled) with clear visual indicators and smooth transitions.
+- Switch Validation: built-in validation support with error messages, help text, and form integration capabilities.
+- Switch Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for toggle controls.
+- Switch Customization: flexible sizing, styling, and appearance options for different design contexts and brand needs.
+- Switch Integration: seamless form integration with controlled and uncontrolled state management for various use cases.
+
+### When to use
+- Enabling or disabling features
+- Settings and preferences
+- Binary on/off states
+- Quick toggles for options
+- Mobile-friendly controls
+
+### When not to use
+- For multiple selections (use Checkbox instead)
+- For single choice from multiple options (use Radio instead)
+- For primary actions (use Button instead)
+- When you need to show intermediate states
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Switch } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## With Disabled State
+
+<CodeBlockWithPreview 
+  title="Disabled Switch"
+  preview={
+    <div className="flex-vertical">
+      <Switch id="enabled" label="Enabled switch" />
+      <Switch id="disabled" label="Disabled switch" disabled />
+      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled />
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const DisabledSwitchExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Switch id="enabled" label="Enabled switch" />
+      <Switch id="disabled" label="Disabled switch" disabled />
+      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the switch'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the switch'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the switch'
+  },
+  {
+    name: 'checked',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the switch is checked'
+  },
+  {
+    name: 'onChange',
+    type: '(e: ChangeEvent<HTMLInputElement>) => void',
+    required: false,
+    default: '-',
+    description: 'Change event handler'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the switch is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Switches have proper labels and associations
+- Screen readers can identify switch states
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Always provide clear labels
+- Use consistent sizing across your application
+- Provide clear visual feedback for all states
+- Group related switches together
+- Ensure sufficient touch targets on mobile
+
+

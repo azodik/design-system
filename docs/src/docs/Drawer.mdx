@@ -1,0 +1,234 @@
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, DrawerClose, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Drawer Component
+
+The Drawer component provides a slide-up modal interface for displaying content that requires user interaction. It appears from the bottom of the screen and includes overlay, content, header, body, and footer sections with customizable styling and accessibility features.
+
+## Introduction
+
+The Drawer component includes several complementary features to handle various mobile-friendly modal and overlay interaction scenarios:
+
+- Drawer: the main wrapper for creating slide-up modal interfaces with overlay and content management.
+- Drawer Content: structured content areas with header, body, and footer sections optimized for mobile layouts.
+- Drawer Triggers: flexible trigger elements that can open drawers with customizable interaction patterns.
+- Drawer Animations: smooth slide-up animations and transitions for enhanced user experience.
+- Drawer Customization: flexible sizing, positioning, and styling options for different mobile design needs.
+- Drawer Accessibility: proper ARIA attributes, focus management, and touch-friendly navigation support.
+
+### When to use
+- Display confirmation messages
+- Show forms or input fields
+- Present important information
+- Get user confirmation for destructive actions
+- Display detailed content that needs focus
+- Mobile-friendly modal alternative
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, DrawerClose } from '@azodik/ui';`}
+</CodeBlock>
+
+## Basic Example
+
+
+## Props
+
+### Drawer Props
+
+<PropsTable props={[
+  {
+    name: 'open',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the drawer is open (controlled)'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when the drawer open state changes'
+  },
+  {
+    name: 'defaultOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the drawer is open by default (uncontrolled)'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Drawer content'
+  }
+]} />
+
+### DrawerTrigger Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Trigger element content'
+  },
+  {
+    name: 'asChild',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to merge props with child element'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DrawerContent Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Drawer content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when drawer is closed'
+  }
+]} />
+
+### DrawerHeader Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DrawerTitle Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Title content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DrawerDescription Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Description content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DrawerBody Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Body content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DrawerFooter Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Footer content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+## Accessibility
+
+- Drawers are built with proper ARIA attributes
+- Focus management is handled automatically
+- Escape key closes the drawer
+- Clicking outside closes the drawer
+- Screen readers can properly announce drawer content
+- Focus is trapped within the drawer when open
+
+## Design Guidelines
+
+- Use drawers for mobile-friendly modals
+- Keep drawer content concise and focused
+- Provide clear action buttons in the footer
+- Use appropriate drawer titles and descriptions
+- Consider mobile responsiveness for drawer sizing
+- Ensure sufficient contrast for readability
