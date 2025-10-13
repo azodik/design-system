@@ -7,9 +7,16 @@ import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 The Textarea component provides multi-line text input for longer content and messages. It's perfect for collecting detailed user input and comments.
 
-## Overview
+## Introduction
 
-Textarea components are used for collecting multi-line text input from users. They provide a larger input area for longer content like comments, descriptions, or messages.
+The Textarea component includes several complementary features to handle various multi-line text input scenarios:
+
+- Textarea: the main wrapper for creating multi-line text input fields with larger input areas for longer content.
+- Textarea Sizing: flexible sizing options with auto-resize capabilities and configurable min/max rows for different content needs.
+- Textarea Validation: built-in validation support with error messages, success states, and form integration capabilities.
+- Textarea Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for multi-line text inputs.
+- Textarea Customization: flexible styling, placeholder text, and appearance options for different design contexts.
+- Textarea States: support for disabled, readonly, and interactive states with appropriate visual feedback and user guidance.
 
 ### When to use
 - Collecting longer text input
@@ -32,67 +39,39 @@ Textarea components are used for collecting multi-line text input from users. Th
 
 <PropsTable props={[
   {
-    name: 'value',
+    name: 'label',
     type: 'string',
     required: false,
     default: '-',
-    description: 'Controlled textarea value'
+    description: 'Label text for the textarea field'
   },
   {
-    name: 'onChange',
-    type: '(e: ChangeEvent<HTMLTextAreaElement>) => void',
-    required: false,
-    default: '-',
-    description: 'Change event handler'
-  },
-  {
-    name: 'placeholder',
+    name: 'help',
     type: 'string',
     required: false,
     default: '-',
-    description: 'Placeholder text for the textarea'
-  },
-  {
-    name: 'rows',
-    type: 'number',
-    required: false,
-    default: '-',
-    description: 'Number of visible text lines'
-  },
-  {
-    name: 'size',
-    type: '"sm" | "md" | "lg"',
-    required: false,
-    default: '-',
-    description: 'Size of the textarea'
-  },
-  {
-    name: 'disabled',
-    type: 'boolean',
-    required: false,
-    default: '-',
-    description: 'Whether the textarea is disabled'
+    description: 'Help text to display below the textarea'
   },
   {
     name: 'error',
     type: 'string',
     required: false,
     default: '-',
-    description: 'Error message to display'
+    description: 'Error message to display below the textarea'
   },
   {
-    name: 'maxLength',
-    type: 'number',
+    name: 'status',
+    type: '"success" | "error"',
     required: false,
     default: '-',
-    description: 'Maximum number of characters allowed'
+    description: 'Visual status of the textarea (success or error)'
   },
   {
     name: 'autoResize',
     type: 'boolean',
     required: false,
     default: '-',
-    description: 'Whether the textarea should auto-resize'
+    description: 'Whether the textarea should auto-resize based on content'
   },
   {
     name: 'minRows',
@@ -112,7 +91,7 @@ Textarea components are used for collecting multi-line text input from users. Th
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

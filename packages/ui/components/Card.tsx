@@ -54,7 +54,7 @@ export default function Card({
   width,
   height,
   padding = "md",
-  rounded = "lg",
+  rounded = "sm",
   backgroundColor,
   borderColor,
   shadow = true,
@@ -74,7 +74,7 @@ export default function Card({
   };
 
   const style: React.CSSProperties = {
-    width: resolveSize(width),
+    width: width ? resolveSize(width) : 'fit-content',
     height: resolveSize(height),
     padding: resolveSize(padding),
     borderRadius: resolveSize(rounded),
@@ -83,9 +83,6 @@ export default function Card({
     boxShadow: shadow
       ? "0 4px 6px rgba(0,0,0,0.1)" // light mode default
       : undefined,
-    // Mobile responsive
-    minWidth: '280px',
-    maxWidth: '100%',
   };
 
   const combinedClassName = [

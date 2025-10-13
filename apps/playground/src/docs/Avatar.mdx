@@ -111,7 +111,7 @@ export const AvatarSizesExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+## Avatar Props
 
 <PropsTable props={[
   {
@@ -125,29 +125,76 @@ export const AvatarSizesExample = () => {
     name: 'alt',
     type: 'string',
     required: false,
-    default: '-',
-    description: 'Alt text for the image'
+    default: '"Avatar"',
+    description: 'Alt text for the image. Defaults to "Avatar" if not provided'
   },
   {
-    name: 'name',
-    type: 'string',
+    name: 'children',
+    type: 'React.ReactNode',
     required: false,
     default: '-',
-    description: 'Full name used to generate initials'
+    description: 'Content used to generate initials if no initials prop is provided'
   },
   {
     name: 'size',
-    type: '"sm" | "md" | "lg" | "xl"',
+    type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the avatar'
+  },
+  {
+    name: 'status',
+    type: '"online" | "away" | "offline" | "busy"',
     required: false,
     default: '-',
-    description: 'Size of the avatar'
+    description: 'Status indicator for the avatar'
+  },
+  {
+    name: 'initials',
+    type: 'string',
+    required: false,
+    default: 'Auto-generated from children',
+    description: 'Custom initials to display. If not provided, generates from children'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## AvatarGroup Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Avatar components to display in the group'
+  },
+  {
+    name: 'max',
+    type: 'number',
+    required: false,
+    default: '3',
+    description: 'Maximum number of avatars to display before showing "more" indicator'
+  },
+  {
+    name: 'moreLabel',
+    type: 'string',
+    required: false,
+    default: '"+{count}"',
+    description: 'Label template for the "more" indicator. Use {count} placeholder for the number'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply to the group'
   }
 ]} />
 

@@ -14,7 +14,7 @@
   max-width: 100%;
 }
 
-/* Mobile responsive */
+/* Responsive design - consolidated */
 @media (max-width: 767px) {
   .input {
     min-width: 150px;
@@ -22,11 +22,10 @@
   }
 }
 
-/* Tablet and desktop */
 @media (min-width: 768px) {
   .input {
     min-width: 300px;
-    max-width: 500px;
+    max-width: 100%;
   }
 }
 
@@ -77,7 +76,7 @@
   max-width: 100%;
 }
 
-/* Mobile responsive for textarea */
+/* Textarea responsive design */
 @media (max-width: 767px) {
   .textarea {
     min-width: 150px;
@@ -85,11 +84,10 @@
   }
 }
 
-/* Tablet and desktop for textarea */
 @media (min-width: 768px) {
   .textarea {
     min-width: 300px;
-    max-width: 500px;
+    max-width: 100%;
   }
 }
 

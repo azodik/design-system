@@ -57,6 +57,40 @@ export {
   TableCell,
   DataTable,
 } from "./components/Table";
+export {
+  default as Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/Accordion";
+export {
+  LineChart,
+  AreaChart,
+  BarChart,
+  PieChart,
+} from "./components/Charts";
+export {
+  default as Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogBody,
+  DialogFooter,
+  DialogClose,
+} from "./components/Dialog";
+export {
+  default as Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerBody,
+  DrawerFooter,
+  DrawerClose,
+} from "./components/Drawer";
 
 // Hooks
 export { useResponsive } from "./hooks/useResponsive";
@@ -127,4 +161,28 @@ export type {
   TableCellProps,
   DataTableProps,
 } from "./components/Table";
+export type {
+  AccordionProps,
+  AccordionItemProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from "./components/Accordion";
+export type {
+  ChartData,
+  ChartProps,
+  LineChartProps,
+  AreaChartProps,
+  BarChartProps,
+  PieChartProps,
+} from "./components/Charts";
+export type {
+  DialogProps,
+  DialogTriggerProps,
+  DialogContentProps,
+  DialogHeaderProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
+  DialogBodyProps,
+  DialogFooterProps,
+} from "./components/Dialog";
 export type { DeviceType, ResponsiveConfig, UseResponsiveReturn } from "./hooks/useResponsive";

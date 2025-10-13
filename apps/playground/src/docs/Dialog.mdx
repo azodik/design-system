@@ -1,0 +1,319 @@
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '../components/docs';
+import { ComponentRenderer } from '../components/docs/ComponentRenderer';
+import { DialogPreview } from '../components/view-components/DialogPreview';
+
+# Dialog Component
+
+The Dialog component provides a modal dialog interface for displaying content that requires user interaction. It includes overlay, content, header, body, and footer sections with customizable styling and accessibility features.
+
+## Introduction
+
+The Dialog component includes several complementary features to handle various modal and overlay interaction scenarios:
+
+- Dialog: the main wrapper for creating modal dialogs with overlay and content management.
+- Dialog Content: structured content areas with header, body, and footer sections for organized layouts.
+- Dialog Triggers: flexible trigger elements that can open dialogs with customizable interaction patterns.
+- Dialog State Management: controlled and uncontrolled state handling with open/close functionality.
+- Dialog Customization: flexible sizing, positioning, and styling options for different design needs.
+- Dialog Accessibility: proper ARIA attributes, focus management, and keyboard navigation support.
+
+### When to use
+- Display confirmation messages
+- Show forms or input fields
+- Present important information
+- Get user confirmation for destructive actions
+- Display detailed content that needs focus
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose } from '@azodik/ui';`}
+</CodeBlock>
+
+## Basic Example
+
+<ComponentRenderer componentName="dialog" />
+
+## Custom Styling
+
+<CodeBlockWithPreview 
+  title="Custom Styled Dialog"
+  preview={
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Custom Dialog</Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>Custom Styled Dialog</DialogTitle>
+          <DialogDescription>
+            This dialog has custom styling and larger width.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <div className="grid grid-cols-2 gap-4">
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 1</h3>
+                <p className="text-sm text-gray-600">Description of feature 1</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 2</h3>
+                <p className="text-sm text-gray-600">Description of feature 2</p>
+              </CardContent>
+            </Card>
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Save Changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  }
+>
+{`import React from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent } from "@azodik/ui";
+
+export const CustomStyledDialog = () => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Custom Dialog</Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>Custom Styled Dialog</DialogTitle>
+          <DialogDescription>
+            This dialog has custom styling and larger width.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <div className="grid grid-cols-2 gap-4">
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 1</h3>
+                <p className="text-sm text-gray-600">Description of feature 1</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 2</h3>
+                <p className="text-sm text-gray-600">Description of feature 2</p>
+              </CardContent>
+            </Card>
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Save Changes</Button>
+        </DialogFooter>
+        <DialogClose />
+      </DialogContent>
+    </Dialog>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+### Dialog Props
+
+<PropsTable props={[
+  {
+    name: 'open',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the dialog is open (controlled)'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when the dialog open state changes'
+  },
+  {
+    name: 'defaultOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the dialog is open by default (uncontrolled)'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Dialog content'
+  }
+]} />
+
+### DialogTrigger Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Trigger element content'
+  },
+  {
+    name: 'asChild',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to merge props with child element'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DialogContent Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Dialog content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when dialog is closed'
+  }
+]} />
+
+### DialogHeader Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DialogTitle Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Title content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DialogDescription Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Description content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DialogBody Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Body content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+### DialogFooter Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Footer content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+## Accessibility
+
+- Dialogs are built with proper ARIA attributes
+- Focus management is handled automatically
+- Escape key closes the dialog
+- Clicking outside closes the dialog
+- Screen readers can properly announce dialog content
+- Focus is trapped within the dialog when open
+
+## Design Guidelines
+
+- Use dialogs sparingly for important interactions
+- Keep dialog content concise and focused
+- Provide clear action buttons in the footer
+- Use appropriate dialog titles and descriptions
+- Consider mobile responsiveness for dialog sizing
+- Ensure sufficient contrast for readability

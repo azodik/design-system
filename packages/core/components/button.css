@@ -9,6 +9,7 @@
   transition: all 0.2s ease;
   text-decoration: none;
   gap: var(--space-xs);
+  width: fit-content;
 }
 
 /* Button Sizes */

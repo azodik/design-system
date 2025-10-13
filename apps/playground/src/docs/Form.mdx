@@ -170,9 +170,16 @@ export const VariousInputsFormExample = () => {
 
 The Form component provides a comprehensive set of form controls and validation for user data collection. It includes input fields, validation, and submission handling.
 
-## Overview
+## Introduction
 
-Forms are essential for collecting user data and input. The Form component provides a complete solution with validation, error handling, and consistent styling across all form elements.
+The Form component includes several complementary features to handle various data collection and user input scenarios:
+
+- Form: the main wrapper for creating comprehensive data collection interfaces with validation and submission handling.
+- Form Validation: built-in validation system with error handling, real-time feedback, and custom validation rules.
+- Form Controls: comprehensive set of input components (Input, Textarea, Select, Checkbox, Radio, Switch) for different data types.
+- Form State Management: controlled and uncontrolled state handling with form data persistence and reset functionality.
+- Form Accessibility: proper labels, error announcements, keyboard navigation, and screen reader support.
+- Form Customization: flexible styling, layout options, and integration with external form libraries.
 
 ### When to use
 - Collecting user information
@@ -515,31 +522,22 @@ export const ComprehensiveFormExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+## Form Components
 
-<PropsTable props={[
-  {
-    name: 'onSubmit',
-    type: '(e: FormEvent) => void',
-    required: false,
-    default: '-',
-    description: 'Function called when form is submitted'
-  },
-  {
-    name: 'children',
-    type: 'React.ReactNode',
-    required: false,
-    default: '-',
-    description: 'Form content and input elements'
-  },
-  {
-    name: 'className',
-    type: 'string',
-    required: false,
-    default: '-',
-    description: 'Additional CSS classes to apply'
-  }
-]} />
+Forms are built using individual components from the design system. Here are the main components used in forms:
+
+### Input Components
+- **Input** - Text, email, password, and number inputs
+- **Textarea** - Multi-line text input
+- **Select** - Dropdown selection
+- **Checkbox** - Binary choice controls
+- **Radio** - Single choice from multiple options
+- **Switch** - Toggle controls
+
+### Form Actions
+- **Button** - Submit and action buttons
+
+Each component has its own props and documentation. See the individual component pages for detailed prop information.
 
 ## Accessibility
 

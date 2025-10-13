@@ -6,9 +6,16 @@ import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 
 The Badge component displays small status indicators, labels, counts, and notifications. It's perfect for highlighting important information or showing quantities.
 
-## Overview
+## Introduction
 
-Badges are small visual indicators that provide additional context or information. They can be used to show status, counts, labels, or notifications.
+The Badge component includes several complementary features to handle various status and notification scenarios:
+
+- Badge: the main wrapper for displaying small status indicators and labels.
+- Badge Variants: different visual styles (primary, secondary, success, warning, error, info, neutral) to indicate status.
+- Badge Sizing: multiple size options (sm, md, lg) for different use cases and contexts.
+- Badge Customization: flexible border radius and styling options for different design needs.
+- Badge Icons: optional icon support to enhance visual communication and context.
+- Badge Actions: optional remove functionality for dismissible badges and interactive elements.
 
 ### When to use
 - Display status indicators (success, warning, error)
@@ -84,31 +91,52 @@ export const BadgeSizesExample = () => {
 
 <PropsTable props={[
   {
-    name: 'variant',
-    type: '"success" | "warning" | "error" | "info" | "neutral"',
-    required: false,
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
     default: '-',
+    description: 'Content to display inside the badge'
+  },
+  {
+    name: 'variant',
+    type: '"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"',
+    required: false,
+    default: '"primary"',
     description: 'Visual style variant of the badge'
   },
   {
     name: 'size',
     type: '"sm" | "md" | "lg"',
     required: false,
-    default: '-',
+    default: '"md"',
     description: 'Size of the badge'
   },
   {
-    name: 'children',
+    name: 'rounded',
+    type: '"xs" | "sm" | "md" | "lg" | "xl"',
+    required: false,
+    default: '"md"',
+    description: 'Border radius of the badge'
+  },
+  {
+    name: 'icon',
     type: 'React.ReactNode',
     required: false,
     default: '-',
-    description: 'Content to display inside the badge'
+    description: 'Icon to display before the badge content'
+  },
+  {
+    name: 'onRemove',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when the remove button is clicked'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

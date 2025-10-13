@@ -79,9 +79,16 @@ export const HorizontalScrollAreaExample = () => {
 
 The ScrollArea component provides customizable scrollable areas with different scrollbar sizes and styles. It's perfect for creating smooth scrolling experiences.
 
-## Overview
+## Introduction
 
-ScrollArea components provide enhanced scrolling functionality with customizable scrollbars and smooth scrolling behavior. They're ideal for content that needs to be scrollable within a fixed container.
+The ScrollArea component includes several complementary features to handle various scrolling and content overflow scenarios:
+
+- ScrollArea: the main wrapper for creating enhanced scrollable areas with customizable scrollbars and smooth behavior.
+- ScrollArea Sizing: multiple scrollbar size options (sm, md, lg) to fit different design contexts and user preferences.
+- ScrollArea Orientation: support for both vertical and horizontal scrolling with appropriate scrollbar positioning.
+- ScrollArea Customization: flexible styling, colors, and appearance options for brand-specific scrollbar designs.
+- ScrollArea Performance: optimized scrolling behavior with smooth animations and efficient content rendering.
+- ScrollArea Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for scrollable content.
 
 ### When to use
 - Create scrollable content areas
@@ -113,7 +120,7 @@ export const ScrollAreaSizesExample = () => {
     <div className="space-y-4">
       <div>
         <h4>Small ScrollArea</h4>
-        <ScrollArea className="h-32 w-64 border rounded" size="sm">
+        <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="sm">
           <div className="p-4 space-y-2">
             <p>Small scrollbar</p>
             <p>Content here</p>
@@ -124,10 +131,10 @@ export const ScrollAreaSizesExample = () => {
       </div>
       
       <div>
-        <h4>Large ScrollArea</h4>
-        <ScrollArea className="h-32 w-64 border rounded" size="lg">
+        <h4>Medium ScrollArea</h4>
+        <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="md">
           <div className="p-4 space-y-2">
-            <p>Large scrollbar</p>
+            <p>Medium scrollbar</p>
             <p>Content here</p>
             <p>More content</p>
             <p>Even more content</p>
@@ -178,30 +185,28 @@ export const HorizontalScrollAreaExample = () => {
     name: 'children',
     type: 'React.ReactNode',
     required: true,
+    default: '-',
     description: 'Content to display inside the scroll area'
   },
   {
-    name: 'size',
-    type: '"sm" | "md" | "lg"',
+    name: 'scrollbarSize',
+    type: '"sm" | "md"',
     required: false,
+    default: '"md"',
     description: 'Size of the scrollbar'
   },
   {
     name: 'orientation',
     type: '"vertical" | "horizontal"',
     required: false,
+    default: '"vertical"',
     description: 'Orientation of the scroll area'
-  },
-  {
-    name: 'autoHide',
-    type: 'boolean',
-    required: false,
-    description: 'Whether to auto-hide the scrollbar'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

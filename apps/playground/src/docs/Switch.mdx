@@ -6,9 +6,16 @@ import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 
 The Switch component provides toggle switches for binary on/off states and settings. It's perfect for enabling or disabling features with immediate visual feedback.
 
-## Overview
+## Introduction
 
-Switches are toggle controls that allow users to enable or disable features with a single action. They provide immediate visual feedback and are ideal for settings and preferences.
+The Switch component includes several complementary features to handle various toggle and binary state scenarios:
+
+- Switch: the main wrapper for creating toggle controls that enable or disable features with immediate visual feedback.
+- Switch States: multiple interaction states (on, off, disabled) with clear visual indicators and smooth transitions.
+- Switch Validation: built-in validation support with error messages, help text, and form integration capabilities.
+- Switch Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for toggle controls.
+- Switch Customization: flexible sizing, styling, and appearance options for different design contexts and brand needs.
+- Switch Integration: seamless form integration with controlled and uncontrolled state management for various use cases.
 
 ### When to use
 - Enabling or disabling features
@@ -62,6 +69,27 @@ export const DisabledSwitchExample = () => {
 
 <PropsTable props={[
   {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the switch'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the switch'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the switch'
+  },
+  {
     name: 'checked',
     type: 'boolean',
     required: false,
@@ -70,7 +98,7 @@ export const DisabledSwitchExample = () => {
   },
   {
     name: 'onChange',
-    type: '(checked: boolean) => void',
+    type: '(e: ChangeEvent<HTMLInputElement>) => void',
     required: false,
     default: '-',
     description: 'Change event handler'
@@ -79,35 +107,14 @@ export const DisabledSwitchExample = () => {
     name: 'disabled',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'false',
     description: 'Whether the switch is disabled'
-  },
-  {
-    name: 'size',
-    type: '"sm" | "md" | "lg"',
-    required: false,
-    default: '-',
-    description: 'Size of the switch'
-  },
-  {
-    name: 'id',
-    type: 'string',
-    required: false,
-    default: '-',
-    description: 'HTML id attribute'
-  },
-  {
-    name: 'name',
-    type: 'string',
-    required: false,
-    default: '-',
-    description: 'HTML name attribute'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

@@ -7,9 +7,16 @@ import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 The Toast component provides temporary notifications that appear and disappear automatically. It's perfect for showing success messages, errors, or other brief feedback to users.
 
-## Overview
+## Introduction
 
-Toasts are temporary notifications that provide feedback to users without blocking their workflow. They appear briefly and automatically disappear, making them perfect for status updates and confirmations.
+The Toast component includes several complementary features to handle various notification and feedback scenarios:
+
+- Toast: the main wrapper for creating temporary notifications that provide feedback without blocking user workflow.
+- Toast Variants: multiple notification types (success, warning, error, info) with appropriate icons and styling for different message types.
+- Toast Positioning: flexible positioning system with multiple placement options (top-center, top-right, bottom-right) for optimal visibility.
+- Toast Timing: automatic dismissal with configurable duration and manual close functionality for different notification needs.
+- Toast Customization: flexible styling, icons, titles, and content options for brand-specific notification designs.
+- Toast Accessibility: proper ARIA attributes, screen reader announcements, and keyboard navigation support for notification consumption.
 
 ### When to use
 - Show success messages after actions
@@ -32,10 +39,17 @@ Toasts are temporary notifications that provide feedback to users without blocki
 
 <PropsTable props={[
   {
-    name: 'variant',
-    type: '"success" | "error" | "warning" | "info"',
-    required: false,
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
     default: '-',
+    description: 'Toast message content'
+  },
+  {
+    name: 'variant',
+    type: '"success" | "warning" | "error" | "info"',
+    required: false,
+    default: '"info"',
     description: 'Visual style variant of the toast'
   },
   {
@@ -46,11 +60,11 @@ Toasts are temporary notifications that provide feedback to users without blocki
     description: 'Title text for the toast'
   },
   {
-    name: 'description',
-    type: 'string',
+    name: 'icon',
+    type: 'React.ReactNode',
     required: false,
     default: '-',
-    description: 'Description text for the toast'
+    description: 'Custom icon for the toast (defaults to variant-based icon)'
   },
   {
     name: 'onClose',
@@ -60,24 +74,24 @@ Toasts are temporary notifications that provide feedback to users without blocki
     description: 'Function called when toast is closed'
   },
   {
-    name: 'duration',
+    name: 'autoClose',
     type: 'number',
     required: false,
     default: '-',
     description: 'Auto-dismiss duration in milliseconds'
   },
   {
-    name: 'action',
-    type: 'React.ReactNode',
+    name: 'position',
+    type: '"top-center" | "top-right" | "bottom-right"',
     required: false,
-    default: '-',
-    description: 'Action button or element to display'
+    default: '"top-right"',
+    description: 'Position of the toast on screen'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

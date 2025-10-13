@@ -75,8 +75,8 @@ export const JumpPaginationExample = () => {
     setCurrentPage(page);
   };
 
-  const handleJumpToPage = (e) => {
-    const page = Number(e.target.value);
+  const handleJumpToPage = (value) => {
+    const page = Number(value);
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -116,9 +116,16 @@ export const JumpPaginationExample = () => {
 
 The Pagination component provides navigation controls for moving through multiple pages of content. It helps users navigate large datasets efficiently.
 
-## Overview
+## Introduction
 
-Pagination breaks large datasets into manageable pages, making it easier for users to navigate through content. It provides clear navigation controls and shows the current position within the dataset.
+The Pagination component includes several complementary features to handle various data navigation and page management scenarios:
+
+- Pagination: the main wrapper for creating page navigation controls with current page indication and navigation buttons.
+- Pagination Controls: first, previous, next, and last page buttons with appropriate disabled states and visual feedback.
+- Pagination Display: current page indicators, page numbers, and total page information for user orientation.
+- Pagination Customization: flexible styling, button visibility options, and integration with different data sources.
+- Pagination Responsiveness: mobile-friendly navigation with appropriate touch targets and compact layouts.
+- Pagination Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for page navigation.
 
 ### When to use
 - Navigate through large lists or datasets
@@ -154,8 +161,8 @@ export const JumpPaginationExample = () => {
     setCurrentPage(page);
   };
 
-  const handleJumpToPage = (e) => {
-    const page = Number(e.target.value);
+  const handleJumpToPage = (value) => {
+    const page = Number(value);
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -199,60 +206,42 @@ export const JumpPaginationExample = () => {
     name: 'currentPage',
     type: 'number',
     required: true,
+    default: '-',
     description: 'Currently active page number'
   },
   {
     name: 'totalPages',
     type: 'number',
     required: true,
+    default: '-',
     description: 'Total number of pages'
   },
   {
     name: 'onPageChange',
     type: '(page: number) => void',
     required: true,
+    default: '-',
     description: 'Function called when page changes'
   },
   {
     name: 'showFirstLast',
     type: 'boolean',
     required: false,
+    default: 'true',
     description: 'Whether to show first and last page buttons'
   },
   {
     name: 'showPrevNext',
     type: 'boolean',
     required: false,
+    default: 'true',
     description: 'Whether to show previous and next page buttons'
-  },
-  {
-    name: 'maxVisiblePages',
-    type: 'number',
-    required: false,
-    description: 'Maximum number of page buttons to show'
-  },
-  {
-    name: 'showPageSize',
-    type: 'boolean',
-    required: false,
-    description: 'Whether to show page size selector'
-  },
-  {
-    name: 'pageSize',
-    type: 'number',
-    required: false,
-    description: 'Current page size'
-  },
-  {
-    name: 'onPageSizeChange',
-    type: '(size: number) => void',
-    required: false,
-    description: 'Function called when page size changes'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

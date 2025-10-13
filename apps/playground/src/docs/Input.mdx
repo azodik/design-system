@@ -34,9 +34,16 @@ export const ValidatedInputPreview = () => {
 
 The Input component provides text input fields for user data entry with various types, validation states, and interactive features.
 
-## Overview
+## Introduction
 
-Input fields are essential for collecting user data. They support different input types, validation states, and provide a consistent user experience across your application.
+The Input component includes several complementary features to handle various text input and data entry scenarios:
+
+- Input: the main wrapper for creating text input fields with different types and validation states.
+- Input Types: support for various input types (text, email, password, number, tel, url) with appropriate validation.
+- Input Validation: built-in validation states with error messages, success indicators, and real-time feedback.
+- Input Accessibility: proper labels, help text, error announcements, and keyboard navigation support.
+- Input Customization: flexible sizing, styling, placeholder text, and integration with form libraries.
+- Input States: support for disabled, readonly, and interactive states with appropriate visual feedback.
 
 ### When to use
 - Collecting text input from users
@@ -229,66 +236,174 @@ export const ValidatedInputExample = () => {
 
 <PropsTable props={[
   {
-    name: 'type',
+    name: 'label',
     type: 'string',
     required: false,
     default: '-',
-    description: 'HTML input type (text, email, password, etc.)'
+    description: 'Label text for the input field'
   },
   {
-    name: 'placeholder',
+    name: 'help',
     type: 'string',
     required: false,
     default: '-',
-    description: 'Placeholder text for the input'
-  },
-  {
-    name: 'value',
-    type: 'string',
-    required: false,
-    default: '-',
-    description: 'Controlled input value'
-  },
-  {
-    name: 'onChange',
-    type: '(e: ChangeEvent<HTMLInputElement>) => void',
-    required: false,
-    default: '-',
-    description: 'Change event handler'
-  },
-  {
-    name: 'disabled',
-    type: 'boolean',
-    required: false,
-    default: '-',
-    description: 'Whether the input is disabled'
+    description: 'Help text to display below the input'
   },
   {
     name: 'error',
     type: 'string',
     required: false,
     default: '-',
-    description: 'Error message to display'
+    description: 'Error message to display below the input'
   },
   {
-    name: 'startIcon',
-    type: 'React.ReactNode',
+    name: 'status',
+    type: '"success" | "error"',
     required: false,
     default: '-',
-    description: 'Icon to display at the start of the input'
-  },
-  {
-    name: 'endIcon',
-    type: 'React.ReactNode',
-    required: false,
-    default: '-',
-    description: 'Icon to display at the end of the input'
+    description: 'Visual status of the input (success or error)'
   },
   {
     name: 'className',
     type: 'string',
     required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Textarea Props
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
     default: '-',
+    description: 'Label text for the textarea field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the textarea'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the textarea'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the textarea (success or error)'
+  },
+  {
+    name: 'autoResize',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the textarea should automatically resize based on content'
+  },
+  {
+    name: 'minRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Minimum number of rows for the textarea'
+  },
+  {
+    name: 'maxRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Maximum number of rows for the textarea'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Select Props
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the select field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the select'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the select'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'options',
+    type: '{ value: string; label: string }[]',
+    required: true,
+    default: '-',
+    description: 'Array of options for the select dropdown'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Selected value of the select'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when selection changes'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Select an option"',
+    description: 'Placeholder text for the select'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the select is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />

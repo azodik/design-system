@@ -7,9 +7,16 @@ import ComponentNavigation from '../components/docs/ComponentNavigation';
 
 The Breadcrumb component shows the current page location within the site hierarchy. It helps users understand where they are and navigate back to previous levels.
 
-## Overview
+## Introduction
 
-Breadcrumbs provide a navigation trail that shows users their current location within a website or application. They help users understand the site structure and navigate back to previous levels.
+The Breadcrumb component includes several complementary features to handle various navigation and hierarchy scenarios:
+
+- Breadcrumb: the main wrapper for displaying hierarchical navigation trails.
+- Breadcrumb Items: individual navigation elements that represent each level in the hierarchy.
+- Breadcrumb Navigation: clickable links that allow users to navigate back to previous levels.
+- Breadcrumb Separators: visual indicators that show the relationship between navigation levels.
+- Breadcrumb State Management: current page indication and proper link handling for navigation.
+- Breadcrumb Accessibility: built-in ARIA attributes and keyboard navigation for screen reader support.
 
 ### When to use
 - Show hierarchical navigation paths
@@ -62,7 +69,7 @@ export const BreadcrumbExamples = () => {
 
 <PropsTable props={[
   {
-    name: 'items*',
+    name: 'items',
     type: 'BreadcrumbItem[]',
     required: true,
     default: '-',
@@ -72,7 +79,7 @@ export const BreadcrumbExamples = () => {
     name: 'className',
     type: 'string',
     required: false,
-    default: '-',
+    default: '""',
     description: 'Additional CSS classes to apply'
   }
 ]} />
@@ -81,7 +88,7 @@ export const BreadcrumbExamples = () => {
 
 <PropsTable props={[
   {
-    name: 'label*',
+    name: 'label',
     type: 'string',
     required: true,
     default: '-',
@@ -98,7 +105,7 @@ export const BreadcrumbExamples = () => {
     name: 'current',
     type: 'boolean',
     required: false,
-    default: '-',
+    default: 'false',
     description: 'Whether this is the current page'
   }
 ]} />

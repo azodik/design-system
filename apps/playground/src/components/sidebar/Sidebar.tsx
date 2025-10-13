@@ -134,13 +134,13 @@ export default function SidebarLayout({
       >
         <SidebarHeader show={true}>
           <SidebarBrand 
-            logo="A" 
-            subtitle="Enterprise" 
+            logo={<img src="/logo-icon.svg" alt="Azodik Logo" style={{ width: '65px', height: '65px', backgroundColor: 'white', borderRadius: '6px', padding: '4px' }} />}
+            subtitle="Design System" 
             show={true}
             onClick={() => navigate('/')}
             style={{ cursor: 'pointer' }}
           >
-            Azodik Inc
+            Azodik
           </SidebarBrand>
         </SidebarHeader>
         
