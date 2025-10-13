@@ -19,3 +19,4 @@ export { default as CopyIcon } from "./CopyIcon";
 export { default as TickIcon } from "./TickIcon";
 export { default as LeftLongArrowIcon } from "./LeftLongArrowIcon";
 export { default as RightLongArrowIcon } from "./RightLongArrowIcon";
+export { default as GithubIcon } from "./GithubIcon";

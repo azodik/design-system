@@ -36,7 +36,8 @@
     "lint": "echo 'No linting configured yet'",
     "type-check": "tsc --noEmit",
     "clean": "node ../../scripts/clean.mjs",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish --access public"
   },
   "dependencies": {
     "azodik-ui-core": "workspace:*",

@@ -1,0 +1,276 @@
+import { Button, Card, Alert, Input, Badge } from '@azodik/ui';
+import { CodeBlock, CodeBlockWithPreview } from '../components/docs';
+
+# Getting Started
+
+Welcome to the Azodik Design System! This comprehensive guide will help you integrate our components into your projects quickly and efficiently.
+
+## Introduction
+
+The Azodik Design System is a modern, accessible, and highly customizable component library built with React and TypeScript. It provides everything you need to build beautiful, consistent user interfaces.
+
+### What's Included
+
+- **🎨 Modern Design** - Beautiful orange color palette with dark/light mode
+- **⚡ TypeScript First** - Full TypeScript support with comprehensive type definitions
+- **♿ Accessible** - Built with accessibility in mind using modern patterns
+- **📱 Responsive** - Mobile-first responsive design
+- **🎯 Tree Shakeable** - Import only what you need
+- **🔧 Customizable** - Easy to customize with CSS custom properties
+- **📦 Lightweight** - Optimized bundle size
+
+## Installation
+
+Install both the Azodik UI React components and the CSS design system. The React components provide the interactive elements, while the CSS package provides the styling foundation.
+
+<CodeBlock language="bash">
+{`# Install the React components
+npm install @azodik/ui
+
+# Install the CSS design system (required)
+npm install azodik-ui-core`}
+</CodeBlock>
+
+### Requirements
+
+- React 16.8+ (hooks support)
+- TypeScript 4.5+ (optional but recommended)
+- Node.js 14+ for development
+
+### Bundle Size
+
+- Tree-shakeable components
+- ~19KB CSS + ~35KB React (gzipped)
+- Individual component imports
+
+## Quick Start
+
+Once installed, you can start using components in your React application:
+
+<CodeBlock language="jsx">
+{`import React from 'react';
+import 'azodik-ui-core'; // Import the CSS
+import { Button, Alert, Card } from '@azodik/ui';
+
+function App() {
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+      <Alert variant="success" title="Success!">
+        Your changes have been saved.
+      </Alert>
+      <Card>
+        <h3>Welcome to Azodik</h3>
+        <p>Start building amazing interfaces!</p>
+      </Card>
+    </div>
+  );
+}
+
+export default App;`}
+</CodeBlock>
+
+## Basic Examples
+
+### Button Component
+
+<CodeBlockWithPreview 
+  title="Button Variants"
+  preview={
+    <div className="flex gap-4 flex-wrap">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+    </div>
+  }
+  code={`import { Button } from '@azodik/ui';
+
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>`}
+/>
+
+### Alert Component
+
+<CodeBlockWithPreview 
+  title="Alert Types"
+  preview={
+    <div className="space-y-4">
+      <Alert variant="success" title="Success!">
+        Your changes have been saved successfully.
+      </Alert>
+      <Alert variant="error" title="Error!">
+        Something went wrong. Please try again.
+      </Alert>
+      <Alert variant="warning" title="Warning!">
+        Please check your input before proceeding.
+      </Alert>
+      <Alert variant="info" title="Info">
+        Here's some helpful information for you.
+      </Alert>
+    </div>
+  }
+  code={`import { Alert } from '@azodik/ui';
+
+<Alert variant="success" title="Success!">
+  Your changes have been saved successfully.
+</Alert>
+<Alert variant="error" title="Error!">
+  Something went wrong. Please try again.
+</Alert>
+<Alert variant="warning" title="Warning!">
+  Please check your input before proceeding.
+</Alert>
+<Alert variant="info" title="Info">
+  Here's some helpful information for you.
+</Alert>`}
+/>
+
+### Card Component
+
+<CodeBlockWithPreview 
+  title="Card Layout"
+  preview={
+    <Card className="max-w-md">
+      <div className="p-6">
+        <h3 className="text-lg font-semibold mb-2">Card Title</h3>
+        <p className="text-gray-600 mb-4">
+          This is a card component with some content. Cards are great for organizing information.
+        </p>
+        <div className="flex gap-2">
+          <Button size="sm">Action</Button>
+          <Button variant="outline" size="sm">Cancel</Button>
+        </div>
+      </div>
+    </Card>
+  }
+  code={`import { Card, Button } from '@azodik/ui';
+
+<Card className="max-w-md">
+  <div className="p-6">
+    <h3 className="text-lg font-semibold mb-2">Card Title</h3>
+    <p className="text-gray-600 mb-4">
+      This is a card component with some content.
+    </p>
+    <div className="flex gap-2">
+      <Button size="sm">Action</Button>
+      <Button variant="outline" size="sm">Cancel</Button>
+    </div>
+  </div>
+</Card>`}
+/>
+
+## Available Components
+
+Our design system includes a comprehensive collection of React components:
+
+### Form Components
+- **Input** - Text input fields with validation states
+- **Textarea** - Multi-line text inputs
+- **Select** - Dropdown selection inputs
+- **Checkbox** - Form input checkboxes
+- **Radio** - Radio button inputs
+- **Switch** - Toggle switches
+
+### Layout Components
+- **Card** - Content containers with headers and footers
+- **Navigation** - Navigation menus and bars
+- **Sidebar** - Application sidebars and navigation
+- **Tabs** - Tabbed content organization
+
+### Feedback Components
+- **Alert** - Display important messages to users
+- **Modal** - Overlay dialogs and popups
+- **Toast** - Notification messages
+- **Tooltip** - Contextual help text
+- **Popover** - Floating content containers
+
+### Data Display
+- **Table** - Data tables with sorting and filtering
+- **DataTable** - Advanced data tables with pagination
+- **Avatar** - User profile pictures and initials
+- **Badge** - Small status indicators and labels
+- **Breadcrumb** - Navigation breadcrumbs
+- **Pagination** - Page navigation controls
+
+### Interactive Components
+- **Button** - Interactive buttons with multiple variants
+- **Dialog** - Modal dialogs and overlays
+- **Drawer** - Slide-out panels
+- **ScrollArea** - Custom scrollable areas
+
+## Theming
+
+### CSS Custom Properties
+
+The design system uses CSS custom properties for easy theming:
+
+<CodeBlock language="css">
+{`:root {
+  --color-primary: #f97316;
+  --color-background: #ffffff;
+  --color-text: #111827;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+  /* ... more tokens */
+}
+
+[data-theme="dark"] {
+  --color-background: #0f172a;
+  --color-text: #f1f5f9;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  /* ... dark mode tokens */
+}`}
+</CodeBlock>
+
+### Theme Switching
+
+<CodeBlock language="jsx">
+{`// Toggle theme
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute("data-theme");
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+  
+  html.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+}`}
+</CodeBlock>
+
+## TypeScript Support
+
+Full TypeScript definitions are included for all components:
+
+<CodeBlock language="tsx">
+{`import { Button, ButtonProps } from '@azodik/ui';
+
+const MyButton: React.FC<ButtonProps> = (props) => {
+  return <Button {...props} />;
+};`}
+</CodeBlock>
+
+## Tree Shaking
+
+Import only what you need to keep your bundle size small:
+
+<CodeBlock language="tsx">
+{`// ✅ Good - tree shakeable
+import { Button, Card } from '@azodik/ui';
+
+// ❌ Avoid - imports everything
+import * as UI from '@azodik/ui';`}
+</CodeBlock>
+
+## Next Steps
+
+1. **Explore Components** - Browse through individual component documentation in the sidebar
+2. **View Examples** - Each component page includes live examples and code snippets
+3. **Copy Code** - Use the provided code examples to quickly integrate components
+4. **Customize** - Learn about available props and customization options
+
+## Support
+
+Need help? Check out our documentation or reach out to our support team.
+
+**Happy building! 🚀**

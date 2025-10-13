@@ -55,13 +55,14 @@ export default function GettingStarted() {
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Start</h3>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              Install the Azodik UI package using your preferred package manager. Our components are
-              built with modern React patterns and include full TypeScript support.
+              Install both the Azodik UI React components and the CSS design system. The React
+              components provide the interactive elements, while the CSS package provides the
+              styling foundation.
             </p>
           </div>
 
           <div className="mb-6">
-            <p className="text-gray-700 mb-4 text-sm font-medium">Install the package:</p>
+            <p className="text-gray-700 mb-4 text-sm font-medium">Install the packages:</p>
             <SyntaxHighlighter
               language="bash"
               style={vscDarkPlus}
@@ -79,7 +80,11 @@ export default function GettingStarted() {
               wrapLines={true}
               wrapLongLines={true}
             >
-              {`npm install @azodik/ui`}
+              {`# Install the React components
+npm install @azodik/ui
+
+# Install the CSS design system (required)
+npm install azodik-ui-core`}
             </SyntaxHighlighter>
           </div>
 
@@ -96,7 +101,7 @@ export default function GettingStarted() {
               <h4 className="font-semibold text-gray-900 mb-3">Bundle Size</h4>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li>• Tree-shakeable components</li>
-                <li>• ~15KB gzipped (core)</li>
+                <li>• ~19KB CSS + ~35KB React (gzipped)</li>
                 <li>• Individual component imports</li>
               </ul>
             </div>

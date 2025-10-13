@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Badge, Alert } from "@azodik/ui";
+import { GithubIcon } from "../icons";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -37,11 +38,11 @@ export default function Home() {
               <button onClick={handleGetStarted} className="homepage-nav-link">
                 Components
               </button>
-              <a href="#docs" className="homepage-nav-link">
+              <a href="/components/getting-started" className="homepage-nav-link">
                 Documentation
               </a>
-              <a href="#support" className="homepage-nav-link">
-                Support
+              <a href="https://github.com/azodik/design-system" className="homepage-nav-link">
+                Repository
               </a>
             </nav>
             <div className="homepage-actions">
@@ -92,10 +93,11 @@ export default function Home() {
             </Button>
             <Button
               variant="secondary"
-              onClick={handlePlayground}
+              onClick={() => window.open("https://github.com/azodik/design-system", "_blank")}
               className="homepage-btn homepage-btn-secondary"
             >
-              Open Playground
+              View Repository
+              <GithubIcon />
             </Button>
           </div>
         </div>
