@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { LineChart, AreaChart, BarChart, PieChart, Tabs, TabList, TabTrigger, TabContent } from "@azodik/ui";
+import {
+  LineChart,
+  AreaChart,
+  BarChart,
+  PieChart,
+  Tabs,
+  TabList,
+  TabTrigger,
+  TabContent,
+} from "@azodik/ui";
 
 const sampleData = [
   { name: "Jan", value: 400, sales: 2400, revenue: 2400, profit: 800 },
@@ -37,7 +46,7 @@ export const ChartsPreview = () => {
           <TabTrigger value="bar">Bar Chart</TabTrigger>
           <TabTrigger value="pie">Pie Chart</TabTrigger>
         </TabList>
-        
+
         <TabContent value="line" className="charts-tab-content">
           <LineChart
             data={sampleData}
@@ -47,7 +56,7 @@ export const ChartsPreview = () => {
             height={400}
           />
         </TabContent>
-        
+
         <TabContent value="area" className="charts-tab-content">
           <AreaChart
             data={sampleData}
@@ -59,7 +68,7 @@ export const ChartsPreview = () => {
             strokeColor="#059669"
           />
         </TabContent>
-        
+
         <TabContent value="bar" className="charts-tab-content">
           <BarChart
             data={sampleData}
@@ -70,7 +79,7 @@ export const ChartsPreview = () => {
             fillColor="#f59e0b"
           />
         </TabContent>
-        
+
         <TabContent value="pie" className="charts-tab-content">
           <PieChart
             data={pieData}

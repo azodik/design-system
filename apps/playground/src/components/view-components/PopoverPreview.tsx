@@ -6,14 +6,14 @@ export const usePopoverState = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState("bottom");
   const [selectedOffset, setSelectedOffset] = useState(8);
-  
+
   return {
     isPopoverOpen,
     setIsPopoverOpen,
     selectedPosition,
     setSelectedPosition,
     selectedOffset,
-    setSelectedOffset
+    setSelectedOffset,
   };
 };
 
@@ -24,7 +24,7 @@ export const PopoverPreview = () => {
     selectedPosition,
     setSelectedPosition,
     selectedOffset,
-    setSelectedOffset
+    setSelectedOffset,
   } = usePopoverState();
 
   const positionOptions = [
@@ -39,7 +39,7 @@ export const PopoverPreview = () => {
     { value: "left-end", label: "Left End" },
     { value: "right", label: "Right" },
     { value: "right-start", label: "Right Start" },
-    { value: "right-end", label: "Right End" }
+    { value: "right-end", label: "Right End" },
   ];
 
   const offsetOptions = [
@@ -48,7 +48,7 @@ export const PopoverPreview = () => {
     { value: "12", label: "12px" },
     { value: "16", label: "16px" },
     { value: "20", label: "20px" },
-    { value: "24", label: "24px" }
+    { value: "24", label: "24px" },
   ];
 
   return (
@@ -79,9 +79,9 @@ export const PopoverPreview = () => {
           </div>
 
           {/* Popover Demo */}
-          <div 
+          <div
             className="flex gap-4 flex-wrap justify-center items-center"
-            style={{ minHeight: '250px' }}
+            style={{ minHeight: "250px" }}
           >
             <Popover
               isOpen={isPopoverOpen}
@@ -91,9 +91,9 @@ export const PopoverPreview = () => {
               position={selectedPosition as any}
               offset={selectedOffset}
             >
-              <Button 
+              <Button
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                style={{ fontSize: '0.875rem', padding: '0.5rem 0.75rem' }}
+                style={{ fontSize: "0.875rem", padding: "0.5rem 0.75rem" }}
               >
                 Toggle Popover
               </Button>
@@ -106,13 +106,13 @@ export const PopoverPreview = () => {
 };
 
 // Custom Popover component with shared state for ComponentRenderer
-export const PopoverWithSharedState = ({ 
-  isPopoverOpen, 
-  setIsPopoverOpen, 
-  selectedPosition, 
-  setSelectedPosition, 
-  selectedOffset, 
-  setSelectedOffset 
+export const PopoverWithSharedState = ({
+  isPopoverOpen,
+  setIsPopoverOpen,
+  selectedPosition,
+  setSelectedPosition,
+  selectedOffset,
+  setSelectedOffset,
 }: any) => {
   const positionOptions = [
     { value: "top", label: "Top" },
@@ -126,7 +126,7 @@ export const PopoverWithSharedState = ({
     { value: "left-end", label: "Left End" },
     { value: "right", label: "Right" },
     { value: "right-start", label: "Right Start" },
-    { value: "right-end", label: "Right End" }
+    { value: "right-end", label: "Right End" },
   ];
 
   const offsetOptions = [
@@ -135,7 +135,7 @@ export const PopoverWithSharedState = ({
     { value: "12", label: "12px" },
     { value: "16", label: "16px" },
     { value: "20", label: "20px" },
-    { value: "24", label: "24px" }
+    { value: "24", label: "24px" },
   ];
 
   return (
@@ -166,9 +166,9 @@ export const PopoverWithSharedState = ({
           </div>
 
           {/* Popover Demo */}
-          <div 
+          <div
             className="flex gap-4 flex-wrap justify-center items-center"
-            style={{ minHeight: '250px' }}
+            style={{ minHeight: "250px" }}
           >
             <Popover
               isOpen={isPopoverOpen}
@@ -178,9 +178,9 @@ export const PopoverWithSharedState = ({
               position={selectedPosition as any}
               offset={selectedOffset}
             >
-              <Button 
+              <Button
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                style={{ fontSize: '0.875rem', padding: '0.5rem 0.75rem' }}
+                style={{ fontSize: "0.875rem", padding: "0.5rem 0.75rem" }}
               >
                 Toggle Popover
               </Button>
@@ -192,7 +192,10 @@ export const PopoverWithSharedState = ({
   );
 };
 
-export const getPopoverCode = (position: string, offset: number) => `import React, { useState } from "react";
+export const getPopoverCode = (
+  position: string,
+  offset: number,
+) => `import React, { useState } from "react";
 import { Button, Popover, Card } from "@azodik/ui";
 
 export const PopoverExample = () => {

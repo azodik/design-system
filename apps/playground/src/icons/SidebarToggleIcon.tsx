@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface SidebarToggleIconProps {
   size?: number;
@@ -7,26 +7,26 @@ interface SidebarToggleIconProps {
   style?: React.CSSProperties;
 }
 
-const SidebarToggleIcon: React.FC<SidebarToggleIconProps> = ({ 
-  size = 16, 
-  isCollapsed = false, 
+const SidebarToggleIcon: React.FC<SidebarToggleIconProps> = ({
+  size = 16,
+  isCollapsed = false,
   className,
-  style 
+  style,
 }) => {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 24 24" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
       fill="currentColor"
       width={size}
       height={size}
       className={className}
-      style={{ 
+      style={{
         transform: isCollapsed ? "rotate(180deg)" : "rotate(0deg)",
         transition: "transform 0.3s ease",
         color: "black",
         opacity: 1,
-        ...style
+        ...style,
       }}
     >
       <path d="M5 5H13V19H5V5ZM19 19H15V5H19V19ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3H4ZM7 12L11 8.5V15.5L7 12Z"></path>

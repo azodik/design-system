@@ -4,11 +4,7 @@ import { Breadcrumb } from "@azodik/ui";
 export const BreadcrumbPreview = () => (
   <div className="space-y-4">
     <Breadcrumb
-      items={[
-        { label: "Home" },
-        { label: "Components" },
-        { label: "Breadcrumb", current: true },
-      ]}
+      items={[{ label: "Home" }, { label: "Components" }, { label: "Breadcrumb", current: true }]}
     />
   </div>
 );

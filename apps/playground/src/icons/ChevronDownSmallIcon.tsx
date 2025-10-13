@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ChevronDownSmallIconProps {
   size?: number;
@@ -6,15 +6,15 @@ interface ChevronDownSmallIconProps {
   style?: React.CSSProperties;
 }
 
-const ChevronDownSmallIcon: React.FC<ChevronDownSmallIconProps> = ({ 
-  size = 12, 
+const ChevronDownSmallIcon: React.FC<ChevronDownSmallIconProps> = ({
+  size = 12,
   className,
-  style 
+  style,
 }) => {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 24 24" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
       fill="currentColor"
       width={size}
       height={size}

@@ -74,22 +74,21 @@ export default function Demo() {
     const checkScreenSize = () => {
       const smallScreen = window.innerWidth <= 1024;
       setIsSmallScreen(smallScreen);
-      
+
       // If it's a small screen, ensure sidebar is closed initially
       if (smallScreen) {
         setIsSidebarOpen(false);
       }
     };
-    
+
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const handleGroupToggle = (groupName: string) => {
     setOpenGroup(openGroup === groupName ? null : groupName);
   };
-
 
   const handleSidebarToggle = () => {
     if (isSmallScreen) {
@@ -104,7 +103,6 @@ export default function Demo() {
       setIsSidebarOpen(false);
     }
   };
-
 
   // Sample data for DataTable
   const users = [
@@ -121,27 +119,27 @@ export default function Demo() {
 
   return (
     <div className="p-md">
-        {/* Back to Home Button */}
-        <div className="mb-md">
-          <Button 
-            variant="tertiary" 
-            onClick={() => navigate('/')}
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px',
-              fontSize: '14px',
-              padding: '8px 16px'
-            }}
-          >
-            ← Back to Home
-          </Button>
-        </div>
+      {/* Back to Home Button */}
+      <div className="mb-md">
+        <Button
+          variant="tertiary"
+          onClick={() => navigate("/")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            fontSize: "14px",
+            padding: "8px 16px",
+          }}
+        >
+          ← Back to Home
+        </Button>
+      </div>
 
-        <h1 className="text-center">Azodik Design System Playground</h1>
-        <p className="text-center">
-          Device: {deviceType} {isMobile && "(Mobile)"}
-        </p>
+      <h1 className="text-center">Azodik Design System Playground</h1>
+      <p className="text-center">
+        Device: {deviceType} {isMobile && "(Mobile)"}
+      </p>
 
       {/* Breadcrumb */}
       <Breadcrumb
@@ -172,7 +170,7 @@ export default function Demo() {
       {/* Buttons Section */}
       <section id="buttons" className="mb-lg">
         <h2>Buttons & Badges</h2>
-        
+
         {/* Button Variants */}
         <div className="mb-md">
           <h3>Button Variants</h3>
@@ -192,10 +190,26 @@ export default function Demo() {
         {/* Button Sizes */}
         <div className="mb-md">
           <h3>Button Sizes</h3>
-          <div style={{ display: 'flex', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
+          <div style={{ display: "flex", gap: "var(--space-xl)", alignItems: "flex-start" }}>
             {/* Primary Buttons */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', alignItems: 'flex-start' }}>
-              <h4 style={{ margin: '0 0 var(--space-sm) 0', fontSize: 'var(--font-size-sm)', fontWeight: '600', color: 'var(--color-text)' }}>Primary</h4>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--space-sm)",
+                alignItems: "flex-start",
+              }}
+            >
+              <h4
+                style={{
+                  margin: "0 0 var(--space-sm) 0",
+                  fontSize: "var(--font-size-sm)",
+                  fontWeight: "600",
+                  color: "var(--color-text)",
+                }}
+              >
+                Primary
+              </h4>
               <Button size="sm" variant="primary">
                 Small Button
               </Button>
@@ -206,10 +220,26 @@ export default function Demo() {
                 Large Button
               </Button>
             </div>
-            
+
             {/* Secondary Buttons */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', alignItems: 'flex-start' }}>
-              <h4 style={{ margin: '0 0 var(--space-sm) 0', fontSize: 'var(--font-size-sm)', fontWeight: '600', color: 'var(--color-text)' }}>Secondary</h4>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--space-sm)",
+                alignItems: "flex-start",
+              }}
+            >
+              <h4
+                style={{
+                  margin: "0 0 var(--space-sm) 0",
+                  fontSize: "var(--font-size-sm)",
+                  fontWeight: "600",
+                  color: "var(--color-text)",
+                }}
+              >
+                Secondary
+              </h4>
               <Button size="sm" variant="secondary">
                 Small Secondary
               </Button>
@@ -326,9 +356,16 @@ export default function Demo() {
       {/* Modal Section */}
       <section className="mb-lg">
         <h2>Modal & Overlays</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--space-xl)",
+            alignItems: "flex-start",
+          }}
+        >
           <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
-          
+
           <Tooltip content="This is a helpful tooltip">
             <Button>Hover for tooltip</Button>
           </Tooltip>
@@ -448,13 +485,21 @@ export default function Demo() {
       {/* Navigation Section */}
       <section className="mb-lg">
         <h2>Navigation Components</h2>
-        
+
         {/* Basic Navigation Demo */}
         <div className="mb-md">
           <h3>Basic Navigation</h3>
-          <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+          <div
+            style={{
+              border: "1px solid var(--color-border)",
+              borderRadius: "var(--radius-md)",
+              overflow: "hidden",
+            }}
+          >
             <Navigation brand="Azodik">
-              <NavItem href="/home" active>Home</NavItem>
+              <NavItem href="/home" active>
+                Home
+              </NavItem>
               <NavItem href="/about">About</NavItem>
               <NavItem href="/services">Services</NavItem>
               <NavItem href="/contact">Contact</NavItem>
@@ -469,14 +514,11 @@ export default function Demo() {
         <div style={{ display: "flex", gap: "1rem", height: "500px" }}>
           {/* Mobile & Tablet Overlay */}
           {isSmallScreen && isSidebarOpen && (
-            <div 
-              className="sidebar-overlay open"
-              onClick={closeSidebar}
-            />
+            <div className="sidebar-overlay open" onClick={closeSidebar} />
           )}
-          
+
           <Sidebar
-            width={isSmallScreen ? 280 : (isSidebarCollapsed ? 60 : 280)} 
+            width={isSmallScreen ? 280 : isSidebarCollapsed ? 60 : 280}
             className={`${!isSmallScreen && isSidebarCollapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""}`}
           >
             <SidebarHeader>
@@ -484,15 +526,15 @@ export default function Demo() {
                 Azodik Inc
               </SidebarBrand>
             </SidebarHeader>
-            
+
             <SidebarContent>
               <SidebarMenu>
                 {menuItems.map((item, index) => (
                   <React.Fragment key={index}>
                     {item.isAccordion ? (
                       <SidebarGroup
-                        title={item.name} 
-                        collapsible 
+                        title={item.name}
+                        collapsible
                         icon={item.icon ? <item.icon size={16} /> : undefined}
                         chevronDownIcon={<ChevronDownIcon size={20} />}
                         isOpen={openGroup === item.name}
@@ -501,7 +543,7 @@ export default function Demo() {
                         <SidebarMenu>
                           {item.subItems?.map((subItem, subIndex) => (
                             <SidebarMenuItem key={subIndex}>
-                              <SidebarMenuButton 
+                              <SidebarMenuButton
                                 href={subItem.href}
                                 icon={subItem.icon ? <subItem.icon size={16} /> : undefined}
                               >
@@ -513,7 +555,7 @@ export default function Demo() {
                       </SidebarGroup>
                     ) : (
                       <SidebarMenuItem>
-                        <SidebarMenuButton 
+                        <SidebarMenuButton
                           href={item.href}
                           icon={item.icon ? <item.icon size={16} /> : undefined}
                         >
@@ -525,7 +567,7 @@ export default function Demo() {
                 ))}
               </SidebarMenu>
             </SidebarContent>
-            
+
             <SidebarFooter>
               <SidebarUserDropdown
                 name="azodik"
@@ -544,7 +586,7 @@ export default function Demo() {
               />
             </SidebarFooter>
           </Sidebar>
-          
+
           <SidebarMainContent
             onSidebarToggle={handleSidebarToggle}
             isSidebarCollapsed={isSidebarCollapsed}
@@ -559,69 +601,79 @@ export default function Demo() {
             }
           >
             {/* Blank Cards */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)", flex: 1 }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)", flex: 1 }}
+            >
               {/* First Card - Smaller */}
-              <div style={{ 
-                height: "250px", 
-                background: "var(--color-surface)", 
-                borderRadius: "var(--radius-lg)", 
-                border: "1px solid var(--color-border)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--color-text)",
-                opacity: 0.5,
-                fontSize: "var(--font-size-sm)"
-              }}>
+              <div
+                style={{
+                  height: "250px",
+                  background: "var(--color-surface)",
+                  borderRadius: "var(--radius-lg)",
+                  border: "1px solid var(--color-border)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--color-text)",
+                  opacity: 0.5,
+                  fontSize: "var(--font-size-sm)",
+                }}
+              >
                 Content placeholder
               </div>
-              
+
               {/* Second Card - Larger */}
-              <div style={{ 
-                flex: 1,
-                minHeight: "300px",
-                background: "var(--color-surface)", 
-                borderRadius: "var(--radius-lg)", 
-                border: "1px solid var(--color-border)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--color-text)",
-                opacity: 0.5,
-                fontSize: "var(--font-size-sm)"
-              }}>
+              <div
+                style={{
+                  flex: 1,
+                  minHeight: "300px",
+                  background: "var(--color-surface)",
+                  borderRadius: "var(--radius-lg)",
+                  border: "1px solid var(--color-border)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--color-text)",
+                  opacity: 0.5,
+                  fontSize: "var(--font-size-sm)",
+                }}
+              >
                 Content placeholder
               </div>
-              
+
               {/* Third Card - Medium */}
-              <div style={{ 
-                height: "200px",
-                background: "var(--color-surface)", 
-                borderRadius: "var(--radius-lg)", 
-                border: "1px solid var(--color-border)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--color-text)",
-                opacity: 0.5,
-                fontSize: "var(--font-size-sm)"
-              }}>
+              <div
+                style={{
+                  height: "200px",
+                  background: "var(--color-surface)",
+                  borderRadius: "var(--radius-lg)",
+                  border: "1px solid var(--color-border)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--color-text)",
+                  opacity: 0.5,
+                  fontSize: "var(--font-size-sm)",
+                }}
+              >
                 Additional content placeholder
               </div>
-              
+
               {/* Fourth Card - Large */}
-              <div style={{ 
-                height: "400px",
-                background: "var(--color-surface)", 
-                borderRadius: "var(--radius-lg)", 
-                border: "1px solid var(--color-border)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--color-text)",
-                opacity: 0.5,
-                fontSize: "var(--font-size-sm)"
-              }}>
+              <div
+                style={{
+                  height: "400px",
+                  background: "var(--color-surface)",
+                  borderRadius: "var(--radius-lg)",
+                  border: "1px solid var(--color-border)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--color-text)",
+                  opacity: 0.5,
+                  fontSize: "var(--font-size-sm)",
+                }}
+              >
                 More content to test scrolling
               </div>
             </div>

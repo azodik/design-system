@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Button } from "@azodik/ui";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { useNavigate } from 'react-router-dom';
-import { componentsMenuItems } from '../../data/componentsMenu';
-import { RightLongArrowIcon } from '../../icons';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useNavigate } from "react-router-dom";
+import { componentsMenuItems } from "../../data/componentsMenu";
+import { RightLongArrowIcon } from "../../icons";
 
 export default function GettingStarted() {
   const navigate = useNavigate();
@@ -29,8 +29,9 @@ export default function GettingStarted() {
       <div className="text-center mb-16">
         <h1 className="text-5xl font-bold text-gray-900 mb-6">Getting Started</h1>
         <p className="text-md text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Welcome to the Azodik Design System! A modern, accessible, and highly customizable component library built with React and TypeScript. 
-          This comprehensive guide will help you integrate our components into your projects quickly and efficiently.
+          Welcome to the Azodik Design System! A modern, accessible, and highly customizable
+          component library built with React and TypeScript. This comprehensive guide will help you
+          integrate our components into your projects quickly and efficiently.
         </p>
         <div className="mt-8 flex justify-center space-x-8 text-sm text-gray-500">
           <div className="flex items-center space-x-2">
@@ -47,18 +48,18 @@ export default function GettingStarted() {
           </div>
         </div>
       </div>
-      
-      <div className="prose max-w-none">
 
+      <div className="prose max-w-none">
         <div className="mb-16">
           <h2 className="text-3xl font-semibold text-gray-900 mb-8">Installation</h2>
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Start</h3>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              Install the Azodik UI package using your preferred package manager. Our components are built with modern React patterns and include full TypeScript support.
+              Install the Azodik UI package using your preferred package manager. Our components are
+              built with modern React patterns and include full TypeScript support.
             </p>
           </div>
-          
+
           <div className="mb-6">
             <p className="text-gray-700 mb-4 text-sm font-medium">Install the package:</p>
             <SyntaxHighlighter
@@ -66,14 +67,14 @@ export default function GettingStarted() {
               style={vscDarkPlus}
               customStyle={{
                 margin: 0,
-                borderRadius: '0.5rem',
-                fontSize: '0.875rem',
-                lineHeight: '1.6',
-                padding: '1.25rem',
-                background: '#111827',
-                color: '#f9fafb',
-                scrollbarWidth: 'thin',
-                scrollbarColor: '#d1d5db transparent'
+                borderRadius: "0.5rem",
+                fontSize: "0.875rem",
+                lineHeight: "1.6",
+                padding: "1.25rem",
+                background: "#111827",
+                color: "#f9fafb",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#d1d5db transparent",
               }}
               wrapLines={true}
               wrapLongLines={true}
@@ -105,7 +106,8 @@ export default function GettingStarted() {
         <div className="mb-16">
           <h2 className="text-3xl font-semibold text-gray-900 mb-4 text-center">What's Included</h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Our design system provides everything you need to build modern, accessible, and beautiful user interfaces.
+            Our design system provides everything you need to build modern, accessible, and
+            beautiful user interfaces.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center p-8 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
@@ -113,7 +115,10 @@ export default function GettingStarted() {
                 <span className="text-white text-3xl">🧩</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">50+ Components</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">Comprehensive collection of buttons, forms, navigation, data display, and layout components</p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Comprehensive collection of buttons, forms, navigation, data display, and layout
+                components
+              </p>
               <div className="text-xs text-gray-500 space-y-1">
                 <div>• Form Controls & Inputs</div>
                 <div>• Navigation & Layout</div>
@@ -126,7 +131,10 @@ export default function GettingStarted() {
                 <span className="text-white text-3xl">🎨</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Consistent Design</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">Unified design language with design tokens, consistent spacing, and cohesive visual hierarchy</p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Unified design language with design tokens, consistent spacing, and cohesive visual
+                hierarchy
+              </p>
               <div className="text-xs text-gray-500 space-y-1">
                 <div>• Design Tokens</div>
                 <div>• Color System</div>
@@ -139,7 +147,9 @@ export default function GettingStarted() {
                 <span className="text-white text-3xl">⚡</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">TypeScript Ready</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">Full type safety, IntelliSense support, and excellent developer experience</p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Full type safety, IntelliSense support, and excellent developer experience
+              </p>
               <div className="text-xs text-gray-500 space-y-1">
                 <div>• Type Definitions</div>
                 <div>• IntelliSense Support</div>
@@ -153,7 +163,8 @@ export default function GettingStarted() {
         <div className="mb-16">
           <h2 className="text-3xl font-semibold text-gray-900 mb-4 text-center">Next Steps</h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Follow these steps to get the most out of the Azodik Design System and start building amazing user interfaces.
+            Follow these steps to get the most out of the Azodik Design System and start building
+            amazing user interfaces.
           </p>
           <div className="max-w-4xl mx-auto">
             <ol className="space-y-10 list-none">
@@ -161,13 +172,15 @@ export default function GettingStarted() {
                 <div className="flex-1 pt-2">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-3">Explore Components</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Browse through our comprehensive component library to discover what's available. Each component includes live examples, 
-                    interactive demos, and detailed documentation to help you understand how to use them effectively.
+                    Browse through our comprehensive component library to discover what's available.
+                    Each component includes live examples, interactive demos, and detailed
+                    documentation to help you understand how to use them effectively.
                   </p>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="text-sm text-gray-700">
-                      <strong>Pro Tip:</strong> Use the search functionality to quickly find components by name or functionality. 
-                      All components are organized by category for easy navigation.
+                      <strong>Pro Tip:</strong> Use the search functionality to quickly find
+                      components by name or functionality. All components are organized by category
+                      for easy navigation.
                     </p>
                   </div>
                 </div>
@@ -176,13 +189,15 @@ export default function GettingStarted() {
                 <div className="flex-1 pt-2">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-3">Copy Code Examples</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Use our interactive examples to copy code snippets and integrate them into your project. Each example is 
-                    production-ready and includes proper TypeScript types and accessibility features.
+                    Use our interactive examples to copy code snippets and integrate them into your
+                    project. Each example is production-ready and includes proper TypeScript types
+                    and accessibility features.
                   </p>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="text-sm text-gray-700">
-                      <strong>Pro Tip:</strong> Customize the examples using the interactive controls before copying the code. 
-                      This helps you understand the component's API and customization options.
+                      <strong>Pro Tip:</strong> Customize the examples using the interactive
+                      controls before copying the code. This helps you understand the component's
+                      API and customization options.
                     </p>
                   </div>
                 </div>
@@ -191,13 +206,15 @@ export default function GettingStarted() {
                 <div className="flex-1 pt-2">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-3">Customize & Deploy</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Customize components to match your brand identity using our theming system and design tokens. 
-                    Deploy your application with confidence knowing all components are production-tested and accessible.
+                    Customize components to match your brand identity using our theming system and
+                    design tokens. Deploy your application with confidence knowing all components
+                    are production-tested and accessible.
                   </p>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="text-sm text-gray-700">
-                      <strong>Pro Tip:</strong> Use CSS custom properties to create consistent theming across your application. 
-                      Our design tokens make it easy to maintain brand consistency.
+                      <strong>Pro Tip:</strong> Use CSS custom properties to create consistent
+                      theming across your application. Our design tokens make it easy to maintain
+                      brand consistency.
                     </p>
                   </div>
                 </div>
@@ -206,7 +223,7 @@ export default function GettingStarted() {
           </div>
         </div>
       </div>
-      
+
       {/* Navigation Button */}
       <div className="flex justify-end items-center mt-8">
         <Button
@@ -215,7 +232,7 @@ export default function GettingStarted() {
           size="md"
           className="flex items-center gap-2"
         >
-          <span className="font-medium">{next?.name || 'Next'}</span>
+          <span className="font-medium">{next?.name || "Next"}</span>
           <RightLongArrowIcon size={16} color="currentColor" />
         </Button>
       </div>

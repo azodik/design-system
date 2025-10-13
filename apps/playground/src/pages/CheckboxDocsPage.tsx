@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Checkbox from '../docs/Checkbox.mdx';
-import { Checkbox as CheckboxComponent, Card, CardContent } from '@azodik/ui';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
-import { ComponentNavigation } from '../components/docs';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Checkbox from "../docs/Checkbox.mdx";
+import { Checkbox as CheckboxComponent, Card, CardContent } from "@azodik/ui";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
+import { ComponentNavigation } from "../components/docs";
 
 const components = {
   Checkbox: CheckboxComponent,
@@ -16,7 +16,7 @@ export default function CheckboxDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Checkbox", current: true }
+    { label: "Checkbox", current: true },
   ];
 
   return (

@@ -1,11 +1,17 @@
 import React from "react";
-import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell, Card } from "@azodik/ui";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+  Card,
+} from "@azodik/ui";
 
 export const TablePreview = () => (
   <div className="flex-vertical-lg">
-    <Card 
-      className="p-6"
-    >
+    <Card className="p-6">
       <Table striped hover>
         <TableHeader>
           <TableRow>

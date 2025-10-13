@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { CopyIcon, TickIcon } from '../../icons';
+import React, { useState } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { CopyIcon, TickIcon } from "../../icons";
 
 interface CodeBlockProps {
   children: string;
@@ -9,11 +9,7 @@ interface CodeBlockProps {
   title?: string;
 }
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({ 
-  children, 
-  language = 'tsx',
-  title 
-}) => {
+export const CodeBlock: React.FC<CodeBlockProps> = ({ children, language = "tsx", title }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -22,7 +18,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy code:', err);
+      console.error("Failed to copy code:", err);
     }
   };
 
@@ -33,16 +29,16 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           {title}
         </div>
       )}
-      <div 
+      <div
         className="relative"
-        style={{ 
-          position: 'relative'
+        style={{
+          position: "relative",
         }}
       >
         <button
           onClick={handleCopy}
           className="absolute z-10 p-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
-          style={{ top: '10px', right: '10px' }}
+          style={{ top: "10px", right: "10px" }}
           title={copied ? "Copied!" : "Copy code"}
         >
           {copied ? (
@@ -56,10 +52,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           style={vscDarkPlus}
           customStyle={{
             margin: 0,
-            borderRadius: title ? '0 0 8px 8px' : '8px',
-            fontSize: '14px',
-            paddingTop: '20px',
-            paddingBottom: '20px',
+            borderRadius: title ? "0 0 8px 8px" : "8px",
+            fontSize: "14px",
+            paddingTop: "20px",
+            paddingBottom: "20px",
           }}
         >
           {children}

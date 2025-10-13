@@ -17,10 +17,7 @@ export function Breadcrumb({ items, className = "", ...props }: BreadcrumbProps)
         <div key={index} className={`breadcrumb-item ${item.current ? "current" : ""}`}>
           {item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}
           {index < items.length - 1 && (
-            <ChevronRightIcon 
-              size={16} 
-              className="breadcrumb-separator"
-            />
+            <ChevronRightIcon size={16} className="breadcrumb-separator" />
           )}
         </div>
       ))}

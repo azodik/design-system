@@ -13,19 +13,24 @@ This is a **monorepo** managed with **pnpm** and **Turbo**, containing:
 ## 📦 Packages
 
 ### `@azodik/core`
+
 CSS-only design system with:
+
 - **Design Tokens**: Colors, typography, spacing, borders, shadows
 - **Components**: Button, Card, Alert, Avatar, Badge, Input, Modal, Navigation, Table
 - **Utilities**: Layout helpers, responsive utilities
 - **Theming**: Light/dark mode support
 
 ### `@azodik/ui`
+
 React components with TypeScript support:
+
 - **Button**: Primary, secondary, tertiary variants
 - **Card**: Flexible container component
 - **useResponsive**: Hook for responsive design and custom media queries
 
 ### `@azodik/playground`
+
 Development environment showcasing all components and features.
 
 ## 🚀 Quick Start
@@ -44,7 +49,7 @@ pnpm dev
 
 ```html
 <!-- Import the core CSS -->
-<link rel="stylesheet" href="@azodik/core/index.css">
+<link rel="stylesheet" href="@azodik/core/index.css" />
 
 <!-- Use CSS classes -->
 <button class="btn btn-primary">Primary Button</button>
@@ -54,11 +59,11 @@ pnpm dev
 ### Using React Components
 
 ```tsx
-import { Button, Card, useResponsive } from '@azodik/ui';
+import { Button, Card, useResponsive } from "@azodik/ui";
 
 function MyComponent() {
   const { deviceType, isMobile } = useResponsive();
-  
+
   return (
     <div>
       <Button variant="primary">Click me</Button>
@@ -74,6 +79,7 @@ function MyComponent() {
 ## 🎨 Design Tokens
 
 ### Colors
+
 - **Primary**: `#f97316` (Orange)
 - **Secondary**: `#ea580c` (Dark Orange)
 - **Background**: `#ffffff` (White)
@@ -81,13 +87,16 @@ function MyComponent() {
 - **Surface**: `#f9fafb` (Light Gray)
 
 ### Typography
+
 - **Font Family**: Montserrat, system-ui, sans-serif
 - **Sizes**: Small (0.875rem), Medium (1rem), Large (1.25rem)
 
 ### Spacing
+
 - **XS**: 4px, **SM**: 8px, **MD**: 16px, **LG**: 24px, **XL**: 32px
 
 ### Breakpoints
+
 - **Mobile**: `(max-width: 767px)`
 - **Tablet**: `(min-width: 768px) and (max-width: 1023px)`
 - **Desktop**: `(min-width: 1024px)`
@@ -95,6 +104,7 @@ function MyComponent() {
 ## 🧩 Components
 
 ### Button
+
 ```tsx
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -102,6 +112,7 @@ function MyComponent() {
 ```
 
 ### Card
+
 ```tsx
 <Card className="p-md">
   <h2>Card Title</h2>
@@ -110,6 +121,7 @@ function MyComponent() {
 ```
 
 ### useResponsive Hook
+
 ```tsx
 const { deviceType, isMobile, isTablet, isDesktop, matches } = useResponsive();
 
@@ -117,8 +129,8 @@ const { deviceType, isMobile, isTablet, isDesktop, matches } = useResponsive();
 console.log(deviceType); // 'mobile' | 'tablet' | 'desktop'
 
 // Custom media queries
-const isLargeScreen = matches('(min-width: 1440px)');
-const isDarkMode = matches('(prefers-color-scheme: dark)');
+const isLargeScreen = matches("(min-width: 1440px)");
+const isDarkMode = matches("(prefers-color-scheme: dark)");
 ```
 
 ## 🛠️ Development
@@ -177,21 +189,29 @@ design-system/
 The design system includes comprehensive responsive utilities:
 
 ### CSS Classes
+
 ```css
-.mt-md { margin-top: var(--space-md); }
-.p-md { padding: var(--space-md); }
-.text-center { text-align: center; }
+.mt-md {
+  margin-top: var(--space-md);
+}
+.p-md {
+  padding: var(--space-md);
+}
+.text-center {
+  text-align: center;
+}
 ```
 
 ### React Hook
+
 ```tsx
 const { deviceType, isMobile, matches } = useResponsive();
 
 // Custom breakpoints
 const custom = useResponsive({
-  mobile: '(max-width: 599px)',
-  tablet: '(min-width: 600px) and (max-width: 1199px)',
-  desktop: '(min-width: 1200px)'
+  mobile: "(max-width: 599px)",
+  tablet: "(min-width: 600px) and (max-width: 1199px)",
+  desktop: "(min-width: 1200px)",
 });
 ```
 

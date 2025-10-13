@@ -10,12 +10,8 @@ export const ButtonPreview = () => (
         <Button variant="primary" onClick={() => alert("Primary clicked!")}>
           Primary Button
         </Button>
-        <Button variant="secondary">
-          Secondary Button
-        </Button>
-        <Button variant="tertiary">
-          Tertiary Button
-        </Button>
+        <Button variant="secondary">Secondary Button</Button>
+        <Button variant="tertiary">Tertiary Button</Button>
       </div>
     </div>
 
@@ -23,9 +19,15 @@ export const ButtonPreview = () => (
     <div>
       <h3 className="component-section-title">Button Sizes</h3>
       <div className="flex flex-col gap-sm items-center">
-        <Button size="sm" variant="primary">Small Primary</Button>
-        <Button size="md" variant="secondary" width={200}>Medium Secondary</Button>
-        <Button size="lg" variant="tertiary" width={300}>Large Tertiary</Button>
+        <Button size="sm" variant="primary">
+          Small Primary
+        </Button>
+        <Button size="md" variant="secondary" width={200}>
+          Medium Secondary
+        </Button>
+        <Button size="lg" variant="tertiary" width={300}>
+          Large Tertiary
+        </Button>
       </div>
     </div>
   </div>

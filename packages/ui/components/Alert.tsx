@@ -40,18 +40,14 @@ export default function Alert({
   };
 
   const alertStyle: React.CSSProperties = {
-    ...(padding && { padding: typeof padding === 'number' ? `${padding}px` : padding }),
-    ...(width && { width: typeof width === 'number' ? `${width}px` : width }),
-    ...(height && { height: typeof height === 'number' ? `${height}px` : height }),
+    ...(padding && { padding: typeof padding === "number" ? `${padding}px` : padding }),
+    ...(width && { width: typeof width === "number" ? `${width}px` : width }),
+    ...(height && { height: typeof height === "number" ? `${height}px` : height }),
     ...props.style,
   };
 
   return (
-    <div 
-      className={`alert alert-${variant} ${className}`} 
-      style={alertStyle}
-      {...props}
-    >
+    <div className={`alert alert-${variant} ${className}`} style={alertStyle} {...props}>
       {icon !== null && <div className="alert-icon">{getIcon()}</div>}
       <div className="alert-content">
         {title && <div className="alert-title">{title}</div>}

@@ -12,10 +12,7 @@ export const ModalPreview = () => {
           <div className="flex-vertical">
             <div className="flex gap-sm flex-wrap">
               <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
-              <Button 
-                variant="destructive" 
-                onClick={() => setIsDeleteModalOpen(true)}
-              >
+              <Button variant="destructive" onClick={() => setIsDeleteModalOpen(true)}>
                 Delete Item
               </Button>
             </div>
@@ -23,15 +20,15 @@ export const ModalPreview = () => {
         </Card>
       </div>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        size="md"
-      >
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} size="md">
         <ModalHeader onClose={() => setIsModalOpen(false)}>
           <h2 className="modal-title">Confirm Action</h2>
         </ModalHeader>
-        <p>This is the modal of size="md". Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit illum qui, voluptatibus mollitia sed perferendis in eligendi. Ea tempore ex voluptatibus dolorem dignissimos quam soluta tempora nisi, enim adipisci dicta.</p>
+        <p>
+          This is the modal of size="md". Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Sit illum qui, voluptatibus mollitia sed perferendis in eligendi. Ea tempore ex
+          voluptatibus dolorem dignissimos quam soluta tempora nisi, enim adipisci dicta.
+        </p>
         <ModalFooter className="items-center justify-center">
           <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
             Cancel
@@ -53,10 +50,10 @@ export const ModalPreview = () => {
           <Button variant="secondary" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel
           </Button>
-          <Button 
-            variant="destructive" 
+          <Button
+            variant="destructive"
             onClick={() => setIsDeleteModalOpen(false)}
-            style={{ backgroundColor: '#dc2626' }}
+            style={{ backgroundColor: "#dc2626" }}
           >
             Delete
           </Button>
@@ -136,7 +133,7 @@ export const ModalExample = () => {
 
 export const FormModalExample = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [formData, setFormData] = useState({ name: "", email: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -153,28 +150,30 @@ export const FormModalExample = () => {
         <form onSubmit={handleSubmit} className="p-6 flex-vertical">
           <div>
             <label htmlFor="name">Name</label>
-            <Input 
+            <Input
               id="name"
               value={formData.name}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, name: e.target.value})}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
           </div>
           <div>
             <label htmlFor="email">Email</label>
-            <Input 
+            <Input
               id="email-preview"
               type="email"
               value={formData.email}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, email: e.target.value})}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
           <div className="flex justify-center items-center gap-lg">
             <Button variant="outline" onClick={() => setIsOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit">
-              Add User
-            </Button>
+            <Button type="submit">Add User</Button>
           </div>
         </form>
       </Modal>

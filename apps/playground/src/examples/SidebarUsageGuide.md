@@ -16,22 +16,20 @@ import {
   SidebarItem,
   SidebarBrand,
   SidebarUser,
-  SidebarMainContent
-} from '@azodik/ui';
+  SidebarMainContent,
+} from "@azodik/ui";
 
 <Sidebar width={280} collapsed={false}>
   <SidebarHeader>
     <SidebarBrand>My App</SidebarBrand>
   </SidebarHeader>
-  
-  <SidebarContent>
-    {/* Navigation items */}
-  </SidebarContent>
-  
+
+  <SidebarContent>{/* Navigation items */}</SidebarContent>
+
   <SidebarFooter>
     <SidebarUser>John Doe</SidebarUser>
   </SidebarFooter>
-</Sidebar>
+</Sidebar>;
 ```
 
 ## Component Hierarchy
@@ -62,7 +60,7 @@ function SimpleSidebar() {
       <SidebarHeader>
         <SidebarBrand>My App</SidebarBrand>
       </SidebarHeader>
-      
+
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -77,7 +75,7 @@ function SimpleSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
-      
+
       <SidebarFooter>
         <SidebarUser>John Doe</SidebarUser>
       </SidebarFooter>
@@ -95,7 +93,7 @@ function GroupedSidebar() {
       <SidebarHeader>
         <SidebarBrand logo={<Logo />}>My App</SidebarBrand>
       </SidebarHeader>
-      
+
       <SidebarContent>
         {/* Main Navigation */}
         <SidebarGroup title="Main">
@@ -105,7 +103,7 @@ function GroupedSidebar() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
-        
+
         {/* Management Section */}
         <SidebarGroup title="Management" collapsible>
           <SidebarMenu>
@@ -128,22 +126,18 @@ function GroupedSidebar() {
 ```tsx
 function SidebarWithUserDropdown() {
   const userMenuItems = [
-    { label: 'Profile', onClick: () => console.log('Profile') },
-    { label: 'Settings', onClick: () => console.log('Settings') },
+    { label: "Profile", onClick: () => console.log("Profile") },
+    { label: "Settings", onClick: () => console.log("Settings") },
     { divider: true },
-    { label: 'Sign out', onClick: () => console.log('Sign out') }
+    { label: "Sign out", onClick: () => console.log("Sign out") },
   ];
 
   return (
     <Sidebar width={280}>
       {/* ... other content ... */}
-      
+
       <SidebarFooter>
-        <SidebarUserDropdown
-          name="John Doe"
-          email="john@example.com"
-          menuItems={userMenuItems}
-        />
+        <SidebarUserDropdown name="John Doe" email="john@example.com" menuItems={userMenuItems} />
       </SidebarFooter>
     </Sidebar>
   );
@@ -158,14 +152,10 @@ function CollapsibleSidebar() {
 
   return (
     <div className="flex h-screen">
-      <Sidebar 
-        width={280} 
-        collapsed={isCollapsed}
-        className="bg-white border-r"
-      >
+      <Sidebar width={280} collapsed={isCollapsed} className="bg-white border-r">
         {/* ... sidebar content ... */}
       </Sidebar>
-      
+
       <SidebarMainContent
         onSidebarToggle={() => setIsCollapsed(!isCollapsed)}
         isSidebarCollapsed={isCollapsed}
@@ -182,46 +172,46 @@ function CollapsibleSidebar() {
 
 ### Sidebar Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `width` | `number` | `250` | Sidebar width in pixels |
-| `collapsed` | `boolean` | `false` | Whether sidebar is collapsed |
-| `showHeader` | `boolean` | `true` | Show/hide header |
-| `showFooter` | `boolean` | `true` | Show/hide footer |
-| `showBreadcrumb` | `boolean` | `true` | Show/hide breadcrumb |
+| Prop             | Type      | Default | Description                  |
+| ---------------- | --------- | ------- | ---------------------------- |
+| `width`          | `number`  | `250`   | Sidebar width in pixels      |
+| `collapsed`      | `boolean` | `false` | Whether sidebar is collapsed |
+| `showHeader`     | `boolean` | `true`  | Show/hide header             |
+| `showFooter`     | `boolean` | `true`  | Show/hide footer             |
+| `showBreadcrumb` | `boolean` | `true`  | Show/hide breadcrumb         |
 
 ### SidebarGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | - | Group title |
-| `collapsible` | `boolean` | `false` | Whether group can be collapsed |
-| `isOpen` | `boolean` | `false` | Initial open state |
-| `onToggle` | `() => void` | - | Toggle handler |
-| `icon` | `ReactNode` | - | Group icon |
-| `show` | `boolean` | `true` | Show/hide group |
+| Prop          | Type         | Default | Description                    |
+| ------------- | ------------ | ------- | ------------------------------ |
+| `title`       | `string`     | -       | Group title                    |
+| `collapsible` | `boolean`    | `false` | Whether group can be collapsed |
+| `isOpen`      | `boolean`    | `false` | Initial open state             |
+| `onToggle`    | `() => void` | -       | Toggle handler                 |
+| `icon`        | `ReactNode`  | -       | Group icon                     |
+| `show`        | `boolean`    | `true`  | Show/hide group                |
 
 ### SidebarItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `icon` | `ReactNode` | - | Item icon |
-| `active` | `boolean` | `false` | Active state |
-| `badge` | `string \| number` | - | Badge content |
-| `tooltip` | `string` | - | Tooltip text |
-| `show` | `boolean` | `true` | Show/hide item |
+| Prop      | Type               | Default | Description    |
+| --------- | ------------------ | ------- | -------------- |
+| `icon`    | `ReactNode`        | -       | Item icon      |
+| `active`  | `boolean`          | `false` | Active state   |
+| `badge`   | `string \| number` | -       | Badge content  |
+| `tooltip` | `string`           | -       | Tooltip text   |
+| `show`    | `boolean`          | `true`  | Show/hide item |
 
 ### SidebarUserDropdown Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | - | User name |
-| `email` | `string` | - | User email |
-| `avatar` | `ReactNode` | - | Custom avatar |
-| `companyName` | `string` | - | Company name |
-| `companyEmail` | `string` | - | Company email |
-| `menuItems` | `Array` | - | Dropdown menu items |
-| `collapsed` | `boolean` | `false` | Collapsed state |
+| Prop           | Type        | Default | Description         |
+| -------------- | ----------- | ------- | ------------------- |
+| `name`         | `string`    | -       | User name           |
+| `email`        | `string`    | -       | User email          |
+| `avatar`       | `ReactNode` | -       | Custom avatar       |
+| `companyName`  | `string`    | -       | Company name        |
+| `companyEmail` | `string`    | -       | Company email       |
+| `menuItems`    | `Array`     | -       | Dropdown menu items |
+| `collapsed`    | `boolean`   | `false` | Collapsed state     |
 
 ## Styling
 
@@ -290,19 +280,12 @@ The sidebar uses the following CSS classes that you can customize:
 ### Custom Styling
 
 ```tsx
-<Sidebar 
-  className="bg-gray-900 text-white border-r-2 border-gray-700"
-  width={300}
->
+<Sidebar className="bg-gray-900 text-white border-r-2 border-gray-700" width={300}>
   <SidebarHeader className="bg-gray-800 border-b border-gray-700">
-    <SidebarBrand className="text-xl font-bold">
-      My App
-    </SidebarBrand>
+    <SidebarBrand className="text-xl font-bold">My App</SidebarBrand>
   </SidebarHeader>
-  
-  <SidebarContent className="bg-gray-900">
-    {/* Content */}
-  </SidebarContent>
+
+  <SidebarContent className="bg-gray-900">{/* Content */}</SidebarContent>
 </Sidebar>
 ```
 
@@ -330,15 +313,15 @@ The sidebar uses the following CSS classes that you can customize:
 
 ```tsx
 function NavigationSidebar() {
-  const [activeItem, setActiveItem] = useState('dashboard');
-  
+  const [activeItem, setActiveItem] = useState("dashboard");
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton
           href="/dashboard"
-          active={activeItem === 'dashboard'}
-          onClick={() => setActiveItem('dashboard')}
+          active={activeItem === "dashboard"}
+          onClick={() => setActiveItem("dashboard")}
         >
           Dashboard
         </SidebarMenuButton>
@@ -365,20 +348,16 @@ function NavigationSidebar() {
 ```tsx
 function ResponsiveSidebar() {
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  
+
   return (
-    <Sidebar 
-      width={isMobile ? 0 : 280}
-      collapsed={isMobile}
-      className={isMobile ? 'hidden' : ''}
-    >
+    <Sidebar width={isMobile ? 0 : 280} collapsed={isMobile} className={isMobile ? "hidden" : ""}>
       {/* Content */}
     </Sidebar>
   );
@@ -397,7 +376,7 @@ function AdminDashboard() {
         <SidebarHeader>
           <SidebarBrand logo={<AdminLogo />}>Admin Panel</SidebarBrand>
         </SidebarHeader>
-        
+
         <SidebarContent>
           <SidebarGroup title="Overview">
             <SidebarMenu>
@@ -406,7 +385,7 @@ function AdminDashboard() {
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroup>
-          
+
           <SidebarGroup title="Management">
             <SidebarMenu>
               <SidebarMenuItem>
@@ -418,7 +397,7 @@ function AdminDashboard() {
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
-        
+
         <SidebarFooter>
           <SidebarUserDropdown
             name="Admin User"
@@ -427,10 +406,8 @@ function AdminDashboard() {
           />
         </SidebarFooter>
       </Sidebar>
-      
-      <SidebarMainContent>
-        {/* Dashboard content */}
-      </SidebarMainContent>
+
+      <SidebarMainContent>{/* Dashboard content */}</SidebarMainContent>
     </div>
   );
 }
@@ -445,7 +422,7 @@ function EcommerceApp() {
       <SidebarHeader>
         <SidebarBrand logo={<ShopLogo />}>My Store</SidebarBrand>
       </SidebarHeader>
-      
+
       <SidebarContent>
         <SidebarGroup title="Sales">
           <SidebarMenu>
@@ -457,7 +434,7 @@ function EcommerceApp() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
-        
+
         <SidebarGroup title="Analytics">
           <SidebarMenu>
             <SidebarMenuItem>
@@ -486,7 +463,7 @@ function EcommerceApp() {
 // Add debug logging
 <SidebarItem
   onClick={(e) => {
-    console.log('Item clicked:', e.target);
+    console.log("Item clicked:", e.target);
     // Your handler
   }}
 >

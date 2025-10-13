@@ -1,6 +1,6 @@
-declare module 'react-syntax-highlighter' {
-  import { ComponentType } from 'react';
-  
+declare module "react-syntax-highlighter" {
+  import { ComponentType } from "react";
+
   export interface SyntaxHighlighterProps {
     language?: string;
     style?: any;
@@ -9,13 +9,13 @@ declare module 'react-syntax-highlighter' {
     wrapLongLines?: boolean;
     children?: string;
   }
-  
+
   export const Prism: ComponentType<SyntaxHighlighterProps>;
   export const Light: ComponentType<SyntaxHighlighterProps>;
   export const Dark: ComponentType<SyntaxHighlighterProps>;
 }
 
-declare module 'react-syntax-highlighter/dist/esm/styles/prism' {
+declare module "react-syntax-highlighter/dist/esm/styles/prism" {
   export const vscDarkPlus: any;
   export const vs: any;
   export const vscDark: any;

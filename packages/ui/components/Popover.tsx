@@ -6,7 +6,19 @@ export interface PopoverProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   isOpen: boolean;
   onClose: () => void;
   title?: string;
-  position?: "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end";
+  position?:
+    | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end"
+    | "right"
+    | "right-start"
+    | "right-end";
   offset?: number;
 }
 
@@ -44,7 +56,7 @@ export function Popover({
 
   const getPositionStyles = () => {
     const styles: React.CSSProperties = {};
-    
+
     switch (position) {
       case "top":
         styles.bottom = "100%";
@@ -116,12 +128,15 @@ export function Popover({
         styles.transform = "translateX(-50%)";
         styles.marginTop = `${offset}px`;
     }
-    
+
     return styles;
   };
 
   return (
-    <div className={`popover ${isOpen ? "open" : ""} ${getPositionClasses()} ${className}`} {...props}>
+    <div
+      className={`popover ${isOpen ? "open" : ""} ${getPositionClasses()} ${className}`}
+      {...props}
+    >
       {children}
       <div className="popover-content" style={getPositionStyles()}>
         {title && <div className="popover-title">{title}</div>}

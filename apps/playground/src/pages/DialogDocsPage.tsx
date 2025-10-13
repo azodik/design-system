@@ -1,10 +1,23 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Dialog from '../docs/Dialog.mdx';
-import { Dialog as DialogComponent, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Dialog from "../docs/Dialog.mdx";
+import {
+  Dialog as DialogComponent,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogBody,
+  DialogFooter,
+  DialogClose,
+  Button,
+  Card,
+  CardContent,
+} from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Dialog: DialogComponent,
@@ -25,7 +38,7 @@ export default function DialogDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Dialog", current: true }
+    { label: "Dialog", current: true },
   ];
 
   return (

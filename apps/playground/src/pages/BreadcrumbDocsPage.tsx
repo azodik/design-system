@@ -1,9 +1,9 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Breadcrumb from '../docs/Breadcrumb.mdx';
-import { Breadcrumb as BreadcrumbComponent, Card, CardContent } from '@azodik/ui';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Breadcrumb from "../docs/Breadcrumb.mdx";
+import { Breadcrumb as BreadcrumbComponent, Card, CardContent } from "@azodik/ui";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Breadcrumb: BreadcrumbComponent,
@@ -15,7 +15,7 @@ export default function BreadcrumbDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Breadcrumb", current: true }
+    { label: "Breadcrumb", current: true },
   ];
 
   return (

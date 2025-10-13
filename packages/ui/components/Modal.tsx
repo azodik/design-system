@@ -57,7 +57,7 @@ export default function Modal({
 
   // Check if children contains ModalHeader to avoid duplicate headers
   const hasModalHeader = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && child.type === ModalHeader
+    (child) => React.isValidElement(child) && child.type === ModalHeader,
   );
 
   return (
@@ -81,23 +81,18 @@ export interface ModalHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
 }
 
-export function ModalHeader({ 
-  children, 
-  className = "", 
-  showCloseButton = true, 
+export function ModalHeader({
+  children,
+  className = "",
+  showCloseButton = true,
   onClose,
-  ...props 
+  ...props
 }: ModalHeaderProps) {
   return (
     <div className={`modal-header ${className}`} {...props}>
       {children}
       {showCloseButton && onClose && (
-        <button
-          type="button"
-          className="modal-close"
-          onClick={onClose}
-          aria-label="Close modal"
-        >
+        <button type="button" className="modal-close" onClick={onClose} aria-label="Close modal">
           ×
         </button>
       )}
@@ -117,4 +112,3 @@ export function ModalFooter({ children, className = "", ...props }: ModalFooterP
     </div>
   );
 }
-

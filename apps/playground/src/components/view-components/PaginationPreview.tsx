@@ -5,13 +5,13 @@ export const PaginationPreview = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div 
+    <div
       className="flex-vertical"
       style={{
-        width: '100%',
-        minWidth: '280px',
-        maxWidth: '100%',
-        overflow: 'hidden'
+        width: "100%",
+        minWidth: "280px",
+        maxWidth: "100%",
+        overflow: "hidden",
       }}
     >
       <Pagination

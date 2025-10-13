@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Sidebar,
   SidebarHeader,
@@ -14,9 +14,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarGroupLabel,
-  SidebarGroupContent
-} from '@azodik/ui';
-import { Button, Avatar, Badge } from '@azodik/ui';
+  SidebarGroupContent,
+} from "@azodik/ui";
+import { Button, Avatar, Badge } from "@azodik/ui";
 
 // Icons (you can replace with your preferred icon library)
 const HomeIcon = () => (
@@ -57,7 +57,7 @@ const ChevronRightIcon = () => (
 
 export default function SidebarExample() {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const [activeItem, setActiveItem] = useState("dashboard");
 
   const handleSidebarToggle = () => {
     setIsCollapsed(!isCollapsed);
@@ -69,30 +69,26 @@ export default function SidebarExample() {
 
   // User dropdown menu items
   const userMenuItems = [
-    { label: 'Profile', onClick: () => console.log('Profile clicked') },
-    { label: 'Settings', onClick: () => console.log('Settings clicked') },
+    { label: "Profile", onClick: () => console.log("Profile clicked") },
+    { label: "Settings", onClick: () => console.log("Settings clicked") },
     { divider: true },
-    { label: 'Sign out', onClick: () => console.log('Sign out clicked') }
+    { label: "Sign out", onClick: () => console.log("Sign out clicked") },
   ];
 
   // Breadcrumb items
   const breadcrumbItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Dashboard', href: '/dashboard' },
-    { label: 'Analytics', current: true }
+    { label: "Home", href: "/" },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Analytics", current: true },
   ];
 
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
-      <Sidebar 
-        width={280} 
-        collapsed={isCollapsed}
-        className="bg-white border-r border-gray-200"
-      >
+      <Sidebar width={280} collapsed={isCollapsed} className="bg-white border-r border-gray-200">
         {/* Sidebar Header */}
         <SidebarHeader className="p-4 border-b border-gray-200">
-          <SidebarBrand 
+          <SidebarBrand
             logo={
               <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">A</span>
@@ -113,25 +109,25 @@ export default function SidebarExample() {
                 <SidebarMenuButton
                   href="#"
                   icon={<DashboardIcon />}
-                  active={activeItem === 'dashboard'}
+                  active={activeItem === "dashboard"}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleItemClick('dashboard');
+                    handleItemClick("dashboard");
                   }}
                   className="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100"
                 >
                   Dashboard
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              
+
               <SidebarMenuItem>
                 <SidebarMenuButton
                   href="#"
                   icon={<HomeIcon />}
-                  active={activeItem === 'home'}
+                  active={activeItem === "home"}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleItemClick('home');
+                    handleItemClick("home");
                   }}
                   className="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100"
                 >
@@ -142,8 +138,8 @@ export default function SidebarExample() {
           </SidebarGroup>
 
           {/* Components Section */}
-          <SidebarGroup 
-            title="Components" 
+          <SidebarGroup
+            title="Components"
             collapsible={true}
             isOpen={true}
             className="p-2"
@@ -156,26 +152,28 @@ export default function SidebarExample() {
                   <SidebarMenuButton
                     href="#"
                     icon={<UsersIcon />}
-                    active={activeItem === 'users'}
+                    active={activeItem === "users"}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleItemClick('users');
+                      handleItemClick("users");
                     }}
                     className="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100"
                   >
                     Users
-                    <Badge variant="primary" className="ml-auto">3</Badge>
+                    <Badge variant="primary" className="ml-auto">
+                      3
+                    </Badge>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-                
+
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     href="#"
                     icon={<SettingsIcon />}
-                    active={activeItem === 'settings'}
+                    active={activeItem === "settings"}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleItemClick('settings');
+                      handleItemClick("settings");
                     }}
                     className="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100"
                   >
@@ -196,10 +194,10 @@ export default function SidebarExample() {
                 <SidebarItem
                   href="#"
                   icon={<DashboardIcon />}
-                  active={activeItem === 'analytics'}
+                  active={activeItem === "analytics"}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleItemClick('analytics');
+                    handleItemClick("analytics");
                   }}
                   className="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100"
                 >
@@ -236,9 +234,7 @@ export default function SidebarExample() {
       >
         <div className="flex-1 p-6">
           <div className="max-w-4xl">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Dashboard
-            </h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
             <p className="text-gray-600 mb-8">
               Welcome to your dashboard. Here's what's happening with your projects today.
             </p>
@@ -250,13 +246,13 @@ export default function SidebarExample() {
                 <p className="text-3xl font-bold text-orange-500">1,234</p>
                 <p className="text-sm text-gray-500 mt-1">+12% from last month</p>
               </div>
-              
+
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Revenue</h3>
                 <p className="text-3xl font-bold text-green-500">$45,678</p>
                 <p className="text-sm text-gray-500 mt-1">+8% from last month</p>
               </div>
-              
+
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Orders</h3>
                 <p className="text-3xl font-bold text-blue-500">567</p>
@@ -266,13 +262,13 @@ export default function SidebarExample() {
 
             {/* Action Buttons */}
             <div className="flex gap-4">
-              <Button variant="primary" onClick={() => console.log('Create clicked')}>
+              <Button variant="primary" onClick={() => console.log("Create clicked")}>
                 Create New
               </Button>
-              <Button variant="secondary" onClick={() => console.log('Import clicked')}>
+              <Button variant="secondary" onClick={() => console.log("Import clicked")}>
                 Import Data
               </Button>
-              <Button variant="tertiary" onClick={() => console.log('Export clicked')}>
+              <Button variant="tertiary" onClick={() => console.log("Export clicked")}>
                 Export
               </Button>
             </div>
@@ -281,9 +277,8 @@ export default function SidebarExample() {
             <div className="mt-8 p-4 bg-gray-100 rounded-lg">
               <h4 className="font-semibold mb-2">Sidebar State:</h4>
               <p className="text-sm text-gray-600">
-                Collapsed: {isCollapsed ? 'Yes' : 'No'} | 
-                Active Item: {activeItem} | 
-                Width: {isCollapsed ? '60px' : '280px'}
+                Collapsed: {isCollapsed ? "Yes" : "No"} | Active Item: {activeItem} | Width:{" "}
+                {isCollapsed ? "60px" : "280px"}
               </p>
             </div>
           </div>
@@ -300,11 +295,7 @@ export function SimpleSidebarExample() {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Simple Sidebar */}
-      <Sidebar 
-        width={250} 
-        collapsed={isCollapsed}
-        className="bg-white border-r border-gray-200"
-      >
+      <Sidebar width={250} collapsed={isCollapsed} className="bg-white border-r border-gray-200">
         <SidebarHeader className="p-4">
           <SidebarBrand>My App</SidebarBrand>
         </SidebarHeader>
@@ -330,10 +321,7 @@ export function SimpleSidebarExample() {
         </SidebarContent>
 
         <SidebarFooter className="p-4">
-          <SidebarUser 
-            avatar="https://via.placeholder.com/32"
-            email="john@example.com"
-          >
+          <SidebarUser avatar="https://via.placeholder.com/32" email="john@example.com">
             John Doe
           </SidebarUser>
         </SidebarFooter>
@@ -343,10 +331,7 @@ export function SimpleSidebarExample() {
       <div className="flex-1 p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Simple Layout</h1>
-          <Button 
-            variant="secondary" 
-            onClick={() => setIsCollapsed(!isCollapsed)}
-          >
+          <Button variant="secondary" onClick={() => setIsCollapsed(!isCollapsed)}>
             Toggle Sidebar
           </Button>
         </div>
@@ -359,17 +344,13 @@ export function SimpleSidebarExample() {
 // Alternative: Complex Sidebar with Multiple Groups
 export function ComplexSidebarExample() {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const [activeItem, setActiveItem] = useState("dashboard");
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar 
-        width={300} 
-        collapsed={isCollapsed}
-        className="bg-white border-r border-gray-200"
-      >
+      <Sidebar width={300} collapsed={isCollapsed} className="bg-white border-r border-gray-200">
         <SidebarHeader className="p-4 border-b border-gray-200">
-          <SidebarBrand 
+          <SidebarBrand
             logo={<div className="w-8 h-8 bg-blue-500 rounded"></div>}
             subtitle="v2.0.0"
           >
@@ -385,10 +366,10 @@ export function ComplexSidebarExample() {
                 <SidebarMenuButton
                   href="#"
                   icon={<DashboardIcon />}
-                  active={activeItem === 'dashboard'}
+                  active={activeItem === "dashboard"}
                   onClick={(e) => {
                     e.preventDefault();
-                    setActiveItem('dashboard');
+                    setActiveItem("dashboard");
                   }}
                 >
                   Overview
@@ -404,14 +385,16 @@ export function ComplexSidebarExample() {
                 <SidebarMenuButton
                   href="#"
                   icon={<UsersIcon />}
-                  active={activeItem === 'users'}
+                  active={activeItem === "users"}
                   onClick={(e) => {
                     e.preventDefault();
-                    setActiveItem('users');
+                    setActiveItem("users");
                   }}
                 >
                   Users
-                  <Badge variant="error" className="ml-auto">5</Badge>
+                  <Badge variant="error" className="ml-auto">
+                    5
+                  </Badge>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -424,10 +407,10 @@ export function ComplexSidebarExample() {
                 <SidebarMenuButton
                   href="#"
                   icon={<SettingsIcon />}
-                  active={activeItem === 'settings'}
+                  active={activeItem === "settings"}
                   onClick={(e) => {
                     e.preventDefault();
-                    setActiveItem('settings');
+                    setActiveItem("settings");
                   }}
                 >
                   General
@@ -442,10 +425,10 @@ export function ComplexSidebarExample() {
             name="Admin User"
             email="admin@example.com"
             menuItems={[
-              { label: 'Profile', onClick: () => console.log('Profile') },
-              { label: 'Account', onClick: () => console.log('Account') },
+              { label: "Profile", onClick: () => console.log("Profile") },
+              { label: "Account", onClick: () => console.log("Account") },
               { divider: true },
-              { label: 'Logout', onClick: () => console.log('Logout') }
+              { label: "Logout", onClick: () => console.log("Logout") },
             ]}
             collapsed={isCollapsed}
           />

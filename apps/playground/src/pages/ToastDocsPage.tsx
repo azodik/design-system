@@ -1,9 +1,9 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Toast from '../docs/Toast.mdx';
-import { Toast as ToastComponent, Button, Card, CardContent } from '@azodik/ui';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Toast from "../docs/Toast.mdx";
+import { Toast as ToastComponent, Button, Card, CardContent } from "@azodik/ui";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Toast: ToastComponent,
@@ -16,7 +16,7 @@ export default function ToastDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Toast", current: true }
+    { label: "Toast", current: true },
   ];
 
   return (

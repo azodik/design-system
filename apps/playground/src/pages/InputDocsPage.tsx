@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Input from '../docs/Input.mdx';
-import { Input as InputComponent, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Input from "../docs/Input.mdx";
+import { Input as InputComponent, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Input: InputComponent,
@@ -16,7 +16,7 @@ export default function InputDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Input", current: true }
+    { label: "Input", current: true },
   ];
 
   return (

@@ -10,11 +10,11 @@ export const TooltipPreview = () => {
             <Tooltip content="This is a helpful tooltip">
               <Button>Hover for tooltip</Button>
             </Tooltip>
-            
+
             <Tooltip content="Click to perform an action">
               <Button variant="secondary">Secondary Button</Button>
             </Tooltip>
-            
+
             <Tooltip content="This is a longer tooltip message that provides more detailed information">
               <Button variant="tertiary">Tertiary Button</Button>
             </Tooltip>

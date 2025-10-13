@@ -14,11 +14,11 @@ const columns = [
 ];
 
 export const DataTablePreview = () => {
-  const [sortBy, setSortBy] = useState<keyof typeof users[0] | undefined>();
+  const [sortBy, setSortBy] = useState<keyof (typeof users)[0] | undefined>();
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [selectedRows, setSelectedRows] = useState<typeof users>([]);
 
-  const handleSort = (key: keyof typeof users[0]) => {
+  const handleSort = (key: keyof (typeof users)[0]) => {
     if (sortBy === key) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {
@@ -27,11 +27,11 @@ export const DataTablePreview = () => {
     }
   };
 
-  const handleRowSelect = (row: typeof users[0], selected: boolean) => {
+  const handleRowSelect = (row: (typeof users)[0], selected: boolean) => {
     if (selected) {
-      setSelectedRows(prev => [...prev, row]);
+      setSelectedRows((prev) => [...prev, row]);
     } else {
-      setSelectedRows(prev => prev.filter(r => r.id !== row.id));
+      setSelectedRows((prev) => prev.filter((r) => r.id !== row.id));
     }
   };
 
@@ -45,12 +45,12 @@ export const DataTablePreview = () => {
 
   return (
     <div className="flex-vertical-lg">
-      <Card 
+      <Card
         className="p-6"
-        style={{ 
-          width: '100%',
-          minWidth: '280px',
-          maxWidth: '100%'
+        style={{
+          width: "100%",
+          minWidth: "280px",
+          maxWidth: "100%",
         }}
       >
         <DataTable

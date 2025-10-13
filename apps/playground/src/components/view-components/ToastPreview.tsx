@@ -22,7 +22,7 @@ export const ToastPreview = () => {
           </Button>
         </div>
       </div>
-      
+
       {showTopRight && (
         <Toast
           title="Top Right Toast"
@@ -33,7 +33,7 @@ export const ToastPreview = () => {
           autoClose={2000}
         />
       )}
-      
+
       {showTopCenter && (
         <Toast
           title="Top Center Toast"
@@ -44,7 +44,7 @@ export const ToastPreview = () => {
           autoClose={2000}
         />
       )}
-      
+
       {showBottomRight && (
         <Toast
           title="Bottom Right Toast"

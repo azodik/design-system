@@ -1,12 +1,12 @@
 import React from "react";
-import { 
-  Drawer, 
-  DrawerTrigger, 
-  DrawerContent, 
-  DrawerHeader, 
-  DrawerTitle, 
-  DrawerDescription, 
-  DrawerBody, 
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerBody,
   DrawerFooter,
   DrawerClose,
   Button,
@@ -21,23 +21,24 @@ export const DrawerPreview = () => (
         <Button>Open Drawer</Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div style={{ padding: '0 25%' }}>
+        <div style={{ padding: "0 25%" }}>
           <DrawerHeader>
             <DrawerTitle>Are you absolutely sure?</DrawerTitle>
             <DrawerDescription>
-              This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+              This action cannot be undone. This will permanently delete your account and remove
+              your data from our servers.
             </DrawerDescription>
           </DrawerHeader>
-            <DrawerBody>
-              <div className="flex-vertical">
-                  <Input
-                    label="Name"
-                    type="text"
-                    defaultValue="John Doe"
-                    placeholder="Enter your name"
-                  />
-              </div>
-            </DrawerBody>
+          <DrawerBody>
+            <div className="flex-vertical">
+              <Input
+                label="Name"
+                type="text"
+                defaultValue="John Doe"
+                placeholder="Enter your name"
+              />
+            </div>
+          </DrawerBody>
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>

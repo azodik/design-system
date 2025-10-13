@@ -52,12 +52,17 @@ const AccordionItemComponent: React.FC<AccordionItemProps> = ({
 
   const { value: currentValue, type } = context;
   // If disabled, never show as open
-  const isOpen = disabled ? false : (type === "single" 
-    ? currentValue === value 
-    : Array.isArray(currentValue) && currentValue.indexOf(value) !== -1);
+  const isOpen = disabled
+    ? false
+    : type === "single"
+      ? currentValue === value
+      : Array.isArray(currentValue) && currentValue.indexOf(value) !== -1;
 
   return (
-    <div className={`accordion-item ${className} ${disabled ? 'disabled' : ''}`} data-state={isOpen ? "open" : "closed"}>
+    <div
+      className={`accordion-item ${className} ${disabled ? "disabled" : ""}`}
+      data-state={isOpen ? "open" : "closed"}
+    >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, {
@@ -92,12 +97,12 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
 
     if (type === "single") {
       if (isOpen && !collapsible) return;
-      onValueChange(isOpen ? "" : (value || ""));
+      onValueChange(isOpen ? "" : value || "");
     } else {
       const currentValue = Array.isArray(context.value) ? context.value : [];
       const newValue = isOpen
         ? currentValue.filter((v) => v !== value)
-        : [...currentValue, (value || "")];
+        : [...currentValue, value || ""];
       onValueChange(newValue);
     }
   };
@@ -189,11 +194,11 @@ export default function Accordion({
   ...props
 }: AccordionProps) {
   const [internalValue, setInternalValue] = useState<string | string[]>(
-    defaultValue || (type === "single" ? "" : [])
+    defaultValue || (type === "single" ? "" : []),
   );
 
   const currentValue = value !== undefined ? value : internalValue;
-  
+
   const handleValueChange = (newValue: string | string[]) => {
     if (onValueChange) {
       onValueChange(newValue);

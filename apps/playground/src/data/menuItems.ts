@@ -1,4 +1,4 @@
-import { 
+import {
   AppsIcon,
   UserIcon,
   ShieldIcon,
@@ -8,8 +8,8 @@ import {
   SettingsIcon,
   BarChartIcon,
   UserAddIcon,
-  GroupIcon
-} from '../icons';
+  GroupIcon,
+} from "../icons";
 
 export interface SubMenuItem {
   name: string;

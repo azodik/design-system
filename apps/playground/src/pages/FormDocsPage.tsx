@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Form from '../docs/Form.mdx';
-import { Input, Button, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Form from "../docs/Form.mdx";
+import { Input, Button, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Input: Input,
@@ -17,7 +17,7 @@ export default function FormDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Form", current: true }
+    { label: "Form", current: true },
   ];
 
   return (

@@ -12,7 +12,7 @@ export const AvatarPreview = () => (
         <Avatar size="xl" initials="XL" />
       </div>
     </div>
-    
+
     <div>
       <h3 className="section-title">Avatar Group</h3>
       <AvatarGroup max={3}>

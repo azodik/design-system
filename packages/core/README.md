@@ -48,12 +48,14 @@ Include the CSS files in your project:
 ## 🎨 Color Palette
 
 ### Primary Colors
+
 - **Primary**: `#f97316` (Orange)
 - **Secondary**: `#ea580c` (Darker Orange)
 - **Primary Hover**: `#ea580c` (Light) / `#fb923c` (Dark)
 - **Secondary Hover**: `#dc2626` (Light) / `#f97316` (Dark)
 
 ### Neutral Colors
+
 - **Background**: `#ffffff` (Light) / `#0f172a` (Dark)
 - **Text**: `#111827` (Light) / `#f1f5f9` (Dark)
 - **Surface**: `#f9fafb` (Light) / `#1e293b` (Dark)
@@ -62,6 +64,7 @@ Include the CSS files in your project:
 ## 🧩 Components
 
 ### Form Components
+
 - **Input Fields** - Text, email, password, search inputs
 - **Textarea** - Multi-line text input with resize
 - **Select** - Dropdown selection
@@ -70,6 +73,7 @@ Include the CSS files in your project:
 - **Form Groups** - Labels, help text, and validation states
 
 ### Button Components
+
 - **Primary Button** - Main action buttons
 - **Secondary Button** - Secondary actions
 - **Outline Button** - Subtle actions
@@ -77,26 +81,31 @@ Include the CSS files in your project:
 - **Button Sizes** - Small, medium, large variants
 
 ### Card Components
+
 - **Card** - Content containers with shadows
 - **Card Variants** - Different styles and layouts
 
 ### Alert Components
+
 - **Success Alert** - Positive feedback
 - **Warning Alert** - Caution messages
 - **Error Alert** - Error notifications
 - **Info Alert** - Informational messages
 
 ### Badge Components
+
 - **Badge Variants** - Primary, secondary, success, warning, error, info, neutral
 - **Badge Sizes** - Small, medium, large
 - **Badge with Icons** - Icons and close buttons
 
 ### Avatar Components
+
 - **Avatar Sizes** - Extra small to 2XL
 - **Status Indicators** - Online, away, offline, busy
 - **Avatar Groups** - Multiple avatars with overflow
 
 ### Navigation Components
+
 - **Navigation Bar** - Main navigation with responsive design
 - **Breadcrumbs** - Navigation context
 - **Pagination** - Data navigation
@@ -104,6 +113,7 @@ Include the CSS files in your project:
 - **Sidebar** - Side navigation
 
 ### Feedback Components
+
 - **Modal** - Dialog overlays
 - **Toast** - Notification messages
 - **Tooltip** - Hover information
@@ -112,6 +122,7 @@ Include the CSS files in your project:
 - **Progress Bar** - Progress indicators
 
 ### Layout Components
+
 - **Container** - Content wrapper with max-width
 - **Grid System** - 1-12 column responsive grid
 - **Flex Utilities** - Flexbox helpers
@@ -121,12 +132,14 @@ Include the CSS files in your project:
 - **Hero Section** - Landing page headers
 
 ### Data Display Components
+
 - **Table** - Data tables with variants
 - **List** - Structured lists with actions
 - **Stats Cards** - Metrics and KPIs
 - **Empty State** - No data states
 
 ### Icon Components
+
 - **Icon Sizes** - Multiple size variants
 - **Icon Colors** - Theme-aware colors
 - **Icon Buttons** - Interactive icon buttons
@@ -158,11 +171,11 @@ The design system includes full dark mode support:
 // Toggle theme
 function toggleTheme() {
   const html = document.documentElement;
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
+  const currentTheme = html.getAttribute("data-theme");
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+
+  html.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
 }
 ```
 
@@ -173,18 +186,25 @@ All components are mobile-first and responsive:
 ```css
 /* Mobile-first breakpoints */
 @media (max-width: 768px) {
-  .grid-cols-3 { grid-template-columns: 1fr; }
-  .navbar-nav { flex-direction: column; }
+  .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+  .navbar-nav {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 480px) {
-  .container { padding: 0 var(--space-md); }
+  .container {
+    padding: 0 var(--space-md);
+  }
 }
 ```
 
 ## 🎯 Design Tokens
 
 ### Spacing
+
 ```css
 --space-xs: 4px;
 --space-sm: 8px;
@@ -194,6 +214,7 @@ All components are mobile-first and responsive:
 ```
 
 ### Typography
+
 ```css
 --font-family-sans: "Montserrat", system-ui, sans-serif;
 --font-size-sm: 0.875rem;
@@ -202,6 +223,7 @@ All components are mobile-first and responsive:
 ```
 
 ### Border Radius
+
 ```css
 --radius-sm: 4px;
 --radius-md: 8px;
@@ -209,6 +231,7 @@ All components are mobile-first and responsive:
 ```
 
 ### Shadows
+
 ```css
 --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -283,11 +306,13 @@ pnpm  preview
 ## 📚 Usage Examples
 
 ### Basic Button
+
 ```html
 <button class="btn btn-primary">Click me</button>
 ```
 
 ### Card with Content
+
 ```html
 <div class="card">
   <h4>Card Title</h4>
@@ -297,6 +322,7 @@ pnpm  preview
 ```
 
 ### Form with Validation
+
 ```html
 <div class="form-group">
   <label class="form-label">Email</label>
@@ -306,6 +332,7 @@ pnpm  preview
 ```
 
 ### Alert Message
+
 ```html
 <div class="alert alert-success">
   <span class="alert-icon">✓</span>

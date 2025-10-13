@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Alert from '../docs/Alert.mdx';
-import { Alert as AlertComponent, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Alert from "../docs/Alert.mdx";
+import { Alert as AlertComponent, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Alert: AlertComponent,
@@ -16,7 +16,7 @@ export default function AlertDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Alert", current: true }
+    { label: "Alert", current: true },
   ];
 
   return (

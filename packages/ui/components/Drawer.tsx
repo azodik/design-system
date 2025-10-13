@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useState, useRef, useEffect, useCallback, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 
 // Interfaces
 export interface DrawerProps {
@@ -70,7 +78,7 @@ export const Drawer: React.FC<DrawerProps> = ({
 }) => {
   const [internalOpen, setInternalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  
+
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
@@ -81,13 +89,16 @@ export const Drawer: React.FC<DrawerProps> = ({
     }
   }, [defaultOpen, isControlled]);
 
-  const setOpen = useCallback((newOpen: boolean) => {
-    if (isControlled) {
-      onOpenChange?.(newOpen);
-    } else {
-      setInternalOpen(newOpen);
-    }
-  }, [isControlled, onOpenChange]);
+  const setOpen = useCallback(
+    (newOpen: boolean) => {
+      if (isControlled) {
+        onOpenChange?.(newOpen);
+      } else {
+        setInternalOpen(newOpen);
+      }
+    },
+    [isControlled, onOpenChange],
+  );
 
   const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
 
@@ -95,11 +106,7 @@ export const Drawer: React.FC<DrawerProps> = ({
     return null;
   }
 
-  return (
-    <DrawerContext.Provider value={contextValue}>
-      {children}
-    </DrawerContext.Provider>
-  );
+  return <DrawerContext.Provider value={contextValue}>{children}</DrawerContext.Provider>;
 };
 
 // DrawerTrigger Component
@@ -127,11 +134,7 @@ export const DrawerTrigger: React.FC<DrawerTriggerProps> = ({
   }
 
   return (
-    <button
-      className={`drawer-trigger ${className}`}
-      onClick={handleClick}
-      {...props}
-    >
+    <button className={`drawer-trigger ${className}`} onClick={handleClick} {...props}>
       {children}
     </button>
   );
@@ -162,13 +165,13 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
       }
     };
 
-    if (open && typeof document !== 'undefined') {
+    if (open && typeof document !== "undefined") {
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
     }
 
     return () => {
-      if (typeof document !== 'undefined') {
+      if (typeof document !== "undefined") {
         document.removeEventListener("keydown", handleEscape);
         document.body.style.overflow = "unset";
       }
@@ -185,11 +188,14 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
     }, 300); // Match animation duration
   }, [setOpen, onClose]);
 
-  const handleOverlayClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
-  }, [handleClose]);
+  const handleOverlayClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.target === e.currentTarget) {
+        handleClose();
+      }
+    },
+    [handleClose],
+  );
 
   if (!shouldRender) return null;
 
@@ -197,7 +203,7 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
     <div className="drawer-overlay" onClick={handleOverlayClick}>
       <div
         ref={contentRef}
-        className={`drawer-content ${isClosing ? 'closing' : ''} ${className}`}
+        className={`drawer-content ${isClosing ? "closing" : ""} ${className}`}
         role="dialog"
         aria-modal="true"
       >
@@ -208,24 +214,16 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
 };
 
 // DrawerHeader Component
-export const DrawerHeader: React.FC<DrawerHeaderProps> = ({
-  children,
-  className = "",
-}) => {
+export const DrawerHeader: React.FC<DrawerHeaderProps> = ({ children, className = "" }) => {
   return (
     <div className={`drawer-header ${className}`}>
-      <div className="drawer-header-content">
-        {children}
-      </div>
+      <div className="drawer-header-content">{children}</div>
     </div>
   );
 };
 
 // DrawerTitle Component
-export const DrawerTitle: React.FC<DrawerTitleProps> = ({
-  children,
-  className = "",
-}) => {
+export const DrawerTitle: React.FC<DrawerTitleProps> = ({ children, className = "" }) => {
   return (
     <h2 className={`drawer-title ${className}`} id="drawer-title">
       {children}
@@ -246,18 +244,12 @@ export const DrawerDescription: React.FC<DrawerDescriptionProps> = ({
 };
 
 // DrawerBody Component
-export const DrawerBody: React.FC<DrawerBodyProps> = ({
-  children,
-  className = "",
-}) => {
+export const DrawerBody: React.FC<DrawerBodyProps> = ({ children, className = "" }) => {
   return <div className={`drawer-body ${className}`}>{children}</div>;
 };
 
 // DrawerFooter Component
-export const DrawerFooter: React.FC<DrawerFooterProps> = ({
-  children,
-  className = "",
-}) => {
+export const DrawerFooter: React.FC<DrawerFooterProps> = ({ children, className = "" }) => {
   return <div className={`drawer-footer ${className}`}>{children}</div>;
 };
 
@@ -272,12 +264,12 @@ export const DrawerClose: React.FC<{
 
   const handleClick = () => {
     // Find the drawer content and trigger closing animation
-    const drawerContent = document.querySelector('.drawer-content');
+    const drawerContent = document.querySelector(".drawer-content");
     if (drawerContent) {
-      drawerContent.classList.add('closing');
+      drawerContent.classList.add("closing");
       setTimeout(() => {
         setOpen(false);
-        drawerContent.classList.remove('closing');
+        drawerContent.classList.remove("closing");
         onClick?.();
       }, 300);
     } else {
@@ -298,11 +290,7 @@ export const DrawerClose: React.FC<{
   }
 
   return (
-    <button
-      className={`drawer-close ${className}`}
-      onClick={handleClick}
-      aria-label="Close drawer"
-    >
+    <button className={`drawer-close ${className}`} onClick={handleClick} aria-label="Close drawer">
       {children || (
         <svg
           width="16"

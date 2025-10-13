@@ -15,58 +15,58 @@ export const FormPreview = () => {
     <Card width="75%" height="75%">
       <ScrollArea className="h-full" scrollbarSize="sm">
         <div className="flex-vertical p-4">
-        <Input
-          label="Email"
-          type="email"
-          placeholder="Enter your email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        <Textarea
-          label="Message"
-          placeholder="Enter your message"
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-        />
-        <Select
-          label="Country"
-          options={[
-            { value: "us", label: "United States" },
-            { value: "ca", label: "Canada" },
-            { value: "uk", label: "United Kingdom" },
-          ]}
-          value={formData.country}
-          onChange={(value) => setFormData({ ...formData, country: value })}
-        />
-        <Checkbox
-          label="Subscribe to newsletter"
-          checked={formData.newsletter}
-          onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
-        />
-        <div>
-          <label className="form-label">Gender</label>
-          <div className="mt-2 flex-vertical">
-            <Radio
-              name="gender"
-              value="male"
-              label="Male"
-              checked={formData.gender === "male"}
-              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-            />
-            <Radio
-              name="gender"
-              value="female"
-              label="Female"
-              checked={formData.gender === "female"}
-              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-            />
+          <Input
+            label="Email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          />
+          <Textarea
+            label="Message"
+            placeholder="Enter your message"
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          />
+          <Select
+            label="Country"
+            options={[
+              { value: "us", label: "United States" },
+              { value: "ca", label: "Canada" },
+              { value: "uk", label: "United Kingdom" },
+            ]}
+            value={formData.country}
+            onChange={(value) => setFormData({ ...formData, country: value })}
+          />
+          <Checkbox
+            label="Subscribe to newsletter"
+            checked={formData.newsletter}
+            onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
+          />
+          <div>
+            <label className="form-label">Gender</label>
+            <div className="mt-2 flex-vertical">
+              <Radio
+                name="gender"
+                value="male"
+                label="Male"
+                checked={formData.gender === "male"}
+                onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+              />
+              <Radio
+                name="gender"
+                value="female"
+                label="Female"
+                checked={formData.gender === "female"}
+                onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+              />
+            </div>
           </div>
-        </div>
-        <Switch
-          label="Enable notifications"
-          checked={formData.notifications}
-          onChange={(e) => setFormData({ ...formData, notifications: e.target.checked })}
-        />
+          <Switch
+            label="Enable notifications"
+            checked={formData.notifications}
+            onChange={(e) => setFormData({ ...formData, notifications: e.target.checked })}
+          />
         </div>
       </ScrollArea>
     </Card>

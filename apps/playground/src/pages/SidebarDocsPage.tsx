@@ -1,9 +1,9 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Sidebar from '../docs/Sidebar.mdx';
-import { Sidebar as SidebarComponent, Card, CardContent } from '@azodik/ui';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Sidebar from "../docs/Sidebar.mdx";
+import { Sidebar as SidebarComponent, Card, CardContent } from "@azodik/ui";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Sidebar: SidebarComponent,
@@ -15,7 +15,7 @@ export default function SidebarDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Sidebar", current: true }
+    { label: "Sidebar", current: true },
   ];
 
   return (

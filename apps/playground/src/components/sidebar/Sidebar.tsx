@@ -46,16 +46,16 @@ export default function SidebarLayout({
     const checkScreenSize = () => {
       const smallScreen = window.innerWidth <= 1024;
       setIsSmallScreen(smallScreen);
-      
+
       // If it's a small screen, ensure sidebar is closed initially
       if (smallScreen) {
         setIsSidebarOpen(false);
       }
     };
-    
+
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const handleSidebarToggle = () => {
@@ -82,10 +82,10 @@ export default function SidebarLayout({
 
   // Get current component name from URL
   const getCurrentComponent = () => {
-    const pathParts = location.pathname.split('/');
-    if (pathParts[1] === 'components' && pathParts[2]) {
-      if (pathParts[2] === 'getting-started') {
-        return 'Getting Started';
+    const pathParts = location.pathname.split("/");
+    if (pathParts[1] === "components" && pathParts[2]) {
+      if (pathParts[2] === "getting-started") {
+        return "Getting Started";
       }
       return pathParts[2].charAt(0).toUpperCase() + pathParts[2].slice(1);
     }
@@ -95,22 +95,20 @@ export default function SidebarLayout({
   // Generate breadcrumb items based on current route
   const getBreadcrumbItems = () => {
     if (breadcrumbItems) return breadcrumbItems;
-    
+
     const currentComponent = getCurrentComponent();
     const items: Array<{
       label: string;
       href?: string;
       current?: boolean;
-    }> = [
-      { label: "Components", href: "/components" }
-    ];
-    
+    }> = [{ label: "Components", href: "/components" }];
+
     if (currentComponent) {
       items.push({ label: currentComponent, current: true });
     } else {
       items.push({ label: "Design System", current: true });
     }
-    
+
     return items;
   };
 
@@ -118,14 +116,11 @@ export default function SidebarLayout({
     <div style={{ display: "flex", height: "100vh" }}>
       {/* Mobile & Tablet Overlay */}
       {isSmallScreen && isSidebarOpen && (
-        <div 
-          className="sidebar-overlay open"
-          onClick={closeSidebar}
-        />
+        <div className="sidebar-overlay open" onClick={closeSidebar} />
       )}
-      
-      <SidebarComponent 
-        width={isSmallScreen ? 280 : (isSidebarCollapsed ? 60 : 280)} 
+
+      <SidebarComponent
+        width={isSmallScreen ? 280 : isSidebarCollapsed ? 60 : 280}
         className={`${!isSmallScreen && isSidebarCollapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""}`}
         showHeader={true}
         showFooter={true}
@@ -133,27 +128,39 @@ export default function SidebarLayout({
         color="white"
       >
         <SidebarHeader show={true}>
-          <SidebarBrand 
-            logo={<img src="/logo-icon.svg" alt="Azodik Logo" style={{ width: '65px', height: '65px', backgroundColor: 'white', borderRadius: '6px', padding: '4px' }} />}
-            subtitle="Design System" 
+          <SidebarBrand
+            logo={
+              <img
+                src="/logo-icon.svg"
+                alt="Azodik Logo"
+                style={{
+                  width: "65px",
+                  height: "65px",
+                  backgroundColor: "white",
+                  borderRadius: "6px",
+                  padding: "4px",
+                }}
+              />
+            }
+            subtitle="Design System"
             show={true}
-            onClick={() => navigate('/')}
-            style={{ cursor: 'pointer' }}
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
           >
             Azodik
           </SidebarBrand>
         </SidebarHeader>
-        
+
         <SidebarContent>
           <SidebarMenu>
             {componentsMenuItems.map((item: ComponentMenuItem, index: number) => {
               const isActive = location.pathname === item.href;
               return (
                 <SidebarMenuItem key={index} show={true}>
-                  <SidebarMenuButton 
+                  <SidebarMenuButton
                     onClick={() => handleComponentClick(item.href)}
                     active={isActive}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                   >
                     {item.name}
                   </SidebarMenuButton>
@@ -163,7 +170,7 @@ export default function SidebarLayout({
           </SidebarMenu>
         </SidebarContent>
       </SidebarComponent>
-      
+
       <SidebarMainContent
         onSidebarToggle={handleSidebarToggle}
         isSidebarCollapsed={isSidebarCollapsed}
@@ -171,7 +178,13 @@ export default function SidebarLayout({
         showBreadcrumb={showBreadcrumb}
         showToggleButton={showToggleButton}
         hideToggleOnDesktop={hideToggleOnDesktop}
-        breadcrumb={breadcrumb || <div className="breadcrumb-container"><Breadcrumb items={getBreadcrumbItems()} /></div>}
+        breadcrumb={
+          breadcrumb || (
+            <div className="breadcrumb-container">
+              <Breadcrumb items={getBreadcrumbItems()} />
+            </div>
+          )
+        }
       >
         {children}
       </SidebarMainContent>

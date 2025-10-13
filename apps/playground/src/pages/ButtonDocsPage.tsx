@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Button from '../docs/Button.mdx';
-import { Button as ButtonComponent, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Button from "../docs/Button.mdx";
+import { Button as ButtonComponent, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Button: ButtonComponent,
@@ -16,7 +16,7 @@ export default function ButtonDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Button", current: true }
+    { label: "Button", current: true },
   ];
 
   return (

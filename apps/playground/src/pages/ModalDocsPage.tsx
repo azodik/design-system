@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Modal from '../docs/Modal.mdx';
-import { Modal as ModalComponent, ModalFooter, Button, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Modal from "../docs/Modal.mdx";
+import { Modal as ModalComponent, ModalFooter, Button, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Modal: ModalComponent,
@@ -18,7 +18,7 @@ export default function ModalDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Modal", current: true }
+    { label: "Modal", current: true },
   ];
 
   return (

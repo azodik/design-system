@@ -1,10 +1,10 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Avatar from '../docs/Avatar.mdx';
-import { Avatar as AvatarComponent, Card, CardContent } from '@azodik/ui';
-import { ComponentNavigation } from '../components/docs';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Avatar from "../docs/Avatar.mdx";
+import { Avatar as AvatarComponent, Card, CardContent } from "@azodik/ui";
+import { ComponentNavigation } from "../components/docs";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Avatar: AvatarComponent,
@@ -16,7 +16,7 @@ export default function AvatarDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Avatar", current: true }
+    { label: "Avatar", current: true },
   ];
 
   return (

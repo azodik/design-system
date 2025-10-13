@@ -1,9 +1,18 @@
-import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import Table from '../docs/Table.mdx';
-import { Table as TableComponent, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell, Card, CardContent } from '@azodik/ui';
-import SidebarLayout from '../components/sidebar/Sidebar';
-import '../styles/docs.css';
+import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import Table from "../docs/Table.mdx";
+import {
+  Table as TableComponent,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+  Card,
+  CardContent,
+} from "@azodik/ui";
+import SidebarLayout from "../components/sidebar/Sidebar";
+import "../styles/docs.css";
 
 const components = {
   Table: TableComponent,
@@ -20,7 +29,7 @@ export default function TableDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Table", current: true }
+    { label: "Table", current: true },
   ];
 
   return (

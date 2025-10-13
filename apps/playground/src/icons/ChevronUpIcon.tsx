@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ChevronUpIconProps {
   size?: number;
@@ -6,15 +6,11 @@ interface ChevronUpIconProps {
   style?: React.CSSProperties;
 }
 
-const ChevronUpIcon: React.FC<ChevronUpIconProps> = ({ 
-  size = 16, 
-  className,
-  style 
-}) => {
+const ChevronUpIcon: React.FC<ChevronUpIconProps> = ({ size = 16, className, style }) => {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 24 24" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
       fill="currentColor"
       width={size}
       height={size}
