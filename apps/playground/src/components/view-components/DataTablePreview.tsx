@@ -44,7 +44,7 @@ export const DataTablePreview = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card 
         className="p-6"
         style={{ 
@@ -118,7 +118,7 @@ export const DataTableExample = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
         <DataTable
           data={users}

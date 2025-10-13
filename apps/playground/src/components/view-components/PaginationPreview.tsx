@@ -6,7 +6,7 @@ export const PaginationPreview = () => {
 
   return (
     <div 
-      className="space-y-4"
+      className="flex-vertical"
       style={{
         width: '100%',
         minWidth: '280px',
@@ -32,7 +32,7 @@ export const PaginationExample = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <Pagination
         currentPage={currentPage}
         totalPages={10}

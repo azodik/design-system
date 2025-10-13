@@ -5,8 +5,8 @@ export const ButtonPreview = () => (
   <div className="space-y-6">
     {/* Button Variants */}
     <div>
-      <h3 className="text-lg font-semibold mb-3">Button Variants</h3>
-      <div className="flex gap-4" style={{ gap: 'var(--space-sm)' }}>
+      <h3 className="component-section-title">Button Variants</h3>
+      <div className="flex gap-sm">
         <Button variant="primary" onClick={() => alert("Primary clicked!")}>
           Primary Button
         </Button>
@@ -21,8 +21,8 @@ export const ButtonPreview = () => (
 
     {/* Button Sizes */}
     <div>
-      <h3 className="text-lg font-semibold mb-3">Button Sizes</h3>
-      <div className="flex flex-col gap-12 items-center" style={{ gap: 'var(--space-sm)' }}>
+      <h3 className="component-section-title">Button Sizes</h3>
+      <div className="flex flex-col gap-sm items-center">
         <Button size="sm" variant="primary">Small Primary</Button>
         <Button size="md" variant="secondary" width={200}>Medium Secondary</Button>
         <Button size="lg" variant="tertiary" width={300}>Large Tertiary</Button>
@@ -39,8 +39,8 @@ export const ButtonExample = () => {
     <div className="space-y-6">
       {/* Button Variants */}
       <div>
-        <h3 className="text-lg font-semibold mb-3">Button Variants</h3>
-        <div className="flex gap-4">
+        <h3 className="component-section-title">Button Variants</h3>
+        <div className="flex gap-sm">
           <Button variant="primary" onClick={() => alert("Primary clicked!")}>
             Primary Button
           </Button>
@@ -55,8 +55,8 @@ export const ButtonExample = () => {
 
       {/* Button Sizes */}
       <div>
-        <h3 className="text-lg font-semibold mb-3">Button Sizes</h3>
-        <div className="flex flex-col gap-12 items-center">
+        <h3 className="component-section-title">Button Sizes</h3>
+        <div className="flex flex-col gap-sm items-center">
           <Button size="sm" variant="primary">Small Primary</Button>
           <Button size="md" variant="secondary" width={200}>Medium Secondary</Button>
           <Button size="lg" variant="tertiary" width={300}>Large Tertiary</Button>

@@ -45,7 +45,7 @@ export const ValidatedFormExample = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="flex-vertical">
       <div>
         <label className="block text-sm font-medium mb-1">Email</label>
         <Input
@@ -103,7 +103,7 @@ export const VariousInputsFormExample = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="flex-vertical">
       <div>
         <label className="block text-sm font-medium mb-1">Name</label>
         <Input
@@ -144,17 +144,14 @@ export const VariousInputsFormExample = () => {
         />
       </div>
       
-      <div className="flex items-center">
-        <input
+      <div>
+        <Input
           type="checkbox"
           id="newsletter"
+          label="Subscribe to newsletter"
           checked={formData.newsletter}
           onChange={(e) => handleChange('newsletter', e.target.checked)}
-          className="mr-2"
         />
-        <label htmlFor="newsletter" className="text-sm">
-          Subscribe to newsletter
-        </label>
       </div>
       
       <div className="flex justify-center">
@@ -203,15 +200,13 @@ The Form component includes several complementary features to handle various dat
 <CodeBlockWithPreview 
   title="All Form Variants"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <form>
         <div>
-          <label htmlFor="name-preview">Name</label>
-          <Input id="name-preview" name="name" placeholder="Enter your name" />
+          <Input id="name-preview" name="name" label="Name" placeholder="Enter your name" />
         </div>
         <div>
-          <label htmlFor="email-preview">Email</label>
-          <Input id="email-preview" name="email" type="email" placeholder="Enter your email" />
+          <Input id="email-preview" name="email" type="email" label="Email" placeholder="Enter your email" />
         </div>
         <div className="flex justify-center">
           <div className="flex justify-center">
@@ -246,12 +241,12 @@ export const FormExamples = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="space-y-4">
+      <div className="flex-vertical">
         <div>
-          <label htmlFor="name">Name</label>
           <Input
             id="name"
             name="name"
+            label="Name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -259,11 +254,11 @@ export const FormExamples = () => {
         </div>
         
         <div>
-          <label htmlFor="email">Email</label>
           <Input
             id="email"
             name="email"
             type="email"
+            label="Email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -271,10 +266,10 @@ export const FormExamples = () => {
         </div>
         
         <div>
-          <label htmlFor="message">Message</label>
           <Input
             id="message"
             name="message"
+            label="Message"
             value={formData.message}
             onChange={handleChange}
           />
@@ -347,13 +342,13 @@ export const ValidatedFormExample = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="space-y-4">
+      <div className="flex-vertical">
         <div>
-          <label htmlFor="email">Email</label>
           <Input
             id="email"
             name="email"
             type="email"
+            label="Email"
             value={formData.email}
             onChange={handleChange}
             error={errors.email}
@@ -361,11 +356,11 @@ export const ValidatedFormExample = () => {
         </div>
         
         <div>
-          <label htmlFor="password">Password</label>
           <Input
             id="password"
             name="password"
             type="password"
+            label="Password"
             value={formData.password}
             onChange={handleChange}
             error={errors.password}
@@ -417,12 +412,12 @@ export const ComprehensiveFormExample = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="space-y-4">
+      <div className="flex-vertical">
         <div>
-          <label htmlFor="name">Full Name</label>
           <Input
             id="name"
             name="name"
+            label="Full Name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -430,11 +425,11 @@ export const ComprehensiveFormExample = () => {
         </div>
         
         <div>
-          <label htmlFor="email">Email</label>
           <Input
             id="email"
             name="email"
             type="email"
+            label="Email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -442,21 +437,21 @@ export const ComprehensiveFormExample = () => {
         </div>
         
         <div>
-          <label htmlFor="age">Age</label>
           <Input
             id="age"
             name="age"
             type="number"
+            label="Age"
             value={formData.age}
             onChange={handleChange}
           />
         </div>
         
         <div>
-          <label htmlFor="country">Country</label>
           <Select
             id="country"
             name="country"
+            label="Country"
             value={formData.country}
             onChange={handleChange}
           >
@@ -477,38 +472,38 @@ export const ComprehensiveFormExample = () => {
           />
         </div>
         
-        <div className="flex items-center space-x-2">
-          <Checkbox
+        <div>
+          <Input
+            type="checkbox"
             id="newsletter"
             name="newsletter"
+            label="Subscribe to newsletter"
             checked={formData.newsletter}
             onChange={handleChange}
           />
-          <label htmlFor="newsletter">Subscribe to newsletter</label>
         </div>
         
         <div>
-          <label>Gender</label>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
+          <div className="flex-vertical">
+            <div className="flex items-center gap-sm">
               <Radio
                 id="male"
                 name="gender"
                 value="male"
+                label="Male"
                 checked={formData.gender === 'male'}
                 onChange={handleChange}
               />
-              <label htmlFor="male">Male</label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-sm">
               <Radio
                 id="female"
                 name="gender"
                 value="female"
+                label="Female"
                 checked={formData.gender === 'female'}
                 onChange={handleChange}
               />
-              <label htmlFor="female">Female</label>
             </div>
           </div>
         </div>

@@ -7,10 +7,10 @@ export const ModalPreview = () => {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="flex-vertical-lg">
         <Card className="p-4">
-          <div className="space-y-4">
-            <div className="flex gap-4 flex-wrap" style={{ gap: 'var(--space-sm)' }}>
+          <div className="flex-vertical">
+            <div className="flex gap-sm flex-wrap">
               <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
               <Button 
                 variant="destructive" 
@@ -75,10 +75,10 @@ export const ModalExample = () => {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="flex-vertical-lg">
         <Card className="p-4">
-          <div className="space-y-4">
-            <div className="flex gap-4 flex-wrap">
+          <div className="flex-vertical">
+            <div className="flex gap-md flex-wrap">
               <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
               <Button 
                 variant="destructive" 
@@ -150,7 +150,7 @@ export const FormModalExample = () => {
         <ModalHeader onClose={() => setIsOpen(false)}>
           <h2 className="modal-title">Add New User</h2>
         </ModalHeader>
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 flex-vertical">
           <div>
             <label htmlFor="name">Name</label>
             <Input 
@@ -168,7 +168,7 @@ export const FormModalExample = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, email: e.target.value})}
             />
           </div>
-          <div className="flex justify-center items-center" style={{ gap: 'var(--space-lg)' }}>
+          <div className="flex justify-center items-center gap-lg">
             <Button variant="outline" onClick={() => setIsOpen(false)}>
               Cancel
             </Button>

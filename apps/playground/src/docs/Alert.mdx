@@ -37,7 +37,7 @@ The Alert component includes several complementary features to handle various no
 <CodeBlockWithPreview 
   title="All Alert Variants"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <Alert variant="error" title="Error">
         Something went wrong. Please try again.
       </Alert>
@@ -51,7 +51,7 @@ The Alert component includes several complementary features to handle various no
 
 export default function AlertExamples() {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <Alert variant="error" title="Error">
         Something went wrong. Please try again.
       </Alert>
@@ -101,7 +101,7 @@ export default function DismissibleAlert() {
 <CodeBlockWithPreview 
   title="Custom Sizing Example"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical">
       {/* String values */}
       <Alert 
         variant="info" 
@@ -139,7 +139,7 @@ export default function DismissibleAlert() {
 
 export default function CustomSizedAlert() {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       {/* String values */}
       <Alert 
         variant="info" 

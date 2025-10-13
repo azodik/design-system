@@ -289,7 +289,7 @@ export default function Demo() {
               { value: "uk", label: "United Kingdom" },
             ]}
             value={formData.country}
-            onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+            onChange={(value) => setFormData({ ...formData, country: value })}
             className="mb-md"
           />
           <Checkbox

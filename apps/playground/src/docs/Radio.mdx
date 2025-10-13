@@ -11,7 +11,7 @@ export const ControlledRadioExample = () => {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex-vertical">
       <h3>Choose your preferred language:</h3>
       <Radio 
         id="english" 
@@ -52,7 +52,7 @@ export const DefaultRadioExample = () => {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex-vertical">
       <h3>Choose your size:</h3>
       <Radio 
         id="small" 
@@ -100,9 +100,9 @@ export const ValidatedRadioExample = () => {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex-vertical">
       <h3>Choose your payment method: *</h3>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-sm">
         <Radio 
           id="credit" 
           name="payment" 
@@ -113,7 +113,7 @@ export const ValidatedRadioExample = () => {
         />
         <label htmlFor="credit">Credit Card</label>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-sm">
         <Radio 
           id="debit" 
           name="payment" 
@@ -124,7 +124,7 @@ export const ValidatedRadioExample = () => {
         />
         <label htmlFor="debit">Debit Card</label>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-sm">
         <Radio 
           id="paypal" 
           name="payment" 
@@ -142,14 +142,14 @@ export const ValidatedRadioExample = () => {
 
 export const SizedRadioExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <div>
         <h4>Small Radio</h4>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-sm">
           <Radio id="small1" name="small" value="1" size="sm" />
           <label htmlFor="small1">Option 1</label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-sm">
           <Radio id="small2" name="small" value="2" size="sm" />
           <label htmlFor="small2">Option 2</label>
         </div>
@@ -157,11 +157,11 @@ export const SizedRadioExample = () => {
       
       <div>
         <h4>Medium Radio</h4>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-sm">
           <Radio id="medium1" name="medium" value="1" size="md" />
           <label htmlFor="medium1">Option 1</label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-sm">
           <Radio id="medium2" name="medium" value="2" size="md" />
           <label htmlFor="medium2">Option 2</label>
         </div>
@@ -169,11 +169,11 @@ export const SizedRadioExample = () => {
       
       <div>
         <h4>Large Radio</h4>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-sm">
           <Radio id="large1" name="large" value="1" size="lg" />
           <label htmlFor="large1">Option 1</label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-sm">
           <Radio id="large2" name="large" value="2" size="lg" />
           <label htmlFor="large2">Option 2</label>
         </div>
@@ -231,9 +231,9 @@ export const DefaultRadioGroupExample = () => {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex-vertical">
       <h3>Choose your size:</h3>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-sm">
         <Radio 
           id="small" 
           name="size" 
@@ -243,7 +243,7 @@ export const DefaultRadioGroupExample = () => {
         />
         <label htmlFor="small">Small</label>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-sm">
         <Radio 
           id="medium" 
           name="size" 
@@ -253,7 +253,7 @@ export const DefaultRadioGroupExample = () => {
         />
         <label htmlFor="medium">Medium</label>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-sm">
         <Radio 
           id="large" 
           name="size" 

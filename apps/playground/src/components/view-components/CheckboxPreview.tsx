@@ -7,10 +7,10 @@ export const CheckboxPreview = () => {
   const [marketing, setMarketing] = useState(true);
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <div>
-        <h3 className="text-lg font-semibold mb-3">Checkbox Sizes</h3>
-        <div className="space-y-4">
+        <h3 className="component-section-title">Checkbox Sizes</h3>
+        <div className="flex-vertical">
           <Checkbox
             label="Small checkbox"
             size="sm"
@@ -44,10 +44,10 @@ export const CheckboxExample = () => {
   const [marketing, setMarketing] = useState(true);
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <div>
-        <h3 className="text-lg font-semibold mb-3">Checkbox Sizes</h3>
-        <div className="space-y-4">
+        <h3 className="component-section-title">Checkbox Sizes</h3>
+        <div className="flex-vertical">
           <Checkbox
             label="Small checkbox"
             size="sm"

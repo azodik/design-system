@@ -2,7 +2,7 @@ import React from "react";
 import { Card, ScrollArea } from "@azodik/ui";
 
 export const ScrollAreaPreview = () => (
-  <div className="space-y-6" style={{ width: '100%', maxWidth: '800px' }}>
+  <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
     <div>
       <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
       <Card className="border border-gray-200 rounded-lg p-4"
@@ -33,7 +33,7 @@ import { Card, ScrollArea } from "@azodik/ui";
 
 export const ScrollAreaExample = () => {
   return (
-    <div className="space-y-6" style={{ width: '100%', maxWidth: '800px' }}>
+    <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
       <div>
         <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
         <Card className="border border-gray-200 rounded-lg p-4"

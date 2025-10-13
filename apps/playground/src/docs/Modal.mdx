@@ -41,7 +41,7 @@ The Modal component includes several complementary features to handle various ov
 <CodeBlockWithPreview 
   title="Modal with Form"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <FormModalExample />
     </div>
   }
@@ -70,7 +70,7 @@ export const FormModalExample = () => {
           <div className="modal-header">
             <h2>Add New User</h2>
           </div>
-          <form onSubmit={handleSubmit} className="p-6 space-y-4">
+          <form onSubmit={handleSubmit} className="p-6 flex-vertical">
             <div>
               <label htmlFor="name">Name</label>
               <Input 
@@ -111,7 +111,7 @@ The ModalHeader component provides a consistent header structure for modals with
 <CodeBlockWithPreview 
   title="ModalHeader Usage"
   preview={
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <ModalHeaderExample />
     </div>
   }

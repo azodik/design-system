@@ -5,7 +5,7 @@ import { ComponentRenderer } from '../components/docs/ComponentRenderer';
 export const SizedScrollAreaExample = () => {
   return (
     <div>
-    <div className="space-y-6" style={{ width: '100%', maxWidth: '800px' }}>
+    <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
     <div>
       <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
       <Card className="border border-gray-200 rounded-lg p-4"
@@ -30,7 +30,7 @@ export const SizedScrollAreaExample = () => {
     </div>
   </div>
       
-      <div className="space-y-6" style={{ width: '100%', maxWidth: '800px' }}>
+      <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
     <div>
       <h3 className="text-lg font-semibold mb-3">Large Scrollbar</h3>
       <Card className="border border-gray-200 rounded-lg p-4"
@@ -117,11 +117,11 @@ The ScrollArea component includes several complementary features to handle vario
 
 export const ScrollAreaSizesExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <div>
         <h4>Small ScrollArea</h4>
         <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="sm">
-          <div className="p-4 space-y-2">
+          <div className="p-4 flex-vertical">
             <p>Small scrollbar</p>
             <p>Content here</p>
             <p>More content</p>
@@ -133,7 +133,7 @@ export const ScrollAreaSizesExample = () => {
       <div>
         <h4>Medium ScrollArea</h4>
         <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="md">
-          <div className="p-4 space-y-2">
+          <div className="p-4 flex-vertical">
             <p>Medium scrollbar</p>
             <p>Content here</p>
             <p>More content</p>

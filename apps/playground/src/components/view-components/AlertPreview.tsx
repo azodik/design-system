@@ -2,7 +2,7 @@ import React from "react";
 import { Alert } from "@azodik/ui";
 
 export const AlertPreview = () => (
-  <div className="space-y-4">
+  <div className="flex-vertical">
     <Alert variant="success" title="Success!" onClose={() => {}}>
       Your changes have been saved successfully.
     </Alert>
@@ -23,7 +23,7 @@ import { Alert } from "@azodik/ui";
 
 export const AlertExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       <Alert variant="success" title="Success!" onClose={() => {}}>
         Your changes have been saved successfully.
       </Alert>

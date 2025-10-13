@@ -6,12 +6,12 @@ export const RadioPreview = () => {
   const [size, setSize] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card width={200}>
-        <div className="space-y-6">
+        <div className="flex-vertical-lg">
           <div>
             <label className="form-label">Gender</label>
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 flex-vertical">
               <Radio
                 name="gender"
                 value="male"
@@ -38,7 +38,7 @@ export const RadioPreview = () => {
 
           <div>
             <label className="form-label">Size</label>
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 flex-vertical">
               <Radio
                 name="size"
                 value="small"
@@ -76,12 +76,12 @@ export const RadioExample = () => {
   const [size, setSize] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-6">
+        <div className="flex-vertical-lg">
           <div>
             <label className="form-label">Gender</label>
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 flex-vertical">
               <Radio
                 name="gender"
                 value="male"
@@ -108,7 +108,7 @@ export const RadioExample = () => {
 
           <div>
             <label className="form-label">Size</label>
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 flex-vertical">
               <Radio
                 name="size"
                 value="small"

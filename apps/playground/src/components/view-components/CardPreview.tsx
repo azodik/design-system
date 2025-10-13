@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction, Input, Button } from "@azodik/ui";
 
 export const CardPreview = () => (
-  <div className="space-y-4 p-4">
+  <div className="card-container">
     <Card
       width="100%"
       height="auto"
@@ -19,7 +19,7 @@ export const CardPreview = () => (
       </CardHeader>
       <CardContent>
         <form>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-md">
             <div className="grid gap-2">
               <Input
                 id="email"
@@ -55,7 +55,7 @@ export const CardCode = `import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction, Input, Button } from "@azodik/ui";
 
 export const CardPreview = () => (
-  <div className="space-y-4 p-4">
+  <div className="card-container">
     <Card
       width="100%"
       height="auto"
@@ -72,7 +72,7 @@ export const CardPreview = () => (
       </CardHeader>
       <CardContent>
         <form>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-md">
             <div className="grid gap-2">
               <Input
                 id="email"

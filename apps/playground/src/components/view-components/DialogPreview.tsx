@@ -14,7 +14,7 @@ import {
 } from "@azodik/ui";
 
 export const DialogPreview = () => (
-  <div className="space-y-4">
+  <div className="flex-vertical">
     {/* Edit Profile Dialog */}
     <Dialog>
       <DialogTrigger asChild>
@@ -28,7 +28,7 @@ export const DialogPreview = () => (
           </DialogDescription>
         </DialogHeader>
         <DialogBody>
-          <div className="space-y-4">
+          <div className="flex-vertical">
             <div>
               <Input
                 label="Name"
@@ -74,7 +74,7 @@ import {
 
 export const DialogExample = () => {
   return (
-    <div className="space-y-4">
+    <div className="flex-vertical">
       {/* Edit Profile Dialog */}
       <Dialog>
         <DialogTrigger asChild>
@@ -88,7 +88,7 @@ export const DialogExample = () => {
             </DialogDescription>
           </DialogHeader>
           <DialogBody>
-            <div className="space-y-4">
+            <div className="flex-vertical">
               <div>
                 <Input
                   label="Name"

@@ -6,9 +6,9 @@ export const TextareaPreview = () => {
   const [comment, setComment] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
+        <div className="flex-vertical">
           <Textarea
             label="Message"
             placeholder="Enter your message"
@@ -37,9 +37,9 @@ export const TextareaExample = () => {
   const [comment, setComment] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
+        <div className="flex-vertical">
           <Textarea
             label="Message"
             placeholder="Enter your message"

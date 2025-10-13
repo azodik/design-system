@@ -6,9 +6,9 @@ export const SelectPreview = () => {
   const [size, setSize] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-6">
-        <div className="space-y-4">
+        <div className="flex-vertical">
           <Select
             label="Country"
             options={[
@@ -47,7 +47,7 @@ export const SelectExample = () => {
   const [size, setSize] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card 
         className="p-6"
         style={{ 
@@ -56,7 +56,7 @@ export const SelectExample = () => {
           maxWidth: '500px'
         }}
       >
-        <div className="space-y-4">
+        <div className="flex-vertical">
           <Select
             label="Country"
             options={[

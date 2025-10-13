@@ -52,11 +52,11 @@ export const PopoverPreview = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-4" width="100%" height="400px">
-        <div className="space-y-6">
+        <div className="flex-vertical-lg">
           {/* Controls */}
-          <div className="flex gap-4 flex-wrap justify-center items-center" style={{ gap: 'var(--space-lg)' }}>
+          <div className="flex gap-lg flex-wrap justify-center items-center">
             <div className="flex flex-col gap-2">
               <Select
                 label="Position:"
@@ -139,11 +139,11 @@ export const PopoverWithSharedState = ({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-4" width="100%" height="400px">
-        <div className="space-y-6">
+        <div className="flex-vertical-lg">
           {/* Controls */}
-          <div className="flex gap-4 flex-wrap justify-center items-center" style={{ gap: 'var(--space-lg)' }}>
+          <div className="flex gap-lg flex-wrap justify-center items-center">
             <div className="flex flex-col gap-2">
               <Select
                 label="Position:"
@@ -199,7 +199,7 @@ export const PopoverExample = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="flex-vertical-lg">
       <Card className="p-4" width="100%" height="300px">
         <div className="flex justify-center items-center" style={{ minHeight: '200px' }}>
           <Popover
