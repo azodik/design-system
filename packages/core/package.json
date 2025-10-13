@@ -1,5 +1,5 @@
 {
-  "name": "@azodik/core",
+  "name": "@azodik-ui/core",
   "version": "0.1.0",
   "main": "index.css",
   "types": "index.d.ts",
@@ -14,7 +14,7 @@
     "styles/"
   ],
   "scripts": {
-    "build": "echo 'Design system CSS is ready'",
+    "build": "echo 'Azodik UI CSS is ready'",
     "dev": "vite dev --port 3003",
     "lint": "echo 'No linting needed for CSS'",
     "type-check": "echo 'No type checking needed for CSS'",

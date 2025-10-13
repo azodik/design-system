@@ -27,7 +27,7 @@ importers:
 
   apps/playground:
     dependencies:
-      '@azodik/core':
+      '@azodik-ui/core':
         specifier: workspace:*
         version: link:../../packages/core
       '@azodik/ui':
@@ -85,7 +85,7 @@ importers:
 
   packages/ui:
     dependencies:
-      '@azodik/core':
+      '@azodik-ui/core':
         specifier: workspace:*
         version: link:../core
       react:
