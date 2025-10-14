@@ -1,6 +1,6 @@
 {
   "name": "@azodik/icons",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Icon components for Azodik UI design system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,11 +39,11 @@
     "publish": "npm publish --access public"
   },
   "dependencies": {
-    "react": "^19.1.1"
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.15",
-    "typescript": "^5.9.2"
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": ">=18.0.0"

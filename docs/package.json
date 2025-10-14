@@ -12,23 +12,23 @@
     "clean": "node ../scripts/clean.mjs"
   },
   "dependencies": {
-    "azodik-ui-core": "workspace:*",
-    "@azodik/ui": "workspace:*",
     "@azodik/icons": "workspace:*",
-    "@mdx-js/react": "2.3.0",
+    "@azodik/ui": "workspace:*",
+    "@mdx-js/react": "3.1.1",
     "@mdx-js/rollup": "^3.1.1",
     "@types/mdx": "^2.0.13",
-    "lucide": "^0.544.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.3",
+    "azodik-ui-core": "workspace:*",
+    "lucide": "^0.545.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4",
     "react-syntax-highlighter": "^15.6.6"
   },
   "devDependencies": {
-    "@types/react": "^19.1.15",
-    "@types/react-dom": "^19.1.9",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
-    "typescript": "^5.9.2",
-    "vite": "^7.1.7"
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
   }
 }

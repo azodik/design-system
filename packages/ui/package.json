@@ -40,13 +40,13 @@
     "publish": "npm publish --access public"
   },
   "dependencies": {
-    "azodik-ui-core": "workspace:*",
     "@azodik/icons": "workspace:*",
-    "react": "^19.1.1"
+    "azodik-ui-core": "workspace:*",
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.15",
-    "typescript": "^5.9.2"
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": ">=18.0.0"

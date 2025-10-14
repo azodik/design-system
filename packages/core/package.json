@@ -41,7 +41,7 @@
     "publish": "npm publish --access public"
   },
   "devDependencies": {
-    "typescript": "^5.9.2",
-    "vite": "^7.1.7"
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
   }
 }
