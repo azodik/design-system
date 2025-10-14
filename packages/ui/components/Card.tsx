@@ -62,9 +62,9 @@ export default function Card({
   ...props
 }: CardProps) {
   const variantClasses = {
-    default: "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
-    outlined: "bg-transparent border border-gray-300 dark:border-gray-600",
-    shadow: "bg-white dark:bg-gray-800 border border-transparent",
+    default: "card",
+    outlined: "card card-outlined",
+    shadow: "card card-shadow",
   };
 
   const resolveSize = (value?: Size | string | number) => {
@@ -86,10 +86,8 @@ export default function Card({
   };
 
   const combinedClassName = [
-    "transition-all",
     variantClasses[variant],
-    shadow && "shadow-light dark:shadow-dark",
-    hoverEffect && "hover:shadow-lg dark:hover:shadow-xl",
+    hoverEffect && "card-hover",
     className,
   ]
     .filter(Boolean)

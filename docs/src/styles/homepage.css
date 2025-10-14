@@ -61,7 +61,7 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.2s ease;
+  transition: none;
   background: none;
   border: none;
   cursor: pointer;
@@ -76,6 +76,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.homepage-theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
 }
 
 .homepage-nav-btn {
@@ -156,7 +162,7 @@
   padding: 0.875rem 1.5rem;
   border-radius: 0.5rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: none;
   border: none;
   cursor: pointer;
 }
@@ -316,6 +322,63 @@
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
   }
+}
+
+/* Dark Theme Styles for Homepage - Using common theme system */
+[data-theme="dark"] .homepage {
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .homepage-header {
+  background: var(--color-background) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .homepage-brand-text {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .homepage-nav-link {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .homepage-nav-link:hover {
+  color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] .homepage-main {
+  background: var(--color-background) !important;
+}
+
+[data-theme="dark"] .homepage-hero-title {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .homepage-hero-accent {
+  color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] .homepage-hero-description {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme="dark"] .homepage-bg-elements {
+  background: var(--color-background) !important;
+}
+
+[data-theme="dark"] .homepage-feature-text h3 {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .homepage-feature-text p {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme="dark"] .homepage-trust-banner {
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-border) !important;
 }
 
 /* Sidebar Active State */

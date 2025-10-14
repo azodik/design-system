@@ -1,5 +1,137 @@
 import { Toast, Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+
+export const BasicToastExample = () => {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="info"
+          title="Information"
+          onClose={() => setShowToast(false)}
+          autoClose={3000}
+        >
+          This is a basic toast notification.
+        </Toast>
+      )}
+    </div>
+  );
+};
+
+export const ToastVariantsExample = () => {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (variant, title, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, variant, title, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('success', 'Success!', 'Operation completed successfully.')}>
+          Success Toast
+        </Button>
+        <Button onClick={() => addToast('error', 'Error!', 'Something went wrong.')}>
+          Error Toast
+        </Button>
+        <Button onClick={() => addToast('warning', 'Warning!', 'Please check your input.')}>
+          Warning Toast
+        </Button>
+        <Button onClick={() => addToast('info', 'Info', 'Here is some information.')}>
+          Info Toast
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant={toast.variant}
+          title={toast.title}
+          onClose={() => removeToast(toast.id)}
+          autoClose={4000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+};
+
+export const ToastPositionsExample = () => {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (position, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, position, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('top-center', 'Top Center Toast')}>
+          Top Center
+        </Button>
+        <Button onClick={() => addToast('top-right', 'Top Right Toast')}>
+          Top Right
+        </Button>
+        <Button onClick={() => addToast('bottom-right', 'Bottom Right Toast')}>
+          Bottom Right
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant="info"
+          position={toast.position}
+          onClose={() => removeToast(toast.id)}
+          autoClose={3000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+};
+
+export const PersistentToastExample = () => {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Persistent Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="warning"
+          title="Important Notice"
+          onClose={() => setShowToast(false)}
+          // No autoClose prop = persistent until manually closed
+        >
+          This toast will stay until you manually close it.
+        </Toast>
+      )}
+    </div>
+  );
+};
 
 # Toast Component
 
@@ -31,6 +163,168 @@ The Toast component includes several complementary features to handle various no
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Basic Toast"
+  preview={<BasicToastExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicToast() {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="info"
+          title="Information"
+          onClose={() => setShowToast(false)}
+          autoClose={3000}
+        >
+          This is a basic toast notification.
+        </Toast>
+      )}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Toast Variants"
+  preview={<ToastVariantsExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function ToastVariants() {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (variant, title, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, variant, title, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('success', 'Success!', 'Operation completed successfully.')}>
+          Success Toast
+        </Button>
+        <Button onClick={() => addToast('error', 'Error!', 'Something went wrong.')}>
+          Error Toast
+        </Button>
+        <Button onClick={() => addToast('warning', 'Warning!', 'Please check your input.')}>
+          Warning Toast
+        </Button>
+        <Button onClick={() => addToast('info', 'Info', 'Here is some information.')}>
+          Info Toast
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant={toast.variant}
+          title={toast.title}
+          onClose={() => removeToast(toast.id)}
+          autoClose={4000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Toast Positions"
+  preview={<ToastPositionsExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function ToastPositions() {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (position, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, position, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('top-center', 'Top Center Toast')}>
+          Top Center
+        </Button>
+        <Button onClick={() => addToast('top-right', 'Top Right Toast')}>
+          Top Right
+        </Button>
+        <Button onClick={() => addToast('bottom-right', 'Bottom Right Toast')}>
+          Bottom Right
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant="info"
+          position={toast.position}
+          onClose={() => removeToast(toast.id)}
+          autoClose={3000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Persistent Toast"
+  preview={<PersistentToastExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function PersistentToast() {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Persistent Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="warning"
+          title="Important Notice"
+          onClose={() => setShowToast(false)}
+          // No autoClose prop = persistent until manually closed
+        >
+          This toast will stay until you manually close it.
+        </Toast>
+      )}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Props
 

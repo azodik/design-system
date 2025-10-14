@@ -5,7 +5,8 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CopyIcon, TickIcon } from "@azodik/icons";
 
 interface CodeBlockWithPreviewProps {
-  children: string;
+  children?: string;
+  code?: string;
   language?: string;
   title?: string;
   preview?: React.ReactNode;
@@ -13,6 +14,7 @@ interface CodeBlockWithPreviewProps {
 
 export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
   children,
+  code,
   language = "tsx",
   title,
   preview,
@@ -22,7 +24,7 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(children);
+      await navigator.clipboard.writeText(code || children || '');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -43,9 +45,10 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
 
       <TabContent value="preview">
         <Card
-          className="border border-gray-200 rounded-lg p-4 w-full flex items-center justify-center"
+          className="border rounded-lg p-4 w-full flex items-center justify-center"
           style={{
-            backgroundColor: "white",
+            backgroundColor: "var(--preview-bg)",
+            borderColor: "var(--preview-border)",
             minWidth: "500px",
           }}
         >
@@ -55,10 +58,15 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
 
       <TabContent value="code">
         <Card
-          className="border border-gray-200 rounded-lg overflow-y-auto"
+          className="border rounded-lg overflow-y-auto"
           style={{
-            backgroundColor: "#f9fafb",
+            backgroundColor: "var(--color-surface)",
+            borderColor: "var(--color-border)",
+            height: "calc(100vh - 400px)",
+            minHeight: "450px",
             position: "relative",
+            width: "100%",
+            padding:"0"
           }}
         >
           <button
@@ -92,7 +100,7 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
             wrapLines={true}
             wrapLongLines={true}
           >
-            {children}
+            {code || children}
           </SyntaxHighlighter>
         </Card>
       </TabContent>

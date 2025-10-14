@@ -1,4 +1,5 @@
 @import "./tokens/tokens.css";
+@import "./styles/theme.css";
 @import "./styles/globals.css";
 @import "./components/accordion.css";
 @import "./components/alert.css";

@@ -7,14 +7,14 @@ export const SizedScrollAreaExample = () => {
     <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
     <div>
       <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
-      <Card className="border border-gray-200 rounded-lg p-4"
+      <Card className="border rounded-lg p-4"
         width="100%"
         height="200px"
-        backgroundColor="#f8fafc"
+        style={{ backgroundColor: "var(--color-background)", borderColor: "var(--color-border)" }}
       >
         <ScrollArea className="h-24 w-full" scrollbarSize="sm">
           <div className="p-4">
-            <p className="text-sm text-gray-700 leading-relaxed">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed mt-3">
@@ -32,14 +32,14 @@ export const SizedScrollAreaExample = () => {
       <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
     <div>
       <h3 className="text-lg font-semibold mb-3">Large Scrollbar</h3>
-      <Card className="border border-gray-200 rounded-lg p-4"
+      <Card className="border rounded-lg p-4"
         width="100%"
         height="200px"
-        backgroundColor="#f8fafc"
+        style={{ backgroundColor: "var(--color-background)", borderColor: "var(--color-border)" }}
       >
         <ScrollArea className="h-24 w-full" scrollbarSize="lg">
           <div className="p-4">
-            <p className="text-sm text-gray-700 leading-relaxed">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed mt-3">
@@ -153,11 +153,6 @@ export const ScrollAreaSizesExample = () => {
 {`import { ScrollArea } from '@azodik/ui';
 
 export const HorizontalScrollAreaExample = () => {
-  const colors = [
-    'bg-blue-100', 'bg-green-100', 'bg-red-100', 'bg-yellow-100', 'bg-purple-100',
-    'bg-pink-100', 'bg-indigo-100', 'bg-orange-100', 'bg-teal-100', 'bg-cyan-100',
-    'bg-emerald-100', 'bg-rose-100', 'bg-violet-100', 'bg-amber-100', 'bg-sky-100'
-  ];
 
   return (
     <ScrollArea className="w-80 border rounded" orientation="horizontal">
@@ -165,7 +160,7 @@ export const HorizontalScrollAreaExample = () => {
         {Array.from({ length: 15 }, (_, i) => (
           <div 
             key={i}
-            className={\`w-32 h-20 \${colors[i]} rounded flex items-center justify-center flex-shrink-0\`}
+            className={\`w-32 h-20\ rounded flex items-center justify-center flex-shrink-0\`}
           >
             Item {i + 1}
           </div>

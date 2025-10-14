@@ -35,10 +35,11 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-  --color-background: #0f172a;
+  --color-background: #2d2d2d;
   --color-text: #f1f5f9;
-  --color-surface: #1e293b;
-  --color-border: #334155;
+  --color-surface: #3d3d3d;
+  --color-border: #4a4a4a;
+  --color-primary: #f97316;
   --color-primary-light: #7c2d12;
   --color-primary-hover: #fb923c;
   --color-secondary-hover: #f97316;

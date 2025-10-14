@@ -1,5 +1,7 @@
 /* Sidebar Components */
 
+/* Light Theme Variables - Now handled by theme.css */
+
 /* Layout Container */
 .sidebar-layout {
   display: flex;
@@ -16,7 +18,7 @@
   border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease-in-out;
   overflow: visible;
   position: relative;
   z-index: 100;
@@ -35,7 +37,7 @@
     z-index: 1000;
     box-shadow: var(--shadow-lg);
     background: var(--sidebar-bg-color, var(--color-background));
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
   }
 
   .sidebar.open {
@@ -136,10 +138,10 @@
 }
 
 .sidebar-header {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
   border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
-  min-height: 48px;
+  min-height: 60px;
 }
 
 .sidebar-content {
@@ -199,14 +201,14 @@
   border: none;
   width: 100%;
   border-radius: var(--radius-sm);
-  transition: background-color 0.15s ease;
+  transition: none;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .sidebar-group-header:hover {
   background: #f8edd8;
-  color: var(--color-text);
+  color: #ff7f27;
 }
 
 .sidebar-group-header.active {
@@ -222,7 +224,7 @@
 }
 
 .sidebar-group-arrow {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: none;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -232,7 +234,7 @@
 }
 
 .sidebar-group-arrow svg {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: none;
   transform-origin: center;
   opacity: 1;
 }
@@ -246,7 +248,7 @@
 }
 
 .sidebar-group-content {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: none;
   overflow: hidden;
   max-height: 200px;
   opacity: 1;
@@ -282,7 +284,7 @@
   color: var(--color-text);
   text-decoration: none;
   border-radius: var(--radius-sm);
-  transition: background-color 0.15s ease;
+  transition: none;
   position: relative;
   min-height: 40px;
   width: 100%;
@@ -298,7 +300,7 @@
 
 .sidebar-item a:hover {
   background: #f8edd8;
-  color: var(--color-text);
+  color: #ff7f27;
 }
 
 .sidebar-item a.active {
@@ -348,9 +350,10 @@
   gap: var(--space-sm);
   padding: var(--space-sm);
   border-radius: var(--radius-md);
-  transition: all 0.3s ease;
+  transition: none;
   white-space: nowrap;
   overflow: hidden;
+  margin-top: var(--space-xs);
 }
 
 .sidebar-brand-logo {
@@ -393,7 +396,7 @@
   justify-content: space-between;
   padding: var(--space-md);
   border-radius: var(--radius-md);
-  transition: all 0.3s ease;
+  transition: none;
   cursor: pointer;
 }
 
@@ -463,7 +466,7 @@
   gap: var(--space-sm);
   cursor: pointer;
   border-radius: var(--radius-sm);
-  transition: background-color 0.15s ease;
+  transition: none;
   min-height: 48px;
 }
 
@@ -527,9 +530,7 @@
   overflow: hidden;
   margin-left: 0;
   width: calc(100% - 250px);
-  transition:
-    width 0.3s ease,
-    margin-left 0.3s ease;
+  transition: none;
   position: relative;
 }
 
@@ -544,8 +545,8 @@
   width: calc(100% - 250px);
 }
 
-.breadcrumb-container {
-  margin-bottom: 4px;
+/* Main Content Header */
+.main-content-header {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -556,6 +557,103 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  min-height: 60px;
+}
+
+.breadcrumb-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-section {
+  display: flex;
+  align-items: center;
+  margin-left: var(--space-sm);
+}
+
+.theme-toggle-button {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: none;
+  width: 36px;
+  height: 36px;
+}
+
+.theme-toggle-button:hover {
+  background: var(--color-background);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Dark Theme Styles - Now handled by theme.css */
+
+[data-theme="dark"] .sidebar {
+  background: var(--sidebar-bg-color) !important;
+  border-right-color: var(--color-border);
+}
+
+[data-theme="dark"] .sidebar-header {
+  border-bottom-color: var(--color-border);
+}
+
+[data-theme="dark"] .sidebar-footer {
+  border-top-color: var(--color-border);
+}
+
+[data-theme="dark"] .main-content-header {
+  background: var(--color-background) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+/* Light theme main content header styles */
+.main-content-header {
+  background: var(--color-background) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .main-content-area {
+  background: var(--color-background) !important;
+}
+
+[data-theme="dark"] .main-content-scrollable {
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Light theme main content styles */
+.main-content-area {
+  background: var(--color-background) !important;
+}
+
+.main-content-scrollable {
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Body and HTML styles - Now handled by theme.css */
+
+/* Theme toggle button styles - Now handled by theme.css */
+
+.breadcrumb-container {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+  padding: 0;
+  background: transparent;
+  border-bottom: none;
+  position: static;
+  top: auto;
+  z-index: auto;
 }
 
 .main-content-scrollable {
@@ -596,7 +694,7 @@
   justify-content: center;
   color: var(--color-text);
   opacity: 1;
-  transition: all 0.3s ease;
+  transition: none;
   margin-right: var(--space-xs);
 }
 
@@ -614,6 +712,48 @@
   .sidebar-toggle-button.hide-on-desktop {
     display: flex;
   }
+  
+  /* Mobile header styles */
+  .main-content-header {
+    padding: var(--space-sm);
+    min-height: 50px;
+    gap: var(--space-xs);
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  .breadcrumb-section {
+    flex: 1;
+    min-width: 0;
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  .theme-toggle-section {
+    flex-shrink: 0;
+    margin-left: var(--space-xs);
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  /* Ensure breadcrumb is visible on mobile */
+  .breadcrumb-container {
+    overflow: visible;
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  /* Force breadcrumb to show on mobile */
+  .breadcrumb {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--space-xs) !important;
+  }
+  
+  .breadcrumb-item {
+    display: flex !important;
+    align-items: center !important;
+  }
 }
 
 .sidebar-user-dropdown-content {
@@ -629,7 +769,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateX(-8px);
-  transition: all 0.2s ease;
+  transition: none;
   pointer-events: none;
 }
 
@@ -696,7 +836,7 @@
   color: var(--color-text);
   text-decoration: none;
   font-size: var(--font-size-sm);
-  transition: background-color 0.15s ease;
+  transition: none;
   white-space: nowrap;
 }
 

@@ -482,6 +482,7 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
   showBreadcrumb?: boolean;
   showToggleButton?: boolean;
   hideToggleOnDesktop?: boolean;
+  themeToggle?: React.ReactNode;
 }
 
 export function SidebarMainContent({
@@ -494,33 +495,45 @@ export function SidebarMainContent({
   showBreadcrumb = true,
   showToggleButton = true,
   hideToggleOnDesktop = false,
+  themeToggle,
   className = "",
   ...props
 }: SidebarMainContentProps) {
   return (
     <div className={`main-content-area ${className}`} {...props}>
-      {/* Breadcrumb */}
-      {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
-        <div className="breadcrumb-container">
-          {showToggleButton && onSidebarToggle && (
-            <button
-              className={`sidebar-toggle-button ${hideToggleOnDesktop ? "hide-on-desktop" : ""}`}
-              onClick={onSidebarToggle}
-            >
-              {sidebarToggleIcon || (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
-                </svg>
-              )}
-            </button>
-          )}
-          {breadcrumb ? (
-            breadcrumb
-          ) : breadcrumbItems ? (
-            <Breadcrumb items={breadcrumbItems} />
-          ) : null}
-        </div>
-      )}
+      {/* Main Header Section */}
+      <header className="main-content-header">
+        {showToggleButton && onSidebarToggle && (
+          <button
+            className={`sidebar-toggle-button ${hideToggleOnDesktop ? "hide-on-desktop" : ""}`}
+            onClick={onSidebarToggle}
+          >
+            {sidebarToggleIcon || (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+              </svg>
+            )}
+          </button>
+        )}
+        
+        {/* Breadcrumb Section */}
+        {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
+          <div className="breadcrumb-section">
+            {breadcrumb ? (
+              breadcrumb
+            ) : breadcrumbItems ? (
+              <Breadcrumb items={breadcrumbItems} />
+            ) : null}
+          </div>
+        )}
+        
+        {/* Theme Toggle Section */}
+        {themeToggle && (
+          <div className="theme-toggle-section">
+            {themeToggle}
+          </div>
+        )}
+      </header>
 
       {/* Scrollable Main Content */}
       <div className="main-content-scrollable">{children}</div>

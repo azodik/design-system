@@ -2,13 +2,20 @@
 .docs-content {
   line-height: 1.7;
   max-width: 100%;
-  padding: 0 2rem 2rem 2rem;
-  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Docs content styles - Now using common theme system */
+.docs-content {
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
 }
 
 /* Breadcrumb spacing */
 .breadcrumb-container {
-  margin-top: 0.5rem
+  margin-top: 0;
 }
 
 .docs-content h1 {

@@ -45,28 +45,32 @@ export default function CodePreviewTabs({
         </TabList>
 
         <TabContent value="preview">
-          <Card
-            className="border border-gray-200 rounded-lg p-6 overflow-y-auto flex items-center justify-center"
-            style={{
-              backgroundColor: "white",
-              height: "calc(100vh - 400px)",
-              minHeight: "450px",
-            }}
-          >
+            <Card
+              className="border rounded-lg p-6 overflow-y-auto flex items-center justify-center"
+              style={{
+                backgroundColor: "var(--preview-bg)",
+                borderColor: "var(--preview-border)",
+                height: "calc(100vh - 400px)",
+                minHeight: "450px",
+                width: "100%",
+                padding:"0"
+              }}
+            >
             {preview}
           </Card>
         </TabContent>
 
         <TabContent value="code">
-          <Card
-            className="border border-gray-200 rounded-lg overflow-y-auto"
-            style={{
-              backgroundColor: "#f9fafb",
-              height: "calc(100vh - 400px)",
-              minHeight: "450px",
-              position: "relative",
-            }}
-          >
+            <Card
+              className="border rounded-lg overflow-y-auto"
+              style={{
+                backgroundColor: "var(--color-surface)",
+                borderColor: "var(--color-border)",
+                height: "calc(100vh - 400px)",
+                minHeight: "450px",
+                position: "relative",
+              }}
+            >
             <button
               onClick={handleCopy}
               className="absolute top-4 right-4 z-10 p-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
@@ -88,12 +92,12 @@ export default function CodePreviewTabs({
                 fontSize: "0.875rem",
                 lineHeight: "1.5",
                 padding: "1rem",
-                background: "#1e1e1e",
-                color: "#d4d4d4",
+                background: "var(--color-surface)",
+                color: "var(--color-text)",
                 height: "100%",
                 minHeight: "100%",
                 scrollbarWidth: "thin",
-                scrollbarColor: "#d1d5db transparent",
+                scrollbarColor: "var(--color-border) transparent",
               }}
               wrapLines={true}
               wrapLongLines={true}

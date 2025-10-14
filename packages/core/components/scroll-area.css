@@ -10,7 +10,9 @@
   width: 100%;
   overflow: auto;
   scrollbar-width: auto;
-  scrollbar-color: #d1d5db transparent;
+  scrollbar-color: var(--color-border) transparent !important;
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
 }
 
 .scroll-area-horizontal .scroll-area-content {
@@ -25,18 +27,18 @@
 }
 
 .scroll-area-content::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-background) !important;
 }
 
 .scroll-area-content::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg, #d1d5db) !important;
+  background: var(--color-border) !important;
   border-radius: var(--scrollbar-thumb-radius, 8px) !important;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 .scroll-area-content::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-bg, #9ca3af) !important;
+  background: var(--color-primary) !important;
   background-clip: content-box;
   opacity: 0.8;
 }

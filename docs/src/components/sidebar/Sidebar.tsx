@@ -13,6 +13,7 @@ import {
   Breadcrumb,
 } from "@azodik/ui";
 import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
+import ThemeToggle from "../ThemeToggle";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -83,20 +84,43 @@ export default function SidebarLayout({
   // Get current component name from URL
   const getCurrentComponent = () => {
     const pathParts = location.pathname.split("/");
+    
+    // Handle /components/docs/componentName pattern
+    if (pathParts[1] === "components" && pathParts[2] === "docs" && pathParts[3]) {
+      if (pathParts[3] === "getting-started") {
+        return "Getting Started";
+      }
+      const componentName = pathParts[3].charAt(0).toUpperCase() + pathParts[3].slice(1);
+      return componentName;
+    }
+    
+    // Handle /components/componentName pattern (fallback)
     if (pathParts[1] === "components" && pathParts[2]) {
       if (pathParts[2] === "getting-started") {
         return "Getting Started";
       }
-      return pathParts[2].charAt(0).toUpperCase() + pathParts[2].slice(1);
+      const componentName = pathParts[2].charAt(0).toUpperCase() + pathParts[2].slice(1);
+      return componentName;
     }
+    
     return null;
   };
 
   // Generate breadcrumb items based on current route
   const getBreadcrumbItems = () => {
-    if (breadcrumbItems) return breadcrumbItems;
-
     const currentComponent = getCurrentComponent();
+    
+    // For mobile view, show only component name (even if breadcrumbItems prop is passed)
+    if (isSmallScreen && currentComponent) {
+      return [{ label: currentComponent, current: true }];
+    }
+    
+    // For desktop view, use passed breadcrumbItems or generate default
+    if (breadcrumbItems) {
+      return breadcrumbItems;
+    }
+    
+    // Generate default desktop breadcrumb
     const items: Array<{
       label: string;
       href?: string;
@@ -125,7 +149,6 @@ export default function SidebarLayout({
         showHeader={true}
         showFooter={true}
         showBreadcrumb={true}
-        color="white"
       >
         <SidebarHeader show={true}>
           <SidebarBrand show={true} onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
@@ -160,6 +183,7 @@ export default function SidebarLayout({
         showBreadcrumb={showBreadcrumb}
         showToggleButton={showToggleButton}
         hideToggleOnDesktop={hideToggleOnDesktop}
+        themeToggle={<ThemeToggle />}
         breadcrumb={
           breadcrumb || (
             <div className="breadcrumb-container">

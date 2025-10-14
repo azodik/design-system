@@ -4,49 +4,16 @@ import { useState } from 'react';
 
 export const BasicNavigationExample = () => {
   return (
-    <Navigation brand={<span className="font-bold text-xl">MyApp</span>}>
-      <NavItem href="/" active>Home</NavItem>
-      <NavItem href="/products">Products</NavItem>
-      <NavItem href="/about">About</NavItem>
-      <NavItem href="/contact">Contact</NavItem>
-    </Navigation>
-  );
-};
-
-export const LogoNavigationExample = () => {
-  return (
-    <Navigation
-      brand={
-        <div className="flex items-center">
-          <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-2" />
-          <span className="font-bold text-xl">MyApp</span>
-        </div>
-      }
-    >
-      <NavItem href="/">Home</NavItem>
-      <NavItem href="/products">Products</NavItem>
-      <NavItem href="/about">About</NavItem>
-      <NavItem href="/contact">Contact</NavItem>
-    </Navigation>
-  );
-};
-
-export const MobileNavigationExample = () => {
-  return (
-    <Navigation
-      mobile={true}
-      brand={
-        <div className="flex items-center">
-          <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-2" />
-          <span className="font-bold text-xl">MyApp</span>
-        </div>
-      }
-    >
-      <NavItem href="/">Home</NavItem>
-      <NavItem href="/products">Products</NavItem>
-      <NavItem href="/about">About</NavItem>
-      <NavItem href="/contact">Contact</NavItem>
-    </Navigation>
+    <div style={{ width: '100%' }}>
+      <Navigation brand={<span className="font-bold text-xl">Azodik</span>}
+      style={{ height: '75px' }}
+      >
+        <NavItem href="/" active>Home</NavItem>
+        <NavItem href="/about">About</NavItem>
+        <NavItem href="/services">Services</NavItem>
+        <NavItem href="/contact">Contact</NavItem>
+      </Navigation>
+    </div>
   );
 };
 
@@ -80,6 +47,25 @@ The Navigation component includes several complementary features to handle vario
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Basic Navigation"
+  preview={<BasicNavigationExample />}
+>
+{`import { Navigation, NavItem } from '@azodik/ui';
+
+export default function BasicNavigation() {
+  return (
+    <div style={{ width: '100%' }}>
+      <Navigation brand={<span className="font-bold text-xl">Azodik</span>}>
+        <NavItem href="/" active>Home</NavItem>
+        <NavItem href="/about">About</NavItem>
+        <NavItem href="/services">Services</NavItem>
+        <NavItem href="/contact">Contact</NavItem>
+      </Navigation>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Props
 

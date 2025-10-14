@@ -1,4 +1,4 @@
-import { Input, Button, Card, CardContent, Textarea } from '@azodik/ui';
+import { Input, Button, Card, CardContent, Textarea, Checkbox } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 
@@ -46,7 +46,6 @@ export const ValidatedFormExample = () => {
   return (
     <form onSubmit={handleSubmit} className="flex-vertical">
       <div>
-        <label className="block text-sm font-medium mb-1">Email</label>
         <Input
           type="email"
           value={formData.email}
@@ -54,13 +53,9 @@ export const ValidatedFormExample = () => {
           error={errors.email}
           placeholder="Enter your email"
         />
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-        )}
       </div>
       
       <div>
-        <label className="block text-sm font-medium mb-1">Password</label>
         <Input
           type="password"
           value={formData.password}
@@ -69,9 +64,6 @@ export const ValidatedFormExample = () => {
           placeholder="Enter your password"
           autoComplete="current-password"
         />
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-        )}
       </div>
       
       <div className="flex justify-center">
@@ -144,8 +136,7 @@ export const VariousInputsFormExample = () => {
       </div>
       
       <div>
-        <Input
-          type="checkbox"
+        <Checkbox
           id="newsletter"
           label="Subscribe to newsletter"
           checked={formData.newsletter}
@@ -215,7 +206,7 @@ The Form component includes several complementary features to handle various dat
     </div>
   }
 >
-{`import { Input, Button } from '@azodik/ui';
+{`import { Input, Button, Checkbox } from '@azodik/ui';
 import { useState } from 'react';
 
 export const FormExamples = () => {
@@ -471,8 +462,7 @@ export const ComprehensiveFormExample = () => {
         </div>
         
         <div>
-          <Input
-            type="checkbox"
+          <Checkbox
             id="newsletter"
             name="newsletter"
             label="Subscribe to newsletter"

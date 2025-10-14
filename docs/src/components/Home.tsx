@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@azodik/ui";
 import { GithubIcon } from "@azodik/icons";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -55,6 +56,9 @@ export default function Home() {
               <Button variant="primary" onClick={handlePlayground} className="homepage-nav-btn">
                 Playground
               </Button>
+              <div className="homepage-theme-toggle">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         </div>

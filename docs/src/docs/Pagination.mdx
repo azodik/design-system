@@ -141,6 +141,32 @@ The Pagination component includes several complementary features to handle vario
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Basic Pagination"
+  preview={<CustomStyledPaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicPagination() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      showFirstLast
+      showPrevNext
+    />
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## With Jump to Page
 
