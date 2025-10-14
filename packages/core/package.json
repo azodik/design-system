@@ -1,12 +1,29 @@
 {
-  "name": "@azodik/core",
+  "name": "azodik-ui-core",
   "version": "0.1.0",
   "main": "index.css",
   "types": "index.d.ts",
   "license": "MIT",
   "type": "module",
   "author": "Bandna Paikaray <bandna.paikaray@azodik.com>",
-
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azodik/design-system.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/azodik/design-system#readme",
+  "bugs": {
+    "url": "https://github.com/azodik/design-system/issues"
+  },
+  "keywords": [
+    "css",
+    "design-system",
+    "ui",
+    "components",
+    "theme",
+    "dark-mode",
+    "responsive"
+  ],
   "files": [
     "*.css",
     "*.d.ts",
@@ -15,14 +32,16 @@
     "styles/"
   ],
   "scripts": {
-    "build": "echo 'Design system CSS is ready'",
+    "build": "echo 'Azodik UI CSS is ready'",
     "dev": "vite dev --port 3003",
     "lint": "echo 'No linting needed for CSS'",
     "type-check": "echo 'No type checking needed for CSS'",
-    "clean": "node ../../scripts/clean.mjs"
+    "clean": "node ../../scripts/clean.mjs",
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
-    "typescript": "^5.9.2",
-    "vite": "^7.1.7"
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
   }
 }

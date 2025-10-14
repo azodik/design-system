@@ -42,7 +42,17 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   maxRows?: number;
 }
 
-export function Textarea({ label, help, error, status, className = "", autoResize, minRows, maxRows, ...props }: TextareaProps) {
+export function Textarea({
+  label,
+  help,
+  error,
+  status,
+  className = "",
+  autoResize,
+  minRows,
+  maxRows,
+  ...props
+}: TextareaProps) {
   const textareaClasses = ["textarea", status && status, error && "error", className]
     .filter(Boolean)
     .join(" ");
@@ -87,7 +97,7 @@ export function Select({
   const [selectedValue, setSelectedValue] = React.useState(value);
   const selectRef = React.useRef<HTMLDivElement>(null);
 
-  const selectedOption = options.find(option => option.value === selectedValue);
+  const selectedOption = options.find((option) => option.value === selectedValue);
 
   React.useEffect(() => {
     setSelectedValue(value);
@@ -100,8 +110,8 @@ export function Select({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSelect = (optionValue: string) => {
@@ -116,8 +126,10 @@ export function Select({
     error && "error",
     disabled && "disabled",
     isOpen && "open",
-    className
-  ].filter(Boolean).join(" ");
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className="form-group">
@@ -129,11 +141,11 @@ export function Select({
           role="button"
           tabIndex={disabled ? -1 : 0}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+            if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
               !disabled && setIsOpen(!isOpen);
             }
-            if (e.key === 'Escape') {
+            if (e.key === "Escape") {
               setIsOpen(false);
             }
           }}
@@ -142,7 +154,7 @@ export function Select({
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <svg
-            className={`select-arrow ${isOpen ? 'open' : ''}`}
+            className={`select-arrow ${isOpen ? "open" : ""}`}
             width="16"
             height="16"
             viewBox="0 0 20 20"
@@ -158,13 +170,13 @@ export function Select({
             />
           </svg>
         </div>
-        
+
         {isOpen && (
           <div className="select-dropdown">
             {options.map((option) => (
               <div
                 key={option.value}
-                className={`select-option ${selectedValue === option.value ? 'selected' : ''}`}
+                className={`select-option ${selectedValue === option.value ? "selected" : ""}`}
                 onClick={() => handleSelect(option.value)}
                 role="option"
                 aria-selected={selectedValue === option.value}
@@ -182,7 +194,8 @@ export function Select({
 }
 
 // Checkbox Component
-export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "size"> {
+export interface CheckboxProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "size"> {
   label?: string;
   help?: string;
   error?: string;
@@ -190,7 +203,14 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
   className?: string;
 }
 
-export function Checkbox({ label, help, error, size = "md", className = "", ...props }: CheckboxProps) {
+export function Checkbox({
+  label,
+  help,
+  error,
+  size = "md",
+  className = "",
+  ...props
+}: CheckboxProps) {
   const checkboxClasses = ["checkbox", size !== "md" && `checkbox-${size}`, className]
     .filter(Boolean)
     .join(" ");
@@ -238,16 +258,24 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   className?: string;
 }
 
-export function Switch({ label, help, error, className = "", checked, onChange, ...props }: SwitchProps) {
+export function Switch({
+  label,
+  help,
+  error,
+  className = "",
+  checked,
+  onChange,
+  ...props
+}: SwitchProps) {
   return (
     <div className="form-group">
       <div className={`switch ${className}`}>
-        <input 
-          type="checkbox" 
+        <input
+          type="checkbox"
           checked={checked}
           onChange={onChange || (() => {})}
           readOnly={!onChange}
-          {...props} 
+          {...props}
         />
         <span className="switch-slider" />
       </div>

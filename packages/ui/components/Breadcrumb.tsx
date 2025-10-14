@@ -1,5 +1,5 @@
 import React from "react";
-import ChevronRightIcon from "../../../apps/playground/src/icons/ChevronRightIcon";
+import { ChevronRightIcon } from "@azodik/icons";
 
 // Breadcrumb Component
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
@@ -17,10 +17,7 @@ export function Breadcrumb({ items, className = "", ...props }: BreadcrumbProps)
         <div key={index} className={`breadcrumb-item ${item.current ? "current" : ""}`}>
           {item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}
           {index < items.length - 1 && (
-            <ChevronRightIcon 
-              size={16} 
-              className="breadcrumb-separator"
-            />
+            <ChevronRightIcon size={16} className="breadcrumb-separator" />
           )}
         </div>
       ))}

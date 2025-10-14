@@ -1,0 +1,164 @@
+import { Navigation, NavItem, Card, CardContent, Button } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+
+export const BasicNavigationExample = () => {
+  return (
+    <Navigation brand={<span className="font-bold text-xl">MyApp</span>}>
+      <NavItem href="/" active>Home</NavItem>
+      <NavItem href="/products">Products</NavItem>
+      <NavItem href="/about">About</NavItem>
+      <NavItem href="/contact">Contact</NavItem>
+    </Navigation>
+  );
+};
+
+export const LogoNavigationExample = () => {
+  return (
+    <Navigation
+      brand={
+        <div className="flex items-center">
+          <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-2" />
+          <span className="font-bold text-xl">MyApp</span>
+        </div>
+      }
+    >
+      <NavItem href="/">Home</NavItem>
+      <NavItem href="/products">Products</NavItem>
+      <NavItem href="/about">About</NavItem>
+      <NavItem href="/contact">Contact</NavItem>
+    </Navigation>
+  );
+};
+
+export const MobileNavigationExample = () => {
+  return (
+    <Navigation
+      mobile={true}
+      brand={
+        <div className="flex items-center">
+          <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-2" />
+          <span className="font-bold text-xl">MyApp</span>
+        </div>
+      }
+    >
+      <NavItem href="/">Home</NavItem>
+      <NavItem href="/products">Products</NavItem>
+      <NavItem href="/about">About</NavItem>
+      <NavItem href="/contact">Contact</NavItem>
+    </Navigation>
+  );
+};
+
+# Navigation Component
+
+The Navigation component provides horizontal navigation bars for site-wide navigation. It helps users navigate between different sections and pages of your application.
+
+## Introduction
+
+The Navigation component includes several complementary features to handle various site navigation and user flow scenarios:
+
+- Navigation: the main wrapper for creating horizontal navigation bars with brand elements and menu items.
+- Navigation Items: individual menu items with active states, links, and customizable styling for different sections.
+- Navigation Branding: flexible brand/logo area with customizable content and positioning options.
+- Navigation Responsiveness: mobile-friendly navigation with collapsible menus and touch-optimized interactions.
+- Navigation States: active page indication, hover effects, and visual feedback for current location.
+- Navigation Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support.
+
+### When to use
+- Main site navigation
+- Section navigation within an app
+- Primary navigation menus
+- Header navigation bars
+- Top-level page navigation
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Navigation, NavItem } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Navigation items to display (typically NavItem components)'
+  },
+  {
+    name: 'brand',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Brand element or logo to display'
+  },
+  {
+    name: 'mobile',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show mobile navigation toggle'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## NavItem Interface
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display in the navigation item'
+  },
+  {
+    name: 'active',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether this item is currently active'
+  },
+  {
+    name: 'href',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL for the navigation item'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Navigation has proper semantic structure
+- Screen readers can navigate menu items
+- Keyboard navigation is supported
+- Focus management is handled correctly
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Use clear and descriptive navigation labels
+- Keep the number of top-level items reasonable
+- Provide clear visual feedback for active states
+- Ensure sufficient touch targets on mobile
+- Use consistent styling across your application

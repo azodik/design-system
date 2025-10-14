@@ -96,18 +96,18 @@ export function TabTrigger({
   const triggerClasses = ["tabs-trigger", active && "active", className].filter(Boolean).join(" ");
 
   const customStyle = {
-    ...(active ? {
-      borderBottom: borderColor ? `${borderWidth}px solid ${borderColor}` : `${borderWidth}px solid var(--color-primary)`
-    } : {}),
-    ...(width ? { width: typeof width === 'number' ? `${width}px` : width } : {})
+    ...(active
+      ? {
+          borderBottom: borderColor
+            ? `${borderWidth}px solid ${borderColor}`
+            : `${borderWidth}px solid var(--color-primary)`,
+        }
+      : {}),
+    ...(width ? { width: typeof width === "number" ? `${width}px` : width } : {}),
   };
 
   return (
-    <button 
-      className={triggerClasses} 
-      style={customStyle}
-      {...props}
-    >
+    <button className={triggerClasses} style={customStyle} {...props}>
       {children}
     </button>
   );

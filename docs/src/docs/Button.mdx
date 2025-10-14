@@ -1,0 +1,196 @@
+import { Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Button Component
+
+The Button component provides interactive elements for user actions and navigation. It supports multiple variants, sizes, and states to fit different use cases.
+
+## Introduction
+
+The Button component includes several complementary features to handle various interaction and action scenarios:
+
+- Button: the main wrapper for creating interactive elements and user actions.
+- Button Variants: different visual styles (primary, secondary, tertiary, outline, link, ghost, destructive) for various use cases.
+- Button Sizing: multiple size options (sm, md, lg) to fit different contexts and design requirements.
+- Button States: disabled, loading, and interactive states to provide proper user feedback.
+- Button Customization: flexible color, width, and styling options for brand-specific designs.
+- Button Accessibility: built-in focus management, keyboard navigation, and screen reader support.
+
+### When to use
+- Primary actions and calls-to-action
+- Form submissions
+- Navigation between pages or sections
+- Confirming or canceling actions
+- Triggering modals or dropdowns
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Button } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+<CodeBlockWithPreview 
+  title="Button Variants"
+  preview={
+    <div className="flex gap-4 flex-wrap">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  }
+  code={`import { Button } from '@azodik/ui';
+
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>`}
+/>
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Button Variants"
+  preview={
+    <div className="flex gap-sm">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const ButtonExamples = () => {
+  return (
+    <div className="flex-vertical">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="destructive">Destructive</Button>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Icons
+
+<CodeBlockWithPreview 
+  title="Button with Icons"
+  preview={
+    <Button variant="primary" size="md">
+      + Add
+    </Button>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const IconButton = () => {
+  return (
+    <Button variant="primary" size="md">
+      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+      </svg>
+      Add Item
+    </Button>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Disabled State
+
+<CodeBlockWithPreview 
+  title="Disabled Button"
+  preview={
+    <Button variant="primary" disabled>
+      Disabled Button
+    </Button>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const DisabledButton = () => {
+  return (
+    <Button variant="primary" disabled>
+      Disabled Button
+    </Button>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the button'
+  },
+  {
+    name: 'variant',
+    type: '"primary" | "secondary" | "tertiary" | "outline" | "link" | "ghost" | "destructive"',
+    required: false,
+    default: '"primary"',
+    description: 'Visual style variant of the button'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the button'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Custom color for the button. Applies to background or border depending on variant'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the button is disabled'
+  },
+  {
+    name: 'width',
+    type: 'string | number',
+    required: false,
+    default: '-',
+    description: 'Custom width for the button. Numbers are converted to pixels'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Buttons have proper focus states
+- Screen readers can identify button purpose
+- Disabled buttons are properly announced
+- Keyboard navigation is supported
+- Color contrast meets WCAG guidelines
+
+## Design Guidelines
+
+- Use primary buttons for main actions
+- Use secondary buttons for secondary actions
+- Use destructive buttons for dangerous actions
+- Keep button text concise and action-oriented
+- Ensure sufficient touch targets on mobile devices

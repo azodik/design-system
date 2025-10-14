@@ -55,9 +55,9 @@ export function Toast({
     }
   }, [icon, variant]);
 
-  const toastClassName = useMemo(() => 
-    `toast toast-${variant} toast-${position} ${isClosing ? 'closing' : 'show'} ${className}`,
-    [variant, position, isClosing, className]
+  const toastClassName = useMemo(
+    () => `toast toast-${variant} toast-${position} ${isClosing ? "closing" : "show"} ${className}`,
+    [variant, position, isClosing, className],
   );
 
   return (
@@ -68,7 +68,12 @@ export function Toast({
         <div className="toast-message">{children}</div>
       </div>
       {onClose && (
-        <button type="button" className="toast-close" onClick={handleClose} aria-label="Close toast">
+        <button
+          type="button"
+          className="toast-close"
+          onClick={handleClose}
+          aria-label="Close toast"
+        >
           ×
         </button>
       )}

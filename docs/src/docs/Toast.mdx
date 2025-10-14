@@ -1,0 +1,110 @@
+import { Toast, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Toast Component
+
+The Toast component provides temporary notifications that appear and disappear automatically. It's perfect for showing success messages, errors, or other brief feedback to users.
+
+## Introduction
+
+The Toast component includes several complementary features to handle various notification and feedback scenarios:
+
+- Toast: the main wrapper for creating temporary notifications that provide feedback without blocking user workflow.
+- Toast Variants: multiple notification types (success, warning, error, info) with appropriate icons and styling for different message types.
+- Toast Positioning: flexible positioning system with multiple placement options (top-center, top-right, bottom-right) for optimal visibility.
+- Toast Timing: automatic dismissal with configurable duration and manual close functionality for different notification needs.
+- Toast Customization: flexible styling, icons, titles, and content options for brand-specific notification designs.
+- Toast Accessibility: proper ARIA attributes, screen reader announcements, and keyboard navigation support for notification consumption.
+
+### When to use
+- Show success messages after actions
+- Display error notifications
+- Provide brief status updates
+- Show confirmation messages
+- Display system notifications
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Toast } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Toast message content'
+  },
+  {
+    name: 'variant',
+    type: '"success" | "warning" | "error" | "info"',
+    required: false,
+    default: '"info"',
+    description: 'Visual style variant of the toast'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Title text for the toast'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Custom icon for the toast (defaults to variant-based icon)'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when toast is closed'
+  },
+  {
+    name: 'autoClose',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Auto-dismiss duration in milliseconds'
+  },
+  {
+    name: 'position',
+    type: '"top-center" | "top-right" | "bottom-right"',
+    required: false,
+    default: '"top-right"',
+    description: 'Position of the toast on screen'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Accessibility
+
+- Toasts are announced to screen readers
+- Focus management is handled correctly
+- Keyboard navigation is supported
+- Color is not the only way to convey information
+- Proper ARIA attributes are applied
+
+## Design Guidelines
+
+- Keep toast messages concise and clear
+- Use appropriate variants for different message types
+- Don't show too many toasts at once
+- Provide clear close actions
+- Consider mobile positioning and sizing

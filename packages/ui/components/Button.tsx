@@ -21,18 +21,23 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const customStyle = {
-    ...(color ? {
-      backgroundColor: variant === "outline" || variant === "link" || variant === "ghost" ? "transparent" : color,
-      borderColor: variant === "outline" ? color : undefined,
-      color: variant === "outline" || variant === "link" ? color : "white",
-    } : {}),
-    ...(width ? { width: typeof width === 'number' ? `${width}px` : width } : {}),
-    ...style
+    ...(color
+      ? {
+          backgroundColor:
+            variant === "outline" || variant === "link" || variant === "ghost"
+              ? "transparent"
+              : color,
+          borderColor: variant === "outline" ? color : undefined,
+          color: variant === "outline" || variant === "link" ? color : "white",
+        }
+      : {}),
+    ...(width ? { width: typeof width === "number" ? `${width}px` : width } : {}),
+    ...style,
   };
 
   return (
-    <button 
-      className={`btn btn-${variant} btn-${size} ${className || ""}`} 
+    <button
+      className={`btn btn-${variant} btn-${size} ${className || ""}`}
       style={customStyle}
       disabled={disabled}
       {...props}

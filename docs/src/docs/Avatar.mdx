@@ -1,0 +1,212 @@
+import { Avatar, AvatarGroup, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+
+# Avatar Component
+
+The Avatar component displays user profile images, initials, or placeholder icons. It provides a consistent way to represent users throughout your application.
+
+## Overview
+
+Avatars are used to represent users in your application. They can display profile images, user initials, or fallback icons when no image is available.
+
+### When to use
+- Display user profile pictures
+- Show user initials when no image is available
+- Represent users in lists, comments, or user interfaces
+- Create consistent user representation across the app
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Avatar } from '@azodik/ui';`}
+</CodeBlock>
+
+## Variants
+
+
+## Some Variants Example
+
+<CodeBlockWithPreview 
+  title="All Avatar Variants"
+  preview={
+    <div className="flex-horizontal items-center justify-center">
+      <Avatar name="Henna Morris" size="sm" initials="HM"/>
+      <Avatar name="Shane John" size="md" initials="SJ"/>
+      <Avatar name="Pedro Pascal" size="lg" initials="PP"/>
+      <Avatar name="Alice Brown" size="xl" initials="AB" />
+    </div>
+  }
+>
+{`import { Avatar } from '@azodik/ui';
+
+export const AvatarExamples = () => {
+  return (
+    <div className="flex-horizontal items-center justify-center">
+      <Avatar 
+        src="/path/to/image.jpg"
+        alt="John Doe"
+        size="md"
+      />
+      <Avatar name="Jane Smith" size="lg" />
+      <Avatar name="Bob Wilson" size="sm" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## With Initials
+
+<CodeBlockWithPreview 
+  title="Avatar with Initials"
+  preview={
+    <Avatar 
+      name="John Doe"
+      size="lg"
+      initials="JD"
+    />
+  }
+>
+{`import { Avatar } from '@azodik/ui';
+
+export const UserAvatarExample = () => {
+  return (
+    <Avatar 
+      name="John Doe"
+      size="lg"
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Avatar Group
+
+<CodeBlockWithPreview 
+  title="Avatar Sizes"
+  preview={
+    <div className="flex items-center gap-md">
+      <AvatarGroup max={3}>
+        <Avatar size="md" initials="A" />
+        <Avatar size="md" initials="B" />
+        <Avatar size="md" initials="C" />
+        <Avatar size="md" initials="D" />
+        <Avatar size="md" initials="E" />
+        <Avatar size="md" initials="F" />
+      </AvatarGroup>
+    </div>
+  }
+>
+{`import { Avatar } from '@azodik/ui';
+
+export const AvatarSizesExample = () => {
+  return (
+    <div className="flex items-center gap-md">
+      <Avatar name="John Doe" size="sm" />
+      <Avatar name="Jane Smith" size="md" />
+      <Avatar name="Bob Wilson" size="lg" />
+      <Avatar name="Alice Brown" size="xl" />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Avatar Props
+
+<PropsTable props={[
+  {
+    name: 'src',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL of the profile image'
+  },
+  {
+    name: 'alt',
+    type: 'string',
+    required: false,
+    default: '"Avatar"',
+    description: 'Alt text for the image. Defaults to "Avatar" if not provided'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Content used to generate initials if no initials prop is provided'
+  },
+  {
+    name: 'size',
+    type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the avatar'
+  },
+  {
+    name: 'status',
+    type: '"online" | "away" | "offline" | "busy"',
+    required: false,
+    default: '-',
+    description: 'Status indicator for the avatar'
+  },
+  {
+    name: 'initials',
+    type: 'string',
+    required: false,
+    default: 'Auto-generated from children',
+    description: 'Custom initials to display. If not provided, generates from children'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## AvatarGroup Props
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Avatar components to display in the group'
+  },
+  {
+    name: 'max',
+    type: 'number',
+    required: false,
+    default: '3',
+    description: 'Maximum number of avatars to display before showing "more" indicator'
+  },
+  {
+    name: 'moreLabel',
+    type: 'string',
+    required: false,
+    default: '"+{count}"',
+    description: 'Label template for the "more" indicator. Use {count} placeholder for the number'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply to the group'
+  }
+]} />
+
+## Accessibility
+
+- Avatars have appropriate alt text for screen readers
+- Initials are generated from the name prop for better accessibility
+- Color contrast meets WCAG guidelines
+- Focus states are provided for interactive avatars
+
+## Design Guidelines
+
+- Use consistent sizing across your application
+- Provide meaningful alt text for images
+- Use initials as fallback when images are not available
+- Consider the context when choosing avatar sizes
+- Ensure avatars are recognizable and not too small

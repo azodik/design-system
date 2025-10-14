@@ -19,6 +19,18 @@
     },
     "clean": {
       "cache": false
+    },
+    "publish": {
+      "dependsOn": ["^build"]
+    },
+    "prepublishOnly": {
+      "dependsOn": ["^build"]
+    },
+    "deploy": {
+      "dependsOn": ["^build"]
+    },
+    "typegen": {
+      "dependsOn": ["^build"]
     }
   }
 }

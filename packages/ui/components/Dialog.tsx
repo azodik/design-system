@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useState, useRef, useEffect, useCallback, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 
 // Interfaces
 export interface DialogProps {
@@ -70,7 +78,7 @@ export const Dialog: React.FC<DialogProps> = ({
 }) => {
   const [internalOpen, setInternalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  
+
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
@@ -81,13 +89,16 @@ export const Dialog: React.FC<DialogProps> = ({
     }
   }, [defaultOpen, isControlled]);
 
-  const setOpen = useCallback((newOpen: boolean) => {
-    if (isControlled) {
-      onOpenChange?.(newOpen);
-    } else {
-      setInternalOpen(newOpen);
-    }
-  }, [isControlled, onOpenChange]);
+  const setOpen = useCallback(
+    (newOpen: boolean) => {
+      if (isControlled) {
+        onOpenChange?.(newOpen);
+      } else {
+        setInternalOpen(newOpen);
+      }
+    },
+    [isControlled, onOpenChange],
+  );
 
   const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
 
@@ -95,11 +106,7 @@ export const Dialog: React.FC<DialogProps> = ({
     return null;
   }
 
-  return (
-    <DialogContext.Provider value={contextValue}>
-      {children}
-    </DialogContext.Provider>
-  );
+  return <DialogContext.Provider value={contextValue}>{children}</DialogContext.Provider>;
 };
 
 // DialogTrigger Component
@@ -127,11 +134,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
   }
 
   return (
-    <button
-      className={`dialog-trigger ${className}`}
-      onClick={handleClick}
-      {...props}
-    >
+    <button className={`dialog-trigger ${className}`} onClick={handleClick} {...props}>
       {children}
     </button>
   );
@@ -154,13 +157,13 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       }
     };
 
-    if (open && typeof document !== 'undefined') {
+    if (open && typeof document !== "undefined") {
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
     }
 
     return () => {
-      if (typeof document !== 'undefined') {
+      if (typeof document !== "undefined") {
         document.removeEventListener("keydown", handleEscape);
         document.body.style.overflow = "unset";
       }
@@ -191,24 +194,16 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 };
 
 // DialogHeader Component
-export const DialogHeader: React.FC<DialogHeaderProps> = ({
-  children,
-  className = "",
-}) => {
+export const DialogHeader: React.FC<DialogHeaderProps> = ({ children, className = "" }) => {
   return (
     <div className={`dialog-header ${className}`}>
-      <div className="dialog-header-content">
-        {children}
-      </div>
+      <div className="dialog-header-content">{children}</div>
     </div>
   );
 };
 
 // DialogTitle Component
-export const DialogTitle: React.FC<DialogTitleProps> = ({
-  children,
-  className = "",
-}) => {
+export const DialogTitle: React.FC<DialogTitleProps> = ({ children, className = "" }) => {
   return (
     <h2 className={`dialog-title ${className}`} id="dialog-title">
       {children}
@@ -229,18 +224,12 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 };
 
 // DialogBody Component
-export const DialogBody: React.FC<DialogBodyProps> = ({
-  children,
-  className = "",
-}) => {
+export const DialogBody: React.FC<DialogBodyProps> = ({ children, className = "" }) => {
   return <div className={`dialog-body ${className}`}>{children}</div>;
 };
 
 // DialogFooter Component
-export const DialogFooter: React.FC<DialogFooterProps> = ({
-  children,
-  className = "",
-}) => {
+export const DialogFooter: React.FC<DialogFooterProps> = ({ children, className = "" }) => {
   return <div className={`dialog-footer ${className}`}>{children}</div>;
 };
 
@@ -258,11 +247,7 @@ export const DialogClose: React.FC<{
   };
 
   return (
-    <button
-      className={`dialog-close ${className}`}
-      onClick={handleClick}
-      aria-label="Close dialog"
-    >
+    <button className={`dialog-close ${className}`} onClick={handleClick} aria-label="Close dialog">
       {children || (
         <svg
           width="16"

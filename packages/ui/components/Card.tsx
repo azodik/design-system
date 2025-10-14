@@ -74,7 +74,7 @@ export default function Card({
   };
 
   const style: React.CSSProperties = {
-    width: width ? resolveSize(width) : 'fit-content',
+    width: width ? resolveSize(width) : "fit-content",
     height: resolveSize(height),
     padding: resolveSize(padding),
     borderRadius: resolveSize(rounded),
@@ -90,15 +90,13 @@ export default function Card({
     variantClasses[variant],
     shadow && "shadow-light dark:shadow-dark",
     hoverEffect && "hover:shadow-lg dark:hover:shadow-xl",
-    className
-  ].filter(Boolean).join(" ");
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <div
-      className={combinedClassName}
-      style={style}
-      {...props}
-    >
+    <div className={combinedClassName} style={style} {...props}>
       {children}
     </div>
   );
