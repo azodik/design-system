@@ -35,6 +35,7 @@ function MyComponent() {
 - `ChevronUpIcon` - Up chevron
 - `LeftLongArrowIcon` - Long left arrow
 - `RightLongArrowIcon` - Long right arrow
+- `SidebarToggleIcon` - Sidebar toggle
 
 ### User Icons
 - `UserIcon` - Basic user icon
@@ -52,8 +53,25 @@ function MyComponent() {
 - `MoneyDollarIcon` - Dollar sign
 - `SettingsIcon` - Settings gear
 - `ShieldIcon` - Shield icon
-- `SidebarToggleIcon` - Sidebar toggle
 - `TickIcon` - Checkmark
+
+### Social Media Icons
+- `GoogleIcon` - Google logo
+- `AppleIcon` - Apple logo
+- `FacebookIcon` - Facebook logo
+- `InstagramIcon` - Instagram logo
+
+### Common Icons
+- `HeartIcon` - Heart (with filled prop)
+- `StarIcon` - Star (with filled prop)
+- `SearchIcon` - Search magnifying glass
+- `HomeIcon` - Home/house
+- `MailIcon` - Email/mail
+- `PhoneIcon` - Phone
+- `CalendarIcon` - Calendar
+- `ClockIcon` - Clock/time
+- `DownloadIcon` - Download arrow
+- `UploadIcon` - Upload arrow
 
 ## Props
 
@@ -65,6 +83,7 @@ interface IconProps {
   className?: string;       // CSS classes
   style?: React.CSSProperties; // Inline styles
   color?: string;          // Icon color (some icons only)
+  filled?: boolean;         // Filled state (HeartIcon, StarIcon only)
 }
 ```
 
