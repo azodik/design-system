@@ -30,9 +30,6 @@ jobs:
       - name: Build all packages
         run: pnpm build
 
-      - name: Build docs
-        run: pnpm -F docs build
-
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
