@@ -41,9 +41,9 @@
   },
   "dependencies": {
     "@azodik/icons": "^0.1.2",
-    "azodik-ui-core": "^0.2.0",
+    "azodik-ui-core": "^0.2.2",
     "react": "^19.2.0",
-    "recharts": "^2.12.7"
+    "recharts": "^3.2.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.2",
