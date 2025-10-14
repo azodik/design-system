@@ -1,5 +1,4 @@
 import React from "react";
-import "../../core/components/scroll-area.css";
 
 export interface ScrollAreaProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import React, { useEffect, Children, isValidElement } from "react";
+import React, { useEffect } from "react";
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
