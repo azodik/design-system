@@ -9,7 +9,7 @@ import {
   BarChartIcon,
   UserAddIcon,
   GroupIcon,
-} from "../icons";
+} from "@azodik/icons";
 
 export interface SubMenuItem {
   name: string;

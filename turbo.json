@@ -25,6 +25,12 @@
     },
     "prepublishOnly": {
       "dependsOn": ["^build"]
+    },
+    "deploy": {
+      "dependsOn": ["^build"]
+    },
+    "typegen": {
+      "dependsOn": ["^build"]
     }
   }
 }

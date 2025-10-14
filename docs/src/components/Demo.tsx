@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SidebarToggleIcon, ChevronDownIcon } from "@azodik/icons";
-import { menuItems } from "../data/menuItems";
+import { menuItems } from "@/data/menuItems";
 import {
   Alert,
   Avatar,

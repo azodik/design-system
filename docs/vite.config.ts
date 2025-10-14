@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import path from "path";
+import { cloudflare } from "@cloudflare/vite-plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
     mdx({
       jsxImportSource: "react",
     }),
+    cloudflare(),
   ],
   resolve: {
     alias: {
