@@ -25,6 +25,48 @@
   letter-spacing: 0.05em;
 }
 
+/* Sortable header button styling */
+.table-header-sort {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.table-header-sort:hover {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.table-header-sort:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+.table-header-sort-icon {
+  font-size: 0.875em;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.table-header-sort:hover .table-header-sort-icon {
+  opacity: 1;
+}
+
 .table td {
   color: var(--color-text);
   font-size: var(--font-size-md);
