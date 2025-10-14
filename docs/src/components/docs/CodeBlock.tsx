@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { CopyIcon, TickIcon } from "../../icons";
+import { CopyIcon, TickIcon } from "@azodik/icons";
 
 interface CodeBlockProps {
   children: string;

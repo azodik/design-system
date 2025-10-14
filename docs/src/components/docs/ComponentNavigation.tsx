@@ -1,8 +1,7 @@
-import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@azodik/ui";
-import { LeftLongArrowIcon, RightLongArrowIcon } from "../../icons";
-import { componentsMenuItems } from "../../data/componentsMenu";
+import { LeftLongArrowIcon, RightLongArrowIcon } from "@azodik/icons";
+import { componentsMenuItems } from "@/data/componentsMenu";
 
 export default function ComponentNavigation() {
   const navigate = useNavigate();

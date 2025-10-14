@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Tabs, TabList, TabTrigger, TabContent, Card } from "@azodik/ui";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { CopyIcon, TickIcon } from "../icons";
+import { CopyIcon, TickIcon } from "@azodik/icons";
 
 interface CodePreviewTabsProps {
   title: string;

@@ -1,7 +1,6 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Badge, Alert } from "@azodik/ui";
-import { GithubIcon } from "../icons";
+import { Button } from "@azodik/ui";
+import { GithubIcon } from "@azodik/icons";
 
 export default function Home() {
   const navigate = useNavigate();

@@ -68,7 +68,7 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@azodik/ui";
-import { SidebarToggleIcon } from "@/icons";
+import { SidebarToggleIcon } from "@azodik/icons";
 
 const sampleData = [
   { name: "Jan", value: 400, sales: 2400, revenue: 2400 },

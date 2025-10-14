@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SidebarToggleIcon } from "../../icons";
+import { SidebarToggleIcon } from "@azodik/icons";
 import {
   Sidebar as SidebarComponent,
   SidebarHeader,
@@ -12,7 +12,7 @@ import {
   SidebarMenuButton,
   Breadcrumb,
 } from "@azodik/ui";
-import { componentsMenuItems, ComponentMenuItem } from "../../data/componentsMenu";
+import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;

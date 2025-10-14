@@ -27,6 +27,9 @@ importers:
 
   docs:
     dependencies:
+      '@azodik/icons':
+        specifier: workspace:*
+        version: link:../packages/icons
       '@azodik/ui':
         specifier: workspace:*
         version: link:../packages/ui
@@ -83,8 +86,24 @@ importers:
         specifier: ^7.1.7
         version: 7.1.7(@types/node@24.5.2)
 
+  packages/icons:
+    dependencies:
+      react:
+        specifier: ^19.1.1
+        version: 19.1.1
+    devDependencies:
+      '@types/react':
+        specifier: ^19.1.15
+        version: 19.1.15
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
+
   packages/ui:
     dependencies:
+      '@azodik/icons':
+        specifier: workspace:*
+        version: link:../icons
       azodik-ui-core:
         specifier: workspace:*
         version: link:../core

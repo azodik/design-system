@@ -1,5 +1,5 @@
 import React from "react";
-import ChevronRightIcon from "../../../docs/src/icons/ChevronRightIcon";
+import { ChevronRightIcon } from "@azodik/icons";
 
 // Breadcrumb Component
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
