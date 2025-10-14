@@ -1,5 +1,13 @@
 /* Sidebar Components */
 
+/* Layout Container */
+.sidebar-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
 /* Sidebar */
 .sidebar {
   width: 250px;
@@ -12,6 +20,7 @@
   overflow: visible;
   position: relative;
   z-index: 100;
+  flex-shrink: 0;
 }
 
 /* Mobile & Tablet Responsive Sidebar */
@@ -28,11 +37,11 @@
     background: var(--sidebar-bg-color, var(--color-background));
     transition: transform 0.3s ease;
   }
-  
+
   .sidebar.open {
     transform: translateX(0);
   }
-  
+
   .sidebar-overlay {
     position: fixed;
     top: 0;
@@ -43,65 +52,68 @@
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
   }
-  
+
   .sidebar-overlay.open {
     opacity: 1;
     visibility: visible;
   }
-  
+
   /* Mobile main content adjustment */
   .main-content-area {
     width: 100%;
     margin-left: 0;
     height: 100vh;
+    position: relative;
   }
-  
+
   .main-content-scrollable {
     height: calc(100vh - 80px); /* Account for breadcrumb height */
   }
-  
+
   /* Fix text truncation on mobile */
   .sidebar-brand {
     white-space: normal;
     overflow: visible;
   }
-  
+
   .sidebar-group-header {
     white-space: normal;
     overflow: visible;
   }
-  
+
   .sidebar-item a {
     white-space: normal;
     overflow: visible;
   }
-  
+
   .sidebar-user-info {
     white-space: normal;
     overflow: visible;
   }
-  
+
   /* Ensure proper spacing on mobile */
   .sidebar-content {
     padding: var(--space-sm);
   }
-  
+
   .sidebar-nav {
     gap: var(--space-xs);
   }
-  
+
   .sidebar-item a {
     padding: var(--space-sm);
     min-height: 44px; /* Better touch target */
   }
-  
+
   .sidebar-group-header {
     padding: var(--space-sm);
     min-height: 44px; /* Better touch target */
   }
-  
+
   /* Mobile & Tablet popover positioning */
   .sidebar-user-dropdown-content {
     position: fixed;
@@ -113,7 +125,7 @@
     max-width: calc(100vw - 40px);
     z-index: 1001;
   }
-  
+
   .sidebar-user-dropdown.open .sidebar-user-dropdown-content {
     transform: none;
   }
@@ -193,13 +205,13 @@
 }
 
 .sidebar-group-header:hover {
-  background: #F8EDD8;
+  background: #f8edd8;
   color: var(--color-text);
 }
 
 .sidebar-group-header.active {
-  background: #F8EDD8;
-  color: #FF7F27;
+  background: #f8edd8;
+  color: #ff7f27;
 }
 
 .sidebar-group-title {
@@ -285,13 +297,13 @@
 }
 
 .sidebar-item a:hover {
-  background: #F8EDD8;
+  background: #f8edd8;
   color: var(--color-text);
 }
 
 .sidebar-item a.active {
-  background: #F8EDD8;
-  color: #FF7F27;
+  background: #f8edd8;
+  color: #ff7f27;
   font-weight: 500;
 }
 
@@ -513,6 +525,23 @@
   flex-direction: column;
   padding: 0;
   overflow: hidden;
+  margin-left: 0;
+  width: calc(100% - 250px);
+  transition:
+    width 0.3s ease,
+    margin-left 0.3s ease;
+  position: relative;
+}
+
+/* Adjust main content when sidebar is collapsed */
+.sidebar-collapsed + .main-content-area {
+  width: calc(100% - 60px);
+  margin-left: 0;
+}
+
+/* Ensure proper layout when sidebar is not collapsed */
+.sidebar:not(.sidebar-collapsed) + .main-content-area {
+  width: calc(100% - 250px);
 }
 
 .breadcrumb-container {
@@ -521,6 +550,12 @@
   align-items: center;
   gap: var(--space-sm);
   flex-shrink: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .main-content-scrollable {

@@ -113,7 +113,7 @@ export default function SidebarLayout({
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div className="sidebar-layout">
       {/* Mobile & Tablet Overlay */}
       {isSmallScreen && isSidebarOpen && (
         <div className="sidebar-overlay open" onClick={closeSidebar} />
