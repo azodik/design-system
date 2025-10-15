@@ -7,6 +7,7 @@ export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   onPageChange: (page: number) => void;
   showFirstLast?: boolean;
   showPrevNext?: boolean;
+  maxVisiblePages?: number;
 }
 
 export function Pagination({
@@ -15,23 +16,44 @@ export function Pagination({
   onPageChange,
   showFirstLast = true,
   showPrevNext = true,
+  maxVisiblePages = 5,
   className = "",
   ...props
 }: PaginationProps) {
   const getPageNumbers = () => {
     const pages = [];
-    const maxVisible = 5;
+    const maxVisible = maxVisiblePages;
 
     if (totalPages <= maxVisible) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      const start = Math.max(1, currentPage - 2);
-      const end = Math.min(totalPages, start + maxVisible - 1);
+      // For mobile (3 pages), show current page and adjacent pages
+      if (maxVisible === 3) {
+        let start = Math.max(1, currentPage - 1);
+        let end = Math.min(totalPages, currentPage + 1);
+        
+        // Adjust if we're near the beginning or end
+        if (end - start < 2) {
+          if (start === 1) {
+            end = Math.min(totalPages, start + 2);
+          } else {
+            start = Math.max(1, end - 2);
+          }
+        }
+        
+        for (let i = start; i <= end; i++) {
+          pages.push(i);
+        }
+      } else {
+        // For desktop (5 pages), use the original logic
+        const start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+        const end = Math.min(totalPages, start + maxVisible - 1);
 
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
+        for (let i = start; i <= end; i++) {
+          pages.push(i);
+        }
       }
     }
 

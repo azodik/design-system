@@ -32,64 +32,6 @@ The Charts component includes several complementary features to handle various d
 
 ## Basic Example
 
-<CodeBlockWithPreview 
-  title="Charts with Tabs"
-  preview={
-    <div className="space-y-4">
-      <Card>
-        <CardContent className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Sales Overview</h3>
-          <div className="h-64">
-            <LineChart 
-              data={[
-                { name: "Jan", value: 400 },
-                { name: "Feb", value: 300 },
-                { name: "Mar", value: 200 },
-                { name: "Apr", value: 278 },
-                { name: "May", value: 189 },
-                { name: "Jun", value: 239 }
-              ]}
-              dataKey="value"
-              height={200}
-            />
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  }
->
-{`import React, { useState } from "react";
-import { LineChart, AreaChart, BarChart, PieChart, Tabs, TabList, TabTrigger, TabContent } from "@azodik/ui";
-
-export const ChartsPreview = () => {
-  const [activeTab, setActiveTab] = useState("line");
-
-  return (
-    <div className="space-y-4">
-      <Card>
-        <CardContent className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Sales Overview</h3>
-          <div className="h-64">
-            <LineChart 
-              data={[
-                { name: "Jan", value: 400 },
-                { name: "Feb", value: 300 },
-                { name: "Mar", value: 200 },
-                { name: "Apr", value: 278 },
-                { name: "May", value: 189 },
-                { name: "Jun", value: 239 }
-              ]}
-              dataKey="value"
-              height={200}
-            />
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-};`}
-</CodeBlockWithPreview>
-
 ## Line Chart
 
 <CodeBlockWithPreview 
@@ -113,7 +55,7 @@ export const ChartsPreview = () => {
       dataKey="sales"
       title="Sales Trend"
       subtitle="Monthly sales performance"
-      height={300}
+      height={200}
     />
   }
 >
@@ -135,7 +77,7 @@ export default function LineChartExample() {
       dataKey="sales"
       title="Sales Trend"
       subtitle="Monthly sales performance"
-      height={300}
+      height={200}
     />
   );
 }`}
@@ -164,7 +106,7 @@ export default function LineChartExample() {
       dataKey="revenue"
       title="Revenue Growth"
       subtitle="Revenue over time"
-      height={300}
+      height={200}
       fillColor="#10b981"
       strokeColor="#059669"
     />
@@ -188,7 +130,7 @@ export default function AreaChartExample() {
       dataKey="revenue"
       title="Revenue Growth"
       subtitle="Revenue over time"
-      height={300}
+      height={200}
       fillColor="#10b981"
       strokeColor="#059669"
     />
@@ -215,7 +157,7 @@ export default function AreaChartExample() {
       dataKey="value"
       title="Quarterly Performance"
       subtitle="Values by quarter"
-      height={300}
+      height={200}
       fillColor="#f59e0b"
     />
   }
@@ -236,7 +178,7 @@ export default function BarChartExample() {
       dataKey="value"
       title="Quarterly Performance"
       subtitle="Values by quarter"
-      height={300}
+      height={200}
       fillColor="#f59e0b"
     />
   );
@@ -261,7 +203,7 @@ export default function BarChartExample() {
       nameKey="name"
       title="Device Usage"
       subtitle="User distribution by device"
-      height={300}
+      height={250}
     />
   }
 >
@@ -282,7 +224,7 @@ export default function PieChartExample() {
       nameKey="name"
       title="Device Usage"
       subtitle="User distribution by device"
-      height={300}
+      height={250}
     />
   );
 }`}

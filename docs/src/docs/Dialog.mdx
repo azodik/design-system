@@ -72,7 +72,9 @@ The Dialog component includes several complementary features to handle various m
           </form>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
           <Button>Create User</Button>
         </DialogFooter>
       </DialogContent>
@@ -122,7 +124,9 @@ export default function BasicDialogForm() {
           </form>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
           <Button>Create User</Button>
         </DialogFooter>
       </DialogContent>
@@ -164,7 +168,9 @@ export default function BasicDialogForm() {
           </div>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
           <Button>Save Changes</Button>
         </DialogFooter>
       </DialogContent>
@@ -204,7 +210,9 @@ export const CustomStyledDialog = () => {
           </div>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
           <Button>Save Changes</Button>
         </DialogFooter>
         <DialogClose />

@@ -9,6 +9,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
@@ -24,6 +25,7 @@
   margin: 0;
   padding: 0;
   min-width: max-content;
+  flex-shrink: 0;
 }
 
 .pagination-item {
@@ -74,6 +76,13 @@
   .pagination {
     justify-content: flex-start;
     padding: var(--space-sm) 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pagination ul {
+    min-width: max-content;
+    flex-shrink: 0;
   }
 
   .pagination-link {
@@ -81,6 +90,14 @@
     height: 28px;
     font-size: var(--font-size-xs);
     padding: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  /* Mobile pagination styling - let JavaScript handle page numbers */
+  
+  /* Ensure proper spacing for 3 pages */
+  .pagination-responsive .pagination ul {
+    justify-content: center;
   }
 }
 
@@ -88,5 +105,16 @@
 @media (min-width: 481px) and (max-width: 768px) {
   .pagination {
     justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pagination ul {
+    min-width: max-content;
+    flex-shrink: 0;
+  }
+
+  .pagination-link {
+    flex-shrink: 0;
   }
 }

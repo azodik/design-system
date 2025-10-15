@@ -195,9 +195,16 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 
 // DialogHeader Component
 export const DialogHeader: React.FC<DialogHeaderProps> = ({ children, className = "" }) => {
+  const { setOpen } = useDialogContext();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className={`dialog-header ${className}`}>
       <div className="dialog-header-content">{children}</div>
+      <DialogClose className="dialog-close-icon" onClick={handleClose} />
     </div>
   );
 };
@@ -238,13 +245,21 @@ export const DialogClose: React.FC<{
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
-}> = ({ children, className = "", onClick }) => {
+  asChild?: boolean;
+}> = ({ children, className = "", onClick, asChild = false }) => {
   const { setOpen } = useDialogContext();
 
   const handleClick = () => {
     setOpen(false);
     onClick?.();
   };
+
+  if (asChild && children) {
+    return React.cloneElement(children as React.ReactElement<any>, {
+      onClick: handleClick,
+      className: `${className}`,
+    });
+  }
 
   return (
     <button className={`dialog-close ${className}`} onClick={handleClick} aria-label="Close dialog">

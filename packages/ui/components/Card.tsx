@@ -74,7 +74,7 @@ export default function Card({
   };
 
   const style: React.CSSProperties = {
-    width: width ? resolveSize(width) : "fit-content",
+    width: width ? resolveSize(width) : "100%",
     height: resolveSize(height),
     padding: resolveSize(padding),
     borderRadius: resolveSize(rounded),
@@ -83,6 +83,10 @@ export default function Card({
     boxShadow: shadow
       ? "0 4px 6px rgba(0,0,0,0.1)" // light mode default
       : undefined,
+    maxWidth: "100%",
+    overflow: "hidden",
+    wordWrap: "break-word",
+    wordBreak: "break-word",
   };
 
   const combinedClassName = [
@@ -127,7 +131,20 @@ export function CardDescription({ children, className = "", ...props }: CardDesc
 
 export function CardContent({ children, className = "", ...props }: CardContentProps) {
   return (
-    <div className={`card-content ${className}`} {...props}>
+    <div 
+      className={`card-content ${className}`} 
+      style={{
+        maxWidth: "100%",
+        overflow: "hidden",
+        wordWrap: "break-word",
+        wordBreak: "break-word",
+        whiteSpace: "normal",
+        hyphens: "auto",
+        WebkitHyphens: "auto",
+        msHyphens: "auto",
+      }}
+      {...props}
+    >
       {children}
     </div>
   );

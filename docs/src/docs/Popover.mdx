@@ -1,4 +1,4 @@
-import { Popover, Button, Card, CardContent, Input } from '@azodik/ui';
+import { Popover, Button, Card, CardContent, Input, Select } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 
@@ -128,28 +128,63 @@ export const FormPopoverExample = () => {
   );
 };
 
-export const CustomTriggerPopoverExample = () => {
+export const InteractivePopoverExample = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState('bottom');
+  const [offset, setOffset] = useState(8);
+
+  const positions = [
+    'top', 'top-start', 'top-end',
+    'bottom', 'bottom-start', 'bottom-end',
+    'left', 'left-start', 'left-end',
+    'right', 'right-start', 'right-end'
+  ];
+
+  const offsets = [4, 8, 12, 16, 20, 24];
 
   return (
-    <Popover
-      isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
-      content={
-        <div className="p-4">
-          <h3 className="font-semibold mb-2">Custom Trigger Popover</h3>
-          <p>This popover was triggered by a custom element.</p>
-        </div>
-      }
-    >
-      <div
-        className="p-4 border rounded cursor-pointer hover:bg-gray-50"
-        onClick={() => setIsOpen(true)}
-      >
-        <h3 className="font-semibold">Custom Trigger</h3>
-        <p className="text-sm text-gray-500">Click to open popover</p>
+    <div className="flex-vertical gap-4 preview-popover">
+      <div className="flex gap-4 items-center">
+        <Select
+          label="Position:"
+          value={position}
+          onChange={setPosition}
+          placeholder="Select position"
+          options={positions.map(pos => ({ value: pos, label: pos }))}
+        />
+        
+        <Select
+          label="Offset:"
+          value={offset.toString()}
+          onChange={(value) => setOffset(Number(value))}
+          placeholder="Select offset"
+            options={offsets.map(off => ({ value: off.toString(), label: off + 'px' }))}
+        />
       </div>
-    </Popover>
+
+      <div className="flex justify-center">
+        <Popover
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          position={position}
+          offset={offset}
+          content={
+            <div className="p-1 bg-white border rounded shadow-lg">
+              <p className="text-sm text-gray-600">
+                Position: <span className="font-mono">{position}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Offset: <span className="font-mono">{offset}px</span>
+              </p>
+            </div>
+          }
+        >
+          <Button onClick={() => setIsOpen(true)}>
+            Open Popover
+          </Button>
+        </Popover>
+      </div>
+    </div>
   );
 };
 
@@ -183,6 +218,74 @@ The Popover component includes several complementary features to handle various 
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Interactive Popover"
+  preview={<InteractivePopoverExample />}
+>
+{`import { Popover, Button, Select } from '@azodik/ui';
+import { useState } from 'react';
+
+export const InteractivePopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState('bottom');
+  const [offset, setOffset] = useState(8);
+
+  const positions = [
+    'top', 'top-start', 'top-end',
+    'bottom', 'bottom-start', 'bottom-end',
+    'left', 'left-start', 'left-end',
+    'right', 'right-start', 'right-end'
+  ];
+
+  const offsets = [4, 8, 12, 16, 20, 24];
+
+  return (
+    <div className="flex-vertical gap-4 preview-popover">
+      <div className="flex gap-4 items-center">
+        <Select
+          label="Position:"
+          value={position}
+          onChange={setPosition}
+          placeholder="Select position"
+          options={positions.map(pos => ({ value: pos, label: pos }))}
+        />
+        
+        <Select
+          label="Offset:"
+          value={offset.toString()}
+          onChange={(value) => setOffset(Number(value))}
+          placeholder="Select offset"
+            options={offsets.map(off => ({ value: off.toString(), label: off + 'px' }))}
+        />
+      </div>
+
+      <div className="flex justify-center">
+        <Popover
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          position={position}
+          offset={offset}
+          content={
+            <div className="p-4 bg-white border rounded shadow-lg">
+              <h3 className="font-semibold mb-2">Interactive Popover</h3>
+              <p className="text-sm text-gray-600 mb-2">
+                Position: <span className="font-mono">{position}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Offset: <span className="font-mono">{offset}px</span>
+              </p>
+            </div>
+          }
+        >
+          <Button onClick={() => setIsOpen(true)}>
+            Open Popover
+          </Button>
+        </Popover>
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
 
 ## Props
 

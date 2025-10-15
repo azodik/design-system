@@ -39,6 +39,57 @@
   z-index: 1001;
 }
 
+/* Mobile responsive toast */
+@media (max-width: 768px) {
+  .toast {
+    min-width: 250px;
+    max-width: calc(100vw - 32px);
+    margin: 0;
+  }
+  
+  .toast-top-right {
+    right: 16px;
+    left: 16px;
+    transform: translateY(-100%);
+  }
+  
+  .toast-top-center {
+    left: 16px;
+    right: 16px;
+    transform: translateY(-100%);
+  }
+  
+  .toast-bottom-right {
+    right: 16px;
+    left: 16px;
+    transform: translateY(100%);
+  }
+  
+  .toast-top-right.show {
+    transform: translateY(0);
+  }
+  
+  .toast-top-center.show {
+    transform: translateY(0);
+  }
+  
+  .toast-bottom-right.show {
+    transform: translateY(0);
+  }
+  
+  .toast-top-right.closing {
+    transform: translateY(-100%);
+  }
+  
+  .toast-top-center.closing {
+    transform: translateY(-100%);
+  }
+  
+  .toast-bottom-right.closing {
+    transform: translateY(100%);
+  }
+}
+
 /* Position-specific styles */
 .toast-top-right {
   top: var(--space-lg);

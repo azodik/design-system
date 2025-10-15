@@ -6,14 +6,13 @@ export const SelectableDataTableExample = () => {
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   
   const data = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' }
+    { id: 1, name: 'John Doe', role: 'Admin' },
+    { id: 2, name: 'Jane Smith', role: 'User' },
+    { id: 3, name: 'Bob Johnson', role: 'User' }
   ];
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
     { key: 'role', label: 'Role', sortable: true }
   ];
 
@@ -74,7 +73,6 @@ export const ActionDataTableExample = () => {
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
     { key: 'role', label: 'Role', sortable: true },
     { 
       key: 'actions', 
@@ -102,20 +100,18 @@ export const ActionDataTableExample = () => {
 };
 
 export const PaginatedDataTableExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const pageSize = 5; // Fixed to 5 entries per page
   
   // Mock data - in real app, this would come from API
   const allData = Array.from({ length: 25 }, (_, i) => ({
     id: i + 1,
     name: 'User ' + (i + 1),
-    email: 'user' + (i + 1) + '@example.com',
     role: i % 3 === 0 ? 'Admin' : 'User'
   }));
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
     { key: 'role', label: 'Role', sortable: true }
   ];
 
@@ -143,11 +139,14 @@ export const PaginatedDataTableExample = () => {
       />
       
       <div className="mt-4 flex justify-center">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        <div className="pagination-responsive">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            maxVisiblePages={3}
+          />
+        </div>
       </div>
     </div>
   );
@@ -217,7 +216,6 @@ export const DataTableExamples = () => {
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
     { key: 'role', label: 'Role', sortable: true },
     { key: 'status', label: 'Status', sortable: true }
   ];
@@ -245,14 +243,13 @@ export const SelectableDataTableExample = () => {
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   
   const data = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' }
+    { id: 1, name: 'John Doe', role: 'Admin' },
+    { id: 2, name: 'Jane Smith', role: 'User' },
+    { id: 3, name: 'Bob Johnson', role: 'User' }
   ];
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
     { key: 'role', label: 'Role', sortable: true }
   ];
 
@@ -314,20 +311,18 @@ export const SelectableDataTableExample = () => {
 import { useState } from 'react';
 
 export const PaginatedDataTableExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const pageSize = 5; // Fixed to 5 entries per page
   
   // Mock data - in real app, this would come from API
   const allData = Array.from({ length: 25 }, (_, i) => ({
     id: i + 1,
     name: 'User ' + (i + 1),
-    email: 'user' + (i + 1) + '@example.com',
     role: i % 3 === 0 ? 'Admin' : 'User'
   }));
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
-    { key: 'email', label: 'Email', sortable: true },
     { key: 'role', label: 'Role', sortable: true }
   ];
 
@@ -355,11 +350,14 @@ export const PaginatedDataTableExample = () => {
       />
       
       <div className="mt-4 flex justify-center">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        <div className="pagination-responsive">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            maxVisiblePages={3}
+          />
+        </div>
       </div>
     </div>
   );
