@@ -459,6 +459,31 @@
   color: var(--color-text);
   cursor: pointer;
   user-select: none;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Mobile responsive checkbox */
+@media (max-width: 768px) {
+  .checkbox {
+    gap: var(--space-xs);
+    align-items: flex-start;
+  }
+  
+  .checkbox label {
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    padding-right: var(--space-sm);
+  }
+  
+  .checkbox-custom {
+    margin-top: 2px;
+  }
 }
 
 /* Radio */

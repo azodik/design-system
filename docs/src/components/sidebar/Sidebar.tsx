@@ -33,8 +33,6 @@ export default function SidebarLayout({
   breadcrumbItems,
   breadcrumb,
   showBreadcrumb = true,
-  showToggleButton = true,
-  hideToggleOnDesktop = true,
 }: SidebarLayoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -181,8 +179,7 @@ export default function SidebarLayout({
         isSidebarCollapsed={isSidebarCollapsed}
         sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
         showBreadcrumb={showBreadcrumb}
-        showToggleButton={showToggleButton}
-        hideToggleOnDesktop={hideToggleOnDesktop}
+        showToggleOnDesktop={false}
         themeToggle={<ThemeToggle />}
         breadcrumb={
           breadcrumb || (

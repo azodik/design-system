@@ -67,6 +67,7 @@ import {
   DrawerBody,
   DrawerHeader,
   DrawerTrigger,
+  useResponsiveSidebar,
 } from "@azodik/ui";
 import { SidebarToggleIcon } from "@azodik/icons";
 
@@ -94,6 +95,21 @@ export default function TestComponentsPage() {
   const [showTopRightToast, setShowTopRightToast] = useState(false);
   const [showTopCenterToast, setShowTopCenterToast] = useState(false);
   const [showBottomRightToast, setShowBottomRightToast] = useState(false);
+  
+  // Responsive sidebar functionality
+  const { isSidebarOpen, isSmallScreen, handleSidebarToggle } = useResponsiveSidebar();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  // Combined toggle function for both mobile and desktop
+  const handleToggle = () => {
+    if (isSmallScreen) {
+      // Mobile/Tablet: Use responsive toggle
+      handleSidebarToggle();
+    } else {
+      // Desktop: Toggle collapse state
+      setIsSidebarCollapsed(!isSidebarCollapsed);
+    }
+  };
 
   return (
     <div className="test-components-page p-4">
@@ -167,13 +183,16 @@ export default function TestComponentsPage() {
           </Modal>
         </Card>
         <Card width="100%" height="auto">
-          <Navigation brand="Azodik">
-            <NavItem href="#home">Home</NavItem>
-            <NavItem href="#components">Components</NavItem>
-            <NavItem href="#docs">Docs</NavItem>
-            <NavItem href="#about">About</NavItem>
-            <NavItem href="#contact">Contact</NavItem>
-          </Navigation>
+        <Navigation 
+          brand={<span className="font-bold text-xl">Azodik</span>}
+          mobile={true}
+          style={{ height: '75px' }}
+          >
+        <NavItem href="/" active>Home</NavItem>
+        <NavItem href="/about">About</NavItem>
+        <NavItem href="/services">Services</NavItem>
+        <NavItem href="/contact">Contact</NavItem>
+      </Navigation>
         </Card>
         <Pagination
           currentPage={currentPage}
@@ -241,7 +260,15 @@ export default function TestComponentsPage() {
           />
         </Card>
         <div style={{ display: "flex" }}>
-          <Sidebar width={280} showHeader showFooter>
+          <Sidebar 
+            width={isSmallScreen ? 280 : 280} 
+            showHeader 
+            showFooter
+            collapsed={isSidebarCollapsed}
+            isSidebarOpen={isSidebarOpen}
+            onSidebarToggle={handleSidebarToggle}
+            isSmallScreen={isSmallScreen}
+          >
             <SidebarHeader>
               <SidebarBrand logo="A" subtitle="Enterprise">
                 Azodik Inc
@@ -279,17 +306,18 @@ export default function TestComponentsPage() {
             </SidebarFooter>
           </Sidebar>
 
-          <SidebarMainContent
-            onSidebarToggle={() => {}}
-            isSidebarCollapsed={false}
-            showBreadcrumb={true}
-            showToggleButton={false}
-            sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={false} />}
-            breadcrumbItems={[
-              { label: "Dashboard", href: "/dashboard" },
-              { label: "Overview", current: true },
-            ]}
-          >
+           <SidebarMainContent
+             onSidebarToggle={handleToggle}
+             isSidebarCollapsed={isSidebarCollapsed}
+             showBreadcrumb={true}
+             showToggleOnDesktop={true}
+             isSmallScreen={isSmallScreen}
+             sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
+             breadcrumbItems={[
+               { label: "Dashboard", href: "/dashboard" },
+               { label: "Overview", current: true },
+             ]}
+           >
             Your Content
           </SidebarMainContent>
         </div>

@@ -278,11 +278,17 @@
 @media (max-width: 768px) {
   .table {
     font-size: var(--font-size-sm);
+    min-width: 100%;
+    width: 100%;
   }
 
   .table th,
   .table td {
     padding: var(--space-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
   }
 
   .stats {
@@ -302,4 +308,33 @@
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Mobile specific table responsive */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .table-responsive .table {
+    min-width: 100%;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .table-responsive .table th,
+  .table-responsive .table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    min-width: 80px;
+  }
 }

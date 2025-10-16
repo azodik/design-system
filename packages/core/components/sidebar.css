@@ -471,7 +471,7 @@
 }
 
 .sidebar-user-trigger:hover {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-border);
 }
 
 .sidebar-user-avatar {
@@ -702,17 +702,25 @@
   background: var(--color-background);
 }
 
-/* Hide toggle button on desktop when hideToggleOnDesktop is true */
-.sidebar-toggle-button.hide-on-desktop {
-  display: none;
+/* Show toggle button on mobile, tablet, and laptop by default */
+.sidebar-toggle-button {
+  display: flex;
 }
 
-/* Show toggle button on mobile and tablet even when hideToggleOnDesktop is true */
-@media (max-width: 1024px) {
-  .sidebar-toggle-button.hide-on-desktop {
-    display: flex;
+/* Hide toggle button on desktop by default */
+@media (min-width: 1025px) {
+  .sidebar-toggle-button {
+    display: none;
   }
   
+  /* Show toggle button on desktop when showToggleOnDesktop is true */
+  .sidebar-toggle-button.show-on-desktop {
+    display: flex;
+  }
+}
+
+/* Mobile and tablet styles */
+@media (max-width: 1024px) {
   /* Mobile header styles */
   .main-content-header {
     padding: var(--space-sm);

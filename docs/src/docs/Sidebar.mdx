@@ -13,6 +13,13 @@ import {
   CardContent 
 } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { BasicSidebarExample } from '@/components/sidebar-variants/SidebarBasic';
+import { SidebarWithIconsExample } from '@/components/sidebar-variants/SidebarWithIcons';
+import { SidebarCollapsibleExample } from '@/components/sidebar-variants/SidebarCollapsible';
+import { SidebarWithUserProfileExample } from '@/components/sidebar-variants/SidebarWithUserProfile';
+import { SidebarWithFooterExample } from '@/components/sidebar-variants/SidebarWithFooter';
+import { SidebarResponsiveExample } from '@/components/sidebar-variants/SidebarResponsive';
+import SidebarCodePreview from '@/components/docs/SidebarCodePreview';
 
 # Sidebar Component
 
@@ -55,39 +62,10 @@ The Sidebar component includes several complementary features to handle various 
 
 ## Basic Example
 
-<CodeBlockWithPreview
+<SidebarCodePreview
   title="Basic Sidebar"
-  preview={
-    <div style={{ display: 'flex', height: '400px', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-      <Sidebar width={200}>
-        <SidebarHeader>
-          <SidebarBrand>My App</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Users</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Settings</SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-      </Sidebar>
-      
-      <SidebarMainContent>
-        <div className="p-6">
-          <h1 className="text-xl font-semibold">Main Content</h1>
-          <p>Your application content goes here.</p>
-        </div>
-      </SidebarMainContent>
-    </div>
-  }
->
-{`import { 
+  preview={<BasicSidebarExample />}
+  code={`import { 
   Sidebar, 
   SidebarHeader, 
   SidebarContent, 
@@ -101,9 +79,15 @@ The Sidebar component includes several complementary features to handle various 
 function BasicSidebarExample() {
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
-      <Sidebar width={250}>
+      <Sidebar 
+        width={isSmallScreen ? 280 : 250}
+        isSidebarOpen={isSidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+        isSmallScreen={isSmallScreen}
+        collapsed={false}
+      >
         <SidebarHeader>
-          <SidebarBrand>My App</SidebarBrand>
+          <SidebarBrand>Basic Sidebar</SidebarBrand>
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
@@ -120,7 +104,12 @@ function BasicSidebarExample() {
         </SidebarContent>
       </Sidebar>
       
-      <SidebarMainContent>
+      <SidebarMainContent
+        onSidebarToggle={handleSidebarToggle}
+        isSidebarCollapsed={false}
+        showToggleOnDesktop={false}
+        isSmallScreen={isSmallScreen}
+      >
         <div className="p-6">
           <h1>Main Content</h1>
           <p>Your application content goes here.</p>
@@ -129,65 +118,14 @@ function BasicSidebarExample() {
     </div>
   );
 }`}
-</CodeBlockWithPreview>
+/>
 
 ## Sidebar with Icons
 
-<CodeBlockWithPreview
+<SidebarCodePreview
   title="Sidebar with Icons"
-  preview={
-    <div style={{ display: 'flex', height: '400px', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-      <Sidebar width={200}>
-        <SidebarHeader>
-          <SidebarBrand>Dashboard</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                active
-                icon={<span>📊</span>}
-              >
-                Dashboard
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>👥</span>}
-                badge="5"
-              >
-                Users
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>📧</span>}
-                badge="12"
-              >
-                Messages
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>⚙️</span>}
-              >
-                Settings
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-      </Sidebar>
-      
-      <SidebarMainContent>
-        <div className="p-6">
-          <h1 className="text-xl font-semibold">Dashboard</h1>
-          <p>Welcome to your dashboard!</p>
-        </div>
-      </SidebarMainContent>
-    </div>
-  }
->
-{`import { 
+  preview={<SidebarWithIconsExample />}
+  code={`import { 
   Sidebar, 
   SidebarHeader, 
   SidebarContent, 
@@ -206,34 +144,32 @@ function SidebarWithIconsExample() {
           <SidebarBrand>Dashboard</SidebarBrand>
         </SidebarHeader>
         <SidebarContent>
-          <SidebarMenu>
+         <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton 
                 active
-                icon={<span>📊</span>}
+                icon={<BarChartIcon size={16} />}
               >
                 Dashboard
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>👥</span>}
-                badge="5"
+                icon={<UserIcon size={16} />}
               >
                 Users
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>📧</span>}
-                badge="12"
+                icon={<MailIcon size={16} />}
               >
                 Messages
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>⚙️</span>}
+                icon={<SettingsIcon size={16} />}
               >
                 Settings
               </SidebarMenuButton>
@@ -251,56 +187,14 @@ function SidebarWithIconsExample() {
     </div>
   );
 }`}
-</CodeBlockWithPreview>
+/>
 
 ## Collapsible Sidebar
 
-<CodeBlockWithPreview
+<SidebarCodePreview
   title="Collapsible Sidebar"
-  preview={
-    <div style={{ display: 'flex', height: '400px', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-      <Sidebar width={60} collapsed={true}>
-        <SidebarHeader>
-          <SidebarBrand>My App</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                active
-                icon={<span>🏠</span>}
-              >
-                Home
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>📊</span>}
-              >
-                Analytics
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>👥</span>}
-              >
-                Team
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-      </Sidebar>
-      
-      <SidebarMainContent>
-        <div className="p-6">
-          <h1 className="text-xl font-semibold">Main Content</h1>
-          <p>Click the toggle button to collapse/expand the sidebar.</p>
-        </div>
-      </SidebarMainContent>
-    </div>
-  }
->
-{`import { useState } from 'react';
+  preview={<SidebarCollapsibleExample />}
+  code={`import { useState } from 'react';
 import { 
   Sidebar, 
   SidebarHeader, 
@@ -329,21 +223,21 @@ function CollapsibleSidebarExample() {
             <SidebarMenuItem>
               <SidebarMenuButton 
                 active
-                icon={<span>🏠</span>}
+                icon={<HomeIcon size={16} />}
               >
                 Home
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>📊</span>}
+                icon={<BarChartIcon size={16} />}
               >
                 Analytics
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>👥</span>}
+                icon={<UserIcon size={16} />}
               >
                 Team
               </SidebarMenuButton>
@@ -353,9 +247,9 @@ function CollapsibleSidebarExample() {
       </Sidebar>
       
       <SidebarMainContent
-        onSidebarToggle={() => setIsCollapsed(!isCollapsed)}
-        isSidebarCollapsed={isCollapsed}
-        showToggleButton={true}
+        onSidebarToggle={handleSidebarToggle}
+        isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
+        showToggleOnDesktop={true}
       >
         <div className="p-6">
           <h1>Main Content</h1>
@@ -365,58 +259,14 @@ function CollapsibleSidebarExample() {
     </div>
   );
 }`}
-</CodeBlockWithPreview>
+/>
 
 ## Sidebar with User Profile
 
-<CodeBlockWithPreview
+<SidebarCodePreview
   title="Sidebar with User Profile"
-  preview={
-    <div style={{ display: 'flex', height: '400px', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-      <Sidebar width={200}>
-        <SidebarHeader>
-          <SidebarBrand>Admin Panel</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Users</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Reports</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Settings</SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <SidebarUserDropdown
-            name="John Doe"
-            email="john@example.com"
-            menuItems={[
-              { label: 'Profile', onClick: () => {} },
-              { label: 'Settings', onClick: () => {} },
-              { divider: true },
-              { label: 'Sign Out', onClick: () => {} }
-            ]}
-          />
-        </SidebarFooter>
-      </Sidebar>
-      
-      <SidebarMainContent>
-        <div className="p-6">
-          <h1 className="text-xl font-semibold">Admin Dashboard</h1>
-          <p>Welcome back, John!</p>
-        </div>
-      </SidebarMainContent>
-    </div>
-  }
->
-{`import { 
+  preview={<SidebarWithUserProfileExample />}
+  code={`import { 
   Sidebar, 
   SidebarHeader, 
   SidebarContent, 
@@ -477,55 +327,14 @@ function SidebarWithUserExample() {
     </div>
   );
 }`}
-</CodeBlockWithPreview>
+/>
 
 ## Sidebar with Footer
 
-<CodeBlockWithPreview
+<SidebarCodePreview
   title="Sidebar with Footer"
-  preview={
-    <div style={{ display: 'flex', height: '400px', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-      <Sidebar width={200} showFooter={true}>
-        <SidebarHeader>
-          <SidebarBrand>My App</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Projects</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Tasks</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Calendar</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Reports</SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <div style={{ padding: '12px', borderTop: '1px solid #e5e7eb', fontSize: '12px', color: '#6b7280' }}>
-            <div>Version 1.2.3</div>
-            <div>© 2024 My App</div>
-          </div>
-        </SidebarFooter>
-      </Sidebar>
-      
-      <SidebarMainContent>
-        <div className="p-6">
-          <h1 className="text-xl font-semibold">Dashboard</h1>
-          <p>This sidebar includes a footer with additional information.</p>
-        </div>
-      </SidebarMainContent>
-    </div>
-  }
->
-{`import { 
+  preview={<SidebarWithFooterExample />}
+  code={`import { 
   Sidebar, 
   SidebarHeader, 
   SidebarContent, 
@@ -580,67 +389,14 @@ function SidebarWithFooterExample() {
     </div>
   );
 }`}
-</CodeBlockWithPreview>
+/>
 
 ## Responsive Sidebar
 
-<CodeBlockWithPreview
+<SidebarCodePreview
   title="Responsive Sidebar"
-  preview={
-    <div style={{ display: 'flex', height: '400px', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-      <Sidebar width={200}>
-        <SidebarHeader>
-          <SidebarBrand>Responsive App</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                active
-                icon={<span>🏠</span>}
-              >
-                Home
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>📊</span>}
-                badge="3"
-              >
-                Analytics
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>📧</span>}
-                badge="12"
-              >
-                Messages
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<span>⚙️</span>}
-              >
-                Settings
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-      </Sidebar>
-      
-      <SidebarMainContent>
-        <div className="p-6">
-          <h1 className="text-xl font-semibold">Responsive Layout</h1>
-          <p>This sidebar adapts to different screen sizes.</p>
-          <p className="text-sm text-gray-600">On mobile: Full-width overlay</p>
-          <p className="text-sm text-gray-600">On desktop: Collapsible sidebar</p>
-        </div>
-      </SidebarMainContent>
-    </div>
-  }
->
-{`import { useState, useEffect } from 'react';
+  preview={<SidebarResponsiveExample />}
+  code={`import { useState, useEffect } from 'react';
 import { 
   Sidebar, 
   SidebarHeader, 
@@ -681,30 +437,28 @@ function ResponsiveSidebarExample() {
             <SidebarMenuItem>
               <SidebarMenuButton 
                 active
-                icon={<span>🏠</span>}
+                icon={<HomeIcon size={16} />}
               >
                 Home
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>📊</span>}
-                badge="3"
+                icon={<BarChartIcon size={16} />}
               >
                 Analytics
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>📧</span>}
-                badge="12"
+                icon={<MailIcon size={16} />}
               >
                 Messages
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton 
-                icon={<span>⚙️</span>}
+                icon={<SettingsIcon size={16} />}
               >
                 Settings
               </SidebarMenuButton>
@@ -714,9 +468,9 @@ function ResponsiveSidebarExample() {
       </Sidebar>
       
       <SidebarMainContent
-        onSidebarToggle={() => setIsCollapsed(!isCollapsed)}
-        isSidebarCollapsed={isCollapsed}
-        showToggleButton={true}
+        onSidebarToggle={handleSidebarToggle}
+        isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
+        showToggleOnDesktop={true}
         hideToggleOnDesktop={false}
       >
         <div className="p-6">
@@ -729,7 +483,7 @@ function ResponsiveSidebarExample() {
     </div>
   );
 }`}
-</CodeBlockWithPreview>
+/>
 
 ## Props
 

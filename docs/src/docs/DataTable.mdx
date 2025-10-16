@@ -40,7 +40,7 @@ export const SelectableDataTableExample = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '100%', overflow: 'hidden' }}>
       <div className="mb-4">
         <Button 
           onClick={handleBulkAction}
@@ -51,15 +51,17 @@ export const SelectableDataTableExample = () => {
         </Button>
       </div>
       
-      <DataTable
-        data={data}
-        columns={columns}
-        selectable
-        selectedRows={selectedRows}
-        onRowSelect={handleRowSelect}
-        onSelectAll={handleSelectAll}
-        onSort={(key, direction) => console.log('Sort:', key, direction)}
-      />
+      <div style={{ width: '100%', overflow: 'hidden' }}>
+        <DataTable
+          data={data}
+          columns={columns}
+          selectable
+          selectedRows={selectedRows}
+          onRowSelect={handleRowSelect}
+          onSelectAll={handleSelectAll}
+          onSort={(key, direction) => console.log('Sort:', key, direction)}
+        />
+      </div>
     </div>
   );
 };
@@ -91,11 +93,13 @@ export const ActionDataTableExample = () => {
   ];
 
   return (
-    <DataTable
-      data={data}
-      columns={columns}
-      onSort={(key, direction) => console.log('Sort:', key, direction)}
-    />
+    <div style={{ width: '100%', overflow: 'hidden' }}>
+      <DataTable
+        data={data}
+        columns={columns}
+        onSort={(key, direction) => console.log('Sort:', key, direction)}
+      />
+    </div>
   );
 };
 
@@ -125,18 +129,20 @@ export const PaginatedDataTableExample = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '100%', overflow: 'hidden' }}>
       <div className="mb-4">
         <span className="text-sm text-gray-600">
           Showing {startIndex + 1}-{Math.min(endIndex, allData.length)} of {allData.length} items
         </span>
       </div>
       
-      <DataTable
-        data={currentData}
-        columns={columns}
-        onSort={(key, direction) => console.log('Sort:', key, direction)}
-      />
+      <div style={{ width: '100%', overflow: 'hidden' }}>
+        <DataTable
+          data={currentData}
+          columns={columns}
+          onSort={(key, direction) => console.log('Sort:', key, direction)}
+        />
+      </div>
       
       <div className="mt-4 flex justify-center">
         <div className="pagination-responsive">
@@ -189,19 +195,21 @@ The DataTable component includes several complementary features to handle variou
 <CodeBlockWithPreview 
   title="All DataTable Variants"
   preview={
-    <div className="flex-vertical">
-      <DataTable 
-        data={[
-          { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-          { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' }
-        ]}
-        columns={[
-          { key: 'name', label: 'Name', sortable: true },
-          { key: 'email', label: 'Email', sortable: true },
-          { key: 'role', label: 'Role', sortable: true }
-        ]}
-        onSort={() => {}}
-      />
+    <div className="flex-vertical" style={{ width: '100%', overflow: 'hidden' }}>
+      <div style={{ width: '100%', overflow: 'hidden' }}>
+        <DataTable 
+          data={[
+            { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+            { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' }
+          ]}
+          columns={[
+            { key: 'name', label: 'Name', sortable: true },
+            { key: 'email', label: 'Email', sortable: true },
+            { key: 'role', label: 'Role', sortable: true }
+          ]}
+          onSort={() => {}}
+        />
+      </div>
     </div>
   }
 >

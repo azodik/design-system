@@ -1,5 +1,6 @@
 import { LineChart, AreaChart, BarChart, PieChart, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import ChartsCodePreview from '@/components/docs/ChartsCodePreview';
 
 # Charts Component
 
@@ -34,7 +35,7 @@ The Charts component includes several complementary features to handle various d
 
 ## Line Chart
 
-<CodeBlockWithPreview 
+<ChartsCodePreview 
   title="Line Chart"
   preview={
     <LineChart
@@ -81,11 +82,11 @@ export default function LineChartExample() {
     />
   );
 }`}
-</CodeBlockWithPreview>
+</ChartsCodePreview>
 
 ## Area Chart
 
-<CodeBlockWithPreview 
+<ChartsCodePreview 
   title="Area Chart"
   preview={
     <AreaChart
@@ -136,11 +137,11 @@ export default function AreaChartExample() {
     />
   );
 }`}
-</CodeBlockWithPreview>
+</ChartsCodePreview>
 
 ## Bar Chart
 
-<CodeBlockWithPreview 
+<ChartsCodePreview 
   title="Bar Chart"
   preview={
     <BarChart
@@ -183,11 +184,11 @@ export default function BarChartExample() {
     />
   );
 }`}
-</CodeBlockWithPreview>
+</ChartsCodePreview>
 
 ## Pie Chart
 
-<CodeBlockWithPreview 
+<ChartsCodePreview 
   title="Pie Chart"
   preview={
     <PieChart
@@ -203,7 +204,7 @@ export default function BarChartExample() {
       nameKey="name"
       title="Device Usage"
       subtitle="User distribution by device"
-      height={250}
+      height={270}
     />
   }
 >
@@ -228,11 +229,11 @@ export default function PieChartExample() {
     />
   );
 }`}
-</CodeBlockWithPreview>
+</ChartsCodePreview>
 
 ## Customization
 
-<CodeBlockWithPreview 
+<ChartsCodePreview 
   title="Customized Charts"
   preview={
     <div className="flex-vertical">
@@ -273,7 +274,7 @@ export default function CustomizedChart() {
     />
   );
 }`}
-</CodeBlockWithPreview>
+</ChartsCodePreview>
 
 ## Props
 

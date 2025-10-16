@@ -5,8 +5,10 @@ import { useState } from 'react';
 export const BasicNavigationExample = () => {
   return (
     <div style={{ width: '100%' }}>
-      <Navigation brand={<span className="font-bold text-xl">Azodik</span>}
-      style={{ height: '75px' }}
+      <Navigation 
+        brand={<span className="font-bold text-xl">Azodik</span>}
+        mobile={true}
+        style={{ height: '75px' }}
       >
         <NavItem href="/" active>Home</NavItem>
         <NavItem href="/about">About</NavItem>
@@ -56,7 +58,10 @@ The Navigation component includes several complementary features to handle vario
 export default function BasicNavigation() {
   return (
     <div style={{ width: '100%' }}>
-      <Navigation brand={<span className="font-bold text-xl">Azodik</span>}>
+      <Navigation 
+        brand={<span className="font-bold text-xl">Azodik</span>}
+        mobile={true}
+      >
         <NavItem href="/" active>Home</NavItem>
         <NavItem href="/about">About</NavItem>
         <NavItem href="/services">Services</NavItem>
