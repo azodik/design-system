@@ -11,6 +11,42 @@ import {
   CardContent 
 } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+
+export const BasicTableExample = () => {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Role</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>John Doe</TableCell>
+          <TableCell>john@example.com</TableCell>
+          <TableCell>Admin</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Jane Smith</TableCell>
+          <TableCell>jane@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Bob Johnson</TableCell>
+          <TableCell>bob@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Inactive</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+};
 
 # Table Component
 
@@ -51,6 +87,54 @@ The Table component includes several complementary features to handle various da
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Basic Table"
+  preview={<BasicTableExample />}
+>
+{`import { 
+  Table, 
+  TableHeader, 
+  TableBody,
+  TableRow, 
+  TableHeaderCell, 
+  TableCell
+} from '@azodik/ui';
+
+export default function BasicTable() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Role</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>John Doe</TableCell>
+          <TableCell>john@example.com</TableCell>
+          <TableCell>Admin</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Jane Smith</TableCell>
+          <TableCell>jane@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Bob Johnson</TableCell>
+          <TableCell>bob@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Inactive</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Props
 

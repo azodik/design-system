@@ -31,6 +31,58 @@ The Accordion component includes several complementary utility components to han
 
 ## Basic Example
 
+<CodeBlockWithPreview 
+  title="Basic Accordion"
+  preview={
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is an accordion?</AccordionTrigger>
+        <AccordionContent>
+          An accordion is a UI component that allows users to expand and collapse content sections. It's commonly used for FAQs, documentation, and organizing information in a space-efficient way.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>How does it work?</AccordionTrigger>
+        <AccordionContent>
+          Users can click on the accordion trigger to expand or collapse the content. Only one section can be open at a time in single mode, or multiple sections can be open in multiple mode.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>When should I use it?</AccordionTrigger>
+        <AccordionContent>
+          Use accordions when you have related content that doesn't need to be visible all at once. They're perfect for FAQs, feature descriptions, or any hierarchical information that can be organized into collapsible sections.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  }
+>
+{`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@azodik/ui';
+
+export default function BasicAccordion() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is an accordion?</AccordionTrigger>
+        <AccordionContent>
+          An accordion is a UI component that allows users to expand and collapse content sections. It's commonly used for FAQs, documentation, and organizing information in a space-efficient way.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>How does it work?</AccordionTrigger>
+        <AccordionContent>
+          Users can click on the accordion trigger to expand or collapse the content. Only one section can be open at a time in single mode, or multiple sections can be open in multiple mode.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>When should I use it?</AccordionTrigger>
+        <AccordionContent>
+          Use accordions when you have related content that doesn't need to be visible all at once. They're perfect for FAQs, feature descriptions, or any hierarchical information that can be organized into collapsible sections.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Multiple Items Open
 

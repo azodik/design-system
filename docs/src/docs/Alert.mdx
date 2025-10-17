@@ -49,18 +49,24 @@ The Alert component includes several complementary features to handle various no
   }
   code={`import { Alert } from '@azodik/ui';
 
-<Alert variant="success" title="Success!">
-  Your changes have been saved successfully.
-</Alert>
-<Alert variant="error" title="Error!">
-  Something went wrong. Please try again.
-</Alert>
-<Alert variant="warning" title="Warning!">
-  Please check your input before proceeding.
-</Alert>
-<Alert variant="info" title="Info">
-  Here's some helpful information for you.
-</Alert>`}
+export default function AlertVariants() {
+  return (
+    <div className="space-y-4">
+      <Alert variant="success" title="Success!">
+        Your changes have been saved successfully.
+      </Alert>
+      <Alert variant="error" title="Error!">
+        Something went wrong. Please try again.
+      </Alert>
+      <Alert variant="warning" title="Warning!">
+        Please check your input before proceeding.
+      </Alert>
+      <Alert variant="info" title="Info">
+        Here's some helpful information for you.
+      </Alert>
+    </div>
+  );
+}`}
 />
 
 ## Some Variants Example
@@ -147,7 +153,7 @@ export default function DismissibleAlert() {
         variant="success" 
         title="Numeric Values" 
         padding={16} 
-        width="50%" 
+        width="70%" 
         height="100%"
       >
         Numeric values are automatically converted to pixels.

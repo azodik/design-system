@@ -21,7 +21,7 @@ export default function ToastDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-8">
+      <div className="max-w-4xl mx-auto p-2">
         <div className="docs-content">
           <MDXProvider components={components}>
             <Toast />

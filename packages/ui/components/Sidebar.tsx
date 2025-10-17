@@ -2,6 +2,48 @@ import React, { useState, useRef, useEffect } from "react";
 import Avatar from "./Avatar";
 import { Breadcrumb } from "./Breadcrumb";
 
+// Hook for responsive sidebar functionality
+export function useResponsiveSidebar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Check screen size on mount and resize
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const smallScreen = window.innerWidth <= 1024;
+      setIsSmallScreen(smallScreen);
+
+      // If it's a small screen, ensure sidebar is closed initially
+      if (smallScreen) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const handleSidebarToggle = () => {
+    if (isSmallScreen) {
+      setIsSidebarOpen(!isSidebarOpen);
+    }
+  };
+
+  const closeSidebar = () => {
+    if (isSmallScreen) {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  return {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  };
+}
+
 // Sidebar Component
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -17,6 +59,10 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
     avatar?: string;
   };
   onUserAction?: (action: string) => void;
+  // Responsive props
+  isSidebarOpen?: boolean;
+  onSidebarToggle?: () => void;
+  isSmallScreen?: boolean;
 }
 
 export function Sidebar({
@@ -29,6 +75,9 @@ export function Sidebar({
   color,
   userProfile,
   onUserAction,
+  isSidebarOpen = false,
+  onSidebarToggle,
+  isSmallScreen = false,
   className = "",
   ...props
 }: SidebarProps) {
@@ -38,13 +87,46 @@ export function Sidebar({
   };
 
   return (
-    <div
-      className={`sidebar ${collapsed ? "sidebar-collapsed" : ""} ${className}`}
-      style={sidebarStyle}
-      {...props}
-    >
-      {children}
-    </div>
+    <>
+      {/* Mobile & Tablet Overlay */}
+      {isSmallScreen && isSidebarOpen && (
+        <div 
+          className="sidebar-overlay open" 
+          onClick={onSidebarToggle}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 999,
+            opacity: isSidebarOpen ? 1 : 0,
+            visibility: isSidebarOpen ? 'visible' : 'hidden',
+            transition: 'opacity 0.3s ease, visibility 0.3s ease'
+          }}
+        />
+      )}
+
+      <div
+        className={`sidebar ${collapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""} ${className}`}
+        style={{
+          ...sidebarStyle,
+          ...(isSmallScreen && {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            height: '100vh',
+            transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+            zIndex: 1000,
+            transition: 'transform 0.3s ease-in-out'
+          })
+        }}
+        {...props}
+      >
+        {children}
+      </div>
+    </>
   );
 }
 
@@ -476,12 +558,13 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
     current?: boolean;
   }>;
   breadcrumb?: React.ReactNode;
+  showBreadcrumb?: boolean;
   onSidebarToggle?: () => void;
   isSidebarCollapsed?: boolean;
   sidebarToggleIcon?: React.ReactNode;
-  showBreadcrumb?: boolean;
-  showToggleButton?: boolean;
-  hideToggleOnDesktop?: boolean;
+  showToggleOnDesktop?: boolean;
+  themeToggle?: React.ReactNode;
+  isSmallScreen?: boolean;
 }
 
 export function SidebarMainContent({
@@ -492,35 +575,56 @@ export function SidebarMainContent({
   isSidebarCollapsed = false,
   sidebarToggleIcon,
   showBreadcrumb = true,
-  showToggleButton = true,
-  hideToggleOnDesktop = false,
+  showToggleOnDesktop = false,
+  themeToggle,
+  isSmallScreen = false,
   className = "",
   ...props
 }: SidebarMainContentProps) {
   return (
-    <div className={`main-content-area ${className}`} {...props}>
-      {/* Breadcrumb */}
-      {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
-        <div className="breadcrumb-container">
-          {showToggleButton && onSidebarToggle && (
-            <button
-              className={`sidebar-toggle-button ${hideToggleOnDesktop ? "hide-on-desktop" : ""}`}
-              onClick={onSidebarToggle}
-            >
-              {sidebarToggleIcon || (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
-                </svg>
-              )}
-            </button>
-          )}
-          {breadcrumb ? (
-            breadcrumb
-          ) : breadcrumbItems ? (
-            <Breadcrumb items={breadcrumbItems} />
-          ) : null}
-        </div>
-      )}
+    <div 
+      className={`main-content-area ${className}`} 
+      style={{
+        ...(isSmallScreen && {
+          width: '100%',
+          marginLeft: 0
+        })
+      }}
+      {...props}
+    >
+      {/* Main Header Section */}
+      <header className="main-content-header">
+        {onSidebarToggle && (
+          <button
+            className={`sidebar-toggle-button ${showToggleOnDesktop ? "show-on-desktop" : ""}`}
+            onClick={onSidebarToggle}
+          >
+            {sidebarToggleIcon || (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+              </svg>
+            )}
+          </button>
+        )}
+        
+        {/* Breadcrumb Section */}
+        {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
+          <div className="breadcrumb-section">
+            {breadcrumb ? (
+              breadcrumb
+            ) : breadcrumbItems ? (
+              <Breadcrumb items={breadcrumbItems} />
+            ) : null}
+          </div>
+        )}
+        
+        {/* Theme Toggle Section */}
+        {themeToggle && (
+          <div className="theme-toggle-section">
+            {themeToggle}
+          </div>
+        )}
+      </header>
 
       {/* Scrollable Main Content */}
       <div className="main-content-scrollable">{children}</div>

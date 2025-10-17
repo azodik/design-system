@@ -38,6 +38,7 @@ export {
   SidebarMenuButton,
   SidebarGroupLabel,
   SidebarGroupContent,
+  useResponsiveSidebar,
 } from "./components/Sidebar";
 export {
   default as Table,

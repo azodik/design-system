@@ -1,4 +1,4 @@
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, DrawerClose, Button, Card, CardContent } from '@azodik/ui';
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, DrawerClose, Button, Card, CardContent, Input, Select } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 
 # Drawer Component
@@ -32,6 +32,105 @@ The Drawer component includes several complementary features to handle various m
 
 ## Basic Example
 
+<CodeBlockWithPreview 
+  title="Basic Drawer with Form"
+  preview={
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button>Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Create New Item</DrawerTitle>
+          <DrawerDescription>
+            Fill out the form below to create a new item.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <form className="space-y-4">
+            <Input 
+              label="Item Name"
+              type="text" 
+              placeholder="Enter item name"
+              className="w-full"
+            />
+            <Input 
+              label="Description"
+              type="text" 
+              placeholder="Enter description"
+              className="w-full"
+            />
+            <Select 
+              label="Category"
+              options={[
+                { value: "electronics", label: "Electronics" },
+                { value: "clothing", label: "Clothing" },
+                { value: "books", label: "Books" }
+              ]}
+              placeholder="Select a category"
+              className="w-full"
+            />
+          </form>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Create Item</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  }
+>
+{`import React from "react";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, Button, Input, Select } from "@azodik/ui";
+
+export default function BasicDrawerForm() {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button>Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Create New Item</DrawerTitle>
+          <DrawerDescription>
+            Fill out the form below to create a new item.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <form className="space-y-4">
+            <Input 
+              label="Item Name"
+              type="text" 
+              placeholder="Enter item name"
+              className="w-full"
+            />
+            <Input 
+              label="Description"
+              type="text" 
+              placeholder="Enter description"
+              className="w-full"
+            />
+            <Select 
+              label="Category"
+              options={[
+                { value: "electronics", label: "Electronics" },
+                { value: "clothing", label: "Clothing" },
+                { value: "books", label: "Books" }
+              ]}
+              placeholder="Select a category"
+              className="w-full"
+            />
+          </form>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Create Item</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Props
 

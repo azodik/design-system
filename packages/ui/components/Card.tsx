@@ -62,9 +62,9 @@ export default function Card({
   ...props
 }: CardProps) {
   const variantClasses = {
-    default: "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
-    outlined: "bg-transparent border border-gray-300 dark:border-gray-600",
-    shadow: "bg-white dark:bg-gray-800 border border-transparent",
+    default: "card",
+    outlined: "card card-outlined",
+    shadow: "card card-shadow",
   };
 
   const resolveSize = (value?: Size | string | number) => {
@@ -74,7 +74,7 @@ export default function Card({
   };
 
   const style: React.CSSProperties = {
-    width: width ? resolveSize(width) : "fit-content",
+    width: width ? resolveSize(width) : "100%",
     height: resolveSize(height),
     padding: resolveSize(padding),
     borderRadius: resolveSize(rounded),
@@ -83,13 +83,15 @@ export default function Card({
     boxShadow: shadow
       ? "0 4px 6px rgba(0,0,0,0.1)" // light mode default
       : undefined,
+    maxWidth: "100%",
+    overflow: "hidden",
+    wordWrap: "break-word",
+    wordBreak: "break-word",
   };
 
   const combinedClassName = [
-    "transition-all",
     variantClasses[variant],
-    shadow && "shadow-light dark:shadow-dark",
-    hoverEffect && "hover:shadow-lg dark:hover:shadow-xl",
+    hoverEffect && "card-hover",
     className,
   ]
     .filter(Boolean)
@@ -129,7 +131,20 @@ export function CardDescription({ children, className = "", ...props }: CardDesc
 
 export function CardContent({ children, className = "", ...props }: CardContentProps) {
   return (
-    <div className={`card-content ${className}`} {...props}>
+    <div 
+      className={`card-content ${className}`} 
+      style={{
+        maxWidth: "100%",
+        overflow: "hidden",
+        wordWrap: "break-word",
+        wordBreak: "break-word",
+        whiteSpace: "normal",
+        hyphens: "auto",
+        WebkitHyphens: "auto",
+        msHyphens: "auto",
+      }}
+      {...props}
+    >
       {children}
     </div>
   );

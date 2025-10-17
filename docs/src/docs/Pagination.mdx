@@ -46,7 +46,7 @@ export const PageSizePaginationExample = () => {
 };
 
 export const CustomStyledPaginationExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const totalPages = 15;
 
   const handlePageChange = (page) => {
@@ -54,20 +54,22 @@ export const CustomStyledPaginationExample = () => {
   };
 
   return (
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-      className="custom-pagination"
-      showFirstLast
-      showPrevNext
-      maxVisiblePages={5}
-    />
+        <div className="pagination-responsive">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            className="custom-pagination"
+            showFirstLast
+            showPrevNext
+            maxVisiblePages={3}
+          />
+        </div>
   );
 };
 
 export const JumpPaginationExample = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const totalPages = 20;
 
   const handlePageChange = (page) => {
@@ -100,13 +102,16 @@ export const JumpPaginationExample = () => {
         />
       </div>
       
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        showFirstLast
-        showPrevNext
-      />
+      <div className="pagination-responsive">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          showFirstLast
+          showPrevNext
+          maxVisiblePages={3}
+        />
+      </div>
     </div>
   );
 };
@@ -141,6 +146,32 @@ The Pagination component includes several complementary features to handle vario
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Basic Pagination"
+  preview={<CustomStyledPaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicPagination() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      showFirstLast
+      showPrevNext
+    />
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## With Jump to Page
 

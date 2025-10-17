@@ -1,6 +1,35 @@
 import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 
+export const BasicTooltipExample = () => {
+  return (
+    <div className="flex gap-4 items-center">
+      <Tooltip content="This is a basic tooltip">
+        <Button variant="outline">Hover me</Button>
+      </Tooltip>
+    </div>
+  );
+};
+
+export const MultipleTooltipsExample = () => {
+  return (
+    <div className="flex gap-4 items-center flex-wrap">
+      <Tooltip content="Save your changes">
+        <Button>Save</Button>
+      </Tooltip>
+      <Tooltip content="Discard all changes">
+        <Button variant="outline">Cancel</Button>
+      </Tooltip>
+      <Tooltip content="Delete this item permanently">
+        <Button variant="outline" style={{ color: "#dc2626" }}>Delete</Button>
+      </Tooltip>
+      <Tooltip content="View more options">
+        <Button variant="ghost">⋯</Button>
+      </Tooltip>
+    </div>
+  );
+};
+
 # Tooltip Component
 
 The Tooltip component provides contextual information that appears on hover or focus. It's perfect for providing additional details without cluttering the interface.
@@ -31,40 +60,47 @@ The Tooltip component includes several complementary features to handle various 
 
 ## Variants
 
-
-## With Rich Content
-
 <CodeBlockWithPreview 
-  title="Rich Tooltip Content"
-  preview={
-    <Tooltip 
-      content={
-        <div>
-          <h4 className="font-semibold">Advanced Settings</h4>
-          <p className="text-sm">Configure advanced options for better performance.</p>
-        </div>
-      }
-    >
-      <Button variant="outline">Settings</Button>
-    </Tooltip>
-  }
+  title="Basic Tooltip"
+  preview={<BasicTooltipExample />}
 >
 {`import { Tooltip, Button } from '@azodik/ui';
 
-export const BasicTooltipExample = () => {
+export default function BasicTooltip() {
   return (
-    <Tooltip 
-      content={
-        <div>
-          <h4 className="font-semibold">Advanced Settings</h4>
-          <p className="text-sm">Configure advanced options for better performance.</p>
-        </div>
-      }
-    >
-      <Button variant="outline">Settings</Button>
-    </Tooltip>
+    <div className="flex gap-4 items-center">
+      <Tooltip content="This is a basic tooltip">
+        <Button variant="outline">Hover me</Button>
+      </Tooltip>
+    </div>
   );
-};`}
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Multiple Tooltips"
+  preview={<MultipleTooltipsExample />}
+>
+{`import { Tooltip, Button } from '@azodik/ui';
+
+export default function MultipleTooltips() {
+  return (
+    <div className="flex gap-4 items-center flex-wrap">
+      <Tooltip content="Save your changes">
+        <Button>Save</Button>
+      </Tooltip>
+      <Tooltip content="Discard all changes">
+        <Button variant="outline">Cancel</Button>
+      </Tooltip>
+      <Tooltip content="Delete this item permanently">
+        <Button variant="outline" style={{ color: "#dc2626" }}>Delete</Button>
+      </Tooltip>
+      <Tooltip content="View more options">
+        <Button variant="ghost">⋯</Button>
+      </Tooltip>
+    </div>
+  );
+}`}
 </CodeBlockWithPreview>
 
 ## Props

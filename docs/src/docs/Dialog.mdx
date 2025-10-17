@@ -1,4 +1,4 @@
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent } from '@azodik/ui';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent, Input, Select, Textarea } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 
 # Dialog Component
@@ -31,6 +31,109 @@ The Dialog component includes several complementary features to handle various m
 
 ## Basic Example
 
+<CodeBlockWithPreview 
+  title="Basic Dialog with Form"
+  preview={
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Form Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create New User</DialogTitle>
+          <DialogDescription>
+            Fill out the form below to create a new user account.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <form className="space-y-4">
+            <Input 
+              label="Full Name"
+              type="text" 
+              placeholder="Enter full name"
+              className="w-full"
+            />
+            <Input 
+              label="Email"
+              type="email" 
+              placeholder="Enter email address"
+              className="w-full"
+            />
+            <Select 
+              label="Role"
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+                { value: "moderator", label: "Moderator" }
+              ]}
+              placeholder="Select a role"
+              className="w-full"
+            />
+          </form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Create User</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  }
+>
+{`import React from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, Button, Input, Select, Textarea } from "@azodik/ui";
+
+export default function BasicDialogForm() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Form Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create New User</DialogTitle>
+          <DialogDescription>
+            Fill out the form below to create a new user account.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <form className="space-y-4">
+            <Input 
+              label="Full Name"
+              type="text" 
+              placeholder="Enter full name"
+              className="w-full"
+            />
+            <Input 
+              label="Email"
+              type="email" 
+              placeholder="Enter email address"
+              className="w-full"
+            />
+            <Select 
+              label="Role"
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+                { value: "moderator", label: "Moderator" }
+              ]}
+              placeholder="Select a role"
+              className="w-full"
+            />
+          </form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Create User</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Custom Styling
 
@@ -65,7 +168,9 @@ The Dialog component includes several complementary features to handle various m
           </div>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
           <Button>Save Changes</Button>
         </DialogFooter>
       </DialogContent>
@@ -105,7 +210,9 @@ export const CustomStyledDialog = () => {
           </div>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
           <Button>Save Changes</Button>
         </DialogFooter>
         <DialogClose />

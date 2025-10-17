@@ -1,20 +1,17 @@
 import { ScrollArea, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 
-export const SizedScrollAreaExample = () => {
+export const VerticalScrollAreaExample = () => {
   return (
-    <div>
-    <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
-    <div>
-      <h3 className="text-lg font-semibold mb-3">Small Scrollbar</h3>
-      <Card className="border border-gray-200 rounded-lg p-4"
+    <div className="scroll-area-mobile">
+      <Card className="border rounded-lg p-4"
         width="100%"
         height="200px"
-        backgroundColor="#f8fafc"
+        style={{ backgroundColor: "var(--color-background)", borderColor: "var(--color-border)" }}
       >
-        <ScrollArea className="h-24 w-full" scrollbarSize="sm">
+        <ScrollArea className="h-32 w-full" scrollbarSize="sm">
           <div className="p-4">
-            <p className="text-sm text-gray-700 leading-relaxed">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed mt-3">
@@ -23,54 +20,32 @@ export const SizedScrollAreaExample = () => {
             <p className="text-sm text-gray-700 leading-relaxed mt-3">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
             </p>
-          </div>
-        </ScrollArea>
-      </Card>
-    </div>
-  </div>
-      
-      <div className="flex-vertical-lg" style={{ width: '100%', maxWidth: '800px' }}>
-    <div>
-      <h3 className="text-lg font-semibold mb-3">Large Scrollbar</h3>
-      <Card className="border border-gray-200 rounded-lg p-4"
-        width="100%"
-        height="200px"
-        backgroundColor="#f8fafc"
-      >
-        <ScrollArea className="h-24 w-full" scrollbarSize="lg">
-          <div className="p-4">
-            <p className="text-sm text-gray-700 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
             <p className="text-sm text-gray-700 leading-relaxed mt-3">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p className="text-sm text-gray-700 leading-relaxed mt-3">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
             </p>
           </div>
         </ScrollArea>
       </Card>
     </div>
-  </div>
-  </div>
   );
 };
 
 export const HorizontalScrollAreaExample = () => {
   return (
-    <ScrollArea className="w-80 border rounded" orientation="horizontal">
-      <div className="flex space-x-4 p-4" style={{ width: '500px' }}>
-        {Array.from({ length: 20 }, (_, i) => (
-          <div 
-            key={i}
-            className={`w-32 h-20 ${[i]} rounded flex items-center justify-center flex-shrink-0`}
-          >
-            Item {i + 1}
-          </div>
-        ))}
-      </div>
-    </ScrollArea>
+    <div className="horizontal-scroll-mobile">
+      <ScrollArea className="w-full border rounded" orientation="horizontal">
+        <div className="flex space-x-4 p-4" style={{ width: '500px' }}>
+          {Array.from({ length: 20 }, (_, i) => (
+            <div 
+              key={i}
+              className={"w-32 h-20 " + [i] + " rounded flex items-center justify-center flex-shrink-0"}
+            >
+              Item {i + 1}
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
   );
 };
 
@@ -105,75 +80,68 @@ The ScrollArea component includes several complementary features to handle vario
 ## Variants
 
 
-## With Different Sizes
+## Scroll Examples
 
 <CodeBlockWithPreview 
-  title="ScrollArea Sizes"
-  preview={<SizedScrollAreaExample />}
+  title="Vertical Scroll"
+  preview={<VerticalScrollAreaExample />}
 >
-{`import { ScrollArea } from '@azodik/ui';
+{`import { ScrollArea, Card } from '@azodik/ui';
 
-export const ScrollAreaSizesExample = () => {
+export const VerticalScrollAreaExample = () => {
   return (
-    <div className="flex-vertical">
-      <div>
-        <h4>Small ScrollArea</h4>
-        <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="sm">
-          <div className="p-4 flex-vertical">
-            <p>Small scrollbar</p>
-            <p>Content here</p>
-            <p>More content</p>
-            <p>Even more content</p>
+    <div className="scroll-area-mobile">
+      <Card className="border rounded-lg p-4"
+        width="100%"
+        height="200px"
+        style={{ backgroundColor: "var(--color-background)", borderColor: "var(--color-border)" }}
+      >
+        <ScrollArea className="h-32 w-full" scrollbarSize="sm">
+          <div className="p-4">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+            </p>
           </div>
         </ScrollArea>
-      </div>
-      
-      <div>
-        <h4>Medium ScrollArea</h4>
-        <ScrollArea className="h-32 w-64 border rounded" scrollbarSize="md">
-          <div className="p-4 flex-vertical">
-            <p>Medium scrollbar</p>
-            <p>Content here</p>
-            <p>More content</p>
-            <p>Even more content</p>
-          </div>
-        </ScrollArea>
-      </div>
+      </Card>
     </div>
   );
 }`}
 </CodeBlockWithPreview>
 
-## Horizontal Scrolling
-
 <CodeBlockWithPreview 
-  title="Horizontal ScrollArea"
+  title="Horizontal Scroll"
   preview={<HorizontalScrollAreaExample />}
 >
 {`import { ScrollArea } from '@azodik/ui';
 
 export const HorizontalScrollAreaExample = () => {
-  const colors = [
-    'bg-blue-100', 'bg-green-100', 'bg-red-100', 'bg-yellow-100', 'bg-purple-100',
-    'bg-pink-100', 'bg-indigo-100', 'bg-orange-100', 'bg-teal-100', 'bg-cyan-100',
-    'bg-emerald-100', 'bg-rose-100', 'bg-violet-100', 'bg-amber-100', 'bg-sky-100'
-  ];
-
   return (
-    <ScrollArea className="w-80 border rounded" orientation="horizontal">
-      <div className="flex space-x-4 p-4" style={{ width: '800px' }}>
-        {Array.from({ length: 15 }, (_, i) => (
-          <div 
-            key={i}
-            className={\`w-32 h-20 \${colors[i]} rounded flex items-center justify-center flex-shrink-0\`}
-          >
-            Item {i + 1}
-          </div>
-        ))}
-      </div>
-    </ScrollArea>
+    <div className="horizontal-scroll-mobile">
+      <ScrollArea className="w-full border rounded" orientation="horizontal">
+        <div className="flex space-x-4 p-4" style={{ width: '500px' }}>
+          {Array.from({ length: 20 }, (_, i) => (
+            <div 
+              key={i}
+              className={"w-32 h-20 " + [i] + " rounded flex items-center justify-center flex-shrink-0"}
+            >
+              Item {i + 1}
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
   );
-}`}
+};`}
 </CodeBlockWithPreview>
 
 ## Props

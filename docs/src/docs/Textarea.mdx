@@ -1,5 +1,18 @@
 import { Textarea, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+
+export const BasicTextareaExample = () => {
+  return (
+    <div className="space-y-4">
+      <Textarea
+        label="Message"
+        placeholder="Enter your message here..."
+        rows={4}
+      />
+    </div>
+  );
+};
 
 # Textarea Component
 
@@ -31,6 +44,24 @@ The Textarea component includes several complementary features to handle various
 
 ## Variants
 
+<CodeBlockWithPreview 
+  title="Basic Textarea"
+  preview={<BasicTextareaExample />}
+>
+{`import { Textarea } from '@azodik/ui';
+
+export default function BasicTextarea() {
+  return (
+    <div className="space-y-4">
+      <Textarea
+        label="Message"
+        placeholder="Enter your message here..."
+        rows={4}
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
 
 ## Props
 
