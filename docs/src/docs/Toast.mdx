@@ -1,6 +1,122 @@
 import { Toast, Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ToastComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('toastComponent')}</h1>;
+};
+
+export const ToastComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('toastDescription')}</p>;
+};
+
+export const ToastIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('toastIntroduction')}</h2>
+      <p>{t('toastIntroDesc')}</p>
+      <ul>
+        <li>{t('toastMainWrapper')}</li>
+        <li>{t('toastVariants')}</li>
+        <li>{t('toastPositioning')}</li>
+        <li>{t('toastTiming')}</li>
+        <li>{t('toastCustomization')}</li>
+        <li>{t('toastAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseToast')}</h3>
+      <ul>
+        <li>{t('showSuccessMessagesAfterActions')}</li>
+        <li>{t('displayErrorNotifications')}</li>
+        <li>{t('provideBriefStatusUpdates')}</li>
+        <li>{t('showConfirmationMessages')}</li>
+        <li>{t('displaySystemNotifications')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageToast')}</h2>;
+};
+
+export const VariantsToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsToast')}</h2>;
+};
+
+export const BasicToastTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicToast');
+};
+
+export const ToastVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('toastVariants');
+};
+
+export const ToastPositionsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('toastPositions');
+};
+
+export const PersistentToastTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('persistentToast');
+};
+
+export const PropsToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsToast')}</h2>;
+};
+
+export const AccessibilityToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityToast')}</h2>;
+};
+
+export const DesignGuidelinesToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesToast')}</h2>;
+};
+
+export const AccessibilityToastList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('toastsAreAnnouncedToScreenReaders')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyToast')}</li>
+      <li>{t('keyboardNavigationIsSupportedToast')}</li>
+      <li>{t('colorIsNotTheOnlyWayToConveyInformationToast')}</li>
+      <li>{t('properAriaAttributesAreAppliedToast')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesToastList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepToastMessagesConciseAndClear')}</li>
+      <li>{t('useAppropriateVariantsForDifferentMessageTypes')}</li>
+      <li>{t('dontShowTooManyToastsAtOnce')}</li>
+      <li>{t('provideClearCloseActions')}</li>
+      <li>{t('considerMobilePositioningAndSizing')}</li>
+    </ul>
+  );
+};
 
 export const BasicToastExample = () => {
   const [showToast, setShowToast] = useState(false);
@@ -133,38 +249,24 @@ export const PersistentToastExample = () => {
   );
 };
 
-# Toast Component
+<ToastComponentHeader />
 
-The Toast component provides temporary notifications that appear and disappear automatically. It's perfect for showing success messages, errors, or other brief feedback to users.
+<ToastComponentDescription />
 
-## Introduction
+<ToastIntroduction />
 
-The Toast component includes several complementary features to handle various notification and feedback scenarios:
+<WhenToUseToastSection />
 
-- Toast: the main wrapper for creating temporary notifications that provide feedback without blocking user workflow.
-- Toast Variants: multiple notification types (success, warning, error, info) with appropriate icons and styling for different message types.
-- Toast Positioning: flexible positioning system with multiple placement options (top-center, top-right, bottom-right) for optimal visibility.
-- Toast Timing: automatic dismissal with configurable duration and manual close functionality for different notification needs.
-- Toast Customization: flexible styling, icons, titles, and content options for brand-specific notification designs.
-- Toast Accessibility: proper ARIA attributes, screen reader announcements, and keyboard navigation support for notification consumption.
-
-### When to use
-- Show success messages after actions
-- Display error notifications
-- Provide brief status updates
-- Show confirmation messages
-- Display system notifications
-
-## Usage
+<UsageToastSection />
 
 <CodeBlock language="tsx">
 {`import { Toast } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsToastSection />
 
 <CodeBlockWithPreview 
-  title="Basic Toast"
+  title={<BasicToastTitle />}
   preview={<BasicToastExample />}
 >
 {`import { Toast, Button } from '@azodik/ui';
@@ -195,7 +297,7 @@ export default function BasicToast() {
 </CodeBlockWithPreview>
 
 <CodeBlockWithPreview 
-  title="Toast Variants"
+  title={<ToastVariantsTitle />}
   preview={<ToastVariantsExample />}
 >
 {`import { Toast, Button } from '@azodik/ui';
@@ -247,7 +349,7 @@ export default function ToastVariants() {
 </CodeBlockWithPreview>
 
 <CodeBlockWithPreview 
-  title="Toast Positions"
+  title={<ToastPositionsTitle />}
   preview={<ToastPositionsExample />}
 >
 {`import { Toast, Button } from '@azodik/ui';
@@ -296,7 +398,7 @@ export default function ToastPositions() {
 </CodeBlockWithPreview>
 
 <CodeBlockWithPreview 
-  title="Persistent Toast"
+  title={<PersistentToastTitle />}
   preview={<PersistentToastExample />}
 >
 {`import { Toast, Button } from '@azodik/ui';
@@ -326,7 +428,7 @@ export default function PersistentToast() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsToastSection />
 
 <PropsTable props={[
   {
@@ -387,18 +489,10 @@ export default function PersistentToast() {
   }
 ]} />
 
-## Accessibility
+<AccessibilityToastSection />
 
-- Toasts are announced to screen readers
-- Focus management is handled correctly
-- Keyboard navigation is supported
-- Color is not the only way to convey information
-- Proper ARIA attributes are applied
+<AccessibilityToastList />
 
-## Design Guidelines
+<DesignGuidelinesToastSection />
 
-- Keep toast messages concise and clear
-- Use appropriate variants for different message types
-- Don't show too many toasts at once
-- Provide clear close actions
-- Consider mobile positioning and sizing
+<DesignGuidelinesToastList />

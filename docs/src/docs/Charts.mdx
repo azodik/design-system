@@ -1,42 +1,186 @@
 import { LineChart, AreaChart, BarChart, PieChart, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import ChartsCodePreview from '@/components/docs/ChartsCodePreview';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Charts Component
+export const ChartsComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('chartsComponent')}</h1>;
+};
 
-The Charts component provides a comprehensive set of data visualization components built on top of Recharts. It includes Line, Area, Bar, and Pie charts with customizable styling and interactive features.
+export const ChartsDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('chartsDescription')}</p>;
+};
 
-## Introduction
+export const ChartsIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('chartsIntroduction')}</h2>
+      <p>{t('chartsIntroDesc')}</p>
+      <ul>
+        <li>{t('chartsMainWrapper')}</li>
+        <li>{t('chartTypes')}</li>
+        <li>{t('chartCustomization')}</li>
+        <li>{t('chartInteractivity')}</li>
+        <li>{t('chartResponsiveness')}</li>
+        <li>{t('chartAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Charts component includes several complementary features to handle various data visualization and analytics scenarios:
+export const WhenToUseChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseCharts')}</h3>
+      <ul>
+        <li>{t('displayTrendsOverTime')}</li>
+        <li>{t('showCumulativeData')}</li>
+        <li>{t('compareValuesAcrossCategories')}</li>
+        <li>{t('showProportionalData')}</li>
+        <li>{t('createDashboardsAndAnalytics')}</li>
+        <li>{t('visualizeBusinessMetrics')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Charts: the main wrapper for creating comprehensive data visualization components built on Recharts.
-- Chart Types: multiple chart variants (Line, Area, Bar, Pie) for different data representation needs.
-- Chart Customization: flexible colors, sizing, titles, and styling options for brand-specific designs.
-- Chart Interactivity: built-in tooltips, legends, and hover effects to enhance data exploration.
-- Chart Responsiveness: adaptive sizing and mobile-friendly layouts for different screen sizes.
-- Chart Accessibility: proper ARIA attributes and keyboard navigation for screen reader support.
+export const UsageChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageCharts')}</h2>;
+};
 
-### When to use
-- Display trends over time (Line charts)
-- Show cumulative data (Area charts)
-- Compare values across categories (Bar charts)
-- Show proportional data (Pie charts)
-- Create dashboards and analytics interfaces
-- Visualize business metrics and KPIs
+export const BasicExampleChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleCharts')}</h2>;
+};
 
-## Usage
+export const LineChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('lineChart');
+};
+
+export const AreaChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('areaChart');
+};
+
+export const BarChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('barChart');
+};
+
+export const PieChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('pieChart');
+};
+
+export const CustomizationChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('customizationCharts')}</h2>;
+};
+
+export const CustomizedChartsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('customizedCharts');
+};
+
+export const PropsChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsCharts')}</h2>;
+};
+
+export const CommonChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('commonChartProps');
+};
+
+export const LineChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('lineChartProps');
+};
+
+export const AreaChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('areaChartProps');
+};
+
+export const BarChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('barChartProps');
+};
+
+export const PieChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('pieChartProps');
+};
+
+export const DataFormatSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('dataFormat')}</h2>;
+};
+
+export const AccessibilityChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityCharts')}</h2>;
+};
+
+export const DesignGuidelinesChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesCharts')}</h2>;
+};
+
+export const AccessibilityChartsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('chartsBuiltWithAccessibility')}</li>
+      <li>{t('screenReadersCanAccess')}</li>
+      <li>{t('keyboardNavigationSupportedCharts')}</li>
+      <li>{t('colorNotOnlyWayCharts')}</li>
+      <li>{t('tooltipsProvideAdditionalContext')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesChartsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useAppropriateChartTypes')}</li>
+      <li>{t('keepTitlesAndLabelsConcise')}</li>
+      <li>{t('useConsistentColorsCharts')}</li>
+      <li>{t('ensureSufficientContrastCharts')}</li>
+      <li>{t('considerResponsiveDesign')}</li>
+      <li>{t('useLegendsWhenMultipleData')}</li>
+    </ul>
+  );
+};
+
+<ChartsComponentHeader />
+
+<ChartsDescription />
+
+<ChartsIntroduction />
+
+<WhenToUseChartsSection />
+
+<UsageChartsSection />
+
 
 <CodeBlock language="tsx">
 {`import { LineChart, AreaChart, BarChart, PieChart } from '@azodik/ui';`}
 </CodeBlock>
 
-## Basic Example
+<BasicExampleChartsSection />
 
-## Line Chart
+<LineChartTitle />
 
 <ChartsCodePreview 
-  title="Line Chart"
+  title={<LineChartTitle />}
   preview={
     <LineChart
       data={[
@@ -84,10 +228,10 @@ export default function LineChartExample() {
 }`}
 </ChartsCodePreview>
 
-## Area Chart
+<AreaChartTitle />
 
 <ChartsCodePreview 
-  title="Area Chart"
+  title={<AreaChartTitle />}
   preview={
     <AreaChart
       data={[
@@ -139,10 +283,10 @@ export default function AreaChartExample() {
 }`}
 </ChartsCodePreview>
 
-## Bar Chart
+<BarChartTitle />
 
 <ChartsCodePreview 
-  title="Bar Chart"
+  title={<BarChartTitle />}
   preview={
     <BarChart
       data={[
@@ -186,10 +330,10 @@ export default function BarChartExample() {
 }`}
 </ChartsCodePreview>
 
-## Pie Chart
+<PieChartTitle />
 
 <ChartsCodePreview 
-  title="Pie Chart"
+  title={<PieChartTitle />}
   preview={
     <PieChart
       data={[
@@ -231,10 +375,10 @@ export default function PieChartExample() {
 }`}
 </ChartsCodePreview>
 
-## Customization
+<CustomizationChartsSection />
 
 <ChartsCodePreview 
-  title="Customized Charts"
+  title={<CustomizedChartsTitle />}
   preview={
     <div className="flex-vertical">
       <LineChart
@@ -276,9 +420,9 @@ export default function CustomizedChart() {
 }`}
 </ChartsCodePreview>
 
-## Props
+<PropsChartsSection />
 
-### Common Chart Props
+<CommonChartPropsTitle />
 
 <PropsTable props={[
   {
@@ -346,7 +490,7 @@ export default function CustomizedChart() {
   }
 ]} />
 
-### LineChart Props
+<LineChartPropsTitle />
 
 <PropsTable props={[
   {
@@ -372,7 +516,7 @@ export default function CustomizedChart() {
   }
 ]} />
 
-### AreaChart Props
+<AreaChartPropsTitle />
 
 <PropsTable props={[
   {
@@ -398,7 +542,7 @@ export default function CustomizedChart() {
   }
 ]} />
 
-### BarChart Props
+<BarChartPropsTitle />
 
 <PropsTable props={[
   {
@@ -417,7 +561,7 @@ export default function CustomizedChart() {
   }
 ]} />
 
-### PieChart Props
+<PieChartPropsTitle />
 
 <PropsTable props={[
   {
@@ -443,7 +587,7 @@ export default function CustomizedChart() {
   }
 ]} />
 
-## Data Format
+<DataFormatSection />
 
 All charts expect data in the following format:
 
@@ -455,19 +599,10 @@ All charts expect data in the following format:
 }`}
 </CodeBlock>
 
-## Accessibility
+<AccessibilityChartsSection />
 
-- Charts are built with accessibility in mind using Recharts
-- Screen readers can access chart data through proper ARIA attributes
-- Keyboard navigation is supported for interactive elements
-- Color is not the only way to convey information
-- Tooltips provide additional context for data points
+<AccessibilityChartsList />
 
-## Design Guidelines
+<DesignGuidelinesChartsSection />
 
-- Use appropriate chart types for your data
-- Keep titles and labels concise and descriptive
-- Use consistent colors across related charts
-- Ensure sufficient contrast for readability
-- Consider responsive design for different screen sizes
-- Use legends when multiple data series are present
+<DesignGuidelinesChartsList />

@@ -1,42 +1,138 @@
 import { Breadcrumb, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import ComponentNavigation from '../components/docs/ComponentNavigation';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Breadcrumb Component
+export const BreadcrumbHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('breadcrumbComponent')}</h1>;
+};
 
-The Breadcrumb component shows the current page location within the site hierarchy. It helps users understand where they are and navigate back to previous levels.
+export const BreadcrumbDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('breadcrumbDescription')}</p>;
+};
 
-## Introduction
+export const BreadcrumbIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('breadcrumbIntroDesc')}</p>
+      <ul>
+        <li>{t('breadcrumbMainWrapper')}</li>
+        <li>{t('breadcrumbItems')}</li>
+        <li>{t('breadcrumbNavigation')}</li>
+        <li>{t('breadcrumbSeparators')}</li>
+        <li>{t('breadcrumbStateManagement')}</li>
+        <li>{t('breadcrumbAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Breadcrumb component includes several complementary features to handle various navigation and hierarchy scenarios:
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('showHierarchicalNavigationPaths')}</li>
+        <li>{t('helpUsersUnderstandLocation')}</li>
+        <li>{t('provideQuickNavigationToParent')}</li>
+        <li>{t('displaySiteStructure')}</li>
+        <li>{t('aidInSEOAndUserExperience')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Breadcrumb: the main wrapper for displaying hierarchical navigation trails.
-- Breadcrumb Items: individual navigation elements that represent each level in the hierarchy.
-- Breadcrumb Navigation: clickable links that allow users to navigate back to previous levels.
-- Breadcrumb Separators: visual indicators that show the relationship between navigation levels.
-- Breadcrumb State Management: current page indication and proper link handling for navigation.
-- Breadcrumb Accessibility: built-in ARIA attributes and keyboard navigation for screen reader support.
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
 
-### When to use
-- Show hierarchical navigation paths
-- Help users understand their current location
-- Provide quick navigation to parent pages
-- Display the site structure
-- Aid in SEO and user experience
+export const VariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variants')}</h2>;
+};
 
-## Usage
+export const SomeVariantsExample = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const AllBreadcrumbVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allBreadcrumbVariants');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const BreadcrumbItemInterfaceSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('breadcrumbItemInterface')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('breadcrumbsHaveSemanticStructure')}</li>
+      <li>{t('screenReadersNavigateBreadcrumb')}</li>
+      <li>{t('keyboardNavigationSupported')}</li>
+      <li>{t('properAriaAttributesApplied')}</li>
+      <li>{t('currentPageClearlyIdentified')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepBreadcrumbLabelsConcise')}</li>
+      <li>{t('useConsistentSeparators')}</li>
+      <li>{t('ensureSufficientContrast')}</li>
+      <li>{t('considerMobileResponsiveness')}</li>
+      <li>{t('dontMakeBreadcrumbsTooDeep')}</li>
+    </ul>
+  );
+};
+
+<BreadcrumbHeader />
+
+<BreadcrumbDescription />
+
+<BreadcrumbIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
 
 <CodeBlock language="tsx">
 {`import { Breadcrumb } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsSection />
 
-
-## Some Variants Example
+<SomeVariantsExample />
 
 <CodeBlockWithPreview 
-  title="All Breadcrumb Variants"
+  title={<AllBreadcrumbVariantsTitle />}
   preview={
     <div className="space-y-4">
       <Breadcrumb items={[
@@ -63,7 +159,7 @@ export const BreadcrumbExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSection />
 
 <PropsTable props={[
   {
@@ -82,7 +178,7 @@ export const BreadcrumbExamples = () => {
   }
 ]} />
 
-## BreadcrumbItem Interface
+<BreadcrumbItemInterfaceSection />
 
 <PropsTable props={[
   {
@@ -108,20 +204,12 @@ export const BreadcrumbExamples = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySection />
 
-- Breadcrumbs have proper semantic structure
-- Screen readers can navigate the breadcrumb trail
-- Keyboard navigation is supported
-- Proper ARIA attributes are applied
-- Current page is clearly identified
+<AccessibilityList />
 
-## Design Guidelines
+<DesignGuidelinesSection />
 
-- Keep breadcrumb labels concise and clear
-- Use consistent separators throughout the site
-- Ensure sufficient contrast for readability
-- Consider mobile responsiveness
-- Don't make breadcrumbs too deep (3-5 levels max)
+<DesignGuidelinesList />
 
 <ComponentNavigation />

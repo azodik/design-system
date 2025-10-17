@@ -1,38 +1,145 @@
 import { Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Button Component
+export const ButtonHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('buttonComponent')}</h1>;
+};
 
-The Button component provides interactive elements for user actions and navigation. It supports multiple variants, sizes, and states to fit different use cases.
+export const ButtonDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('buttonDescription')}</p>;
+};
 
-## Introduction
+export const ButtonIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('buttonIntroDesc')}</p>
+      <ul>
+        <li>{t('buttonMainWrapper')}</li>
+        <li>{t('buttonVariants')}</li>
+        <li>{t('buttonSizing')}</li>
+        <li>{t('buttonStates')}</li>
+        <li>{t('buttonCustomization')}</li>
+        <li>{t('buttonAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Button component includes several complementary features to handle various interaction and action scenarios:
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('primaryActionsAndCallsToAction')}</li>
+        <li>{t('formSubmissions')}</li>
+        <li>{t('navigationBetweenPagesOrSections')}</li>
+        <li>{t('confirmingOrCancelingActions')}</li>
+        <li>{t('triggeringModalsOrDropdowns')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Button: the main wrapper for creating interactive elements and user actions.
-- Button Variants: different visual styles (primary, secondary, tertiary, outline, link, ghost, destructive) for various use cases.
-- Button Sizing: multiple size options (sm, md, lg) to fit different contexts and design requirements.
-- Button States: disabled, loading, and interactive states to provide proper user feedback.
-- Button Customization: flexible color, width, and styling options for brand-specific designs.
-- Button Accessibility: built-in focus management, keyboard navigation, and screen reader support.
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
 
-### When to use
-- Primary actions and calls-to-action
-- Form submissions
-- Navigation between pages or sections
-- Confirming or canceling actions
-- Triggering modals or dropdowns
+export const SomeVariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariants')}</h2>;
+};
 
-## Usage
+export const AllButtonVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allButtonVariants');
+};
+
+export const WithIconsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withIcons')}</h2>;
+};
+
+export const ButtonWithIconsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('buttonWithIcons');
+};
+
+export const DisabledStateSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('disabledState')}</h2>;
+};
+
+export const DisabledButtonTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('disabledButton');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('buttonsHaveFocusStates')}</li>
+      <li>{t('screenReadersIdentifyButtonPurpose')}</li>
+      <li>{t('disabledButtonsProperlyAnnounced')}</li>
+      <li>{t('keyboardNavigationSupported')}</li>
+      <li>{t('colorContrastMeetsWCAG')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('usePrimaryButtonsForMainActions')}</li>
+      <li>{t('useSecondaryButtonsForSecondaryActions')}</li>
+      <li>{t('useDestructiveButtonsForDangerousActions')}</li>
+      <li>{t('keepButtonTextConciseAndActionOriented')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobile')}</li>
+    </ul>
+  );
+};
+
+<ButtonHeader />
+
+<ButtonDescription />
+
+<ButtonIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
 
 <CodeBlock language="tsx">
 {`import { Button } from '@azodik/ui';`}
 </CodeBlock>
 
-## Some Variants
+<SomeVariantsSection />
 
 <CodeBlockWithPreview 
-  title="All Button Variants"
+  title={<AllButtonVariantsTitle />}
   preview={
     <div className="flex gap-sm">
       <Button variant="primary">Primary</Button>
@@ -58,10 +165,10 @@ export const ButtonExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Icons
+<WithIconsSection />
 
 <CodeBlockWithPreview 
-  title="Button with Icons"
+  title={<ButtonWithIconsTitle />}
   preview={
     <Button variant="primary" size="md">
       + Add
@@ -82,10 +189,10 @@ export const IconButton = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Disabled State
+<DisabledStateSection />
 
 <CodeBlockWithPreview 
-  title="Disabled Button"
+  title={<DisabledButtonTitle />}
   preview={
     <Button variant="primary" disabled>
       Disabled Button
@@ -103,7 +210,7 @@ export const DisabledButton = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSection />
 
 <PropsTable props={[
   {
@@ -157,18 +264,10 @@ export const DisabledButton = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySection />
 
-- Buttons have proper focus states
-- Screen readers can identify button purpose
-- Disabled buttons are properly announced
-- Keyboard navigation is supported
-- Color contrast meets WCAG guidelines
+<AccessibilityList />
 
-## Design Guidelines
+<DesignGuidelinesSection />
 
-- Use primary buttons for main actions
-- Use secondary buttons for secondary actions
-- Use destructive buttons for dangerous actions
-- Keep button text concise and action-oriented
-- Ensure sufficient touch targets on mobile devices
+<DesignGuidelinesList />

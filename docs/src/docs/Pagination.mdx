@@ -1,6 +1,117 @@
 import { Pagination, Card, CardContent, Button, Select } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const PaginationComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('paginationComponent')}</h1>;
+};
+
+export const PaginationComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('paginationDescription')}</p>;
+};
+
+export const PaginationIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('paginationIntroduction')}</h2>
+      <p>{t('paginationIntroDesc')}</p>
+      <ul>
+        <li>{t('paginationMainWrapper')}</li>
+        <li>{t('paginationControls')}</li>
+        <li>{t('paginationDisplay')}</li>
+        <li>{t('paginationCustomization')}</li>
+        <li>{t('paginationResponsiveness')}</li>
+        <li>{t('paginationAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUsePaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUsePagination')}</h3>
+      <ul>
+        <li>{t('navigateThroughLargeListsOrDatasets')}</li>
+        <li>{t('displaySearchResultsAcrossMultiplePages')}</li>
+        <li>{t('browseThroughContentCollections')}</li>
+        <li>{t('navigateDataTablesWithManyRows')}</li>
+        <li>{t('showContentInManageableChunks')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsagePaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usagePagination')}</h2>;
+};
+
+export const VariantsPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsPagination')}</h2>;
+};
+
+export const BasicPaginationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicPagination');
+};
+
+export const WithJumpToPagePaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withJumpToPagePagination')}</h2>;
+};
+
+export const PaginationWithJumpTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('paginationWithJump');
+};
+
+export const PropsPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsPagination')}</h2>;
+};
+
+export const AccessibilityPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityPagination')}</h2>;
+};
+
+export const DesignGuidelinesPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesPagination')}</h2>;
+};
+
+export const AccessibilityPaginationList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('paginationControlsAreKeyboardAccessible')}</li>
+      <li>{t('screenReadersCanIdentifyCurrentPage')}</li>
+      <li>{t('navigationButtonsHaveProperLabels')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyPagination')}</li>
+      <li>{t('properAriaAttributesAreAppliedPagination')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesPaginationList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndIntuitiveNavigationControls')}</li>
+      <li>{t('showCurrentPageClearly')}</li>
+      <li>{t('provideFirstLastPageButtonsForLargeDatasets')}</li>
+      <li>{t('useConsistentStylingAcrossYourApplicationPagination')}</li>
+      <li>{t('considerMobileTouchTargets')}</li>
+    </ul>
+  );
+};
 
 export const PageSizePaginationExample = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,38 +227,24 @@ export const JumpPaginationExample = () => {
   );
 };
 
-# Pagination Component
+<PaginationComponentHeader />
 
-The Pagination component provides navigation controls for moving through multiple pages of content. It helps users navigate large datasets efficiently.
+<PaginationComponentDescription />
 
-## Introduction
+<PaginationIntroduction />
 
-The Pagination component includes several complementary features to handle various data navigation and page management scenarios:
+<WhenToUsePaginationSection />
 
-- Pagination: the main wrapper for creating page navigation controls with current page indication and navigation buttons.
-- Pagination Controls: first, previous, next, and last page buttons with appropriate disabled states and visual feedback.
-- Pagination Display: current page indicators, page numbers, and total page information for user orientation.
-- Pagination Customization: flexible styling, button visibility options, and integration with different data sources.
-- Pagination Responsiveness: mobile-friendly navigation with appropriate touch targets and compact layouts.
-- Pagination Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for page navigation.
-
-### When to use
-- Navigate through large lists or datasets
-- Display search results across multiple pages
-- Browse through content collections
-- Navigate data tables with many rows
-- Show content in manageable chunks
-
-## Usage
+<UsagePaginationSection />
 
 <CodeBlock language="tsx">
 {`import { Pagination } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsPaginationSection />
 
 <CodeBlockWithPreview 
-  title="Basic Pagination"
+  title={<BasicPaginationTitle />}
   preview={<CustomStyledPaginationExample />}
 >
 {`import { Pagination } from '@azodik/ui';
@@ -173,10 +270,10 @@ export default function BasicPagination() {
 }`}
 </CodeBlockWithPreview>
 
-## With Jump to Page
+<WithJumpToPagePaginationSection />
 
 <CodeBlockWithPreview 
-  title="Pagination with Jump"
+  title={<PaginationWithJumpTitle />}
   preview={<JumpPaginationExample />}
 >
 {`import { Pagination } from '@azodik/ui';
@@ -228,7 +325,7 @@ export const JumpPaginationExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsPaginationSection />
 
 <PropsTable props={[
   {
@@ -275,18 +372,10 @@ export const JumpPaginationExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityPaginationSection />
 
-- Pagination controls are keyboard accessible
-- Screen readers can identify current page
-- Navigation buttons have proper labels
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
+<AccessibilityPaginationList />
 
-## Design Guidelines
+<DesignGuidelinesPaginationSection />
 
-- Use clear and intuitive navigation controls
-- Show current page clearly
-- Provide first/last page buttons for large datasets
-- Use consistent styling across your application
-- Consider mobile touch targets
+<DesignGuidelinesPaginationList />

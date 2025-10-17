@@ -1,6 +1,175 @@
 import { Input, Button, Card, CardContent, Textarea, Checkbox } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const FormComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('formComponent')}</h1>;
+};
+
+export const FormComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('formDescription')}</p>;
+};
+
+export const FormIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('formIntroduction')}</h2>
+      <p>{t('formIntroDesc')}</p>
+      <ul>
+        <li>{t('formMainWrapper')}</li>
+        <li>{t('formValidation')}</li>
+        <li>{t('formControls')}</li>
+        <li>{t('formStateManagement')}</li>
+        <li>{t('formAccessibility')}</li>
+        <li>{t('formCustomization')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseForm')}</h3>
+      <ul>
+        <li>{t('collectingUserInformation')}</li>
+        <li>{t('userRegistrationAndLogin')}</li>
+        <li>{t('settingsAndConfigurationForms')}</li>
+        <li>{t('dataEntryAndEditing')}</li>
+        <li>{t('surveyAndFeedbackForms')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageForm')}</h2>;
+};
+
+export const VariantsFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsForm')}</h2>;
+};
+
+export const SomeExampleFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someExampleForm')}</h2>;
+};
+
+export const AllFormVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allFormVariants');
+};
+
+export const WithValidationFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withValidationForm')}</h2>;
+};
+
+export const FormWithValidationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('formWithValidation');
+};
+
+export const WithDifferentInputTypesFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDifferentInputTypesForm')}</h2>;
+};
+
+export const FormWithVariousInputsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('formWithVariousInputs');
+};
+
+export const FormComponentsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('formComponents')}</h2>;
+};
+
+export const FormsAreBuiltUsingIndividualComponents = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('formsAreBuiltUsingIndividualComponents')}</p>;
+};
+
+export const InputComponentsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('inputComponents')}</h3>;
+};
+
+export const InputComponentsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li><strong>Input</strong> - {t('inputTextEmailPasswordAndNumberInputs')}</li>
+      <li><strong>Textarea</strong> - {t('textareaMultiLineTextInput')}</li>
+      <li><strong>Select</strong> - {t('selectDropdownSelection')}</li>
+      <li><strong>Checkbox</strong> - {t('checkboxBinaryChoiceControls')}</li>
+      <li><strong>Radio</strong> - {t('radioSingleChoiceFromMultipleOptions')}</li>
+      <li><strong>Switch</strong> - {t('switchToggleControls')}</li>
+    </ul>
+  );
+};
+
+export const FormActionsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('formActions')}</h3>;
+};
+
+export const FormActionsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li><strong>Button</strong> - {t('buttonSubmitAndActionButtons')}</li>
+    </ul>
+  );
+};
+
+export const EachComponentHasItsOwnProps = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('eachComponentHasItsOwnProps')}</p>;
+};
+
+export const AccessibilityFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityForm')}</h2>;
+};
+
+export const DesignGuidelinesFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesForm')}</h2>;
+};
+
+export const AccessibilityFormList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('formsHaveProperSemanticStructure')}</li>
+      <li>{t('allInputsHaveAssociatedLabels')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReaders')}</li>
+      <li>{t('keyboardNavigationIsSupported')}</li>
+      <li>{t('focusManagementIsHandledCorrectly')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesFormList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveLabels')}</li>
+      <li>{t('provideHelpfulPlaceholderText')}</li>
+      <li>{t('showValidationErrorsClearly')}</li>
+      <li>{t('useConsistentSpacingAndLayout')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobile')}</li>
+    </ul>
+  );
+};
 
 export const ValidatedFormExample = () => {
   const [formData, setFormData] = useState({
@@ -153,41 +322,26 @@ export const VariousInputsFormExample = () => {
   );
 };
 
-# Form Component
+<FormComponentHeader />
 
-The Form component provides a comprehensive set of form controls and validation for user data collection. It includes input fields, validation, and submission handling.
+<FormComponentDescription />
 
-## Introduction
+<FormIntroduction />
 
-The Form component includes several complementary features to handle various data collection and user input scenarios:
+<WhenToUseFormSection />
 
-- Form: the main wrapper for creating comprehensive data collection interfaces with validation and submission handling.
-- Form Validation: built-in validation system with error handling, real-time feedback, and custom validation rules.
-- Form Controls: comprehensive set of input components (Input, Textarea, Select, Checkbox, Radio, Switch) for different data types.
-- Form State Management: controlled and uncontrolled state handling with form data persistence and reset functionality.
-- Form Accessibility: proper labels, error announcements, keyboard navigation, and screen reader support.
-- Form Customization: flexible styling, layout options, and integration with external form libraries.
-
-### When to use
-- Collecting user information
-- User registration and login
-- Settings and configuration forms
-- Data entry and editing
-- Survey and feedback forms
-
-## Usage
+<UsageFormSection />
 
 <CodeBlock language="tsx">
 {`import { Input, Button } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsFormSection />
 
-
-## Some Example
+<SomeExampleFormSection />
 
 <CodeBlockWithPreview 
-  title="All Form Variants"
+  title={<AllFormVariantsTitle />}
   preview={
     <div className="flex-vertical">
       <form>
@@ -273,10 +427,10 @@ export const FormExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Validation
+<WithValidationFormSection />
 
 <CodeBlockWithPreview 
-  title="Form with Validation"
+  title={<FormWithValidationTitle />}
   preview={<ValidatedFormExample />}
 >
 {`import { Input, Button } from '@azodik/ui';
@@ -366,10 +520,10 @@ export const ValidatedFormExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## With Different Input Types
+<WithDifferentInputTypesFormSection />
 
 <CodeBlockWithPreview 
-  title="Form with Various Inputs"
+  title={<FormWithVariousInputsTitle />}
   preview={<VariousInputsFormExample />}
 >
 {`import { Input, Button, Select, Checkbox, Radio, Textarea } from '@azodik/ui';
@@ -505,35 +659,24 @@ export const ComprehensiveFormExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Form Components
+<FormComponentsSection />
 
-Forms are built using individual components from the design system. Here are the main components used in forms:
+<FormsAreBuiltUsingIndividualComponents />
 
-### Input Components
-- **Input** - Text, email, password, and number inputs
-- **Textarea** - Multi-line text input
-- **Select** - Dropdown selection
-- **Checkbox** - Binary choice controls
-- **Radio** - Single choice from multiple options
-- **Switch** - Toggle controls
+<InputComponentsSection />
 
-### Form Actions
-- **Button** - Submit and action buttons
+<InputComponentsList />
 
-Each component has its own props and documentation. See the individual component pages for detailed prop information.
+<FormActionsSection />
 
-## Accessibility
+<FormActionsList />
 
-- Forms have proper semantic structure
-- All inputs have associated labels
-- Error messages are announced to screen readers
-- Keyboard navigation is supported
-- Focus management is handled correctly
+<EachComponentHasItsOwnProps />
 
-## Design Guidelines
+<AccessibilityFormSection />
 
-- Use clear and descriptive labels
-- Provide helpful placeholder text
-- Show validation errors clearly
-- Use consistent spacing and layout
-- Ensure sufficient touch targets on mobile
+<AccessibilityFormList />
+
+<DesignGuidelinesFormSection />
+
+<DesignGuidelinesFormList />
