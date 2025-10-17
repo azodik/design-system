@@ -150,7 +150,7 @@ export default function Home() {
           </div>
 
           {/* Action Buttons */}
-          <div className="homepage-action-buttons">
+          {/* <div className="homepage-action-buttons">
             <Button
               variant="outline"
               onClick={handleTestComponents}
@@ -183,7 +183,7 @@ export default function Home() {
               </svg>
               Playground
             </Button>
-          </div>
+          </div> */}
         </div>
       </main>
 

@@ -17,19 +17,26 @@ const SidebarToggleIcon: React.FC<SidebarToggleIconProps> = ({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
       width={size}
       height={size}
       className={className}
       style={{
-        transform: isCollapsed ? "rotate(180deg)" : "rotate(0deg)",
         transition: "transform 0.3s ease",
-        color: "black",
-        opacity: 1,
         ...style,
       }}
     >
-      <path d="M5 5H13V19H5V5ZM19 19H15V5H19V19ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3H4ZM7 12L11 8.5V15.5L7 12Z"></path>
+      <path
+        d={isCollapsed 
+          ? "M4 6h12v12H4V6zm2 2h8v2H6V8zm0 3h6v2H6v-2zm0 3h8v2H6v-2zm14-4l-4 4 4 4" 
+          : "M4 6h12v12H4V6zm2 2h8v2H6V8zm0 3h6v2H6v-2zm0 3h8v2H6v-2zm16-4l-4-4-4 4"
+        }
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
     </svg>
   );
 };
