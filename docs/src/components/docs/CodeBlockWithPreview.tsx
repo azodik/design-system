@@ -3,6 +3,7 @@ import { Tabs, TabList, TabTrigger, TabContent, Card } from "@azodik/ui";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CopyIcon, TickIcon } from "@azodik/icons";
+import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 
 interface CodeBlockWithPreviewProps {
   children?: string;
@@ -21,6 +22,7 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState("preview");
   const [copied, setCopied] = useState(false);
+  const { t } = useLanguageTranslation();
 
   const handleCopy = async () => {
     try {
@@ -37,10 +39,10 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabList>
           <TabTrigger value="preview" borderWidth={4} width="100px">
-            Preview
+            {t('preview')}
           </TabTrigger>
           <TabTrigger value="code" borderWidth={4} width="100px">
-            Code
+            {t('code')}
           </TabTrigger>
         </TabList>
 
@@ -74,7 +76,7 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
               onClick={handleCopy}
               className="absolute top-4 right-4 z-10 p-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
               style={{ top: "10px", right: "10px" }}
-              title={copied ? "Copied!" : "Copy code"}
+              title={copied ? t('copied') : t('copyCode')}
             >
               {copied ? (
                 <TickIcon size={16} color="currentColor" />

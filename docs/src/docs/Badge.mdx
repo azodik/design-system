@@ -1,41 +1,141 @@
 import { Badge, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Badge Component
+export const BadgeHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('badgeComponent')}</h1>;
+};
 
-The Badge component displays small status indicators, labels, counts, and notifications. It's perfect for highlighting important information or showing quantities.
+export const BadgeDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('badgeDescription')}</p>;
+};
 
-## Introduction
+export const BadgeIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('badgeIntroDesc')}</p>
+      <ul>
+        <li>{t('badgeMainWrapper')}</li>
+        <li>{t('badgeVariants')}</li>
+        <li>{t('badgeSizing')}</li>
+        <li>{t('badgeCustomization')}</li>
+        <li>{t('badgeIcons')}</li>
+        <li>{t('badgeActions')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Badge component includes several complementary features to handle various status and notification scenarios:
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('displayStatusIndicators')}</li>
+        <li>{t('showCountsOrQuantities')}</li>
+        <li>{t('labelContentWithCategories')}</li>
+        <li>{t('highlightImportantInformation')}</li>
+        <li>{t('showNotificationCounts')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Badge: the main wrapper for displaying small status indicators and labels.
-- Badge Variants: different visual styles (primary, secondary, success, warning, error, info, neutral) to indicate status.
-- Badge Sizing: multiple size options (sm, md, lg) for different use cases and contexts.
-- Badge Customization: flexible border radius and styling options for different design needs.
-- Badge Icons: optional icon support to enhance visual communication and context.
-- Badge Actions: optional remove functionality for dismissible badges and interactive elements.
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
 
-### When to use
-- Display status indicators (success, warning, error)
-- Show counts or quantities
-- Label content with categories or tags
-- Highlight important information
-- Show notification counts
+export const VariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variants')}</h2>;
+};
 
-## Usage
+export const SomeVariantsExample = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const AllBadgeVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allBadgeVariants');
+};
+
+export const DifferentSizesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('differentSizes')}</h2>;
+};
+
+export const BadgeSizesTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('badgeSizes');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('badgesHaveColorContrast')}</li>
+      <li>{t('textContentReadable')}</li>
+      <li>{t('screenReadersAccessBadge')}</li>
+      <li>{t('colorNotOnlyWay')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useAppropriateVariants')}</li>
+      <li>{t('keepBadgeTextConcise')}</li>
+      <li>{t('ensureSufficientContrast')}</li>
+      <li>{t('useConsistentSizing')}</li>
+      <li>{t('considerBackgroundWhenChoosing')}</li>
+    </ul>
+  );
+};
+
+<BadgeHeader />
+
+<BadgeDescription />
+
+<BadgeIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
 
 <CodeBlock language="tsx">
 {`import { Badge } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsSection />
 
-
-## Some Variants Example
+<SomeVariantsExample />
 
 <CodeBlockWithPreview 
-  title="All Badge Variants"
+  title={<AllBadgeVariantsTitle />}
   preview={
     <div className="flex-horizontal">
       <Badge variant="success">Success</Badge>
@@ -60,10 +160,10 @@ export const BadgeExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Different Sizes
+<DifferentSizesSection />
 
 <CodeBlockWithPreview 
-  title="Badge Sizes"
+  title={<BadgeSizesTitle />}
   preview={
     <div className="flex-vertical-lg">
       <Badge variant="success" size="sm">Small</Badge>
@@ -85,7 +185,7 @@ export const BadgeSizesExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSection />
 
 <PropsTable props={[
   {
@@ -139,17 +239,10 @@ export const BadgeSizesExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySection />
 
-- Badges have appropriate color contrast
-- Text content is readable at all sizes
-- Screen readers can access badge content
-- Color is not the only way to convey information
+<AccessibilityList />
 
-## Design Guidelines
+<DesignGuidelinesSection />
 
-- Use appropriate variants for different contexts
-- Keep badge text concise and clear
-- Ensure sufficient contrast for readability
-- Use consistent sizing across your application
-- Consider the background when choosing colors
+<DesignGuidelinesList />

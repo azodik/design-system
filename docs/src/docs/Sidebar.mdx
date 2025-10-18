@@ -20,30 +20,172 @@ import { SidebarWithUserProfileExample } from '@/components/sidebar-variants/Sid
 import { SidebarWithFooterExample } from '@/components/sidebar-variants/SidebarWithFooter';
 import { SidebarResponsiveExample } from '@/components/sidebar-variants/SidebarResponsive';
 import SidebarCodePreview from '@/components/docs/SidebarCodePreview';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Sidebar Component
+export const SidebarComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('sidebarComponent')}</h1>;
+};
 
-The Sidebar component provides vertical navigation panels for app layouts and navigation. It's perfect for creating consistent navigation experiences in web applications.
+export const SidebarComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('sidebarDescription')}</p>;
+};
 
-## Introduction
+export const SidebarIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('sidebarIntroduction')}</h2>
+      <p>{t('sidebarIntroDesc')}</p>
+      <ul>
+        <li>{t('sidebarMainWrapper')}</li>
+        <li>{t('sidebarStructure')}</li>
+        <li>{t('sidebarNavigation')}</li>
+        <li>{t('sidebarResponsiveness')}</li>
+        <li>{t('sidebarCustomization')}</li>
+        <li>{t('sidebarAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Sidebar component includes several complementary features to handle various vertical navigation and layout scenarios:
+export const WhenToUseSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseSidebar')}</h3>
+      <ul>
+        <li>{t('mainApplicationNavigation')}</li>
+        <li>{t('dashboardLayouts')}</li>
+        <li>{t('adminInterfaces')}</li>
+        <li>{t('multiSectionApplications')}</li>
+        <li>{t('desktopFocusedApplications')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Sidebar: the main wrapper for creating vertical navigation panels with consistent access to application sections.
-- Sidebar Structure: organized layout with header, content, and footer sections for comprehensive navigation management.
-- Sidebar Navigation: flexible menu system with items, icons, badges, and active state management for different sections.
-- Sidebar Responsiveness: mobile-friendly navigation with collapsible menus and touch-optimized interactions.
-- Sidebar Customization: flexible width, colors, styling, and user profile integration for different design needs.
-- Sidebar Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for navigation panels.
+export const UsageSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageSidebar')}</h2>;
+};
 
-### When to use
-- Main application navigation
-- Dashboard layouts
-- Admin interfaces
-- Multi-section applications
-- Desktop-focused applications
+export const BasicExampleSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleSidebar')}</h2>;
+};
 
-## Usage
+export const BasicSidebarTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicSidebar');
+};
+
+export const SidebarWithIconsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarWithIcons');
+};
+
+export const CollapsibleSidebarTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('collapsibleSidebar');
+};
+
+export const SidebarWithUserProfileTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarWithUserProfile');
+};
+
+export const SidebarWithFooterTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarWithFooter');
+};
+
+export const ResponsiveSidebarTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('responsiveSidebar');
+};
+
+export const PropsSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsSidebar')}</h2>;
+};
+
+export const SidebarItemPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarItemProps');
+};
+
+export const UserProfileInterfaceTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('userProfileInterface');
+};
+
+export const SidebarHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarHeaderProps');
+};
+
+export const SidebarContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarContentProps');
+};
+
+export const SidebarFooterPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarFooterProps');
+};
+
+export const SidebarMainContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarMainContentProps');
+};
+
+export const AccessibilitySidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilitySidebar')}</h2>;
+};
+
+export const DesignGuidelinesSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesSidebar')}</h2>;
+};
+
+export const AccessibilitySidebarList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('sidebarHasProperSemanticStructure')}</li>
+      <li>{t('screenReadersCanNavigateMenuItemsSidebar')}</li>
+      <li>{t('keyboardNavigationIsSupportedSidebar')}</li>
+      <li>{t('focusManagementIsHandledCorrectlySidebar')}</li>
+      <li>{t('properAriaAttributesAreAppliedSidebar')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSidebarList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveNavigationLabelsSidebar')}</li>
+      <li>{t('keepTheNumberOfTopLevelItemsReasonableSidebar')}</li>
+      <li>{t('provideClearVisualFeedbackForActiveStatesSidebar')}</li>
+      <li>{t('useConsistentIconsAndStyling')}</li>
+      <li>{t('considerMobileResponsivenessSidebar')}</li>
+    </ul>
+  );
+};
+
+<SidebarComponentHeader />
+
+<SidebarComponentDescription />
+
+<SidebarIntroduction />
+
+<WhenToUseSidebarSection />
+
+<UsageSidebarSection />
 
 <CodeBlock language="tsx">
 {`import { 
@@ -60,10 +202,11 @@ The Sidebar component includes several complementary features to handle various 
 } from '@azodik/ui';`}
 </CodeBlock>
 
-## Basic Example
+<BasicExampleSidebarSection />
+
+<BasicSidebarTitle />
 
 <SidebarCodePreview
-  title="Basic Sidebar"
   preview={<BasicSidebarExample />}
   code={`import { 
   Sidebar, 
@@ -120,10 +263,9 @@ function BasicSidebarExample() {
 }`}
 />
 
-## Sidebar with Icons
+<SidebarWithIconsTitle />
 
 <SidebarCodePreview
-  title="Sidebar with Icons"
   preview={<SidebarWithIconsExample />}
   code={`import { 
   Sidebar, 
@@ -189,10 +331,9 @@ function SidebarWithIconsExample() {
 }`}
 />
 
-## Collapsible Sidebar
+<CollapsibleSidebarTitle />
 
 <SidebarCodePreview
-  title="Collapsible Sidebar"
   preview={<SidebarCollapsibleExample />}
   code={`import { useState } from 'react';
 import { 
@@ -261,10 +402,9 @@ function CollapsibleSidebarExample() {
 }`}
 />
 
-## Sidebar with User Profile
+<SidebarWithUserProfileTitle />
 
 <SidebarCodePreview
-  title="Sidebar with User Profile"
   preview={<SidebarWithUserProfileExample />}
   code={`import { 
   Sidebar, 
@@ -329,10 +469,9 @@ function SidebarWithUserExample() {
 }`}
 />
 
-## Sidebar with Footer
+<SidebarWithFooterTitle />
 
 <SidebarCodePreview
-  title="Sidebar with Footer"
   preview={<SidebarWithFooterExample />}
   code={`import { 
   Sidebar, 
@@ -391,10 +530,9 @@ function SidebarWithFooterExample() {
 }`}
 />
 
-## Responsive Sidebar
+<ResponsiveSidebarTitle />
 
 <SidebarCodePreview
-  title="Responsive Sidebar"
   preview={<SidebarResponsiveExample />}
   code={`import { useState, useEffect } from 'react';
 import { 
@@ -485,7 +623,7 @@ function ResponsiveSidebarExample() {
 }`}
 />
 
-## Props
+<PropsSidebarSection />
 
 <PropsTable props={[
   {
@@ -560,7 +698,7 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## SidebarItem Props
+<SidebarItemPropsTitle />
 
 <PropsTable props={[
   {
@@ -614,7 +752,7 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## UserProfile Interface
+<UserProfileInterfaceTitle />
 
 <PropsTable props={[
   {
@@ -640,7 +778,7 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## SidebarHeader Props
+<SidebarHeaderPropsTitle />
 
 <PropsTable props={[
   {
@@ -666,7 +804,7 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## SidebarContent Props
+<SidebarContentPropsTitle />
 
 <PropsTable props={[
   {
@@ -685,7 +823,7 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## SidebarFooter Props
+<SidebarFooterPropsTitle />
 
 <PropsTable props={[
   {
@@ -711,7 +849,7 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## SidebarMainContent Props
+<SidebarMainContentPropsTitle />
 
 <PropsTable props={[
   {
@@ -786,18 +924,10 @@ function ResponsiveSidebarExample() {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySidebarSection />
 
-- Sidebar has proper semantic structure
-- Screen readers can navigate menu items
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
+<AccessibilitySidebarList />
 
-## Design Guidelines
+<DesignGuidelinesSidebarSection />
 
-- Use clear and descriptive navigation labels
-- Keep the number of top-level items reasonable
-- Provide clear visual feedback for active states
-- Use consistent icons and styling
-- Consider mobile responsiveness
+<DesignGuidelinesSidebarList />

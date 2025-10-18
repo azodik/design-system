@@ -12,6 +12,137 @@ import {
 } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TableComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('tableComponent')}</h1>;
+};
+
+export const TableComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('tableDescription')}</p>;
+};
+
+export const TableIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('tableIntroduction')}</h2>
+      <p>{t('tableIntroDesc')}</p>
+      <ul>
+        <li>{t('tableMainWrapper')}</li>
+        <li>{t('tableStructure')}</li>
+        <li>{t('tableStyling')}</li>
+        <li>{t('tableInteractivity')}</li>
+        <li>{t('tableAccessibility')}</li>
+        <li>{t('tableCustomization')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTable')}</h3>
+      <ul>
+        <li>{t('displayingStructuredDataInRowsAndColumns')}</li>
+        <li>{t('showingComparisonData')}</li>
+        <li>{t('presentingListsWithMultipleAttributes')}</li>
+        <li>{t('displayingFinancialOrStatisticalData')}</li>
+        <li>{t('creatingDataGrids')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTable')}</h2>;
+};
+
+export const VariantsTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTable')}</h2>;
+};
+
+export const BasicTableTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicTable');
+};
+
+export const PropsTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTable')}</h2>;
+};
+
+export const TableHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableHeaderProps');
+};
+
+export const TableBodyPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableBodyProps');
+};
+
+export const TableRowPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableRowProps');
+};
+
+export const TableHeaderCellPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableHeaderCellProps');
+};
+
+export const TableCellPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableCellProps');
+};
+
+export const DataTablePropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dataTableProps');
+};
+
+export const AccessibilityTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTable')}</h2>;
+};
+
+export const DesignGuidelinesTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTable')}</h2>;
+};
+
+export const AccessibilityTableList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('tablesHaveProperSemanticStructure')}</li>
+      <li>{t('screenReadersCanNavigateTableContent')}</li>
+      <li>{t('columnHeadersAreProperlyAssociated')}</li>
+      <li>{t('keyboardNavigationIsSupportedTable')}</li>
+      <li>{t('tableCaptionsCanBeAddedForContext')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTableList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveColumnHeaders')}</li>
+      <li>{t('keepTablesScannableWithProperSpacing')}</li>
+      <li>{t('useConsistentAlignmentForDataTypes')}</li>
+      <li>{t('considerResponsiveDesignForMobile')}</li>
+      <li>{t('useAlternatingRowColorsForBetterReadability')}</li>
+    </ul>
+  );
+};
 
 export const BasicTableExample = () => {
   return (
@@ -48,29 +179,15 @@ export const BasicTableExample = () => {
   );
 };
 
-# Table Component
+<TableComponentHeader />
 
-The Table component provides a structured way to display data in rows and columns. It's perfect for presenting tabular data in a clean and organized format.
+<TableComponentDescription />
 
-## Introduction
+<TableIntroduction />
 
-The Table component includes several complementary features to handle various data display and tabular presentation scenarios:
+<WhenToUseTableSection />
 
-- Table: the main wrapper for creating structured data displays with rows, columns, and organized information presentation.
-- Table Structure: organized layout with header, body, and footer sections for comprehensive data organization and navigation.
-- Table Styling: flexible appearance options with striped rows, borders, hover effects, and responsive design for different contexts.
-- Table Interactivity: built-in sorting, selection, and click handling capabilities for enhanced user interaction with data.
-- Table Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for tabular data consumption.
-- Table Customization: flexible sizing, styling, and integration options for different design contexts and data requirements.
-
-### When to use
-- Displaying structured data in rows and columns
-- Showing comparison data
-- Presenting lists with multiple attributes
-- Displaying financial or statistical data
-- Creating data grids
-
-## Usage
+<UsageTableSection />
 
 <CodeBlock language="tsx">
 {`import { 
@@ -85,10 +202,10 @@ The Table component includes several complementary features to handle various da
 } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsTableSection />
 
 <CodeBlockWithPreview 
-  title="Basic Table"
+  title={<BasicTableTitle />}
   preview={<BasicTableExample />}
 >
 {`import { 
@@ -136,7 +253,7 @@ export default function BasicTable() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsTableSection />
 
 <PropsTable props={[
   {
@@ -190,7 +307,7 @@ export default function BasicTable() {
   }
 ]} />
 
-## TableHeader Props
+<TableHeaderPropsTitle />
 
 <PropsTable props={[
   {
@@ -209,7 +326,7 @@ export default function BasicTable() {
   }
 ]} />
 
-## TableBody Props
+<TableBodyPropsTitle />
 
 <PropsTable props={[
   {
@@ -228,7 +345,7 @@ export default function BasicTable() {
   }
 ]} />
 
-## TableRow Props
+<TableRowPropsTitle />
 
 <PropsTable props={[
   {
@@ -254,7 +371,7 @@ export default function BasicTable() {
   }
 ]} />
 
-## TableHeaderCell Props
+<TableHeaderCellPropsTitle />
 
 <PropsTable props={[
   {
@@ -294,7 +411,7 @@ export default function BasicTable() {
   }
 ]} />
 
-## TableCell Props
+<TableCellPropsTitle />
 
 <PropsTable props={[
   {
@@ -320,7 +437,7 @@ export default function BasicTable() {
   }
 ]} />
 
-## DataTable Props
+<DataTablePropsTitle />
 
 <PropsTable props={[
   {
@@ -437,18 +554,10 @@ export default function BasicTable() {
   }
 ]} />
 
-## Accessibility
+<AccessibilityTableSection />
 
-- Tables have proper semantic structure
-- Screen readers can navigate table content
-- Column headers are properly associated
-- Keyboard navigation is supported
-- Table captions can be added for context
+<AccessibilityTableList />
 
-## Design Guidelines
+<DesignGuidelinesTableSection />
 
-- Use clear and descriptive column headers
-- Keep tables scannable with proper spacing
-- Use consistent alignment for data types
-- Consider responsive design for mobile
-- Use alternating row colors for better readability
+<DesignGuidelinesTableList />

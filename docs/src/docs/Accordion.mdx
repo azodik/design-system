@@ -1,38 +1,166 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Accordion Component
+export const AccordionHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('accordionComponent')}</h1>;
+};
 
-The Accordion component is used to display collapsible content sections. It provides a clean way to organize information that can be expanded or collapsed by users.
+export const AccordionDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('accordionDescription')}</p>;
+};
 
-## Introduction
+export const AccordionIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('accordionIntroduction')}</h2>
+      <p>{t('accordionIntroDesc')}</p>
+      <ul>
+        <li>{t('accordionWrapper')}</li>
+        <li>{t('accordionItem')}</li>
+        <li>{t('accordionTrigger')}</li>
+        <li>{t('accordionContent')}</li>
+        <li>{t('accordionStateManagement')}</li>
+        <li>{t('accordionAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Accordion component includes several complementary utility components to handle various use cases:
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('displayFaqs')}</li>
+        <li>{t('organizeDocumentation')}</li>
+        <li>{t('showHierarchicalInfo')}</li>
+        <li>{t('createCollapsibleMenus')}</li>
+        <li>{t('groupRelatedContent')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Accordion: the wrapper for grouping related components.
-- AccordionItem: individual collapsible sections within the accordion.
-- AccordionTrigger: the clickable header that expands or collapses the content.
-- AccordionContent: the collapsible content area that shows/hides based on trigger state.
-- Accordion State Management: controlled and uncontrolled state handling for single or multiple open items.
-- Accordion Accessibility: built-in keyboard navigation and ARIA attributes for screen reader support.
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
 
-### When to use
-- Display frequently asked questions (FAQs)
-- Organize documentation or help content
-- Show hierarchical information
-- Create collapsible navigation menus
-- Group related content sections
+export const BasicExampleSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExample')}</h2>;
+};
 
-## Usage
+export const BasicAccordionTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicAccordion');
+};
+
+export const MultipleItemsOpenSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('multipleItemsOpen')}</h2>;
+};
+
+export const AllowMultipleItemsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allowMultipleItems');
+};
+
+export const DisabledItemsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('disabledItems')}</h2>;
+};
+
+export const DisabledItemsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('disabledItems');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const AccordionPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('accordionProps');
+};
+
+export const AccordionItemPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('accordionItemProps');
+};
+
+export const AccordionTriggerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('accordionTriggerProps');
+};
+
+export const AccordionContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('accordionContentProps');
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('accordionHeadersAria')}</li>
+      <li>{t('keyboardNavigationSupported')}</li>
+      <li>{t('screenReadersAnnounceAccordionState')}</li>
+      <li>{t('focusManagementHandledCorrectly')}</li>
+      <li>{t('disabledItemsMarked')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearDescriptiveTitles')}</li>
+      <li>{t('keepContentConcise')}</li>
+      <li>{t('considerUserMentalModel')}</li>
+      <li>{t('useAccordionsForHiddenContent')}</li>
+      <li>{t('provideVisualFeedback')}</li>
+      <li>{t('ensureAdequateSpacing')}</li>
+    </ul>
+  );
+};
+
+<AccordionHeader />
+
+<AccordionDescription />
+
+<AccordionIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
 
 <CodeBlock language="tsx">
 {`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@azodik/ui';`}
 </CodeBlock>
 
-## Basic Example
+<BasicExampleSection />
 
 <CodeBlockWithPreview 
-  title="Basic Accordion"
+  title={<BasicAccordionTitle />}
   preview={
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
@@ -84,10 +212,10 @@ export default function BasicAccordion() {
 }`}
 </CodeBlockWithPreview>
 
-## Multiple Items Open
+<MultipleItemsOpenSection />
 
 <CodeBlockWithPreview 
-  title="Allow Multiple Items"
+  title={<AllowMultipleItemsTitle />}
   preview={
     <Accordion type="multiple">
       <AccordionItem value="item-1">
@@ -139,10 +267,10 @@ export default function MultipleAccordion() {
 }`}
 </CodeBlockWithPreview>
 
-## Disabled Items
+<DisabledItemsSection />
 
 <CodeBlockWithPreview 
-  title="Disabled Items"
+  title={<DisabledItemsTitle />}
   preview={
     <Accordion type="single" collapsible>
       <AccordionItem value="available">
@@ -194,9 +322,9 @@ export default function DisabledAccordion() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSection />
 
-### Accordion Props
+### <AccordionPropsTitle />
 
 <PropsTable props={[
   {
@@ -250,7 +378,7 @@ export default function DisabledAccordion() {
   }
 ]} />
 
-### AccordionItem Props
+### <AccordionItemPropsTitle />
 
 <PropsTable props={[
   {
@@ -283,7 +411,7 @@ export default function DisabledAccordion() {
   }
 ]} />
 
-### AccordionTrigger Props
+### <AccordionTriggerPropsTitle />
 
 <PropsTable props={[
   {
@@ -309,7 +437,7 @@ export default function DisabledAccordion() {
   }
 ]} />
 
-### AccordionContent Props
+### <AccordionContentPropsTitle />
 
 <PropsTable props={[
   {
@@ -328,19 +456,10 @@ export default function DisabledAccordion() {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySection />
 
-- Accordion headers have proper ARIA attributes
-- Keyboard navigation is fully supported
-- Screen readers can properly announce accordion state
-- Focus management is handled correctly
-- Disabled items are properly marked for assistive technologies
+<AccessibilityList />
 
-## Design Guidelines
+<DesignGuidelinesSection />
 
-- Use clear, descriptive titles for accordion items
-- Keep content concise and scannable
-- Consider the user's mental model when organizing content
-- Use accordions for content that doesn't need to be visible all the time
-- Provide visual feedback for interactive states
-- Ensure adequate spacing between items
+<DesignGuidelinesList />

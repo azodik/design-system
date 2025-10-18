@@ -1,38 +1,178 @@
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent, Input, Select, Textarea } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Dialog Component
+export const DialogComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('dialogComponent')}</h1>;
+};
 
-The Dialog component provides a modal dialog interface for displaying content that requires user interaction. It includes overlay, content, header, body, and footer sections with customizable styling and accessibility features.
+export const DialogComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('dialogDescription')}</p>;
+};
 
-## Introduction
+export const DialogIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('dialogIntroduction')}</h2>
+      <p>{t('dialogIntroDesc')}</p>
+      <ul>
+        <li>{t('dialogMainWrapper')}</li>
+        <li>{t('dialogContent')}</li>
+        <li>{t('dialogTriggers')}</li>
+        <li>{t('dialogStateManagement')}</li>
+        <li>{t('dialogCustomization')}</li>
+        <li>{t('dialogAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Dialog component includes several complementary features to handle various modal and overlay interaction scenarios:
+export const WhenToUseDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseDialog')}</h3>
+      <ul>
+        <li>{t('displayConfirmationMessages')}</li>
+        <li>{t('showFormsOrInputFields')}</li>
+        <li>{t('presentImportantInformation')}</li>
+        <li>{t('getUserConfirmationForDestructiveActions')}</li>
+        <li>{t('displayDetailedContentThatNeedsFocus')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Dialog: the main wrapper for creating modal dialogs with overlay and content management.
-- Dialog Content: structured content areas with header, body, and footer sections for organized layouts.
-- Dialog Triggers: flexible trigger elements that can open dialogs with customizable interaction patterns.
-- Dialog State Management: controlled and uncontrolled state handling with open/close functionality.
-- Dialog Customization: flexible sizing, positioning, and styling options for different design needs.
-- Dialog Accessibility: proper ARIA attributes, focus management, and keyboard navigation support.
+export const UsageDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageDialog')}</h2>;
+};
 
-### When to use
-- Display confirmation messages
-- Show forms or input fields
-- Present important information
-- Get user confirmation for destructive actions
-- Display detailed content that needs focus
+export const BasicExampleDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleDialog')}</h2>;
+};
 
-## Usage
+export const BasicDialogWithFormTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicDialogWithForm');
+};
+
+export const CustomStylingSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('customStyling')}</h2>;
+};
+
+export const CustomStyledDialogTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('customStyledDialog');
+};
+
+export const PropsDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsDialog')}</h2>;
+};
+
+export const DialogPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogProps');
+};
+
+export const DialogTriggerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogTriggerProps');
+};
+
+export const DialogContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogContentProps');
+};
+
+export const DialogHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogHeaderProps');
+};
+
+export const DialogTitlePropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogTitleProps');
+};
+
+export const DialogDescriptionPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogDescriptionProps');
+};
+
+export const DialogBodyPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogBodyProps');
+};
+
+export const DialogFooterPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogFooterProps');
+};
+
+export const AccessibilityDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityDialog')}</h2>;
+};
+
+export const DesignGuidelinesDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesDialog')}</h2>;
+};
+
+export const AccessibilityDialogList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('dialogsAreBuiltWithProperAriaAttributes')}</li>
+      <li>{t('focusManagementIsHandledAutomatically')}</li>
+      <li>{t('escapeKeyClosesTheDialog')}</li>
+      <li>{t('clickingOutsideClosesTheDialog')}</li>
+      <li>{t('screenReadersCanProperlyAnnounceDialogContent')}</li>
+      <li>{t('focusIsTrappedWithinTheDialogWhenOpen')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesDialogList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useDialogsSparinglyForImportantInteractions')}</li>
+      <li>{t('keepDialogContentConciseAndFocused')}</li>
+      <li>{t('provideClearActionButtonsInTheFooter')}</li>
+      <li>{t('useAppropriateDialogTitlesAndDescriptions')}</li>
+      <li>{t('considerMobileResponsivenessForDialogSizing')}</li>
+      <li>{t('ensureSufficientContrastForReadabilityDialog')}</li>
+    </ul>
+  );
+};
+
+<DialogComponentHeader />
+
+<DialogComponentDescription />
+
+<DialogIntroduction />
+
+<WhenToUseDialogSection />
+
+<UsageDialogSection />
+
 
 <CodeBlock language="tsx">
 {`import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose } from '@azodik/ui';`}
 </CodeBlock>
 
-## Basic Example
+<BasicExampleDialogSection />
 
 <CodeBlockWithPreview 
-  title="Basic Dialog with Form"
+  title={<BasicDialogWithFormTitle />}
   preview={
     <Dialog>
       <DialogTrigger asChild>
@@ -135,10 +275,10 @@ export default function BasicDialogForm() {
 }`}
 </CodeBlockWithPreview>
 
-## Custom Styling
+<CustomStylingSection />
 
 <CodeBlockWithPreview 
-  title="Custom Styled Dialog"
+  title={<CustomStyledDialogTitle />}
   preview={
     <Dialog>
       <DialogTrigger asChild>
@@ -222,9 +362,9 @@ export const CustomStyledDialog = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsDialogSection />
 
-### Dialog Props
+<DialogPropsTitle />
 
 <PropsTable props={[
   {
@@ -257,7 +397,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogTrigger Props
+<DialogTriggerPropsTitle />
 
 <PropsTable props={[
   {
@@ -283,7 +423,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogContent Props
+<DialogContentPropsTitle />
 
 <PropsTable props={[
   {
@@ -309,7 +449,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogHeader Props
+<DialogHeaderPropsTitle />
 
 <PropsTable props={[
   {
@@ -328,7 +468,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogTitle Props
+<DialogTitlePropsTitle />
 
 <PropsTable props={[
   {
@@ -347,7 +487,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogDescription Props
+<DialogDescriptionPropsTitle />
 
 <PropsTable props={[
   {
@@ -366,7 +506,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogBody Props
+<DialogBodyPropsTitle />
 
 <PropsTable props={[
   {
@@ -385,7 +525,7 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-### DialogFooter Props
+<DialogFooterPropsTitle />
 
 <PropsTable props={[
   {
@@ -404,20 +544,10 @@ export const CustomStyledDialog = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityDialogSection />
 
-- Dialogs are built with proper ARIA attributes
-- Focus management is handled automatically
-- Escape key closes the dialog
-- Clicking outside closes the dialog
-- Screen readers can properly announce dialog content
-- Focus is trapped within the dialog when open
+<AccessibilityDialogList />
 
-## Design Guidelines
+<DesignGuidelinesDialogSection />
 
-- Use dialogs sparingly for important interactions
-- Keep dialog content concise and focused
-- Provide clear action buttons in the footer
-- Use appropriate dialog titles and descriptions
-- Consider mobile responsiveness for dialog sizing
-- Ensure sufficient contrast for readability
+<DesignGuidelinesDialogList />

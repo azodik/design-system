@@ -1,33 +1,147 @@
 import { Avatar, AvatarGroup, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Avatar Component
+export const AvatarHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('avatarComponent')}</h1>;
+};
 
-The Avatar component displays user profile images, initials, or placeholder icons. It provides a consistent way to represent users throughout your application.
+export const AvatarDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('avatarDescription')}</p>;
+};
 
-## Overview
+export const OverviewSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('overview')}</h2>
+      <p>{t('avatarOverviewDesc')}</p>
+    </>
+  );
+};
 
-Avatars are used to represent users in your application. They can display profile images, user initials, or fallback icons when no image is available.
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('displayUserProfilePictures')}</li>
+        <li>{t('showUserInitials')}</li>
+        <li>{t('representUsersInLists')}</li>
+        <li>{t('createConsistentUserRepresentation')}</li>
+      </ul>
+    </>
+  );
+};
 
-### When to use
-- Display user profile pictures
-- Show user initials when no image is available
-- Represent users in lists, comments, or user interfaces
-- Create consistent user representation across the app
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
 
-## Usage
+export const VariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variants')}</h2>;
+};
+
+export const SomeVariantsExample = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const AllAvatarVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allAvatarVariants');
+};
+
+export const WithInitialsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withInitials')}</h2>;
+};
+
+export const AvatarWithInitialsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('avatarWithInitials');
+};
+
+export const AvatarGroupSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('avatarGroup')}</h2>;
+};
+
+export const AvatarSizesTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('avatarSizes');
+};
+
+export const AvatarPropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('avatarProps')}</h2>;
+};
+
+export const AvatarGroupPropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('avatarGroupProps')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('avatarsHaveAltText')}</li>
+      <li>{t('initialsGeneratedFromName')}</li>
+      <li>{t('colorContrastMeetsWCAG')}</li>
+      <li>{t('focusStatesProvided')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useConsistentSizing')}</li>
+      <li>{t('provideMeaningfulAltText')}</li>
+      <li>{t('useInitialsAsFallback')}</li>
+      <li>{t('considerContextWhenChoosingSizes')}</li>
+      <li>{t('ensureAvatarsRecognizable')}</li>
+    </ul>
+  );
+};
+
+<AvatarHeader />
+
+<AvatarDescription />
+
+<OverviewSection />
+
+<WhenToUseSection />
+
+<UsageSection />
 
 <CodeBlock language="tsx">
 {`import { Avatar } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsSection />
 
-
-## Some Variants Example
+<SomeVariantsExample />
 
 <CodeBlockWithPreview 
-  title="All Avatar Variants"
+  title={<AllAvatarVariantsTitle />}
   preview={
     <div className="flex-horizontal items-center justify-center">
       <Avatar name="Henna Morris" size="sm" initials="HM"/>
@@ -54,10 +168,10 @@ export const AvatarExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Initials
+<WithInitialsSection />
 
 <CodeBlockWithPreview 
-  title="Avatar with Initials"
+  title={<AvatarWithInitialsTitle />}
   preview={
     <Avatar 
       name="John Doe"
@@ -78,10 +192,10 @@ export const UserAvatarExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Avatar Group
+<AvatarGroupSection />
 
 <CodeBlockWithPreview 
-  title="Avatar Sizes"
+  title={<AvatarSizesTitle />}
   preview={
     <div className="flex items-center gap-md">
       <AvatarGroup max={3}>
@@ -109,7 +223,7 @@ export const AvatarSizesExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Avatar Props
+<AvatarPropsSection />
 
 <PropsTable props={[
   {
@@ -163,7 +277,7 @@ export const AvatarSizesExample = () => {
   }
 ]} />
 
-## AvatarGroup Props
+<AvatarGroupPropsSection />
 
 <PropsTable props={[
   {
@@ -196,17 +310,10 @@ export const AvatarSizesExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySection />
 
-- Avatars have appropriate alt text for screen readers
-- Initials are generated from the name prop for better accessibility
-- Color contrast meets WCAG guidelines
-- Focus states are provided for interactive avatars
+<AccessibilityList />
 
-## Design Guidelines
+<DesignGuidelinesSection />
 
-- Use consistent sizing across your application
-- Provide meaningful alt text for images
-- Use initials as fallback when images are not available
-- Consider the context when choosing avatar sizes
-- Ensure avatars are recognizable and not too small
+<DesignGuidelinesList />

@@ -1,6 +1,119 @@
 import { Modal, ModalHeader, ModalFooter, Button, Card, CardContent, Input } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ModalComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('modalComponent')}</h1>;
+};
+
+export const ModalComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('modalDescription')}</p>;
+};
+
+export const ModalIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('modalIntroduction')}</h2>
+      <p>{t('modalIntroDesc')}</p>
+      <ul>
+        <li>{t('modalMainWrapper')}</li>
+        <li>{t('modalContent')}</li>
+        <li>{t('modalStateManagement')}</li>
+        <li>{t('modalSizing')}</li>
+        <li>{t('modalCustomization')}</li>
+        <li>{t('modalAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseModal')}</h3>
+      <ul>
+        <li>{t('displayImportantInformationOrConfirmations')}</li>
+        <li>{t('showFormsThatNeedFocusedAttention')}</li>
+        <li>{t('displayDetailedContentWithoutNavigation')}</li>
+        <li>{t('confirmDestructiveActions')}</li>
+        <li>{t('showImageGalleriesOrMedia')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageModal')}</h2>;
+};
+
+export const BasicExampleModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleModal')}</h2>;
+};
+
+export const BasicModalTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicModal');
+};
+
+export const FormModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('formModal')}</h2>;
+};
+
+export const ModalWithFormTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('modalWithForm');
+};
+
+export const PropsModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsModal')}</h2>;
+};
+
+export const AccessibilityModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityModal')}</h2>;
+};
+
+export const DesignGuidelinesModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesModal')}</h2>;
+};
+
+export const AccessibilityModalList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('modalsHaveProperAriaAttributes')}</li>
+      <li>{t('focusManagementIsHandledAutomaticallyModal')}</li>
+      <li>{t('escapeKeyClosesTheModal')}</li>
+      <li>{t('clickingOutsideClosesTheModal')}</li>
+      <li>{t('screenReadersCanProperlyAnnounceModalContent')}</li>
+      <li>{t('focusIsTrappedWithinTheModalWhenOpen')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesModalList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useModalsSparinglyForImportantInteractions')}</li>
+      <li>{t('keepModalContentConciseAndFocused')}</li>
+      <li>{t('provideClearActionButtonsInTheFooterModal')}</li>
+      <li>{t('useAppropriateModalTitlesAndDescriptions')}</li>
+      <li>{t('considerMobileResponsivenessForModalSizing')}</li>
+      <li>{t('ensureSufficientContrastForReadabilityModal')}</li>
+    </ul>
+  );
+};
 
 export const BasicModalExample = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,38 +200,24 @@ export const FormModalExample = () => {
   );
 };
 
-# Modal Component
+<ModalComponentHeader />
 
-The Modal component provides overlay dialogs for displaying important information, forms, or interactive content that requires user attention.
+<ModalComponentDescription />
 
-## Introduction
+<ModalIntroduction />
 
-The Modal component includes several complementary features to handle various overlay and focused interaction scenarios:
+<WhenToUseModalSection />
 
-- Modal: the main wrapper for creating overlay dialogs with backdrop and content management.
-- Modal Content: structured content areas with header, body, and footer sections for organized layouts.
-- Modal State Management: controlled open/close state handling with backdrop click and escape key support.
-- Modal Sizing: multiple size options (sm, md, lg, xl) to accommodate different content types and screen sizes.
-- Modal Customization: flexible styling, positioning, and animation options for different design needs.
-- Modal Accessibility: proper ARIA attributes, focus management, keyboard navigation, and screen reader support.
-
-### When to use
-- Display important information or confirmations
-- Show forms that need focused attention
-- Display detailed content without navigation
-- Confirm destructive actions
-- Show image galleries or media
-
-## Usage
+<UsageModalSection />
 
 <CodeBlock language="tsx">
 {`import { Modal } from '@azodik/ui';`}
 </CodeBlock>
 
-## Basic Example
+<BasicExampleModalSection />
 
 <CodeBlockWithPreview 
-  title="Basic Modal"
+  title={<BasicModalTitle />}
   preview={<BasicModalExample />}
   code={`import { Modal, ModalHeader, ModalFooter, Button } from '@azodik/ui';
 import { useState } from 'react';
@@ -152,10 +251,10 @@ export const BasicModal = () => {
 };`}
 />
 
-## Form Modal
+<FormModalSection />
 
 <CodeBlockWithPreview 
-  title="Modal with Form"
+  title={<ModalWithFormTitle />}
   preview={<FormModalExample />}
   code={`import { Modal, ModalHeader, ModalFooter, Button, Input } from '@azodik/ui';
 import { useState } from 'react';
@@ -218,7 +317,7 @@ export const FormModal = () => {
 };`}
 />
 
-## Props
+<PropsModalSection />
 
 <PropsTable props={[
   {
@@ -246,3 +345,11 @@ export const FormModal = () => {
     description: 'Additional CSS classes'
   }
 ]} />
+
+<AccessibilityModalSection />
+
+<AccessibilityModalList />
+
+<DesignGuidelinesModalSection />
+
+<DesignGuidelinesModalList />

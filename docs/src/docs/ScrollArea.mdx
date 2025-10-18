@@ -1,5 +1,116 @@
 import { ScrollArea, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ScrollAreaComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('scrollAreaComponent')}</h1>;
+};
+
+export const ScrollAreaComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('scrollAreaDescription')}</p>;
+};
+
+export const ScrollAreaIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('scrollAreaIntroduction')}</h2>
+      <p>{t('scrollAreaIntroDesc')}</p>
+      <ul>
+        <li>{t('scrollAreaMainWrapper')}</li>
+        <li>{t('scrollAreaSizing')}</li>
+        <li>{t('scrollAreaOrientation')}</li>
+        <li>{t('scrollAreaCustomization')}</li>
+        <li>{t('scrollAreaPerformance')}</li>
+        <li>{t('scrollAreaAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseScrollArea')}</h3>
+      <ul>
+        <li>{t('createScrollableContentAreas')}</li>
+        <li>{t('customizeScrollbarAppearance')}</li>
+        <li>{t('implementSmoothScrolling')}</li>
+        <li>{t('handleOverflowContentGracefully')}</li>
+        <li>{t('createConsistentScrollingExperiences')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageScrollArea')}</h2>;
+};
+
+export const VariantsScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsScrollArea')}</h2>;
+};
+
+export const ScrollExamplesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('scrollExamples')}</h2>;
+};
+
+export const VerticalScrollTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('verticalScroll');
+};
+
+export const HorizontalScrollTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('horizontalScroll');
+};
+
+export const PropsScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsScrollArea')}</h2>;
+};
+
+export const AccessibilityScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityScrollArea')}</h2>;
+};
+
+export const DesignGuidelinesScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesScrollArea')}</h2>;
+};
+
+export const AccessibilityScrollAreaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('scrollAreaMaintainsKeyboardNavigation')}</li>
+      <li>{t('screenReadersCanAccessScrollableContent')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyScrollArea')}</li>
+      <li>{t('properAriaAttributesAreAppliedScrollArea')}</li>
+      <li>{t('scrollPositionIsAnnouncedWhenNeeded')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesScrollAreaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useAppropriateSizingForYourContent')}</li>
+      <li>{t('ensureSufficientContrastForScrollbars')}</li>
+      <li>{t('considerMobileTouchInteractionsScrollArea')}</li>
+      <li>{t('useConsistentStylingAcrossYourApplicationScrollArea')}</li>
+      <li>{t('testScrollingBehaviorOnDifferentDevices')}</li>
+    </ul>
+  );
+};
 
 export const VerticalScrollAreaExample = () => {
   return (
@@ -49,41 +160,26 @@ export const HorizontalScrollAreaExample = () => {
   );
 };
 
-# ScrollArea Component
+<ScrollAreaComponentHeader />
 
-The ScrollArea component provides customizable scrollable areas with different scrollbar sizes and styles. It's perfect for creating smooth scrolling experiences.
+<ScrollAreaComponentDescription />
 
-## Introduction
+<ScrollAreaIntroduction />
 
-The ScrollArea component includes several complementary features to handle various scrolling and content overflow scenarios:
+<WhenToUseScrollAreaSection />
 
-- ScrollArea: the main wrapper for creating enhanced scrollable areas with customizable scrollbars and smooth behavior.
-- ScrollArea Sizing: multiple scrollbar size options (sm, md, lg) to fit different design contexts and user preferences.
-- ScrollArea Orientation: support for both vertical and horizontal scrolling with appropriate scrollbar positioning.
-- ScrollArea Customization: flexible styling, colors, and appearance options for brand-specific scrollbar designs.
-- ScrollArea Performance: optimized scrolling behavior with smooth animations and efficient content rendering.
-- ScrollArea Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for scrollable content.
-
-### When to use
-- Create scrollable content areas
-- Customize scrollbar appearance
-- Implement smooth scrolling
-- Handle overflow content gracefully
-- Create consistent scrolling experiences
-
-## Usage
+<UsageScrollAreaSection />
 
 <CodeBlock language="tsx">
 {`import { ScrollArea } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsScrollAreaSection />
 
-
-## Scroll Examples
+<ScrollExamplesSection />
 
 <CodeBlockWithPreview 
-  title="Vertical Scroll"
+  title={<VerticalScrollTitle />}
   preview={<VerticalScrollAreaExample />}
 >
 {`import { ScrollArea, Card } from '@azodik/ui';
@@ -119,7 +215,7 @@ export const VerticalScrollAreaExample = () => {
 </CodeBlockWithPreview>
 
 <CodeBlockWithPreview 
-  title="Horizontal Scroll"
+  title={<HorizontalScrollTitle />}
   preview={<HorizontalScrollAreaExample />}
 >
 {`import { ScrollArea } from '@azodik/ui';
@@ -144,7 +240,7 @@ export const HorizontalScrollAreaExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsScrollAreaSection />
 
 <PropsTable props={[
   {
@@ -177,18 +273,10 @@ export const HorizontalScrollAreaExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityScrollAreaSection />
 
-- ScrollArea maintains keyboard navigation
-- Screen readers can access scrollable content
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
-- Scroll position is announced when needed
+<AccessibilityScrollAreaList />
 
-## Design Guidelines
+<DesignGuidelinesScrollAreaSection />
 
-- Use appropriate sizing for your content
-- Ensure sufficient contrast for scrollbars
-- Consider mobile touch interactions
-- Use consistent styling across your application
-- Test scrolling behavior on different devices
+<DesignGuidelinesScrollAreaList />

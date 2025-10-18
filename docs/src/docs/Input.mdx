@@ -1,6 +1,166 @@
 import { Input, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const InputComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('inputComponent')}</h1>;
+};
+
+export const InputComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('inputDescription')}</p>;
+};
+
+export const InputIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('inputIntroduction')}</h2>
+      <p>{t('inputIntroDesc')}</p>
+      <ul>
+        <li>{t('inputMainWrapper')}</li>
+        <li>{t('inputTypesIntro')}</li>
+        <li>{t('inputValidation')}</li>
+        <li>{t('inputAccessibility')}</li>
+        <li>{t('inputCustomization')}</li>
+        <li>{t('inputStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseInput')}</h3>
+      <ul>
+        <li>{t('collectingTextInputFromUsers')}</li>
+        <li>{t('formFieldsForDataEntry')}</li>
+        <li>{t('searchInputs')}</li>
+        <li>{t('emailPasswordAndOtherSpecificInputTypes')}</li>
+        <li>{t('userRegistrationAndLoginForms')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenNotToUseInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenNotToUseInput')}</h3>
+      <ul>
+        <li>{t('forMultiLineTextUseTextareaInstead')}</li>
+        <li>{t('forSelectingFromOptionsUseSelectInstead')}</li>
+        <li>{t('forBinaryChoicesUseCheckboxOrRadioInstead')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageInput')}</h2>;
+};
+
+export const VariantsInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsInput')}</h2>;
+};
+
+export const SomeVariantsExampleInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExampleInput')}</h2>;
+};
+
+export const AllInputVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allInputVariants');
+};
+
+export const BasicUsageInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicUsageInput')}</h2>;
+};
+
+export const BasicInputTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicInput');
+};
+
+export const WithDifferentTypesInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDifferentTypesInput')}</h2>;
+};
+
+export const InputTypesTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('inputTypes');
+};
+
+export const WithValidationStatesInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withValidationStatesInput')}</h2>;
+};
+
+export const InputWithValidationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('inputWithValidation');
+};
+
+export const PropsInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsInput')}</h2>;
+};
+
+export const TextareaPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('textareaProps');
+};
+
+export const SelectPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('selectProps');
+};
+
+export const AccessibilityInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityInput')}</h2>;
+};
+
+export const DesignGuidelinesInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesInput')}</h2>;
+};
+
+export const AccessibilityInputList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('inputsHaveProperLabelsAndAssociations')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReadersInput')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyInput')}</li>
+      <li>{t('keyboardNavigationIsSupportedInput')}</li>
+      <li>{t('colorContrastMeetsWcagGuidelines')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesInputList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabels')}</li>
+      <li>{t('useAppropriateInputTypesForBetterUx')}</li>
+      <li>{t('provideHelpfulPlaceholderTextInput')}</li>
+      <li>{t('showValidationErrorsClearlyInput')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileInput')}</li>
+    </ul>
+  );
+};
 
 export const ValidatedInputPreview = () => {
   const [value, setValue] = useState('');
@@ -28,46 +188,28 @@ export const ValidatedInputPreview = () => {
   );
 };
 
-# Input Component
+<InputComponentHeader />
 
-The Input component provides text input fields for user data entry with various types, validation states, and interactive features.
+<InputComponentDescription />
 
-## Introduction
+<InputIntroduction />
 
-The Input component includes several complementary features to handle various text input and data entry scenarios:
+<WhenToUseInputSection />
 
-- Input: the main wrapper for creating text input fields with different types and validation states.
-- Input Types: support for various input types (text, email, password, number, tel, url) with appropriate validation.
-- Input Validation: built-in validation states with error messages, success indicators, and real-time feedback.
-- Input Accessibility: proper labels, help text, error announcements, and keyboard navigation support.
-- Input Customization: flexible sizing, styling, placeholder text, and integration with form libraries.
-- Input States: support for disabled, readonly, and interactive states with appropriate visual feedback.
+<WhenNotToUseInputSection />
 
-### When to use
-- Collecting text input from users
-- Form fields for data entry
-- Search inputs
-- Email, password, and other specific input types
-- User registration and login forms
-
-### When not to use
-- For multi-line text (use Textarea instead)
-- For selecting from options (use Select instead)
-- For binary choices (use Checkbox or Radio instead)
-
-## Usage
+<UsageInputSection />
 
 <CodeBlock language="tsx">
 {`import { Input } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsInputSection />
 
-
-## Some Variants Example
+<SomeVariantsExampleInputSection />
 
 <CodeBlockWithPreview 
-  title="All Input Variants"
+  title={<AllInputVariantsTitle />}
   preview={
     <div className="flex-vertical">
       <Input 
@@ -109,10 +251,10 @@ export const InputExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Basic Usage
+<BasicUsageInputSection />
 
 <CodeBlockWithPreview 
-  title="Basic Input"
+  title={<BasicInputTitle />}
   preview={
     <Input 
       type="email" 
@@ -134,10 +276,10 @@ export const InputExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Different Types
+<WithDifferentTypesInputSection />
 
 <CodeBlockWithPreview 
-  title="Input Types"
+  title={<InputTypesTitle />}
   preview={
     <div className="flex-vertical">
       <Input 
@@ -195,10 +337,10 @@ export const InputTypesExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## With Validation States
+<WithValidationStatesInputSection />
 
 <CodeBlockWithPreview 
-  title="Input with Validation"
+  title={<InputWithValidationTitle />}
   preview={<ValidatedInputPreview />}
 >
 {`import { Input } from '@azodik/ui';
@@ -229,7 +371,7 @@ export const ValidatedInputExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsInputSection />
 
 <PropsTable props={[
   {
@@ -269,7 +411,7 @@ export const ValidatedInputExample = () => {
   }
 ]} />
 
-## Textarea Props
+<TextareaPropsTitle />
 
 <PropsTable props={[
   {
@@ -330,7 +472,7 @@ export const ValidatedInputExample = () => {
   }
 ]} />
 
-## Select Props
+<SelectPropsTitle />
 
 <PropsTable props={[
   {
@@ -405,18 +547,10 @@ export const ValidatedInputExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityInputSection />
 
-- Inputs have proper labels and associations
-- Error messages are announced to screen readers
-- Focus management is handled correctly
-- Keyboard navigation is supported
-- Color contrast meets WCAG guidelines
+<AccessibilityInputList />
 
-## Design Guidelines
+<DesignGuidelinesInputSection />
 
-- Always provide clear labels
-- Use appropriate input types for better UX
-- Provide helpful placeholder text
-- Show validation errors clearly
-- Ensure sufficient touch targets on mobile
+<DesignGuidelinesInputList />

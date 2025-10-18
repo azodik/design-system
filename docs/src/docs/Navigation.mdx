@@ -1,6 +1,112 @@
 import { Navigation, NavItem, Card, CardContent, Button } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const NavigationComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('navigationComponent')}</h1>;
+};
+
+export const NavigationComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('navigationDescription')}</p>;
+};
+
+export const NavigationIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('navigationIntroduction')}</h2>
+      <p>{t('navigationIntroDesc')}</p>
+      <ul>
+        <li>{t('navigationMainWrapper')}</li>
+        <li>{t('navigationItems')}</li>
+        <li>{t('navigationBranding')}</li>
+        <li>{t('navigationResponsiveness')}</li>
+        <li>{t('navigationStates')}</li>
+        <li>{t('navigationAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseNavigationSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseNavigation')}</h3>
+      <ul>
+        <li>{t('mainSiteNavigation')}</li>
+        <li>{t('sectionNavigationWithinAnApp')}</li>
+        <li>{t('primaryNavigationMenus')}</li>
+        <li>{t('headerNavigationBars')}</li>
+        <li>{t('topLevelPageNavigation')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageNavigationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageNavigation')}</h2>;
+};
+
+export const VariantsNavigationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsNavigation')}</h2>;
+};
+
+export const BasicNavigationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicNavigation');
+};
+
+export const PropsNavigationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsNavigation')}</h2>;
+};
+
+export const NavItemInterfaceTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('navItemInterface');
+};
+
+export const AccessibilityNavigationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityNavigation')}</h2>;
+};
+
+export const DesignGuidelinesNavigationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesNavigation')}</h2>;
+};
+
+export const AccessibilityNavigationList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('navigationHasProperSemanticStructure')}</li>
+      <li>{t('screenReadersCanNavigateMenuItems')}</li>
+      <li>{t('keyboardNavigationIsSupportedNavigation')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyNavigation')}</li>
+      <li>{t('properAriaAttributesAreApplied')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesNavigationList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveNavigationLabels')}</li>
+      <li>{t('keepTheNumberOfTopLevelItemsReasonable')}</li>
+      <li>{t('provideClearVisualFeedbackForActiveStates')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileNavigation')}</li>
+      <li>{t('useConsistentStylingAcrossYourApplication')}</li>
+    </ul>
+  );
+};
 
 export const BasicNavigationExample = () => {
   return (
@@ -19,38 +125,24 @@ export const BasicNavigationExample = () => {
   );
 };
 
-# Navigation Component
+<NavigationComponentHeader />
 
-The Navigation component provides horizontal navigation bars for site-wide navigation. It helps users navigate between different sections and pages of your application.
+<NavigationComponentDescription />
 
-## Introduction
+<NavigationIntroduction />
 
-The Navigation component includes several complementary features to handle various site navigation and user flow scenarios:
+<WhenToUseNavigationSection />
 
-- Navigation: the main wrapper for creating horizontal navigation bars with brand elements and menu items.
-- Navigation Items: individual menu items with active states, links, and customizable styling for different sections.
-- Navigation Branding: flexible brand/logo area with customizable content and positioning options.
-- Navigation Responsiveness: mobile-friendly navigation with collapsible menus and touch-optimized interactions.
-- Navigation States: active page indication, hover effects, and visual feedback for current location.
-- Navigation Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support.
-
-### When to use
-- Main site navigation
-- Section navigation within an app
-- Primary navigation menus
-- Header navigation bars
-- Top-level page navigation
-
-## Usage
+<UsageNavigationSection />
 
 <CodeBlock language="tsx">
 {`import { Navigation, NavItem } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsNavigationSection />
 
 <CodeBlockWithPreview 
-  title="Basic Navigation"
+  title={<BasicNavigationTitle />}
   preview={<BasicNavigationExample />}
 >
 {`import { Navigation, NavItem } from '@azodik/ui';
@@ -72,7 +164,7 @@ export default function BasicNavigation() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsNavigationSection />
 
 <PropsTable props={[
   {
@@ -105,7 +197,7 @@ export default function BasicNavigation() {
   }
 ]} />
 
-## NavItem Interface
+<NavItemInterfaceTitle />
 
 <PropsTable props={[
   {
@@ -138,18 +230,10 @@ export default function BasicNavigation() {
   }
 ]} />
 
-## Accessibility
+<AccessibilityNavigationSection />
 
-- Navigation has proper semantic structure
-- Screen readers can navigate menu items
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
+<AccessibilityNavigationList />
 
-## Design Guidelines
+<DesignGuidelinesNavigationSection />
 
-- Use clear and descriptive navigation labels
-- Keep the number of top-level items reasonable
-- Provide clear visual feedback for active states
-- Ensure sufficient touch targets on mobile
-- Use consistent styling across your application
+<DesignGuidelinesNavigationList />

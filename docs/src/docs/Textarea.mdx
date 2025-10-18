@@ -1,6 +1,107 @@
 import { Textarea, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TextareaComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('textareaComponent')}</h1>;
+};
+
+export const TextareaComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('textareaDescription')}</p>;
+};
+
+export const TextareaIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('textareaIntroduction')}</h2>
+      <p>{t('textareaIntroDesc')}</p>
+      <ul>
+        <li>{t('textareaMainWrapper')}</li>
+        <li>{t('textareaSizing')}</li>
+        <li>{t('textareaValidation')}</li>
+        <li>{t('textareaAccessibility')}</li>
+        <li>{t('textareaCustomization')}</li>
+        <li>{t('textareaStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTextarea')}</h3>
+      <ul>
+        <li>{t('collectingLongerTextInput')}</li>
+        <li>{t('commentFormsAndFeedback')}</li>
+        <li>{t('descriptionFields')}</li>
+        <li>{t('messageComposition')}</li>
+        <li>{t('multiLineContentEntry')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTextarea')}</h2>;
+};
+
+export const VariantsTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTextarea')}</h2>;
+};
+
+export const BasicTextareaTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicTextarea');
+};
+
+export const PropsTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTextarea')}</h2>;
+};
+
+export const AccessibilityTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTextarea')}</h2>;
+};
+
+export const DesignGuidelinesTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTextarea')}</h2>;
+};
+
+export const AccessibilityTextareaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('textareasHaveProperLabelsAndAssociations')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReaders')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyTextarea')}</li>
+      <li>{t('keyboardNavigationIsSupportedTextarea')}</li>
+      <li>{t('colorContrastMeetsWCAGGuidelines')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTextareaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabelsTextarea')}</li>
+      <li>{t('useAppropriatePlaceholderText')}</li>
+      <li>{t('showCharacterLimitsWhenApplicable')}</li>
+      <li>{t('provideClearValidationFeedback')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileTextarea')}</li>
+    </ul>
+  );
+};
 
 export const BasicTextareaExample = () => {
   return (
@@ -14,38 +115,24 @@ export const BasicTextareaExample = () => {
   );
 };
 
-# Textarea Component
+<TextareaComponentHeader />
 
-The Textarea component provides multi-line text input for longer content and messages. It's perfect for collecting detailed user input and comments.
+<TextareaComponentDescription />
 
-## Introduction
+<TextareaIntroduction />
 
-The Textarea component includes several complementary features to handle various multi-line text input scenarios:
+<WhenToUseTextareaSection />
 
-- Textarea: the main wrapper for creating multi-line text input fields with larger input areas for longer content.
-- Textarea Sizing: flexible sizing options with auto-resize capabilities and configurable min/max rows for different content needs.
-- Textarea Validation: built-in validation support with error messages, success states, and form integration capabilities.
-- Textarea Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for multi-line text inputs.
-- Textarea Customization: flexible styling, placeholder text, and appearance options for different design contexts.
-- Textarea States: support for disabled, readonly, and interactive states with appropriate visual feedback and user guidance.
-
-### When to use
-- Collecting longer text input
-- Comment forms and feedback
-- Description fields
-- Message composition
-- Multi-line content entry
-
-## Usage
+<UsageTextareaSection />
 
 <CodeBlock language="tsx">
 {`import { Textarea } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsTextareaSection />
 
 <CodeBlockWithPreview 
-  title="Basic Textarea"
+  title={<BasicTextareaTitle />}
   preview={<BasicTextareaExample />}
 >
 {`import { Textarea } from '@azodik/ui';
@@ -63,7 +150,7 @@ export default function BasicTextarea() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsTextareaSection />
 
 <PropsTable props={[
   {
@@ -124,18 +211,10 @@ export default function BasicTextarea() {
   }
 ]} />
 
-## Accessibility
+<AccessibilityTextareaSection />
 
-- Textareas have proper labels and associations
-- Error messages are announced to screen readers
-- Focus management is handled correctly
-- Keyboard navigation is supported
-- Color contrast meets WCAG guidelines
+<AccessibilityTextareaList />
 
-## Design Guidelines
+<DesignGuidelinesTextareaSection />
 
-- Always provide clear labels
-- Use appropriate placeholder text
-- Show character limits when applicable
-- Provide clear validation feedback
-- Ensure sufficient touch targets on mobile
+<DesignGuidelinesTextareaList />

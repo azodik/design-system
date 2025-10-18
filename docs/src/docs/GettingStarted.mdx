@@ -1,27 +1,250 @@
 import { Button, Card, Alert, Input, Badge } from '@azodik/ui';
 import { CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Getting Started
+export const GettingStartedHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('gettingStarted')}</h1>;
+};
 
-Welcome to the Azodik Design System! This comprehensive guide will help you integrate our components into your projects quickly and efficiently.
+export const GettingStartedIntro = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('welcome')}! {t('comprehensiveGuide')}</p>;
+};
 
-## Introduction
+export const WhatsIncludedList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whatsIncluded')}</h3>
+      <ul>
+        <li><strong>🎨 {t('modernDesign')}</strong> - {t('modernDesignDesc')}</li>
+        <li><strong>⚡ {t('typescriptFirst')}</strong> - {t('typescriptFirstDesc')}</li>
+        <li><strong>♿ {t('accessible')}</strong> - {t('accessibleDesc')}</li>
+        <li><strong>📱 {t('responsive')}</strong> - {t('responsiveDesc')}</li>
+        <li><strong>🎯 {t('treeShakeable')}</strong> - {t('treeShakeableDesc')}</li>
+        <li><strong>🔧 {t('customizable')}</strong> - {t('customizableDesc')}</li>
+        <li><strong>📦 {t('lightweight')}</strong> - {t('lightweightDesc')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Azodik Design System is a modern, accessible, and highly customizable component library built with React and TypeScript. It provides everything you need to build beautiful, consistent user interfaces.
+export const InstallationSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('installation')}</h2>
+      <p>{t('installDescription')}</p>
+    </>
+  );
+};
 
-### What's Included
+export const RequirementsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('requirements')}</h3>
+      <ul>
+        <li>{t('reactHooksSupport')}</li>
+        <li>{t('typescriptOptional')}</li>
+        <li>{t('nodejsDevelopment')}</li>
+      </ul>
+    </>
+  );
+};
 
-- **🎨 Modern Design** - Beautiful orange color palette with dark/light mode
-- **⚡ TypeScript First** - Full TypeScript support with comprehensive type definitions
-- **♿ Accessible** - Built with accessibility in mind using modern patterns
-- **📱 Responsive** - Mobile-first responsive design
-- **🎯 Tree Shakeable** - Import only what you need
-- **🔧 Customizable** - Easy to customize with CSS custom properties
-- **📦 Lightweight** - Optimized bundle size
+export const BundleSizeList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('bundleSize')}</h3>
+      <ul>
+        <li>{t('treeShakeableComponents')}</li>
+        <li>{t('bundleSizeInfo')}</li>
+        <li>{t('individualImports')}</li>
+      </ul>
+    </>
+  );
+};
 
-## Installation
+export const QuickStartSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('quickStart')}</h2>
+      <p>{t('onceInstalled')}</p>
+    </>
+  );
+};
 
-Install both the Azodik UI React components and the CSS design system. The React components provide the interactive elements, while the CSS package provides the styling foundation.
+export const AvailableComponentsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('availableComponents')}</h2>
+      <p>{t('ourDesignSystem')}</p>
+      
+      <h3>{t('formComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Input</strong> - {t('inputDesc')}</li>
+        <li><strong>Textarea</strong> - {t('textareaDesc')}</li>
+        <li><strong>Select</strong> - {t('selectDesc')}</li>
+        <li><strong>Checkbox</strong> - {t('checkboxDesc')}</li>
+        <li><strong>Radio</strong> - {t('radioDesc')}</li>
+        <li><strong>Switch</strong> - {t('switchDesc')}</li>
+      </ul>
+
+      <h3>{t('layoutComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Card</strong> - {t('cardDesc')}</li>
+        <li><strong>Navigation</strong> - {t('navigationDesc')}</li>
+        <li><strong>Sidebar</strong> - {t('sidebarDesc')}</li>
+        <li><strong>Tabs</strong> - {t('tabsDesc')}</li>
+      </ul>
+
+      <h3>{t('feedbackComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Alert</strong> - {t('alertDesc')}</li>
+        <li><strong>Modal</strong> - {t('modalDesc')}</li>
+        <li><strong>Toast</strong> - {t('toastDesc')}</li>
+        <li><strong>Tooltip</strong> - {t('tooltipDesc')}</li>
+        <li><strong>Popover</strong> - {t('popoverDesc')}</li>
+      </ul>
+
+      <h3>{t('dataDisplayDesc')}</h3>
+      <ul>
+        <li><strong>Table</strong> - {t('tableDesc')}</li>
+        <li><strong>DataTable</strong> - {t('dataTableDesc')}</li>
+        <li><strong>Avatar</strong> - {t('avatarDesc')}</li>
+        <li><strong>Badge</strong> - {t('badgeDesc')}</li>
+        <li><strong>Breadcrumb</strong> - {t('breadcrumbDesc')}</li>
+        <li><strong>Pagination</strong> - {t('paginationDesc')}</li>
+      </ul>
+
+      <h3>{t('interactiveComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Button</strong> - {t('buttonDesc')}</li>
+        <li><strong>Dialog</strong> - {t('dialogDesc')}</li>
+        <li><strong>Drawer</strong> - {t('drawerDesc')}</li>
+        <li><strong>ScrollArea</strong> - {t('scrollAreaDesc')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const ThemingSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('theming')}</h2>
+      <h3>{t('cssCustomProperties')}</h3>
+      <p>{t('themingDesc')}</p>
+      <h3>{t('themeSwitching')}</h3>
+    </>
+  );
+};
+
+export const TypeScriptSupportSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('typescriptSupport')}</h2>
+      <p>{t('typescriptSupportDesc')}</p>
+    </>
+  );
+};
+
+export const TreeShakingSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('treeShaking')}</h2>
+      <p>{t('treeShakingDesc')}</p>
+    </>
+  );
+};
+
+export const NextStepsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('nextSteps')}</h2>
+      <ol>
+        <li><strong>{t('exploreComponentsDesc')}</strong> - {t('browseComponents')}</li>
+        <li><strong>{t('viewExamplesDesc')}</strong> - {t('viewExamplesDesc2')}</li>
+        <li><strong>{t('copyCodeDesc')}</strong> - {t('copyCodeDesc2')}</li>
+        <li><strong>{t('customizeDesc')}</strong> - {t('customizeDesc2')}</li>
+      </ol>
+    </>
+  );
+};
+
+export const SupportSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('support')}</h2>
+      <p>{t('supportDesc')}</p>
+      <p><strong>{t('happyBuilding')}</strong></p>
+    </>
+  );
+};
+
+export const BasicExamplesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExamples')}</h2>;
+};
+
+export const ButtonComponentSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('buttonComponent')}</h3>;
+};
+
+export const AlertComponentSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('alertComponent')}</h3>;
+};
+
+export const CardComponentSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('cardComponent')}</h3>;
+};
+
+export const ButtonVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('buttonVariants');
+};
+
+export const AlertTypesTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('alertTypes');
+};
+
+export const CardLayoutTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('cardLayout');
+};
+
+export const IntroductionSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('introductionDesc')}</p>
+    </>
+  );
+};
+
+<GettingStartedHeader />
+
+<GettingStartedIntro />
+
+<IntroductionSection />
+
+<WhatsIncludedList />
+
+<InstallationSection />
 
 <CodeBlock language="bash">
 {`# Install the React components
@@ -31,21 +254,11 @@ npm install @azodik/ui
 npm install azodik-ui-core`}
 </CodeBlock>
 
-### Requirements
+<RequirementsList />
 
-- React 16.8+ (hooks support)
-- TypeScript 4.5+ (optional but recommended)
-- Node.js 14+ for development
+<BundleSizeList />
 
-### Bundle Size
-
-- Tree-shakeable components
-- ~19KB CSS + ~35KB React (gzipped)
-- Individual component imports
-
-## Quick Start
-
-Once installed, you can start using components in your React application:
+<QuickStartSection />
 
 <CodeBlock language="jsx">
 {`import React from 'react';
@@ -70,12 +283,12 @@ function App() {
 export default App;`}
 </CodeBlock>
 
-## Basic Examples
+<BasicExamplesSection />
 
-### Button Component
+<ButtonComponentSection />
 
 <CodeBlockWithPreview 
-  title="Button Variants"
+  title={<ButtonVariantsTitle />}
   preview={
     <div className="flex gap-4 flex-wrap">
       <Button variant="primary">Primary</Button>
@@ -91,10 +304,10 @@ export default App;`}
 <Button variant="outline">Outline</Button>`}
 </CodeBlockWithPreview>
 
-### Alert Component
+<AlertComponentSection />
 
 <CodeBlockWithPreview 
-  title="Alert Types"
+  title={<AlertTypesTitle />}
   preview={
     <div className="space-y-4">
       <Alert variant="success" title="Success!">
@@ -128,10 +341,10 @@ export default App;`}
 </Alert>`}
 </CodeBlockWithPreview>
 
-### Card Component
+<CardComponentSection />
 
 <CodeBlockWithPreview 
-  title="Card Layout"
+  title={<CardLayoutTitle />}
   preview={
     <Card className="max-w-md">
       <div className="p-6">
@@ -163,50 +376,9 @@ export default App;`}
 </Card>`}
 </CodeBlockWithPreview>
 
-## Available Components
+<AvailableComponentsSection />
 
-Our design system includes a comprehensive collection of React components:
-
-### Form Components
-- **Input** - Text input fields with validation states
-- **Textarea** - Multi-line text inputs
-- **Select** - Dropdown selection inputs
-- **Checkbox** - Form input checkboxes
-- **Radio** - Radio button inputs
-- **Switch** - Toggle switches
-
-### Layout Components
-- **Card** - Content containers with headers and footers
-- **Navigation** - Navigation menus and bars
-- **Sidebar** - Application sidebars and navigation
-- **Tabs** - Tabbed content organization
-
-### Feedback Components
-- **Alert** - Display important messages to users
-- **Modal** - Overlay dialogs and popups
-- **Toast** - Notification messages
-- **Tooltip** - Contextual help text
-- **Popover** - Floating content containers
-
-### Data Display
-- **Table** - Data tables with sorting and filtering
-- **DataTable** - Advanced data tables with pagination
-- **Avatar** - User profile pictures and initials
-- **Badge** - Small status indicators and labels
-- **Breadcrumb** - Navigation breadcrumbs
-- **Pagination** - Page navigation controls
-
-### Interactive Components
-- **Button** - Interactive buttons with multiple variants
-- **Dialog** - Modal dialogs and overlays
-- **Drawer** - Slide-out panels
-- **ScrollArea** - Custom scrollable areas
-
-## Theming
-
-### CSS Custom Properties
-
-The design system uses CSS custom properties for easy theming:
+<ThemingSection />
 
 <CodeBlock language="css">
 {`:root {
@@ -227,7 +399,6 @@ The design system uses CSS custom properties for easy theming:
 }`}
 </CodeBlock>
 
-### Theme Switching
 
 <CodeBlock language="jsx">
 {`// Toggle theme
@@ -241,9 +412,7 @@ function toggleTheme() {
 }`}
 </CodeBlock>
 
-## TypeScript Support
-
-Full TypeScript definitions are included for all components:
+<TypeScriptSupportSection />
 
 <CodeBlock language="tsx">
 {`import { Button, ButtonProps } from '@azodik/ui';
@@ -253,9 +422,7 @@ const MyButton: React.FC<ButtonProps> = (props) => {
 };`}
 </CodeBlock>
 
-## Tree Shaking
-
-Import only what you need to keep your bundle size small:
+<TreeShakingSection />
 
 <CodeBlock language="tsx">
 {`// ✅ Good - tree shakeable
@@ -265,15 +432,6 @@ import { Button, Card } from '@azodik/ui';
 import * as UI from '@azodik/ui';`}
 </CodeBlock>
 
-## Next Steps
+<NextStepsSection />
 
-1. **Explore Components** - Browse through individual component documentation in the sidebar
-2. **View Examples** - Each component page includes live examples and code snippets
-3. **Copy Code** - Use the provided code examples to quickly integrate components
-4. **Customize** - Learn about available props and customization options
-
-## Support
-
-Need help? Check out our documentation or reach out to our support team.
-
-**Happy building! 🚀**
+<SupportSection />

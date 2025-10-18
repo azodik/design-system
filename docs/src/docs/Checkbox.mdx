@@ -1,39 +1,136 @@
 import { Checkbox, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Checkbox Component
+export const CheckboxComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('checkboxComponent')}</h1>;
+};
 
-The Checkbox component provides binary choice controls for enabling or disabling options. It's perfect for forms that require multiple selections or toggles.
+export const CheckboxDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('checkboxDescription')}</p>;
+};
 
-## Introduction
+export const CheckboxIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('checkboxIntroduction')}</h2>
+      <p>{t('checkboxIntroDesc')}</p>
+      <ul>
+        <li>{t('checkboxMainWrapper')}</li>
+        <li>{t('checkboxStates')}</li>
+        <li>{t('checkboxSizing')}</li>
+        <li>{t('checkboxLabels')}</li>
+        <li>{t('checkboxValidation')}</li>
+        <li>{t('checkboxAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Checkbox component includes several complementary features to handle various form input and selection scenarios:
+export const WhenToUseCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseCheckbox')}</h3>
+      <ul>
+        <li>{t('multipleSelectionsFromList')}</li>
+        <li>{t('enablingOrDisablingFeatures')}</li>
+        <li>{t('agreeingToTermsAndConditions')}</li>
+        <li>{t('filteringOptions')}</li>
+        <li>{t('settingsAndPreferences')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Checkbox: the main wrapper for creating binary choice controls and form inputs.
-- Checkbox States: multiple interaction states (checked, unchecked, disabled) with clear visual feedback.
-- Checkbox Sizing: different size options (sm, md, lg) to fit various design contexts and requirements.
-- Checkbox Labels: built-in label support with help text and error message capabilities.
-- Checkbox Validation: integrated error handling and validation feedback for form workflows.
-- Checkbox Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support.
+export const UsageCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageCheckbox')}</h2>;
+};
 
-### When to use
-- Multiple selections from a list
-- Enabling or disabling features
-- Agreeing to terms and conditions
-- Filtering options
-- Settings and preferences
+export const VariantsCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsCheckbox')}</h2>;
+};
 
+export const AllCheckboxVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allCheckboxVariants');
+};
 
-## Usage
+export const BasicUsageCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicUsageCheckbox')}</h2>;
+};
+
+export const BasicCheckboxTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicCheckbox');
+};
+
+export const PropsCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsCheckbox')}</h2>;
+};
+
+export const AccessibilityCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityCheckbox')}</h2>;
+};
+
+export const DesignGuidelinesCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesCheckbox')}</h2>;
+};
+
+export const AccessibilityCheckboxList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('checkboxesHaveProperLabels')}</li>
+      <li>{t('screenReadersCanIdentifyCheckboxStates')}</li>
+      <li>{t('keyboardNavigationSupportedCheckbox')}</li>
+      <li>{t('focusManagementHandledCorrectly')}</li>
+      <li>{t('properAriaAttributesApplied')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesCheckboxList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabels')}</li>
+      <li>{t('useConsistentSizingAcrossApplication')}</li>
+      <li>{t('provideClearVisualFeedback')}</li>
+      <li>{t('groupRelatedCheckboxesTogether')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileCheckbox')}</li>
+    </ul>
+  );
+};
+
+<CheckboxComponentHeader />
+
+<CheckboxDescription />
+
+<CheckboxIntroduction />
+
+<WhenToUseCheckboxSection />
+
+<UsageCheckboxSection />
+
 
 <CodeBlock language="tsx">
 {`import { Checkbox } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsCheckboxSection />
 
 <CodeBlockWithPreview 
-  title="All Checkbox Variants"
+  title={<AllCheckboxVariantsTitle />}
   preview={
     <div className="flex-vertical">
       <Checkbox
@@ -72,10 +169,10 @@ export const CheckboxExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Basic Usage
+<BasicUsageCheckboxSection />
 
 <CodeBlockWithPreview 
-  title="Basic Checkbox"
+  title={<BasicCheckboxTitle />}
   preview={
     <Checkbox
       label="I agree to the terms and conditions"
@@ -95,7 +192,7 @@ export const CheckboxExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsCheckboxSection />
 
 <PropsTable props={[
   {
@@ -135,18 +232,10 @@ export const CheckboxExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityCheckboxSection />
 
-- Checkboxes have proper labels and associations
-- Screen readers can identify checkbox states
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
+<AccessibilityCheckboxList />
 
-## Design Guidelines
+<DesignGuidelinesCheckboxSection />
 
-- Always provide clear labels
-- Use consistent sizing across your application
-- Provide clear visual feedback for all states
-- Group related checkboxes together
-- Ensure sufficient touch targets on mobile
+<DesignGuidelinesCheckboxList />

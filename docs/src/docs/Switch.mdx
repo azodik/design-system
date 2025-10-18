@@ -1,47 +1,149 @@
 import { Switch, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Switch Component
+export const SwitchComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('switchComponent')}</h1>;
+};
 
-The Switch component provides toggle switches for binary on/off states and settings. It's perfect for enabling or disabling features with immediate visual feedback.
+export const SwitchComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('switchDescription')}</p>;
+};
 
-## Introduction
+export const SwitchIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('switchIntroduction')}</h2>
+      <p>{t('switchIntroDesc')}</p>
+      <ul>
+        <li>{t('switchMainWrapper')}</li>
+        <li>{t('switchStates')}</li>
+        <li>{t('switchValidation')}</li>
+        <li>{t('switchAccessibility')}</li>
+        <li>{t('switchCustomization')}</li>
+        <li>{t('switchIntegration')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Switch component includes several complementary features to handle various toggle and binary state scenarios:
+export const WhenToUseSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseSwitch')}</h3>
+      <ul>
+        <li>{t('enablingOrDisablingFeatures')}</li>
+        <li>{t('settingsAndPreferences')}</li>
+        <li>{t('binaryOnOffStates')}</li>
+        <li>{t('quickTogglesForOptions')}</li>
+        <li>{t('mobileFriendlyControls')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Switch: the main wrapper for creating toggle controls that enable or disable features with immediate visual feedback.
-- Switch States: multiple interaction states (on, off, disabled) with clear visual indicators and smooth transitions.
-- Switch Validation: built-in validation support with error messages, help text, and form integration capabilities.
-- Switch Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for toggle controls.
-- Switch Customization: flexible sizing, styling, and appearance options for different design contexts and brand needs.
-- Switch Integration: seamless form integration with controlled and uncontrolled state management for various use cases.
+export const WhenNotToUseSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenNotToUseSwitch')}</h3>
+      <ul>
+        <li>{t('forMultipleSelectionsUseCheckboxInstead')}</li>
+        <li>{t('forSingleChoiceFromMultipleOptionsUseRadioInstead')}</li>
+        <li>{t('forPrimaryActionsUseButtonInstead')}</li>
+        <li>{t('whenYouNeedToShowIntermediateStates')}</li>
+      </ul>
+    </>
+  );
+};
 
-### When to use
-- Enabling or disabling features
-- Settings and preferences
-- Binary on/off states
-- Quick toggles for options
-- Mobile-friendly controls
+export const UsageSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageSwitch')}</h2>;
+};
 
-### When not to use
-- For multiple selections (use Checkbox instead)
-- For single choice from multiple options (use Radio instead)
-- For primary actions (use Button instead)
-- When you need to show intermediate states
+export const VariantsSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsSwitch')}</h2>;
+};
 
-## Usage
+export const WithDisabledStateSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDisabledState')}</h2>;
+};
+
+export const DisabledSwitchTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('disabledSwitch');
+};
+
+export const PropsSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsSwitch')}</h2>;
+};
+
+export const AccessibilitySwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilitySwitch')}</h2>;
+};
+
+export const DesignGuidelinesSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesSwitch')}</h2>;
+};
+
+export const AccessibilitySwitchList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('switchesHaveProperLabelsAndAssociations')}</li>
+      <li>{t('screenReadersCanIdentifySwitchStates')}</li>
+      <li>{t('keyboardNavigationIsSupportedSwitch')}</li>
+      <li>{t('focusManagementIsHandledCorrectlySwitch')}</li>
+      <li>{t('properAriaAttributesAreAppliedSwitch')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSwitchList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabelsSwitch')}</li>
+      <li>{t('useConsistentSizingAcrossYourApplication')}</li>
+      <li>{t('provideClearVisualFeedbackForAllStates')}</li>
+      <li>{t('groupRelatedSwitchesTogether')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileSwitch')}</li>
+    </ul>
+  );
+};
+
+<SwitchComponentHeader />
+
+<SwitchComponentDescription />
+
+<SwitchIntroduction />
+
+<WhenToUseSwitchSection />
+
+<WhenNotToUseSwitchSection />
+
+<UsageSwitchSection />
 
 <CodeBlock language="tsx">
 {`import { Switch } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsSwitchSection />
 
-
-## With Disabled State
+<WithDisabledStateSection />
 
 <CodeBlockWithPreview 
-  title="Disabled Switch"
+  title={<DisabledSwitchTitle />}
   preview={
     <div className="flex-vertical">
       <Switch id="enabled" label="Enabled switch" />
@@ -63,7 +165,7 @@ export const DisabledSwitchExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSwitchSection />
 
 <PropsTable props={[
   {
@@ -117,20 +219,12 @@ export const DisabledSwitchExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySwitchSection />
 
-- Switches have proper labels and associations
-- Screen readers can identify switch states
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
+<AccessibilitySwitchList />
 
-## Design Guidelines
+<DesignGuidelinesSwitchSection />
 
-- Always provide clear labels
-- Use consistent sizing across your application
-- Provide clear visual feedback for all states
-- Group related switches together
-- Ensure sufficient touch targets on mobile
+<DesignGuidelinesSwitchList />
 
 

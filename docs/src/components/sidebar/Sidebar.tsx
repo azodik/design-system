@@ -14,6 +14,8 @@ import {
 } from "@azodik/ui";
 import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
 import ThemeToggle from "../ThemeToggle";
+import LanguageSelector from "../LanguageSelector";
+import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -39,6 +41,7 @@ export default function SidebarLayout({
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguageTranslation();
 
   // Check screen size on mount and resize
   useEffect(() => {
@@ -165,7 +168,7 @@ export default function SidebarLayout({
                     active={isActive}
                     style={{ cursor: "pointer" }}
                   >
-                    {item.name}
+                    {t(item.nameKey)}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               );
@@ -180,6 +183,7 @@ export default function SidebarLayout({
         sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
         showBreadcrumb={showBreadcrumb}
         showToggleOnDesktop={false}
+        languageSelector={<LanguageSelector />}
         themeToggle={<ThemeToggle />}
         breadcrumb={
           breadcrumb || (

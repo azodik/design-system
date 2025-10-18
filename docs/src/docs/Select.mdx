@@ -1,6 +1,107 @@
 import { Select, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview, ComponentNavigation } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const SelectComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('selectComponent')}</h1>;
+};
+
+export const SelectComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('selectDescription')}</p>;
+};
+
+export const SelectIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('selectIntroduction')}</h2>
+      <p>{t('selectIntroDesc')}</p>
+      <ul>
+        <li>{t('selectMainWrapper')}</li>
+        <li>{t('selectOptions')}</li>
+        <li>{t('selectValidation')}</li>
+        <li>{t('selectAccessibility')}</li>
+        <li>{t('selectCustomization')}</li>
+        <li>{t('selectStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseSelect')}</h3>
+      <ul>
+        <li>{t('choosingFromAListOfPredefinedOptions')}</li>
+        <li>{t('formFieldsWithLimitedChoices')}</li>
+        <li>{t('countryStateOrCategorySelection')}</li>
+        <li>{t('settingsAndConfigurationOptions')}</li>
+        <li>{t('filteringAndSortingOptions')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageSelect')}</h2>;
+};
+
+export const VariantsSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsSelect')}</h2>;
+};
+
+export const BasicSelectTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicSelect');
+};
+
+export const PropsSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsSelect')}</h2>;
+};
+
+export const AccessibilitySelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilitySelect')}</h2>;
+};
+
+export const DesignGuidelinesSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesSelect')}</h2>;
+};
+
+export const AccessibilitySelectList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('selectsHaveProperLabelsAndAssociations')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReaders')}</li>
+      <li>{t('keyboardNavigationIsSupportedSelect')}</li>
+      <li>{t('focusManagementIsHandledCorrectlySelect')}</li>
+      <li>{t('colorContrastMeetsWCAGGuidelines')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSelectList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabelsSelect')}</li>
+      <li>{t('useDescriptiveOptionText')}</li>
+      <li>{t('groupRelatedOptionsTogether')}</li>
+      <li>{t('provideADefaultPlaceholderOption')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileSelect')}</li>
+    </ul>
+  );
+};
 
 export const ControlledSelectExample = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -32,38 +133,24 @@ export const ControlledSelectExample = () => {
   );
 };
 
-# Select Component
+<SelectComponentHeader />
 
-The Select component provides dropdown selection menus for choosing from predefined options. It's perfect for forms that require users to select from a list of choices.
+<SelectComponentDescription />
 
-## Introduction
+<SelectIntroduction />
 
-The Select component includes several complementary features to handle various dropdown selection scenarios:
+<WhenToUseSelectSection />
 
-- Select: the main wrapper for creating dropdown selection menus with predefined options and clean interfaces.
-- Select Options: flexible option management with value/label pairs, grouping, and dynamic option loading.
-- Select Validation: built-in validation support with error messages, success states, and form integration.
-- Select Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for dropdown controls.
-- Select Customization: flexible sizing, styling, and appearance options for different design contexts.
-- Select States: support for disabled, loading, and interactive states with appropriate visual feedback.
-
-### When to use
-- Choosing from a list of predefined options
-- Form fields with limited choices
-- Country, state, or category selection
-- Settings and configuration options
-- Filtering and sorting options
-
-## Usage
+<UsageSelectSection />
 
 <CodeBlock language="tsx">
 {`import { Select } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsSelectSection />
 
 <CodeBlockWithPreview 
-  title="Basic Select"
+  title={<BasicSelectTitle />}
   preview={<ControlledSelectExample />}
 >
 {`import { Select } from '@azodik/ui';
@@ -100,7 +187,7 @@ export default function BasicSelect() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSelectSection />
 
 <PropsTable props={[
   {
@@ -175,20 +262,12 @@ export default function BasicSelect() {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySelectSection />
 
-- Selects have proper labels and associations
-- Error messages are announced to screen readers
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Color contrast meets WCAG guidelines
+<AccessibilitySelectList />
 
-## Design Guidelines
+<DesignGuidelinesSelectSection />
 
-- Always provide clear labels
-- Use descriptive option text
-- Group related options together
-- Provide a default placeholder option
-- Ensure sufficient touch targets on mobile
+<DesignGuidelinesSelectList />
 
 <ComponentNavigation />

@@ -1,38 +1,145 @@
 import { Tabs, TabList, TabTrigger, TabContent, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Tabs Component
+export const TabsComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('tabsComponent')}</h1>;
+};
 
-The Tabs component organizes content into multiple panels with tab navigation. It provides a clean way to group related content and improve user experience.
+export const TabsComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('tabsDescription')}</p>;
+};
 
-## Introduction
+export const TabsIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('tabsIntroduction')}</h2>
+      <p>{t('tabsIntroDesc')}</p>
+      <ul>
+        <li>{t('tabsMainWrapper')}</li>
+        <li>{t('tabNavigation')}</li>
+        <li>{t('tabContent')}</li>
+        <li>{t('tabStateManagement')}</li>
+        <li>{t('tabCustomization')}</li>
+        <li>{t('tabAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Tabs component includes several complementary features to handle various content organization and navigation scenarios:
+export const WhenToUseTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTabs')}</h3>
+      <ul>
+        <li>{t('organizingRelatedContentIntoSections')}</li>
+        <li>{t('switchingBetweenDifferentViewsOrModes')}</li>
+        <li>{t('groupingFormFieldsOrSettings')}</li>
+        <li>{t('displayingDifferentDataSets')}</li>
+        <li>{t('creatingWizardLikeInterfaces')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Tabs: the main wrapper for creating tabbed interfaces that organize content into logical sections and improve navigation.
-- Tab Navigation: flexible tab list with triggers, active states, and customizable styling for different content sections.
-- Tab Content: organized content areas that show/hide based on active tab selection with smooth transitions.
-- Tab State Management: controlled and uncontrolled state handling with proper tab switching and content management.
-- Tab Customization: flexible styling, sizing, and appearance options for different design contexts and brand needs.
-- Tab Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for tabbed interfaces.
+export const UsageTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTabs')}</h2>;
+};
 
-### When to use
-- Organizing related content into sections
-- Switching between different views or modes
-- Grouping form fields or settings
-- Displaying different data sets
-- Creating wizard-like interfaces
+export const VariantsTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTabs')}</h2>;
+};
 
-## Usage
+export const AllTabsVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allTabsVariants');
+};
+
+export const SomeVariantsExampleSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const PropsTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTabs')}</h2>;
+};
+
+export const TabListPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tabListProps');
+};
+
+export const TabTriggerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tabTriggerProps');
+};
+
+export const TabContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tabContentProps');
+};
+
+export const AccessibilityTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTabs')}</h2>;
+};
+
+export const DesignGuidelinesTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTabs')}</h2>;
+};
+
+export const AccessibilityTabsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('tabsHaveProperAriaAttributes')}</li>
+      <li>{t('keyboardNavigationIsSupportedTabs')}</li>
+      <li>{t('screenReadersCanIdentifyActiveTab')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyTabs')}</li>
+      <li>{t('tabContentIsProperlyAssociated')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTabsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveTabLabels')}</li>
+      <li>{t('keepTheNumberOfTabsReasonable')}</li>
+      <li>{t('ensureTabContentIsRelatedAndMeaningful')}</li>
+      <li>{t('useConsistentStylingAcrossAllTabs')}</li>
+      <li>{t('considerMobileResponsivenessForTabNavigation')}</li>
+    </ul>
+  );
+};
+
+<TabsComponentHeader />
+
+<TabsComponentDescription />
+
+<TabsIntroduction />
+
+<WhenToUseTabsSection />
+
+<UsageTabsSection />
 
 <CodeBlock language="tsx">
 {`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsTabsSection />
 
 <CodeBlockWithPreview 
-  title="All Tabs Variants"
+  title={<AllTabsVariantsTitle />}
   preview={
     <Tabs defaultValue="tab1">
       <TabList>
@@ -103,10 +210,10 @@ export const TabsExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Some Variants Example
+<SomeVariantsExampleSection />
 
 <CodeBlockWithPreview 
-  title="All Tabs Variants"
+  title={<AllTabsVariantsTitle />}
   preview={
     <Tabs defaultValue="tab1">
       <TabList>
@@ -177,7 +284,7 @@ export const TabsExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsTabsSection />
 
 <PropsTable props={[
   {
@@ -217,7 +324,7 @@ export const TabsExample = () => {
   }
 ]} />
 
-## TabList Props
+<TabListPropsTitle />
 
 <PropsTable props={[
   {
@@ -250,7 +357,7 @@ export const TabsExample = () => {
   }
 ]} />
 
-## TabTrigger Props
+<TabTriggerPropsTitle />
 
 <PropsTable props={[
   {
@@ -304,7 +411,7 @@ export const TabsExample = () => {
   }
 ]} />
 
-## TabContent Props
+<TabContentPropsTitle />
 
 <PropsTable props={[
   {
@@ -344,18 +451,10 @@ export const TabsExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityTabsSection />
 
-- Tabs have proper ARIA attributes
-- Keyboard navigation is supported
-- Screen readers can identify active tab
-- Focus management is handled correctly
-- Tab content is properly associated
+<AccessibilityTabsList />
 
-## Design Guidelines
+<DesignGuidelinesTabsSection />
 
-- Use clear and descriptive tab labels
-- Keep the number of tabs reasonable (3-5 tabs max)
-- Ensure tab content is related and meaningful
-- Use consistent styling across all tabs
-- Consider mobile responsiveness for tab navigation
+<DesignGuidelinesTabsList />

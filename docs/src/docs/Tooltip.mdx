@@ -1,5 +1,111 @@
 import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TooltipComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('tooltipComponent')}</h1>;
+};
+
+export const TooltipComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('tooltipDescription')}</p>;
+};
+
+export const TooltipIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('tooltipIntroduction')}</h2>
+      <p>{t('tooltipIntroDesc')}</p>
+      <ul>
+        <li>{t('tooltipMainWrapper')}</li>
+        <li>{t('tooltipPositioning')}</li>
+        <li>{t('tooltipTriggers')}</li>
+        <li>{t('tooltipContent')}</li>
+        <li>{t('tooltipCustomization')}</li>
+        <li>{t('tooltipAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTooltip')}</h3>
+      <ul>
+        <li>{t('provideAdditionalContextOrExplanations')}</li>
+        <li>{t('showHelpfulHintsOrTips')}</li>
+        <li>{t('explainAbbreviationsOrTechnicalTerms')}</li>
+        <li>{t('displayAdditionalInformationAboutIconsOrButtons')}</li>
+        <li>{t('guideUsersThroughComplexInterfaces')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTooltip')}</h2>;
+};
+
+export const VariantsTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTooltip')}</h2>;
+};
+
+export const BasicTooltipTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicTooltip');
+};
+
+export const MultipleTooltipsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('multipleTooltips');
+};
+
+export const PropsTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTooltip')}</h2>;
+};
+
+export const AccessibilityTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTooltip')}</h2>;
+};
+
+export const DesignGuidelinesTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTooltip')}</h2>;
+};
+
+export const AccessibilityTooltipList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('tooltipsAreAnnouncedToScreenReaders')}</li>
+      <li>{t('keyboardNavigationIsSupportedTooltip')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyTooltip')}</li>
+      <li>{t('properAriaAttributesAreAppliedTooltip')}</li>
+      <li>{t('colorIsNotTheOnlyWayToConveyInformationTooltip')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTooltipList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepTooltipContentConciseAndHelpful')}</li>
+      <li>{t('useAppropriatePositioningToAvoidClipping')}</li>
+      <li>{t('ensureSufficientContrastForReadability')}</li>
+      <li>{t('dontRelySolelyOnTooltipsForCriticalInformation')}</li>
+      <li>{t('considerMobileTouchInteractions')}</li>
+    </ul>
+  );
+};
 
 export const BasicTooltipExample = () => {
   return (
@@ -30,38 +136,24 @@ export const MultipleTooltipsExample = () => {
   );
 };
 
-# Tooltip Component
+<TooltipComponentHeader />
 
-The Tooltip component provides contextual information that appears on hover or focus. It's perfect for providing additional details without cluttering the interface.
+<TooltipComponentDescription />
 
-## Introduction
+<TooltipIntroduction />
 
-The Tooltip component includes several complementary features to handle various contextual information and user guidance scenarios:
+<WhenToUseTooltipSection />
 
-- Tooltip: the main wrapper for creating contextual popup windows that provide additional information without cluttering the interface.
-- Tooltip Positioning: flexible positioning system with multiple placement options (top, bottom, left, right) and smart positioning logic.
-- Tooltip Triggers: hover and focus interactions with customizable trigger elements and timing controls for different use cases.
-- Tooltip Content: support for rich content including text, HTML, and React components for comprehensive information display.
-- Tooltip Customization: flexible styling, colors, sizing, and appearance options for different design contexts and brand needs.
-- Tooltip Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for contextual information consumption.
-
-### When to use
-- Provide additional context or explanations
-- Show helpful hints or tips
-- Explain abbreviations or technical terms
-- Display additional information about icons or buttons
-- Guide users through complex interfaces
-
-## Usage
+<UsageTooltipSection />
 
 <CodeBlock language="tsx">
 {`import { Tooltip } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsTooltipSection />
 
 <CodeBlockWithPreview 
-  title="Basic Tooltip"
+  title={<BasicTooltipTitle />}
   preview={<BasicTooltipExample />}
 >
 {`import { Tooltip, Button } from '@azodik/ui';
@@ -78,7 +170,7 @@ export default function BasicTooltip() {
 </CodeBlockWithPreview>
 
 <CodeBlockWithPreview 
-  title="Multiple Tooltips"
+  title={<MultipleTooltipsTitle />}
   preview={<MultipleTooltipsExample />}
 >
 {`import { Tooltip, Button } from '@azodik/ui';
@@ -103,7 +195,7 @@ export default function MultipleTooltips() {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsTooltipSection />
 
 <PropsTable props={[
   {
@@ -136,19 +228,11 @@ export default function MultipleTooltips() {
   }
 ]} />
 
-## Accessibility
+<AccessibilityTooltipSection />
 
-- Tooltips are announced to screen readers
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
-- Color is not the only way to convey information
+<AccessibilityTooltipList />
 
-## Design Guidelines
+<DesignGuidelinesTooltipSection />
 
-- Keep tooltip content concise and helpful
-- Use appropriate positioning to avoid clipping
-- Ensure sufficient contrast for readability
-- Don't rely solely on tooltips for critical information
-- Consider mobile touch interactions
+<DesignGuidelinesTooltipList />
 
