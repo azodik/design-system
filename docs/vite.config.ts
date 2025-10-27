@@ -18,10 +18,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  publicDir: path.resolve(__dirname, "../apps/playground/public"),
   server: {
     port: 3000,
   },
   optimizeDeps: {
     include: ["@mdx-js/react"],
+  },
+  build: {
+    copyPublicDir: true,
   },
 });
