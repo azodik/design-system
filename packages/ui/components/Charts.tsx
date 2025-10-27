@@ -27,8 +27,8 @@ export interface ChartProps {
   data: ChartData[];
   title?: string;
   subtitle?: string;
-  width?: number | string;
-  height?: number | string;
+  width?: number | `${number}%`;
+  height?: number | `${number}%`;
   className?: string;
   showLegend?: boolean;
   showTooltip?: boolean;
