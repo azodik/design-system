@@ -2,11 +2,11 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // Import translations
-import en from '../../apps/playground/public/locales/en.json';
-import hi from '../../apps/playground/public/locales/hi.json';
-import fr from '../../apps/playground/public/locales/fr.json';
-import de from '../../apps/playground/public/locales/de.json';
-import es from '../../apps/playground/public/locales/es.json';
+import en from '../public/locales/en.json';
+import hi from '../public/locales/hi.json';
+import fr from '../public/locales/fr.json';
+import de from '../public/locales/de.json';
+import es from '../public/locales/es.json';
 
 const resources = {
   en: { translation: en },
