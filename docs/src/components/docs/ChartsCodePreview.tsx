@@ -58,8 +58,8 @@ export default function ChartsCodePreview({
           <Card
             className="border rounded-lg"
             style={{
-              backgroundColor: "var(--preview-bg)",
-              borderColor: "var(--preview-border)",
+              backgroundColor: "var(--color-surface)",
+              borderColor: "var(--color-border)",
               marginLeft: '0px',
               overflowX: 'auto',
               overflowY: 'hidden',
