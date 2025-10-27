@@ -1107,5 +1107,15 @@
   "preview": "Previsualización",
   "code": "Código",
   "copied": "¡Copiado!",
-  "copyCode": "Copiar código"
+  "copyCode": "Copiar código",
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "¡Ups! La página que buscas no existe o ha sido movida.",
+    "goHome": "Ir al inicio",
+    "goBack": "Volver",
+    "helpText": "¿Necesitas ayuda? Consulta nuestra",
+    "gettingStarted": "guía de inicio",
+    "orBrowse": "o explora nuestros",
+    "components": "Componentes"
+  }
 }
