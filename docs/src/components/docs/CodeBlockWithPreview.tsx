@@ -93,12 +93,12 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
                 fontSize: "0.875rem",
                 lineHeight: "1.5",
                 padding: "1rem",
-                background: "#1e1e1e",
-                color: "#d4d4d4",
+                background: "var(--color-background)",
+                color: "var(--color-text)",
                 height: "100%",
                 minHeight: "100%",
                 scrollbarWidth: "thin",
-                scrollbarColor: "#d1d5db transparent",
+                scrollbarColor: "var(--color-border) transparent",
               }}
               wrapLines={true}
               wrapLongLines={true}
