@@ -1,6 +1,6 @@
 {
   "name": "azodik-ui-core",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "index.css",
   "types": "index.d.ts",
   "license": "MIT",

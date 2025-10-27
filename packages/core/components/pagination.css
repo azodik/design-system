@@ -58,7 +58,7 @@
 
 .pagination-link.active {
   background: var(--color-primary) !important;
-  color: white !important;
+  color: var(--color-primary-text, white) !important;
   border-color: var(--color-primary) !important;
 }
 

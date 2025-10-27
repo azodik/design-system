@@ -4,7 +4,9 @@ import App from "@/App";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 import "azodik-ui-core/index.css";
+import "@/styles/docs.css";
 import "@/styles/fonts.css";
+
 import "@/i18n";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

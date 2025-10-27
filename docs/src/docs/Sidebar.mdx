@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  useResponsiveSidebar,
   Card, 
   CardContent 
 } from '@azodik/ui';
@@ -198,7 +199,8 @@ export const DesignGuidelinesSidebarList = () => {
   SidebarUserDropdown,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton
+  SidebarMenuButton,
+  useResponsiveSidebar
 } from '@azodik/ui';`}
 </CodeBlock>
 
@@ -208,7 +210,8 @@ export const DesignGuidelinesSidebarList = () => {
 
 <SidebarCodePreview
   preview={<BasicSidebarExample />}
-  code={`import { 
+  code={`import { useState, useEffect } from 'react';
+import { 
   Sidebar, 
   SidebarHeader, 
   SidebarContent, 
@@ -216,10 +219,18 @@ export const DesignGuidelinesSidebarList = () => {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMainContent
+  SidebarMainContent,
+  useResponsiveSidebar
 } from '@azodik/ui';
 
 function BasicSidebarExample() {
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  } = useResponsiveSidebar();
+
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <Sidebar 
@@ -344,17 +355,35 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMainContent
+  SidebarMainContent,
+  useResponsiveSidebar
 } from '@azodik/ui';
 
 function CollapsibleSidebarExample() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  } = useResponsiveSidebar();
+
+  const handleToggle = () => {
+    if (isSmallScreen) {
+      handleSidebarToggle();
+    } else {
+      setIsCollapsed(!isCollapsed);
+    }
+  };
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <Sidebar 
-        width={isCollapsed ? 60 : 250}
-        collapsed={isCollapsed}
+        width={isSmallScreen ? 280 : isCollapsed ? 60 : 250}
+        collapsed={!isSmallScreen && isCollapsed}
+        isSidebarOpen={isSidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+        isSmallScreen={isSmallScreen}
       >
         <SidebarHeader>
           <SidebarBrand>My App</SidebarBrand>
@@ -388,9 +417,10 @@ function CollapsibleSidebarExample() {
       </Sidebar>
       
       <SidebarMainContent
-        onSidebarToggle={handleSidebarToggle}
+        onSidebarToggle={handleToggle}
         isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
         showToggleOnDesktop={true}
+        isSmallScreen={isSmallScreen}
       >
         <div className="p-6">
           <h1>Main Content</h1>
@@ -543,29 +573,36 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMainContent
+  SidebarMainContent,
+  useResponsiveSidebar
 } from '@azodik/ui';
 
 function ResponsiveSidebarExample() {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  } = useResponsiveSidebar();
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+  const handleToggle = () => {
+    if (isSmallScreen) {
+      handleSidebarToggle();
+    } else {
+      setIsCollapsed(!isCollapsed);
+    }
+  };
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <Sidebar 
-        width={isMobile ? 280 : isCollapsed ? 60 : 250}
-        collapsed={!isMobile && isCollapsed}
-        className={isMobile ? 'mobile-sidebar' : ''}
+        width={isSmallScreen ? 280 : isCollapsed ? 60 : 250}
+        collapsed={!isSmallScreen && isCollapsed}
+        isSidebarOpen={isSidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+        isSmallScreen={isSmallScreen}
+        className={isSmallScreen ? 'mobile-sidebar' : ''}
       >
         <SidebarHeader>
           <SidebarBrand>Responsive App</SidebarBrand>
@@ -606,10 +643,10 @@ function ResponsiveSidebarExample() {
       </Sidebar>
       
       <SidebarMainContent
-        onSidebarToggle={handleSidebarToggle}
+        onSidebarToggle={handleToggle}
         isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
         showToggleOnDesktop={true}
-        hideToggleOnDesktop={false}
+        isSmallScreen={isSmallScreen}
       >
         <div className="p-6">
           <h1>Responsive Layout</h1>
@@ -688,6 +725,27 @@ function ResponsiveSidebarExample() {
     required: false,
     default: '-',
     description: 'Function called when user actions are triggered'
+  },
+  {
+    name: 'isSidebarOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the sidebar is open (for responsive behavior)'
+  },
+  {
+    name: 'onSidebarToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when sidebar toggle is clicked'
+  },
+  {
+    name: 'isSmallScreen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the current screen is small (for responsive behavior)'
   },
   {
     name: 'className',
@@ -902,18 +960,32 @@ function ResponsiveSidebarExample() {
     description: 'Whether to show breadcrumb navigation'
   },
   {
-    name: 'showToggleButton',
-    type: 'boolean',
-    required: false,
-    default: 'true',
-    description: 'Whether to show the sidebar toggle button'
-  },
-  {
-    name: 'hideToggleOnDesktop',
+    name: 'showToggleOnDesktop',
     type: 'boolean',
     required: false,
     default: 'false',
-    description: 'Whether to hide toggle button on desktop screens'
+    description: 'Whether to show toggle button on desktop screens'
+  },
+  {
+    name: 'themeToggle',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Theme toggle component to display in header'
+  },
+  {
+    name: 'languageSelector',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Language selector component to display in header'
+  },
+  {
+    name: 'isSmallScreen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the current screen is small (for responsive behavior)'
   },
   {
     name: 'className',
@@ -921,6 +993,164 @@ function ResponsiveSidebarExample() {
     required: false,
     default: '""',
     description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Additional Components
+
+The sidebar package includes several additional components for enhanced functionality:
+
+### SidebarGroup
+
+A collapsible group component for organizing sidebar items.
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Group content (typically SidebarMenu items)'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Group title text'
+  },
+  {
+    name: 'collapsible',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the group can be collapsed'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display with the group title'
+  },
+  {
+    name: 'isOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the group is initially open'
+  },
+  {
+    name: 'onToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when group is toggled'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the group'
+  }
+]} />
+
+### SidebarBrand
+
+A component for displaying the application brand/logo in the sidebar header.
+
+<PropsTable props={[
+  {
+    name: 'logo',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Logo component or image'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Brand title text'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the brand'
+  }
+]} />
+
+### SidebarUser
+
+A component for displaying user information in the sidebar footer.
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'User name or display text'
+  },
+  {
+    name: 'avatar',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL of user avatar image'
+  },
+  {
+    name: 'email',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'User email address'
+  },
+  {
+    name: 'actions',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Action buttons or dropdown menu'
+  }
+]} />
+
+### useResponsiveSidebar Hook
+
+A custom hook that provides responsive sidebar functionality with automatic screen size detection.
+
+<PropsTable props={[
+  {
+    name: 'isSidebarOpen',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Current sidebar open state'
+  },
+  {
+    name: 'isSmallScreen',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the current screen is small (≤1024px)'
+  },
+  {
+    name: 'handleSidebarToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function to toggle sidebar state'
+  },
+  {
+    name: 'closeSidebar',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function to close the sidebar'
   }
 ]} />
 

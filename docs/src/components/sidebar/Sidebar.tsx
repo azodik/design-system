@@ -85,7 +85,7 @@ export default function SidebarLayout({
   // Get current component name from URL
   const getCurrentComponent = () => {
     const pathParts = location.pathname.split("/");
-    
+
     // Handle /components/docs/componentName pattern
     if (pathParts[1] === "components" && pathParts[2] === "docs" && pathParts[3]) {
       if (pathParts[3] === "getting-started") {
@@ -94,7 +94,7 @@ export default function SidebarLayout({
       const componentName = pathParts[3].charAt(0).toUpperCase() + pathParts[3].slice(1);
       return componentName;
     }
-    
+
     // Handle /components/componentName pattern (fallback)
     if (pathParts[1] === "components" && pathParts[2]) {
       if (pathParts[2] === "getting-started") {
@@ -103,24 +103,24 @@ export default function SidebarLayout({
       const componentName = pathParts[2].charAt(0).toUpperCase() + pathParts[2].slice(1);
       return componentName;
     }
-    
+
     return null;
   };
 
   // Generate breadcrumb items based on current route
   const getBreadcrumbItems = () => {
     const currentComponent = getCurrentComponent();
-    
+
     // For mobile view, show only component name (even if breadcrumbItems prop is passed)
     if (isSmallScreen && currentComponent) {
       return [{ label: currentComponent, current: true }];
     }
-    
+
     // For desktop view, use passed breadcrumbItems or generate default
     if (breadcrumbItems) {
       return breadcrumbItems;
     }
-    
+
     // Generate default desktop breadcrumb
     const items: Array<{
       label: string;
@@ -152,9 +152,18 @@ export default function SidebarLayout({
         showBreadcrumb={true}
       >
         <SidebarHeader show={true}>
-          <SidebarBrand show={true} onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
-            Azodik UI
-          </SidebarBrand>
+          <SidebarBrand
+            logo={
+              <img
+                src="https://cdn.azodik.com/azodik/logo.svg"
+                alt="Azodik Logo"
+                width="64px"
+                height="48px"
+              />
+            }
+            title="Azodik UI"
+            onClick={() => navigate("/")}
+          />
         </SidebarHeader>
 
         <SidebarContent>

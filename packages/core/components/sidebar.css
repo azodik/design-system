@@ -299,13 +299,13 @@
 }
 
 .sidebar-item a:hover {
-  background: #f8edd8;
-  color: #ff7f27;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .sidebar-item a.active {
-  background: #f8edd8;
-  color: #ff7f27;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -357,15 +357,12 @@
 }
 
 .sidebar-brand-logo {
-  width: 28px;
-  height: 28px;
-  background: var(--color-primary);
-  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: bold;
   flex-shrink: 0;
 }
 
@@ -377,7 +374,7 @@
 .sidebar-brand-title {
   font-size: var(--font-size-md);
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-primary);
   margin: 0;
   line-height: 1.2;
 }
@@ -615,24 +612,24 @@
 
 /* Dark theme sidebar menu hover and active states */
 [data-theme="dark"] .sidebar-item a:hover {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 [data-theme="dark"] .sidebar-item a.active {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
 [data-theme="dark"] .sidebar-group-header:hover {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 [data-theme="dark"] .sidebar-group-header.active {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 /* Light theme main content header styles */

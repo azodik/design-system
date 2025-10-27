@@ -287,16 +287,14 @@ export function SidebarItem({
 
 // Sidebar Brand Component
 export interface SidebarBrandProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
   logo?: React.ReactNode;
-  subtitle?: string;
+  title?: string;
   show?: boolean;
 }
 
 export function SidebarBrand({
-  children,
   logo,
-  subtitle,
+  title,
   show = true,
   className = "",
   ...props
@@ -307,8 +305,7 @@ export function SidebarBrand({
     <div className={`sidebar-brand ${className}`} {...props}>
       {logo && <div className="sidebar-brand-logo">{logo}</div>}
       <div className="sidebar-brand-content">
-        <div className="sidebar-brand-title">{children}</div>
-        {subtitle && <div className="sidebar-brand-subtitle">{subtitle}</div>}
+        {title && <div className="sidebar-brand-title">{title}</div>}
       </div>
     </div>
   );
