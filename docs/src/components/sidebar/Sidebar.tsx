@@ -153,14 +153,6 @@ export default function SidebarLayout({
       >
         <SidebarHeader show={true}>
           <SidebarBrand
-            logo={
-              <img
-                src="https://cdn.azodik.com/azodik/logo.svg"
-                alt="Azodik Logo"
-                width="64px"
-                height="48px"
-              />
-            }
             title="Azodik UI"
             onClick={() => navigate("/")}
           />
