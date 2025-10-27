@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { allRoutes } from "@/Routes";
+import NotFoundPage from "@/pages/NotFoundPage";
 import "@/styles/homepage.css";
 
 export default function App() {
@@ -11,7 +12,7 @@ export default function App() {
         ))}
 
         {/* Fallback Route */}
-        <Route path="*" element={<div>404 - Page Not Found</div>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

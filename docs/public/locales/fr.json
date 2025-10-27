@@ -1107,5 +1107,15 @@
   "preview": "Aperçu",
   "code": "Code",
   "copied": "Copié !",
-  "copyCode": "Copier le code"
+  "copyCode": "Copier le code",
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Oups ! La page que vous recherchez n'existe pas ou a été déplacée.",
+    "goHome": "Retour à l'accueil",
+    "goBack": "Retour",
+    "helpText": "Besoin d'aide ? Consultez notre",
+    "gettingStarted": "guide de démarrage",
+    "orBrowse": "ou parcourez nos",
+    "components": "Composants"
+  }
 }

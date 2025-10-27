@@ -1107,5 +1107,15 @@
     "preview": "Preview",
     "code": "Code",
     "copied": "Copied!",
-    "copyCode": "Copy code"
+    "copyCode": "Copy code",
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "Oops! The page you're looking for doesn't exist or has been moved.",
+      "goHome": "Go Home",
+      "goBack": "Go Back",
+      "helpText": "Need help? Check out our",
+      "gettingStarted": "Getting Started guide",
+      "orBrowse": "or browse our",
+      "components": "Components"
+    }
   }

@@ -299,13 +299,13 @@
 }
 
 .sidebar-item a:hover {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .sidebar-item a.active {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--color-border);
+  color: var(--color-text);
   font-weight: 500;
 }
 
@@ -612,24 +612,24 @@
 
 /* Dark theme sidebar menu hover and active states */
 [data-theme="dark"] .sidebar-item a:hover {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 [data-theme="dark"] .sidebar-item a.active {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--color-border);
+  color: var(--color-text);
   font-weight: 500;
 }
 
 [data-theme="dark"] .sidebar-group-header:hover {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 [data-theme="dark"] .sidebar-group-header.active {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--color-border);
+  color: var(--color-text);
 }
 
 /* Light theme main content header styles */
