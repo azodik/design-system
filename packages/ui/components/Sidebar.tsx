@@ -564,6 +564,7 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
   sidebarToggleIcon?: React.ReactNode;
   showToggleOnDesktop?: boolean;
   themeToggle?: React.ReactNode;
+  languageSelector?: React.ReactNode;
   isSmallScreen?: boolean;
 }
 
@@ -577,6 +578,7 @@ export function SidebarMainContent({
   showBreadcrumb = true,
   showToggleOnDesktop = false,
   themeToggle,
+  languageSelector,
   isSmallScreen = false,
   className = "",
   ...props
@@ -618,10 +620,21 @@ export function SidebarMainContent({
           </div>
         )}
         
-        {/* Theme Toggle Section */}
-        {themeToggle && (
+        {/* Language Selector and Theme Toggle Section */}
+        {(languageSelector || themeToggle) && (
           <div className="theme-toggle-section">
-            {themeToggle}
+            <div className="flex items-center gap-2">
+              {languageSelector && (
+                <div className="language-selector-section">
+                  {languageSelector}
+                </div>
+              )}
+              {themeToggle && (
+                <div className="theme-toggle-wrapper">
+                  {themeToggle}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </header>

@@ -1,6 +1,132 @@
 import { DataTable, Card, CardContent, Button, Pagination } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const DataTableComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('dataTableComponent')}</h1>;
+};
+
+export const DataTableDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('dataTableDescription')}</p>;
+};
+
+export const DataTableIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('dataTableIntroduction')}</h2>
+      <p>{t('dataTableIntroDesc')}</p>
+      <ul>
+        <li>{t('dataTableMainWrapper')}</li>
+        <li>{t('dataTableSorting')}</li>
+        <li>{t('dataTableSelection')}</li>
+        <li>{t('dataTablePagination')}</li>
+        <li>{t('dataTableCustomization')}</li>
+        <li>{t('dataTableAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseDataTable')}</h3>
+      <ul>
+        <li>{t('displayingLargeDatasetsWithInteractiveFeatures')}</li>
+        <li>{t('tablesThatNeedSortingAndFiltering')}</li>
+        <li>{t('dataThatRequiresSelectionOrBulkActions')}</li>
+        <li>{t('complexDataGridsWithMultipleColumns')}</li>
+        <li>{t('administrativeInterfacesAndDashboards')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageDataTable')}</h2>;
+};
+
+export const VariantsDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsDataTable')}</h2>;
+};
+
+export const SomeExampleDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someExampleDataTable')}</h2>;
+};
+
+export const AllDataTableVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allDataTableVariants');
+};
+
+export const WithSelectionTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('withSelection');
+};
+
+export const DataTableWithSelectionTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dataTableWithSelection');
+};
+
+export const WithPaginationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('withPagination');
+};
+
+export const DataTableWithPaginationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dataTableWithPagination');
+};
+
+export const PropsDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsDataTable')}</h2>;
+};
+
+export const AccessibilityDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityDataTable')}</h2>;
+};
+
+export const DesignGuidelinesDataTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesDataTable')}</h2>;
+};
+
+export const AccessibilityDataTableList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('dataTableHasProperSemanticStructure')}</li>
+      <li>{t('screenReadersCanNavigateTableContent')}</li>
+      <li>{t('keyboardNavigationSupportedDataTable')}</li>
+      <li>{t('selectionStatesAreAnnounced')}</li>
+      <li>{t('sortControlsAreAccessible')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesDataTableList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveColumnHeaders')}</li>
+      <li>{t('keepTheNumberOfColumnsReasonable')}</li>
+      <li>{t('provideClearVisualFeedbackForInteractions')}</li>
+      <li>{t('ensureSufficientContrastForReadability')}</li>
+      <li>{t('considerMobileResponsiveness')}</li>
+    </ul>
+  );
+};
 
 export const SelectableDataTableExample = () => {
   const [selectedRowIds, setSelectedRowIds] = useState([]);
@@ -158,42 +284,26 @@ export const PaginatedDataTableExample = () => {
   );
 };
 
-# DataTable Component
+<DataTableComponentHeader />
 
-The DataTable component provides an advanced table with sorting, selection, and interactive features. It's perfect for displaying complex data with user interactions.
+<DataTableDescription />
 
-## Introduction
+<DataTableIntroduction />
 
-The DataTable component includes several complementary features to handle various data display and interaction scenarios:
+<WhenToUseDataTableSection />
 
-- DataTable: the main wrapper for creating advanced tables with interactive functionality and data management.
-- DataTable Sorting: built-in column sorting capabilities with visual indicators and direction controls.
-- DataTable Selection: row selection functionality with individual and bulk selection support for data operations.
-- DataTable Pagination: integrated pagination controls for handling large datasets efficiently.
-- DataTable Customization: flexible column rendering, styling, and responsive design options.
-- DataTable Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support.
-
-### When to use
-- Displaying large datasets with interactive features
-- Tables that need sorting and filtering
-- Data that requires selection or bulk actions
-- Complex data grids with multiple columns
-- Administrative interfaces and dashboards
-
-
-## Usage
+<UsageDataTableSection />
 
 <CodeBlock language="tsx">
 {`import { DataTable } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsDataTableSection />
 
-
-## Some Example
+<SomeExampleDataTableSection />
 
 <CodeBlockWithPreview 
-  title="All DataTable Variants"
+  title={<AllDataTableVariantsTitle />}
   preview={
     <div className="flex-vertical" style={{ width: '100%', overflow: 'hidden' }}>
       <div style={{ width: '100%', overflow: 'hidden' }}>
@@ -238,10 +348,10 @@ export const DataTableExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Selection
+<WithSelectionTitle />
 
 <CodeBlockWithPreview 
-  title="DataTable with Selection"
+  title={<DataTableWithSelectionTitle />}
   preview={<SelectableDataTableExample />}
 >
 {`import { DataTable, Button } from '@azodik/ui';
@@ -309,10 +419,10 @@ export const SelectableDataTableExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## With Pagination
+<WithPaginationTitle />
 
 <CodeBlockWithPreview 
-  title="DataTable with Pagination"
+  title={<DataTableWithPaginationTitle />}
   preview={<PaginatedDataTableExample />}
 >
 {`import { DataTable, Pagination } from '@azodik/ui';
@@ -372,7 +482,7 @@ export const PaginatedDataTableExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsDataTableSection />
 
 <PropsTable props={[
   {
@@ -489,18 +599,10 @@ export const PaginatedDataTableExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityDataTableSection />
 
-- DataTable has proper semantic structure
-- Screen readers can navigate table content
-- Keyboard navigation is supported
-- Selection states are announced
-- Sort controls are accessible
+<AccessibilityDataTableList />
 
-## Design Guidelines
+<DesignGuidelinesDataTableSection />
 
-- Use clear and descriptive column headers
-- Keep the number of columns reasonable
-- Provide clear visual feedback for interactions
-- Ensure sufficient contrast for readability
-- Consider mobile responsiveness
+<DesignGuidelinesDataTableList />

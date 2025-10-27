@@ -2,10 +2,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@azodik/ui";
 import { LeftLongArrowIcon, RightLongArrowIcon } from "@azodik/icons";
 import { componentsMenuItems } from "@/data/componentsMenu";
+import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 
 export default function ComponentNavigation() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguageTranslation();
 
   // Get current component index and navigation info
   const getNavigationInfo = () => {
@@ -47,7 +49,7 @@ export default function ComponentNavigation() {
         className="flex items-center gap-2"
       >
         <LeftLongArrowIcon size={16} color="currentColor" />
-        <span className="font-medium">{previous?.name || "Previous"}</span>
+        <span className="font-medium">{previous ? t(previous.nameKey) : t('previous')}</span>
       </Button>
 
       {/* Next Button */}
@@ -58,7 +60,7 @@ export default function ComponentNavigation() {
         size="md"
         className="flex items-center gap-2"
       >
-        <span className="font-medium">{next?.name || "Next"}</span>
+        <span className="font-medium">{next ? t(next.nameKey) : t('next')}</span>
         <RightLongArrowIcon size={16} color="currentColor" />
       </Button>
     </div>

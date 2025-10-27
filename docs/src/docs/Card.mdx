@@ -1,40 +1,151 @@
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
-# Card Component
+export const CardComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('cardComponent')}</h1>;
+};
 
-The Card component provides flexible containers for grouping related content and actions. It's perfect for displaying information in a structured and visually appealing way.
+export const CardDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('cardDescription')}</p>;
+};
 
-## Introduction
+export const CardIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('cardIntroDesc')}</p>
+      <ul>
+        <li>{t('cardMainWrapper')}</li>
+        <li>{t('cardHeader')}</li>
+        <li>{t('cardContent')}</li>
+        <li>{t('cardCustomization')}</li>
+        <li>{t('cardInteractions')}</li>
+        <li>{t('cardAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
 
-The Card component includes several complementary features to handle various content organization and presentation scenarios:
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('displayRelatedInformationTogether')}</li>
+        <li>{t('createContentBlocksOrSections')}</li>
+        <li>{t('showProductInformationOrUserProfiles')}</li>
+        <li>{t('groupFormElementsOrSettings')}</li>
+        <li>{t('displayStatisticsOrMetrics')}</li>
+      </ul>
+    </>
+  );
+};
 
-- Card: the main wrapper for creating flexible content containers and structured layouts.
-- Card Header: optional header section for titles, actions, and important information.
-- Card Content: the main content area for text, images, and other components.
-- Card Customization: flexible sizing, padding, colors, and styling options for different design needs.
-- Card Interactions: hover effects and interactive states to enhance user engagement.
-- Card Accessibility: proper semantic structure and focus management for screen reader support.
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
 
-### When to use
-- Display related information together
-- Create content blocks or sections
-- Show product information or user profiles
-- Group form elements or settings
-- Display statistics or metrics
+export const VariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variants')}</h2>;
+};
 
-## Usage
+export const SomeVariantsExample = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const AllCardVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allCardVariants');
+};
+
+export const WithHeaderAndTitleSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withHeaderAndTitle')}</h2>;
+};
+
+export const CardWithHeaderTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('cardWithHeader');
+};
+
+export const WithActionsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withActions')}</h2>;
+};
+
+export const CardWithActionsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('cardWithActions');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('cardsHaveSemanticStructure')}</li>
+      <li>{t('focusManagementForInteractiveCards')}</li>
+      <li>{t('screenReadersNavigateCardContent')}</li>
+      <li>{t('properHeadingHierarchyWhenUsingCardTitle')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useConsistentPaddingAndSpacing')}</li>
+      <li>{t('groupRelatedContentTogether')}</li>
+      <li>{t('provideClearVisualHierarchy')}</li>
+      <li>{t('useAppropriateElevationForDepth')}</li>
+      <li>{t('ensureSufficientContrast')}</li>
+    </ul>
+  );
+};
+
+<CardComponentHeader />
+
+<CardDescription />
+
+<CardIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
 
 <CodeBlock language="tsx">
 {`import { Card } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsSection />
 
-## Some Variants Example
+<SomeVariantsExample />
 
 <CodeBlockWithPreview 
-  title="All Card Variants"
+  title={<AllCardVariantsTitle />}
   preview={
     <div className="space-y-4">
       <Card padding="sm" rounded="sm">
@@ -68,10 +179,10 @@ export const CardExamples = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Header and Title
+<WithHeaderAndTitleSection />
 
 <CodeBlockWithPreview 
-  title="Card with Header"
+  title={<CardWithHeaderTitle />}
   preview={
     <Card>
       <CardHeader>
@@ -99,10 +210,10 @@ export const CardWithHeaderExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## With Actions
+<WithActionsSection />
 
 <CodeBlockWithPreview 
-  title="Card with Actions"
+  title={<CardWithActionsTitle />}
   preview={
     <Card>
       <CardHeader>
@@ -138,7 +249,7 @@ export const CardWithActionsExample = () => {
 };`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsSection />
 
 <PropsTable props={[
   {
@@ -220,18 +331,11 @@ export const CardWithActionsExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilitySection />
 
-- Cards have proper semantic structure
-- Focus management for interactive cards
-- Screen readers can navigate card content
-- Proper heading hierarchy when using CardTitle
+<AccessibilityList />
 
-## Design Guidelines
+<DesignGuidelinesSection />
 
-- Use consistent padding and spacing
-- Group related content together
-- Provide clear visual hierarchy
-- Use appropriate elevation for depth
-- Ensure sufficient contrast for readability
+<DesignGuidelinesList />
 

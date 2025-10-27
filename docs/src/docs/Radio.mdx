@@ -1,6 +1,112 @@
 import { Radio, Card, CardContent } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const RadioComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('radioComponent')}</h1>;
+};
+
+export const RadioComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('radioDescription')}</p>;
+};
+
+export const RadioIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('radioIntroduction')}</h2>
+      <p>{t('radioIntroDesc')}</p>
+      <ul>
+        <li>{t('radioMainWrapper')}</li>
+        <li>{t('radioGroups')}</li>
+        <li>{t('radioStates')}</li>
+        <li>{t('radioValidation')}</li>
+        <li>{t('radioAccessibility')}</li>
+        <li>{t('radioCustomization')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseRadio')}</h3>
+      <ul>
+        <li>{t('singleSelectionFromMultipleOptions')}</li>
+        <li>{t('choosingOneOptionFromAGroup')}</li>
+        <li>{t('settingsWithMutuallyExclusiveChoices')}</li>
+        <li>{t('formFieldsWithLimitedExclusiveOptions')}</li>
+        <li>{t('surveyQuestionsWithSingleAnswers')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageRadio')}</h2>;
+};
+
+export const VariantsRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsRadio')}</h2>;
+};
+
+export const WithDefaultSelectionRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDefaultSelectionRadio')}</h2>;
+};
+
+export const RadioWithDefaultSelectionTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('radioWithDefaultSelection');
+};
+
+export const PropsRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsRadio')}</h2>;
+};
+
+export const AccessibilityRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityRadio')}</h2>;
+};
+
+export const DesignGuidelinesRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesRadio')}</h2>;
+};
+
+export const AccessibilityRadioList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('radioButtonsHaveProperLabelsAndAssociations')}</li>
+      <li>{t('screenReadersCanIdentifyRadioButtonStates')}</li>
+      <li>{t('keyboardNavigationIsSupportedRadio')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyRadio')}</li>
+      <li>{t('properAriaAttributesAreAppliedRadio')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesRadioList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabels')}</li>
+      <li>{t('useConsistentSizingAcrossYourApplicationRadio')}</li>
+      <li>{t('groupRelatedRadioButtonsTogether')}</li>
+      <li>{t('provideClearVisualFeedbackForSelection')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileRadio')}</li>
+    </ul>
+  );
+};
 
 export const ControlledRadioExample = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -181,41 +287,26 @@ export const SizedRadioExample = () => {
   );
 };
 
-# Radio Component
+<RadioComponentHeader />
 
-The Radio component provides single-choice controls for selecting one option from a group. It's perfect for forms that require exclusive selection.
+<RadioComponentDescription />
 
-## Introduction
+<RadioIntroduction />
 
-The Radio component includes several complementary features to handle various single-choice selection scenarios:
+<WhenToUseRadioSection />
 
-- Radio: the main wrapper for creating single-choice selection controls with mutually exclusive options.
-- Radio Groups: automatic grouping functionality that ensures only one option can be selected at a time.
-- Radio States: multiple interaction states (checked, unchecked, disabled) with clear visual feedback.
-- Radio Validation: built-in validation support with error messages and form integration capabilities.
-- Radio Accessibility: proper ARIA attributes, keyboard navigation, and screen reader support for form controls.
-- Radio Customization: flexible sizing, styling, and labeling options for different design contexts.
-
-### When to use
-- Single selection from multiple options
-- Choosing one option from a group
-- Settings with mutually exclusive choices
-- Form fields with limited, exclusive options
-- Survey questions with single answers
-
-## Usage
+<UsageRadioSection />
 
 <CodeBlock language="tsx">
 {`import { Radio } from '@azodik/ui';`}
 </CodeBlock>
 
-## Variants
+<VariantsRadioSection />
 
-
-## With Default Selection
+<WithDefaultSelectionRadioSection />
 
 <CodeBlockWithPreview 
-  title="Radio with Default Selection"
+  title={<RadioWithDefaultSelectionTitle />}
   preview={<DefaultRadioExample />}
 >
 {`import { Radio } from '@azodik/ui';
@@ -266,7 +357,7 @@ export const DefaultRadioGroupExample = () => {
 }`}
 </CodeBlockWithPreview>
 
-## Props
+<PropsRadioSection />
 
 <PropsTable props={[
   {
@@ -299,18 +390,10 @@ export const DefaultRadioGroupExample = () => {
   }
 ]} />
 
-## Accessibility
+<AccessibilityRadioSection />
 
-- Radio buttons have proper labels and associations
-- Screen readers can identify radio button states
-- Keyboard navigation is supported
-- Focus management is handled correctly
-- Proper ARIA attributes are applied
+<AccessibilityRadioList />
 
-## Design Guidelines
+<DesignGuidelinesRadioSection />
 
-- Always provide clear labels
-- Use consistent sizing across your application
-- Group related radio buttons together
-- Provide clear visual feedback for selection
-- Ensure sufficient touch targets on mobile
+<DesignGuidelinesRadioList />
