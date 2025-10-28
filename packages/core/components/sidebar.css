@@ -138,7 +138,7 @@
 }
 
 .sidebar-header {
-  padding: var(--space-sm) var(--space-md);
+  padding-left: var(--space-md);
   border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
   min-height: 60px;
@@ -731,7 +731,7 @@
   .sidebar-toggle-button {
     display: none;
   }
-  
+
   /* Show toggle button on desktop when showToggleOnDesktop is true */
   .sidebar-toggle-button.show-on-desktop {
     display: flex;
@@ -748,35 +748,35 @@
     display: flex !important;
     align-items: center !important;
   }
-  
+
   .breadcrumb-section {
     flex: 1;
     min-width: 0;
     display: flex !important;
     align-items: center !important;
   }
-  
+
   .theme-toggle-section {
     flex-shrink: 0;
     margin-left: var(--space-xs);
     display: flex !important;
     align-items: center !important;
   }
-  
+
   /* Ensure breadcrumb is visible on mobile */
   .breadcrumb-container {
     overflow: visible;
     display: flex !important;
     align-items: center !important;
   }
-  
+
   /* Force breadcrumb to show on mobile */
   .breadcrumb {
     display: flex !important;
     align-items: center !important;
     gap: var(--space-xs) !important;
   }
-  
+
   .breadcrumb-item {
     display: flex !important;
     align-items: center !important;

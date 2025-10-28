@@ -152,10 +152,7 @@ export default function SidebarLayout({
         showBreadcrumb={true}
       >
         <SidebarHeader show={true}>
-          <SidebarBrand
-            title="Azodik UI"
-            onClick={() => navigate("/")}
-          />
+          <SidebarBrand title="Azodik UI" onClick={() => navigate("/")} />
         </SidebarHeader>
 
         <SidebarContent>
