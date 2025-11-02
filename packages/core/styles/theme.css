@@ -2,39 +2,54 @@
 
 /* Light Theme Variables */
 :root {
-  --color-background: #ffffff;
-  --color-surface: #f9fafb;
-  --color-text: #1f2937;
-  --color-text-secondary: #6b7280;
-  --color-border: #e5e7eb;
   --color-primary: #3b82f6;
-  --color-primary-light: #dbeafe;
+  --color-primary-text: #ffffff;
   --color-primary-hover: #2563eb;
-  --color-secondary: #1d4ed8;
+  --color-primary-light: #dbeafe;
+  --color-secondary: #60a5fa;
+  --color-secondary-text: #ffffff;
   --color-secondary-hover: #3b82f6;
+  --color-background: #ffffff;
+  --color-text: #111827;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-text-secondary: #6b7280;
   --sidebar-bg-color: #ffffff;
   --preview-bg: #ffffff;
   --preview-border: #e5e7eb;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.75rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 2.5rem;
+  --font-size-6xl: 2.75rem;
+  --font-size-7xl: 3rem;
 }
 
 /* Dark Theme Variables */
 [data-theme="dark"] {
-  --color-background: #2d2d2d;
-  --color-surface: #3d3d3d;
-  --color-text: #f1f5f9;
-  --color-text-secondary: #cbd5e1;
-  --color-border: #4a4a4a;
   --color-primary: #60a5fa;
-  --color-primary-light: #1e3a8a;
+  --color-primary-text: #1e3a8a;
   --color-primary-hover: #93c5fd;
+  --color-primary-light: #1e3a8a;
   --color-secondary: #93c5fd;
-  --color-secondary-hover: #60a5fa;
-  --sidebar-bg-color: #2d2d2d;
-  --preview-bg: #1a1a1a;
-  --preview-border: #4a4a4a;
+  --color-secondary-text: #1e3a8a;
+  --color-secondary-hover: #bfdbfe;
+  --color-background: #0f172a;
+  --color-text: #f1f5f9;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-text-secondary: #cbd5e1;
+  --sidebar-bg-color: #0f172a;
+  --preview-bg: #0f172a;
+  --preview-border: #334155;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
@@ -44,7 +59,9 @@
 body {
   background: var(--color-background);
   color: var(--color-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    sans-serif;
   transition: none;
 }
 
@@ -244,7 +261,7 @@ html {
   border-radius: 6px !important;
   padding: 12px !important;
   color: var(--color-text) !important;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace !important;
 }
 
 /* Common Badge Styles */
@@ -266,29 +283,63 @@ html {
 }
 
 /* Common Spacing Utilities */
-.common-p-sm { padding: 8px !important; }
-.common-p-md { padding: 16px !important; }
-.common-p-lg { padding: 24px !important; }
-.common-m-sm { margin: 8px !important; }
-.common-m-md { margin: 16px !important; }
-.common-m-lg { margin: 24px !important; }
+.common-p-sm {
+  padding: 8px !important;
+}
+.common-p-md {
+  padding: 16px !important;
+}
+.common-p-lg {
+  padding: 24px !important;
+}
+.common-m-sm {
+  margin: 8px !important;
+}
+.common-m-md {
+  margin: 16px !important;
+}
+.common-m-lg {
+  margin: 24px !important;
+}
 
 /* Common Text Utilities */
-.common-text-primary { color: var(--color-text) !important; }
-.common-text-secondary { color: var(--color-text-secondary) !important; }
-.common-text-accent { color: var(--color-primary) !important; }
+.common-text-primary {
+  color: var(--color-text) !important;
+}
+.common-text-secondary {
+  color: var(--color-text-secondary) !important;
+}
+.common-text-accent {
+  color: var(--color-primary) !important;
+}
 
 /* Common Background Utilities */
-.common-bg-primary { background: var(--color-background) !important; }
-.common-bg-surface { background: var(--color-surface) !important; }
-.common-bg-accent { background: var(--color-primary) !important; }
+.common-bg-primary {
+  background: var(--color-background) !important;
+}
+.common-bg-surface {
+  background: var(--color-surface) !important;
+}
+.common-bg-accent {
+  background: var(--color-primary) !important;
+}
 
 /* Common Border Utilities */
-.common-border { border: 1px solid var(--color-border) !important; }
-.common-border-top { border-top: 1px solid var(--color-border) !important; }
-.common-border-bottom { border-bottom: 1px solid var(--color-border) !important; }
-.common-border-left { border-left: 1px solid var(--color-border) !important; }
-.common-border-right { border-right: 1px solid var(--color-border) !important; }
+.common-border {
+  border: 1px solid var(--color-border) !important;
+}
+.common-border-top {
+  border-top: 1px solid var(--color-border) !important;
+}
+.common-border-bottom {
+  border-bottom: 1px solid var(--color-border) !important;
+}
+.common-border-left {
+  border-left: 1px solid var(--color-border) !important;
+}
+.common-border-right {
+  border-right: 1px solid var(--color-border) !important;
+}
 
 /* Language Selector Styles */
 .language-selector-select {

@@ -117,8 +117,8 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(react@19.2.0)
       azodik-ui-core:
-        specifier: ^0.2.7
-        version: 0.2.7
+        specifier: ^0.2.8
+        version: 0.2.8
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1106,8 +1106,8 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
-  azodik-ui-core@0.2.7:
-    resolution: {integrity: sha512-RWigHNWP8yy9kEupcmFJ2zeSWoZ6FgNI/c7EVfAmjBGNBhUj3DxdVe8My5w/reURXirSVyvgb70Gt2s7hUNekg==}
+  azodik-ui-core@0.2.8:
+    resolution: {integrity: sha512-YC0PHzec7DgbSJu/CPW9o3LgL5dC7tgIxpuIwps5xCX7gLBnwtFK2QMYijpvi74wQgUmxlC3W36fez3Eu9xUdw==}
 
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
@@ -3545,7 +3545,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  azodik-ui-core@0.2.7: {}
+  azodik-ui-core@0.2.8: {}
 
   bail@2.0.2: {}
 

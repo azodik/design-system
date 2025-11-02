@@ -189,7 +189,7 @@
   justify-content: space-between;
   padding: 0.5rem 1rem;
   margin-bottom: 0;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-text);
   opacity: 1;
@@ -207,13 +207,13 @@
 }
 
 .sidebar-group-header:hover {
-  background: #f8edd8;
-  color: #ff7f27;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .sidebar-group-header.active {
-  background: #f8edd8;
-  color: #ff7f27;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .sidebar-group-title {
@@ -291,7 +291,7 @@
   justify-content: flex-start;
   background: transparent;
   border: none;
-  font-size: 0.875rem;
+  font-size: var(--font-size-md);
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
@@ -299,13 +299,13 @@
 }
 
 .sidebar-item a:hover {
-  background: var(--color-surface);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .sidebar-item a.active {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -321,7 +321,7 @@
 .sidebar-item-text {
   flex: 1;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: var(--font-size-md);
 }
 
 /* Sub-menu items styling */
@@ -612,24 +612,24 @@
 
 /* Dark theme sidebar menu hover and active states */
 [data-theme="dark"] .sidebar-item a:hover {
-  background: var(--color-surface);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 [data-theme="dark"] .sidebar-item a.active {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
 [data-theme="dark"] .sidebar-group-header:hover {
-  background: var(--color-surface);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 [data-theme="dark"] .sidebar-group-header.active {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 /* Light theme main content header styles */

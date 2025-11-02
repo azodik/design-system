@@ -35,45 +35,65 @@
 
 /* Badge Variants */
 .badge-primary {
-  background: #fed7aa;
-  color: #ea580c;
-  border: 1px solid #ea580c;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: none;
 }
 
 .badge-secondary {
-  background: #e0e7ff;
-  color: #6366f1;
-  border: 1px solid #6366f1;
+  background: var(--color-secondary-light, var(--color-primary-light));
+  color: var(--color-secondary, var(--color-primary));
+  border: none;
 }
 
 .badge-success {
   background: #dcfce7;
   color: #16a34a;
-  border: 1px solid #16a34a;
+  border: none;
+}
+
+[data-theme="dark"] .badge-success {
+  background: #14532d;
+  color: #4ade80;
 }
 
 .badge-warning {
   background: #fef3c7;
   color: #d97706;
-  border: 1px solid #d97706;
+  border: none;
+}
+
+[data-theme="dark"] .badge-warning {
+  background: #78350f;
+  color: #fbbf24;
 }
 
 .badge-error {
   background: #fecaca;
   color: #dc2626;
-  border: 1px solid #dc2626;
+  border: none;
+}
+
+[data-theme="dark"] .badge-error {
+  background: #7f1d1d;
+  color: #f87171;
 }
 
 .badge-info {
   background: #dbeafe;
   color: #2563eb;
-  border: 1px solid #2563eb;
+  border: none;
+}
+
+[data-theme="dark"] .badge-info {
+  background: #1e3a8a;
+  color: #60a5fa;
 }
 
 .badge-neutral {
-  background: #f3f4f6;
-  color: #6b7280;
-  border: 1px solid #6b7280;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  border: none;
 }
 
 /* Badge Sizes */

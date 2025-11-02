@@ -1,37 +1,40 @@
-
 :root {
-    --color-background: #ffffff;
-    --color-surface: #f9fafb;
-    --color-text: #1f2937;
-    --color-text-secondary: #6b7280;
-    --color-border: #e5e7eb;
-    --color-primary: #f97316;
-    --color-primary-light: #fed7aa;
-    --color-primary-hover: #fb923c;
-    --color-secondary-hover: #f97316;
-    --sidebar-bg-color: #ffffff;
-    --preview-bg: #ffffff;
-    --preview-border: #e5e7eb;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Dark Theme Variables */
-  [data-theme="dark"] {
-    --color-background: #2d2d2d;
-    --color-surface: #3d3d3d;
-    --color-text: #f1f5f9;
-    --color-text-secondary: #cbd5e1;
-    --color-border: #4a4a4a;
-    --color-primary: #f97316;
-    --color-primary-light: #7c2d12;
-    --color-primary-hover: #fb923c;
-    --color-secondary-hover: #f97316;
-    --sidebar-bg-color: #2d2d2d;
-    --preview-bg: #1a1a1a;
-    --preview-border: #4a4a4a;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
-  }
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+  --color-primary: #f97316;
+  --color-secondary: #ea580c;
+  --color-primary-light: #fff7ed;
+  --color-primary-hover: #fb923c;
+  --color-secondary-hover: #dc2626;
+  --color-secondary-light: #ffedd5;
+  --sidebar-bg-color: #ffffff;
+  --preview-bg: #ffffff;
+  --preview-border: #e5e7eb;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --color-background: #2d2d2d;
+  --color-surface: #3d3d3d;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-border: #4a4a4a;
+  --color-primary: #fb923c;
+  --color-primary-light: #3d2819;
+  --color-primary-hover: #fdba74;
+  --color-secondary: #fdba74;
+  --color-secondary-hover: #fb923c;
+  --color-secondary-light: #7c2d12;
+  --sidebar-bg-color: #2d2d2d;
+  --preview-bg: #1a1a1a;
+  --preview-border: #4a4a4a;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
