@@ -14,16 +14,25 @@ export default function Input({
   error,
   status,
   className = "",
+  id,
+  name,
   ...props
 }: InputProps) {
+  const generatedId = React.useId();
+  const inputId = id || name || generatedId;
+
   const inputClasses = ["input", status && status, error && "error", className]
     .filter(Boolean)
     .join(" ");
 
   return (
     <div className="form-group">
-      {label && <label className="form-label">{label}</label>}
-      <input className={inputClasses} {...props} />
+      {label && (
+        <label htmlFor={inputId} className="form-label">
+          {label}
+        </label>
+      )}
+      <input id={inputId} name={name || inputId} className={inputClasses} {...props} />
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
     </div>
@@ -51,16 +60,25 @@ export function Textarea({
   autoResize,
   minRows,
   maxRows,
+  id,
+  name,
   ...props
 }: TextareaProps) {
+  const generatedId = React.useId();
+  const textareaId = id || name || generatedId;
+
   const textareaClasses = ["textarea", status && status, error && "error", className]
     .filter(Boolean)
     .join(" ");
 
   return (
     <div className="form-group">
-      {label && <label className="form-label">{label}</label>}
-      <textarea className={textareaClasses} {...props} />
+      {label && (
+        <label htmlFor={textareaId} className="form-label">
+          {label}
+        </label>
+      )}
+      <textarea id={textareaId} name={name || textareaId} className={textareaClasses} {...props} />
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
     </div>
@@ -93,6 +111,8 @@ export function Select({
   placeholder = "Select an option",
   disabled = false,
 }: SelectProps) {
+  const generatedId = React.useId();
+  const selectId = generatedId;
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(value);
   const selectRef = React.useRef<HTMLDivElement>(null);
@@ -131,14 +151,23 @@ export function Select({
     .filter(Boolean)
     .join(" ");
 
+  const labelId = label ? `${selectId}-label` : undefined;
+
   return (
     <div className="form-group">
-      {label && <label className="form-label">{label}</label>}
+      {label && (
+        <label id={labelId} className="form-label">
+          {label}
+        </label>
+      )}
       <div className="custom-select-wrapper" ref={selectRef}>
         <div
           className={selectClasses}
           onClick={() => !disabled && setIsOpen(!isOpen)}
-          role="button"
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-labelledby={labelId}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -172,7 +201,7 @@ export function Select({
         </div>
 
         {isOpen && (
-          <div className="select-dropdown">
+          <div className="select-dropdown" role="listbox" aria-labelledby={labelId}>
             {options.map((option) => (
               <div
                 key={option.value}
@@ -209,18 +238,23 @@ export function Checkbox({
   error,
   size = "md",
   className = "",
+  id,
+  name,
   ...props
 }: CheckboxProps) {
   const checkboxClasses = ["checkbox", size !== "md" && `checkbox-${size}`, className]
     .filter(Boolean)
     .join(" ");
 
+  const generatedId = React.useId();
+  const checkboxId = id || name || generatedId;
+
   return (
     <div className="form-group">
       <div className={checkboxClasses}>
-        <input type="checkbox" {...props} />
+        <input type="checkbox" id={checkboxId} name={name || checkboxId} {...props} />
         <span className="checkbox-custom" />
-        {label && <label>{label}</label>}
+        {label && <label htmlFor={checkboxId}>{label}</label>}
       </div>
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
@@ -236,13 +270,16 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   className?: string;
 }
 
-export function Radio({ label, help, error, className = "", ...props }: RadioProps) {
+export function Radio({ label, help, error, className = "", id, name, ...props }: RadioProps) {
+  const generatedId = React.useId();
+  const radioId = id || name || generatedId;
+
   return (
     <div className="form-group">
       <div className={`radio ${className}`}>
-        <input type="radio" {...props} />
+        <input type="radio" id={radioId} name={name || radioId} {...props} />
         <span className="radio-custom" />
-        {label && <label>{label}</label>}
+        {label && <label htmlFor={radioId}>{label}</label>}
       </div>
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
@@ -265,13 +302,20 @@ export function Switch({
   className = "",
   checked,
   onChange,
+  id,
+  name,
   ...props
 }: SwitchProps) {
+  const generatedId = React.useId();
+  const switchId = id || name || generatedId;
+
   return (
     <div className="form-group">
       <div className={`switch ${className}`}>
         <input
           type="checkbox"
+          id={switchId}
+          name={name || switchId}
           checked={checked}
           onChange={onChange || (() => {})}
           readOnly={!onChange}
@@ -279,7 +323,11 @@ export function Switch({
         />
         <span className="switch-slider" />
       </div>
-      {label && <label className="form-label">{label}</label>}
+      {label && (
+        <label htmlFor={switchId} className="form-label">
+          {label}
+        </label>
+      )}
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
     </div>
