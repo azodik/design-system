@@ -320,6 +320,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   help?: string;
   error?: string;
   className?: string;
+  position?: "default" | "space-between";
 }
 
 export function Switch({
@@ -331,13 +332,20 @@ export function Switch({
   onChange,
   id,
   name,
+  position = "space-between",
   ...props
 }: SwitchProps) {
   const generatedId = React.useId();
   const switchId = id || name || generatedId;
+  const positionClass = position === "space-between" ? "switch-space-between" : "";
 
   return (
-    <div className="form-group">
+    <div className={`form-group ${positionClass}`}>
+      {position === "space-between" && label && (
+        <label htmlFor={switchId} className="form-label">
+          {label}
+        </label>
+      )}
       <div className={`switch ${className}`}>
         <input
           type="checkbox"
@@ -350,7 +358,7 @@ export function Switch({
         />
         <span className="switch-slider" />
       </div>
-      {label && (
+      {position === "default" && label && (
         <label htmlFor={switchId} className="form-label">
           {label}
         </label>

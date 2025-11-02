@@ -1,6 +1,6 @@
 {
   "name": "@azodik/icons",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Icon components for Azodik UI design system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,7 @@
     "type-check": "tsc --noEmit",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "npm run build",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public --force"
   },
   "dependencies": {
     "react": "^19.2.0"

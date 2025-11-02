@@ -584,13 +584,33 @@
   flex-shrink: 0;
 }
 
-/* Switch container for better layout */
-.form-group .switch + .form-label {
+/* Switch container for better layout - default (switch on left, label on right) */
+.form-group:not(.switch-space-between) .switch + .form-label {
   display: flex;
   align-items: center;
   margin-left: var(--space-sm);
   flex: 1;
   min-width: 0;
+}
+
+/* Switch with space-between layout (label on left, switch on right) */
+.form-group.switch-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.form-group.switch-space-between .form-label {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  order: -1;
+}
+
+.form-group.switch-space-between .switch {
+  order: 1;
+  flex-shrink: 0;
 }
 
 .switch input {

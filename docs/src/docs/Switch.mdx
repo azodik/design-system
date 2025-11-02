@@ -140,6 +140,52 @@ export const DesignGuidelinesSwitchList = () => {
 
 <VariantsSwitchSection />
 
+<CodeBlockWithPreview 
+  title="Default Position (Label on Left, Switch on Right)"
+  preview={
+    <div className="flex-vertical">
+      <Switch id="switch-space-1" label="Enable notifications" />
+      <Switch id="switch-space-2" label="Enable dark mode" checked />
+      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between" />
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const DefaultPositionExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Switch id="switch-space-1" label="Enable notifications" />
+      <Switch id="switch-space-2" label="Enable dark mode" checked />
+      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Alternative Position (Switch on Left, Label on Right)"
+  preview={
+    <div className="flex-vertical">
+      <Switch id="switch-default-1" label="Enable notifications" position="default" />
+      <Switch id="switch-default-2" label="Enable dark mode" checked position="default" />
+      <Switch id="switch-default-3" label="Auto-save enabled" position="default" />
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const AlternativePositionExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Switch id="switch-default-1" label="Enable notifications" position="default" />
+      <Switch id="switch-default-2" label="Enable dark mode" checked position="default" />
+      <Switch id="switch-default-3" label="Auto-save enabled" position="default" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
 <WithDisabledStateSection />
 
 <CodeBlockWithPreview 
@@ -216,6 +262,13 @@ export const DisabledSwitchExample = () => {
     required: false,
     default: '""',
     description: 'Additional CSS classes to apply'
+  },
+  {
+    name: 'position',
+    type: '"default" | "space-between"',
+    required: false,
+    default: '"space-between"',
+    description: 'Layout position: "default" shows switch on left with label on right, "space-between" shows label on left and switch on right'
   }
 ]} />
 

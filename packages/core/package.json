@@ -1,6 +1,6 @@
 {
   "name": "azodik-ui-core",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "main": "index.css",
   "types": "index.d.ts",
   "license": "MIT",
@@ -38,7 +38,7 @@
     "type-check": "echo 'No type checking needed for CSS'",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "npm run build",
-    "publish": "npm publish --access public "
+    "publish": "npm publish --access public --force"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
