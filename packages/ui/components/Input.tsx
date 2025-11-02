@@ -152,14 +152,41 @@ export function Select({
     .join(" ");
 
   const labelId = label ? `${selectId}-label` : undefined;
+  const hiddenSelectId = `${selectId}-hidden`;
 
   return (
     <div className="form-group">
       {label && (
-        <label id={labelId} className="form-label">
+        <label id={labelId} htmlFor={hiddenSelectId} className="form-label">
           {label}
         </label>
       )}
+      {/* Visually hidden native select for accessibility */}
+      <select
+        id={hiddenSelectId}
+        value={selectedValue}
+        onChange={(e) => handleSelect(e.target.value)}
+        disabled={disabled}
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          whiteSpace: "nowrap",
+          borderWidth: 0,
+        }}
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
       <div className="custom-select-wrapper" ref={selectRef}>
         <div
           className={selectClasses}
