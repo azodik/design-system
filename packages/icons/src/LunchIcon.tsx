@@ -1,0 +1,31 @@
+import React from "react";
+
+interface LunchIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const LunchIcon: React.FC<LunchIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M2 13v-3h2v3zm7.375-2.225L7.25 8.65l1.4-1.4l2.125 2.125zM2 8V2h6v1q0 2.075-1.463 3.538T3 8zm8-4V2h3v2zM1 22v-2h2q-.025-.075-.038-.137t-.037-.138L2 16h12l-.925 3.725q-.025.075-.038.138T13 20h2.075l1.5-6h-4.25L12 10h10l-.825 10H23v2z"
+      />
+    </svg>
+  );
+};
+
+export default LunchIcon;

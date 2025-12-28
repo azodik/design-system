@@ -1,0 +1,62 @@
+{
+  "name": "@azodik/icons",
+  "version": "0.9.0",
+  "description": "Icon components for Azodik UI design system",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "license": "MIT",
+  "type": "module",
+  "author": "Bandna Paikaray <bandna.paikaray@azodik.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azodik/design-system.git",
+    "directory": "packages/icons"
+  },
+  "homepage": "https://github.com/azodik/design-system#readme",
+  "bugs": {
+    "url": "https://github.com/azodik/design-system/issues"
+  },
+  "keywords": [
+    "react",
+    "icons",
+    "svg",
+    "components",
+    "design-system",
+    "typescript"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup && tsup --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "node ../../scripts/clean.mjs",
+    "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/icons && pnpm build",
+    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/icons",
+    "publish": "pnpm publish --access public --force"
+  },
+  "dependencies": {
+    "react": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}

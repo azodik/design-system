@@ -1,0 +1,563 @@
+import { 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableFooter,
+  TableRow, 
+  TableHeaderCell, 
+  TableCell,
+  DataTable,
+  Card, 
+  CardContent 
+} from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TableComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('tableComponent')}</h1>;
+};
+
+export const TableComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('tableDescription')}</p>;
+};
+
+export const TableIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('tableIntroduction')}</h2>
+      <p>{t('tableIntroDesc')}</p>
+      <ul>
+        <li>{t('tableMainWrapper')}</li>
+        <li>{t('tableStructure')}</li>
+        <li>{t('tableStyling')}</li>
+        <li>{t('tableInteractivity')}</li>
+        <li>{t('tableAccessibility')}</li>
+        <li>{t('tableCustomization')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTable')}</h3>
+      <ul>
+        <li>{t('displayingStructuredDataInRowsAndColumns')}</li>
+        <li>{t('showingComparisonData')}</li>
+        <li>{t('presentingListsWithMultipleAttributes')}</li>
+        <li>{t('displayingFinancialOrStatisticalData')}</li>
+        <li>{t('creatingDataGrids')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTable')}</h2>;
+};
+
+export const VariantsTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTable')}</h2>;
+};
+
+export const BasicTableTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicTable');
+};
+
+export const PropsTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTable')}</h2>;
+};
+
+export const TableHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableHeaderProps');
+};
+
+export const TableBodyPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableBodyProps');
+};
+
+export const TableRowPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableRowProps');
+};
+
+export const TableHeaderCellPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableHeaderCellProps');
+};
+
+export const TableCellPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tableCellProps');
+};
+
+export const DataTablePropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dataTableProps');
+};
+
+export const AccessibilityTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTable')}</h2>;
+};
+
+export const DesignGuidelinesTableSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTable')}</h2>;
+};
+
+export const AccessibilityTableList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('tablesHaveProperSemanticStructure')}</li>
+      <li>{t('screenReadersCanNavigateTableContent')}</li>
+      <li>{t('columnHeadersAreProperlyAssociated')}</li>
+      <li>{t('keyboardNavigationIsSupportedTable')}</li>
+      <li>{t('tableCaptionsCanBeAddedForContext')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTableList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveColumnHeaders')}</li>
+      <li>{t('keepTablesScannableWithProperSpacing')}</li>
+      <li>{t('useConsistentAlignmentForDataTypes')}</li>
+      <li>{t('considerResponsiveDesignForMobile')}</li>
+      <li>{t('useAlternatingRowColorsForBetterReadability')}</li>
+    </ul>
+  );
+};
+
+export const BasicTableExample = () => {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Role</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>John Doe</TableCell>
+          <TableCell>john@example.com</TableCell>
+          <TableCell>Admin</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Jane Smith</TableCell>
+          <TableCell>jane@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Bob Johnson</TableCell>
+          <TableCell>bob@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Inactive</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+};
+
+<TableComponentHeader />
+
+<TableComponentDescription />
+
+<TableIntroduction />
+
+<WhenToUseTableSection />
+
+<UsageTableSection />
+
+<CodeBlock language="tsx">
+{`import { 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableFooter,
+  TableRow, 
+  TableHeaderCell, 
+  TableCell,
+  DataTable
+} from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsTableSection />
+
+<CodeBlockWithPreview 
+  title={<BasicTableTitle />}
+  preview={<BasicTableExample />}
+>
+{`import { 
+  Table, 
+  TableHeader, 
+  TableBody,
+  TableRow, 
+  TableHeaderCell, 
+  TableCell
+} from '@azodik/ui';
+
+export default function BasicTable() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Role</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>John Doe</TableCell>
+          <TableCell>john@example.com</TableCell>
+          <TableCell>Admin</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Jane Smith</TableCell>
+          <TableCell>jane@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Bob Johnson</TableCell>
+          <TableCell>bob@example.com</TableCell>
+          <TableCell>User</TableCell>
+          <TableCell>Inactive</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsTableSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Table content (TableHeader, TableBody, etc.)'
+  },
+  {
+    name: 'striped',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show alternating row colors'
+  },
+  {
+    name: 'bordered',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show borders around cells'
+  },
+  {
+    name: 'hover',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to highlight rows on hover'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the table'
+  },
+  {
+    name: 'responsive',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to make the table responsive'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TableHeaderPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header content (typically TableRow with TableHeaderCell)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TableBodyPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Body content (typically TableRow components)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TableRowPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Row content (typically TableCell components)'
+  },
+  {
+    name: 'selected',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the row is selected'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TableHeaderCellPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header cell content'
+  },
+  {
+    name: 'sortable',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the column is sortable'
+  },
+  {
+    name: 'sortDirection',
+    type: '"asc" | "desc"',
+    required: false,
+    default: '-',
+    description: 'Current sort direction'
+  },
+  {
+    name: 'onSort',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when sort is triggered'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TableCellPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Cell content'
+  },
+  {
+    name: 'numeric',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the cell contains numeric data (right-aligned)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<DataTablePropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'T[]',
+    required: true,
+    default: '-',
+    description: 'Array of data objects to display'
+  },
+  {
+    name: 'columns',
+    type: 'Array<{ key: keyof T; label: string; sortable?: boolean; render?: (value: any, row: T) => React.ReactNode }>',
+    required: true,
+    default: '-',
+    description: 'Column configuration array'
+  },
+  {
+    name: 'sortBy',
+    type: 'keyof T',
+    required: false,
+    default: '-',
+    description: 'Currently sorted column key'
+  },
+  {
+    name: 'sortDirection',
+    type: '"asc" | "desc"',
+    required: false,
+    default: '-',
+    description: 'Current sort direction'
+  },
+  {
+    name: 'onSort',
+    type: '(key: keyof T) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when column is sorted'
+  },
+  {
+    name: 'onRowClick',
+    type: '(row: T) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when row is clicked'
+  },
+  {
+    name: 'selectedRows',
+    type: 'T[]',
+    required: false,
+    default: '[]',
+    description: 'Array of selected rows'
+  },
+  {
+    name: 'onRowSelect',
+    type: '(row: T, selected: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when row selection changes'
+  },
+  {
+    name: 'onSelectAll',
+    type: '(selected: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when select all is triggered'
+  },
+  {
+    name: 'selectable',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether rows can be selected'
+  },
+  {
+    name: 'striped',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show alternating row colors (inherited from Table)'
+  },
+  {
+    name: 'bordered',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show borders around cells (inherited from Table)'
+  },
+  {
+    name: 'hover',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to highlight rows on hover (inherited from Table)'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the table (inherited from Table)'
+  },
+  {
+    name: 'responsive',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to make the table responsive (inherited from Table)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityTableSection />
+
+<AccessibilityTableList />
+
+<DesignGuidelinesTableSection />
+
+<DesignGuidelinesTableList />

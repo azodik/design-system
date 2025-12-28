@@ -1,0 +1,553 @@
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent, Input, Select, Textarea } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const DialogComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('dialogComponent')}</h1>;
+};
+
+export const DialogComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('dialogDescription')}</p>;
+};
+
+export const DialogIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('dialogIntroduction')}</h2>
+      <p>{t('dialogIntroDesc')}</p>
+      <ul>
+        <li>{t('dialogMainWrapper')}</li>
+        <li>{t('dialogContent')}</li>
+        <li>{t('dialogTriggers')}</li>
+        <li>{t('dialogStateManagement')}</li>
+        <li>{t('dialogCustomization')}</li>
+        <li>{t('dialogAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseDialog')}</h3>
+      <ul>
+        <li>{t('displayConfirmationMessages')}</li>
+        <li>{t('showFormsOrInputFields')}</li>
+        <li>{t('presentImportantInformation')}</li>
+        <li>{t('getUserConfirmationForDestructiveActions')}</li>
+        <li>{t('displayDetailedContentThatNeedsFocus')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageDialog')}</h2>;
+};
+
+export const BasicExampleDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleDialog')}</h2>;
+};
+
+export const BasicDialogWithFormTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicDialogWithForm');
+};
+
+export const CustomStylingSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('customStyling')}</h2>;
+};
+
+export const CustomStyledDialogTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('customStyledDialog');
+};
+
+export const PropsDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsDialog')}</h2>;
+};
+
+export const DialogPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogProps');
+};
+
+export const DialogTriggerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogTriggerProps');
+};
+
+export const DialogContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogContentProps');
+};
+
+export const DialogHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogHeaderProps');
+};
+
+export const DialogTitlePropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogTitleProps');
+};
+
+export const DialogDescriptionPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogDescriptionProps');
+};
+
+export const DialogBodyPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogBodyProps');
+};
+
+export const DialogFooterPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('dialogFooterProps');
+};
+
+export const AccessibilityDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityDialog')}</h2>;
+};
+
+export const DesignGuidelinesDialogSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesDialog')}</h2>;
+};
+
+export const AccessibilityDialogList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('dialogsAreBuiltWithProperAriaAttributes')}</li>
+      <li>{t('focusManagementIsHandledAutomatically')}</li>
+      <li>{t('escapeKeyClosesTheDialog')}</li>
+      <li>{t('clickingOutsideClosesTheDialog')}</li>
+      <li>{t('screenReadersCanProperlyAnnounceDialogContent')}</li>
+      <li>{t('focusIsTrappedWithinTheDialogWhenOpen')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesDialogList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useDialogsSparinglyForImportantInteractions')}</li>
+      <li>{t('keepDialogContentConciseAndFocused')}</li>
+      <li>{t('provideClearActionButtonsInTheFooter')}</li>
+      <li>{t('useAppropriateDialogTitlesAndDescriptions')}</li>
+      <li>{t('considerMobileResponsivenessForDialogSizing')}</li>
+      <li>{t('ensureSufficientContrastForReadabilityDialog')}</li>
+    </ul>
+  );
+};
+
+<DialogComponentHeader />
+
+<DialogComponentDescription />
+
+<DialogIntroduction />
+
+<WhenToUseDialogSection />
+
+<UsageDialogSection />
+
+
+<CodeBlock language="tsx">
+{`import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose } from '@azodik/ui';`}
+</CodeBlock>
+
+<BasicExampleDialogSection />
+
+<CodeBlockWithPreview 
+  title={<BasicDialogWithFormTitle />}
+  preview={
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Form Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create New User</DialogTitle>
+          <DialogDescription>
+            Fill out the form below to create a new user account.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <form className="space-y-4">
+            <Input 
+              label="Full Name"
+              type="text" 
+              placeholder="Enter full name"
+              className="w-full"
+            />
+            <Input 
+              label="Email"
+              type="email" 
+              placeholder="Enter email address"
+              className="w-full"
+            />
+            <Select 
+              label="Role"
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+                { value: "moderator", label: "Moderator" }
+              ]}
+              placeholder="Select a role"
+              className="w-full"
+            />
+          </form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Create User</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  }
+>
+{`import React from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, Button, Input, Select, Textarea } from "@azodik/ui";
+
+export default function BasicDialogForm() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Form Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create New User</DialogTitle>
+          <DialogDescription>
+            Fill out the form below to create a new user account.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <form className="space-y-4">
+            <Input 
+              label="Full Name"
+              type="text" 
+              placeholder="Enter full name"
+              className="w-full"
+            />
+            <Input 
+              label="Email"
+              type="email" 
+              placeholder="Enter email address"
+              className="w-full"
+            />
+            <Select 
+              label="Role"
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+                { value: "moderator", label: "Moderator" }
+              ]}
+              placeholder="Select a role"
+              className="w-full"
+            />
+          </form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Create User</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CustomStylingSection />
+
+<CodeBlockWithPreview 
+  title={<CustomStyledDialogTitle />}
+  preview={
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Custom Dialog</Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-xl">
+        <DialogHeader>
+          <DialogTitle>Custom Styled Dialog</DialogTitle>
+          <DialogDescription>
+            This dialog has custom styling and larger width.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <div className="grid grid-cols-2 gap-md">
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 1</h3>
+                <p className="text-sm text-gray-600">Description of feature 1</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 2</h3>
+                <p className="text-sm text-gray-600">Description of feature 2</p>
+              </CardContent>
+            </Card>
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Save Changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  }
+>
+{`import React from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent } from "@azodik/ui";
+
+export const CustomStyledDialog = () => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Custom Dialog</Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>Custom Styled Dialog</DialogTitle>
+          <DialogDescription>
+            This dialog has custom styling and larger width.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <div className="grid grid-cols-2 gap-md">
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 1</h3>
+                <p className="text-sm text-gray-600">Description of feature 1</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2">Feature 2</h3>
+                <p className="text-sm text-gray-600">Description of feature 2</p>
+              </CardContent>
+            </Card>
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Save Changes</Button>
+        </DialogFooter>
+        <DialogClose />
+      </DialogContent>
+    </Dialog>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsDialogSection />
+
+<DialogPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'open',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the dialog is open (controlled)'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when the dialog open state changes'
+  },
+  {
+    name: 'defaultOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the dialog is open by default (uncontrolled)'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Dialog content'
+  }
+]} />
+
+<DialogTriggerPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Trigger element content'
+  },
+  {
+    name: 'asChild',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to merge props with child element'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DialogContentPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Dialog content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when dialog is closed'
+  }
+]} />
+
+<DialogHeaderPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DialogTitlePropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Title content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DialogDescriptionPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Description content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DialogBodyPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Body content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DialogFooterPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Footer content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<AccessibilityDialogSection />
+
+<AccessibilityDialogList />
+
+<DesignGuidelinesDialogSection />
+
+<DesignGuidelinesDialogList />

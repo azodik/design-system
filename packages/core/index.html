@@ -3,878 +3,1368 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Azodik Design System Test</title>
+    <title>Azodik Design System | Premium UI Kit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./tokens/tokens.css" />
-    <link rel="stylesheet" href="./styles/globals.css" />
-    <link rel="stylesheet" href="./components/button.css" />
-    <link rel="stylesheet" href="./components/card.css" />
-    <link rel="stylesheet" href="./components/input.css" />
-    <link rel="stylesheet" href="./components/alert.css" />
-    <link rel="stylesheet" href="./components/badge.css" />
-    <link rel="stylesheet" href="./components/avatar.css" />
-    <link rel="stylesheet" href="./components/navigation.css" />
-    <link rel="stylesheet" href="./components/modal.css" />
-    <link rel="stylesheet" href="./components/layout.css" />
-    <link rel="stylesheet" href="./components/table.css" />
-    <link rel="stylesheet" href="./components/icon.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    
+    <!-- Design System Styles -->
+    <link rel="stylesheet" href="./index.css" />
+    
+    <style>
+      :root {
+        --sidebar-width: 280px;
+        --header-height: 72px;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--gray-1);
+        color: var(--gray-12);
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        width: 100%;
+      }
+      
+      /* Sidebar */
+      aside {
+        width: var(--sidebar-width);
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        border-right: 1px solid var(--gray-4);
+        background: var(--gray-2);
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+      }
+      
+      .sidebar-header {
+        width: 100%;
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        padding: 0 var(--space-6);
+        background: var(--gray-2);
+        border-bottom: 1px solid var(--gray-4);
+        flex-shrink: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      
+      .sidebar-logo {
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--accent-9);
+        margin: 0;
+      }
+      
+      .nav-links {
+        padding: var(--space-4);
+        flex: 1;
+        overflow-y: auto;
+      }
+      
+      .nav-group {
+        margin-bottom: var(--space-6);
+      }
+      
+      .nav-title {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--gray-9);
+        margin-bottom: var(--space-4);
+        padding-left: var(--space-2);
+      }
+      
+      .nav-item {
+        display: block;
+        padding: var(--space-2) var(--space-3);
+        color: var(--gray-11);
+        text-decoration: none;
+        border-radius: var(--radius-2);
+        font-size: 14px;
+        margin-bottom: 2px;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+      
+      .nav-item:hover {
+        background: var(--gray-3);
+        color: var(--gray-12);
+      }
+      
+      .nav-item:focus-visible {
+        outline: 2px solid var(--accent-9);
+        outline-offset: 2px;
+      }
+      
+      .nav-item.active {
+        background: var(--accent-3);
+        color: var(--accent-11);
+        font-weight: 500;
+        box-shadow: inset 0 0 0 1px var(--accent-4);
+      }
+      
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: var(--sidebar-width);
+        height: var(--header-height);
+        background: var(--gray-1);
+        border-bottom: 1px solid var(--gray-4);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--space-6);
+        z-index: 20;
+        box-sizing: border-box;
+      }
+      
+      /* Header controls alignment */
+      .header-controls {
+        display: flex;
+        gap: var(--space-2);
+        align-items: center;
+        height: 100%;
+        flex-shrink: 0;
+      }
+      
+      .accent-select {
+        width: 120px;
+        height: 36px;
+        padding: 0 var(--space-2);
+        display: flex;
+        align-items: center;
+      }
+      
+      .theme-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        padding: 0;
+      }
+      
+      #theme-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        font-size: 18px;
+      }
+      
+      #theme-icon svg {
+        display: block;
+      }
+      
+      .breadcrumb {
+        color: var(--gray-11);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+      }
+      
+      header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        backdrop-filter: blur(12px);
+        z-index: -1;
+      }
+      
+      /* Logo in sidebar - desktop */
+      .logo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-width);
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        padding-left: var(--space-6);
+        background: var(--gray-2);
+        border-bottom: 1px solid var(--gray-4);
+        border-right: 1px solid var(--gray-4);
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--accent-9);
+        z-index: 30;
+        box-sizing: border-box;
+      }
+      
+      @media (max-width: 768px) {
+        .logo {
+          position: static;
+          width: auto;
+          height: auto;
+          padding: 0;
+          border: none;
+          background: transparent;
+        }
+      }
+      
+      /* Main Content */
+      main {
+        margin-left: var(--sidebar-width);
+        padding: calc(var(--header-height) + var(--space-8)) var(--space-10) var(--space-10);
+        padding-left: calc(var(--space-10) + var(--space-4));
+        width: calc(100% - var(--sidebar-width));
+        min-width: 0; /* Prevent overflow */
+        box-sizing: border-box;
+        position: relative;
+      }
+      
+      /* Content wrapper to prevent overflow */
+      .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      /* Ensure content doesn't overflow on smaller desktop screens */
+      @media (max-width: 1400px) {
+        main {
+          padding-left: calc(var(--space-6) + var(--space-4));
+          padding-right: var(--space-6);
+        }
+      }
+      
+      @media (min-width: 1401px) {
+        main {
+          padding-left: calc(var(--space-10) + var(--space-6));
+        }
+      }
+      
+      section {
+        margin-bottom: 80px;
+        scroll-margin-top: 100px;
+        width: 100%;
+      }
+      
+      section:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Ensure proper text wrapping */
+      .content-wrapper {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      /* Improve card spacing */
+      .common-card {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      /* Ensure flex containers wrap properly */
+      .flex {
+        flex-wrap: wrap;
+      }
+      
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      
+      h1 { 
+        font-size: 40px; 
+        margin-bottom: var(--space-4); 
+        margin-top: 0;
+        letter-spacing: -0.02em; 
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      
+      h2 { 
+        font-size: 28px; 
+        margin-bottom: var(--space-6); 
+        margin-top: 0;
+        letter-spacing: -0.01em; 
+        border-bottom: 1px solid var(--gray-4); 
+        padding-bottom: var(--space-4);
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      
+      h3 {
+        font-size: 20px;
+        margin-bottom: var(--space-4);
+        margin-top: var(--space-6);
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      
+      h4 {
+        font-size: 16px;
+        margin-bottom: var(--space-3);
+        margin-top: 0;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      
+      p {
+        margin-bottom: var(--space-4);
+        line-height: 1.6;
+      }
+      
+      code {
+        background: var(--gray-3);
+        padding: 2px 6px;
+        border-radius: var(--radius-1);
+        font-size: 0.9em;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        color: var(--accent-11);
+      }
+      
+      a {
+        color: var(--accent-9);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      
+      a:hover {
+        color: var(--accent-10);
+        text-decoration: underline;
+      }
+      
+      /* Color Scale Visualization */
+      .scale-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 4px;
+        margin-bottom: var(--space-6);
+      }
+      
+      .scale-item {
+        height: 64px;
+        border-radius: var(--radius-1);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 8px;
+        font-size: 10px;
+        font-weight: 600;
+      }
+      
+      .scale-item span {
+        background: rgba(255,255,255,0.2);
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: inherit;
+      }
+      
+      /* Icon Gallery */
+      .icon-controls {
+        display: flex;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+        background: var(--gray-2);
+        padding: var(--space-4);
+        border-radius: var(--radius-3);
+        border: 1px solid var(--gray-4);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .search-input {
+        flex: 1;
+      }
+      
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--space-4);
+      }
+      
+      .icon-card {
+        background: var(--gray-2);
+        border: 1px solid var(--gray-4);
+        border-radius: var(--radius-3);
+        padding: var(--space-4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      
+      .icon-card:hover {
+        border-color: var(--accent-8);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-3);
+      }
+      
+      .icon-preview {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray-12);
+      }
+      
+      .icon-preview svg {
+        width: 32px;
+        height: 32px;
+      }
+      
+      .icon-name {
+        font-size: 12px;
+        color: var(--gray-11);
+        text-align: center;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        width: 100%;
+        line-height: 1.4;
+      }
+      
+      .icon-actions {
+        display: flex;
+        gap: 4px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+      }
+      
+      .icon-card:hover .icon-actions {
+        opacity: 1;
+      }
+      
+      .mini-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+        font-weight: 500;
+        background: var(--gray-3);
+        border: 1px solid transparent;
+        border-radius: var(--radius-2);
+        cursor: pointer;
+        color: var(--gray-11);
+        transition: all 0.2s ease;
+        outline: none;
+        box-shadow: var(--shadow-1);
+      }
+      
+      .mini-btn:hover {
+        background: var(--accent-9);
+        color: white;
+        box-shadow: var(--shadow-2);
+        transform: translateY(-1px);
+      }
+      
+      .mini-btn:active {
+        transform: translateY(0);
+        box-shadow: var(--shadow-1);
+        background: var(--accent-10);
+      }
+      
+      .mini-btn:focus-visible {
+        outline: 2px solid var(--accent-9);
+        outline-offset: 2px;
+      }
+      
+      button:focus-visible,
+      select:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid var(--accent-9);
+        outline-offset: 2px;
+      }
+      
+      /* Mobile Toggle */
+      .mobile-toggle {
+        display: none;
+      }
+      
+      /* Mobile Layout Refinements */
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 25; /* Above header, below sidebar */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+      
+      .sidebar-overlay.open {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
+      @media (max-width: 768px) {
+        aside { 
+          transform: translateX(-100%); 
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+          z-index: 35; /* Below header, above overlay */
+          box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+          top: var(--header-height); /* Start below header */
+          height: calc(100vh - var(--header-height)); /* Adjust height */
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        aside.open { 
+          transform: translateX(0); 
+        }
+        
+        /* Ensure sidebar nav doesn't overlap header */
+        aside .nav-links {
+          padding-top: var(--space-4);
+          padding-bottom: var(--space-4);
+        }
+        
+        .sidebar-overlay {
+          z-index: 30; /* Below header and sidebar */
+          top: var(--header-height); /* Start below header */
+          height: calc(100vh - var(--header-height)); /* Adjust height */
+        }
+        
+        main { 
+          margin-left: 0 !important; 
+          padding: var(--space-4); 
+          padding-top: calc(var(--header-height) + var(--space-4)); 
+          width: 100%;
+          max-width: 100%;
+          overflow-x: hidden;
+          box-sizing: border-box;
+        }
+        
+        .content-wrapper {
+          max-width: 100%;
+          width: 100%;
+        }
+        
+        header { 
+          left: 0 !important; 
+          background: var(--gray-1);
+          backdrop-filter: blur(12px);
+          z-index: 40; /* Above sidebar and overlay */
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          gap: var(--space-2);
+          padding: 0 var(--space-4);
+        }
+        
+        /* Remove breadcrumb from flex layout on mobile */
+        header > .breadcrumb {
+          order: 999;
+          flex: 0 0 0;
+          min-width: 0;
+          max-width: 0;
+        }
+        
+        header::before {
+          display: none; /* Remove backdrop on mobile for better performance */
+        }
+        
+        .mobile-toggle { 
+          display: flex !important;
+          position: relative;
+          z-index: 41; /* Above header */
+          flex-shrink: 0;
+          pointer-events: auto;
+          cursor: pointer;
+        }
+        
+        #menu-btn {
+          pointer-events: auto !important;
+          z-index: 42 !important;
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          background: transparent !important;
+          border: none !important;
+          cursor: pointer !important;
+          touch-action: manipulation;
+        }
+        
+        #menu-icon {
+          pointer-events: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        /* Ensure header doesn't block clicks */
+        header > * {
+          pointer-events: auto;
+        }
+        
+        .header-left {
+          display: flex;
+          align-items: center;
+          gap: var(--space-2);
+          flex: 1;
+          min-width: 0;
+          position: relative;
+          z-index: 1;
+          overflow: visible;
+        }
+        
+        .breadcrumb {
+          display: none !important;
+          visibility: hidden;
+          position: absolute;
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        /* Header controls on mobile */
+        .header-controls {
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+          flex-shrink: 0;
+        }
+        
+        .accent-select {
+          width: 100px !important;
+          font-size: 12px;
+          height: 36px;
+        }
+        
+        .theme-toggle-btn {
+          min-width: 40px;
+          min-height: 40px;
+        }
+        
+        /* Ensure logo doesn't overflow on mobile */
+        .header-left .logo {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 150px;
+          margin-left: var(--space-2);
+          font-size: 18px;
+        }
+        
+        /* Stack form grids on mobile */
+        .form-group {
+          grid-column: 1 / -1;
+        }
+        
+        /* Override inline grid styles on mobile */
+        section[id="inputs"] .common-card > div[style*="grid-template-columns"] {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          gap: var(--space-4) !important;
+        }
+        
+        /* Responsive typography */
+        h1 { 
+          font-size: 32px; 
+          margin-bottom: var(--space-3);
+        }
+        
+        h2 { 
+          font-size: 24px; 
+          margin-bottom: var(--space-4);
+        }
+        
+        h3 {
+          font-size: 18px;
+          margin-top: var(--space-5);
+        }
+        
+        h4 {
+          font-size: 15px;
+        }
+        
+        p {
+          font-size: 15px;
+        }
+        
+        /* Icon grid adjustments */
+        .icon-grid {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          gap: var(--space-3);
+        }
+        
+        .icon-controls {
+          flex-direction: column;
+        }
+        
+        .search-input {
+          width: 100%;
+        }
+        
+        /* Scale containers on mobile */
+        .scale-container {
+          grid-template-columns: repeat(6, 1fr);
+          gap: 2px;
+        }
+        
+        .scale-item {
+          height: 48px;
+          font-size: 9px;
+        }
+        
+        /* Grid adjustments */
+        .grid {
+          grid-template-columns: 1fr !important;
+          gap: var(--space-4) !important;
+        }
+      }
+      
+      /* Very small mobile devices */
+      @media (max-width: 480px) {
+        aside {
+          width: min(280px, 85vw);
+        }
+        
+        main {
+          padding: calc(var(--header-height) + var(--space-3)) var(--space-3) var(--space-3);
+        }
+        
+        .icon-grid {
+          grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+          gap: var(--space-2);
+        }
+        
+        .icon-card {
+          padding: var(--space-2);
+        }
+        
+        h1 {
+          font-size: 28px;
+        }
+        
+        h2 {
+          font-size: 22px;
+        }
+        
+        header {
+          padding: 0 var(--space-3);
+        }
+        
+        header select {
+          width: 80px !important;
+          font-size: 11px;
+        }
+      }
+      
+      /* Tablet adjustments */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        main {
+          padding: calc(var(--header-height) + var(--space-6)) var(--space-6) var(--space-6);
+        }
+        
+        .icon-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+      }
+      
+      /* Touch-friendly improvements */
+      @media (hover: none) and (pointer: coarse) {
+        .nav-item {
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+        }
+        
+        .mini-btn {
+          min-width: 44px;
+          min-height: 44px;
+        }
+        
+        button {
+          min-height: 44px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <div class="header-content">
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <aside id="sidebar">
+      <nav class="nav-links">
+        <div class="nav-group">
+          <div class="nav-title">Foundation</div>
+          <a href="#introduction" class="nav-item">Introduction</a>
+          <a href="#theming" class="nav-item">Theming & Colors</a>
+          <a href="#typography" class="nav-item">Typography</a>
+        </div>
+        
+        <div class="nav-group">
+          <div class="nav-title">Components</div>
+          <a href="#buttons" class="nav-item">Buttons</a>
+          <a href="#inputs" class="nav-item">Inputs & Forms</a>
+          <a href="#badges" class="nav-item">Badges & Tags</a>
+          <a href="#alerts" class="nav-item">Alerts & Messages</a>
+        </div>
+        
+        <div class="nav-group">
+          <div class="nav-title">Icons</div>
+          <a href="#icons" class="nav-item">Icon Gallery</a>
+        </div>
+      </nav>
+    </aside>
+    
+    <header>
+      <div class="header-left">
+        <button class="az-reset az-Button az-variant-ghost az-r-size-1 mobile-toggle" id="menu-btn" style="padding: 0; width: 40px; height: 40px; align-items: center; justify-content: center;">
+          <span id="menu-icon"></span>
+        </button>
+        <div class="logo">Azodik UI</div>
+      </div>
+      <div class="breadcrumb">Azodik Design System / Core</div>
+      <div class="header-controls">
+        <select id="accent-selector" class="input accent-select">
+          <option value="indigo">Indigo</option>
+          <option value="ruby">Ruby</option>
+          <option value="grass">Grass</option>
+          <option value="amber">Amber</option>
+          <option value="cyan">Cyan</option>
+        </select>
+        <button id="theme-toggle" class="az-reset az-Button az-variant-soft az-r-size-2 theme-toggle-btn">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+    
+    <main>
+      <div class="content-wrapper">
+      <section id="introduction">
+        <h1>Azodik UI Core</h1>
+        <p class="common-content p" style="font-size: 18px;">
+          A framework-agnostic, premium design system inspired by Radix UI. 
+          Featuring 12-step color scales, subtree theming, and modular CSS.
+        </p>
+        <div class="flex gap-4">
+          <a href="https://github.com/azodik/design-system" class="az-reset az-Button az-variant-solid az-r-size-2">GitHub Repo</a>
+          <a href="#icons" class="az-reset az-Button az-variant-outline az-r-size-2">Browse Icons</a>
+        </div>
+      </section>
+      
+      <section id="theming">
+        <h2>Theming & Colors</h2>
+        <p>Our system supports <strong>Named Scales</strong>. You can change the accent color for the entire page or just a specific section.</p>
+        
+        <h3>Current Accent Scale</h3>
+        <div class="scale-container" id="accent-scale"></div>
+        
+        <h3>Neutral Scale (Gray)</h3>
+        <div class="scale-container" id="gray-scale"></div>
+        
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 24px;">
           <div>
-            <h1>Azodik Design System Test</h1>
-            <p>Testing our orange color palette and components</p>
+            <h3>Success (Grass)</h3>
+            <div class="scale-container" id="success-scale" style="grid-template-columns: repeat(6, 1fr);"></div>
           </div>
-          <button id="theme-toggle" class="btn btn-outline theme-toggle">
-            <span class="theme-icon">🌙</span>
-            <span class="theme-text">Dark Mode</span>
-          </button>
-        </div>
-      </header>
-
-      <section class="color-palette">
-        <h2>Color Palette</h2>
-        <div class="color-grid">
-          <div class="color-swatch primary">
-            <span>Primary</span>
-            <code>#f97316</code>
-          </div>
-          <div class="color-swatch secondary">
-            <span>Secondary</span>
-            <code>#ea580c</code>
-          </div>
-          <div class="color-swatch background">
-            <span>Background</span>
-            <code class="bg-code">#ffffff</code>
-          </div>
-          <div class="color-swatch text">
-            <span>Text</span>
-            <code class="text-code">#111827</code>
-          </div>
-          <div class="color-swatch surface">
-            <span>Surface</span>
-            <code class="surface-code">#f9fafb</code>
-          </div>
-          <div class="color-swatch border">
-            <span>Border</span>
-            <code class="border-code">#e5e7eb</code>
-          </div>
-          <div class="color-swatch primary-hover">
-            <span>Primary Hover</span>
-            <code class="primary-hover-code">#ea580c</code>
-          </div>
-          <div class="color-swatch secondary-hover">
-            <span>Secondary Hover</span>
-            <code class="secondary-hover-code">#dc2626</code>
+          <div>
+            <h3>Warning (Amber)</h3>
+            <div class="scale-container" id="warning-scale" style="grid-template-columns: repeat(6, 1fr);"></div>
           </div>
         </div>
+        
+        <h3>Error (Ruby)</h3>
+        <div class="scale-container" id="error-scale"></div>
       </section>
 
-      <section class="components">
-        <h2>Components</h2>
-
-        <div class="button-showcase">
-          <h3>Buttons</h3>
-          <div class="button-group">
-            <button class="btn btn-primary">Primary Button</button>
-            <button class="btn btn-secondary">Secondary Button</button>
-            <button class="btn btn-outline">Outline Button</button>
-          </div>
-        </div>
-
-        <div class="card-showcase">
-          <h3>Cards</h3>
-          <div class="card-grid">
-            <div class="card">
-              <h4>Card Title</h4>
-              <p>This is a sample card component using our design system colors and spacing.</p>
-              <button class="btn btn-primary">Action</button>
-            </div>
-            <div class="card">
-              <h4>Another Card</h4>
-              <p>Cards can contain various content and maintain consistent styling.</p>
-              <button class="btn btn-secondary">Learn More</button>
+      <section id="typography">
+        <h2>Typography</h2>
+        <div class="common-card">
+          <div class="flex flex-col gap-8">
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+              <div>
+                <h4 class="mb-4 color-text-secondary">Headings</h4>
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+              </div>
+              <div>
+                <h4 class="mb-4 color-text-secondary">Body & Code</h4>
+                <p><strong>Body Text:</strong> The quick brown fox jumps over the lazy dog. Designed for optimal readability with Inter font family.</p>
+                <p><small>Small text for captions and secondary information.</small></p>
+                <p><code>Code snippet</code> inside a paragraph.</p>
+                <pre style="background: var(--gray-3); padding: 12px; border-radius: var(--radius-3); overflow-x: auto;"><code>// Code block example
+function hello() {
+  console.log("Hello World");
+}</code></pre>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section class="form-components">
-        <h2>Form Components</h2>
-
-        <div class="form-showcase">
-          <h3>Input Fields</h3>
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">Email Address</label>
-              <input type="email" class="input" placeholder="Enter your email" />
-              <div class="form-help">We'll never share your email</div>
+      
+      <section id="buttons">
+        <h2>Buttons</h2>
+        <div class="common-card">
+          <div class="flex flex-col gap-8">
+            <div>
+              <h4 class="mb-4">Standard Variants</h4>
+              <div class="flex flex-wrap gap-4">
+                <button class="az-reset az-Button az-variant-solid az-r-size-2">Primary</button>
+                <button class="az-reset az-Button az-variant-soft az-r-size-2">Secondary</button>
+                <button class="az-reset az-Button az-variant-outline az-r-size-2">Outline</button>
+                <button class="az-reset az-Button az-variant-ghost az-r-size-2">Ghost</button>
+                <button class="az-reset az-Button az-variant-solid az-r-size-2 az-accent-ruby">Destructive</button>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Password</label>
-              <input type="password" class="input" placeholder="Enter your password" />
+            <div>
+              <h4 class="mb-4">Named Color Overrides</h4>
+              <p class="mb-4 text-sm color-text-secondary">Apply specific scales to individual components using <code>.az-accent-{color}</code></p>
+              <div class="flex flex-wrap gap-4">
+                <button class="az-reset az-Button az-variant-solid az-r-size-2 az-accent-indigo">Indigo</button>
+                <button class="az-reset az-Button az-variant-solid az-r-size-2 az-accent-ruby">Ruby</button>
+                <button class="az-reset az-Button az-variant-solid az-r-size-2 az-accent-grass">Grass</button>
+                <button class="az-reset az-Button az-variant-solid az-r-size-2 az-accent-amber">Amber</button>
+                <button class="az-reset az-Button az-variant-solid az-r-size-2 az-accent-cyan">Cyan</button>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Message</label>
-              <textarea class="textarea" placeholder="Enter your message"></textarea>
+            <div>
+              <h4 class="mb-4">Contextual Theming</h4>
+              <p class="mb-4 text-sm color-text-secondary">Wrap any element in <code>.az-accent-ruby</code> to change the accent of all children.</p>
+              <div class="az-accent-ruby p-4 rounded-3" style="border: 1px dashed var(--accent-6); background: var(--accent-2);">
+                <div class="flex gap-4 items-center">
+                  <button class="az-reset az-Button az-variant-solid az-r-size-2">I am Ruby now</button>
+                  <button class="az-reset az-Button az-variant-outline az-r-size-2">Me too</button>
+                  <span class="text-sm" style="color: var(--accent-11)">Notice how --accent-X variables are swapped.</span>
+                </div>
+              </div>
             </div>
-
+          </div>
+        </div>
+      </section>
+      
+      <section id="inputs">
+        <h2>Inputs & Forms</h2>
+        <div class="common-card">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
             <div class="form-group">
-              <label class="form-label">Country</label>
-              <select class="select">
-                <option>Select a country</option>
-                <option>United States</option>
-                <option>Canada</option>
-                <option>United Kingdom</option>
+              <label class="form-label">Full Name (Indigo)</label>
+              <input type="text" class="input az-accent-indigo" placeholder="e.g. Jane Doe" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address (Ruby)</label>
+              <input type="email" class="input az-accent-ruby" placeholder="jane@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status (Error/Ruby)</label>
+              <input type="text" class="input error" value="Invalid input" />
+              <div class="form-error">Please enter a valid value.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status (Success/Grass)</label>
+              <input type="text" class="input success" value="Success state" />
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="form-label">Bio (Textarea with Large Radius)</label>
+            <textarea class="textarea" style="--radius-3: 20px;" placeholder="Custom radius via CSS variable..."></textarea>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="form-label">Select Accent Scope</label>
+            <div class="az-accent-cyan" style="padding: 12px; border: 1px solid var(--accent-6); border-radius: var(--radius-3); background: var(--accent-2);">
+              <select class="input">
+                <option>This select is Cyan-themed</option>
+                <option>Because of the wrapper class</option>
               </select>
             </div>
           </div>
+        </div>
+      </section>
 
-          <h3>Checkboxes & Radio</h3>
-          <div class="form-options">
-            <div class="checkbox">
-              <input type="checkbox" id="newsletter" />
-              <span class="checkbox-custom"></span>
-              <label for="newsletter">Subscribe to newsletter</label>
+      <section id="badges">
+        <h2>Badges &amp; Tags</h2>
+        <div class="common-card">
+          <div class="flex flex-col gap-8">
+            <div>
+              <h4 class="mb-4">Variants</h4>
+              <div class="flex flex-wrap gap-4 items-center">
+                <span class="az-Badge az-variant-solid az-r-size-2">Solid</span>
+                <span class="az-Badge az-variant-soft az-r-size-2">Soft</span>
+                <span class="az-Badge az-variant-surface az-r-size-2">Surface</span>
+                <span class="az-Badge az-variant-outline az-r-size-2">Outline</span>
+              </div>
             </div>
 
-            <div class="radio">
-              <input type="radio" id="option1" name="option" />
-              <span class="radio-custom"></span>
-              <label for="option1">Option 1</label>
+            <div>
+              <h4 class="mb-4">Colors</h4>
+              <div class="flex flex-wrap gap-4 items-center">
+                <span class="az-Badge az-variant-soft az-r-size-2 az-accent-indigo">Indigo</span>
+                <span class="az-Badge az-variant-soft az-r-size-2 az-accent-grass">Grass</span>
+                <span class="az-Badge az-variant-soft az-r-size-2 az-accent-amber">Amber</span>
+                <span class="az-Badge az-variant-soft az-r-size-2 az-accent-ruby">Ruby</span>
+                <span class="az-Badge az-variant-soft az-r-size-2 az-accent-cyan">Cyan</span>
+              </div>
             </div>
 
-            <div class="radio">
-              <input type="radio" id="option2" name="option" />
-              <span class="radio-custom"></span>
-              <label for="option2">Option 2</label>
+            <div>
+              <h4 class="mb-4">Sizes</h4>
+              <div class="flex flex-wrap gap-4 items-center">
+                <span class="az-Badge az-variant-soft az-r-size-1">Size 1</span>
+                <span class="az-Badge az-variant-soft az-r-size-2">Size 2</span>
+                <span class="az-Badge az-variant-soft az-r-size-3">Size 3</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="alert-components">
-        <h2>Alert Components</h2>
-
-        <div class="alert-showcase">
-          <div class="alert alert-success">
-            <span class="alert-icon">✓</span>
+      <section id="alerts">
+        <h2>Alerts &amp; Messages</h2>
+        <div class="common-card flex flex-col gap-4">
+          <div class="az-Alert az-variant-soft az-accent-indigo">
+            <div class="alert-icon">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 0C3.36 0 0 3.36 0 7.5C0 11.64 3.36 15 7.5 15C11.64 15 15 11.64 15 7.5C15 3.36 11.64 0 7.5 0ZM7.5 11.25C6.88 11.25 6.38 10.75 6.38 10.12C6.38 9.5 6.88 9 7.5 9C8.12 9 8.62 9.5 8.62 10.12C8.62 10.75 8.12 11.25 7.5 11.25ZM8.25 7.5H6.75V3.75H8.25V7.5Z" fill="currentColor"/></svg>
+            </div>
             <div class="alert-content">
-              <div class="alert-title">Success!</div>
-              <div class="alert-message">Your changes have been saved successfully.</div>
+              <div class="alert-title">Information</div>
+              <div class="alert-message">This is a standard informational alert using the soft variant.</div>
             </div>
           </div>
 
-          <div class="alert alert-warning">
-            <span class="alert-icon">⚠</span>
+          <div class="az-Alert az-variant-surface az-accent-grass">
+            <div class="alert-icon">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 0C3.36 0 0 3.36 0 7.5C0 11.64 3.36 15 7.5 15C11.64 15 15 11.64 15 7.5C15 3.36 11.64 0 7.5 0ZM11.25 5.25L6.37 10.12L3.75 7.5L4.8 6.45L6.37 8.02L10.2 4.2L11.25 5.25Z" fill="currentColor"/></svg>
+            </div>
+            <div class="alert-content">
+              <div class="alert-title">Success</div>
+              <div class="alert-message">Operation completed successfully. Uses surface variant.</div>
+            </div>
+          </div>
+
+          <div class="az-Alert az-variant-outline az-accent-amber">
+            <div class="alert-icon">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 0L0 13.5H15L7.5 0ZM7.5 11.25C6.88 11.25 6.38 10.75 6.38 10.12C6.38 9.5 6.88 9 7.5 9C8.12 9 8.62 9.5 8.62 10.12C8.62 10.75 8.12 11.25 7.5 11.25ZM6.75 8.25H8.25V5.25H6.75V8.25Z" fill="currentColor"/></svg>
+            </div>
             <div class="alert-content">
               <div class="alert-title">Warning</div>
-              <div class="alert-message">Please review your information before proceeding.</div>
+              <div class="alert-message">Please check your network connection. Uses outline variant.</div>
             </div>
           </div>
 
-          <div class="alert alert-error">
-            <span class="alert-icon">✕</span>
+          <div class="az-Alert az-variant-soft az-accent-ruby">
+            <div class="alert-icon">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 0C3.36 0 0 3.36 0 7.5C0 11.64 3.36 15 7.5 15C11.64 15 15 11.64 15 7.5C15 3.36 11.64 0 7.5 0ZM11.25 10.2L10.2 11.25L7.5 8.55L4.8 11.25L3.75 10.2L6.45 7.5L3.75 4.8L4.8 3.75L7.5 6.45L10.2 3.75L11.25 4.8L8.55 7.5L11.25 10.2Z" fill="currentColor"/></svg>
+            </div>
             <div class="alert-content">
               <div class="alert-title">Error</div>
               <div class="alert-message">Something went wrong. Please try again.</div>
             </div>
           </div>
-
-          <div class="alert alert-info">
-            <span class="alert-icon">ℹ</span>
-            <div class="alert-content">
-              <div class="alert-title">Information</div>
-              <div class="alert-message">Here's some helpful information for you.</div>
-            </div>
-          </div>
         </div>
       </section>
-
-      <section class="badge-components">
-        <h2>Badge Components</h2>
-
-        <div class="badge-showcase">
-          <div class="badge-group">
-            <span class="badge badge-primary">Primary</span>
-            <span class="badge badge-secondary">Secondary</span>
-            <span class="badge badge-success">Success</span>
-            <span class="badge badge-warning">Warning</span>
-            <span class="badge badge-error">Error</span>
-            <span class="badge badge-info">Info</span>
-            <span class="badge badge-neutral">Neutral</span>
-          </div>
-
-          <h3>Badge Sizes</h3>
-          <div class="badge-sizes">
-            <span class="badge badge-sm badge-primary">Small</span>
-            <span class="badge badge-primary">Medium</span>
-            <span class="badge badge-lg badge-primary">Large</span>
-          </div>
+      
+      <section id="icons">
+        <h2>Icon Gallery</h2>
+        <p>Search over 570+ icons and download them as SVG or PNG.</p>
+        
+        <div class="icon-controls">
+          <input type="text" id="icon-search" class="input search-input" placeholder="Search icons (e.g. arrow, user, cloud)..." />
+          <button class="az-reset az-Button az-variant-soft az-r-size-2" id="clear-search">Clear</button>
+        </div>
+        
+        <div class="icon-grid" id="icon-grid">
+          <!-- Icons will be loaded here -->
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray-9);">Loading icons...</div>
         </div>
       </section>
-
-      <section class="avatar-components">
-        <h2>Avatar Components</h2>
-
-        <div class="avatar-showcase">
-          <h3>Avatar Sizes</h3>
-          <div class="avatar-sizes">
-            <div class="avatar avatar-xs">JD</div>
-            <div class="avatar avatar-sm">JD</div>
-            <div class="avatar avatar-md">JD</div>
-            <div class="avatar avatar-lg">JD</div>
-            <div class="avatar avatar-xl">JD</div>
-            <div class="avatar avatar-2xl">JD</div>
-          </div>
-
-          <h3>Avatar with Status</h3>
-          <div class="avatar-statuses">
-            <div class="avatar avatar-md avatar-status online">JD</div>
-            <div class="avatar avatar-md avatar-status away">JD</div>
-            <div class="avatar avatar-md avatar-status offline">JD</div>
-            <div class="avatar avatar-md avatar-status busy">JD</div>
-          </div>
-
-          <h3>Avatar Group</h3>
-          <div class="avatar-group">
-            <div class="avatar avatar-md">JD</div>
-            <div class="avatar avatar-md">AB</div>
-            <div class="avatar avatar-md">CD</div>
-            <div class="avatar-more">+5</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="navigation-components">
-        <h2>Navigation Components</h2>
-
-        <div class="nav-showcase">
-          <h3>Navigation Bar</h3>
-          <nav class="navbar">
-            <a href="#" class="navbar-brand">Brand</a>
-            <ul class="navbar-nav">
-              <li><a href="#" class="active">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </nav>
-
-          <h3>Breadcrumbs</h3>
-          <nav class="breadcrumb">
-            <div class="breadcrumb-item">
-              <a href="#">Home</a>
-            </div>
-            <div class="breadcrumb-item">
-              <a href="#">Products</a>
-            </div>
-            <div class="breadcrumb-item current">Design System</div>
-          </nav>
-
-          <h3>Pagination</h3>
-          <nav class="pagination">
-            <div class="pagination-item">
-              <a href="#" class="pagination-link disabled">‹</a>
-            </div>
-            <div class="pagination-item">
-              <a href="#" class="pagination-link active">1</a>
-            </div>
-            <div class="pagination-item">
-              <a href="#" class="pagination-link">2</a>
-            </div>
-            <div class="pagination-item">
-              <a href="#" class="pagination-link">3</a>
-            </div>
-            <div class="pagination-item">
-              <a href="#" class="pagination-link">›</a>
-            </div>
-          </nav>
-
-          <h3>Tabs</h3>
-          <div class="tabs">
-            <ul class="tabs-list">
-              <li><button class="tabs-trigger active">Overview</button></li>
-              <li><button class="tabs-trigger">Details</button></li>
-              <li><button class="tabs-trigger">Settings</button></li>
-            </ul>
-            <div class="tabs-content">
-              <p>This is the overview tab content.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="modal-components">
-        <h2>Modal & Feedback Components</h2>
-
-        <div class="modal-showcase">
-          <h3>Loading & Progress</h3>
-          <div class="flex items-center gap-md mb-lg">
-            <div class="spinner"></div>
-            <div class="spinner spinner-lg"></div>
-            <div class="spinner spinner-sm"></div>
-          </div>
-
-          <div class="progress-text">
-            <span>Progress</span>
-            <span>75%</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" style="width: 75%"></div>
-          </div>
-
-          <h3>Tooltips & Popovers</h3>
-          <div class="flex gap-md">
-            <div class="tooltip">
-              <button class="btn btn-primary">Hover me</button>
-              <div class="tooltip-content">This is a tooltip</div>
-            </div>
-
-            <div class="popover">
-              <button class="btn btn-secondary">Click me</button>
-              <div class="popover-content">
-                <div class="popover-title">Popover Title</div>
-                <div class="popover-text">This is a popover with some content.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="layout-components">
-        <h2>Layout Components</h2>
-
-        <div class="layout-showcase">
-          <h3>Grid System</h3>
-          <div class="grid grid-cols-3 gap-md">
-            <div class="p-3 bg-primary text-center text-white rounded">1</div>
-            <div class="p-3 bg-secondary text-center text-white rounded">2</div>
-            <div class="p-3 bg-success text-center text-white rounded">3</div>
-          </div>
-
-          <h3>Flex Utilities</h3>
-          <div class="flex justify-between items-center p-3 border rounded">
-            <span>Left</span>
-            <span>Center</span>
-            <span>Right</span>
-          </div>
-
-          <h3>Spacing Utilities</h3>
-          <div class="p-4 border rounded">
-            <div class="mb-2 p-2 bg-surface">Margin bottom</div>
-            <div class="mt-2 p-2 bg-surface">Margin top</div>
-          </div>
-
-          <h3>Hero Section</h3>
-          <div class="hero">
-            <h1 class="hero-title">Welcome to Our Design System</h1>
-            <p class="hero-subtitle">A comprehensive collection of components and utilities</p>
-            <div class="hero-actions">
-              <button class="btn btn-primary">Get Started</button>
-              <button class="btn btn-outline">Learn More</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="table-components">
-        <h2>Data Display Components</h2>
-
-        <div class="table-showcase">
-          <h3>Table</h3>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John Doe</td>
-                <td>john@example.com</td>
-                <td>Admin</td>
-                <td><span class="badge badge-success">Active</span></td>
-              </tr>
-              <tr>
-                <td>Jane Smith</td>
-                <td>jane@example.com</td>
-                <td>User</td>
-                <td><span class="badge badge-warning">Pending</span></td>
-              </tr>
-              <tr>
-                <td>Bob Johnson</td>
-                <td>bob@example.com</td>
-                <td>User</td>
-                <td><span class="badge badge-error">Inactive</span></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h3>List</h3>
-          <ul class="list list-bordered">
-            <li class="list-item">
-              <div class="list-item-content">
-                <div class="list-item-title">List Item 1</div>
-                <div class="list-item-description">Description for the first item</div>
-              </div>
-              <div class="list-item-actions">
-                <button class="btn btn-sm btn-outline">Edit</button>
-              </div>
-            </li>
-            <li class="list-item">
-              <div class="list-item-content">
-                <div class="list-item-title">List Item 2</div>
-                <div class="list-item-description">Description for the second item</div>
-              </div>
-              <div class="list-item-actions">
-                <button class="btn btn-sm btn-outline">Edit</button>
-              </div>
-            </li>
-          </ul>
-
-          <h3>Stats</h3>
-          <div class="stats">
-            <div class="stat-card">
-              <div class="stat-icon">📊</div>
-              <div class="stat-value">1,234</div>
-              <div class="stat-label">Total Users</div>
-              <div class="stat-change positive">+12%</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">💰</div>
-              <div class="stat-value">$5,678</div>
-              <div class="stat-label">Revenue</div>
-              <div class="stat-change positive">+8%</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">📈</div>
-              <div class="stat-value">89%</div>
-              <div class="stat-label">Growth</div>
-              <div class="stat-change negative">-2%</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="icon-components">
-        <h2>Icon Components</h2>
-
-        <div class="icon-showcase">
-          <h3>Icon Sizes</h3>
-          <div class="flex items-center gap-md">
-            <span class="icon icon-xs">🔍</span>
-            <span class="icon icon-sm">🔍</span>
-            <span class="icon icon-md">🔍</span>
-            <span class="icon icon-lg">🔍</span>
-            <span class="icon icon-xl">🔍</span>
-            <span class="icon icon-2xl">🔍</span>
-          </div>
-
-          <h3>Icon Colors</h3>
-          <div class="flex items-center gap-md">
-            <span class="icon icon-primary">⭐</span>
-            <span class="icon icon-secondary">⭐</span>
-            <span class="icon icon-success">⭐</span>
-            <span class="icon icon-warning">⭐</span>
-            <span class="icon icon-error">⭐</span>
-            <span class="icon icon-info">⭐</span>
-          </div>
-
-          <h3>Icon Buttons</h3>
-          <div class="flex items-center gap-md">
-            <button class="icon-button">
-              <span class="icon">⚙️</span>
-            </button>
-            <button class="icon-button primary">
-              <span class="icon">❤️</span>
-            </button>
-            <button class="icon-button secondary">
-              <span class="icon">📝</span>
-            </button>
-            <button class="icon-button outline">
-              <span class="icon">🔗</span>
-            </button>
-          </div>
-
-          <h3>Icon Grid</h3>
-          <div class="icon-grid">
-            <div class="icon-grid-item">
-              <span class="icon">🏠</span>
-              <span class="label">Home</span>
-            </div>
-            <div class="icon-grid-item">
-              <span class="icon">👤</span>
-              <span class="label">Profile</span>
-            </div>
-            <div class="icon-grid-item">
-              <span class="icon">⚙️</span>
-              <span class="label">Settings</span>
-            </div>
-            <div class="icon-grid-item">
-              <span class="icon">📊</span>
-              <span class="label">Analytics</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="typography">
-        <h2>Typography</h2>
-        <div class="text-showcase">
-          <h1>Heading 1</h1>
-          <h2>Heading 2</h2>
-          <h3>Heading 3</h3>
-          <p>
-            This is a paragraph with regular text. It should be readable and well-spaced using our
-            design system tokens.
-          </p>
-          <p class="text-sm">Small text for captions and secondary information.</p>
-          <p class="text-lg">Large text for emphasis and important content.</p>
-        </div>
-      </section>
-    </div>
-
-    <style>
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: var(--space-lg);
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 768px) {
-        .container {
-          padding: var(--space-md);
-        }
-
-        .header-content {
-          flex-direction: column;
-          gap: var(--space-md);
-          text-align: center;
-        }
-
-        .color-grid {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-
-        .button-group {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .card-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .stats {
-          grid-template-columns: 1fr;
-        }
-
-        .avatar-sizes,
-        .avatar-statuses {
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .container {
-          padding: var(--space-sm);
-        }
-
-        .color-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-title {
-          font-size: 1.5rem;
-        }
-
-        .hero-subtitle {
-          font-size: var(--font-size-md);
-        }
-      }
-
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--space-xl);
-      }
-
-      header {
-        text-align: left;
-        margin-bottom: var(--space-xl);
-      }
-
-      .theme-toggle {
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        padding: var(--space-sm) var(--space-md);
-        border: 2px solid var(--color-border);
-        background: var(--color-surface);
-        color: var(--color-text);
-        transition: all 0.3s ease;
-      }
-
-      .theme-toggle:hover {
-        background: var(--color-primary);
-        color: white;
-        border-color: var(--color-primary);
-      }
-
-      .theme-icon {
-        font-size: 1.2em;
-      }
-
-      header h1 {
-        color: var(--color-primary);
-        margin-bottom: var(--space-sm);
-      }
-
-      section {
-        margin-bottom: var(--space-xl);
-      }
-
-      .color-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-md);
-        margin-top: var(--space-md);
-      }
-
-      .color-swatch {
-        padding: var(--space-lg);
-        border-radius: var(--radius-md);
-        text-align: center;
-        color: white;
-        font-weight: 600;
-      }
-
-      .color-swatch.primary {
-        background-color: var(--color-primary);
-      }
-
-      .color-swatch.secondary {
-        background-color: var(--color-secondary);
-      }
-
-      .color-swatch.background {
-        background-color: var(--color-background);
-        color: var(--color-text);
-        border: 2px solid var(--color-border);
-      }
-
-      .color-swatch.text {
-        background-color: var(--color-text);
-        color: var(--color-background);
-      }
-
-      .color-swatch.surface {
-        background-color: var(--color-surface);
-        color: var(--color-text);
-        border: 2px solid var(--color-border);
-      }
-
-      .color-swatch.border {
-        background-color: var(--color-border);
-        color: var(--color-text);
-      }
-
-      .color-swatch.primary-hover {
-        background-color: var(--color-primary-hover);
-        color: white;
-      }
-
-      .color-swatch.secondary-hover {
-        background-color: var(--color-secondary-hover);
-        color: white;
-      }
-
-      .color-swatch code {
-        display: block;
-        margin-top: var(--space-sm);
-        font-family: monospace;
-        font-size: 0.875rem;
-      }
-
-      .button-group {
-        display: flex;
-        gap: var(--space-md);
-        flex-wrap: wrap;
-        margin-top: var(--space-md);
-      }
-
-      .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--space-lg);
-        margin-top: var(--space-md);
-      }
-
-      .text-showcase {
-        margin-top: var(--space-md);
-      }
-
-      .text-showcase h1,
-      .text-showcase h2,
-      .text-showcase h3 {
-        margin-bottom: var(--space-sm);
-      }
-
-      .text-showcase p {
-        margin-bottom: var(--space-md);
-      }
-
-      .text-sm {
-        font-size: var(--font-size-sm);
-      }
-
-      .text-lg {
-        font-size: var(--font-size-lg);
-      }
-
-      /* Form Components */
-      .form-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--space-xl);
-        margin-top: var(--space-md);
-        align-items: start;
-      }
-
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-      }
-
-      @media (max-width: 768px) {
-        .form-grid {
-          grid-template-columns: 1fr;
-          gap: var(--space-lg);
-        }
-      }
-
-      @media (max-width: 480px) {
-        .form-grid {
-          gap: var(--space-md);
-        }
-      }
-
-      .form-options {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-md);
-        margin-top: var(--space-md);
-      }
-
-      /* Alert Components */
-      .alert-showcase {
-        margin-top: var(--space-md);
-      }
-
-      /* Badge Components */
-      .badge-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-sm);
-        margin-top: var(--space-md);
-      }
-
-      .badge-sizes {
-        display: flex;
-        align-items: center;
-        gap: var(--space-md);
-        margin-top: var(--space-md);
-      }
-
-      /* Avatar Components */
-      .avatar-sizes {
-        display: flex;
-        align-items: center;
-        gap: var(--space-md);
-        margin-top: var(--space-md);
-      }
-
-      .avatar-statuses {
-        display: flex;
-        align-items: center;
-        gap: var(--space-md);
-        margin-top: var(--space-md);
-      }
-    </style>
+      </div>
+    </main>
+    
+    <!-- Hidden link for downloading icons -->
+    <a id="download-link" style="display: none;"></a>
+    <!-- Canvas for PNG generation -->
+    <canvas id="export-canvas" style="display: none;"></canvas>
 
     <script>
-      // Theme switching functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const themeIcon = document.querySelector(".theme-icon");
-      const themeText = document.querySelector(".theme-text");
       const html = document.documentElement;
-
-      // Check for saved theme preference or default to light mode
-      const currentTheme = localStorage.getItem("theme") || "light";
-      html.setAttribute("data-theme", currentTheme);
-      updateThemeUI(currentTheme);
-
-      themeToggle.addEventListener("click", () => {
-        const currentTheme = html.getAttribute("data-theme");
-        const newTheme = currentTheme === "light" ? "dark" : "light";
-
-        html.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        updateThemeUI(newTheme);
-        updateColorCodes(newTheme);
+      const sidebar = document.getElementById('sidebar');
+      const menuBtn = document.getElementById('menu-btn');
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const iconGrid = document.getElementById('icon-grid');
+      const searchInput = document.getElementById('icon-search');
+      const clearBtn = document.getElementById('clear-search');
+      let allIcons = {};
+      
+      // Load color scales
+      const scales = ['accent', 'gray', 'success', 'warning', 'error'];
+      function updateScales() {
+        scales.forEach(scale => {
+          const container = document.getElementById(`${scale}-scale`);
+          if (!container) return;
+          container.innerHTML = '';
+          for (let i = 1; i <= 12; i++) {
+            const item = document.createElement('div');
+            item.className = 'scale-item';
+            // We use the computed value of --accent-X, --gray-X etc.
+            item.style.backgroundColor = `var(--${scale}-${i})`;
+            
+            // Determine text color based on step
+            const color = getComputedStyle(document.documentElement).getPropertyValue(`--${scale}-${i}`).trim();
+            item.style.color = i > 8 ? 'white' : 'black';
+            if (scale === 'gray' && i > 6) item.style.color = 'white';
+            
+            const label = document.createElement('span');
+            label.textContent = i;
+            item.appendChild(label);
+            container.appendChild(item);
+          }
+        });
+      }
+      updateScales();
+      
+      // Accent selector switching
+      const accentSelector = document.getElementById('accent-selector');
+      accentSelector.addEventListener('change', (e) => {
+        const color = e.target.value;
+        // Remove old accent classes
+        html.classList.forEach(className => {
+          if (className.startsWith('az-accent-')) {
+            html.classList.remove(className);
+          }
+        });
+        html.classList.add(`az-accent-${color}`);
+        updateScales();
       });
 
-      function updateThemeUI(theme) {
-        if (theme === "dark") {
-          themeIcon.textContent = "☀️";
-          themeText.textContent = "Light Mode";
-        } else {
-          themeIcon.textContent = "🌙";
-          themeText.textContent = "Dark Mode";
+      // Theme switching
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+      
+      themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeIcon(next);
+        updateScales();
+      });
+      
+      function updateThemeIcon(theme) {
+        if (!allIcons.SunIcon) {
+          themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+          return;
+        }
+        
+        const iconName = theme === 'light' ? 'MoonIcon' : 'SunIcon';
+        const icon = allIcons[iconName];
+        // Use stroke for Lucide-style icons
+        themeIcon.innerHTML = `<svg viewBox="${icon.v}" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon.c}</svg>`;
+      }
+      
+      // Icon Gallery Logic
+      fetch('./icons-catalog.json')
+        .then(res => res.json())
+        .then(data => {
+          allIcons = data;
+          renderIcons();
+          updateThemeIcon(html.getAttribute('data-theme'));
+          updateMenuIcon();
+        })
+        .catch(err => {
+          console.error(err);
+          iconGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--error-9);">Failed to load icons. Make sure the catalog is generated.</div>`;
+        });
+      
+      function updateMenuIcon() {
+        if (!allIcons.MenuIcon) return;
+        const menuIconContainer = document.getElementById('menu-icon');
+        const isOpened = sidebar.classList.contains('open');
+        const iconName = isOpened ? 'XIcon' : 'MenuIcon';
+        const icon = allIcons[iconName];
+        if (icon) {
+          menuIconContainer.innerHTML = `<svg viewBox="${icon.v}" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon.c}</svg>`;
         }
       }
-
-      function updateColorCodes(theme) {
-        const bgCode = document.querySelector(".bg-code");
-        const textCode = document.querySelector(".text-code");
-        const surfaceCode = document.querySelector(".surface-code");
-        const borderCode = document.querySelector(".border-code");
-        const primaryHoverCode = document.querySelector(".primary-hover-code");
-        const secondaryHoverCode = document.querySelector(".secondary-hover-code");
-
-        if (theme === "dark") {
-          bgCode.textContent = "#0f172a";
-          textCode.textContent = "#f1f5f9";
-          surfaceCode.textContent = "#1e293b";
-          borderCode.textContent = "#334155";
-          primaryHoverCode.textContent = "#fb923c";
-          secondaryHoverCode.textContent = "#f97316";
-        } else {
-          bgCode.textContent = "#ffffff";
-          textCode.textContent = "#111827";
-          surfaceCode.textContent = "#f9fafb";
-          borderCode.textContent = "#e5e7eb";
-          primaryHoverCode.textContent = "#ea580c";
-          secondaryHoverCode.textContent = "#dc2626";
+      
+      function renderIcons(filter = '') {
+        iconGrid.innerHTML = '';
+        const filteredNames = Object.keys(allIcons).filter(name => 
+          name.toLowerCase().includes(filter.toLowerCase())
+        ).slice(0, 200); // Limit to 200 for performance
+        
+        if (filteredNames.length === 0) {
+          iconGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px;">No icons found matching "${filter}"</div>`;
+          return;
         }
+        
+        filteredNames.forEach(name => {
+          const icon = allIcons[name];
+        const card = document.createElement('div');
+        card.className = 'icon-card';
+        
+        // Icons in grid usually look better filled if they are shapes, but let's stick to stroke for consistency
+        const svgHtml = `<svg viewBox="${icon.v}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon.c}</svg>`;
+        
+        card.innerHTML = `
+            <div class="icon-preview">${svgHtml}</div>
+            <div class="icon-name">${name}</div>
+            <div class="icon-actions">
+              <button class="mini-btn" onclick="downloadSVG('${name}')" title="Download SVG">SVG</button>
+              <button class="mini-btn" onclick="downloadPNG('${name}')" title="Download PNG">PNG</button>
+            </div>
+          `;
+          iconGrid.appendChild(card);
+        });
       }
+      
+      searchInput.addEventListener('input', (e) => {
+        renderIcons(e.target.value);
+      });
+      
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        renderIcons();
+      });
+      
+      // Export functions
+      window.downloadSVG = (name) => {
+        const icon = allIcons[name];
+        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${icon.v}" fill="currentColor" width="24" height="24">${icon.c}</svg>`;
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const link = document.getElementById('download-link');
+        link.href = url;
+        link.download = `${name}.svg`;
+        link.click();
+        URL.revokeObjectURL(url);
+      };
+      
+      window.downloadPNG = (name) => {
+        const icon = allIcons[name];
+        const size = 512; // High res PNG
+        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${icon.v}" fill="black" width="${size}" height="${size}">${icon.c}</svg>`;
+        
+        const canvas = document.getElementById('export-canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        
+        const img = new Image();
+        const svgBlob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
+        const url = URL.createObjectURL(svgBlob);
+        
+        img.onload = function() {
+          ctx.clearRect(0, 0, size, size);
+          ctx.drawImage(img, 0, 0);
+          const pngUrl = canvas.toDataURL("image/png");
+          const link = document.getElementById('download-link');
+          link.href = pngUrl;
+          link.download = `${name}.png`;
+          link.click();
+          URL.revokeObjectURL(url);
+        };
+        img.src = url;
+      };
+      
+      // Sidebar Active State / Scrolling
+      const navItems = document.querySelectorAll('.nav-item');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        const headerOffset = 150;
+        document.querySelectorAll('section').forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (window.pageYOffset >= sectionTop - headerOffset && 
+              window.pageYOffset < sectionTop + sectionHeight - headerOffset) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('href').slice(1) === current) {
+            item.classList.add('active');
+          }
+        });
+      });
+      
+      // Close mobile sidebar when nav link is clicked
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+            updateMenuIcon();
+          }
+        });
+      });
+      
+      // Mobile Menu
+      const overlay = document.getElementById('sidebar-overlay');
+      
+      function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+        updateMenuIcon();
+        document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+      }
+      
+      menuBtn.addEventListener('click', toggleSidebar);
+      overlay.addEventListener('click', toggleSidebar);
+      
+      // Close sidebar on window resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+          updateMenuIcon();
+        }
+      });
+      
+      // Prevent body scroll when sidebar is open on mobile
+      const observer = new ResizeObserver(() => {
+        if (window.innerWidth > 768) {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+      observer.observe(document.body);
     </script>
   </body>
 </html>

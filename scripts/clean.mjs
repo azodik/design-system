@@ -3,7 +3,7 @@ import path from "node:path";
 
 // Configuration
 const CONFIG = {
-  directoriesToClean: ['node_modules', 'dist', '.wrangler', '.turbo']
+  directoriesToClean: ['node_modules', 'dist', '.wrangler', '.turbo', 'coverage', '.next', 'build', 'storybook-static']
 };
 
 // Utility functions

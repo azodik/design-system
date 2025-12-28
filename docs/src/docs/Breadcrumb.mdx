@@ -1,0 +1,215 @@
+import { Breadcrumb, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import ComponentNavigation from '../components/docs/ComponentNavigation';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const BreadcrumbHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('breadcrumbComponent')}</h1>;
+};
+
+export const BreadcrumbDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('breadcrumbDescription')}</p>;
+};
+
+export const BreadcrumbIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('breadcrumbIntroDesc')}</p>
+      <ul>
+        <li>{t('breadcrumbMainWrapper')}</li>
+        <li>{t('breadcrumbItems')}</li>
+        <li>{t('breadcrumbNavigation')}</li>
+        <li>{t('breadcrumbSeparators')}</li>
+        <li>{t('breadcrumbStateManagement')}</li>
+        <li>{t('breadcrumbAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('showHierarchicalNavigationPaths')}</li>
+        <li>{t('helpUsersUnderstandLocation')}</li>
+        <li>{t('provideQuickNavigationToParent')}</li>
+        <li>{t('displaySiteStructure')}</li>
+        <li>{t('aidInSEOAndUserExperience')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
+
+export const VariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variants')}</h2>;
+};
+
+export const SomeVariantsExample = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const AllBreadcrumbVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allBreadcrumbVariants');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const BreadcrumbItemInterfaceSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('breadcrumbItemInterface')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('breadcrumbsHaveSemanticStructure')}</li>
+      <li>{t('screenReadersNavigateBreadcrumb')}</li>
+      <li>{t('keyboardNavigationSupported')}</li>
+      <li>{t('properAriaAttributesApplied')}</li>
+      <li>{t('currentPageClearlyIdentified')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepBreadcrumbLabelsConcise')}</li>
+      <li>{t('useConsistentSeparators')}</li>
+      <li>{t('ensureSufficientContrast')}</li>
+      <li>{t('considerMobileResponsiveness')}</li>
+      <li>{t('dontMakeBreadcrumbsTooDeep')}</li>
+    </ul>
+  );
+};
+
+<BreadcrumbHeader />
+
+<BreadcrumbDescription />
+
+<BreadcrumbIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
+
+<CodeBlock language="tsx">
+{`import { Breadcrumb } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsSection />
+
+<SomeVariantsExample />
+
+<CodeBlockWithPreview 
+  title={<AllBreadcrumbVariantsTitle />}
+  preview={
+    <div className="space-y-4">
+      <Breadcrumb items={[
+        { label: 'Home', href: '/' },
+        { label: 'Products', href: '/products' },
+        { label: 'Laptops', current: true }
+      ]} />
+    </div>
+  }
+>
+{`import { Breadcrumb } from '@azodik/ui';
+
+export const BreadcrumbExamples = () => {
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Electronics', href: '/products/electronics' },
+    { label: 'Laptops', current: true }
+  ];
+
+  return (
+    <Breadcrumb items={breadcrumbItems} />
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsSection />
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'BreadcrumbItem[]',
+    required: true,
+    default: '-',
+    description: 'Array of breadcrumb items'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<BreadcrumbItemInterfaceSection />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Display text for the breadcrumb item'
+  },
+  {
+    name: 'href',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL for the breadcrumb item'
+  },
+  {
+    name: 'current',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether this is the current page'
+  }
+]} />
+
+<AccessibilitySection />
+
+<AccessibilityList />
+
+<DesignGuidelinesSection />
+
+<DesignGuidelinesList />
+
+<ComponentNavigation />

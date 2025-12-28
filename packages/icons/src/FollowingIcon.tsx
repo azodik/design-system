@@ -1,0 +1,32 @@
+import React from "react";
+
+interface FollowingIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const FollowingIcon: React.FC<FollowingIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        strokeWidth="1.5"
+        d="M10.063 18.5H2v-2.8a17.4 17.4 0 0 1 8.5-2.2c1.556 0 3.064.203 4.5.584M6.5 6.25a4.25 4.25 0 1 0 8.5 0a4.25 4.25 0 1 0-8.5 0M22 18.5h-9m5-4l4 4l-4 4"
+      />
+    </svg>
+  );
+};
+
+export default FollowingIcon;

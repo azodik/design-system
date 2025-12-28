@@ -1,0 +1,31 @@
+import React from "react";
+
+interface ShieldIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const ShieldIcon: React.FC<ShieldIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976"
+      />
+    </svg>
+  );
+};
+
+export default ShieldIcon;

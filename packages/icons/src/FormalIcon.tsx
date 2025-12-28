@@ -1,0 +1,31 @@
+import React from "react";
+
+interface FormalIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const FormalIcon: React.FC<FormalIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M21.5 9V8h-1l-1 1H15l-1-1h-1l-6 4H4a2 2 0 0 0-2 2v2h8l3-1h2v1h6.5v-2s.5-1 .5-2.5s-.5-2.5-.5-2.5"
+      />
+    </svg>
+  );
+};
+
+export default FormalIcon;

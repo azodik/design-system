@@ -1,0 +1,5 @@
+/* @azodik/ui - Complete CSS bundle */
+/* This automatically includes azodik-ui-core */
+
+@import "azodik-ui-core/index.css";
+

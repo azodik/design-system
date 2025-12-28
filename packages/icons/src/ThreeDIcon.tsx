@@ -1,0 +1,41 @@
+import React from "react";
+
+interface ThreeDIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const ThreeDIcon: React.FC<ThreeDIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m18.209 23.293l7.065 7.113L38 17.594m-23.896 5.699l7.066 7.113m4.104-4.132l8.622-8.68m-10.674 6.614l6.57-6.614M10 23.293l7.065 7.113"
+      />
+      <circle
+        cx="24"
+        cy="24"
+        r="21.5"
+        fill="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default ThreeDIcon;

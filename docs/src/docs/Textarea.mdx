@@ -1,0 +1,265 @@
+import { Textarea, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TextareaComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('textareaComponent')}</h1>;
+};
+
+export const TextareaComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('textareaDescription')}</p>;
+};
+
+export const TextareaIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('textareaIntroduction')}</h2>
+      <p>{t('textareaIntroDesc')}</p>
+      <ul>
+        <li>{t('textareaMainWrapper')}</li>
+        <li>{t('textareaSizing')}</li>
+        <li>{t('textareaValidation')}</li>
+        <li>{t('textareaAccessibility')}</li>
+        <li>{t('textareaCustomization')}</li>
+        <li>{t('textareaStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTextarea')}</h3>
+      <ul>
+        <li>{t('collectingLongerTextInput')}</li>
+        <li>{t('commentFormsAndFeedback')}</li>
+        <li>{t('descriptionFields')}</li>
+        <li>{t('messageComposition')}</li>
+        <li>{t('multiLineContentEntry')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTextarea')}</h2>;
+};
+
+export const VariantsTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTextarea')}</h2>;
+};
+
+export const BasicTextareaTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicTextarea');
+};
+
+export const PropsTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTextarea')}</h2>;
+};
+
+export const AccessibilityTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTextarea')}</h2>;
+};
+
+export const DesignGuidelinesTextareaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTextarea')}</h2>;
+};
+
+export const AccessibilityTextareaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('textareasHaveProperLabelsAndAssociations')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReaders')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyTextarea')}</li>
+      <li>{t('keyboardNavigationIsSupportedTextarea')}</li>
+      <li>{t('colorContrastMeetsWCAGGuidelines')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTextareaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabelsTextarea')}</li>
+      <li>{t('useAppropriatePlaceholderText')}</li>
+      <li>{t('showCharacterLimitsWhenApplicable')}</li>
+      <li>{t('provideClearValidationFeedback')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileTextarea')}</li>
+    </ul>
+  );
+};
+
+export const BasicTextareaExample = () => {
+  return (
+    <div className="space-y-4">
+      <Textarea
+        label="Message"
+        placeholder="Enter your message here..."
+        rows={4}
+      />
+    </div>
+  );
+};
+
+<TextareaComponentHeader />
+
+<TextareaComponentDescription />
+
+<TextareaIntroduction />
+
+<WhenToUseTextareaSection />
+
+<UsageTextareaSection />
+
+<CodeBlock language="tsx">
+{`import { Textarea } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsTextareaSection />
+
+<CodeBlockWithPreview 
+  title={<BasicTextareaTitle />}
+  preview={<BasicTextareaExample />}
+>
+{`import { Textarea } from '@azodik/ui';
+
+export default function BasicTextarea() {
+  return (
+    <div className="space-y-4">
+      <Textarea
+        label="Message"
+        placeholder="Enter your message here..."
+        rows={4}
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<h3>Textarea Sizes</h3>
+<CodeBlockWithPreview 
+  title="Textarea Sizes"
+  preview={
+    <div className="flex-vertical">
+      <Textarea placeholder="Size 1" size="1" />
+      <Textarea placeholder="Size 2 (Default)" size="2" />
+      <Textarea placeholder="Size 3" size="3" />
+    </div>
+  }
+>
+{`import { Textarea } from '@azodik/ui';
+
+export const TextareaSizes = () => {
+  return (
+    <div className="flex-vertical">
+      <Textarea placeholder="Size 1" size="1" />
+      <Textarea placeholder="Size 2 (Default)" size="2" />
+      <Textarea placeholder="Size 3" size="3" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsTextareaSection />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the textarea field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the textarea'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the textarea'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the textarea (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the textarea'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '-',
+    description: 'Border radius of the textarea'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Accent color for focus states'
+  },
+  {
+    name: 'autoResize',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the textarea should auto-resize based on content'
+  },
+  {
+    name: 'minRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Minimum number of rows when auto-resizing'
+  },
+  {
+    name: 'maxRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Maximum number of rows when auto-resizing'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityTextareaSection />
+
+<AccessibilityTextareaList />
+
+<DesignGuidelinesTextareaSection />
+
+<DesignGuidelinesTextareaList />

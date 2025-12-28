@@ -2,21 +2,58 @@
   "name": "azodik-design-system",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Azodik Design System with pnpm and Turbo",
+  "engines": {
+    "node": ">=24.7.0"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "type-check": "turbo run type-check",
+    "test": "vitest",
+    "test:ui": "vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "size": "size-limit",
+    "size:why": "size-limit --why",
     "clean": "turbo run clean && node scripts/clean.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "changeset": "changeset",
+    "pub:dry": "changeset publish --dry-run && pnpm run restore-packages || pnpm run restore-packages",
+    "pub": "changeset publish || pnpm run restore-packages",
+    "restore-packages": "node scripts/prepare-publish.mjs restore all",
+    "publish": "echo 'Error: Cannot publish root package. Use \"pnpm run pub\" or \"pnpm changeset publish\" instead.' && exit 1",
+    "deploy": "turbo run deploy",
+    "typegen": "turbo run typegen"
   },
   "devDependencies": {
-    "@turbo/gen": "^2.5.8",
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.8",
-    "typescript": "^5.9.2"
+    "@changesets/cli": "^2.29.8",
+    "@eslint/js": "^9.39.2",
+    "@size-limit/preset-small-lib": "^12.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@turbo/gen": "^2.7.2",
+    "@typescript-eslint/eslint-plugin": "^8.50.1",
+    "@typescript-eslint/parser": "^8.50.1",
+    "eslint": "^9.39.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.7.4",
+    "size-limit": "^12.0.0",
+    "turbo": "^2.7.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
   },
-  "packageManager": "pnpm@10.17.1"
+  "packageManager": "pnpm@10.26.2+sha512.0e308ff2005fc7410366f154f625f6631ab2b16b1d2e70238444dd6ae9d630a8482d92a451144debc492416896ed16f7b114a86ec68b8404b2443869e68ffda6",
+  "dependencies": {
+    "recharts": "^3.6.0"
+  }
 }

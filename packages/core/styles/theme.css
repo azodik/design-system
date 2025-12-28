@@ -1,0 +1,221 @@
+/* Common Theme System - Azodik Design System */
+
+/* Global Base Styles */
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  background: var(--color-background);
+}
+
+/* Common UI Elements */
+.theme-toggle-button,
+.theme-panel-trigger {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  padding: var(--space-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.theme-toggle-button:hover,
+.theme-panel-trigger:hover {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Common Header & Content Styles */
+.common-header {
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.common-content {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.common-content h1,
+.common-content h2,
+.common-content h3,
+.common-content h4,
+.common-content h5,
+.common-content h6 {
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.common-content p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.common-content a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.common-content a:hover {
+  text-decoration: underline;
+  color: var(--color-primary-hover);
+}
+
+/* Common Button Styles */
+.common-btn-primary {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-2);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.common-btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.common-btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-2);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.common-btn-secondary:hover {
+  background: var(--color-primary-light);
+}
+
+/* Card & Surface Styles */
+.common-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
+  color: var(--color-text);
+  box-shadow: var(--shadow-1);
+}
+
+/* Form Styles */
+.common-input {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.common-input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+/* Scrollbar Styles */
+.common-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-7) transparent;
+}
+
+.common-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.common-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.common-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--gray-7);
+  border-radius: 3px;
+}
+
+.common-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-8);
+}
+
+/* Table Styles */
+.common-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-text);
+}
+
+.common-table th {
+  background: var(--color-surface);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--space-3);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.common-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Utility Styles */
+.common-badge {
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-round);
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.common-divider {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-4) 0;
+}
+
+/* Spacing Utilities */
+.common-p-sm { padding: var(--space-2); }
+.common-p-md { padding: var(--space-4); }
+.common-p-lg { padding: var(--space-6); }
+.common-m-sm { margin: var(--space-2); }
+.common-m-md { margin: var(--space-4); }
+.common-m-lg { margin: var(--space-6); }
+
+/* Language Selector */
+.language-selector-select {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  outline: none;
+}
+
+.language-selector-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}

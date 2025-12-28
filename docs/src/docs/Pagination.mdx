@@ -1,0 +1,381 @@
+import { Pagination, Card, CardContent, Button, Select } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const PaginationComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('paginationComponent')}</h1>;
+};
+
+export const PaginationComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('paginationDescription')}</p>;
+};
+
+export const PaginationIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('paginationIntroduction')}</h2>
+      <p>{t('paginationIntroDesc')}</p>
+      <ul>
+        <li>{t('paginationMainWrapper')}</li>
+        <li>{t('paginationControls')}</li>
+        <li>{t('paginationDisplay')}</li>
+        <li>{t('paginationCustomization')}</li>
+        <li>{t('paginationResponsiveness')}</li>
+        <li>{t('paginationAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUsePaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUsePagination')}</h3>
+      <ul>
+        <li>{t('navigateThroughLargeListsOrDatasets')}</li>
+        <li>{t('displaySearchResultsAcrossMultiplePages')}</li>
+        <li>{t('browseThroughContentCollections')}</li>
+        <li>{t('navigateDataTablesWithManyRows')}</li>
+        <li>{t('showContentInManageableChunks')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsagePaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usagePagination')}</h2>;
+};
+
+export const VariantsPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsPagination')}</h2>;
+};
+
+export const BasicPaginationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicPagination');
+};
+
+export const WithJumpToPagePaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withJumpToPagePagination')}</h2>;
+};
+
+export const PaginationWithJumpTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('paginationWithJump');
+};
+
+export const PropsPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsPagination')}</h2>;
+};
+
+export const AccessibilityPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityPagination')}</h2>;
+};
+
+export const DesignGuidelinesPaginationSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesPagination')}</h2>;
+};
+
+export const AccessibilityPaginationList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('paginationControlsAreKeyboardAccessible')}</li>
+      <li>{t('screenReadersCanIdentifyCurrentPage')}</li>
+      <li>{t('navigationButtonsHaveProperLabels')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyPagination')}</li>
+      <li>{t('properAriaAttributesAreAppliedPagination')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesPaginationList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndIntuitiveNavigationControls')}</li>
+      <li>{t('showCurrentPageClearly')}</li>
+      <li>{t('provideFirstLastPageButtonsForLargeDatasets')}</li>
+      <li>{t('useConsistentStylingAcrossYourApplicationPagination')}</li>
+      <li>{t('considerMobileTouchTargets')}</li>
+    </ul>
+  );
+};
+
+export const PageSizePaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const totalItems = 100;
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handlePageSizeChange = (size) => {
+    setPageSize(size);
+    setCurrentPage(1); // Reset to first page when size changes
+  };
+
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <span>Items per page:</span>
+        <select 
+          value={pageSize} 
+          onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+          className="border rounded px-2 py-1"
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
+      </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        showPageSize
+        pageSize={pageSize}
+        onPageSizeChange={handlePageSizeChange}
+      />
+    </div>
+  );
+};
+
+export const CustomStyledPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(2);
+  const totalPages = 15;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+        <div className="pagination-responsive">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            className="custom-pagination"
+            showFirstLast
+            showPrevNext
+            maxVisiblePages={3}
+          />
+        </div>
+  );
+};
+
+export const JumpPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(2);
+  const totalPages = 20;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleJumpToPage = (value) => {
+    const page = Number(value);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  // Generate page options for the select
+  const pageOptions = Array.from({ length: totalPages }, (_, i) => ({
+    value: (i + 1).toString(),
+    label: "Page " + (i + 1)
+  }));
+
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-2">
+        <span>Jump to page:</span>
+        <Select
+          value={currentPage.toString()}
+          onChange={handleJumpToPage}
+          options={pageOptions}
+          placeholder="Select page"
+          className="w-32"
+        />
+      </div>
+      
+      <div className="pagination-responsive">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          showFirstLast
+          showPrevNext
+          maxVisiblePages={3}
+        />
+      </div>
+    </div>
+  );
+};
+
+<PaginationComponentHeader />
+
+<PaginationComponentDescription />
+
+<PaginationIntroduction />
+
+<WhenToUsePaginationSection />
+
+<UsagePaginationSection />
+
+<CodeBlock language="tsx">
+{`import { Pagination } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsPaginationSection />
+
+<CodeBlockWithPreview 
+  title={<BasicPaginationTitle />}
+  preview={<CustomStyledPaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicPagination() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      showFirstLast
+      showPrevNext
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+<WithJumpToPagePaginationSection />
+
+<CodeBlockWithPreview 
+  title={<PaginationWithJumpTitle />}
+  preview={<JumpPaginationExample />}
+>
+{`import { Pagination } from '@azodik/ui';
+import { useState } from 'react';
+
+export const JumpPaginationExample = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 20;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleJumpToPage = (value) => {
+    const page = Number(value);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  // Generate page options for the select
+  const pageOptions = Array.from({ length: totalPages }, (_, i) => ({
+    value: (i + 1).toString(),
+    label: "Page " + (i + 1)
+  }));
+
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-2">
+        <span>Jump to page:</span>
+        <Select
+          value={currentPage.toString()}
+          onChange={handleJumpToPage}
+          options={pageOptions}
+          placeholder="Select page"
+          className="w-32"
+        />
+      </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        showFirstLast
+        showPrevNext
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsPaginationSection />
+
+<PropsTable props={[
+  {
+    name: 'currentPage',
+    type: 'number',
+    required: true,
+    default: '-',
+    description: 'Currently active page number'
+  },
+  {
+    name: 'totalPages',
+    type: 'number',
+    required: true,
+    default: '-',
+    description: 'Total number of pages'
+  },
+  {
+    name: 'onPageChange',
+    type: '(page: number) => void',
+    required: true,
+    default: '-',
+    description: 'Function called when page changes'
+  },
+  {
+    name: 'showFirstLast',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show first and last page buttons'
+  },
+  {
+    name: 'showPrevNext',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show previous and next page buttons'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityPaginationSection />
+
+<AccessibilityPaginationList />
+
+<DesignGuidelinesPaginationSection />
+
+<DesignGuidelinesPaginationList />

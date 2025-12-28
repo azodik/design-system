@@ -1,0 +1,498 @@
+import { Toast, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ToastComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('toastComponent')}</h1>;
+};
+
+export const ToastComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('toastDescription')}</p>;
+};
+
+export const ToastIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('toastIntroduction')}</h2>
+      <p>{t('toastIntroDesc')}</p>
+      <ul>
+        <li>{t('toastMainWrapper')}</li>
+        <li>{t('toastVariantsIntro')}</li>
+        <li>{t('toastPositioning')}</li>
+        <li>{t('toastTiming')}</li>
+        <li>{t('toastCustomization')}</li>
+        <li>{t('toastAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseToast')}</h3>
+      <ul>
+        <li>{t('showSuccessMessagesAfterActions')}</li>
+        <li>{t('displayErrorNotifications')}</li>
+        <li>{t('provideBriefStatusUpdates')}</li>
+        <li>{t('showConfirmationMessages')}</li>
+        <li>{t('displaySystemNotifications')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageToast')}</h2>;
+};
+
+export const VariantsToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsToast')}</h2>;
+};
+
+export const BasicToastTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicToast');
+};
+
+export const ToastVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('toastVariants');
+};
+
+export const ToastPositionsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('toastPositions');
+};
+
+export const PersistentToastTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('persistentToast');
+};
+
+export const PropsToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsToast')}</h2>;
+};
+
+export const AccessibilityToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityToast')}</h2>;
+};
+
+export const DesignGuidelinesToastSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesToast')}</h2>;
+};
+
+export const AccessibilityToastList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('toastsAreAnnouncedToScreenReaders')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyToast')}</li>
+      <li>{t('keyboardNavigationIsSupportedToast')}</li>
+      <li>{t('colorIsNotTheOnlyWayToConveyInformationToast')}</li>
+      <li>{t('properAriaAttributesAreAppliedToast')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesToastList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepToastMessagesConciseAndClear')}</li>
+      <li>{t('useAppropriateVariantsForDifferentMessageTypes')}</li>
+      <li>{t('dontShowTooManyToastsAtOnce')}</li>
+      <li>{t('provideClearCloseActions')}</li>
+      <li>{t('considerMobilePositioningAndSizing')}</li>
+    </ul>
+  );
+};
+
+export const BasicToastExample = () => {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="soft" color="indigo"
+          title="Information"
+          onClose={() => setShowToast(false)}
+          autoClose={3000}
+        >
+          This is a basic toast notification.
+        </Toast>
+      )}
+    </div>
+  );
+};
+
+export const ToastVariantsExample = () => {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (variant, title, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, variant, title, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('success', 'Success!', 'Operation completed successfully.')}>
+          Success Toast
+        </Button>
+        <Button onClick={() => addToast('error', 'Error!', 'Something went wrong.')}>
+          Error Toast
+        </Button>
+        <Button onClick={() => addToast('warning', 'Warning!', 'Please check your input.')}>
+          Warning Toast
+        </Button>
+        <Button onClick={() => addToast('info', 'Info', 'Here is some information.')}>
+          Info Toast
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant={toast.variant}
+          title={toast.title}
+          onClose={() => removeToast(toast.id)}
+          autoClose={4000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+};
+
+export const ToastPositionsExample = () => {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (position, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, position, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('top-center', 'Top Center Toast')}>
+          Top Center
+        </Button>
+        <Button onClick={() => addToast('top-right', 'Top Right Toast')}>
+          Top Right
+        </Button>
+        <Button onClick={() => addToast('bottom-right', 'Bottom Right Toast')}>
+          Bottom Right
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant="soft" color="indigo"
+          position={toast.position}
+          onClose={() => removeToast(toast.id)}
+          autoClose={3000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+};
+
+export const PersistentToastExample = () => {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Persistent Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="soft" color="amber"
+          title="Important Notice"
+          onClose={() => setShowToast(false)}
+          // No autoClose prop = persistent until manually closed
+        >
+          This toast will stay until you close it.
+        </Toast>
+      )}
+    </div>
+  );
+};
+
+<ToastComponentHeader />
+
+<ToastComponentDescription />
+
+<ToastIntroduction />
+
+<WhenToUseToastSection />
+
+<UsageToastSection />
+
+<CodeBlock language="tsx">
+{`import { Toast } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsToastSection />
+
+<CodeBlockWithPreview 
+  title={<BasicToastTitle />}
+  preview={<BasicToastExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicToast() {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="soft" color="indigo"
+          title="Information"
+          onClose={() => setShowToast(false)}
+          autoClose={3000}
+        >
+          This is a basic toast notification.
+        </Toast>
+      )}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<ToastVariantsTitle />}
+  preview={<ToastVariantsExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function ToastVariants() {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (variant, title, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, variant, title, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('success', 'Success!', 'Operation completed successfully.')}>
+          Success Toast
+        </Button>
+        <Button onClick={() => addToast('error', 'Error!', 'Something went wrong.')}>
+          Error Toast
+        </Button>
+        <Button onClick={() => addToast('warning', 'Warning!', 'Please check your input.')}>
+          Warning Toast
+        </Button>
+        <Button onClick={() => addToast('info', 'Info', 'Here is some information.')}>
+          Info Toast
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant={toast.variant}
+          title={toast.title}
+          onClose={() => removeToast(toast.id)}
+          autoClose={4000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<ToastPositionsTitle />}
+  preview={<ToastPositionsExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function ToastPositions() {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = (position, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, position, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button onClick={() => addToast('top-center', 'Top Center Toast')}>
+          Top Center
+        </Button>
+        <Button onClick={() => addToast('top-right', 'Top Right Toast')}>
+          Top Right
+        </Button>
+        <Button onClick={() => addToast('bottom-right', 'Bottom Right Toast')}>
+          Bottom Right
+        </Button>
+      </div>
+      
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          variant="soft" color="indigo"
+          position={toast.position}
+          onClose={() => removeToast(toast.id)}
+          autoClose={3000}
+        >
+          {toast.message}
+        </Toast>
+      ))}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<PersistentToastTitle />}
+  preview={<PersistentToastExample />}
+>
+{`import { Toast, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function PersistentToast() {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setShowToast(true)}>
+        Show Persistent Toast
+      </Button>
+      
+      {showToast && (
+        <Toast
+          variant="soft" color="amber"
+          title="Important Notice"
+          onClose={() => setShowToast(false)}
+          // No autoClose prop = persistent until manually closed
+        >
+          This toast will stay until you manually close it.
+        </Toast>
+      )}
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsToastSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Toast message content'
+  },
+  {
+    name: 'variant',
+    type: '"success" | "warning" | "error" | "info"',
+    required: false,
+    default: '"info"',
+    description: 'Visual style variant of the toast'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Title text for the toast'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Custom icon for the toast (defaults to variant-based icon)'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when toast is closed'
+  },
+  {
+    name: 'autoClose',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Auto-dismiss duration in milliseconds'
+  },
+  {
+    name: 'position',
+    type: '"top-center" | "top-right" | "bottom-right"',
+    required: false,
+    default: '"top-right"',
+    description: 'Position of the toast on screen'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityToastSection />
+
+<AccessibilityToastList />
+
+<DesignGuidelinesToastSection />
+
+<DesignGuidelinesToastList />

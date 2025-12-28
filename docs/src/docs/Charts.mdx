@@ -1,0 +1,608 @@
+import { LineChart, AreaChart, BarChart, PieChart, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import ChartsCodePreview from '@/components/docs/ChartsCodePreview';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ChartsComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('chartsComponent')}</h1>;
+};
+
+export const ChartsDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('chartsDescription')}</p>;
+};
+
+export const ChartsIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('chartsIntroduction')}</h2>
+      <p>{t('chartsIntroDesc')}</p>
+      <ul>
+        <li>{t('chartsMainWrapper')}</li>
+        <li>{t('chartTypes')}</li>
+        <li>{t('chartCustomization')}</li>
+        <li>{t('chartInteractivity')}</li>
+        <li>{t('chartResponsiveness')}</li>
+        <li>{t('chartAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseCharts')}</h3>
+      <ul>
+        <li>{t('displayTrendsOverTime')}</li>
+        <li>{t('showCumulativeData')}</li>
+        <li>{t('compareValuesAcrossCategories')}</li>
+        <li>{t('showProportionalData')}</li>
+        <li>{t('createDashboardsAndAnalytics')}</li>
+        <li>{t('visualizeBusinessMetrics')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageCharts')}</h2>;
+};
+
+export const BasicExampleChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleCharts')}</h2>;
+};
+
+export const LineChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('lineChart');
+};
+
+export const AreaChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('areaChart');
+};
+
+export const BarChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('barChart');
+};
+
+export const PieChartTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('pieChart');
+};
+
+export const CustomizationChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('customizationCharts')}</h2>;
+};
+
+export const CustomizedChartsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('customizedCharts');
+};
+
+export const PropsChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsCharts')}</h2>;
+};
+
+export const CommonChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('commonChartProps');
+};
+
+export const LineChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('lineChartProps');
+};
+
+export const AreaChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('areaChartProps');
+};
+
+export const BarChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('barChartProps');
+};
+
+export const PieChartPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('pieChartProps');
+};
+
+export const DataFormatSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('dataFormat')}</h2>;
+};
+
+export const AccessibilityChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityCharts')}</h2>;
+};
+
+export const DesignGuidelinesChartsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesCharts')}</h2>;
+};
+
+export const AccessibilityChartsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('chartsBuiltWithAccessibility')}</li>
+      <li>{t('screenReadersCanAccess')}</li>
+      <li>{t('keyboardNavigationSupportedCharts')}</li>
+      <li>{t('colorNotOnlyWayCharts')}</li>
+      <li>{t('tooltipsProvideAdditionalContext')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesChartsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useAppropriateChartTypes')}</li>
+      <li>{t('keepTitlesAndLabelsConcise')}</li>
+      <li>{t('useConsistentColorsCharts')}</li>
+      <li>{t('ensureSufficientContrastCharts')}</li>
+      <li>{t('considerResponsiveDesign')}</li>
+      <li>{t('useLegendsWhenMultipleData')}</li>
+    </ul>
+  );
+};
+
+<ChartsComponentHeader />
+
+<ChartsDescription />
+
+<ChartsIntroduction />
+
+<WhenToUseChartsSection />
+
+<UsageChartsSection />
+
+
+<CodeBlock language="tsx">
+{`import { LineChart, AreaChart, BarChart, PieChart } from '@azodik/ui';`}
+</CodeBlock>
+
+<BasicExampleChartsSection />
+
+<LineChartTitle />
+
+<ChartsCodePreview 
+  title={<LineChartTitle />}
+  preview={
+    <LineChart
+      data={[
+        { name: "Jan", sales: 4000 },
+        { name: "Feb", sales: 3000 },
+        { name: "Mar", sales: 5000 },
+        { name: "Apr", sales: 4500 },
+        { name: "May", sales: 6000 },
+        { name: "Jun", sales: 5500 },
+        { name: "Jul", sales: 7200 },
+        { name: "Aug", sales: 6800 },
+        { name: "Sep", sales: 6100 },
+        { name: "Oct", sales: 7800 },
+        { name: "Nov", sales: 8500 },
+        { name: "Dec", sales: 9200 },
+      ]}
+      dataKey="sales"
+      title="Sales Trend"
+      subtitle="Monthly sales performance"
+      height={200}
+    />
+  }
+>
+{`import { LineChart } from '@azodik/ui';
+
+export default function LineChartExample() {
+  const data = [
+    { name: "Jan", sales: 4000 },
+    { name: "Feb", sales: 3000 },
+    { name: "Mar", sales: 5000 },
+    { name: "Apr", sales: 4500 },
+    { name: "May", sales: 6000 },
+    { name: "Jun", sales: 5500 },
+  ];
+
+  return (
+    <LineChart
+      data={data}
+      dataKey="sales"
+      title="Sales Trend"
+      subtitle="Monthly sales performance"
+      height={200}
+    />
+  );
+}`}
+</ChartsCodePreview>
+
+<AreaChartTitle />
+
+<ChartsCodePreview 
+  title={<AreaChartTitle />}
+  preview={
+    <AreaChart
+      data={[
+        { name: "Jan", revenue: 4000 },
+        { name: "Feb", revenue: 3000 },
+        { name: "Mar", revenue: 5000 },
+        { name: "Apr", revenue: 4500 },
+        { name: "May", revenue: 6000 },
+        { name: "Jun", revenue: 5500 },
+        { name: "Jul", revenue: 7200 },
+        { name: "Aug", revenue: 6800 },
+        { name: "Sep", revenue: 6100 },
+        { name: "Oct", revenue: 7800 },
+        { name: "Nov", revenue: 8500 },
+        { name: "Dec", revenue: 9200 },
+      ]}
+      dataKey="revenue"
+      title="Revenue Growth"
+      subtitle="Revenue over time"
+      height={200}
+      fillColor="#10b981"
+      strokeColor="#059669"
+    />
+  }
+>
+{`import { AreaChart } from '@azodik/ui';
+
+export default function AreaChartExample() {
+  const data = [
+    { name: "Jan", revenue: 4000 },
+    { name: "Feb", revenue: 3000 },
+    { name: "Mar", revenue: 5000 },
+    { name: "Apr", revenue: 4500 },
+    { name: "May", revenue: 6000 },
+    { name: "Jun", revenue: 5500 },
+  ];
+
+  return (
+    <AreaChart
+      data={data}
+      dataKey="revenue"
+      title="Revenue Growth"
+      subtitle="Revenue over time"
+      height={200}
+      fillColor="#10b981"
+      strokeColor="#059669"
+    />
+  );
+}`}
+</ChartsCodePreview>
+
+<BarChartTitle />
+
+<ChartsCodePreview 
+  title={<BarChartTitle />}
+  preview={
+    <BarChart
+      data={[
+        { name: "Q1", value: 400 },
+        { name: "Q2", value: 300 },
+        { name: "Q3", value: 200 },
+        { name: "Q4", value: 278 },
+        { name: "Q5", value: 350 },
+        { name: "Q6", value: 420 },
+        { name: "Q7", value: 380 },
+        { name: "Q8", value: 450 },
+      ]}
+      dataKey="value"
+      title="Quarterly Performance"
+      subtitle="Values by quarter"
+      height={200}
+      fillColor="#f59e0b"
+    />
+  }
+>
+{`import { BarChart } from '@azodik/ui';
+
+export default function BarChartExample() {
+  const data = [
+    { name: "Q1", value: 400 },
+    { name: "Q2", value: 300 },
+    { name: "Q3", value: 200 },
+    { name: "Q4", value: 278 },
+  ];
+
+  return (
+    <BarChart
+      data={data}
+      dataKey="value"
+      title="Quarterly Performance"
+      subtitle="Values by quarter"
+      height={200}
+      fillColor="#f59e0b"
+    />
+  );
+}`}
+</ChartsCodePreview>
+
+<PieChartTitle />
+
+<ChartsCodePreview 
+  title={<PieChartTitle />}
+  preview={
+    <PieChart
+      data={[
+        { name: "Desktop", users: 400 },
+        { name: "Mobile", users: 300 },
+        { name: "Tablet", users: 200 },
+        { name: "Smart TV", users: 150 },
+        { name: "Gaming Console", users: 120 },
+        { name: "Other", users: 100 },
+      ]}
+      dataKey="users"
+      nameKey="name"
+      title="Device Usage"
+      subtitle="User distribution by device"
+      height={270}
+    />
+  }
+>
+{`import { PieChart } from '@azodik/ui';
+
+export default function PieChartExample() {
+  const data = [
+    { name: "Desktop", users: 400 },
+    { name: "Mobile", users: 300 },
+    { name: "Tablet", users: 200 },
+    { name: "Other", users: 100 },
+  ];
+
+  return (
+    <PieChart
+      data={data}
+      dataKey="users"
+      nameKey="name"
+      title="Device Usage"
+      subtitle="User distribution by device"
+      height={250}
+    />
+  );
+}`}
+</ChartsCodePreview>
+
+<CustomizationChartsSection />
+
+<ChartsCodePreview 
+  title={<CustomizedChartsTitle />}
+  preview={
+    <div className="flex-vertical">
+      <LineChart
+        data={[
+          { name: "Jan", sales: 4000, target: 3500 },
+          { name: "Feb", sales: 3000, target: 4000 },
+          { name: "Mar", sales: 5000, target: 4500 },
+        ]}
+        dataKey="sales"
+        title="Sales vs Target"
+        height={250}
+        strokeColor="#ef4444"
+        strokeWidth={3}
+        showLegend={false}
+      />
+    </div>
+  }
+>
+{`import { LineChart } from '@azodik/ui';
+
+export default function CustomizedChart() {
+  const data = [
+    { name: "Jan", sales: 4000, target: 3500 },
+    { name: "Feb", sales: 3000, target: 4000 },
+    { name: "Mar", sales: 5000, target: 4500 },
+  ];
+
+  return (
+    <LineChart
+      data={data}
+      dataKey="sales"
+      title="Sales vs Target"
+      height={250}
+      strokeColor="#ef4444"
+      strokeWidth={3}
+      showLegend={false}
+    />
+  );
+}`}
+</ChartsCodePreview>
+
+<PropsChartsSection />
+
+<CommonChartPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'ChartData[]',
+    required: true,
+    default: '-',
+    description: 'Array of data objects to be displayed in the chart'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Title displayed above the chart'
+  },
+  {
+    name: 'subtitle',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Subtitle displayed below the title'
+  },
+  {
+    name: 'width',
+    type: 'number | string',
+    required: false,
+    default: '"100%"',
+    description: 'Width of the chart container'
+  },
+  {
+    name: 'height',
+    type: 'number | string',
+    required: false,
+    default: '400',
+    description: 'Height of the chart container'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply to the chart container'
+  },
+  {
+    name: 'showLegend',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the legend'
+  },
+  {
+    name: 'showTooltip',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show tooltips on hover'
+  },
+  {
+    name: 'showGrid',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show grid lines (not applicable to PieChart)'
+  }
+]} />
+
+<LineChartPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'dataKey',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Key in the data object that represents the line values'
+  },
+  {
+    name: 'strokeColor',
+    type: 'string',
+    required: false,
+    default: 'var(--color-primary)',
+    description: 'Color of the line stroke'
+  },
+  {
+    name: 'strokeWidth',
+    type: 'number',
+    required: false,
+    default: '2',
+    description: 'Width of the line stroke'
+  }
+]} />
+
+<AreaChartPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'dataKey',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Key in the data object that represents the area values'
+  },
+  {
+    name: 'fillColor',
+    type: 'string',
+    required: false,
+    default: 'var(--color-primary)',
+    description: 'Fill color of the area'
+  },
+  {
+    name: 'strokeColor',
+    type: 'string',
+    required: false,
+    default: 'var(--color-primary)',
+    description: 'Color of the area stroke'
+  }
+]} />
+
+<BarChartPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'dataKey',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Key in the data object that represents the bar values'
+  },
+  {
+    name: 'fillColor',
+    type: 'string',
+    required: false,
+    default: 'var(--color-primary)',
+    description: 'Fill color of the bars'
+  }
+]} />
+
+<PieChartPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'dataKey',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Key in the data object that represents the pie slice values'
+  },
+  {
+    name: 'nameKey',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Key in the data object that represents the pie slice names'
+  },
+  {
+    name: 'colors',
+    type: 'string[]',
+    required: false,
+    default: '["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"]',
+    description: 'Array of colors for pie slices'
+  }
+]} />
+
+<DataFormatSection />
+
+All charts expect data in the following format:
+
+<CodeBlock language="typescript">
+{`interface ChartData {
+  name: string;        // X-axis label or category name
+  value?: number;      // Y-axis value (for most charts)
+  [key: string]: any;  // Additional data properties
+}`}
+</CodeBlock>
+
+<AccessibilityChartsSection />
+
+<AccessibilityChartsList />
+
+<DesignGuidelinesChartsSection />
+
+<DesignGuidelinesChartsList />

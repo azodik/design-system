@@ -1,0 +1,1163 @@
+import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarFooter, 
+  SidebarMainContent,
+  SidebarBrand,
+  SidebarUserDropdown,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  useResponsiveSidebar,
+  Card, 
+  CardContent 
+} from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { BasicSidebarExample } from '@/components/sidebar-variants/SidebarBasic';
+import { SidebarWithIconsExample } from '@/components/sidebar-variants/SidebarWithIcons';
+import { SidebarCollapsibleExample } from '@/components/sidebar-variants/SidebarCollapsible';
+import { SidebarWithUserProfileExample } from '@/components/sidebar-variants/SidebarWithUserProfile';
+import { SidebarWithFooterExample } from '@/components/sidebar-variants/SidebarWithFooter';
+import { SidebarResponsiveExample } from '@/components/sidebar-variants/SidebarResponsive';
+import SidebarCodePreview from '@/components/docs/SidebarCodePreview';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const SidebarComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('sidebarComponent')}</h1>;
+};
+
+export const SidebarComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('sidebarDescription')}</p>;
+};
+
+export const SidebarIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('sidebarIntroduction')}</h2>
+      <p>{t('sidebarIntroDesc')}</p>
+      <ul>
+        <li>{t('sidebarMainWrapper')}</li>
+        <li>{t('sidebarStructure')}</li>
+        <li>{t('sidebarNavigation')}</li>
+        <li>{t('sidebarResponsiveness')}</li>
+        <li>{t('sidebarCustomization')}</li>
+        <li>{t('sidebarAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseSidebar')}</h3>
+      <ul>
+        <li>{t('mainApplicationNavigation')}</li>
+        <li>{t('dashboardLayouts')}</li>
+        <li>{t('adminInterfaces')}</li>
+        <li>{t('multiSectionApplications')}</li>
+        <li>{t('desktopFocusedApplications')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageSidebar')}</h2>;
+};
+
+export const BasicExampleSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleSidebar')}</h2>;
+};
+
+export const BasicSidebarTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicSidebar');
+};
+
+export const SidebarWithIconsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarWithIcons');
+};
+
+export const CollapsibleSidebarTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('collapsibleSidebar');
+};
+
+export const SidebarWithUserProfileTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarWithUserProfile');
+};
+
+export const SidebarWithFooterTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarWithFooter');
+};
+
+export const ResponsiveSidebarTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('responsiveSidebar');
+};
+
+export const PropsSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsSidebar')}</h2>;
+};
+
+export const SidebarItemPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarItemProps');
+};
+
+export const UserProfileInterfaceTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('userProfileInterface');
+};
+
+export const SidebarHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarHeaderProps');
+};
+
+export const SidebarContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarContentProps');
+};
+
+export const SidebarFooterPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarFooterProps');
+};
+
+export const SidebarMainContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('sidebarMainContentProps');
+};
+
+export const AccessibilitySidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilitySidebar')}</h2>;
+};
+
+export const DesignGuidelinesSidebarSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesSidebar')}</h2>;
+};
+
+export const AccessibilitySidebarList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('sidebarHasProperSemanticStructure')}</li>
+      <li>{t('screenReadersCanNavigateMenuItemsSidebar')}</li>
+      <li>{t('keyboardNavigationIsSupportedSidebar')}</li>
+      <li>{t('focusManagementIsHandledCorrectlySidebar')}</li>
+      <li>{t('properAriaAttributesAreAppliedSidebar')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSidebarList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveNavigationLabelsSidebar')}</li>
+      <li>{t('keepTheNumberOfTopLevelItemsReasonableSidebar')}</li>
+      <li>{t('provideClearVisualFeedbackForActiveStatesSidebar')}</li>
+      <li>{t('useConsistentIconsAndStyling')}</li>
+      <li>{t('considerMobileResponsivenessSidebar')}</li>
+    </ul>
+  );
+};
+
+<SidebarComponentHeader />
+
+<SidebarComponentDescription />
+
+<SidebarIntroduction />
+
+<WhenToUseSidebarSection />
+
+<UsageSidebarSection />
+
+<CodeBlock language="tsx">
+{`import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarFooter, 
+  SidebarMainContent,
+  SidebarBrand,
+  SidebarUserDropdown,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  useResponsiveSidebar
+} from '@azodik/ui';`}
+</CodeBlock>
+
+<BasicExampleSidebarSection />
+
+<BasicSidebarTitle />
+
+<SidebarCodePreview
+  preview={<BasicSidebarExample />}
+  code={`import { useState, useEffect } from 'react';
+import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent,
+  useResponsiveSidebar
+} from '@azodik/ui';
+
+function BasicSidebarExample() {
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  } = useResponsiveSidebar();
+
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar 
+        width={isSmallScreen ? 280 : 250}
+        isSidebarOpen={isSidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+        isSmallScreen={isSmallScreen}
+        collapsed={false}
+      >
+        <SidebarHeader>
+          <SidebarBrand>Basic Sidebar</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Users</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Settings</SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      
+      <SidebarMainContent
+        onSidebarToggle={handleSidebarToggle}
+        isSidebarCollapsed={false}
+        showToggleOnDesktop={false}
+        isSmallScreen={isSmallScreen}
+      >
+        <div className="p-6">
+          <h1>Main Content</h1>
+          <p>Your application content goes here.</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+/>
+
+<SidebarWithIconsTitle />
+
+<SidebarCodePreview
+  preview={<SidebarWithIconsExample />}
+  code={`import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent
+} from '@azodik/ui';
+
+function SidebarWithIconsExample() {
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar width={250}>
+        <SidebarHeader>
+          <SidebarBrand>Dashboard</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+         <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                active
+                icon={<BarChartIcon size={16} />}
+              >
+                Dashboard
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<UserIcon size={16} />}
+              >
+                Users
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<MailIcon size={16} />}
+              >
+                Messages
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<SettingsIcon size={16} />}
+              >
+                Settings
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      
+      <SidebarMainContent>
+        <div className="p-6">
+          <h1>Dashboard</h1>
+          <p>Welcome to your dashboard!</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+/>
+
+<CollapsibleSidebarTitle />
+
+<SidebarCodePreview
+  preview={<SidebarCollapsibleExample />}
+  code={`import { useState } from 'react';
+import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent,
+  useResponsiveSidebar
+} from '@azodik/ui';
+
+function CollapsibleSidebarExample() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  } = useResponsiveSidebar();
+
+  const handleToggle = () => {
+    if (isSmallScreen) {
+      handleSidebarToggle();
+    } else {
+      setIsCollapsed(!isCollapsed);
+    }
+  };
+
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar 
+        width={isSmallScreen ? 280 : isCollapsed ? 60 : 250}
+        collapsed={!isSmallScreen && isCollapsed}
+        isSidebarOpen={isSidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+        isSmallScreen={isSmallScreen}
+      >
+        <SidebarHeader>
+          <SidebarBrand>My App</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                active
+                icon={<HomeIcon size={16} />}
+              >
+                Home
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<BarChartIcon size={16} />}
+              >
+                Analytics
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<UserIcon size={16} />}
+              >
+                Team
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      
+      <SidebarMainContent
+        onSidebarToggle={handleToggle}
+        isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
+        showToggleOnDesktop={true}
+        isSmallScreen={isSmallScreen}
+      >
+        <div className="p-6">
+          <h1>Main Content</h1>
+          <p>Click the toggle button to collapse/expand the sidebar.</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+/>
+
+<SidebarWithUserProfileTitle />
+
+<SidebarCodePreview
+  preview={<SidebarWithUserProfileExample />}
+  code={`import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarFooter,
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarUserDropdown,
+  SidebarMainContent
+} from '@azodik/ui';
+
+function SidebarWithUserExample() {
+  const userMenuItems = [
+    { label: 'Profile', onClick: () => console.log('Profile clicked') },
+    { label: 'Settings', onClick: () => console.log('Settings clicked') },
+    { divider: true },
+    { label: 'Sign Out', onClick: () => console.log('Sign out clicked') }
+  ];
+
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar width={250}>
+        <SidebarHeader>
+          <SidebarBrand>Admin Panel</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Users</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Reports</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Settings</SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarUserDropdown
+            name="John Doe"
+            email="john@example.com"
+            menuItems={userMenuItems}
+          />
+        </SidebarFooter>
+      </Sidebar>
+      
+      <SidebarMainContent>
+        <div className="p-6">
+          <h1>Admin Dashboard</h1>
+          <p>Welcome back, John!</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+/>
+
+<SidebarWithFooterTitle />
+
+<SidebarCodePreview
+  preview={<SidebarWithFooterExample />}
+  code={`import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarFooter,
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent
+} from '@azodik/ui';
+
+function SidebarWithFooterExample() {
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar width={250} showFooter={true}>
+        <SidebarHeader>
+          <SidebarBrand>My App</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Projects</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Tasks</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Calendar</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Reports</SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+        <SidebarFooter>
+          <div style={{ padding: '12px', borderTop: '1px solid #e5e7eb', fontSize: '12px', color: '#6b7280' }}>
+            <div>Version 1.2.3</div>
+            <div>© 2024 My App</div>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      
+      <SidebarMainContent>
+        <div className="p-6">
+          <h1>Dashboard</h1>
+          <p>This sidebar includes a footer with additional information.</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+/>
+
+<ResponsiveSidebarTitle />
+
+<SidebarCodePreview
+  preview={<SidebarResponsiveExample />}
+  code={`import { useState, useEffect } from 'react';
+import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent,
+  useResponsiveSidebar
+} from '@azodik/ui';
+
+function ResponsiveSidebarExample() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+    closeSidebar
+  } = useResponsiveSidebar();
+
+  const handleToggle = () => {
+    if (isSmallScreen) {
+      handleSidebarToggle();
+    } else {
+      setIsCollapsed(!isCollapsed);
+    }
+  };
+
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar 
+        width={isSmallScreen ? 280 : isCollapsed ? 60 : 250}
+        collapsed={!isSmallScreen && isCollapsed}
+        isSidebarOpen={isSidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+        isSmallScreen={isSmallScreen}
+        className={isSmallScreen ? 'mobile-sidebar' : ''}
+      >
+        <SidebarHeader>
+          <SidebarBrand>Responsive App</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                active
+                icon={<HomeIcon size={16} />}
+              >
+                Home
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<BarChartIcon size={16} />}
+              >
+                Analytics
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<MailIcon size={16} />}
+              >
+                Messages
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                icon={<SettingsIcon size={16} />}
+              >
+                Settings
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      
+      <SidebarMainContent
+        onSidebarToggle={handleToggle}
+        isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
+        showToggleOnDesktop={true}
+        isSmallScreen={isSmallScreen}
+      >
+        <div className="p-6">
+          <h1>Responsive Layout</h1>
+          <p>This sidebar adapts to different screen sizes.</p>
+          <p>On mobile: Full-width overlay</p>
+          <p>On desktop: Collapsible sidebar</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+/>
+
+<PropsSidebarSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Sidebar content (typically SidebarHeader, SidebarContent, SidebarFooter)'
+  },
+  {
+    name: 'width',
+    type: 'number',
+    required: false,
+    default: '250',
+    description: 'Width of the sidebar in pixels'
+  },
+  {
+    name: 'collapsed',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the sidebar is collapsed'
+  },
+  {
+    name: 'showHeader',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the sidebar header'
+  },
+  {
+    name: 'showFooter',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the sidebar footer'
+  },
+  {
+    name: 'showBreadcrumb',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show breadcrumb in main content'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Custom background color for the sidebar'
+  },
+  {
+    name: 'userProfile',
+    type: '{ name: string; email: string; avatar?: string }',
+    required: false,
+    default: '-',
+    description: 'User profile information to display'
+  },
+  {
+    name: 'onUserAction',
+    type: '(action: string) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when user actions are triggered'
+  },
+  {
+    name: 'isSidebarOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the sidebar is open (for responsive behavior)'
+  },
+  {
+    name: 'onSidebarToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when sidebar toggle is clicked'
+  },
+  {
+    name: 'isSmallScreen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the current screen is small (for responsive behavior)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<SidebarItemPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content of the sidebar item'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display with the sidebar item'
+  },
+  {
+    name: 'active',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether this item is currently active'
+  },
+  {
+    name: 'badge',
+    type: 'string | number',
+    required: false,
+    default: '-',
+    description: 'Badge to display on the sidebar item'
+  },
+  {
+    name: 'tooltip',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Tooltip text for the sidebar item'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the sidebar item'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<UserProfileInterfaceTitle />
+
+<PropsTable props={[
+  {
+    name: 'name',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'User display name'
+  },
+  {
+    name: 'email',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'User email address'
+  },
+  {
+    name: 'avatar',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL of user avatar image'
+  }
+]} />
+
+<SidebarHeaderPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header content'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the header'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<SidebarContentPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content area children'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<SidebarFooterPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Footer content'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the footer'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<SidebarMainContentPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Main content area children'
+  },
+  {
+    name: 'breadcrumbItems',
+    type: 'Array<{ label: string; href?: string; current?: boolean }>',
+    required: false,
+    default: '-',
+    description: 'Breadcrumb navigation items'
+  },
+  {
+    name: 'breadcrumb',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Custom breadcrumb component'
+  },
+  {
+    name: 'onSidebarToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when sidebar toggle is clicked'
+  },
+  {
+    name: 'isSidebarCollapsed',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the sidebar is currently collapsed'
+  },
+  {
+    name: 'sidebarToggleIcon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Custom icon for sidebar toggle button'
+  },
+  {
+    name: 'showBreadcrumb',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show breadcrumb navigation'
+  },
+  {
+    name: 'showToggleOnDesktop',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to show toggle button on desktop screens'
+  },
+  {
+    name: 'themeToggle',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Theme toggle component to display in header'
+  },
+  {
+    name: 'languageSelector',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Language selector component to display in header'
+  },
+  {
+    name: 'isSmallScreen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the current screen is small (for responsive behavior)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+## Additional Components
+
+The sidebar package includes several additional components for enhanced functionality:
+
+### SidebarGroup
+
+A collapsible group component for organizing sidebar items.
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Group content (typically SidebarMenu items)'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Group title text'
+  },
+  {
+    name: 'collapsible',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the group can be collapsed'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Icon to display with the group title'
+  },
+  {
+    name: 'isOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the group is initially open'
+  },
+  {
+    name: 'onToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function called when group is toggled'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the group'
+  }
+]} />
+
+### SidebarBrand
+
+A component for displaying the application brand/logo in the sidebar header.
+
+<PropsTable props={[
+  {
+    name: 'logo',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Logo component or image'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Brand title text'
+  },
+  {
+    name: 'show',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Whether to show the brand'
+  }
+]} />
+
+### SidebarUser
+
+A component for displaying user information in the sidebar footer.
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'User name or display text'
+  },
+  {
+    name: 'avatar',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'URL of user avatar image'
+  },
+  {
+    name: 'email',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'User email address'
+  },
+  {
+    name: 'actions',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'Action buttons or dropdown menu'
+  }
+]} />
+
+### useResponsiveSidebar Hook
+
+A custom hook that provides responsive sidebar functionality with automatic screen size detection.
+
+<PropsTable props={[
+  {
+    name: 'isSidebarOpen',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Current sidebar open state'
+  },
+  {
+    name: 'isSmallScreen',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the current screen is small (≤1024px)'
+  },
+  {
+    name: 'handleSidebarToggle',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function to toggle sidebar state'
+  },
+  {
+    name: 'closeSidebar',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Function to close the sidebar'
+  }
+]} />
+
+<AccessibilitySidebarSection />
+
+<AccessibilitySidebarList />
+
+<DesignGuidelinesSidebarSection />
+
+<DesignGuidelinesSidebarList />

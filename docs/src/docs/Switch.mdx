@@ -1,0 +1,317 @@
+import { Switch, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const SwitchComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('switchComponent')}</h1>;
+};
+
+export const SwitchComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('switchDescription')}</p>;
+};
+
+export const SwitchIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('switchIntroduction')}</h2>
+      <p>{t('switchIntroDesc')}</p>
+      <ul>
+        <li>{t('switchMainWrapper')}</li>
+        <li>{t('switchStates')}</li>
+        <li>{t('switchValidation')}</li>
+        <li>{t('switchAccessibility')}</li>
+        <li>{t('switchCustomization')}</li>
+        <li>{t('switchIntegration')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseSwitch')}</h3>
+      <ul>
+        <li>{t('enablingOrDisablingFeatures')}</li>
+        <li>{t('settingsAndPreferences')}</li>
+        <li>{t('binaryOnOffStates')}</li>
+        <li>{t('quickTogglesForOptions')}</li>
+        <li>{t('mobileFriendlyControls')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenNotToUseSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenNotToUseSwitch')}</h3>
+      <ul>
+        <li>{t('forMultipleSelectionsUseCheckboxInstead')}</li>
+        <li>{t('forSingleChoiceFromMultipleOptionsUseRadioInstead')}</li>
+        <li>{t('forPrimaryActionsUseButtonInstead')}</li>
+        <li>{t('whenYouNeedToShowIntermediateStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageSwitch')}</h2>;
+};
+
+export const VariantsSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsSwitch')}</h2>;
+};
+
+export const WithDisabledStateSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDisabledState')}</h2>;
+};
+
+export const DisabledSwitchTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('disabledSwitch');
+};
+
+export const PropsSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsSwitch')}</h2>;
+};
+
+export const AccessibilitySwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilitySwitch')}</h2>;
+};
+
+export const DesignGuidelinesSwitchSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesSwitch')}</h2>;
+};
+
+export const AccessibilitySwitchList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('switchesHaveProperLabelsAndAssociations')}</li>
+      <li>{t('screenReadersCanIdentifySwitchStates')}</li>
+      <li>{t('keyboardNavigationIsSupportedSwitch')}</li>
+      <li>{t('focusManagementIsHandledCorrectlySwitch')}</li>
+      <li>{t('properAriaAttributesAreAppliedSwitch')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSwitchList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabelsSwitch')}</li>
+      <li>{t('useConsistentSizingAcrossYourApplication')}</li>
+      <li>{t('provideClearVisualFeedbackForAllStates')}</li>
+      <li>{t('groupRelatedSwitchesTogether')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileSwitch')}</li>
+    </ul>
+  );
+};
+
+<SwitchComponentHeader />
+
+<SwitchComponentDescription />
+
+<SwitchIntroduction />
+
+<WhenToUseSwitchSection />
+
+<WhenNotToUseSwitchSection />
+
+<UsageSwitchSection />
+
+<CodeBlock language="tsx">
+{`import { Switch } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsSwitchSection />
+
+<CodeBlockWithPreview 
+  title="Default Position (Label on Left, Switch on Right)"
+  preview={
+    <div className="flex-vertical">
+      <Switch id="switch-space-1" label="Enable notifications" />
+      <Switch id="switch-space-2" label="Enable dark mode" checked />
+      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between" />
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const DefaultPositionExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Switch id="switch-space-1" label="Enable notifications" />
+      <Switch id="switch-space-2" label="Enable dark mode" checked />
+      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Alternative Position (Switch on Left, Label on Right)"
+  preview={
+    <div className="flex-vertical">
+      <Switch id="switch-default-1" label="Enable notifications" position="default" />
+      <Switch id="switch-default-2" label="Enable dark mode" checked position="default" />
+      <Switch id="switch-default-3" label="Auto-save enabled" position="default" />
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const AlternativePositionExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Switch id="switch-default-1" label="Enable notifications" position="default" />
+      <Switch id="switch-default-2" label="Enable dark mode" checked position="default" />
+      <Switch id="switch-default-3" label="Auto-save enabled" position="default" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title="Switch Sizes"
+  preview={
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Switch id="small-switch" label="Small" size="1" position="default" />
+        <Switch id="medium-switch" label="Medium" size="2" position="default" />
+        <Switch id="large-switch" label="Large" size="3" position="default" />
+      </div>
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const SizedSwitchExample = () => {
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Switch id="small-switch" label="Small" size="1" position="default" />
+        <Switch id="medium-switch" label="Medium" size="2" position="default" />
+        <Switch id="large-switch" label="Large" size="3" position="default" />
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<WithDisabledStateSection />
+
+<CodeBlockWithPreview 
+  title={<DisabledSwitchTitle />}
+  preview={
+    <div className="flex-vertical">
+      <Switch id="enabled" label="Enabled switch" />
+      <Switch id="disabled" label="Disabled switch" disabled />
+      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled />
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const DisabledSwitchExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Switch id="enabled" label="Enabled switch" />
+      <Switch id="disabled" label="Disabled switch" disabled />
+      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsSwitchSection />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the switch'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the switch'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the switch'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3" | "sm" | "md" | "lg"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the switch'
+  },
+  {
+    name: 'checked',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the switch is checked'
+  },
+  {
+    name: 'onChange',
+    type: '(e: ChangeEvent<HTMLInputElement>) => void',
+    required: false,
+    default: '-',
+    description: 'Change event handler'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the switch is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  },
+  {
+    name: 'position',
+    type: '"default" | "space-between"',
+    required: false,
+    default: '"space-between"',
+    description: 'Layout position: "default" shows switch on left with label on right, "space-between" shows label on left and switch on right'
+  }
+]} />
+
+<AccessibilitySwitchSection />
+
+<AccessibilitySwitchList />
+
+<DesignGuidelinesSwitchSection />
+
+<DesignGuidelinesSwitchList />
+
+

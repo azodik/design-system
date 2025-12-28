@@ -1,0 +1,453 @@
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, DrawerClose, Button, Card, CardContent, Input, Select } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const DrawerComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('drawerComponent')}</h1>;
+};
+
+export const DrawerComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('drawerDescription')}</p>;
+};
+
+export const DrawerIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('drawerIntroduction')}</h2>
+      <p>{t('drawerIntroDesc')}</p>
+      <ul>
+        <li>{t('drawerMainWrapper')}</li>
+        <li>{t('drawerContent')}</li>
+        <li>{t('drawerTriggers')}</li>
+        <li>{t('drawerAnimations')}</li>
+        <li>{t('drawerCustomization')}</li>
+        <li>{t('drawerAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseDrawerSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseDrawer')}</h3>
+      <ul>
+        <li>{t('displayConfirmationMessagesDrawer')}</li>
+        <li>{t('showFormsOrInputFieldsDrawer')}</li>
+        <li>{t('presentImportantInformationDrawer')}</li>
+        <li>{t('getUserConfirmationForDestructiveActionsDrawer')}</li>
+        <li>{t('displayDetailedContentThatNeedsFocusDrawer')}</li>
+        <li>{t('mobileFriendlyModalAlternative')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageDrawerSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageDrawer')}</h2>;
+};
+
+export const BasicExampleDrawerSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleDrawer')}</h2>;
+};
+
+export const BasicDrawerWithFormTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicDrawerWithForm');
+};
+
+export const PropsDrawerSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsDrawer')}</h2>;
+};
+
+export const DrawerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerProps');
+};
+
+export const DrawerTriggerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerTriggerProps');
+};
+
+export const DrawerContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerContentProps');
+};
+
+export const DrawerHeaderPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerHeaderProps');
+};
+
+export const DrawerTitlePropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerTitleProps');
+};
+
+export const DrawerDescriptionPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerDescriptionProps');
+};
+
+export const DrawerBodyPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerBodyProps');
+};
+
+export const DrawerFooterPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('drawerFooterProps');
+};
+
+export const AccessibilityDrawerSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityDrawer')}</h2>;
+};
+
+export const DesignGuidelinesDrawerSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesDrawer')}</h2>;
+};
+
+export const AccessibilityDrawerList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('drawersAreBuiltWithProperAriaAttributes')}</li>
+      <li>{t('focusManagementIsHandledAutomaticallyDrawer')}</li>
+      <li>{t('escapeKeyClosesTheDrawer')}</li>
+      <li>{t('clickingOutsideClosesTheDrawer')}</li>
+      <li>{t('screenReadersCanProperlyAnnounceDrawerContent')}</li>
+      <li>{t('focusIsTrappedWithinTheDrawerWhenOpen')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesDrawerList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useDrawersForMobileFriendlyModals')}</li>
+      <li>{t('keepDrawerContentConciseAndFocused')}</li>
+      <li>{t('provideClearActionButtonsInTheFooterDrawer')}</li>
+      <li>{t('useAppropriateDrawerTitlesAndDescriptions')}</li>
+      <li>{t('considerMobileResponsivenessForDrawerSizing')}</li>
+      <li>{t('ensureSufficientContrastForReadabilityDrawer')}</li>
+    </ul>
+  );
+};
+
+<DrawerComponentHeader />
+
+<DrawerComponentDescription />
+
+<DrawerIntroduction />
+
+<WhenToUseDrawerSection />
+
+<UsageDrawerSection />
+
+
+<CodeBlock language="tsx">
+{`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, DrawerClose } from '@azodik/ui';`}
+</CodeBlock>
+
+<BasicExampleDrawerSection />
+
+<CodeBlockWithPreview 
+  title={<BasicDrawerWithFormTitle />}
+  preview={
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button>Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Create New Item</DrawerTitle>
+          <DrawerDescription>
+            Fill out the form below to create a new item.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <form className="space-y-4">
+            <Input 
+              label="Item Name"
+              type="text" 
+              placeholder="Enter item name"
+              className="w-full"
+            />
+            <Input 
+              label="Description"
+              type="text" 
+              placeholder="Enter description"
+              className="w-full"
+            />
+            <Select 
+              label="Category"
+              options={[
+                { value: "electronics", label: "Electronics" },
+                { value: "clothing", label: "Clothing" },
+                { value: "books", label: "Books" }
+              ]}
+              placeholder="Select a category"
+              className="w-full"
+            />
+          </form>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Create Item</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  }
+>
+{`import React from "react";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, Button, Input, Select } from "@azodik/ui";
+
+export default function BasicDrawerForm() {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button>Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Create New Item</DrawerTitle>
+          <DrawerDescription>
+            Fill out the form below to create a new item.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <form className="space-y-4">
+            <Input 
+              label="Item Name"
+              type="text" 
+              placeholder="Enter item name"
+              className="w-full"
+            />
+            <Input 
+              label="Description"
+              type="text" 
+              placeholder="Enter description"
+              className="w-full"
+            />
+            <Select 
+              label="Category"
+              options={[
+                { value: "electronics", label: "Electronics" },
+                { value: "clothing", label: "Clothing" },
+                { value: "books", label: "Books" }
+              ]}
+              placeholder="Select a category"
+              className="w-full"
+            />
+          </form>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Create Item</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsDrawerSection />
+
+<DrawerPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'open',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the drawer is open (controlled)'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when the drawer open state changes'
+  },
+  {
+    name: 'defaultOpen',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the drawer is open by default (uncontrolled)'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Drawer content'
+  }
+]} />
+
+<DrawerTriggerPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Trigger element content'
+  },
+  {
+    name: 'asChild',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to merge props with child element'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DrawerContentPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Drawer content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when drawer is closed'
+  }
+]} />
+
+<DrawerHeaderPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Header content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DrawerTitlePropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Title content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DrawerDescriptionPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Description content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DrawerBodyPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Body content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<DrawerFooterPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Footer content'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<AccessibilityDrawerSection />
+
+<AccessibilityDrawerList />
+
+<DesignGuidelinesDrawerSection />
+
+<DesignGuidelinesDrawerList />

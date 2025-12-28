@@ -1,0 +1,444 @@
+import { Popover, Button, Card, CardContent, Input, Select } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const PopoverComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('popoverComponent')}</h1>;
+};
+
+export const PopoverComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('popoverDescription')}</p>;
+};
+
+export const PopoverIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('popoverIntroduction')}</h2>
+      <p>{t('popoverIntroDesc')}</p>
+      <ul>
+        <li>{t('popoverMainWrapper')}</li>
+        <li>{t('popoverPositioning')}</li>
+        <li>{t('popoverTriggers')}</li>
+        <li>{t('popoverContent')}</li>
+        <li>{t('popoverStateManagement')}</li>
+        <li>{t('popoverAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUsePopoverSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUsePopover')}</h3>
+      <ul>
+        <li>{t('displayAdditionalContentOnDemand')}</li>
+        <li>{t('showContextualActionsOrMenus')}</li>
+        <li>{t('provideDetailedInformationAboutElements')}</li>
+        <li>{t('createInteractiveOverlays')}</li>
+        <li>{t('displayFormsOrComplexContent')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsagePopoverSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usagePopover')}</h2>;
+};
+
+export const VariantsPopoverSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsPopover')}</h2>;
+};
+
+export const InteractivePopoverTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('interactivePopover');
+};
+
+export const PropsPopoverSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsPopover')}</h2>;
+};
+
+export const AccessibilityPopoverSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityPopover')}</h2>;
+};
+
+export const DesignGuidelinesPopoverSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesPopover')}</h2>;
+};
+
+export const AccessibilityPopoverList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('popoversHaveProperFocusManagement')}</li>
+      <li>{t('screenReadersCanAccessPopoverContent')}</li>
+      <li>{t('keyboardNavigationIsSupportedPopover')}</li>
+      <li>{t('escapeKeyClosesThePopover')}</li>
+      <li>{t('properAriaAttributesAreAppliedPopover')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesPopoverList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepPopoverContentFocusedAndConcise')}</li>
+      <li>{t('useAppropriatePositioningToAvoidClipping')}</li>
+      <li>{t('provideClearCloseActions')}</li>
+      <li>{t('ensureSufficientContrastForReadabilityPopover')}</li>
+      <li>{t('considerMobileTouchInteractions')}</li>
+    </ul>
+  );
+};
+
+export const PositionPopoverExample = () => {
+  const [openPopover, setOpenPopover] = useState(null);
+
+  const positions = ['top', 'right', 'bottom', 'left'];
+
+  return (
+    <div className="flex gap-4">
+      {positions.map(position => (
+        <Popover
+          key={position}
+          isOpen={openPopover === position}
+          onClose={() => setOpenPopover(null)}
+          position={position}
+          content={
+            <div className="p-4">
+              <h3 className="font-semibold mb-2">Popover {position}</h3>
+              <p>This popover appears on the {position}.</p>
+            </div>
+          }
+        >
+          <Button onClick={() => setOpenPopover(position)}>
+            {position}
+          </Button>
+        </Popover>
+      ))}
+    </div>
+  );
+};
+
+export const ActionPopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleAction = (action) => {
+    console.log('Action:', action);
+    setIsOpen(false);
+  };
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      content={
+        <div className="p-2">
+          <button
+            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            onClick={() => handleAction('profile')}
+          >
+            View Profile
+          </button>
+          <button
+            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            onClick={() => handleAction('settings')}
+          >
+            Settings
+          </button>
+          <button
+            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            onClick={() => handleAction('logout')}
+          >
+            Logout
+          </button>
+        </div>
+      }
+    >
+      <Button onClick={() => setIsOpen(true)}>
+        User Menu
+      </Button>
+    </Popover>
+  );
+};
+
+export const FormPopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setIsOpen(false);
+  };
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      content={
+        <form onSubmit={handleSubmit} className="p-4 flex-vertical w-64">
+          <h3 className="font-semibold">Add New Item</h3>
+          
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+            <Input
+              id="name-preview"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              placeholder="Enter name"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+            <Input
+              id="email-preview"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              placeholder="Enter email"
+            />
+          </div>
+          
+          <div className="flex gap-2">
+            <Button type="submit" size="1">Add</Button>
+            <Button type="button" variant="outline" size="1" onClick={() => setIsOpen(false)}>
+              Cancel
+            </Button>
+          </div>
+        </form>
+      }
+    >
+      <Button onClick={() => setIsOpen(true)}>
+        Quick Add
+      </Button>
+    </Popover>
+  );
+};
+
+export const InteractivePopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState('bottom');
+  const [offset, setOffset] = useState(8);
+
+  const positions = [
+    'top', 'top-start', 'top-end',
+    'bottom', 'bottom-start', 'bottom-end',
+    'left', 'left-start', 'left-end',
+    'right', 'right-start', 'right-end'
+  ];
+
+  const offsets = [4, 8, 12, 16, 20, 24];
+
+  return (
+    <div className="flex-vertical gap-4 preview-popover">
+      <div className="flex gap-4 items-center">
+        <Select
+          label="Position:"
+          value={position}
+          onChange={setPosition}
+          placeholder="Select position"
+          options={positions.map(pos => ({ value: pos, label: pos }))}
+        />
+        
+        <Select
+          label="Offset:"
+          value={offset.toString()}
+          onChange={(value) => setOffset(Number(value))}
+          placeholder="Select offset"
+            options={offsets.map(off => ({ value: off.toString(), label: off + 'px' }))}
+        />
+      </div>
+
+      <div className="flex justify-center">
+        <Popover
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          position={position}
+          offset={offset}
+          content={
+            <div className="p-1 bg-white border rounded shadow-lg">
+              <p className="text-sm text-gray-600">
+                Position: <span className="font-mono">{position}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Offset: <span className="font-mono">{offset}px</span>
+              </p>
+            </div>
+          }
+        >
+          <Button onClick={() => setIsOpen(true)}>
+            Open Popover
+          </Button>
+        </Popover>
+      </div>
+    </div>
+  );
+};
+
+<PopoverComponentHeader />
+
+<PopoverComponentDescription />
+
+<PopoverIntroduction />
+
+<WhenToUsePopoverSection />
+
+<UsagePopoverSection />
+
+<CodeBlock language="tsx">
+{`import { Popover } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsPopoverSection />
+
+<CodeBlockWithPreview 
+  title={<InteractivePopoverTitle />}
+  preview={<InteractivePopoverExample />}
+>
+{`import { Popover, Button, Select } from '@azodik/ui';
+import { useState } from 'react';
+
+export const InteractivePopoverExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState('bottom');
+  const [offset, setOffset] = useState(8);
+
+  const positions = [
+    'top', 'top-start', 'top-end',
+    'bottom', 'bottom-start', 'bottom-end',
+    'left', 'left-start', 'left-end',
+    'right', 'right-start', 'right-end'
+  ];
+
+  const offsets = [4, 8, 12, 16, 20, 24];
+
+  return (
+    <div className="flex-vertical gap-4 preview-popover">
+      <div className="flex gap-4 items-center">
+        <Select
+          label="Position:"
+          value={position}
+          onChange={setPosition}
+          placeholder="Select position"
+          options={positions.map(pos => ({ value: pos, label: pos }))}
+        />
+        
+        <Select
+          label="Offset:"
+          value={offset.toString()}
+          onChange={(value) => setOffset(Number(value))}
+          placeholder="Select offset"
+            options={offsets.map(off => ({ value: off.toString(), label: off + 'px' }))}
+        />
+      </div>
+
+      <div className="flex justify-center">
+        <Popover
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          position={position}
+          offset={offset}
+          content={
+            <div className="p-4 bg-white border rounded shadow-lg">
+              <h3 className="font-semibold mb-2">Interactive Popover</h3>
+              <p className="text-sm text-gray-600 mb-2">
+                Position: <span className="font-mono">{position}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Offset: <span className="font-mono">{offset}px</span>
+              </p>
+            </div>
+          }
+        >
+          <Button onClick={() => setIsOpen(true)}>
+            Open Popover
+          </Button>
+        </Popover>
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsPopoverSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Trigger element that opens the popover'
+  },
+  {
+    name: 'content',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the popover'
+  },
+  {
+    name: 'isOpen',
+    type: 'boolean',
+    required: true,
+    default: '-',
+    description: 'Whether the popover is open'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    required: true,
+    default: '-',
+    description: 'Function called when popover should close'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Optional title for the popover'
+  },
+  {
+    name: 'position',
+    type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
+    required: false,
+    default: '"bottom"',
+    description: 'Position of the popover relative to trigger'
+  },
+  {
+    name: 'offset',
+    type: 'number',
+    required: false,
+    default: '8',
+    description: 'Distance between trigger and popover in pixels'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityPopoverSection />
+
+<AccessibilityPopoverList />
+
+<DesignGuidelinesPopoverSection />
+
+<DesignGuidelinesPopoverList />

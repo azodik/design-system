@@ -1,0 +1,617 @@
+import { Input, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const InputComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('inputComponent')}</h1>;
+};
+
+export const InputComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('inputDescription')}</p>;
+};
+
+export const InputIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('inputIntroduction')}</h2>
+      <p>{t('inputIntroDesc')}</p>
+      <ul>
+        <li>{t('inputMainWrapper')}</li>
+        <li>{t('inputTypesIntro')}</li>
+        <li>{t('inputValidation')}</li>
+        <li>{t('inputAccessibility')}</li>
+        <li>{t('inputCustomization')}</li>
+        <li>{t('inputStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseInput')}</h3>
+      <ul>
+        <li>{t('collectingTextInputFromUsers')}</li>
+        <li>{t('formFieldsForDataEntry')}</li>
+        <li>{t('searchInputs')}</li>
+        <li>{t('emailPasswordAndOtherSpecificInputTypes')}</li>
+        <li>{t('userRegistrationAndLoginForms')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenNotToUseInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenNotToUseInput')}</h3>
+      <ul>
+        <li>{t('forMultiLineTextUseTextareaInstead')}</li>
+        <li>{t('forSelectingFromOptionsUseSelectInstead')}</li>
+        <li>{t('forBinaryChoicesUseCheckboxOrRadioInstead')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageInput')}</h2>;
+};
+
+export const VariantsInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsInput')}</h2>;
+};
+
+export const SomeVariantsExampleInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExampleInput')}</h2>;
+};
+
+export const AllInputVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allInputVariants');
+};
+
+export const BasicUsageInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicUsageInput')}</h2>;
+};
+
+export const BasicInputTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicInput');
+};
+
+export const WithDifferentTypesInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDifferentTypesInput')}</h2>;
+};
+
+export const InputTypesTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('inputTypes');
+};
+
+export const WithValidationStatesInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withValidationStatesInput')}</h2>;
+};
+
+export const InputWithValidationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('inputWithValidation');
+};
+
+export const PropsInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsInput')}</h2>;
+};
+
+export const TextareaPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('textareaProps');
+};
+
+export const SelectPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('selectProps');
+};
+
+export const AccessibilityInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityInput')}</h2>;
+};
+
+export const DesignGuidelinesInputSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesInput')}</h2>;
+};
+
+export const AccessibilityInputList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('inputsHaveProperLabelsAndAssociations')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReadersInput')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyInput')}</li>
+      <li>{t('keyboardNavigationIsSupportedInput')}</li>
+      <li>{t('colorContrastMeetsWcagGuidelines')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesInputList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabels')}</li>
+      <li>{t('useAppropriateInputTypesForBetterUx')}</li>
+      <li>{t('provideHelpfulPlaceholderTextInput')}</li>
+      <li>{t('showValidationErrorsClearlyInput')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileInput')}</li>
+    </ul>
+  );
+};
+
+export const ValidatedInputPreview = () => {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('Must be at least 3 characters');
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    
+    if (newValue.length < 3) {
+      setError('Must be at least 3 characters');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Input 
+      label="Validated Input"
+      value={value}
+      onChange={handleChange}
+      error={error}
+      placeholder="Enter at least 3 characters"
+    />
+  );
+};
+
+<InputComponentHeader />
+
+<InputComponentDescription />
+
+<InputIntroduction />
+
+<WhenToUseInputSection />
+
+<WhenNotToUseInputSection />
+
+<UsageInputSection />
+
+<CodeBlock language="tsx">
+{`import { Input } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsInputSection />
+
+<SomeVariantsExampleInputSection />
+
+<CodeBlockWithPreview 
+  title={<AllInputVariantsTitle />}
+  preview={
+    <div className="flex-vertical">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+    </div>
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputExamples = () => {
+  return (
+    <div className="flex-vertical">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<BasicUsageInputSection />
+
+<CodeBlockWithPreview 
+  title={<BasicInputTitle />}
+  preview={
+    <Input 
+      type="email" 
+      label="Email"
+      placeholder="Enter your email"
+    />
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputExample = () => {
+  return (
+    <Input 
+      type="email" 
+      label="Email"
+      placeholder="Enter your email"
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+<WithDifferentTypesInputSection />
+
+<CodeBlockWithPreview 
+  title={<InputTypesTitle />}
+  preview={
+    <div className="flex-vertical">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+      <Input 
+        type="number" 
+        label="Number Input"
+        placeholder="Enter number" 
+      />
+    </div>
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputTypesExample = () => {
+  return (
+    <div className="flex-vertical">
+      <Input 
+        type="text" 
+        label="Text Input"
+        placeholder="Enter text" 
+      />
+      <Input 
+        type="email" 
+        label="Email Input"
+        placeholder="Enter email" 
+      />
+      <Input 
+        type="password" 
+        label="Password Input"
+        placeholder="Enter password" 
+        autoComplete="current-password" 
+      />
+      <Input 
+        type="number" 
+        label="Number Input"
+        placeholder="Enter number" 
+      />
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<WithValidationStatesInputSection />
+
+<CodeBlockWithPreview 
+  title={<InputWithValidationTitle />}
+  preview={<ValidatedInputPreview />}
+>
+{`import { Input } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ValidatedInputExample = () => {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    if (e.target.value.length < 3) {
+      setError('Must be at least 3 characters');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Input 
+      label="Validated Input"
+      value={value}
+      onChange={handleChange}
+      error={error}
+      placeholder="Enter at least 3 characters"
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+
+
+<h3>Input Sizes</h3>
+<CodeBlockWithPreview 
+  title="Input Sizes"
+  preview={
+    <div className="flex-vertical">
+      <Input placeholder="Size 1" size="1" />
+      <Input placeholder="Size 2 (Default)" size="2" />
+      <Input placeholder="Size 3" size="3" />
+    </div>
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputSizes = () => {
+  return (
+    <div className="flex-vertical">
+      <Input placeholder="Size 1" size="1" />
+      <Input placeholder="Size 2 (Default)" size="2" />
+      <Input placeholder="Size 3" size="3" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsInputSection />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the input field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the input'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the input'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the input (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the input field'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '-',
+    description: 'Border radius of the input'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Accent color for focus states'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TextareaPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the textarea field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the textarea'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the textarea'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the textarea (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the textarea'
+  },
+  {
+    name: 'autoResize',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Whether the textarea should automatically resize based on content'
+  },
+  {
+    name: 'minRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Minimum number of rows for the textarea'
+  },
+  {
+    name: 'maxRows',
+    type: 'number',
+    required: false,
+    default: '-',
+    description: 'Maximum number of rows for the textarea'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<SelectPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the select field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the select'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the select'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the select'
+  },
+  {
+    name: 'options',
+    type: '{ value: string; label: string }[]',
+    required: true,
+    default: '-',
+    description: 'Array of options for the select dropdown'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Selected value of the select'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when selection changes'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Select an option"',
+    description: 'Placeholder text for the select'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the select is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityInputSection />
+
+<AccessibilityInputList />
+
+<DesignGuidelinesInputSection />
+
+<DesignGuidelinesInputList />

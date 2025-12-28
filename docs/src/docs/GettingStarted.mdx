@@ -1,0 +1,583 @@
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Alert, Input, Badge } from '@azodik/ui';
+import { CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+import { PaletteIcon, ZapIcon, WheelchairIcon, PhoneIcon, TargetIcon, WrenchIcon, PackageIcon, CheckIcon, XIcon, RocketIcon } from '@azodik/icons';
+
+export const GettingStartedHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('gettingStarted')}</h1>;
+};
+
+export const GettingStartedIntro = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('welcome')}! {t('comprehensiveGuide')}</p>;
+};
+
+export const WhatsIncludedList = () => {
+  const { t } = useLanguageTranslation();
+  
+  const featureItemStyle = {
+    marginBottom: '1rem',
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '0.75rem',
+    lineHeight: '1.6'
+  };
+
+  const iconWrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: '24px',
+    height: '24px',
+    marginTop: '2px'
+  };
+
+  const iconStyle = {
+    color: 'var(--color-primary)'
+  };
+
+  const contentStyle = {
+    flex: 1
+  };
+
+  const titleStyle = {
+    display: 'block',
+    marginBottom: '0.25rem',
+    color: 'var(--color-text)'
+  };
+
+  const descStyle = {
+    color: 'var(--color-text)',
+    opacity: 0.9,
+    fontSize: '0.9rem'
+  };
+
+  return (
+    <>
+      <h3>{t('whatsIncluded')}</h3>
+      <ul style={{ listStyle: 'none', paddingLeft: 0, marginBottom: '1.5rem' }}>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <PaletteIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('modernDesign')}</strong>
+            <span style={descStyle}>{t('modernDesignDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <ZapIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('typescriptFirst')}</strong>
+            <span style={descStyle}>{t('typescriptFirstDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <WheelchairIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('accessible')}</strong>
+            <span style={descStyle}>{t('accessibleDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <PhoneIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('responsive')}</strong>
+            <span style={descStyle}>{t('responsiveDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <TargetIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('treeShakeable')}</strong>
+            <span style={descStyle}>{t('treeShakeableDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <WrenchIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('customizable')}</strong>
+            <span style={descStyle}>{t('customizableDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <PackageIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('lightweight')}</strong>
+            <span style={descStyle}>{t('lightweightDesc')}</span>
+          </div>
+        </li>
+      </ul>
+    </>
+  );
+};
+
+export const InstallationSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('installation')}</h2>
+      <p>{t('installDescription')}</p>
+    </>
+  );
+};
+
+export const RequirementsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('requirements')}</h3>
+      <ul>
+        <li>{t('reactHooksSupport')}</li>
+        <li>{t('typescriptOptional')}</li>
+        <li>{t('nodejsDevelopment')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const BundleSizeList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('bundleSize')}</h3>
+      <ul>
+        <li>{t('treeShakeableComponents')}</li>
+        <li>{t('bundleSizeInfo')}</li>
+        <li>{t('individualImports')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const QuickStartSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('quickStart')}</h2>
+      <p>{t('onceInstalled')}</p>
+    </>
+  );
+};
+
+export const AvailableComponentsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('availableComponents')}</h2>
+      <p>{t('ourDesignSystem')}</p>
+      
+      <h3>{t('formComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Input</strong> - {t('inputDesc')}</li>
+        <li><strong>Textarea</strong> - {t('textareaDesc')}</li>
+        <li><strong>Select</strong> - {t('selectDesc')}</li>
+        <li><strong>Checkbox</strong> - {t('checkboxDesc')}</li>
+        <li><strong>Radio</strong> - {t('radioDesc')}</li>
+        <li><strong>Switch</strong> - {t('switchDesc')}</li>
+      </ul>
+
+      <h3>{t('layoutComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Card</strong> - {t('cardDesc')}</li>
+        <li><strong>Navigation</strong> - {t('navigationDesc')}</li>
+        <li><strong>Sidebar</strong> - {t('sidebarDesc')}</li>
+        <li><strong>Tabs</strong> - {t('tabsDesc')}</li>
+      </ul>
+
+      <h3>{t('feedbackComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Alert</strong> - {t('alertDesc')}</li>
+        <li><strong>Modal</strong> - {t('modalDesc')}</li>
+        <li><strong>Toast</strong> - {t('toastDesc')}</li>
+        <li><strong>Tooltip</strong> - {t('tooltipDesc')}</li>
+        <li><strong>Popover</strong> - {t('popoverDesc')}</li>
+      </ul>
+
+      <h3>{t('dataDisplayDesc')}</h3>
+      <ul>
+        <li><strong>Table</strong> - {t('tableDesc')}</li>
+        <li><strong>DataTable</strong> - {t('dataTableDesc')}</li>
+        <li><strong>Avatar</strong> - {t('avatarDesc')}</li>
+        <li><strong>Badge</strong> - {t('badgeDesc')}</li>
+        <li><strong>Breadcrumb</strong> - {t('breadcrumbDesc')}</li>
+        <li><strong>Pagination</strong> - {t('paginationDesc')}</li>
+      </ul>
+
+      <h3>{t('interactiveComponentsDesc')}</h3>
+      <ul>
+        <li><strong>Button</strong> - {t('buttonDesc')}</li>
+        <li><strong>Dialog</strong> - {t('dialogDesc')}</li>
+        <li><strong>Drawer</strong> - {t('drawerDesc')}</li>
+        <li><strong>ScrollArea</strong> - {t('scrollAreaDesc')}</li>
+        <li><strong>Accordion</strong> - Collapsible content sections</li>
+      </ul>
+
+      <h3>{t('themingComponentsDesc')}</h3>
+      <ul>
+        <li><strong>ThemeProvider</strong> - Theme management and configuration</li>
+        <li><strong>ThemeToggle</strong> - Light/dark mode toggle component</li>
+        <li><strong>ThemePanel</strong> - Interactive theme customization panel</li>
+      </ul>
+
+      <h3>{t('dataVisualizationDesc')}</h3>
+      <ul>
+        <li><strong>Charts</strong> - Line, Area, Bar, and Pie charts</li>
+      </ul>
+    </>
+  );
+};
+
+export const ThemingSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('theming')}</h2>
+      <h3>{t('cssCustomProperties')}</h3>
+      <p>{t('themingDesc')}</p>
+      <h3>{t('themeSwitching')}</h3>
+    </>
+  );
+};
+
+export const TypeScriptSupportSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('typescriptSupport')}</h2>
+      <p>{t('typescriptSupportDesc')}</p>
+    </>
+  );
+};
+
+export const TreeShakingSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('treeShaking')}</h2>
+      <p>{t('treeShakingDesc')}</p>
+    </>
+  );
+};
+
+export const NextStepsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('nextSteps')}</h2>
+      <ol>
+        <li><strong>{t('exploreComponentsDesc')}</strong> - {t('browseComponents')}</li>
+        <li><strong>{t('viewExamplesDesc')}</strong> - {t('viewExamplesDesc2')}</li>
+        <li><strong>{t('copyCodeDesc')}</strong> - {t('copyCodeDesc2')}</li>
+        <li><strong>{t('customizeDesc')}</strong> - {t('customizeDesc2')}</li>
+      </ol>
+    </>
+  );
+};
+
+export const SupportSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('support')}</h2>
+      <p>{t('supportDesc')}</p>
+      <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <strong>{t('happyBuilding').replace(' 🚀', '')}</strong>
+        <RocketIcon size={18} style={{ color: 'var(--color-primary)' }} />
+      </p>
+    </>
+  );
+};
+
+export const BasicExamplesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExamples')}</h2>;
+};
+
+export const ButtonComponentSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('buttonComponent')}</h3>;
+};
+
+export const AlertComponentSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('alertComponent')}</h3>;
+};
+
+export const CardComponentSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('cardComponent')}</h3>;
+};
+
+export const ButtonVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('buttonVariants');
+};
+
+export const AlertTypesTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('alertTypes');
+};
+
+export const CardLayoutTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('cardLayout');
+};
+
+export const IntroductionSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('introductionDesc')}</p>
+    </>
+  );
+};
+
+<GettingStartedHeader />
+
+<GettingStartedIntro />
+
+<IntroductionSection />
+
+<WhatsIncludedList />
+
+<InstallationSection />
+
+<CodeBlock language="bash">
+{`# Install the React components
+npm install @azodik/ui
+
+# Install the CSS design system (required)
+npm install azodik-ui-core`}
+</CodeBlock>
+
+<RequirementsList />
+
+<BundleSizeList />
+
+<QuickStartSection />
+
+<CodeBlock language="jsx">
+{`import React from 'react';
+import { ThemeProvider, Button, Alert, Card, CardContent, CardTitle, CardDescription } from '@azodik/ui';
+import '@azodik/ui/styles.css'; // Import the CSS
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" accentColor="indigo">
+      <div>
+        <Button variant="solid">Click me</Button>
+        <Alert variant="soft" color="grass" title="Success!">
+          Your changes have been saved.
+        </Alert>
+        <Card>
+          <CardContent>
+            <CardTitle>Welcome to Azodik</CardTitle>
+            <CardDescription>Start building amazing interfaces!</CardDescription>
+          </CardContent>
+        </Card>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;`}
+</CodeBlock>
+
+<BasicExamplesSection />
+
+<ButtonComponentSection />
+
+<CodeBlockWithPreview 
+  title={<ButtonVariantsTitle />}
+  preview={
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="soft">Soft</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+<Button variant="solid">Solid</Button>
+<Button variant="soft">Soft</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>`}
+</CodeBlockWithPreview>
+
+<AlertComponentSection />
+
+<CodeBlockWithPreview 
+  title={<AlertTypesTitle />}
+  preview={
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <Alert variant="soft" color="grass" title="Success!">
+        Your changes have been saved successfully.
+      </Alert>
+      <Alert variant="soft" color="ruby" title="Error!">
+        Something went wrong. Please try again.
+      </Alert>
+      <Alert variant="soft" color="amber" title="Warning!">
+        Please check your input before proceeding.
+      </Alert>
+      <Alert variant="soft" color="indigo" title="Info">
+        Here's some helpful information for you.
+      </Alert>
+    </div>
+  }
+>
+{`import { Alert } from '@azodik/ui';
+
+<Alert variant="soft" color="grass" title="Success!">
+  Your changes have been saved successfully.
+</Alert>
+<Alert variant="soft" color="ruby" title="Error!">
+  Something went wrong. Please try again.
+</Alert>
+<Alert variant="soft" color="amber" title="Warning!">
+  Please check your input before proceeding.
+</Alert>
+<Alert variant="soft" color="indigo" title="Info">
+  Here's some helpful information for you.
+</Alert>`}
+</CodeBlockWithPreview>
+
+<CardComponentSection />
+
+<CodeBlockWithPreview 
+  title={<CardLayoutTitle />}
+  preview={
+    <Card style={{ maxWidth: '28rem', width: '100%' }}>
+      <CardContent>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>
+          Example card with title and description.
+        </CardDescription>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <Button size="1">Action</Button>
+          <Button variant="outline" size="1">Cancel</Button>
+        </div>
+      </CardContent>
+    </Card>
+  }
+>
+{`import { Card, CardContent, CardTitle, CardDescription, Button } from '@azodik/ui';
+
+<Card className="max-w-md">
+  <CardContent>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>
+      Example card with title and description.
+    </CardDescription>
+    <div className="flex gap-2 mt-4">
+      <Button size="1">Action</Button>
+      <Button variant="outline" size="1">Cancel</Button>
+    </div>
+  </CardContent>
+</Card>`}
+</CodeBlockWithPreview>
+
+<AvailableComponentsSection />
+
+<ThemingSection />
+
+<CodeBlock language="jsx">
+{`import { ThemeProvider, useTheme, Button } from '@azodik/ui';
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  
+  return (
+    <Button 
+      variant="outline" 
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+    >
+      {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+    </Button>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" accentColor="indigo">
+      <ThemeToggle />
+      {/* Your app content */}
+    </ThemeProvider>
+  );
+}`}
+</CodeBlock>
+
+<CodeBlock language="jsx">
+{`import { ThemeProvider, ThemeToggle } from '@azodik/ui';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system" accentColor="amber">
+      <ThemeToggle />
+      {/* Your app content */}
+    </ThemeProvider>
+  );
+}`}
+</CodeBlock>
+
+<CodeBlock language="jsx">
+{`import { ThemeProvider } from '@azodik/ui';
+
+// Custom theme configuration
+const themeConfig = {
+  accentColor: '#f97316',
+  radius: 'medium',
+  scaling: 1.2,
+};
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" config={themeConfig}>
+      {/* Your app content */}
+    </ThemeProvider>
+  );
+}`}
+</CodeBlock>
+
+<TypeScriptSupportSection />
+
+<CodeBlock language="tsx">
+{`import { Button, ButtonProps } from '@azodik/ui';
+
+const MyButton: React.FC<ButtonProps> = (props) => {
+  return <Button {...props} />;
+};`}
+</CodeBlock>
+
+<TreeShakingSection />
+
+<CodeBlock language="tsx">
+{`// Good - tree shakeable
+import { Button, Card } from '@azodik/ui';
+
+// Avoid - imports everything
+import * as UI from '@azodik/ui';`}
+</CodeBlock>
+
+<NextStepsSection />
+
+<SupportSection />

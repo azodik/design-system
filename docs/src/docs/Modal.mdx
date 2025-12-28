@@ -1,0 +1,355 @@
+import { Modal, ModalHeader, ModalFooter, Button, Card, CardContent, Input } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ModalComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('modalComponent')}</h1>;
+};
+
+export const ModalComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('modalDescription')}</p>;
+};
+
+export const ModalIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('modalIntroduction')}</h2>
+      <p>{t('modalIntroDesc')}</p>
+      <ul>
+        <li>{t('modalMainWrapper')}</li>
+        <li>{t('modalContent')}</li>
+        <li>{t('modalStateManagement')}</li>
+        <li>{t('modalSizing')}</li>
+        <li>{t('modalCustomization')}</li>
+        <li>{t('modalAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseModal')}</h3>
+      <ul>
+        <li>{t('displayImportantInformationOrConfirmations')}</li>
+        <li>{t('showFormsThatNeedFocusedAttention')}</li>
+        <li>{t('displayDetailedContentWithoutNavigation')}</li>
+        <li>{t('confirmDestructiveActions')}</li>
+        <li>{t('showImageGalleriesOrMedia')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageModal')}</h2>;
+};
+
+export const BasicExampleModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicExampleModal')}</h2>;
+};
+
+export const BasicModalTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicModal');
+};
+
+export const FormModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('formModal')}</h2>;
+};
+
+export const ModalWithFormTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('modalWithForm');
+};
+
+export const PropsModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsModal')}</h2>;
+};
+
+export const AccessibilityModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityModal')}</h2>;
+};
+
+export const DesignGuidelinesModalSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesModal')}</h2>;
+};
+
+export const AccessibilityModalList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('modalsHaveProperAriaAttributes')}</li>
+      <li>{t('focusManagementIsHandledAutomaticallyModal')}</li>
+      <li>{t('escapeKeyClosesTheModal')}</li>
+      <li>{t('clickingOutsideClosesTheModal')}</li>
+      <li>{t('screenReadersCanProperlyAnnounceModalContent')}</li>
+      <li>{t('focusIsTrappedWithinTheModalWhenOpen')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesModalList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useModalsSparinglyForImportantInteractions')}</li>
+      <li>{t('keepModalContentConciseAndFocused')}</li>
+      <li>{t('provideClearActionButtonsInTheFooterModal')}</li>
+      <li>{t('useAppropriateModalTitlesAndDescriptions')}</li>
+      <li>{t('considerMobileResponsivenessForModalSizing')}</li>
+      <li>{t('ensureSufficientContrastForReadabilityModal')}</li>
+    </ul>
+  );
+};
+
+export const BasicModalExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>
+          <h2>Modal Title</h2>
+        </ModalHeader>
+        <div className="p-6">
+          <p>Modal content goes here.</p>
+        </div>
+        <ModalFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => setIsOpen(false)}>
+            Confirm
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};
+
+export const FormModalExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setIsOpen(false);
+  };
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Add User
+      </Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>
+          <h2>Add New User</h2>
+        </ModalHeader>
+        <div className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Input 
+                label="Name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                placeholder="Enter name"
+              />
+            </div>
+            <div>
+              <Input 
+                label="Email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleChange('email', e.target.value)}
+                placeholder="Enter email"
+              />
+            </div>
+          </form>
+        </div>
+        <ModalFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit}>
+            Add User
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};
+
+<ModalComponentHeader />
+
+<ModalComponentDescription />
+
+<ModalIntroduction />
+
+<WhenToUseModalSection />
+
+<UsageModalSection />
+
+<CodeBlock language="tsx">
+{`import { Modal } from '@azodik/ui';`}
+</CodeBlock>
+
+<BasicExampleModalSection />
+
+<CodeBlockWithPreview 
+  title={<BasicModalTitle />}
+  preview={<BasicModalExample />}
+  code={`import { Modal, ModalHeader, ModalFooter, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export const BasicModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>
+          <h2>Modal Title</h2>
+        </ModalHeader>
+        <div className="p-6">
+          <p>Modal content goes here.</p>
+        </div>
+        <ModalFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => setIsOpen(false)}>
+            Confirm
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};`}
+/>
+
+<FormModalSection />
+
+<CodeBlockWithPreview 
+  title={<ModalWithFormTitle />}
+  preview={<FormModalExample />}
+  code={`import { Modal, ModalHeader, ModalFooter, Button, Input } from '@azodik/ui';
+import { useState } from 'react';
+
+export const FormModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setIsOpen(false);
+  };
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>
+        Add User
+      </Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>
+          <h2>Add New User</h2>
+        </ModalHeader>
+        <div className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Input 
+                label="Name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                placeholder="Enter name"
+              />
+            </div>
+            <div>
+              <Input 
+                label="Email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleChange('email', e.target.value)}
+                placeholder="Enter email"
+              />
+            </div>
+          </form>
+        </div>
+        <ModalFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit}>
+            Add User
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};`}
+/>
+
+<PropsModalSection />
+
+<PropsTable props={[
+  {
+    name: 'isOpen',
+    type: 'boolean',
+    default: 'false',
+    description: 'Controls whether the modal is open or closed'
+  },
+  {
+    name: 'onClose',
+    type: '() => void',
+    default: '-',
+    description: 'Callback function called when the modal should be closed'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3" | "4" | "sm" | "md" | "lg" | "xl"',
+    default: '"2"',
+    description: 'Size of the modal'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    default: '-',
+    description: 'Additional CSS classes'
+  }
+]} />
+
+<AccessibilityModalSection />
+
+<AccessibilityModalList />
+
+<DesignGuidelinesModalSection />
+
+<DesignGuidelinesModalList />

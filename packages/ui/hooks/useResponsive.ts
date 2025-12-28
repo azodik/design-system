@@ -25,7 +25,6 @@ const DEFAULT_BREAKPOINTS = {
 
 export function useResponsive(config?: ResponsiveConfig): UseResponsiveReturn {
   const [deviceType, setDeviceType] = useState<DeviceType>("desktop");
-  const [mediaQueries, setMediaQueries] = useState<MediaQueryList[]>([]);
 
   useEffect(() => {
     // Use custom breakpoints or defaults
@@ -39,8 +38,6 @@ export function useResponsive(config?: ResponsiveConfig): UseResponsiveReturn {
     const queries = Object.keys(breakpoints).map((key) =>
       window.matchMedia(breakpoints[key as keyof typeof breakpoints]),
     );
-
-    setMediaQueries(queries);
 
     // Function to determine device type
     const updateDeviceType = () => {

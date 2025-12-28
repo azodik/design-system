@@ -1,0 +1,238 @@
+import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TooltipComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('tooltipComponent')}</h1>;
+};
+
+export const TooltipComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('tooltipDescription')}</p>;
+};
+
+export const TooltipIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('tooltipIntroduction')}</h2>
+      <p>{t('tooltipIntroDesc')}</p>
+      <ul>
+        <li>{t('tooltipMainWrapper')}</li>
+        <li>{t('tooltipPositioning')}</li>
+        <li>{t('tooltipTriggers')}</li>
+        <li>{t('tooltipContent')}</li>
+        <li>{t('tooltipCustomization')}</li>
+        <li>{t('tooltipAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTooltip')}</h3>
+      <ul>
+        <li>{t('provideAdditionalContextOrExplanations')}</li>
+        <li>{t('showHelpfulHintsOrTips')}</li>
+        <li>{t('explainAbbreviationsOrTechnicalTerms')}</li>
+        <li>{t('displayAdditionalInformationAboutIconsOrButtons')}</li>
+        <li>{t('guideUsersThroughComplexInterfaces')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTooltip')}</h2>;
+};
+
+export const VariantsTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTooltip')}</h2>;
+};
+
+export const BasicTooltipTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicTooltip');
+};
+
+export const MultipleTooltipsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('multipleTooltips');
+};
+
+export const PropsTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTooltip')}</h2>;
+};
+
+export const AccessibilityTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTooltip')}</h2>;
+};
+
+export const DesignGuidelinesTooltipSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTooltip')}</h2>;
+};
+
+export const AccessibilityTooltipList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('tooltipsAreAnnouncedToScreenReaders')}</li>
+      <li>{t('keyboardNavigationIsSupportedTooltip')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyTooltip')}</li>
+      <li>{t('properAriaAttributesAreAppliedTooltip')}</li>
+      <li>{t('colorIsNotTheOnlyWayToConveyInformationTooltip')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTooltipList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('keepTooltipContentConciseAndHelpful')}</li>
+      <li>{t('useAppropriatePositioningToAvoidClipping')}</li>
+      <li>{t('ensureSufficientContrastForReadability')}</li>
+      <li>{t('dontRelySolelyOnTooltipsForCriticalInformation')}</li>
+      <li>{t('considerMobileTouchInteractions')}</li>
+    </ul>
+  );
+};
+
+export const BasicTooltipExample = () => {
+  return (
+    <div className="flex gap-4 items-center">
+      <Tooltip content="This is a basic tooltip">
+        <Button variant="outline">Hover me</Button>
+      </Tooltip>
+    </div>
+  );
+};
+
+export const MultipleTooltipsExample = () => {
+  return (
+    <div className="flex gap-4 items-center flex-wrap">
+      <Tooltip content="Save your changes">
+        <Button>Save</Button>
+      </Tooltip>
+      <Tooltip content="Discard all changes">
+        <Button variant="outline">Cancel</Button>
+      </Tooltip>
+      <Tooltip content="Delete this item permanently">
+        <Button variant="outline" style={{ color: "#dc2626" }}>Delete</Button>
+      </Tooltip>
+      <Tooltip content="View more options">
+        <Button variant="ghost">⋯</Button>
+      </Tooltip>
+    </div>
+  );
+};
+
+<TooltipComponentHeader />
+
+<TooltipComponentDescription />
+
+<TooltipIntroduction />
+
+<WhenToUseTooltipSection />
+
+<UsageTooltipSection />
+
+<CodeBlock language="tsx">
+{`import { Tooltip } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsTooltipSection />
+
+<CodeBlockWithPreview 
+  title={<BasicTooltipTitle />}
+  preview={<BasicTooltipExample />}
+>
+{`import { Tooltip, Button } from '@azodik/ui';
+
+export default function BasicTooltip() {
+  return (
+    <div className="flex gap-4 items-center">
+      <Tooltip content="This is a basic tooltip">
+        <Button variant="outline">Hover me</Button>
+      </Tooltip>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<MultipleTooltipsTitle />}
+  preview={<MultipleTooltipsExample />}
+>
+{`import { Tooltip, Button } from '@azodik/ui';
+
+export default function MultipleTooltips() {
+  return (
+    <div className="flex gap-4 items-center flex-wrap">
+      <Tooltip content="Save your changes">
+        <Button>Save</Button>
+      </Tooltip>
+      <Tooltip content="Discard all changes">
+        <Button variant="outline">Cancel</Button>
+      </Tooltip>
+      <Tooltip content="Delete this item permanently">
+        <Button variant="outline" style={{ color: "#dc2626" }}>Delete</Button>
+      </Tooltip>
+      <Tooltip content="View more options">
+        <Button variant="ghost">⋯</Button>
+      </Tooltip>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsTooltipSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Element that triggers the tooltip'
+  },
+  {
+    name: 'content',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Content to display in the tooltip'
+  },
+  {
+    name: 'position',
+    type: '"top" | "bottom" | "left" | "right"',
+    required: false,
+    default: '"top"',
+    description: 'Position of the tooltip relative to trigger'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityTooltipSection />
+
+<AccessibilityTooltipList />
+
+<DesignGuidelinesTooltipSection />
+
+<DesignGuidelinesTooltipList />
+

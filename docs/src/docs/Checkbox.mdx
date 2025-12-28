@@ -1,0 +1,299 @@
+import { Checkbox, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const CheckboxComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('checkboxComponent')}</h1>;
+};
+
+export const CheckboxDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('checkboxDescription')}</p>;
+};
+
+export const CheckboxIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('checkboxIntroduction')}</h2>
+      <p>{t('checkboxIntroDesc')}</p>
+      <ul>
+        <li>{t('checkboxMainWrapper')}</li>
+        <li>{t('checkboxStates')}</li>
+        <li>{t('checkboxSizing')}</li>
+        <li>{t('checkboxLabels')}</li>
+        <li>{t('checkboxValidation')}</li>
+        <li>{t('checkboxAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseCheckbox')}</h3>
+      <ul>
+        <li>{t('multipleSelectionsFromList')}</li>
+        <li>{t('enablingOrDisablingFeatures')}</li>
+        <li>{t('agreeingToTermsAndConditions')}</li>
+        <li>{t('filteringOptions')}</li>
+        <li>{t('settingsAndPreferences')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageCheckbox')}</h2>;
+};
+
+export const VariantsCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsCheckbox')}</h2>;
+};
+
+export const AllCheckboxVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allCheckboxVariants');
+};
+
+export const BasicUsageCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('basicUsageCheckbox')}</h2>;
+};
+
+export const BasicCheckboxTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicCheckbox');
+};
+
+export const PropsCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsCheckbox')}</h2>;
+};
+
+export const AccessibilityCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityCheckbox')}</h2>;
+};
+
+export const DesignGuidelinesCheckboxSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesCheckbox')}</h2>;
+};
+
+export const AccessibilityCheckboxList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('checkboxesHaveProperLabels')}</li>
+      <li>{t('screenReadersCanIdentifyCheckboxStates')}</li>
+      <li>{t('keyboardNavigationSupportedCheckbox')}</li>
+      <li>{t('focusManagementHandledCorrectly')}</li>
+      <li>{t('properAriaAttributesApplied')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesCheckboxList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabels')}</li>
+      <li>{t('useConsistentSizingAcrossApplication')}</li>
+      <li>{t('provideClearVisualFeedback')}</li>
+      <li>{t('groupRelatedCheckboxesTogether')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileCheckbox')}</li>
+    </ul>
+  );
+};
+
+<CheckboxComponentHeader />
+
+<CheckboxDescription />
+
+<CheckboxIntroduction />
+
+<WhenToUseCheckboxSection />
+
+<UsageCheckboxSection />
+
+
+<CodeBlock language="tsx">
+{`import { Checkbox } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsCheckboxSection />
+
+<CodeBlockWithPreview 
+  title={<AllCheckboxVariantsTitle />}
+  preview={
+    <div className="flex-vertical">
+      <Checkbox
+        label="I agree to the terms and conditions"
+        defaultChecked={false}
+      />
+      <Checkbox
+        label="Subscribe to newsletter"
+        defaultChecked={true}
+      />
+      <Checkbox
+        label="Disabled checkbox"
+        disabled={true}
+      />
+    </div>
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxExamples = () => {
+  return (
+    <div className="flex-vertical">
+      <Checkbox
+        label="I agree to the terms and conditions"
+        checked={false}
+      />
+      <Checkbox
+        label="Subscribe to newsletter"
+        checked={true}
+      />
+      <Checkbox
+        label="Disabled checkbox"
+        disabled={true}
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<BasicUsageCheckboxSection />
+
+<CodeBlockWithPreview 
+  title={<BasicCheckboxTitle />}
+  preview={
+    <Checkbox
+      label="I agree to the terms and conditions"
+      defaultChecked={false}
+    />
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxExample = () => {
+  return (
+    <Checkbox
+      label="I agree to the terms and conditions"
+      checked={false}
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+
+<h3>Checkbox Sizes</h3>
+<CodeBlockWithPreview 
+  title="Checkbox Sizes"
+  preview={
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Checkbox label="Size 1" size="1" defaultChecked />
+        <Checkbox label="Size 2" size="2" defaultChecked />
+        <Checkbox label="Size 3" size="3" defaultChecked />
+      </div>
+    </div>
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxSizes = () => {
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Checkbox label="Size 1" size="1" defaultChecked />
+        <Checkbox label="Size 2" size="2" defaultChecked />
+        <Checkbox label="Size 3" size="3" defaultChecked />
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsCheckboxSection />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the checkbox'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the checkbox'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the checkbox'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3" | "sm" | "md" | "lg"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the checkbox'
+  },
+  {
+    name: 'checked',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Controlled checked state'
+  },
+  {
+    name: 'defaultChecked',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Default checked state for uncontrolled usage'
+  },
+  {
+    name: 'onChange',
+    type: '(event: ChangeEvent<HTMLInputElement>) => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when the checkbox state changes'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the checkbox is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityCheckboxSection />
+
+<AccessibilityCheckboxList />
+
+<DesignGuidelinesCheckboxSection />
+
+<DesignGuidelinesCheckboxList />

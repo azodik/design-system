@@ -1,0 +1,63 @@
+import { CodeBlockWithPreview } from "@/components/docs/CodeBlockWithPreview";
+import { PropsTable } from "@/components/docs/PropsTable";
+
+# Typography
+
+Our typography system is built on **Inter**, a variable font family that provides excellent readability at all sizes.
+
+## Font Family
+
+<div className="flex flex-col gap-4 my-8">
+  <div className="p-4 border border-gray-6 rounded-3 bg-white">
+    <div className="text-sm color-text-secondary mb-2">Sans Serif (Default)</div>
+    <div className="text-xl font-medium">Inter, system-ui, sans-serif</div>
+    <div className="mt-2 text-sm text-gray-11">var(--font-family-sans)</div>
+  </div>
+</div>
+
+## Headings
+
+<div className="flex flex-col gap-8 my-8">
+  <div className="grid gap-4 items-center" style={{ gridTemplateColumns: "100px 1fr" }}>
+    <div className="text-sm color-text-secondary">H1</div>
+    <h1>The quick brown fox</h1>
+  </div>
+  <div className="grid gap-4 items-center" style={{ gridTemplateColumns: "100px 1fr" }}>
+    <div className="text-sm color-text-secondary">H2</div>
+    <h2>Jumps over the lazy dog</h2>
+  </div>
+  <div className="grid gap-4 items-center" style={{ gridTemplateColumns: "100px 1fr" }}>
+    <div className="text-sm color-text-secondary">H3</div>
+    <h3>Pack my box with five dozen liquor jugs</h3>
+  </div>
+  <div className="grid gap-4 items-center" style={{ gridTemplateColumns: "100px 1fr" }}>
+    <div className="text-sm color-text-secondary">H4</div>
+    <h4>Sphinx of black quartz, judge my vow</h4>
+  </div>
+</div>
+
+## Body Text
+
+<div className="flex flex-col gap-4 my-8 p-6 border border-gray-6 rounded-3 bg-white">
+  <p className="mb-4">
+    <strong>Body Text:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+  <p className="mb-4">
+    <small><strong>Small Text:</strong> This is used for captions, help text, and secondary information.</small>
+  </p>
+  <p>
+    <strong>Monospace:</strong> <code>npm install @azodik/ui</code> for code snippets.
+  </p>
+</div>
+
+## Font Sizes
+
+We use a numeric scale for font sizes to align with the rest of the design system.
+
+| Token | Size (rem) | Size (px) | Usage |
+|-------|------------|-----------|-------|
+| `--font-size-xs` | 0.75rem | 12px | Small tags, captions |
+| `--font-size-sm` | 0.875rem | 14px | Body text, inputs, buttons |
+| `--font-size-md` | 1rem | 16px | Headings, large text |
+| `--font-size-lg` | 1.125rem | 18px | Titles |
+| `--font-size-xl` | 1.25rem | 20px | Hero text |

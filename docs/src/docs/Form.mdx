@@ -1,0 +1,682 @@
+import { Input, Button, Card, CardContent, Textarea, Checkbox } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const FormComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('formComponent')}</h1>;
+};
+
+export const FormComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('formDescription')}</p>;
+};
+
+export const FormIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('formIntroduction')}</h2>
+      <p>{t('formIntroDesc')}</p>
+      <ul>
+        <li>{t('formMainWrapper')}</li>
+        <li>{t('formValidation')}</li>
+        <li>{t('formControls')}</li>
+        <li>{t('formStateManagement')}</li>
+        <li>{t('formAccessibility')}</li>
+        <li>{t('formCustomization')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseForm')}</h3>
+      <ul>
+        <li>{t('collectingUserInformation')}</li>
+        <li>{t('userRegistrationAndLogin')}</li>
+        <li>{t('settingsAndConfigurationForms')}</li>
+        <li>{t('dataEntryAndEditing')}</li>
+        <li>{t('surveyAndFeedbackForms')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageForm')}</h2>;
+};
+
+export const VariantsFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsForm')}</h2>;
+};
+
+export const SomeExampleFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someExampleForm')}</h2>;
+};
+
+export const AllFormVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allFormVariants');
+};
+
+export const WithValidationFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withValidationForm')}</h2>;
+};
+
+export const FormWithValidationTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('formWithValidation');
+};
+
+export const WithDifferentInputTypesFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDifferentInputTypesForm')}</h2>;
+};
+
+export const FormWithVariousInputsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('formWithVariousInputs');
+};
+
+export const FormComponentsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('formComponents')}</h2>;
+};
+
+export const FormsAreBuiltUsingIndividualComponents = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('formsAreBuiltUsingIndividualComponents')}</p>;
+};
+
+export const InputComponentsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('inputComponents')}</h3>;
+};
+
+export const InputComponentsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li><strong>Input</strong> - {t('inputTextEmailPasswordAndNumberInputs')}</li>
+      <li><strong>Textarea</strong> - {t('textareaMultiLineTextInput')}</li>
+      <li><strong>Select</strong> - {t('selectDropdownSelection')}</li>
+      <li><strong>Checkbox</strong> - {t('checkboxBinaryChoiceControls')}</li>
+      <li><strong>Radio</strong> - {t('radioSingleChoiceFromMultipleOptions')}</li>
+      <li><strong>Switch</strong> - {t('switchToggleControls')}</li>
+    </ul>
+  );
+};
+
+export const FormActionsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h3>{t('formActions')}</h3>;
+};
+
+export const FormActionsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li><strong>Button</strong> - {t('buttonSubmitAndActionButtons')}</li>
+    </ul>
+  );
+};
+
+export const EachComponentHasItsOwnProps = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('eachComponentHasItsOwnProps')}</p>;
+};
+
+export const AccessibilityFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityForm')}</h2>;
+};
+
+export const DesignGuidelinesFormSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesForm')}</h2>;
+};
+
+export const AccessibilityFormList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('formsHaveProperSemanticStructure')}</li>
+      <li>{t('allInputsHaveAssociatedLabels')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReaders')}</li>
+      <li>{t('keyboardNavigationIsSupported')}</li>
+      <li>{t('focusManagementIsHandledCorrectly')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesFormList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveLabels')}</li>
+      <li>{t('provideHelpfulPlaceholderText')}</li>
+      <li>{t('showValidationErrorsClearly')}</li>
+      <li>{t('useConsistentSpacingAndLayout')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobile')}</li>
+    </ul>
+  );
+};
+
+export const ValidatedFormExample = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log('Form submitted:', formData);
+    }
+  };
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex-vertical">
+      <div>
+        <Input
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleChange('email', e.target.value)}
+          error={errors.email}
+          placeholder="Enter your email"
+        />
+      </div>
+      
+      <div>
+        <Input
+          type="password"
+          value={formData.password}
+          onChange={(e) => handleChange('password', e.target.value)}
+          error={errors.password}
+          placeholder="Enter your password"
+          autoComplete="current-password"
+        />
+      </div>
+      
+      <div className="flex justify-center">
+        <Button type="submit">
+          Submit
+        </Button>
+      </div>
+    </form>
+  );
+};
+
+export const VariousInputsFormExample = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    age: '',
+    bio: '',
+    newsletter: false
+  });
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex-vertical">
+      <div>
+        <label className="block text-sm font-medium mb-1">Name</label>
+        <Input
+          type="text"
+          value={formData.name}
+          onChange={(e) => handleChange('name', e.target.value)}
+          placeholder="Enter your name"
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium mb-1">Email</label>
+        <Input
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleChange('email', e.target.value)}
+          placeholder="Enter your email"
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium mb-1">Age</label>
+        <Input
+          type="number"
+          value={formData.age}
+          onChange={(e) => handleChange('age', e.target.value)}
+          placeholder="Enter your age"
+        />
+      </div>
+      
+      <div>
+        <Textarea
+          label="Bio"
+          value={formData.bio}
+          onChange={(e) => handleChange('bio', e.target.value)}
+          placeholder="Tell us about yourself"
+          rows={3}
+        />
+      </div>
+      
+      <div>
+        <Checkbox
+          id="newsletter"
+          label="Subscribe to newsletter"
+          checked={formData.newsletter}
+          onChange={(e) => handleChange('newsletter', e.target.checked)}
+        />
+      </div>
+      
+      <div className="flex justify-center">
+        <Button type="submit">
+          Submit
+        </Button>
+      </div>
+    </form>
+  );
+};
+
+<FormComponentHeader />
+
+<FormComponentDescription />
+
+<FormIntroduction />
+
+<WhenToUseFormSection />
+
+<UsageFormSection />
+
+<CodeBlock language="tsx">
+{`import { Input, Button } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsFormSection />
+
+<SomeExampleFormSection />
+
+<CodeBlockWithPreview 
+  title={<AllFormVariantsTitle />}
+  preview={
+    <div className="flex-vertical">
+      <form>
+        <div>
+          <Input id="name-preview" name="name" label="Name" placeholder="Enter your name" />
+        </div>
+        <div>
+          <Input id="email-preview" name="email" type="email" label="Email" placeholder="Enter your email" />
+        </div>
+        <div className="flex justify-center">
+          <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
+        </div>
+      </form>
+    </div>
+  }
+>
+{`import { Input, Button, Checkbox } from '@azodik/ui';
+import { useState } from 'react';
+
+export const FormExamples = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex-vertical">
+        <div>
+          <Input
+            id="name"
+            name="name"
+            label="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div>
+          <Input
+            id="message"
+            name="message"
+            label="Message"
+            value={formData.message}
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
+      </div>
+    </form>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<WithValidationFormSection />
+
+<CodeBlockWithPreview 
+  title={<FormWithValidationTitle />}
+  preview={<ValidatedFormExample />}
+>
+{`import { Input, Button } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ValidatedFormExample = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log('Form is valid:', formData);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+    // Clear error when user starts typing
+    if (errors[e.target.name]) {
+      setErrors({
+        ...errors,
+        [e.target.name]: ''
+      });
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex-vertical">
+        <div>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
+            value={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+          />
+        </div>
+        
+        <div>
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            label="Password"
+            value={formData.password}
+            onChange={handleChange}
+            error={errors.password}
+            autoComplete="current-password"
+          />
+        </div>
+        
+        <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
+      </div>
+    </form>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<WithDifferentInputTypesFormSection />
+
+<CodeBlockWithPreview 
+  title={<FormWithVariousInputsTitle />}
+  preview={<VariousInputsFormExample />}
+>
+{`import { Input, Button, Select, Checkbox, Radio, Textarea } from '@azodik/ui';
+import { useState } from 'react';
+
+export const ComprehensiveFormExample = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    age: '',
+    country: '',
+    newsletter: false,
+    gender: '',
+    bio: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex-vertical">
+        <div>
+          <Input
+            id="name"
+            name="name"
+            label="Full Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div>
+          <Input
+            id="age"
+            name="age"
+            type="number"
+            label="Age"
+            value={formData.age}
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div>
+          <Select
+            id="country"
+            name="country"
+            label="Country"
+            value={formData.country}
+            onChange={handleChange}
+          >
+            <option value="">Select a country</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+          </Select>
+        </div>
+        
+        <div>
+          <Textarea
+            name="bio"
+            value={formData.bio}
+            onChange={handleChange}
+            placeholder="Tell us about yourself"
+            rows={3}
+          />
+        </div>
+        
+        <div>
+          <Checkbox
+            id="newsletter"
+            name="newsletter"
+            label="Subscribe to newsletter"
+            checked={formData.newsletter}
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div>
+          <div className="flex-vertical">
+            <div className="flex items-center gap-sm">
+              <Radio
+                id="male"
+                name="gender"
+                value="male"
+                label="Male"
+                checked={formData.gender === 'male'}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex items-center gap-sm">
+              <Radio
+                id="female"
+                name="gender"
+                value="female"
+                label="Female"
+                checked={formData.gender === 'female'}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className="flex justify-center">
+          <Button type="submit">Submit</Button>
+        </div>
+      </div>
+    </form>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<FormComponentsSection />
+
+<FormsAreBuiltUsingIndividualComponents />
+
+<InputComponentsSection />
+
+<InputComponentsList />
+
+<FormActionsSection />
+
+<FormActionsList />
+
+<EachComponentHasItsOwnProps />
+
+<AccessibilityFormSection />
+
+<AccessibilityFormList />
+
+<DesignGuidelinesFormSection />
+
+<DesignGuidelinesFormList />

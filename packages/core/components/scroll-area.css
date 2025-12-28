@@ -1,0 +1,71 @@
+.scroll-area {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.scroll-area-content {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-border) transparent !important;
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+.scroll-area-horizontal .scroll-area-content {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Scrollbar sizes using CSS variables */
+.scroll-area-content::-webkit-scrollbar {
+  width: var(--scrollbar-width, 8px) !important;
+  height: var(--scrollbar-height, 8px) !important;
+}
+
+.scroll-area-content::-webkit-scrollbar-track {
+  background: var(--color-background) !important;
+}
+
+.scroll-area-content::-webkit-scrollbar-thumb {
+  background: var(--color-border) !important;
+  border-radius: var(--scrollbar-thumb-radius, 8px) !important;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.scroll-area-content::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-9) !important;
+  background-clip: content-box;
+  opacity: 0.8;
+}
+
+/* Firefox scrollbar width overrides */
+.scroll-area-1 .scroll-area-content {
+  scrollbar-width: thin !important;
+}
+
+.scroll-area-2 .scroll-area-content {
+  scrollbar-width: auto !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .scroll-area {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .scroll-area-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .scroll-area-content::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+  }
+}

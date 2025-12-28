@@ -1,0 +1,120 @@
+/* Pagination Components */
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pagination ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: max-content;
+  flex-shrink: 0;
+}
+
+.pagination-item {
+  display: flex;
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: var(--space-1);
+  color: var(--color-text) !important;
+  text-decoration: none;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-2);
+  background: var(--color-background) !important;
+  transition: none;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pagination-link:hover {
+  background: var(--color-surface) !important;
+  border-color: var(--accent-9) !important;
+  color: var(--accent-9) !important;
+}
+
+.pagination-link.active {
+  background: var(--accent-9) !important;
+  color: var(--color-primary-text, white) !important;
+  border-color: var(--accent-9) !important;
+}
+
+.pagination-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: var(--color-surface) !important;
+  color: var(--color-text-secondary) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .pagination {
+    justify-content: flex-start;
+    padding: var(--space-2) 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pagination ul {
+    min-width: max-content;
+    flex-shrink: 0;
+  }
+
+  .pagination-link {
+    min-width: 28px;
+    height: 28px;
+    font-size: var(--font-size-xs);
+    padding: var(--space-1);
+    flex-shrink: 0;
+  }
+
+  /* Mobile pagination styling - let JavaScript handle page numbers */
+  
+  /* Ensure proper spacing for 3 pages */
+  .pagination-responsive .pagination ul {
+    justify-content: center;
+  }
+}
+
+/* Tablet responsive */
+@media (min-width: 481px) and (max-width: 768px) {
+  .pagination {
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pagination ul {
+    min-width: max-content;
+    flex-shrink: 0;
+  }
+
+  .pagination-link {
+    flex-shrink: 0;
+  }
+}

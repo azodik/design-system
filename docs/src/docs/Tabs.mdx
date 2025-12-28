@@ -1,0 +1,460 @@
+import { Tabs, TabList, TabTrigger, TabContent, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const TabsComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('tabsComponent')}</h1>;
+};
+
+export const TabsComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('tabsDescription')}</p>;
+};
+
+export const TabsIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('tabsIntroduction')}</h2>
+      <p>{t('tabsIntroDesc')}</p>
+      <ul>
+        <li>{t('tabsMainWrapper')}</li>
+        <li>{t('tabNavigation')}</li>
+        <li>{t('tabContent')}</li>
+        <li>{t('tabStateManagement')}</li>
+        <li>{t('tabCustomization')}</li>
+        <li>{t('tabAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseTabs')}</h3>
+      <ul>
+        <li>{t('organizingRelatedContentIntoSections')}</li>
+        <li>{t('switchingBetweenDifferentViewsOrModes')}</li>
+        <li>{t('groupingFormFieldsOrSettings')}</li>
+        <li>{t('displayingDifferentDataSets')}</li>
+        <li>{t('creatingWizardLikeInterfaces')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageTabs')}</h2>;
+};
+
+export const VariantsTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsTabs')}</h2>;
+};
+
+export const AllTabsVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allTabsVariants');
+};
+
+export const SomeVariantsExampleSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariantsExample')}</h2>;
+};
+
+export const PropsTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsTabs')}</h2>;
+};
+
+export const TabListPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tabListProps');
+};
+
+export const TabTriggerPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tabTriggerProps');
+};
+
+export const TabContentPropsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('tabContentProps');
+};
+
+export const AccessibilityTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityTabs')}</h2>;
+};
+
+export const DesignGuidelinesTabsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesTabs')}</h2>;
+};
+
+export const AccessibilityTabsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('tabsHaveProperAriaAttributes')}</li>
+      <li>{t('keyboardNavigationIsSupportedTabs')}</li>
+      <li>{t('screenReadersCanIdentifyActiveTab')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyTabs')}</li>
+      <li>{t('tabContentIsProperlyAssociated')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesTabsList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useClearAndDescriptiveTabLabels')}</li>
+      <li>{t('keepTheNumberOfTabsReasonable')}</li>
+      <li>{t('ensureTabContentIsRelatedAndMeaningful')}</li>
+      <li>{t('useConsistentStylingAcrossAllTabs')}</li>
+      <li>{t('considerMobileResponsivenessForTabNavigation')}</li>
+    </ul>
+  );
+};
+
+<TabsComponentHeader />
+
+<TabsComponentDescription />
+
+<TabsIntroduction />
+
+<WhenToUseTabsSection />
+
+<UsageTabsSection />
+
+<CodeBlock language="tsx">
+{`import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsTabsSection />
+
+<CodeBlockWithPreview 
+  title={<AllTabsVariantsTitle />}
+  preview={
+    <Tabs defaultValue="tab1">
+      <TabList>
+        <TabTrigger value="tab1" borderWidth={4} width="50px">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={4} width="50px">Tab 2</TabTrigger>
+        <TabTrigger value="tab3" borderWidth={4} width="50px">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <Card className="p-6" width="100%">
+          <h3 className="text-lg font-semibold mb-2">Tab 1 Content</h3>
+          <p className="text-gray-600">This is the content for tab 1.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <Card className="p-6" width="100%">
+          <h3 className="text-lg font-semibold mb-2">Tab 2 Content</h3>
+          <p className="text-gray-600">This is the content for tab 2.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <Card className="p-6" width="100%">
+          <h3 className="text-lg font-semibold mb-2">Tab 3 Content</h3>
+          <p className="text-gray-600">This is the content for tab 3.</p>
+        </Card>
+      </TabContent>
+    </Tabs>
+  }
+>
+{`import React, { useState } from "react";
+import { Tabs, TabList, TabTrigger, TabContent, Card } from "@azodik/ui";
+
+export const TabsExample = () => {
+  const [activeTab, setActiveTab] = useState("tab1");
+
+  return (
+    <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <TabList>
+        <TabTrigger value="tab1" borderWidth={4} width="50px">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={4} width="50px">Tab 2</TabTrigger>
+        <TabTrigger value="tab3" borderWidth={4} width="50px">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Tab 1 Content</h3>
+          <p className="text-gray-600">This is the content for tab 1.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Tab 2 Content</h3>
+          <p className="text-gray-600">This is the content for tab 2.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Tab 3 Content</h3>
+          <p className="text-gray-600">This is the content for tab 3.</p>
+        </Card>
+      </TabContent>
+    </Tabs>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<SomeVariantsExampleSection />
+
+<CodeBlockWithPreview 
+  title={<AllTabsVariantsTitle />}
+  preview={
+    <Tabs defaultValue="tab1">
+      <TabList>
+        <TabTrigger value="tab1" borderWidth={4} width="50px" borderColor="var(--color-primary)">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={2} width="50px" borderColor="var(--color-secondary)">Tab 2</TabTrigger>
+        <TabTrigger value="tab3" borderWidth={5} width="50px" borderColor="#10b981">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <Card className="p-6" width="100%">
+          <h3 className="text-lg font-semibold mb-2">Tab 1 Content</h3>
+          <p className="text-gray-600">This is the content for tab 1.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <Card className="p-6" width="100%">
+          <h3 className="text-lg font-semibold mb-2">Tab 2 Content</h3>
+          <p className="text-gray-600">This is the content for tab 2.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <Card className="p-6" width="100%">
+          <h3 className="text-lg font-semibold mb-2">Tab 3 Content</h3>
+          <p className="text-gray-600">This is the content for tab 3.</p>
+        </Card>
+      </TabContent>
+    </Tabs>
+  }
+>
+{`import React, { useState } from "react";
+import { Tabs, TabList, TabTrigger, TabContent, Card } from "@azodik/ui";
+
+export const TabsExample = () => {
+  const [activeTab, setActiveTab] = useState("tab1");
+
+  return (
+    <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <TabList>
+        <TabTrigger value="tab1" borderWidth={4} width="50px" borderColor="var(--color-primary)">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={2} width="50px" borderColor="var(--color-secondary)">Tab 2</TabTrigger>
+        <TabTrigger value="tab3" borderWidth={5} width="50px" borderColor="#10b981">Tab 3</TabTrigger>
+      </TabList>
+      
+      <TabContent value="tab1">
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Tab 1 Content</h3>
+          <p className="text-gray-600">This is the content for tab 1.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab2">
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Tab 2 Content</h3>
+          <p className="text-gray-600">This is the content for tab 2.</p>
+        </Card>
+      </TabContent>
+      
+      <TabContent value="tab3">
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Tab 3 Content</h3>
+          <p className="text-gray-600">This is the content for tab 3.</p>
+        </Card>
+      </TabContent>
+    </Tabs>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsTabsSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Tab content (typically TabList and TabContent components)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Default active tab value (for uncontrolled mode)'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Currently active tab value (for controlled mode)'
+  },
+  {
+    name: 'onValueChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when tab changes'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TabListPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Tab trigger elements (typically TabTrigger components)'
+  },
+  {
+    name: 'activeValue',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Currently active tab value (passed from parent Tabs)'
+  },
+  {
+    name: 'onValueChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when tab changes (passed from parent Tabs)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TabTriggerPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Tab trigger content'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Unique value for this tab trigger'
+  },
+  {
+    name: 'active',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether this tab is currently active (managed by parent)'
+  },
+  {
+    name: 'borderWidth',
+    type: 'number',
+    required: false,
+    default: '3',
+    description: 'Width of the active tab border in pixels'
+  },
+  {
+    name: 'borderColor',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Color of the active tab border (defaults to primary color)'
+  },
+  {
+    name: 'width',
+    type: 'string | number',
+    required: false,
+    default: '-',
+    description: 'Width of the tab trigger'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<TabContentPropsTitle />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display when this tab is active'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: true,
+    default: '-',
+    description: 'Unique value for this tab content (must match TabTrigger value)'
+  },
+  {
+    name: 'activeValue',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Currently active tab value (passed from parent Tabs)'
+  },
+  {
+    name: 'onValueChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Function called when tab changes (passed from parent Tabs)'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityTabsSection />
+
+<AccessibilityTabsList />
+
+<DesignGuidelinesTabsSection />
+
+<DesignGuidelinesTabsList />

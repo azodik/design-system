@@ -1,0 +1,122 @@
+import { CodeBlock } from "@/components/docs/CodeBlock";
+import { CodeBlockWithPreview } from "@/components/docs/CodeBlockWithPreview";
+import { PropsTable } from "@/components/docs/PropsTable";
+import { ThemePanel } from "@azodik/ui";
+
+# Theming
+
+Azodik UI is built on a robust theming system powered by CSS variables and a convenient React context. It's designed to be easily customizable and supports dark mode out of the box.
+
+## Setup
+
+To start using the design system, you need to wrap your application with the `ThemeProvider`. This provider manages the current theme, appearance (light/dark), and accent colors.
+
+<CodeBlock language="tsx">
+{`import { ThemeProvider } from '@azodik/ui';
+import '@azodik/ui/styles.css';
+
+export default function App() {
+  return (
+    <ThemeProvider defaultTheme="light" defaultAccentColor="indigo" defaultRadius="medium">
+      <YourApp />
+    </ThemeProvider>
+  );
+}`}
+</CodeBlock>
+
+## Theme Configuration
+
+The `ThemeProvider` accepts several props to configure the default appearance of your application:
+
+<PropsTable props={[
+  {
+    name: "defaultTheme",
+    type: "'light' | 'dark' | 'system'",
+    default: "'system'",
+    description: "The initial theme mode."
+  },
+  {
+    name: "defaultAccentColor",
+    type: "string",
+    default: "'indigo'",
+    description: "The primary accent color used across components. Options: 'indigo', 'ruby', 'grass', 'amber', 'cyan', 'azodik', etc."
+  },
+  {
+    name: "defaultRadius",
+    type: "'none' | 'small' | 'medium' | 'large' | 'full'",
+    default: "'medium'",
+    description: "The global border radius scale for components."
+  },
+  {
+    name: "defaultPanelBackground",
+    type: "'solid' | 'translucent'",
+    default: "'translucent'",
+    description: "The background style for panels and overlays."
+  }
+]} />
+
+## Design Tokens
+
+Our design system exposes a set of CSS variables that you can use in your own styles to ensure consistency.
+
+### Colors
+We use a 12-scale color system. The most important tokens are:
+
+- `--accent-9`: The primary solid background color (e.g. Buttons).
+- `--accent-10`: The hover state for solid backgrounds.
+- `--accent-3`: Background for weak/secondary interactions.
+- `--color-surface`: The card/panel background color.
+- `--color-background`: The page background color.
+
+### Radii
+We use a standard radius scale mapped to the `radius` prop:
+
+- `--radius-1`: Small (approx 3-4px)
+- `--radius-2`: Medium (approx 6-8px)
+- `--radius-3`: Large (approx 12px)
+- `--radius-4`: X-Large (approx 16px)
+- `--radius-5`: XX-Large (approx 24px)
+- `--radius-round`: 9999px
+
+## Theme Panel
+
+For development or user preference settings, we provide a `ThemePanel` component that allows live toggling of theme properties.
+
+<CodeBlockWithPreview
+  title="Theme Panel Example"
+  preview={
+    <div className="relative h-64 w-full flex items-center justify-center p-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-900">
+       <div className="text-center space-y-4">
+          <p className="text-sm text-gray-500">The panel is usually fixed to the screen edge, but demonstrated here statically.</p>
+          {/* ThemePanel is typically a fixed overlay */}
+       </div>
+    </div>
+  }
+>
+{`import { ThemePanel } from '@azodik/ui';
+
+export default function App() {
+  return (
+    <>
+      <YourContent />
+      <ThemePanel /> {/* Adds a floating toggle button */}
+    </>
+  );
+}`}
+</CodeBlockWithPreview>
+
+## Customizing CSS
+
+You can override any of the CSS variables in your own stylesheet. It's recommended to scope them to the `:root` or a specific theme class.
+
+```css
+:root {
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --space-unit: 4px;
+}
+
+[data-accent-color="brand"] {
+  --accent-9: #6366f1;
+  --accent-10: #4f46e5;
+}
+```

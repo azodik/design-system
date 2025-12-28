@@ -1,0 +1,444 @@
+import { Radio, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const RadioComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('radioComponent')}</h1>;
+};
+
+export const RadioComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('radioDescription')}</p>;
+};
+
+export const RadioIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('radioIntroduction')}</h2>
+      <p>{t('radioIntroDesc')}</p>
+      <ul>
+        <li>{t('radioMainWrapper')}</li>
+        <li>{t('radioGroups')}</li>
+        <li>{t('radioStates')}</li>
+        <li>{t('radioValidation')}</li>
+        <li>{t('radioAccessibility')}</li>
+        <li>{t('radioCustomization')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseRadio')}</h3>
+      <ul>
+        <li>{t('singleSelectionFromMultipleOptions')}</li>
+        <li>{t('choosingOneOptionFromAGroup')}</li>
+        <li>{t('settingsWithMutuallyExclusiveChoices')}</li>
+        <li>{t('formFieldsWithLimitedExclusiveOptions')}</li>
+        <li>{t('surveyQuestionsWithSingleAnswers')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageRadio')}</h2>;
+};
+
+export const VariantsRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsRadio')}</h2>;
+};
+
+export const WithDefaultSelectionRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withDefaultSelectionRadio')}</h2>;
+};
+
+export const RadioWithDefaultSelectionTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('radioWithDefaultSelection');
+};
+
+export const PropsRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsRadio')}</h2>;
+};
+
+export const AccessibilityRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityRadio')}</h2>;
+};
+
+export const DesignGuidelinesRadioSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesRadio')}</h2>;
+};
+
+export const AccessibilityRadioList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('radioButtonsHaveProperLabelsAndAssociations')}</li>
+      <li>{t('screenReadersCanIdentifyRadioButtonStates')}</li>
+      <li>{t('keyboardNavigationIsSupportedRadio')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyRadio')}</li>
+      <li>{t('properAriaAttributesAreAppliedRadio')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesRadioList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabels')}</li>
+      <li>{t('useConsistentSizingAcrossYourApplicationRadio')}</li>
+      <li>{t('groupRelatedRadioButtonsTogether')}</li>
+      <li>{t('provideClearVisualFeedbackForSelection')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileRadio')}</li>
+    </ul>
+  );
+};
+
+export const ControlledRadioExample = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+
+  const handleChange = (e) => {
+    setSelectedLanguage(e.target.value);
+  };
+
+  return (
+    <div className="flex-vertical">
+      <h3>Choose your preferred language:</h3>
+      <Radio 
+        id="english" 
+        name="language" 
+        value="english"
+        label="English"
+        checked={selectedLanguage === 'english'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="spanish" 
+        name="language" 
+        value="spanish"
+        label="Spanish"
+        checked={selectedLanguage === 'spanish'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="french" 
+        name="language" 
+        value="french"
+        label="French"
+        checked={selectedLanguage === 'french'}
+        onChange={handleChange}
+      />
+      <p className="text-sm text-gray-500">
+        Selected: {selectedLanguage || 'None'}
+      </p>
+    </div>
+  );
+};
+
+export const DefaultRadioExample = () => {
+  const [selectedSize, setSelectedSize] = useState('medium');
+
+  const handleChange = (e) => {
+    setSelectedSize(e.target.value);
+  };
+
+  return (
+    <div className="flex-vertical">
+      <h3>Choose your size:</h3>
+      <Radio 
+        id="small" 
+        name="size" 
+        value="small"
+        label="Small"
+        checked={selectedSize === 'small'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="medium" 
+        name="size" 
+        value="medium"
+        label="Medium"
+        checked={selectedSize === 'medium'}
+        onChange={handleChange}
+      />
+      <Radio 
+        id="large" 
+        name="size" 
+        value="large"
+        label="Large"
+        checked={selectedSize === 'large'}
+        onChange={handleChange}
+      />
+    </div>
+  );
+};
+
+export const ValidatedRadioExample = () => {
+  const [selectedOption, setSelectedOption] = useState('');
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    setSelectedOption(e.target.value);
+    if (e.target.value) {
+      setError('');
+    }
+  };
+
+  const handleBlur = () => {
+    if (!selectedOption) {
+      setError('Please select an option');
+    }
+  };
+
+  return (
+    <div className="flex-vertical">
+      <h3>Choose your payment method: *</h3>
+      <div className="flex items-center gap-sm">
+        <Radio 
+          id="credit" 
+          name="payment" 
+          value="credit"
+          checked={selectedOption === 'credit'}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <label htmlFor="credit">Credit Card</label>
+      </div>
+      <div className="flex items-center gap-sm">
+        <Radio 
+          id="debit" 
+          name="payment" 
+          value="debit"
+          checked={selectedOption === 'debit'}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <label htmlFor="debit">Debit Card</label>
+      </div>
+      <div className="flex items-center gap-sm">
+        <Radio 
+          id="paypal" 
+          name="payment" 
+          value="paypal"
+          checked={selectedOption === 'paypal'}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <label htmlFor="paypal">PayPal</label>
+      </div>
+      {error && <p className="text-sm text-red-500">{error}</p>}
+    </div>
+  );
+};
+
+export const SizedRadioExample = () => {
+  return (
+    <div className="flex-vertical">
+      <div>
+        <h4>Small Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="small1" name="small" value="1" size="1" />
+          <label htmlFor="small1">Option 1</label>
+        </div>
+        <div className="flex items-center gap-sm">
+          <Radio id="small2" name="small" value="2" size="1" />
+          <label htmlFor="small2">Option 2</label>
+        </div>
+      </div>
+      
+      <div>
+        <h4>Medium Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="medium1" name="medium" value="1" size="2" />
+          <label htmlFor="medium1">Option 1</label>
+        </div>
+        <div className="flex items-center gap-sm">
+          <Radio id="medium2" name="medium" value="2" size="2" />
+          <label htmlFor="medium2">Option 2</label>
+        </div>
+      </div>
+      
+      <div>
+        <h4>Large Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="large1" name="large" value="1" size="3" />
+          <label htmlFor="large1">Option 1</label>
+        </div>
+        <div className="flex items-center gap-sm">
+          <Radio id="large2" name="large" value="2" size="3" />
+          <label htmlFor="large2">Option 2</label>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+<RadioComponentHeader />
+
+<RadioComponentDescription />
+
+<RadioIntroduction />
+
+<WhenToUseRadioSection />
+
+<UsageRadioSection />
+
+<CodeBlock language="tsx">
+{`import { Radio } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsRadioSection />
+
+<WithDefaultSelectionRadioSection />
+
+<CodeBlockWithPreview 
+  title={<RadioWithDefaultSelectionTitle />}
+  preview={<DefaultRadioExample />}
+>
+{`import { Radio } from '@azodik/ui';
+import { useState } from 'react';
+
+export const DefaultRadioGroupExample = () => {
+  const [selectedSize, setSelectedSize] = useState('medium');
+
+  const handleChange = (e) => {
+    setSelectedSize(e.target.value);
+  };
+
+  return (
+    <div className="flex-vertical">
+      <h3>Choose your size:</h3>
+      <div className="flex items-center gap-sm">
+        <Radio 
+          id="small" 
+          name="size" 
+          value="small"
+          checked={selectedSize === 'small'}
+          onChange={handleChange}
+        />
+        <label htmlFor="small">Small</label>
+      </div>
+      <div className="flex items-center gap-sm">
+        <Radio 
+          id="medium" 
+          name="size" 
+          value="medium"
+          checked={selectedSize === 'medium'}
+          onChange={handleChange}
+        />
+        <label htmlFor="medium">Medium</label>
+      </div>
+      <div className="flex items-center gap-sm">
+        <Radio 
+          id="large" 
+          name="size" 
+          value="large"
+          checked={selectedSize === 'large'}
+          onChange={handleChange}
+        />
+        <label htmlFor="large">Large</label>
+      </div>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<h3>Radio Sizes</h3>
+<CodeBlockWithPreview 
+  title="Radio Sizes"
+  preview={<SizedRadioExample />}
+>
+{`import { Radio } from '@azodik/ui';
+
+export default function SizedRadio() {
+  return (
+    <div className="flex-vertical">
+      <div>
+        <h4>Small Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="small1" name="small" value="1" size="1" />
+          <label htmlFor="small1">Option 1</label>
+        </div>
+      </div>
+      
+      <div>
+        <h4>Medium Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="medium1" name="medium" value="1" size="2" />
+          <label htmlFor="medium1">Option 1</label>
+        </div>
+      </div>
+      
+      <div>
+        <h4>Large Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="large1" name="large" value="1" size="3" />
+          <label htmlFor="large1">Option 1</label>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsRadioSection />
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the radio button'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the radio button'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the radio button'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the radio button'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityRadioSection />
+
+<AccessibilityRadioList />
+
+<DesignGuidelinesRadioSection />
+
+<DesignGuidelinesRadioList />

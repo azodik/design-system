@@ -1,0 +1,347 @@
+import { Select, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview, ComponentNavigation } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const SelectComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('selectComponent')}</h1>;
+};
+
+export const SelectComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('selectDescription')}</p>;
+};
+
+export const SelectIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('selectIntroduction')}</h2>
+      <p>{t('selectIntroDesc')}</p>
+      <ul>
+        <li>{t('selectMainWrapper')}</li>
+        <li>{t('selectOptions')}</li>
+        <li>{t('selectValidation')}</li>
+        <li>{t('selectAccessibility')}</li>
+        <li>{t('selectCustomization')}</li>
+        <li>{t('selectStates')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseSelect')}</h3>
+      <ul>
+        <li>{t('choosingFromAListOfPredefinedOptions')}</li>
+        <li>{t('formFieldsWithLimitedChoices')}</li>
+        <li>{t('countryStateOrCategorySelection')}</li>
+        <li>{t('settingsAndConfigurationOptions')}</li>
+        <li>{t('filteringAndSortingOptions')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageSelect')}</h2>;
+};
+
+export const VariantsSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsSelect')}</h2>;
+};
+
+export const BasicSelectTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('basicSelect');
+};
+
+export const PropsSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsSelect')}</h2>;
+};
+
+export const AccessibilitySelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilitySelect')}</h2>;
+};
+
+export const DesignGuidelinesSelectSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesSelect')}</h2>;
+};
+
+export const AccessibilitySelectList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('selectsHaveProperLabelsAndAssociations')}</li>
+      <li>{t('errorMessagesAreAnnouncedToScreenReaders')}</li>
+      <li>{t('keyboardNavigationIsSupportedSelect')}</li>
+      <li>{t('focusManagementIsHandledCorrectlySelect')}</li>
+      <li>{t('colorContrastMeetsWCAGGuidelines')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSelectList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('alwaysProvideClearLabelsSelect')}</li>
+      <li>{t('useDescriptiveOptionText')}</li>
+      <li>{t('groupRelatedOptionsTogether')}</li>
+      <li>{t('provideADefaultPlaceholderOption')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobileSelect')}</li>
+    </ul>
+  );
+};
+
+export const ControlledSelectExample = () => {
+  const [selectedCountry, setSelectedCountry] = useState('');
+
+  const handleChange = (value) => {
+    setSelectedCountry(value);
+  };
+
+  const options = [
+    { value: '', label: 'Select a country' },
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'au', label: 'Australia' }
+  ];
+
+  return (
+    <div>
+      <Select
+        label="Country"
+        value={selectedCountry}
+        onChange={handleChange}
+        options={options}
+      />
+      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+        Selected: {selectedCountry || 'None'}
+      </p>
+    </div>
+  );
+};
+
+<SelectComponentHeader />
+
+<SelectComponentDescription />
+
+<SelectIntroduction />
+
+<WhenToUseSelectSection />
+
+<UsageSelectSection />
+
+<CodeBlock language="tsx">
+{`import { Select } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsSelectSection />
+
+<CodeBlockWithPreview 
+  title={<BasicSelectTitle />}
+  preview={<ControlledSelectExample />}
+>
+{`import { Select } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicSelect() {
+  const [selectedCountry, setSelectedCountry] = useState('');
+
+  const handleChange = (value) => {
+    setSelectedCountry(value);
+  };
+
+  const options = [
+    { value: '', label: 'Select a country' },
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'au', label: 'Australia' }
+  ];
+
+  return (
+    <div>
+      <Select
+        label="Country"
+        value={selectedCountry}
+        onChange={handleChange}
+        options={options}
+      />
+      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+        Selected: {selectedCountry || 'None'}
+      </p>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<h3>Select Sizes</h3>
+<CodeBlockWithPreview 
+  title="Select Sizes"
+  preview={
+    <div className="flex-vertical" style={{ gap: '1rem', minHeight: '250px' }}>
+      <Select 
+        placeholder="Size 1" 
+        size="1" 
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' }
+        ]} 
+      />
+      <Select 
+        placeholder="Size 2 (Default)" 
+        size="2" 
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' }
+        ]} 
+      />
+      <Select 
+        placeholder="Size 3" 
+        size="3" 
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' }
+        ]} 
+      />
+    </div>
+  }
+>
+{`import { Select } from '@azodik/ui';
+
+export const SelectSizes = () => {
+  const options = [
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' },
+    { value: '3', label: 'Option 3' }
+  ];
+  return (
+    <div className="flex-vertical">
+      <Select placeholder="Size 1" size="1" options={options} />
+      <Select placeholder="Size 2 (Default)" size="2" options={options} />
+      <Select placeholder="Size 3" size="3" options={options} />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsSelectSection />
+
+<PropsTable props={[
+  {
+    name: 'options',
+    type: '{ value: string; label: string }[]',
+    required: true,
+    default: '-',
+    description: 'Array of options for the select dropdown'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the select field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the select'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the select'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the select'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '-',
+    description: 'Border radius of the select'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Accent color for focus states'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Selected value of the select'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when selection changes'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Select an option"',
+    description: 'Placeholder text for the select'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the select is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilitySelectSection />
+
+<AccessibilitySelectList />
+
+<DesignGuidelinesSelectSection />
+
+<DesignGuidelinesSelectList />
+
+<ComponentNavigation />

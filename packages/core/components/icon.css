@@ -36,7 +36,7 @@
 
 /* Icon Colors */
 .icon-primary {
-  color: var(--color-primary);
+  color: var(--accent-9);
 }
 .icon-secondary {
   color: var(--color-secondary);
@@ -63,12 +63,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
-  padding: var(--space-xs);
+  border-radius: var(--radius-2);
+  padding: var(--space-1);
 }
 
 .icon-bg-primary {
-  background: var(--color-primary);
+  background: var(--accent-9);
   color: white;
 }
 
@@ -110,7 +110,7 @@
   width: 40px;
   height: 40px;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-3);
   background: transparent;
   color: var(--color-text);
   cursor: pointer;
@@ -119,30 +119,14 @@
 
 .icon-button:hover {
   background: var(--color-surface);
-  color: var(--color-primary);
+  color: var(--accent-9);
 }
 
 .icon-button:active {
   transform: scale(0.95);
 }
 
-.icon-button.primary {
-  background: var(--color-primary);
-  color: white;
-}
-
-.icon-button.primary:hover {
-  background: var(--color-primary-hover);
-}
-
-.icon-button.secondary {
-  background: var(--color-secondary);
-  color: white;
-}
-
-.icon-button.secondary:hover {
-  background: var(--color-secondary-hover);
-}
+/* Icon button variants - Use Button component with icon prop instead */
 
 .icon-button.outline {
   border: 1px solid var(--color-border);
@@ -150,26 +134,17 @@
 }
 
 .icon-button.outline:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--accent-9);
+  color: var(--accent-9);
 }
 
-/* Icon Sizes for Buttons */
-.icon-button-sm {
-  width: 32px;
-  height: 32px;
-}
-
-.icon-button-lg {
-  width: 48px;
-  height: 48px;
-}
+/* Icon Sizes for Buttons - Use numeric sizes (1, 2, 3) via Button component size prop */
 
 /* Icon Group */
 .icon-group {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-2);
 }
 
 .icon-group .icon-button {
@@ -177,7 +152,7 @@
 }
 
 .icon-group .icon-button:not(:last-child) {
-  margin-right: var(--space-xs);
+  margin-right: var(--space-1);
 }
 
 /* Loading Icon */
@@ -198,7 +173,7 @@
 .icon-text {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-1);
 }
 
 .icon-text .icon {
@@ -219,13 +194,13 @@
 .icon-list-item {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
   color: var(--color-text);
 }
 
 .icon-list-item .icon {
-  color: var(--color-primary);
+  color: var(--accent-9);
 }
 
 .icon-list-item .text {
@@ -236,7 +211,7 @@
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: var(--space-lg);
+  gap: var(--space-5);
   text-align: center;
 }
 
@@ -244,9 +219,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-3);
   transition: background-color 0.3s ease;
 }
 
@@ -256,7 +231,7 @@
 
 .icon-grid-item .icon {
   font-size: 2rem;
-  color: var(--color-primary);
+  color: var(--accent-9);
 }
 
 .icon-grid-item .label {
@@ -269,11 +244,11 @@
 @media (max-width: 768px) {
   .icon-grid {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: var(--space-md);
+    gap: var(--space-4);
   }
 
   .icon-grid-item {
-    padding: var(--space-sm);
+    padding: var(--space-2);
   }
 
   .icon-grid-item .icon {

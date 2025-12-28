@@ -1,0 +1,282 @@
+import { ScrollArea, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ScrollAreaComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('scrollAreaComponent')}</h1>;
+};
+
+export const ScrollAreaComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('scrollAreaDescription')}</p>;
+};
+
+export const ScrollAreaIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('scrollAreaIntroduction')}</h2>
+      <p>{t('scrollAreaIntroDesc')}</p>
+      <ul>
+        <li>{t('scrollAreaMainWrapper')}</li>
+        <li>{t('scrollAreaSizing')}</li>
+        <li>{t('scrollAreaOrientation')}</li>
+        <li>{t('scrollAreaCustomization')}</li>
+        <li>{t('scrollAreaPerformance')}</li>
+        <li>{t('scrollAreaAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUseScrollArea')}</h3>
+      <ul>
+        <li>{t('createScrollableContentAreas')}</li>
+        <li>{t('customizeScrollbarAppearance')}</li>
+        <li>{t('implementSmoothScrolling')}</li>
+        <li>{t('handleOverflowContentGracefully')}</li>
+        <li>{t('createConsistentScrollingExperiences')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usageScrollArea')}</h2>;
+};
+
+export const VariantsScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('variantsScrollArea')}</h2>;
+};
+
+export const ScrollExamplesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('scrollExamples')}</h2>;
+};
+
+export const VerticalScrollTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('verticalScroll');
+};
+
+export const HorizontalScrollTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('horizontalScroll');
+};
+
+export const PropsScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('propsScrollArea')}</h2>;
+};
+
+export const AccessibilityScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibilityScrollArea')}</h2>;
+};
+
+export const DesignGuidelinesScrollAreaSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelinesScrollArea')}</h2>;
+};
+
+export const AccessibilityScrollAreaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('scrollAreaMaintainsKeyboardNavigation')}</li>
+      <li>{t('screenReadersCanAccessScrollableContent')}</li>
+      <li>{t('focusManagementIsHandledCorrectlyScrollArea')}</li>
+      <li>{t('properAriaAttributesAreAppliedScrollArea')}</li>
+      <li>{t('scrollPositionIsAnnouncedWhenNeeded')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesScrollAreaList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('useAppropriateSizingForYourContent')}</li>
+      <li>{t('ensureSufficientContrastForScrollbars')}</li>
+      <li>{t('considerMobileTouchInteractionsScrollArea')}</li>
+      <li>{t('useConsistentStylingAcrossYourApplicationScrollArea')}</li>
+      <li>{t('testScrollingBehaviorOnDifferentDevices')}</li>
+    </ul>
+  );
+};
+
+export const VerticalScrollAreaExample = () => {
+  return (
+    <div className="scroll-area-mobile">
+      <Card className="border rounded-lg p-4"
+        width="100%"
+        height="200px"
+        style={{ backgroundColor: "var(--color-background)", borderColor: "var(--color-border)" }}
+      >
+        <ScrollArea className="h-32 w-full" scrollbarSize="1">
+          <div className="p-4">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+            </p>
+          </div>
+        </ScrollArea>
+      </Card>
+    </div>
+  );
+};
+
+export const HorizontalScrollAreaExample = () => {
+  return (
+    <div className="horizontal-scroll-mobile">
+      <ScrollArea className="w-full border rounded" orientation="horizontal">
+        <div className="flex space-x-4 p-4" style={{ width: '500px' }}>
+          {Array.from({ length: 20 }, (_, i) => (
+            <div 
+              key={i}
+              className={"w-32 h-20 " + [i] + " rounded flex items-center justify-center flex-shrink-0"}
+            >
+              Item {i + 1}
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
+  );
+};
+
+<ScrollAreaComponentHeader />
+
+<ScrollAreaComponentDescription />
+
+<ScrollAreaIntroduction />
+
+<WhenToUseScrollAreaSection />
+
+<UsageScrollAreaSection />
+
+<CodeBlock language="tsx">
+{`import { ScrollArea } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsScrollAreaSection />
+
+<ScrollExamplesSection />
+
+<CodeBlockWithPreview 
+  title={<VerticalScrollTitle />}
+  preview={<VerticalScrollAreaExample />}
+>
+{`import { ScrollArea, Card } from '@azodik/ui';
+
+export const VerticalScrollAreaExample = () => {
+  return (
+    <div className="scroll-area-mobile">
+      <Card className="border rounded-lg p-4"
+        width="100%"
+        height="200px"
+        style={{ backgroundColor: "var(--color-background)", borderColor: "var(--color-border)" }}
+      >
+        <ScrollArea className="h-32 w-full" scrollbarSize="1">
+          <div className="p-4">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed mt-3">
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+            </p>
+          </div>
+        </ScrollArea>
+      </Card>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<HorizontalScrollTitle />}
+  preview={<HorizontalScrollAreaExample />}
+>
+{`import { ScrollArea } from '@azodik/ui';
+
+export const HorizontalScrollAreaExample = () => {
+  return (
+    <div className="horizontal-scroll-mobile">
+      <ScrollArea className="w-full border rounded" orientation="horizontal">
+        <div className="flex space-x-4 p-4" style={{ width: '500px' }}>
+          {Array.from({ length: 20 }, (_, i) => (
+            <div 
+              key={i}
+              className={"w-32 h-20 " + [i] + " rounded flex items-center justify-center flex-shrink-0"}
+            >
+              Item {i + 1}
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<PropsScrollAreaSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the scroll area'
+  },
+  {
+    name: 'scrollbarSize',
+    type: '"sm" | "md"',
+    required: false,
+    default: '"md"',
+    description: 'Size of the scrollbar'
+  },
+  {
+    name: 'orientation',
+    type: '"vertical" | "horizontal"',
+    required: false,
+    default: '"vertical"',
+    description: 'Orientation of the scroll area'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilityScrollAreaSection />
+
+<AccessibilityScrollAreaList />
+
+<DesignGuidelinesScrollAreaSection />
+
+<DesignGuidelinesScrollAreaList />

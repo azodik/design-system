@@ -1,0 +1,142 @@
+/* Charts Components */
+.chart-container {
+  width: 100% !important;
+  min-width: 500px !important;
+  max-width: 100% !important;
+  height: 100%;
+  padding: 20px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-5);
+  box-shadow: var(--shadow-2);
+  margin-bottom: 20px;
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.chart-subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.chart-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-1);
+}
+
+.chart-tooltip {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  padding: 12px;
+  box-shadow: var(--shadow-3);
+  font-size: 14px;
+}
+
+.chart-tooltip-label {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.chart-tooltip-value {
+  color: var(--color-text-secondary);
+}
+
+/* Chart Types */
+.chart-line {
+  stroke-width: 2;
+}
+
+.chart-bar {
+  rx: 2;
+}
+
+.chart-pie {
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.chart-area {
+  opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+    padding: 16px;
+  }
+  
+  .chart-title {
+    font-size: 16px;
+  }
+  
+  .chart-legend {
+    gap: 12px;
+  }
+  
+  .chart-legend-item {
+    font-size: 12px;
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .chart-container {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-2);
+}
+
+[data-theme="dark"] .chart-title {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .chart-subtitle {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .chart-legend-item {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .chart-tooltip {
+  background: var(--gray-3);
+  border-color: var(--color-border);
+  color: var(--color-text);
+  box-shadow: var(--shadow-4);
+}
+
+[data-theme="dark"] .chart-tooltip-label {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .chart-tooltip-value {
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,280 @@
+import { Button, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const ButtonHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>{t('buttonComponent')}</h1>;
+};
+
+export const ButtonDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>{t('buttonDescription')}</p>;
+};
+
+export const ButtonIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>{t('introduction')}</h2>
+      <p>{t('buttonIntroDesc')}</p>
+      <ul>
+        <li>{t('buttonMainWrapper')}</li>
+        <li>{t('buttonVariantsIntro')}</li>
+        <li>{t('buttonSizing')}</li>
+        <li>{t('buttonStates')}</li>
+        <li>{t('buttonCustomization')}</li>
+        <li>{t('buttonAccessibility')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSection = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h3>{t('whenToUse')}</h3>
+      <ul>
+        <li>{t('primaryActionsAndCallsToAction')}</li>
+        <li>{t('formSubmissions')}</li>
+        <li>{t('navigationBetweenPagesOrSections')}</li>
+        <li>{t('confirmingOrCancelingActions')}</li>
+        <li>{t('triggeringModalsOrDropdowns')}</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('usage')}</h2>;
+};
+
+export const SomeVariantsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('someVariants')}</h2>;
+};
+
+export const AllButtonVariantsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('allButtonVariants');
+};
+
+export const WithIconsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('withIcons')}</h2>;
+};
+
+export const ButtonWithIconsTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('buttonWithIcons');
+};
+
+export const DisabledStateSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('disabledState')}</h2>;
+};
+
+export const DisabledButtonTitle = () => {
+  const { t } = useLanguageTranslation();
+  return t('disabledButton');
+};
+
+export const PropsSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('props')}</h2>;
+};
+
+export const AccessibilitySection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('accessibility')}</h2>;
+};
+
+export const DesignGuidelinesSection = () => {
+  const { t } = useLanguageTranslation();
+  return <h2>{t('designGuidelines')}</h2>;
+};
+
+export const AccessibilityList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('buttonsHaveFocusStates')}</li>
+      <li>{t('screenReadersIdentifyButtonPurpose')}</li>
+      <li>{t('disabledButtonsProperlyAnnounced')}</li>
+      <li>{t('keyboardNavigationSupported')}</li>
+      <li>{t('colorContrastMeetsWCAG')}</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesList = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <ul>
+      <li>{t('usePrimaryButtonsForMainActions')}</li>
+      <li>{t('useSecondaryButtonsForSecondaryActions')}</li>
+      <li>{t('useDestructiveButtonsForDangerousActions')}</li>
+      <li>{t('keepButtonTextConciseAndActionOriented')}</li>
+      <li>{t('ensureSufficientTouchTargetsOnMobile')}</li>
+    </ul>
+  );
+};
+
+<ButtonHeader />
+
+<ButtonDescription />
+
+<ButtonIntroduction />
+
+<WhenToUseSection />
+
+<UsageSection />
+
+<CodeBlock language="tsx">
+{`import { Button } from '@azodik/ui';`}
+</CodeBlock>
+
+<SomeVariantsSection />
+
+<CodeBlockWithPreview 
+  title={<AllButtonVariantsTitle />}
+  preview={
+    <div className="flex gap-sm">
+      <Button variant="solid">Primary</Button>
+      <Button variant="soft">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const ButtonExamples = () => {
+  return (
+    <div className="flex-vertical">
+      <Button variant="solid">Primary</Button>
+      <Button variant="soft">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="solid" color="ruby">Destructive</Button>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<WithIconsSection />
+
+<CodeBlockWithPreview 
+  title={<ButtonWithIconsTitle />}
+  preview={
+    <Button variant="solid" size="2">
+      + Add
+    </Button>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const IconButton = () => {
+  return (
+    <Button variant="solid" size="2">
+      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+      </svg>
+      Add Item
+    </Button>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<DisabledStateSection />
+
+<CodeBlockWithPreview 
+  title={<DisabledButtonTitle />}
+  preview={
+    <Button variant="solid" disabled>
+      Disabled Button
+    </Button>
+  }
+>
+{`import { Button } from '@azodik/ui';
+
+export const DisabledButton = () => {
+  return (
+    <Button variant="solid" disabled>
+      Disabled Button
+    </Button>
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsSection />
+
+<PropsTable props={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: true,
+    default: '-',
+    description: 'Content to display inside the button'
+  },
+  {
+    name: 'variant',
+    type: '"solid" | "soft" | "outline" | "ghost" | "link"',
+    required: false,
+    default: '"solid"',
+    description: 'Visual style variant of the button'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3" | "4"',
+    required: false,
+    default: '"2"',
+    description: 'Size preset for the button'
+  },
+  {
+    name: 'color',
+    type: 'ThemeAccentColor',
+    required: false,
+    default: 'inherit',
+    description: 'Accent color for the button'
+  },
+  {
+    name: 'radius',
+    type: 'ThemeRadius',
+    required: false,
+    default: 'inherit',
+    description: 'Border radius of the button'
+  },
+  {
+    name: 'highContrast',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to use high contrast colors'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the button is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilitySection />
+
+<AccessibilityList />
+
+<DesignGuidelinesSection />
+
+<DesignGuidelinesList />
