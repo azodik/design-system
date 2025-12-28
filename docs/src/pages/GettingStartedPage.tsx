@@ -1,6 +1,17 @@
 import { MDXProvider } from "@mdx-js/react";
 import GettingStarted from "@/docs/GettingStarted.mdx";
-import { Button, Card, Alert, Input, Badge } from "@azodik/ui";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  Alert,
+  Input,
+  Badge,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -8,6 +19,11 @@ import "@/styles/docs.css";
 const components = {
   Button,
   Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
   Alert,
   Input,
   Badge,

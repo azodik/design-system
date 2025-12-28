@@ -144,10 +144,10 @@ export const DesignGuidelinesList = () => {
   title={<AllAvatarVariantsTitle />}
   preview={
     <div className="flex-horizontal items-center justify-center">
-      <Avatar name="Henna Morris" size="sm" initials="HM"/>
-      <Avatar name="Shane John" size="md" initials="SJ"/>
-      <Avatar name="Pedro Pascal" size="lg" initials="PP"/>
-      <Avatar name="Alice Brown" size="xl" initials="AB" />
+      <Avatar name="Henna Morris" size="1" initials="HM"/>
+      <Avatar name="Shane John" size="2" initials="SJ"/>
+      <Avatar name="Pedro Pascal" size="3" initials="PP"/>
+      <Avatar name="Alice Brown" size="4" initials="AB" />
     </div>
   }
 >
@@ -159,10 +159,10 @@ export const AvatarExamples = () => {
       <Avatar 
         src="/path/to/image.jpg"
         alt="John Doe"
-        size="md"
+        size="2"
       />
-      <Avatar name="Jane Smith" size="lg" />
-      <Avatar name="Bob Wilson" size="sm" />
+      <Avatar name="Jane Smith" size="3" />
+      <Avatar name="Bob Wilson" size="1" />
     </div>
   );
 };`}
@@ -175,7 +175,7 @@ export const AvatarExamples = () => {
   preview={
     <Avatar 
       name="John Doe"
-      size="lg"
+      size="3"
       initials="JD"
     />
   }
@@ -186,7 +186,7 @@ export const UserAvatarExample = () => {
   return (
     <Avatar 
       name="John Doe"
-      size="lg"
+      size="3"
     />
   );
 }`}
@@ -199,12 +199,12 @@ export const UserAvatarExample = () => {
   preview={
     <div className="flex items-center gap-md">
       <AvatarGroup max={3}>
-        <Avatar size="md" initials="A" />
-        <Avatar size="md" initials="B" />
-        <Avatar size="md" initials="C" />
-        <Avatar size="md" initials="D" />
-        <Avatar size="md" initials="E" />
-        <Avatar size="md" initials="F" />
+        <Avatar size="2" initials="A" />
+        <Avatar size="2" initials="B" />
+        <Avatar size="2" initials="C" />
+        <Avatar size="2" initials="D" />
+        <Avatar size="2" initials="E" />
+        <Avatar size="2" initials="F" />
       </AvatarGroup>
     </div>
   }
@@ -214,10 +214,10 @@ export const UserAvatarExample = () => {
 export const AvatarSizesExample = () => {
   return (
     <div className="flex items-center gap-md">
-      <Avatar name="John Doe" size="sm" />
-      <Avatar name="Jane Smith" size="md" />
-      <Avatar name="Bob Wilson" size="lg" />
-      <Avatar name="Alice Brown" size="xl" />
+      <Avatar name="John Doe" size="1" />
+      <Avatar name="Jane Smith" size="2" />
+      <Avatar name="Bob Wilson" size="3" />
+      <Avatar name="Alice Brown" size="4" />
     </div>
   );
 }`}

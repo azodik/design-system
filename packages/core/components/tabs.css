@@ -2,13 +2,13 @@
 
 /* Tabs */
 .tabs {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-5);
   width: 100%;
 }
 
 .tabs-list {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-2);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -26,7 +26,7 @@
 .tabs-trigger {
   display: flex;
   align-items: center;
-  padding: var(--space-sm) var(--space-md) var(--space-md) var(--space-md);
+  padding: var(--space-2) var(--space-4) var(--space-4) var(--space-4);
   color: var(--color-text);
   text-decoration: none;
   border-bottom: 3px solid transparent;
@@ -42,40 +42,40 @@
 }
 
 .tabs-trigger:hover {
-  color: var(--color-primary);
+  color: var(--accent-9);
 }
 
 .tabs-trigger.active {
-  color: var(--color-primary);
+  color: var(--accent-9);
   font-weight: 600;
 }
 
 .tabs-content {
-  padding: var(--space-lg) 0;
+  padding: var(--space-5) 0;
   width: 100%;
 }
 
 /* Mobile responsive styles */
 @media (max-width: 768px) {
   .tabs {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-4);
   }
   
   .tabs-list {
-    gap: var(--space-xs);
-    padding: 0 var(--space-xs);
-    margin: 0 -var(--space-xs);
+    gap: var(--space-1);
+    padding: 0 var(--space-1);
+    margin: 0 -var(--space-1);
   }
   
   .tabs-trigger {
-    padding: var(--space-xs) var(--space-sm) var(--space-sm) var(--space-sm);
+    padding: var(--space-1) var(--space-2) var(--space-2) var(--space-2);
     font-size: var(--font-size-sm);
     min-width: 80px;
     text-align: center;
   }
   
   .tabs-content {
-    padding: var(--space-md) 0;
+    padding: var(--space-4) 0;
   }
 }
 
@@ -93,6 +93,6 @@
   }
   
   .tabs-content {
-    padding: var(--space-sm) 0;
+    padding: var(--space-2) 0;
   }
 }

@@ -1,6 +1,7 @@
-import { Button, Card, Alert, Input, Badge } from '@azodik/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Alert, Input, Badge } from '@azodik/ui';
 import { CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+import { PaletteIcon, ZapIcon, WheelchairIcon, PhoneIcon, TargetIcon, WrenchIcon, PackageIcon, CheckIcon, XIcon, RocketIcon } from '@azodik/icons';
 
 export const GettingStartedHeader = () => {
   const { t } = useLanguageTranslation();
@@ -14,17 +15,112 @@ export const GettingStartedIntro = () => {
 
 export const WhatsIncludedList = () => {
   const { t } = useLanguageTranslation();
+  
+  const featureItemStyle = {
+    marginBottom: '1rem',
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '0.75rem',
+    lineHeight: '1.6'
+  };
+
+  const iconWrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: '24px',
+    height: '24px',
+    marginTop: '2px'
+  };
+
+  const iconStyle = {
+    color: 'var(--color-primary)'
+  };
+
+  const contentStyle = {
+    flex: 1
+  };
+
+  const titleStyle = {
+    display: 'block',
+    marginBottom: '0.25rem',
+    color: 'var(--color-text)'
+  };
+
+  const descStyle = {
+    color: 'var(--color-text)',
+    opacity: 0.9,
+    fontSize: '0.9rem'
+  };
+
   return (
     <>
       <h3>{t('whatsIncluded')}</h3>
-      <ul>
-        <li><strong>🎨 {t('modernDesign')}</strong> - {t('modernDesignDesc')}</li>
-        <li><strong>⚡ {t('typescriptFirst')}</strong> - {t('typescriptFirstDesc')}</li>
-        <li><strong>♿ {t('accessible')}</strong> - {t('accessibleDesc')}</li>
-        <li><strong>📱 {t('responsive')}</strong> - {t('responsiveDesc')}</li>
-        <li><strong>🎯 {t('treeShakeable')}</strong> - {t('treeShakeableDesc')}</li>
-        <li><strong>🔧 {t('customizable')}</strong> - {t('customizableDesc')}</li>
-        <li><strong>📦 {t('lightweight')}</strong> - {t('lightweightDesc')}</li>
+      <ul style={{ listStyle: 'none', paddingLeft: 0, marginBottom: '1.5rem' }}>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <PaletteIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('modernDesign')}</strong>
+            <span style={descStyle}>{t('modernDesignDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <ZapIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('typescriptFirst')}</strong>
+            <span style={descStyle}>{t('typescriptFirstDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <WheelchairIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('accessible')}</strong>
+            <span style={descStyle}>{t('accessibleDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <PhoneIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('responsive')}</strong>
+            <span style={descStyle}>{t('responsiveDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <TargetIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('treeShakeable')}</strong>
+            <span style={descStyle}>{t('treeShakeableDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <WrenchIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('customizable')}</strong>
+            <span style={descStyle}>{t('customizableDesc')}</span>
+          </div>
+        </li>
+        <li style={featureItemStyle}>
+          <span style={iconWrapperStyle}>
+            <PackageIcon size={20} style={iconStyle} />
+          </span>
+          <div style={contentStyle}>
+            <strong style={titleStyle}>{t('lightweight')}</strong>
+            <span style={descStyle}>{t('lightweightDesc')}</span>
+          </div>
+        </li>
       </ul>
     </>
   );
@@ -128,6 +224,19 @@ export const AvailableComponentsSection = () => {
         <li><strong>Dialog</strong> - {t('dialogDesc')}</li>
         <li><strong>Drawer</strong> - {t('drawerDesc')}</li>
         <li><strong>ScrollArea</strong> - {t('scrollAreaDesc')}</li>
+        <li><strong>Accordion</strong> - Collapsible content sections</li>
+      </ul>
+
+      <h3>{t('themingComponentsDesc')}</h3>
+      <ul>
+        <li><strong>ThemeProvider</strong> - Theme management and configuration</li>
+        <li><strong>ThemeToggle</strong> - Light/dark mode toggle component</li>
+        <li><strong>ThemePanel</strong> - Interactive theme customization panel</li>
+      </ul>
+
+      <h3>{t('dataVisualizationDesc')}</h3>
+      <ul>
+        <li><strong>Charts</strong> - Line, Area, Bar, and Pie charts</li>
       </ul>
     </>
   );
@@ -186,7 +295,10 @@ export const SupportSection = () => {
     <>
       <h2>{t('support')}</h2>
       <p>{t('supportDesc')}</p>
-      <p><strong>{t('happyBuilding')}</strong></p>
+      <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <strong>{t('happyBuilding').replace(' 🚀', '')}</strong>
+        <RocketIcon size={18} style={{ color: 'var(--color-primary)' }} />
+      </p>
     </>
   );
 };
@@ -262,21 +374,25 @@ npm install azodik-ui-core`}
 
 <CodeBlock language="jsx">
 {`import React from 'react';
-import 'azodik-ui-core'; // Import the CSS
-import { Button, Alert, Card } from '@azodik/ui';
+import { ThemeProvider, Button, Alert, Card, CardContent, CardTitle, CardDescription } from '@azodik/ui';
+import '@azodik/ui/styles.css'; // Import the CSS
 
 function App() {
   return (
-    <div>
-      <Button variant="primary">Click me</Button>
-      <Alert variant="success" title="Success!">
-        Your changes have been saved.
-      </Alert>
-      <Card>
-        <h3>Welcome to Azodik</h3>
-        <p>Start building amazing interfaces!</p>
-      </Card>
-    </div>
+    <ThemeProvider defaultTheme="light" accentColor="indigo">
+      <div>
+        <Button variant="solid">Click me</Button>
+        <Alert variant="soft" color="grass" title="Success!">
+          Your changes have been saved.
+        </Alert>
+        <Card>
+          <CardContent>
+            <CardTitle>Welcome to Azodik</CardTitle>
+            <CardDescription>Start building amazing interfaces!</CardDescription>
+          </CardContent>
+        </Card>
+      </div>
+    </ThemeProvider>
   );
 }
 
@@ -290,18 +406,22 @@ export default App;`}
 <CodeBlockWithPreview 
   title={<ButtonVariantsTitle />}
   preview={
-    <div className="flex gap-4 flex-wrap">
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="soft">Soft</Button>
       <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
     </div>
   }
 >
 {`import { Button } from '@azodik/ui';
 
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="outline">Outline</Button>`}
+<Button variant="solid">Solid</Button>
+<Button variant="soft">Soft</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>`}
 </CodeBlockWithPreview>
 
 <AlertComponentSection />
@@ -309,17 +429,17 @@ export default App;`}
 <CodeBlockWithPreview 
   title={<AlertTypesTitle />}
   preview={
-    <div className="space-y-4">
-      <Alert variant="success" title="Success!">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <Alert variant="soft" color="grass" title="Success!">
         Your changes have been saved successfully.
       </Alert>
-      <Alert variant="error" title="Error!">
+      <Alert variant="soft" color="ruby" title="Error!">
         Something went wrong. Please try again.
       </Alert>
-      <Alert variant="warning" title="Warning!">
+      <Alert variant="soft" color="amber" title="Warning!">
         Please check your input before proceeding.
       </Alert>
-      <Alert variant="info" title="Info">
+      <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
     </div>
@@ -327,16 +447,16 @@ export default App;`}
 >
 {`import { Alert } from '@azodik/ui';
 
-<Alert variant="success" title="Success!">
+<Alert variant="soft" color="grass" title="Success!">
   Your changes have been saved successfully.
 </Alert>
-<Alert variant="error" title="Error!">
+<Alert variant="soft" color="ruby" title="Error!">
   Something went wrong. Please try again.
 </Alert>
-<Alert variant="warning" title="Warning!">
+<Alert variant="soft" color="amber" title="Warning!">
   Please check your input before proceeding.
 </Alert>
-<Alert variant="info" title="Info">
+<Alert variant="soft" color="indigo" title="Info">
   Here's some helpful information for you.
 </Alert>`}
 </CodeBlockWithPreview>
@@ -346,33 +466,33 @@ export default App;`}
 <CodeBlockWithPreview 
   title={<CardLayoutTitle />}
   preview={
-    <Card className="max-w-md">
-      <div className="p-6">
-        <h3 className="text-lg font-semibold mb-2">Card Title</h3>
-        <p className="text-gray-600 mb-4">
-          Card content.
-        </p>
-        <div className="flex gap-2">
-          <Button size="sm">Action</Button>
-          <Button variant="outline" size="sm">Cancel</Button>
+    <Card style={{ maxWidth: '28rem', width: '100%' }}>
+      <CardContent>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>
+          Example card with title and description.
+        </CardDescription>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <Button size="1">Action</Button>
+          <Button variant="outline" size="1">Cancel</Button>
         </div>
-      </div>
+      </CardContent>
     </Card>
   }
 >
-{`import { Card, Button } from '@azodik/ui';
+{`import { Card, CardContent, CardTitle, CardDescription, Button } from '@azodik/ui';
 
 <Card className="max-w-md">
-  <div className="p-6">
-    <h3 className="text-lg font-semibold mb-2">Card Title</h3>
-    <p className="text-gray-600 mb-4">
-      This is a card component with some content.
-    </p>
-    <div className="flex gap-2">
-      <Button size="sm">Action</Button>
-      <Button variant="outline" size="sm">Cancel</Button>
+  <CardContent>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>
+      Example card with title and description.
+    </CardDescription>
+    <div className="flex gap-2 mt-4">
+      <Button size="1">Action</Button>
+      <Button variant="outline" size="1">Cancel</Button>
     </div>
-  </div>
+  </CardContent>
 </Card>`}
 </CodeBlockWithPreview>
 
@@ -380,35 +500,61 @@ export default App;`}
 
 <ThemingSection />
 
-<CodeBlock language="css">
-{`:root {
-  --color-primary: #f97316;
-  --color-background: #ffffff;
-  --color-text: #111827;
-  --color-surface: #f9fafb;
-  --color-border: #e5e7eb;
-  /* ... more tokens */
+<CodeBlock language="jsx">
+{`import { ThemeProvider, useTheme, Button } from '@azodik/ui';
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  
+  return (
+    <Button 
+      variant="outline" 
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+    >
+      {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+    </Button>
+  );
 }
 
-[data-theme="dark"] {
-  --color-background: #0f172a;
-  --color-text: #f1f5f9;
-  --color-surface: #1e293b;
-  --color-border: #334155;
-  /* ... dark mode tokens */
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" accentColor="indigo">
+      <ThemeToggle />
+      {/* Your app content */}
+    </ThemeProvider>
+  );
 }`}
 </CodeBlock>
 
+<CodeBlock language="jsx">
+{`import { ThemeProvider, ThemeToggle } from '@azodik/ui';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system" accentColor="amber">
+      <ThemeToggle />
+      {/* Your app content */}
+    </ThemeProvider>
+  );
+}`}
+</CodeBlock>
 
 <CodeBlock language="jsx">
-{`// Toggle theme
-function toggleTheme() {
-  const html = document.documentElement;
-  const currentTheme = html.getAttribute("data-theme");
-  const newTheme = currentTheme === "light" ? "dark" : "light";
-  
-  html.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
+{`import { ThemeProvider } from '@azodik/ui';
+
+// Custom theme configuration
+const themeConfig = {
+  accentColor: '#f97316',
+  radius: 'medium',
+  scaling: 1.2,
+};
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" config={themeConfig}>
+      {/* Your app content */}
+    </ThemeProvider>
+  );
 }`}
 </CodeBlock>
 
@@ -425,10 +571,10 @@ const MyButton: React.FC<ButtonProps> = (props) => {
 <TreeShakingSection />
 
 <CodeBlock language="tsx">
-{`// ✅ Good - tree shakeable
+{`// Good - tree shakeable
 import { Button, Card } from '@azodik/ui';
 
-// ❌ Avoid - imports everything
+// Avoid - imports everything
 import * as UI from '@azodik/ui';`}
 </CodeBlock>
 

@@ -1,28 +1,50 @@
 import React, { useEffect } from "react";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "1" | "2" | "3" | "4";
   showCloseButton?: boolean;
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
 }
 
+/**
+ * Modal component for displaying content in an overlay
+ *
+ * @param isOpen - Controls modal visibility
+ * @param onClose - Callback when modal should close
+ * @param title - Optional modal title
+ * @param children - Modal content
+ * @param size - Modal size (default: "2")
+ * @param showCloseButton - Show close button (default: true)
+ * @param closeOnOverlayClick - Close when clicking overlay (default: true)
+ * @param closeOnEscape - Close on Escape key (default: true)
+ * @example
+ * ```tsx
+ * <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Example">
+ *   <p>Modal content</p>
+ * </Modal>
+ * ```
+ */
 export default function Modal({
   isOpen,
   onClose,
   title,
   children,
-  size = "md",
+  size = "2",
   showCloseButton = true,
   closeOnOverlayClick = true,
   closeOnEscape = true,
   className = "",
   ...props
 }: ModalProps) {
+  // Lock body scroll when modal is open
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (!closeOnEscape) return;
 
@@ -34,12 +56,10 @@ export default function Modal({
 
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose, closeOnEscape]);
 
@@ -51,9 +71,7 @@ export default function Modal({
 
   if (!isOpen) return null;
 
-  const modalClasses = ["modal", size !== "md" && `modal-${size}`, className]
-    .filter(Boolean)
-    .join(" ");
+  const modalClasses = ["az-Modal modal", `az-r-size-${size}`, className].filter(Boolean).join(" ");
 
   // Check if children contains ModalHeader to avoid duplicate headers
   const hasModalHeader = React.Children.toArray(children).some(
@@ -61,7 +79,17 @@ export default function Modal({
   );
 
   return (
-    <div className={`modal-overlay ${isOpen ? "open" : ""}`} onClick={handleOverlayClick}>
+    <div
+      className={`modal-overlay ${isOpen ? "open" : ""}`}
+      onClick={handleOverlayClick}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          onClose();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
       <div className={modalClasses} {...props}>
         {title && !hasModalHeader && (
           <ModalHeader onClose={onClose} showCloseButton={showCloseButton}>

@@ -34,7 +34,6 @@ import {
   SidebarHeader,
   SidebarBrand,
   SidebarFooter,
-  SidebarUser,
   SidebarMainContent,
   SidebarUserDropdown,
   Switch,
@@ -95,7 +94,7 @@ export default function TestComponentsPage() {
   const [showTopRightToast, setShowTopRightToast] = useState(false);
   const [showTopCenterToast, setShowTopCenterToast] = useState(false);
   const [showBottomRightToast, setShowBottomRightToast] = useState(false);
-  
+
   // Responsive sidebar functionality
   const { isSidebarOpen, isSmallScreen, handleSidebarToggle } = useResponsiveSidebar();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -135,7 +134,7 @@ export default function TestComponentsPage() {
           autem molestiae sed voluptatum excepturi, vero voluptate maiores esse enim quae nihil
           quibusdam iusto asperiores fugiat! Maiores nemo ratione voluptatem sequi.
         </Card>
-        <Checkbox label="Hello! This is a checkbox." onChange={(e) => {}} />
+        <Checkbox label="Hello! This is a checkbox." onChange={() => {}} />
         <DataTable
           data={[
             { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
@@ -148,15 +147,15 @@ export default function TestComponentsPage() {
           ]}
         />
         <Card>
-          <form onSubmit={(e) => {}}>
+          <form onSubmit={() => {}}>
             <Input
               label="Hello! This is a input."
-              onChange={(e) => {}}
+              onChange={() => {}}
               placeholder="Enter your name"
             />
             <Select
               label="Hello! This is a select."
-              onChange={(e) => {}}
+              onChange={() => {}}
               placeholder="Select your role"
               options={[
                 { value: "admin", label: "Admin" },
@@ -165,7 +164,7 @@ export default function TestComponentsPage() {
             />
           </form>
         </Card>
-        <Input label="Hello! This is a input." onChange={(e) => {}} placeholder="Enter your name" />
+        <Input label="Hello! This is a input." onChange={() => {}} placeholder="Enter your name" />
         <Card>
           <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
           <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
@@ -182,17 +181,19 @@ export default function TestComponentsPage() {
             </ModalFooter>
           </Modal>
         </Card>
-        <Card width="100%" height="auto">
-        <Navigation 
-          brand={<span className="font-bold text-xl">Azodik</span>}
-          mobile={true}
-          style={{ height: '75px' }}
+        <Card style={{ width: "100%", height: "auto" }}>
+          <Navigation
+            brand={<span className="font-bold text-xl">Azodik</span>}
+            mobile={true}
+            style={{ height: "75px" }}
           >
-        <NavItem href="/" active>Home</NavItem>
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/services">Services</NavItem>
-        <NavItem href="/contact">Contact</NavItem>
-      </Navigation>
+            <NavItem href="/" active>
+              Home
+            </NavItem>
+            <NavItem href="/about">About</NavItem>
+            <NavItem href="/services">Services</NavItem>
+            <NavItem href="/contact">Contact</NavItem>
+          </Navigation>
         </Card>
         <Pagination
           currentPage={currentPage}
@@ -209,17 +210,16 @@ export default function TestComponentsPage() {
             offset={20}
             isOpen={isPopoverOpen}
             onClose={() => setIsPopoverOpen(false)}
-            children={
-              <Button onClick={() => setIsPopoverOpen(!isPopoverOpen)}>Toggle Popover</Button>
-            }
-          />
+          >
+            <Button onClick={() => setIsPopoverOpen(!isPopoverOpen)}>Toggle Popover</Button>
+          </Popover>
         </Card>
         <Card>
           <Radio name="gender" value="male" label="Male" />
           <Radio name="gender" value="female" label="Female" />
           <Radio name="gender" value="other" label="Other" />
         </Card>
-        <Card width="100%" height="200px">
+        <Card style={{ width: "100%", height: "200px" }}>
           <ScrollArea>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, tempore laudantium
@@ -251,7 +251,7 @@ export default function TestComponentsPage() {
         <Card>
           <Select
             label="Hello! This is a select."
-            onChange={(e) => {}}
+            onChange={() => {}}
             placeholder="Select your role"
             options={[
               { value: "admin", label: "Admin" },
@@ -260,9 +260,9 @@ export default function TestComponentsPage() {
           />
         </Card>
         <div style={{ display: "flex" }}>
-          <Sidebar 
-            width={isSmallScreen ? 280 : 280} 
-            showHeader 
+          <Sidebar
+            width={isSmallScreen ? 280 : 280}
+            showHeader
             showFooter
             collapsed={isSidebarCollapsed}
             isSidebarOpen={isSidebarOpen}
@@ -270,9 +270,7 @@ export default function TestComponentsPage() {
             isSmallScreen={isSmallScreen}
           >
             <SidebarHeader>
-              <SidebarBrand logo="A" subtitle="Enterprise">
-                Azodik Inc
-              </SidebarBrand>
+              <SidebarBrand logo="A" title="Azodik Inc" />
             </SidebarHeader>
 
             <SidebarContent>
@@ -306,25 +304,25 @@ export default function TestComponentsPage() {
             </SidebarFooter>
           </Sidebar>
 
-           <SidebarMainContent
-             onSidebarToggle={handleToggle}
-             isSidebarCollapsed={isSidebarCollapsed}
-             showBreadcrumb={true}
-             showToggleOnDesktop={true}
-             isSmallScreen={isSmallScreen}
-             sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
-             breadcrumbItems={[
-               { label: "Dashboard", href: "/dashboard" },
-               { label: "Overview", current: true },
-             ]}
-           >
+          <SidebarMainContent
+            onSidebarToggle={handleToggle}
+            isSidebarCollapsed={isSidebarCollapsed}
+            showBreadcrumb={true}
+            showToggleOnDesktop={true}
+            isSmallScreen={isSmallScreen}
+            sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
+            breadcrumbItems={[
+              { label: "Dashboard", href: "/dashboard" },
+              { label: "Overview", current: true },
+            ]}
+          >
             Your Content
           </SidebarMainContent>
         </div>
         <Card>
-          <Switch label="Hello! This is a switch." onChange={(e) => {}} />
+          <Switch label="Hello! This is a switch." onChange={() => {}} />
         </Card>
-        <Card width="100%">
+        <Card style={{ width: "100%" }}>
           <Table striped hover>
             <TableHeader>
               <TableRow>
@@ -388,10 +386,10 @@ export default function TestComponentsPage() {
             </TabContent>
           </Tabs>
         </Card>
-        <Card width="50%">
+        <Card style={{ width: "50%" }}>
           <Textarea
             label="Hello! This is a textarea."
-            onChange={(e) => {}}
+            onChange={() => {}}
             placeholder="Enter your message"
           />
         </Card>
@@ -405,37 +403,40 @@ export default function TestComponentsPage() {
           {showTopRightToast && (
             <Toast
               title="Top Right Toast"
-              children="This slides in from the right"
               variant="success"
               position="top-right"
               onClose={() => setShowTopRightToast(false)}
               autoClose={3000}
-            />
+            >
+              This slides in from the right
+            </Toast>
           )}
 
           {showTopCenterToast && (
             <Toast
               title="Top Center Toast"
-              children="This pops up from above"
               variant="info"
               position="top-center"
               onClose={() => setShowTopCenterToast(false)}
               autoClose={3000}
-            />
+            >
+              This pops up from above
+            </Toast>
           )}
 
           {showBottomRightToast && (
             <Toast
               title="Bottom Right Toast"
-              children="This slides in from the right at bottom"
               variant="warning"
               position="bottom-right"
               onClose={() => setShowBottomRightToast(false)}
               autoClose={3000}
-            />
+            >
+              This slides in from the right at bottom
+            </Toast>
           )}
         </Card>
-        <Card width="50%" className="flex justify-center items-center">
+        <Card style={{ width: "50%" }} className="flex justify-center items-center">
           <Tooltip
             content="This is a simple tooltip with custom position and offset."
             position="top"
@@ -465,7 +466,7 @@ export default function TestComponentsPage() {
             </AccordionItem>
           </Accordion>
         </div>
-        <Card width="50%">
+        <Card style={{ width: "50%" }}>
           <LineChart
             data={sampleData}
             dataKey="sales"
@@ -503,7 +504,7 @@ export default function TestComponentsPage() {
               <DialogHeader>
                 <DialogTitle>Edit profile</DialogTitle>
                 <DialogDescription>
-                  Make changes to your profile here. Click save when you're done.
+                  Make changes to your profile here. Click save when you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
               <DialogBody>

@@ -187,6 +187,59 @@ export default function BasicSelect() {
 }`}
 </CodeBlockWithPreview>
 
+<h3>Select Sizes</h3>
+<CodeBlockWithPreview 
+  title="Select Sizes"
+  preview={
+    <div className="flex-vertical" style={{ gap: '1rem', minHeight: '250px' }}>
+      <Select 
+        placeholder="Size 1" 
+        size="1" 
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' }
+        ]} 
+      />
+      <Select 
+        placeholder="Size 2 (Default)" 
+        size="2" 
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' }
+        ]} 
+      />
+      <Select 
+        placeholder="Size 3" 
+        size="3" 
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' }
+        ]} 
+      />
+    </div>
+  }
+>
+{`import { Select } from '@azodik/ui';
+
+export const SelectSizes = () => {
+  const options = [
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' },
+    { value: '3', label: 'Option 3' }
+  ];
+  return (
+    <div className="flex-vertical">
+      <Select placeholder="Size 1" size="1" options={options} />
+      <Select placeholder="Size 2 (Default)" size="2" options={options} />
+      <Select placeholder="Size 3" size="3" options={options} />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
 <PropsSelectSection />
 
 <PropsTable props={[
@@ -224,6 +277,27 @@ export default function BasicSelect() {
     required: false,
     default: '-',
     description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the select'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '-',
+    description: 'Border radius of the select'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Accent color for focus states'
   },
   {
     name: 'value',

@@ -40,7 +40,7 @@ export function useResponsiveSidebar() {
     isSidebarOpen,
     isSmallScreen,
     handleSidebarToggle,
-    closeSidebar
+    closeSidebar,
   };
 }
 
@@ -69,12 +69,12 @@ export function Sidebar({
   children,
   width = 250,
   collapsed = false,
-  showHeader = true,
-  showFooter = true,
-  showBreadcrumb = true,
+  showHeader: _showHeader = true,
+  showFooter: _showFooter = true,
+  showBreadcrumb: _showBreadcrumb = true,
   color,
-  userProfile,
-  onUserAction,
+  userProfile: _userProfile,
+  onUserAction: _onUserAction,
   isSidebarOpen = false,
   onSidebarToggle,
   isSmallScreen = false,
@@ -90,20 +90,29 @@ export function Sidebar({
     <>
       {/* Mobile & Tablet Overlay */}
       {isSmallScreen && isSidebarOpen && (
-        <div 
-          className="sidebar-overlay open" 
-          onClick={onSidebarToggle}
+        <div
+          className="sidebar-overlay open"
+          onClick={() => onSidebarToggle?.()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onSidebarToggle?.();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Close sidebar"
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
+            background: "rgba(0, 0, 0, 0.5)",
             zIndex: 999,
             opacity: isSidebarOpen ? 1 : 0,
-            visibility: isSidebarOpen ? 'visible' : 'hidden',
-            transition: 'opacity 0.3s ease, visibility 0.3s ease'
+            visibility: isSidebarOpen ? "visible" : "hidden",
+            transition: "opacity 0.3s ease, visibility 0.3s ease",
           }}
         />
       )}
@@ -113,14 +122,14 @@ export function Sidebar({
         style={{
           ...sidebarStyle,
           ...(isSmallScreen && {
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
-            height: '100vh',
-            transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+            height: "100vh",
+            transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
             zIndex: 1000,
-            transition: 'transform 0.3s ease-in-out'
-          })
+            transition: "transform 0.3s ease-in-out",
+          }),
         }}
         {...props}
       >
@@ -203,7 +212,7 @@ export function SidebarGroup({
   title,
   collapsible = false,
   icon,
-  chevronRightIcon,
+  chevronRightIcon: _chevronRightIcon,
   chevronDownIcon,
   isOpen = false,
   onToggle,
@@ -221,30 +230,35 @@ export function SidebarGroup({
 
   return (
     <div className={`sidebar-group ${className}`} {...props}>
-      {title && (
-        <div
-          className={`sidebar-group-header ${collapsible ? "collapsible" : ""}`}
-          onClick={() => {
-            if (collapsible) {
+      {title &&
+        (collapsible ? (
+          <button
+            type="button"
+            className={`sidebar-group-header collapsible`}
+            onClick={() => {
               if (onToggle) {
                 onToggle();
               } else {
                 setIsCollapsed(!isCollapsed);
               }
-            }
-          }}
-        >
-          <div className="sidebar-group-title">
-            {icon && <span className="sidebar-item-icon">{icon}</span>}
-            <span>{title}</span>
-          </div>
-          {collapsible && (
+            }}
+          >
+            <div className="sidebar-group-title">
+              {icon && <span className="sidebar-item-icon">{icon}</span>}
+              <span>{title}</span>
+            </div>
             <span className={`sidebar-group-arrow ${isCollapsed ? "collapsed" : ""}`}>
               {chevronDownIcon || "▼"}
             </span>
-          )}
-        </div>
-      )}
+          </button>
+        ) : (
+          <div className="sidebar-group-header">
+            <div className="sidebar-group-title">
+              {icon && <span className="sidebar-item-icon">{icon}</span>}
+              <span>{title}</span>
+            </div>
+          </div>
+        ))}
       <div className={`sidebar-group-content ${isCollapsed ? "collapsed" : ""}`}>{children}</div>
     </div>
   );
@@ -399,10 +413,21 @@ export function SidebarUserDropdown({
       className={`sidebar-user-dropdown ${isOpen ? "open" : ""} ${className}`}
       {...props}
     >
-      <div className="sidebar-user-trigger" onClick={handleToggle}>
+      <div
+        className="sidebar-user-trigger"
+        onClick={handleToggle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleToggle();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+      >
         {avatar || (
           <Avatar
-            size="md"
+            size="3"
             initials={name.charAt(0).toUpperCase()}
             className="sidebar-user-avatar"
           />
@@ -429,7 +454,7 @@ export function SidebarUserDropdown({
       <div className="sidebar-user-dropdown-content">
         <div className="sidebar-user-dropdown-header">
           <Avatar
-            size="md"
+            size="3"
             initials={name.charAt(0).toUpperCase()}
             className="sidebar-user-dropdown-avatar"
           />
@@ -444,15 +469,17 @@ export function SidebarUserDropdown({
               {item.divider ? (
                 <div className="sidebar-user-dropdown-divider" />
               ) : (
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleItemClick(item.onClick!);
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (item.onClick) {
+                      handleItemClick(item.onClick);
+                    }
                   }}
+                  className="sidebar-user-dropdown-link"
                 >
                   {item.label}
-                </a>
+                </button>
               )}
             </li>
           ))}
@@ -562,6 +589,7 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
   showToggleOnDesktop?: boolean;
   themeToggle?: React.ReactNode;
   languageSelector?: React.ReactNode;
+  iconsLink?: React.ReactNode;
   isSmallScreen?: boolean;
 }
 
@@ -570,24 +598,25 @@ export function SidebarMainContent({
   breadcrumbItems,
   breadcrumb,
   onSidebarToggle,
-  isSidebarCollapsed = false,
+  isSidebarCollapsed: _isSidebarCollapsed = false,
   sidebarToggleIcon,
   showBreadcrumb = true,
   showToggleOnDesktop = false,
   themeToggle,
   languageSelector,
+  iconsLink,
   isSmallScreen = false,
   className = "",
   ...props
 }: SidebarMainContentProps) {
   return (
-    <div 
-      className={`main-content-area ${className}`} 
+    <div
+      className={`main-content-area ${className}`}
       style={{
         ...(isSmallScreen && {
-          width: '100%',
-          marginLeft: 0
-        })
+          width: "100%",
+          marginLeft: 0,
+        }),
       }}
       {...props}
     >
@@ -605,7 +634,7 @@ export function SidebarMainContent({
             )}
           </button>
         )}
-        
+
         {/* Breadcrumb Section */}
         {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
           <div className="breadcrumb-section">
@@ -616,21 +645,16 @@ export function SidebarMainContent({
             ) : null}
           </div>
         )}
-        
-        {/* Language Selector and Theme Toggle Section */}
-        {(languageSelector || themeToggle) && (
+
+        {/* Language Selector, Icons Link, and Theme Toggle Section */}
+        {(languageSelector || themeToggle || iconsLink) && (
           <div className="theme-toggle-section">
             <div className="flex items-center gap-2">
+              {iconsLink && <div className="icons-link-section">{iconsLink}</div>}
               {languageSelector && (
-                <div className="language-selector-section">
-                  {languageSelector}
-                </div>
+                <div className="language-selector-section">{languageSelector}</div>
               )}
-              {themeToggle && (
-                <div className="theme-toggle-wrapper">
-                  {themeToggle}
-                </div>
-              )}
+              {themeToggle && <div className="theme-toggle-wrapper">{themeToggle}</div>}
             </div>
           </div>
         )}

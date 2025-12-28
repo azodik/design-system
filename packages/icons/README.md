@@ -11,8 +11,8 @@ npm install @azodik/icons
 ## Usage
 
 ```tsx
-import React from 'react';
-import { UserIcon, SettingsIcon, ChevronDownIcon } from '@azodik/icons';
+import React from "react";
+import { UserIcon, SettingsIcon, ChevronDownIcon } from "@azodik/icons";
 
 function MyComponent() {
   return (
@@ -28,6 +28,7 @@ function MyComponent() {
 ## Available Icons
 
 ### Navigation Icons
+
 - `ArrowRightIcon` - Right arrow
 - `ChevronDownIcon` - Down chevron
 - `ChevronDownSmallIcon` - Small down chevron
@@ -38,6 +39,7 @@ function MyComponent() {
 - `SidebarToggleIcon` - Sidebar toggle
 
 ### User Icons
+
 - `UserIcon` - Basic user icon
 - `User3Icon` - User with circle
 - `UserAddIcon` - Add user icon
@@ -45,6 +47,7 @@ function MyComponent() {
 - `GroupIcon` - Group of users
 
 ### Interface Icons
+
 - `ApplicationIcon` - Application icon
 - `AppsIcon` - Apps grid icon
 - `BarChartIcon` - Bar chart icon
@@ -56,12 +59,14 @@ function MyComponent() {
 - `TickIcon` - Checkmark
 
 ### Social Media Icons
+
 - `GoogleIcon` - Google logo
 - `AppleIcon` - Apple logo
 - `FacebookIcon` - Facebook logo
 - `InstagramIcon` - Instagram logo
 
 ### Common Icons
+
 - `HeartIcon` - Heart (with filled prop)
 - `StarIcon` - Star (with filled prop)
 - `SearchIcon` - Search magnifying glass
@@ -79,11 +84,11 @@ All icons accept the following props:
 
 ```tsx
 interface IconProps {
-  size?: number;           // Icon size in pixels (default varies by icon)
-  className?: string;       // CSS classes
+  size?: number; // Icon size in pixels (default varies by icon)
+  className?: string; // CSS classes
   style?: React.CSSProperties; // Inline styles
-  color?: string;          // Icon color (some icons only)
-  filled?: boolean;         // Filled state (HeartIcon, StarIcon only)
+  color?: string; // Icon color (some icons only)
+  filled?: boolean; // Filled state (HeartIcon, StarIcon only)
 }
 ```
 

@@ -138,10 +138,10 @@ export const DesignGuidelinesList = () => {
   title={<AllBadgeVariantsTitle />}
   preview={
     <div className="flex-horizontal">
-      <Badge variant="success">Success</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="error">Error</Badge>
-      <Badge variant="info">Info</Badge>
+      <Badge variant="soft" color="grass">Success</Badge>
+      <Badge variant="soft" color="amber">Warning</Badge>
+      <Badge variant="soft" color="ruby">Error</Badge>
+      <Badge variant="soft" color="indigo">Info</Badge>
     </div>
   }
 >
@@ -150,11 +150,11 @@ export const DesignGuidelinesList = () => {
 export const BadgeExamples = () => {
   return (
     <div className="flex-vertical">
-      <Badge variant="success">Success</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="error">Error</Badge>
-      <Badge variant="info">Info</Badge>
-      <Badge variant="neutral">Neutral</Badge>
+      <Badge variant="soft" color="grass">Success</Badge>
+      <Badge variant="soft" color="amber">Warning</Badge>
+      <Badge variant="soft" color="ruby">Error</Badge>
+      <Badge variant="soft" color="indigo">Info</Badge>
+      <Badge variant="soft">Neutral</Badge>
     </div>
   );
 };`}
@@ -166,9 +166,9 @@ export const BadgeExamples = () => {
   title={<BadgeSizesTitle />}
   preview={
     <div className="flex-vertical-lg">
-      <Badge variant="success" size="sm">Small</Badge>
-      <Badge variant="success" size="md">Medium</Badge>
-      <Badge variant="success" size="lg">Large</Badge>
+      <Badge variant="soft" color="grass" size="1">Small</Badge>
+      <Badge variant="soft" color="grass" size="2">Medium</Badge>
+      <Badge variant="soft" color="grass" size="3">Large</Badge>
     </div>
   }
 >
@@ -177,9 +177,9 @@ export const BadgeExamples = () => {
 export const BadgeSizesExample = () => {
   return (
     <div className="flex-vertical-lg">
-      <Badge variant="success" size="sm">Small</Badge>
-      <Badge variant="success" size="md">Medium</Badge>
-      <Badge variant="success" size="lg">Large</Badge>
+      <Badge variant="soft" color="grass" size="1">Small</Badge>
+      <Badge variant="soft" color="grass" size="2">Medium</Badge>
+      <Badge variant="soft" color="grass" size="3">Large</Badge>
     </div>
   );
 }`}
@@ -197,38 +197,38 @@ export const BadgeSizesExample = () => {
   },
   {
     name: 'variant',
-    type: '"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"',
+    type: '"solid" | "soft" | "outline" | "surface"',
     required: false,
-    default: '"primary"',
+    default: '"soft"',
     description: 'Visual style variant of the badge'
   },
   {
     name: 'size',
-    type: '"sm" | "md" | "lg"',
+    type: '"1" | "2" | "3"',
     required: false,
-    default: '"md"',
-    description: 'Size of the badge'
+    default: '"1"',
+    description: 'Size preset for the badge'
   },
   {
-    name: 'rounded',
-    type: '"xs" | "sm" | "md" | "lg" | "xl"',
+    name: 'color',
+    type: 'ThemeAccentColor',
     required: false,
-    default: '"md"',
+    default: 'inherit',
+    description: 'Accent color for the badge'
+  },
+  {
+    name: 'radius',
+    type: 'ThemeRadius',
+    required: false,
+    default: 'inherit',
     description: 'Border radius of the badge'
   },
   {
-    name: 'icon',
-    type: 'React.ReactNode',
+    name: 'highContrast',
+    type: 'boolean',
     required: false,
-    default: '-',
-    description: 'Icon to display before the badge content'
-  },
-  {
-    name: 'onRemove',
-    type: '() => void',
-    required: false,
-    default: '-',
-    description: 'Callback function called when the remove button is clicked'
+    default: 'false',
+    description: 'Whether to use high contrast colors'
   },
   {
     name: 'className',

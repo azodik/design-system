@@ -76,16 +76,20 @@ export const Dialog: React.FC<DialogProps> = ({
   onOpenChange,
   defaultOpen = false,
 }) => {
-  const [internalOpen, setInternalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(() => defaultOpen);
+  const prevDefaultOpenRef = useRef(defaultOpen);
 
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
+  // Sync defaultOpen prop to internal state when it changes (only for uncontrolled mode)
   useEffect(() => {
-    setMounted(true);
-    if (!isControlled) {
-      setInternalOpen(defaultOpen);
+    if (!isControlled && defaultOpen !== prevDefaultOpenRef.current) {
+      prevDefaultOpenRef.current = defaultOpen;
+      // Use setTimeout to defer state update outside of effect
+      setTimeout(() => {
+        setInternalOpen(defaultOpen);
+      }, 0);
     }
   }, [defaultOpen, isControlled]);
 
@@ -101,10 +105,6 @@ export const Dialog: React.FC<DialogProps> = ({
   );
 
   const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
-
-  if (!mounted) {
-    return null;
-  }
 
   return <DialogContext.Provider value={contextValue}>{children}</DialogContext.Provider>;
 };
@@ -123,14 +123,18 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
   };
 
   if (asChild && React.isValidElement(children)) {
+    const childProps = children.props as {
+      onClick?: (e: React.MouseEvent) => void;
+      className?: string;
+    } & Record<string, unknown>;
     return React.cloneElement(children, {
-      ...(children.props as any),
+      ...(childProps as Record<string, unknown>),
       onClick: (e: React.MouseEvent) => {
-        (children.props as any).onClick?.(e);
+        childProps.onClick?.(e);
         handleClick();
       },
-      className: `${(children.props as any).className || ""} ${className}`.trim(),
-    });
+      className: `${childProps.className || ""} ${className}`.trim(),
+    } as React.HTMLAttributes<HTMLElement>);
   }
 
   return (
@@ -180,7 +184,18 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   if (!open) return null;
 
   return (
-    <div className="dialog-overlay" onClick={handleOverlayClick}>
+    <div
+      className="dialog-overlay"
+      onClick={handleOverlayClick}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          setOpen(false);
+          onClose?.();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
       <div
         ref={contentRef}
         className={`dialog-content ${className}`}
@@ -255,7 +270,8 @@ export const DialogClose: React.FC<{
   };
 
   if (asChild && children) {
-    return React.cloneElement(children as React.ReactElement<any>, {
+    type ChildProps = Record<string, unknown>;
+    return React.cloneElement(children as React.ReactElement<ChildProps>, {
       onClick: handleClick,
       className: `${className}`,
     });

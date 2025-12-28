@@ -1,22 +1,22 @@
-import React from 'react';
-import { 
-    Sidebar, 
-    SidebarHeader, 
-    SidebarContent, 
-    SidebarBrand,
-    SidebarMenu,
-    SidebarMenuItem,
-    SidebarMenuButton,
-    SidebarMainContent,
-    useResponsiveSidebar
-    } from '@azodik/ui';
-    
+import React from "react";
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent,
+  useResponsiveSidebar,
+} from "@azodik/ui";
+
 export function BasicSidebarExample() {
   const { isSidebarOpen, isSmallScreen, handleSidebarToggle } = useResponsiveSidebar();
 
   return (
-    <div style={{ display: 'flex', height: '75vh', border: '1px solid var(--color-border)' }}>
-      <Sidebar 
+    <div style={{ display: "flex", height: "75vh", border: "1px solid var(--color-border)" }}>
+      <Sidebar
         width={isSmallScreen ? 280 : 250}
         isSidebarOpen={isSidebarOpen}
         onSidebarToggle={handleSidebarToggle}
@@ -26,7 +26,7 @@ export function BasicSidebarExample() {
         <SidebarHeader>
           <SidebarBrand>Basic Sidebar</SidebarBrand>
         </SidebarHeader>
-        <SidebarContent style={{ marginLeft: '-30px' }}>
+        <SidebarContent style={{ marginLeft: "-30px" }}>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton active>Dashboard</SidebarMenuButton>
@@ -40,7 +40,7 @@ export function BasicSidebarExample() {
           </SidebarMenu>
         </SidebarContent>
       </Sidebar>
-      
+
       <SidebarMainContent
         onSidebarToggle={handleSidebarToggle}
         isSidebarCollapsed={false}

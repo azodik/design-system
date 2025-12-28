@@ -1,9 +1,11 @@
 declare module "react-syntax-highlighter" {
   import { ComponentType } from "react";
 
+  type StyleObject = Record<string, React.CSSProperties>;
+
   export interface SyntaxHighlighterProps {
     language?: string;
-    style?: any;
+    style?: StyleObject;
     customStyle?: React.CSSProperties;
     wrapLines?: boolean;
     wrapLongLines?: boolean;
@@ -16,10 +18,12 @@ declare module "react-syntax-highlighter" {
 }
 
 declare module "react-syntax-highlighter/dist/esm/styles/prism" {
-  export const vscDarkPlus: any;
-  export const vs: any;
-  export const vscDark: any;
-  export const atomDark: any;
-  export const tomorrow: any;
-  export const prism: any;
+  type StyleObject = Record<string, React.CSSProperties>;
+
+  export const vscDarkPlus: StyleObject;
+  export const vs: StyleObject;
+  export const vscDark: StyleObject;
+  export const atomDark: StyleObject;
+  export const tomorrow: StyleObject;
+  export const prism: StyleObject;
 }

@@ -1,0 +1,35 @@
+import React from "react";
+
+interface Receipt2IconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const Receipt2Icon: React.FC<Receipt2IconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+      <path d="M14 8H8" />
+      <path d="M16 12H8" />
+      <path d="M13 16H8" />
+    </svg>
+  );
+};
+
+export default Receipt2Icon;

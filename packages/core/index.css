@@ -1,4 +1,6 @@
 @import "./tokens/tokens.css";
+@import "./styles/reset.css";
+@import "./styles/utilities.css";
 @import "./styles/theme.css";
 @import "./styles/globals.css";
 @import "./components/accordion.css";

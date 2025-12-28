@@ -11,7 +11,7 @@ const UserIcon: React.FC<UserIconProps> = ({ size = 20, className, style }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
       width={size}
       height={size}
       className={className}
@@ -20,7 +20,10 @@ const UserIcon: React.FC<UserIconProps> = ({ size = 20, className, style }) => {
         ...style,
       }}
     >
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+      <path
+        d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12ZM12 14C8.68629 14 6 16.6863 6 20V22H18V20C18 16.6863 15.3137 14 12 14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 };

@@ -1,0 +1,175 @@
+import React, { createContext, useContext, useEffect, useMemo, useState, useCallback } from "react";
+
+export type Appearance = "inherit" | "light" | "dark";
+export type AccentColor = "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
+export type GrayColor = "gray" | "mauve" | "slate" | "sage";
+export type Radius = "none" | "small" | "medium" | "large" | "full";
+
+export interface ThemeConfig {
+  appearance?: Appearance;
+  accentColor?: AccentColor;
+  grayColor?: GrayColor;
+  radius?: Radius;
+  scaling?: string;
+}
+
+export interface ThemeProviderProps extends ThemeConfig {
+  children: React.ReactNode;
+  defaultTheme?: "light" | "dark" | "system";
+  storageKey?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+interface ThemeContextValue {
+  theme: "light" | "dark";
+  setTheme: (theme: "light" | "dark" | "system") => void;
+  appearance: "light" | "dark" | "system";
+  accentColor: AccentColor;
+  setAccentColor: (color: AccentColor) => void;
+  grayColor: GrayColor;
+  setGrayColor: (color: GrayColor) => void;
+  radius: Radius;
+  setRadius: (radius: Radius) => void;
+  scaling: string;
+  setScaling: (scaling: string) => void;
+}
+
+const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
+
+export function ThemeProvider({
+  children,
+  accentColor: propsAccentColor = "indigo",
+  grayColor: propsGrayColor = "gray",
+  radius: propsRadius = "medium",
+  scaling: propsScaling = "100%",
+  defaultTheme = "system",
+  storageKey = "azodik-theme",
+  className = "",
+  style,
+}: ThemeProviderProps) {
+  const [internalAppearance, setInternalAppearance] = useState<"light" | "dark" | "system">(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(storageKey) as "light" | "dark" | "system" | null;
+      if (stored) return stored;
+    }
+    return defaultTheme;
+  });
+
+  const [accentColor, setAccentColor] = useState<AccentColor>(propsAccentColor);
+  const [grayColor, setGrayColor] = useState<GrayColor>(propsGrayColor);
+  const [radius, setRadius] = useState<Radius>(propsRadius);
+  const [scaling, setScaling] = useState<string>(propsScaling);
+
+  const theme = useMemo(() => {
+    if (internalAppearance === "system") {
+      return typeof window !== "undefined" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    return internalAppearance;
+  }, [internalAppearance]) as "light" | "dark";
+
+  const setTheme = useCallback(
+    (newTheme: "light" | "dark" | "system") => {
+      setInternalAppearance(newTheme);
+      if (typeof window !== "undefined") {
+        localStorage.setItem(storageKey, newTheme);
+      }
+    },
+    [storageKey],
+  );
+
+  // Sync props to state if they change
+  useEffect(() => {
+    setAccentColor(propsAccentColor);
+  }, [propsAccentColor]);
+  useEffect(() => {
+    setGrayColor(propsGrayColor);
+  }, [propsGrayColor]);
+  useEffect(() => {
+    setRadius(propsRadius);
+  }, [propsRadius]);
+  useEffect(() => {
+    setScaling(propsScaling);
+  }, [propsScaling]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const root = document.documentElement;
+    root.setAttribute("data-theme", theme);
+
+    // Apply Gray Scale
+    const grayClasses = ["az-gray-gray", "az-gray-mauve", "az-gray-slate", "az-gray-sage"];
+    root.classList.remove(...grayClasses);
+    root.classList.add(`az-gray-${grayColor}`);
+
+    // Apply Accent Class
+    const accentClasses = [
+      "az-accent-indigo",
+      "az-accent-ruby",
+      "az-accent-grass",
+      "az-accent-amber",
+      "az-accent-cyan",
+      "az-accent-azodik",
+    ];
+    root.classList.remove(...accentClasses);
+    if (accentClasses.includes(`az-accent-${accentColor}`)) {
+      root.classList.add(`az-accent-${accentColor}`);
+    }
+
+    // Apply Scaling & Radius Factor
+    const scalingValue = parseFloat(scaling.replace("%", "")) / 100;
+    root.style.setProperty("--scaling", scalingValue.toString());
+
+    const radiusValue =
+      radius === "none"
+        ? "0"
+        : radius === "small"
+          ? "0.75"
+          : radius === "medium"
+            ? "1"
+            : radius === "large"
+              ? "1.5"
+              : "2";
+    root.style.setProperty("--radius-factor", radiusValue);
+  }, [theme, grayColor, accentColor, radius, scaling]);
+
+  const contextValue = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      appearance: internalAppearance,
+      accentColor,
+      setAccentColor,
+      grayColor,
+      setGrayColor,
+      radius,
+      setRadius,
+      scaling,
+      setScaling,
+    }),
+    [theme, internalAppearance, accentColor, grayColor, radius, scaling, setTheme],
+  );
+
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      <div
+        className={`azodik-theme az-theme-background az-gray-${grayColor} az-accent-${accentColor} ${className}`}
+        style={style}
+        data-theme={theme}
+      >
+        {children}
+      </div>
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+}

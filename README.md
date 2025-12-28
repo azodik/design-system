@@ -66,7 +66,7 @@ function MyComponent() {
 
   return (
     <div>
-      <Button variant="primary">Click me</Button>
+      <Button variant="solid">Click me</Button>
       <Card className="mt-md">
         <h2>Card Title</h2>
         <p>Card content</p>
@@ -106,9 +106,10 @@ function MyComponent() {
 ### Button
 
 ```tsx
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>
+<Button variant="solid">Solid</Button>
+<Button variant="soft">Soft</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
 ```
 
 ### Card

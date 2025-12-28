@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@azodik/ui";
-import { GithubIcon } from "@azodik/icons";
+import { GithubIcon, AppsIcon, BookOpenIcon, ArrowRightIcon, SparklesIcon } from "@azodik/icons";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Home() {
@@ -11,14 +11,6 @@ export default function Home() {
 
   const handleGetStarted = () => {
     navigate("/components/getting-started");
-  };
-
-  const handleTestComponents = () => {
-    navigate("/test-components");
-  };
-
-  const handlePlayground = () => {
-    navigate("/playground");
   };
 
   const toggleMobileMenu = () => {
@@ -38,11 +30,11 @@ export default function Home() {
     };
 
     if (isMobileMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMobileMenuOpen]);
 
@@ -64,12 +56,19 @@ export default function Home() {
             </div>
             <nav className="homepage-nav">
               <button onClick={handleGetStarted} className="homepage-nav-link">
+                <AppsIcon size={18} />
                 Components
               </button>
               <a href="/components/getting-started" className="homepage-nav-link">
+                <BookOpenIcon size={18} />
                 Documentation
               </a>
+              <a href="/components/docs/icons" className="homepage-nav-link">
+                <SparklesIcon size={18} />
+                Icons
+              </a>
               <a href="https://github.com/azodik/design-system" className="homepage-nav-link">
+                <GithubIcon size={18} />
                 Repository
               </a>
             </nav>
@@ -77,8 +76,8 @@ export default function Home() {
               <div className="homepage-theme-toggle">
                 <ThemeToggle />
               </div>
-              <button 
-                className={`homepage-hamburger ${isMobileMenuOpen ? 'active' : ''}`}
+              <button
+                className={`homepage-hamburger ${isMobileMenuOpen ? "active" : ""}`}
                 onClick={toggleMobileMenu}
                 aria-label="Toggle mobile menu"
               >
@@ -88,20 +87,45 @@ export default function Home() {
               </button>
             </div>
           </div>
-          
+
           {/* Mobile Navigation */}
-          <div 
+          <div
             ref={mobileMenuRef}
-            className={`homepage-mobile-nav ${isMobileMenuOpen ? 'active' : ''}`}
+            className={`homepage-mobile-nav ${isMobileMenuOpen ? "active" : ""}`}
           >
             <div className="homepage-mobile-nav-content">
-              <button onClick={() => { handleGetStarted(); closeMobileMenu(); }} className="homepage-mobile-nav-link">
+              <button
+                onClick={() => {
+                  handleGetStarted();
+                  closeMobileMenu();
+                }}
+                className="homepage-mobile-nav-link"
+              >
+                <AppsIcon size={18} />
                 Components
               </button>
-              <a href="/components/getting-started" className="homepage-mobile-nav-link" onClick={closeMobileMenu}>
+              <a
+                href="/components/getting-started"
+                className="homepage-mobile-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <BookOpenIcon size={18} />
                 Documentation
               </a>
-              <a href="https://github.com/azodik/design-system" className="homepage-mobile-nav-link" onClick={closeMobileMenu}>
+              <a
+                href="/components/docs/icons"
+                className="homepage-mobile-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <SparklesIcon size={18} />
+                Icons
+              </a>
+              <a
+                href="https://github.com/azodik/design-system"
+                className="homepage-mobile-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <GithubIcon size={18} />
                 Repository
               </a>
             </div>
@@ -124,23 +148,17 @@ export default function Home() {
 
           <div className="homepage-cta">
             <Button
-              variant="primary"
+              variant="solid"
+              color="amber"
               onClick={handleGetStarted}
               className="homepage-btn homepage-btn-primary"
+              style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               View Components
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12H19M19 12L12 5M19 12L12 19"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowRightIcon size={16} />
             </Button>
             <Button
-              variant="secondary"
+              variant="soft"
               onClick={() => window.open("https://github.com/azodik/design-system", "_blank")}
               className="homepage-btn homepage-btn-secondary"
             >

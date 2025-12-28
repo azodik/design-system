@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { SidebarToggleIcon } from "@azodik/icons";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { SidebarToggleIcon, ApplicationIcon, SparklesIcon } from "@azodik/icons";
 import {
   Sidebar as SidebarComponent,
   SidebarHeader,
@@ -16,6 +16,7 @@ import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
 import ThemeToggle from "../ThemeToggle";
 import LanguageSelector from "../LanguageSelector";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
+import { routes } from "@/config/routes";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -141,7 +142,19 @@ export default function SidebarLayout({
     <div className="sidebar-layout">
       {/* Mobile & Tablet Overlay */}
       {isSmallScreen && isSidebarOpen && (
-        <div className="sidebar-overlay open" onClick={closeSidebar} />
+        <div
+          className="sidebar-overlay open"
+          onClick={closeSidebar}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              closeSidebar();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Close sidebar"
+        />
       )}
 
       <SidebarComponent
@@ -152,7 +165,11 @@ export default function SidebarLayout({
         showBreadcrumb={true}
       >
         <SidebarHeader show={true}>
-          <SidebarBrand title="Azodik UI" onClick={() => navigate("/")} />
+          <SidebarBrand
+            title="Azodik UI"
+            logo={<ApplicationIcon size={24} style={{ color: "var(--color-primary)" }} />}
+            onClick={() => navigate("/")}
+          />
         </SidebarHeader>
 
         <SidebarContent>
@@ -183,6 +200,35 @@ export default function SidebarLayout({
         showToggleOnDesktop={false}
         languageSelector={<LanguageSelector />}
         themeToggle={<ThemeToggle />}
+        iconsLink={
+          <Link
+            to={routes.iconsDocs}
+            className="icons-header-link"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.5rem",
+              borderRadius: "var(--radius-md)",
+              textDecoration: "none",
+              color: "var(--color-text-secondary)",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--color-text)";
+              e.currentTarget.style.background = "var(--color-surface)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--color-text-secondary)";
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
+            <SparklesIcon size={18} />
+            <span>Icons</span>
+          </Link>
+        }
         breadcrumb={
           breadcrumb || (
             <div className="breadcrumb-container">

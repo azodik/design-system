@@ -4,17 +4,14 @@ interface StarIconProps {
   size?: number;
   className?: string;
   style?: React.CSSProperties;
-  filled?: boolean;
 }
 
-const StarIcon: React.FC<StarIconProps> = ({ size = 20, className, style, filled = false }) => {
+const StarIcon: React.FC<StarIconProps> = ({ size = 20, className, style }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill={filled ? "currentColor" : "none"}
-      stroke="currentColor"
-      strokeWidth="2"
+      fill="none"
       width={size}
       height={size}
       className={className}
@@ -23,7 +20,10 @@ const StarIcon: React.FC<StarIconProps> = ({ size = 20, className, style, filled
         ...style,
       }}
     >
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      <path
+        fill="currentColor"
+        d="m12 18.26l-7.053 3.948l1.575-7.928L.588 8.792l8.027-.952L12 .5l3.385 7.34l8.027.952l-5.934 5.488l1.575 7.928z"
+      />
     </svg>
   );
 };

@@ -1,0 +1,446 @@
+import { SelectWithSearch, Card, CardContent } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview, ComponentNavigation } from '@/components/docs';
+import { useState } from 'react';
+
+export const SelectWithSearchComponentHeader = () => {
+  return <h1>Select with Search</h1>;
+};
+
+export const SelectWithSearchComponentDescription = () => {
+  return (
+    <p>
+      A searchable dropdown/select component that allows users to filter options by typing. 
+      Perfect for long lists of options where finding a specific item quickly is important.
+    </p>
+  );
+};
+
+export const SelectWithSearchIntroduction = () => {
+  return (
+    <>
+      <h2>Introduction</h2>
+      <p>
+        The SelectWithSearch component extends the standard Select component with search functionality. 
+        It provides a search input field that filters options in real-time as the user types, making it 
+        easy to find and select from large lists of options.
+      </p>
+      <ul>
+        <li>Real-time search filtering</li>
+        <li>Keyboard navigation support</li>
+        <li>Optional clear button</li>
+        <li>Customizable search placeholder</li>
+        <li>Full accessibility support</li>
+        <li>Responsive design</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseSelectWithSearchSection = () => {
+  return (
+    <>
+      <h3>When to Use</h3>
+      <ul>
+        <li>Large lists of options (50+ items)</li>
+        <li>Country, state, or city selection</li>
+        <li>Product or item selection from a catalog</li>
+        <li>User or contact selection</li>
+        <li>Any scenario where quick search is beneficial</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageSelectWithSearchSection = () => {
+  return <h2>Usage</h2>;
+};
+
+export const VariantsSelectWithSearchSection = () => {
+  return <h2>Variants</h2>;
+};
+
+export const BasicSelectWithSearchTitle = () => {
+  return 'Basic Select with Search';
+};
+
+export const ClearableSelectWithSearchTitle = () => {
+  return 'With Clear Button';
+};
+
+export const DisabledOptionsSelectWithSearchTitle = () => {
+  return 'With Disabled Options';
+};
+
+export const PropsSelectWithSearchSection = () => {
+  return <h2>Props</h2>;
+};
+
+export const AccessibilitySelectWithSearchSection = () => {
+  return <h2>Accessibility</h2>;
+};
+
+export const DesignGuidelinesSelectWithSearchSection = () => {
+  return <h2>Design Guidelines</h2>;
+};
+
+export const AccessibilitySelectWithSearchList = () => {
+  return (
+    <ul>
+      <li>Full keyboard navigation (Arrow keys, Enter, Escape)</li>
+      <li>ARIA attributes for screen readers</li>
+      <li>Focus management when opening/closing</li>
+      <li>Search input is automatically focused when dropdown opens</li>
+      <li>Proper labels and associations</li>
+    </ul>
+  );
+};
+
+export const DesignGuidelinesSelectWithSearchList = () => {
+  return (
+    <ul>
+      <li>Use for lists with 20+ options</li>
+      <li>Provide clear, searchable option labels</li>
+      <li>Consider using clearable prop for better UX</li>
+      <li>Set appropriate maxHeight for long lists</li>
+      <li>Use descriptive search placeholders</li>
+    </ul>
+  );
+};
+
+export const BasicSelectWithSearchExample = () => {
+  const [selectedFruit, setSelectedFruit] = useState('');
+
+  const fruits = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+    { value: 'cherry', label: 'Cherry' },
+    { value: 'date', label: 'Date' },
+    { value: 'elderberry', label: 'Elderberry' },
+    { value: 'fig', label: 'Fig' },
+    { value: 'grape', label: 'Grape' },
+    { value: 'honeydew', label: 'Honeydew' },
+    { value: 'kiwi', label: 'Kiwi' },
+    { value: 'lemon', label: 'Lemon' },
+    { value: 'mango', label: 'Mango' },
+    { value: 'orange', label: 'Orange' },
+    { value: 'papaya', label: 'Papaya' },
+    { value: 'quince', label: 'Quince' },
+    { value: 'raspberry', label: 'Raspberry' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'tangerine', label: 'Tangerine' },
+    { value: 'watermelon', label: 'Watermelon' },
+  ];
+
+  return (
+    <div>
+      <SelectWithSearch
+        label="Select a fruit"
+        value={selectedFruit}
+        onChange={setSelectedFruit}
+        options={fruits}
+        placeholder="Choose a fruit"
+        searchPlaceholder="Search fruits..."
+        help="Type to search for a fruit"
+      />
+      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+        Selected: {selectedFruit || 'None'}
+      </p>
+    </div>
+  );
+};
+
+export const ClearableSelectWithSearchExample = () => {
+  const [selectedCountry, setSelectedCountry] = useState('');
+
+  const countries = [
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'au', label: 'Australia' },
+    { value: 'de', label: 'Germany' },
+    { value: 'fr', label: 'France' },
+    { value: 'it', label: 'Italy' },
+    { value: 'es', label: 'Spain' },
+    { value: 'nl', label: 'Netherlands' },
+    { value: 'be', label: 'Belgium' },
+  ];
+
+  return (
+    <div>
+      <SelectWithSearch
+        label="Country"
+        value={selectedCountry}
+        onChange={setSelectedCountry}
+        options={countries}
+        placeholder="Select a country"
+        searchPlaceholder="Search countries..."
+        clearable
+        help="Select a country or use the clear button to reset"
+      />
+      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+        Selected: {selectedCountry || 'None'}
+      </p>
+    </div>
+  );
+};
+
+export const DisabledOptionsSelectWithSearchExample = () => {
+  const [selectedUser, setSelectedUser] = useState('');
+
+  const users = [
+    { value: '1', label: 'John Doe' },
+    { value: '2', label: 'Jane Smith' },
+    { value: '3', label: 'Bob Johnson', disabled: true },
+    { value: '4', label: 'Alice Williams' },
+    { value: '5', label: 'Charlie Brown', disabled: true },
+    { value: '6', label: 'Diana Prince' },
+    { value: '7', label: 'Edward Norton' },
+    { value: '8', label: 'Fiona Apple' },
+  ];
+
+  return (
+    <div>
+      <SelectWithSearch
+        label="Select User"
+        value={selectedUser}
+        onChange={setSelectedUser}
+        options={users}
+        placeholder="Choose a user"
+        searchPlaceholder="Search users..."
+        clearable
+        help="Some users are disabled and cannot be selected"
+      />
+      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+        Selected: {selectedUser || 'None'}
+      </p>
+    </div>
+  );
+};
+
+<SelectWithSearchComponentHeader />
+
+<SelectWithSearchComponentDescription />
+
+<SelectWithSearchIntroduction />
+
+<WhenToUseSelectWithSearchSection />
+
+<UsageSelectWithSearchSection />
+
+<CodeBlock language="tsx">
+{`import { SelectWithSearch } from '@azodik/ui';`}
+</CodeBlock>
+
+<VariantsSelectWithSearchSection />
+
+<CodeBlockWithPreview 
+  title={<BasicSelectWithSearchTitle />}
+  preview={<BasicSelectWithSearchExample />}
+>
+{`import { SelectWithSearch } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function BasicSelectWithSearch() {
+  const [selectedFruit, setSelectedFruit] = useState('');
+
+  const fruits = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+    { value: 'cherry', label: 'Cherry' },
+    { value: 'date', label: 'Date' },
+    { value: 'elderberry', label: 'Elderberry' },
+    // ... more options
+  ];
+
+  return (
+    <SelectWithSearch
+      label="Select a fruit"
+      value={selectedFruit}
+      onChange={setSelectedFruit}
+      options={fruits}
+      placeholder="Choose a fruit"
+      searchPlaceholder="Search fruits..."
+      help="Type to search for a fruit"
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<ClearableSelectWithSearchTitle />}
+  preview={<ClearableSelectWithSearchExample />}
+>
+{`import { SelectWithSearch } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function ClearableSelectWithSearch() {
+  const [selectedCountry, setSelectedCountry] = useState('');
+
+  const countries = [
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    // ... more options
+  ];
+
+  return (
+    <SelectWithSearch
+      label="Country"
+      value={selectedCountry}
+      onChange={setSelectedCountry}
+      options={countries}
+      placeholder="Select a country"
+      searchPlaceholder="Search countries..."
+      clearable
+      help="Select a country or use the clear button to reset"
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview 
+  title={<DisabledOptionsSelectWithSearchTitle />}
+  preview={<DisabledOptionsSelectWithSearchExample />}
+>
+{`import { SelectWithSearch } from '@azodik/ui';
+import { useState } from 'react';
+
+export default function DisabledOptionsSelectWithSearch() {
+  const [selectedUser, setSelectedUser] = useState('');
+
+  const users = [
+    { value: '1', label: 'John Doe' },
+    { value: '2', label: 'Jane Smith' },
+    { value: '3', label: 'Bob Johnson', disabled: true },
+    { value: '4', label: 'Alice Williams' },
+    // ... more options
+  ];
+
+  return (
+    <SelectWithSearch
+      label="Select User"
+      value={selectedUser}
+      onChange={setSelectedUser}
+      options={users}
+      placeholder="Choose a user"
+      searchPlaceholder="Search users..."
+      clearable
+      help="Some users are disabled and cannot be selected"
+    />
+  );
+}`}
+</CodeBlockWithPreview>
+
+<PropsSelectWithSearchSection />
+
+<PropsTable props={[
+  {
+    name: 'options',
+    type: 'SelectWithSearchOption[]',
+    required: true,
+    default: '-',
+    description: 'Array of options. Each option has value, label, and optional disabled property'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Selected value of the select'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: '-',
+    description: 'Callback function called when selection changes'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Label text for the select field'
+  },
+  {
+    name: 'help',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Help text to display below the select'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Error message to display below the select'
+  },
+  {
+    name: 'status',
+    type: '"success" | "error"',
+    required: false,
+    default: '-',
+    description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Select an option"',
+    description: 'Placeholder text when nothing is selected'
+  },
+  {
+    name: 'searchPlaceholder',
+    type: 'string',
+    required: false,
+    default: '"Search..."',
+    description: 'Placeholder text for the search input'
+  },
+  {
+    name: 'clearable',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show a clear button to reset the selection'
+  },
+  {
+    name: 'noResultsText',
+    type: 'string',
+    required: false,
+    default: '"No results found"',
+    description: 'Text to display when search returns no results'
+  },
+  {
+    name: 'maxHeight',
+    type: 'number',
+    required: false,
+    default: '240',
+    description: 'Maximum height of the dropdown in pixels'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the select is disabled'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '""',
+    description: 'Additional CSS classes to apply'
+  }
+]} />
+
+<AccessibilitySelectWithSearchSection />
+
+<AccessibilitySelectWithSearchList />
+
+<DesignGuidelinesSelectWithSearchSection />
+
+<DesignGuidelinesSelectWithSearchList />
+
+<ComponentNavigation />
+

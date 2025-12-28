@@ -69,7 +69,7 @@ const AccordionItemComponent: React.FC<AccordionItemProps> = ({
             value,
             disabled,
             isOpen,
-          } as any);
+          } as Partial<AccordionTriggerProps & AccordionContentProps>);
         }
         return child;
       })}

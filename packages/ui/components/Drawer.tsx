@@ -76,16 +76,20 @@ export const Drawer: React.FC<DrawerProps> = ({
   onOpenChange,
   defaultOpen = false,
 }) => {
-  const [internalOpen, setInternalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(() => defaultOpen);
+  const prevDefaultOpenRef = useRef(defaultOpen);
 
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
+  // Sync defaultOpen prop to internal state when it changes (only for uncontrolled mode)
   useEffect(() => {
-    setMounted(true);
-    if (!isControlled) {
-      setInternalOpen(defaultOpen);
+    if (!isControlled && defaultOpen !== prevDefaultOpenRef.current) {
+      prevDefaultOpenRef.current = defaultOpen;
+      // Use setTimeout to defer state update outside of effect
+      setTimeout(() => {
+        setInternalOpen(defaultOpen);
+      }, 0);
     }
   }, [defaultOpen, isControlled]);
 
@@ -101,10 +105,6 @@ export const Drawer: React.FC<DrawerProps> = ({
   );
 
   const contextValue = useMemo(() => ({ open, setOpen }), [open, setOpen]);
-
-  if (!mounted) {
-    return null;
-  }
 
   return <DrawerContext.Provider value={contextValue}>{children}</DrawerContext.Provider>;
 };
@@ -123,14 +123,18 @@ export const DrawerTrigger: React.FC<DrawerTriggerProps> = ({
   };
 
   if (asChild && React.isValidElement(children)) {
+    const childProps = children.props as {
+      onClick?: (e: React.MouseEvent) => void;
+      className?: string;
+    } & Record<string, unknown>;
     return React.cloneElement(children, {
-      ...(children.props as any),
+      ...(childProps as Record<string, unknown>),
       onClick: (e: React.MouseEvent) => {
-        (children.props as any).onClick?.(e);
+        childProps.onClick?.(e);
         handleClick();
       },
-      className: `${(children.props as any).className || ""} ${className}`.trim(),
-    });
+      className: `${childProps.className || ""} ${className}`.trim(),
+    } as React.HTMLAttributes<HTMLElement>);
   }
 
   return (
@@ -151,12 +155,32 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
 
+  const prevOpenRef = useRef(open);
+
   useEffect(() => {
-    if (open) {
-      setShouldRender(true);
-      setIsClosing(false);
+    if (open && !shouldRender) {
+      // Use setTimeout to defer state update outside of effect
+      setTimeout(() => {
+        setShouldRender(true);
+      }, 0);
     }
-  }, [open]);
+    if (open && !prevOpenRef.current) {
+      setTimeout(() => {
+        setIsClosing(false);
+      }, 0);
+    }
+    prevOpenRef.current = open;
+  }, [open, shouldRender]);
+
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setOpen(false);
+      setIsClosing(false);
+      setShouldRender(false);
+      onClose?.();
+    }, 300); // Match animation duration
+  }, [setOpen, onClose]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -176,17 +200,7 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
         document.body.style.overflow = "unset";
       }
     };
-  }, [open, setOpen, onClose]);
-
-  const handleClose = useCallback(() => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setOpen(false);
-      setIsClosing(false);
-      setShouldRender(false);
-      onClose?.();
-    }, 300); // Match animation duration
-  }, [setOpen, onClose]);
+  }, [open, handleClose]);
 
   const handleOverlayClick = useCallback(
     (e: React.MouseEvent) => {
@@ -200,7 +214,17 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
   if (!shouldRender) return null;
 
   return (
-    <div className="drawer-overlay" onClick={handleOverlayClick}>
+    <div
+      className="drawer-overlay"
+      onClick={handleOverlayClick}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          handleClose();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
       <div
         ref={contentRef}
         className={`drawer-content ${isClosing ? "closing" : ""} ${className}`}
@@ -279,14 +303,18 @@ export const DrawerClose: React.FC<{
   };
 
   if (asChild && React.isValidElement(children)) {
+    const childProps = children.props as {
+      onClick?: (e: React.MouseEvent) => void;
+      className?: string;
+    } & Record<string, unknown>;
     return React.cloneElement(children, {
-      ...(children.props as any),
+      ...(childProps as Record<string, unknown>),
       onClick: (e: React.MouseEvent) => {
-        (children.props as any).onClick?.(e);
+        childProps.onClick?.(e);
         handleClick();
       },
-      className: `${(children.props as any).className || ""} ${className}`.trim(),
-    });
+      className: `${childProps.className || ""} ${className}`.trim(),
+    } as React.HTMLAttributes<HTMLElement>);
   }
 
   return (

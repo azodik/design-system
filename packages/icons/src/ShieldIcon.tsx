@@ -11,7 +11,7 @@ const ShieldIcon: React.FC<ShieldIconProps> = ({ size = 20, className, style }) 
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
       width={size}
       height={size}
       className={className}
@@ -20,7 +20,10 @@ const ShieldIcon: React.FC<ShieldIconProps> = ({ size = 20, className, style }) 
         ...style,
       }}
     >
-      <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z"></path>
+      <path
+        fill="currentColor"
+        d="M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976"
+      />
     </svg>
   );
 };

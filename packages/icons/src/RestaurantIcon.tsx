@@ -1,0 +1,31 @@
+import React from "react";
+
+interface RestaurantIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const RestaurantIcon: React.FC<RestaurantIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M21 2v20h-2v-8h-3V7a5 5 0 0 1 5-5M9 13.9V22H7v-8.1A5 5 0 0 1 3 9V3h2v7h2V3h2v7h2V3h2v6a5 5 0 0 1-4 4.9"
+      />
+    </svg>
+  );
+};
+
+export default RestaurantIcon;

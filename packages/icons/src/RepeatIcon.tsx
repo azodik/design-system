@@ -1,0 +1,31 @@
+import React from "react";
+
+interface RepeatIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const RepeatIcon: React.FC<RepeatIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M6 4h15a1 1 0 0 1 1 1v7h-2V6H6v3L1 5l5-4zm12 16H3a1 1 0 0 1-1-1v-7h2v6h14v-3l5 4l-5 4z"
+      />
+    </svg>
+  );
+};
+
+export default RepeatIcon;

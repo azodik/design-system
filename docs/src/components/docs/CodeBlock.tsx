@@ -17,8 +17,23 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ children, language = "tsx"
       await navigator.clipboard.writeText(children);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy code:", err);
+    } catch {
+      // Fallback for browsers that don't support clipboard API
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = children;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // If all methods fail, show user-friendly message
+        alert("Failed to copy code. Please select and copy manually.");
+      }
     }
   };
 
@@ -41,11 +56,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ children, language = "tsx"
           style={{ top: "10px", right: "10px" }}
           title={copied ? "Copied!" : "Copy code"}
         >
-          {copied ? (
-            <TickIcon size={16} color="currentColor" />
-          ) : (
-            <CopyIcon size={16} color="currentColor" />
-          )}
+          {copied ? <TickIcon size={16} /> : <CopyIcon size={16} />}
         </button>
         <SyntaxHighlighter
           language={language}

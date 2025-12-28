@@ -1,0 +1,34 @@
+import React from "react";
+
+interface TOMLIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const TOMLIcon: React.FC<TOMLIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M1.499 8h3m-1.5 0v8M8.5 8A1.5 1.5 0 0 1 10 9.5v5a1.5 1.5 0 0 1-3 0v-5A1.5 1.5 0 0 1 8.5 8m4.5 8V8l2 5l2-5v8m3-8v8h2.5"
+      />
+    </svg>
+  );
+};
+
+export default TOMLIcon;

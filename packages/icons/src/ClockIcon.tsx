@@ -10,10 +10,8 @@ const ClockIcon: React.FC<ClockIconProps> = ({ size = 20, className, style }) =>
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
+      viewBox="0 0 256 256"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
       width={size}
       height={size}
       className={className}
@@ -22,8 +20,10 @@ const ClockIcon: React.FC<ClockIconProps> = ({ size = 20, className, style }) =>
         ...style,
       }}
     >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12,6 12,12 16,14" />
+      <path
+        fill="currentColor"
+        d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m56 112h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 0 16"
+      />
     </svg>
   );
 };

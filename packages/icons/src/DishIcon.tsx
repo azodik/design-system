@@ -1,0 +1,34 @@
+import React from "react";
+
+interface DishIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const DishIcon: React.FC<DishIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M4 10a7.31 7.31 0 0 0 10 10Zm5 5l3-3m5 1a6 6 0 0 0-6-6m10 6A10 10 0 0 0 11 3"
+      />
+    </svg>
+  );
+};
+
+export default DishIcon;

@@ -12,8 +12,6 @@ const MailIcon: React.FC<MailIconProps> = ({ size = 20, className, style }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
       width={size}
       height={size}
       className={className}
@@ -22,8 +20,10 @@ const MailIcon: React.FC<MailIconProps> = ({ size = 20, className, style }) => {
         ...style,
       }}
     >
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-      <polyline points="22,6 12,13 2,6" />
+      <path
+        fill="currentColor"
+        d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1m9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513z"
+      />
     </svg>
   );
 };

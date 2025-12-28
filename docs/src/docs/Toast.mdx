@@ -129,7 +129,7 @@ export const BasicToastExample = () => {
       
       {showToast && (
         <Toast
-          variant="info"
+          variant="soft" color="indigo"
           title="Information"
           onClose={() => setShowToast(false)}
           autoClose={3000}
@@ -214,7 +214,7 @@ export const ToastPositionsExample = () => {
       {toasts.map(toast => (
         <Toast
           key={toast.id}
-          variant="info"
+          variant="soft" color="indigo"
           position={toast.position}
           onClose={() => removeToast(toast.id)}
           autoClose={3000}
@@ -237,7 +237,7 @@ export const PersistentToastExample = () => {
       
       {showToast && (
         <Toast
-          variant="warning"
+          variant="soft" color="amber"
           title="Important Notice"
           onClose={() => setShowToast(false)}
           // No autoClose prop = persistent until manually closed
@@ -283,7 +283,7 @@ export default function BasicToast() {
       
       {showToast && (
         <Toast
-          variant="info"
+          variant="soft" color="indigo"
           title="Information"
           onClose={() => setShowToast(false)}
           autoClose={3000}
@@ -384,7 +384,7 @@ export default function ToastPositions() {
       {toasts.map(toast => (
         <Toast
           key={toast.id}
-          variant="info"
+          variant="soft" color="indigo"
           position={toast.position}
           onClose={() => removeToast(toast.id)}
           autoClose={3000}
@@ -415,7 +415,7 @@ export default function PersistentToast() {
       
       {showToast && (
         <Toast
-          variant="warning"
+          variant="soft" color="amber"
           title="Important Notice"
           onClose={() => setShowToast(false)}
           // No autoClose prop = persistent until manually closed

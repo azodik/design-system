@@ -4,7 +4,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   children?: React.ReactNode;
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  size?: "1" | "2" | "3" | "4" | "5" | "6";
   status?: "online" | "away" | "offline" | "busy";
   initials?: string;
 }
@@ -13,7 +13,7 @@ export default function Avatar({
   src,
   alt,
   children,
-  size = "md",
+  size = "3",
   status,
   initials,
   className = "",
@@ -34,7 +34,8 @@ export default function Avatar({
 
   const avatarClasses = [
     "avatar",
-    `avatar-${size}`,
+    "az-Avatar",
+    `az-r-size-${size}`,
     status && "avatar-status",
     status && `avatar-${status}`,
     className,

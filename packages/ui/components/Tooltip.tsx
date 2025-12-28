@@ -14,9 +14,9 @@ export function Tooltip({
   ...props
 }: TooltipProps) {
   return (
-    <div className={`tooltip ${className}`} {...props}>
+    <div className={`tooltip tooltip-${position} ${className}`} {...props}>
       {children}
-      <div className={`tooltip-content tooltip-${position}`}>{content}</div>
+      <div className="tooltip-content">{content}</div>
     </div>
   );
 }

@@ -1,0 +1,31 @@
+import React from "react";
+
+interface CreditCard2IconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const CreditCard2Icon: React.FC<CreditCard2IconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2M10 14H5v-4h5z"
+      />
+    </svg>
+  );
+};
+
+export default CreditCard2Icon;

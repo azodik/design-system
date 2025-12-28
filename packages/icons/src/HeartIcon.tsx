@@ -4,17 +4,14 @@ interface HeartIconProps {
   size?: number;
   className?: string;
   style?: React.CSSProperties;
-  filled?: boolean;
 }
 
-const HeartIcon: React.FC<HeartIconProps> = ({ size = 20, className, style, filled = false }) => {
+const HeartIcon: React.FC<HeartIconProps> = ({ size = 20, className, style }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill={filled ? "currentColor" : "none"}
-      stroke="currentColor"
-      strokeWidth="2"
+      fill="none"
       width={size}
       height={size}
       className={className}
@@ -23,7 +20,10 @@ const HeartIcon: React.FC<HeartIconProps> = ({ size = 20, className, style, fill
         ...style,
       }}
     >
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      <path
+        fill="currentColor"
+        d="M12.001 4.529a6 6 0 0 1 8.242.228a6 6 0 0 1 .236 8.236l-8.48 8.492l-8.478-8.492a6 6 0 0 1 8.48-8.464"
+      />
     </svg>
   );
 };

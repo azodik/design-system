@@ -1,4 +1,6 @@
 import React from "react";
+import MenuIcon from "./MenuIcon";
+import XIcon from "./XIcon";
 
 interface SidebarToggleIconProps {
   size?: number;
@@ -8,37 +10,16 @@ interface SidebarToggleIconProps {
 }
 
 const SidebarToggleIcon: React.FC<SidebarToggleIconProps> = ({
-  size = 16,
+  size = 20,
   isCollapsed = false,
   className,
   style,
 }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      width={size}
-      height={size}
-      className={className}
-      style={{
-        transition: "transform 0.3s ease",
-        ...style,
-      }}
-    >
-      <path
-        d={isCollapsed 
-          ? "M4 6h12v12H4V6zm2 2h8v2H6V8zm0 3h6v2H6v-2zm0 3h8v2H6v-2zm14-4l-4 4 4 4" 
-          : "M4 6h12v12H4V6zm2 2h8v2H6V8zm0 3h6v2H6v-2zm0 3h8v2H6v-2zm16-4l-4-4-4 4"
-        }
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  );
+  if (isCollapsed) {
+    return <XIcon size={size} className={className} style={style} />;
+  }
+
+  return <MenuIcon size={size} className={className} style={style} />;
 };
 
 export default SidebarToggleIcon;

@@ -1,0 +1,36 @@
+import React from "react";
+
+interface HostingIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const HostingIcon: React.FC<HostingIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M27 29H13c-1.1 0-2-.9-2-2v-4h2v4h14V13h-4v-2h4c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2"
+      />
+      <path fill="currentColor" d="M11 19h10v2H11zm0-4h10v2H11zm0-4h10v2H11z" />
+      <path
+        fill="currentColor"
+        d="M5 3h14c1.1 0 2 .9 2 2v4h-2V5H5v14h4v2H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2"
+      />
+    </svg>
+  );
+};
+
+export default HostingIcon;

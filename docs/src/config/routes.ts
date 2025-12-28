@@ -19,6 +19,7 @@ export const routes = {
   datatableDocs: "/components/docs/datatable",
   formDocs: "/components/docs/form",
   inputDocs: "/components/docs/input",
+  iconsDocs: "/components/docs/icons",
   modalDocs: "/components/docs/modal",
   navigationDocs: "/components/docs/navigation",
   paginationDocs: "/components/docs/pagination",
@@ -26,6 +27,7 @@ export const routes = {
   radioDocs: "/components/docs/radio",
   scrollAreaDocs: "/components/docs/scrollarea",
   selectDocs: "/components/docs/select",
+  selectWithSearchDocs: "/components/docs/select-with-search",
   sidebarDocs: "/components/docs/sidebar",
   switchDocs: "/components/docs/switch",
   tableDocs: "/components/docs/table",
@@ -33,4 +35,6 @@ export const routes = {
   textareaDocs: "/components/docs/textarea",
   toastDocs: "/components/docs/toast",
   tooltipDocs: "/components/docs/tooltip",
+  themingDocs: "/components/docs/theming",
+  typographyDocs: "/components/docs/typography",
 };

@@ -135,10 +135,11 @@ export const DesignGuidelinesCheckboxList = () => {
     <div className="flex-vertical">
       <Checkbox
         label="I agree to the terms and conditions"
+        defaultChecked={false}
       />
       <Checkbox
         label="Subscribe to newsletter"
-        checked={true}
+        defaultChecked={true}
       />
       <Checkbox
         label="Disabled checkbox"
@@ -176,7 +177,7 @@ export const CheckboxExamples = () => {
   preview={
     <Checkbox
       label="I agree to the terms and conditions"
-      checked={false}
+      defaultChecked={false}
     />
   }
 >
@@ -188,6 +189,35 @@ export const CheckboxExample = () => {
       label="I agree to the terms and conditions"
       checked={false}
     />
+  );
+};`}
+</CodeBlockWithPreview>
+
+
+<h3>Checkbox Sizes</h3>
+<CodeBlockWithPreview 
+  title="Checkbox Sizes"
+  preview={
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Checkbox label="Size 1" size="1" defaultChecked />
+        <Checkbox label="Size 2" size="2" defaultChecked />
+        <Checkbox label="Size 3" size="3" defaultChecked />
+      </div>
+    </div>
+  }
+>
+{`import { Checkbox } from '@azodik/ui';
+
+export const CheckboxSizes = () => {
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Checkbox label="Size 1" size="1" defaultChecked />
+        <Checkbox label="Size 2" size="2" defaultChecked />
+        <Checkbox label="Size 3" size="3" defaultChecked />
+      </div>
+    </div>
   );
 };`}
 </CodeBlockWithPreview>
@@ -218,10 +248,38 @@ export const CheckboxExample = () => {
   },
   {
     name: 'size',
-    type: '"sm" | "md" | "lg"',
+    type: '"1" | "2" | "3" | "sm" | "md" | "lg"',
     required: false,
-    default: '"md"',
+    default: '"2"',
     description: 'Size of the checkbox'
+  },
+  {
+    name: 'checked',
+    type: 'boolean',
+    required: false,
+    default: '-',
+    description: 'Controlled checked state'
+  },
+  {
+    name: 'defaultChecked',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Default checked state for uncontrolled usage'
+  },
+  {
+    name: 'onChange',
+    type: '(event: ChangeEvent<HTMLInputElement>) => void',
+    required: false,
+    default: '-',
+    description: 'Callback fired when the checkbox state changes'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether the checkbox is disabled'
   },
   {
     name: 'className',

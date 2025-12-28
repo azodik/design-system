@@ -217,8 +217,8 @@ export const TabsExample = () => {
   preview={
     <Tabs defaultValue="tab1">
       <TabList>
-        <TabTrigger value="tab1" borderWidth={4} width="50px" borderColor="#f97316">Tab 1</TabTrigger>
-        <TabTrigger value="tab2" borderWidth={2} width="50px" borderColor="#3b82f6">Tab 2</TabTrigger>
+        <TabTrigger value="tab1" borderWidth={4} width="50px" borderColor="var(--color-primary)">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={2} width="50px" borderColor="var(--color-secondary)">Tab 2</TabTrigger>
         <TabTrigger value="tab3" borderWidth={5} width="50px" borderColor="#10b981">Tab 3</TabTrigger>
       </TabList>
       
@@ -254,8 +254,8 @@ export const TabsExample = () => {
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab}>
       <TabList>
-        <TabTrigger value="tab1" borderWidth={4} width="50px" borderColor="#f97316">Tab 1</TabTrigger>
-        <TabTrigger value="tab2" borderWidth={2} width="50px" borderColor="#3b82f6">Tab 2</TabTrigger>
+        <TabTrigger value="tab1" borderWidth={4} width="50px" borderColor="var(--color-primary)">Tab 1</TabTrigger>
+        <TabTrigger value="tab2" borderWidth={2} width="50px" borderColor="var(--color-secondary)">Tab 2</TabTrigger>
         <TabTrigger value="tab3" borderWidth={5} width="50px" borderColor="#10b981">Tab 3</TabTrigger>
       </TabList>
       

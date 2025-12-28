@@ -33,7 +33,7 @@ export function Pagination({
       if (maxVisible === 3) {
         let start = Math.max(1, currentPage - 1);
         let end = Math.min(totalPages, currentPage + 1);
-        
+
         // Adjust if we're near the beginning or end
         if (end - start < 2) {
           if (start === 1) {
@@ -42,7 +42,7 @@ export function Pagination({
             start = Math.max(1, end - 2);
           }
         }
-        
+
         for (let i = start; i <= end; i++) {
           pages.push(i);
         }

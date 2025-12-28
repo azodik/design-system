@@ -5,6 +5,7 @@ export interface ComponentMenuItem {
 
 export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "gettingStarted", href: "/components/getting-started" },
+  { nameKey: "theming", href: "/components/docs/theming" },
   { nameKey: "accordion", href: "/components/docs/accordion" },
   { nameKey: "alert", href: "/components/docs/alert" },
   { nameKey: "avatar", href: "/components/docs/avatar" },
@@ -19,6 +20,7 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "dataTable", href: "/components/docs/datatable" },
   { nameKey: "form", href: "/components/docs/form" },
   { nameKey: "input", href: "/components/docs/input" },
+  { nameKey: "icons", href: "/components/docs/icons" },
   { nameKey: "modal", href: "/components/docs/modal" },
   { nameKey: "navigation", href: "/components/docs/navigation" },
   { nameKey: "pagination", href: "/components/docs/pagination" },
@@ -26,6 +28,7 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "radio", href: "/components/docs/radio" },
   { nameKey: "scrollArea", href: "/components/docs/scrollarea" },
   { nameKey: "select", href: "/components/docs/select" },
+  { nameKey: "selectWithSearch", href: "/components/docs/select-with-search" },
   { nameKey: "sidebar", href: "/components/docs/sidebar" },
   { nameKey: "switch", href: "/components/docs/switch" },
   { nameKey: "table", href: "/components/docs/table" },
@@ -33,4 +36,5 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "textarea", href: "/components/docs/textarea" },
   { nameKey: "toast", href: "/components/docs/toast" },
   { nameKey: "tooltip", href: "/components/docs/tooltip" },
+  { nameKey: "typography", href: "/components/docs/typography" },
 ];

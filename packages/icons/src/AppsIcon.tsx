@@ -11,7 +11,7 @@ const AppsIcon: React.FC<AppsIconProps> = ({ size = 20, className, style }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
       width={size}
       height={size}
       className={className}
@@ -20,7 +20,10 @@ const AppsIcon: React.FC<AppsIconProps> = ({ size = 20, className, style }) => {
         ...style,
       }}
     >
-      <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"></path>
+      <path
+        fill="currentColor"
+        d="M6.75 2.5A4.25 4.25 0 0 1 11 6.75V11H6.75a4.25 4.25 0 0 1 0-8.5m0 10.5H11v4.25A4.25 4.25 0 1 1 6.75 13m10.5-10.5a4.25 4.25 0 0 1 0 8.5H13V6.75a4.25 4.25 0 0 1 4.25-4.25M13 13h4.25A4.25 4.25 0 1 1 13 17.25z"
+      />
     </svg>
   );
 };

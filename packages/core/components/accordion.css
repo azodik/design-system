@@ -3,7 +3,7 @@
   width: 100% !important;
   max-width: 600px !important;
   border: 1px solid var(--color-border) !important;
-  border-radius: 12px !important;
+  border-radius: var(--radius-5) !important;
   overflow: hidden !important;
   background: var(--color-background) !important;
   box-shadow: var(--shadow-md) !important;
@@ -27,7 +27,8 @@
 
 .accordion-item.disabled .accordion-trigger {
   cursor: not-allowed;
-  color: #9ca3af;
+  color: var(--gray-9);
+  opacity: 0.6;
 }
 
 .accordion-trigger {
@@ -59,6 +60,8 @@
 .accordion-trigger:focus {
   outline: none;
   background: var(--color-surface);
+  box-shadow: var(--shadow-focus);
+  z-index: 1;
 }
 
 .accordion-trigger[data-state="open"] {
@@ -87,7 +90,7 @@
 
 .accordion-content-inner {
   padding: 0 24px 24px 24px;
-  color: #4b5563;
+  color: var(--color-text-secondary);
   font-size: 15px;
   line-height: 1.7;
   font-weight: 400;
@@ -97,24 +100,24 @@
   transition: transform 0.2s ease;
   width: 20px;
   height: 20px;
-  color: #6b7280;
+  color: var(--gray-9);
   flex-shrink: 0;
   stroke-width: 2;
 }
 
 .accordion-trigger[data-state="open"] .accordion-icon {
   transform: rotate(180deg);
-  color: #6b7280;
+  color: var(--gray-9);
 }
 
 .accordion-trigger:hover .accordion-icon {
-  color: #6b7280;
+  color: var(--gray-9);
 }
 
 .accordion-title {
   font-weight: 600;
   margin: 0;
-  color: #111827;
+  color: var(--color-text);
   font-size: 16px;
 }
 
@@ -143,35 +146,35 @@
 
 /* Dark mode adjustments */
 [data-theme="dark"] .accordion {
-  border-color: #374151;
-  background: #1f2937;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border-color: var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-2);
 }
 
 [data-theme="dark"] .accordion-item {
-  border-bottom-color: #374151;
+  border-bottom-color: var(--color-border);
 }
 
 [data-theme="dark"] .accordion-trigger {
-  color: #f9fafb;
+  color: var(--color-text);
 }
 
 [data-theme="dark"] .accordion-trigger:hover {
-  background: #374151;
+  background: var(--gray-3);
 }
 
 [data-theme="dark"] .accordion-trigger[data-state="open"] {
-  background: #374151;
+  background: var(--gray-3);
 }
 
 [data-theme="dark"] .accordion-title {
-  color: #f9fafb;
+  color: var(--color-text);
 }
 
 [data-theme="dark"] .accordion-content-inner {
-  color: #d1d5db;
+  color: var(--color-text-secondary);
 }
 
 [data-theme="dark"] .accordion-icon {
-  color: #9ca3af;
+  color: var(--gray-10);
 }

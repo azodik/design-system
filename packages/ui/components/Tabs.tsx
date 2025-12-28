@@ -35,7 +35,7 @@ export function Tabs({
             ...child.props,
             activeValue: currentValue,
             onValueChange: handleTabChange,
-          } as any);
+          } as Partial<TabListProps>);
         }
         return child;
       })}
@@ -61,11 +61,12 @@ export function TabList({
     <div className={`tabs-list ${className}`} {...props}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.props) {
+          const childProps = child.props as Partial<TabTriggerProps>;
           return React.cloneElement(child, {
             ...child.props,
-            active: (child.props as any).value === activeValue,
-            onClick: () => onValueChange?.((child.props as any).value),
-          } as any);
+            active: childProps.value === activeValue,
+            onClick: () => onValueChange?.(childProps.value || ""),
+          } as Partial<TabTriggerProps>);
         }
         return child;
       })}
@@ -85,7 +86,7 @@ export interface TabTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonEl
 
 export function TabTrigger({
   children,
-  value,
+  value: _value,
   active = false,
   borderWidth = 3,
   borderColor,
@@ -125,7 +126,7 @@ export function TabContent({
   children,
   value,
   activeValue,
-  onValueChange,
+  onValueChange: _onValueChange,
   className = "",
   ...props
 }: TabContentProps) {

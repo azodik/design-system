@@ -72,6 +72,22 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.docs-content .code-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.docs-content .code-block code {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
 .docs-content table {
   margin: 2rem 0;
   border-collapse: collapse;
@@ -84,6 +100,15 @@
 .code-block-container {
   width: 100%;
   margin: 2rem 0;
+  overflow: visible !important;
+}
+
+.code-block-container .az-TabsContent {
+  overflow: visible !important;
+}
+
+.code-block-container .az-Card {
+  overflow: visible !important;
 }
 
 /* DataTable button centering for mobile */
@@ -159,6 +184,8 @@
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  overflow: visible;
+  position: relative;
 }
 
 /* Mobile - Center Alert preview content */
@@ -166,11 +193,13 @@
   .code-block-container .flex-vertical {
     align-items: center;
     width: 100%;
+    overflow: visible;
   }
   
   .code-block-container .flex-vertical > * {
     width: 100%;
     max-width: 100%;
+    overflow: visible;
   }
 }
 
@@ -214,6 +243,27 @@
     width: auto;
     max-width: 100%;
   }
+}
+
+/* Utility Classes for Flexbox and Spacing */
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
 }
 
 /* Mobile - Fix Button overflow */
@@ -384,13 +434,22 @@
 .code-block-container .select-dropdown {
   z-index: 99999 !important;
   position: absolute !important;
-  top: 100% !important;
+  top: calc(100% + 4px) !important;
   left: 0 !important;
   right: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .code-block-container .custom-select-wrapper {
   z-index: 99998 !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.code-block-container .form-group {
+  overflow: visible !important;
   position: relative !important;
 }
 
@@ -464,10 +523,13 @@
   
   .code-block-container .select-dropdown {
     position: absolute !important;
-    top: 100% !important;
+    top: calc(100% + 4px) !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 101 !important;
+    z-index: 99999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 
@@ -491,6 +553,65 @@
     min-width: auto !important;
     justify-content: center !important;
   }
+}
+
+/* Language Selector and Theme Toggle Styling */
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-selector-select {
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.language-selector-select:hover {
+  border-color: var(--color-primary);
+}
+
+.language-selector-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.theme-toggle-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle-wrapper,
+.language-selector-section,
+.icons-link-section {
+  display: flex;
+  align-items: center;
+}
+
+.icons-header-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: var(--radius-3);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.icons-header-link:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
 }
 
 /* ScrollArea Mobile Responsive Styles */

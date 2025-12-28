@@ -1,43 +1,67 @@
 import React from "react";
+import { useThemeContext } from "./Theme";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
-  size?: "sm" | "md" | "lg";
-  rounded?: "xs" | "sm" | "md" | "lg" | "xl";
-  icon?: React.ReactNode;
-  onRemove?: () => void;
+  variant?: "solid" | "soft" | "outline" | "surface";
+  size?: "1" | "2" | "3";
+  color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | string;
+  radius?: "none" | "small" | "medium" | "large" | "full";
+  highContrast?: boolean;
 }
 
 export default function Badge({
   children,
-  variant = "primary",
-  size = "md",
-  rounded = "md",
-  icon,
-  onRemove,
+  variant = "soft",
+  size = "1",
+  color,
+  radius,
+  highContrast = false,
   className = "",
+  style,
   ...props
 }: BadgeProps) {
+  const context = useThemeContext();
+
+  const resolvedColor = color || context?.accentColor || "indigo";
+
+  const isNamedColor = ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(
+    resolvedColor,
+  );
+
   const badgeClasses = [
     "badge",
-    `badge-${variant}`,
-    size !== "md" && `badge-${size}`,
-    rounded !== "md" && `badge-rounded-${rounded}`,
-    icon && "badge-icon",
-    onRemove && "badge-close",
+    `az-variant-${variant}`,
+    `az-r-size-${size}`,
+    isNamedColor ? `az-accent-${resolvedColor}` : "",
+    highContrast ? "az-high-contrast" : "",
     className,
   ]
     .filter(Boolean)
     .join(" ");
 
+  const customStyle: React.CSSProperties = {
+    ...style,
+    ...(color && !isNamedColor ? { "--accent-9": color } : {}),
+    ...(radius
+      ? {
+          "--radius-factor":
+            radius === "none"
+              ? "0"
+              : radius === "small"
+                ? "0.75"
+                : radius === "medium"
+                  ? "1"
+                  : radius === "large"
+                    ? "1.5"
+                    : "2",
+        }
+      : {}),
+  } as React.CSSProperties;
+
   return (
-    <span className={badgeClasses} {...props}>
-      {icon && <span className="icon">{icon}</span>}
+    <span className={badgeClasses} style={customStyle} {...props}>
       {children}
-      {onRemove && (
-        <button type="button" className="close-btn" onClick={onRemove} aria-label="Remove badge" />
-      )}
     </span>
   );
 }

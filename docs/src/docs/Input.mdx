@@ -371,6 +371,32 @@ export const ValidatedInputExample = () => {
 }`}
 </CodeBlockWithPreview>
 
+
+
+<h3>Input Sizes</h3>
+<CodeBlockWithPreview 
+  title="Input Sizes"
+  preview={
+    <div className="flex-vertical">
+      <Input placeholder="Size 1" size="1" />
+      <Input placeholder="Size 2 (Default)" size="2" />
+      <Input placeholder="Size 3" size="3" />
+    </div>
+  }
+>
+{`import { Input } from '@azodik/ui';
+
+export const InputSizes = () => {
+  return (
+    <div className="flex-vertical">
+      <Input placeholder="Size 1" size="1" />
+      <Input placeholder="Size 2 (Default)" size="2" />
+      <Input placeholder="Size 3" size="3" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
 <PropsInputSection />
 
 <PropsTable props={[
@@ -401,6 +427,27 @@ export const ValidatedInputExample = () => {
     required: false,
     default: '-',
     description: 'Visual status of the input (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the input field'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '-',
+    description: 'Border radius of the input'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Accent color for focus states'
   },
   {
     name: 'className',
@@ -441,6 +488,13 @@ export const ValidatedInputExample = () => {
     required: false,
     default: '-',
     description: 'Visual status of the textarea (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the textarea'
   },
   {
     name: 'autoResize',
@@ -502,6 +556,13 @@ export const ValidatedInputExample = () => {
     required: false,
     default: '-',
     description: 'Visual status of the select (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the select'
   },
   {
     name: 'options',

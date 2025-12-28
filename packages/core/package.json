@@ -1,6 +1,6 @@
 {
   "name": "azodik-ui-core",
-  "version": "0.2.8",
+  "version": "0.9.0",
   "main": "index.css",
   "types": "index.d.ts",
   "license": "MIT",
@@ -31,17 +31,28 @@
     "tokens/",
     "styles/"
   ],
+  "exports": {
+    ".": {
+      "default": "./index.css"
+    },
+    "./base.css": {
+      "default": "./base.css"
+    },
+    "./index.css": {
+      "default": "./index.css"
+    }
+  },
   "scripts": {
     "build": "echo 'Azodik UI CSS is ready'",
     "dev": "vite dev --port 3003",
     "lint": "echo 'No linting needed for CSS'",
     "type-check": "echo 'No type checking needed for CSS'",
     "clean": "node ../../scripts/clean.mjs",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/core && pnpm build",
     "publish": "npm publish --access public --force"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
-    "vite": "^7.1.12"
+    "vite": "^7.3.0"
   }
 }

@@ -13,6 +13,7 @@ export {
   CardAction,
 } from "./components/Card";
 export { default as Input, Textarea, Select, Checkbox, Radio, Switch } from "./components/Input";
+export { SelectWithSearch } from "./components/SelectWithSearch";
 export { default as Modal, ModalHeader, ModalFooter } from "./components/Modal";
 export { Toast } from "./components/Toast";
 export { Tooltip } from "./components/Tooltip";
@@ -80,8 +81,22 @@ export {
   DrawerClose,
 } from "./components/Drawer";
 
+// Providers
+export { ThemeProvider, useTheme } from "./providers/ThemeProvider";
+export type { ThemeProviderProps, ThemeConfig } from "./providers/ThemeProvider";
+
+// Theme Components
+export { Theme, ThemeToggle, useThemeContext } from "./components/Theme";
+export type { ThemeProps, ThemeToggleProps } from "./components/Theme";
+export { ThemePanel } from "./components/ThemePanel";
+export type { ThemePanelProps } from "./components/ThemePanel";
+
+// Error Boundary
+export { ErrorBoundary } from "./components/ErrorBoundary";
+
 // Hooks
 export { useResponsive } from "./hooks/useResponsive";
+export { useBodyScrollLock } from "./hooks/useBodyScrollLock";
 
 // Types
 export type { AlertProps } from "./components/Alert";
@@ -105,6 +120,7 @@ export type {
   RadioProps,
   SwitchProps,
 } from "./components/Input";
+export type { SelectWithSearchProps, SelectWithSearchOption } from "./components/SelectWithSearch";
 export type { ModalProps, ModalHeaderProps, ModalFooterProps } from "./components/Modal";
 export type { ToastProps } from "./components/Toast";
 export type { TooltipProps } from "./components/Tooltip";

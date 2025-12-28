@@ -10,8 +10,8 @@ const BarChartIcon: React.FC<BarChartIconProps> = ({ size = 20, className, style
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
+      viewBox="0 0 512 512"
+      fill="none"
       width={size}
       height={size}
       className={className}
@@ -20,7 +20,12 @@ const BarChartIcon: React.FC<BarChartIconProps> = ({ size = 20, className, style
         ...style,
       }}
     >
-      <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"></path>
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M64 64h64v298.667H64zm106.667 149.333h64v149.334h-64zM448 170.667h-64v192h64zm-170.667-64h64v256h-64zM448 405.333H64V448h384z"
+        clipRule="evenodd"
+      />
     </svg>
   );
 };

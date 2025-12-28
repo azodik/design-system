@@ -1,18 +1,9 @@
 import React from "react";
 
-type Size = "xs" | "sm" | "md" | "lg" | "xl";
-
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  variant?: "default" | "outlined" | "shadow";
-  width?: Size | string | number;
-  height?: Size | string | number;
-  padding?: Size | string | number;
-  rounded?: Size | string | number;
-  backgroundColor?: string;
-  borderColor?: string;
-  shadow?: boolean;
-  hoverEffect?: boolean;
+  variant?: "surface" | "classic" | "ghost";
+  size?: "1" | "2" | "3";
 }
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -39,61 +30,15 @@ export interface CardActionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-const sizeMap = {
-  xs: "0.25rem",
-  sm: "0.5rem",
-  md: "1rem",
-  lg: "1.5rem",
-  xl: "2rem",
-};
-
 export default function Card({
   children,
   className = "",
-  variant = "default",
-  width,
-  height,
-  padding = "md",
-  rounded = "sm",
-  backgroundColor,
-  borderColor,
-  shadow = true,
-  hoverEffect = false,
+  variant = "surface",
+  size = "2",
+  style,
   ...props
 }: CardProps) {
-  const variantClasses = {
-    default: "card",
-    outlined: "card card-outlined",
-    shadow: "card card-shadow",
-  };
-
-  const resolveSize = (value?: Size | string | number) => {
-    if (typeof value === "string" && sizeMap[value as Size]) return sizeMap[value as Size];
-    if (typeof value === "number") return `${value}px`;
-    return value; // assume custom string like "2rem"
-  };
-
-  const style: React.CSSProperties = {
-    width: width ? resolveSize(width) : "100%",
-    height: resolveSize(height),
-    padding: resolveSize(padding),
-    borderRadius: resolveSize(rounded),
-    backgroundColor,
-    borderColor,
-    boxShadow: shadow
-      ? "0 4px 6px rgba(0,0,0,0.1)" // light mode default
-      : undefined,
-    maxWidth: "100%",
-    overflow: "hidden",
-    wordWrap: "break-word",
-    wordBreak: "break-word",
-  };
-
-  const combinedClassName = [
-    variantClasses[variant],
-    hoverEffect && "card-hover",
-    className,
-  ]
+  const combinedClassName = ["az-Card", `az-variant-${variant}`, `az-r-size-${size}`, className]
     .filter(Boolean)
     .join(" ");
 
@@ -131,20 +76,7 @@ export function CardDescription({ children, className = "", ...props }: CardDesc
 
 export function CardContent({ children, className = "", ...props }: CardContentProps) {
   return (
-    <div 
-      className={`card-content ${className}`} 
-      style={{
-        maxWidth: "100%",
-        overflow: "hidden",
-        wordWrap: "break-word",
-        wordBreak: "break-word",
-        whiteSpace: "normal",
-        hyphens: "auto",
-        WebkitHyphens: "auto",
-        msHyphens: "auto",
-      }}
-      {...props}
-    >
+    <div className={`card-content ${className}`} {...props}>
       {children}
     </div>
   );

@@ -66,10 +66,19 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .homepage-nav-link:hover {
   color: #1e293b;
+}
+
+.homepage-mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .homepage-actions {
@@ -336,7 +345,7 @@
 
 .homepage-action-btn-test:hover {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-  border-color: #3b82f6;
+  border-color: var(--color-primary);
   color: #1d4ed8;
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
 }
@@ -698,7 +707,7 @@
 
 [data-theme="dark"] .homepage-action-btn-test:hover {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%) !important;
-  border-color: #3b82f6 !important;
+  border-color: var(--color-primary) !important;
   color: #93c5fd !important;
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3) !important;
 }

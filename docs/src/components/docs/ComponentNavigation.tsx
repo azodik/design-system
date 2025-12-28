@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@azodik/ui";
-import { LeftLongArrowIcon, RightLongArrowIcon } from "@azodik/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@azodik/icons";
 import { componentsMenuItems } from "@/data/componentsMenu";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 
@@ -44,24 +44,24 @@ export default function ComponentNavigation() {
       <Button
         onClick={handlePrevious}
         disabled={!previous}
-        variant="primary"
-        size="md"
+        variant="solid"
+        size="2"
         className="flex items-center gap-2"
       >
-        <LeftLongArrowIcon size={16} color="currentColor" />
-        <span className="font-medium">{previous ? t(previous.nameKey) : t('previous')}</span>
+        <ChevronLeftIcon size={16} />
+        <span className="font-medium">{previous ? t(previous.nameKey) : t("previous")}</span>
       </Button>
 
       {/* Next Button */}
       <Button
         onClick={handleNext}
         disabled={!next}
-        variant="primary"
-        size="md"
+        variant="solid"
+        size="2"
         className="flex items-center gap-2"
       >
-        <span className="font-medium">{next ? t(next.nameKey) : t('next')}</span>
-        <RightLongArrowIcon size={16} color="currentColor" />
+        <span className="font-medium">{next ? t(next.nameKey) : t("next")}</span>
+        <ChevronRightIcon size={16} />
       </Button>
     </div>
   );

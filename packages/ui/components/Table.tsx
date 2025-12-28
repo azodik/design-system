@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 
 export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
   children: React.ReactNode;
   striped?: boolean;
   bordered?: boolean;
   hover?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "1" | "2" | "3";
   responsive?: boolean;
 }
 
@@ -14,7 +14,7 @@ export default function Table({
   striped = false,
   bordered = false,
   hover = true,
-  size = "md",
+  size = "2",
   responsive = true,
   className = "",
   ...props
@@ -24,7 +24,7 @@ export default function Table({
     striped && "table-striped",
     bordered && "table-bordered",
     hover && "table-hover",
-    size !== "md" && `table-${size}`,
+    size !== "2" && `table-size-${size}`,
     className,
   ]
     .filter(Boolean)
@@ -155,13 +155,15 @@ export function TableCell({ children, numeric = false, className = "", ...props 
 }
 
 // Data Table Component with built-in features
-export interface DataTableProps<T = any> extends Omit<TableProps, "children"> {
+export interface DataTableProps<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> extends Omit<TableProps, "children"> {
   data: T[];
   columns: Array<{
     key: keyof T;
     label: string;
     sortable?: boolean;
-    render?: (value: any, row: T) => React.ReactNode;
+    render?: (value: T[keyof T], row: T) => React.ReactNode;
   }>;
   sortBy?: keyof T;
   sortDirection?: "asc" | "desc";
@@ -173,7 +175,22 @@ export interface DataTableProps<T = any> extends Omit<TableProps, "children"> {
   selectable?: boolean;
 }
 
-export function DataTable<T = any>({
+/**
+ * DataTable component with built-in sorting, selection, and row click handling
+ *
+ * @template T - Type of data objects in the table
+ * @param data - Array of data objects
+ * @param columns - Array of column definitions
+ * @param sortBy - Currently sorted column key
+ * @param sortDirection - Sort direction ("asc" | "desc")
+ * @param onSort - Callback when column is sorted
+ * @param onRowClick - Callback when row is clicked
+ * @param selectedRows - Array of selected rows
+ * @param onRowSelect - Callback when row selection changes
+ * @param onSelectAll - Callback when select all is toggled
+ * @param selectable - Enable row selection
+ */
+export function DataTable<T extends Record<string, unknown> = Record<string, unknown>>({
   data,
   columns,
   sortBy,
@@ -187,21 +204,37 @@ export function DataTable<T = any>({
   className = "",
   ...props
 }: DataTableProps<T>) {
-  const handleSort = (key: keyof T) => {
-    onSort?.(key);
-  };
+  const handleSort = useCallback(
+    (key: keyof T) => {
+      onSort?.(key);
+    },
+    [onSort],
+  );
 
-  const handleRowClick = (row: T) => {
-    onRowClick?.(row);
-  };
+  const handleRowClick = useCallback(
+    (row: T) => {
+      onRowClick?.(row);
+    },
+    [onRowClick],
+  );
 
-  const handleRowSelect = (row: T, selected: boolean) => {
-    onRowSelect?.(row, selected);
-  };
+  const handleRowSelect = useCallback(
+    (row: T, selected: boolean) => {
+      onRowSelect?.(row, selected);
+    },
+    [onRowSelect],
+  );
 
-  const isRowSelected = (row: T) => {
-    return selectedRows.indexOf(row) !== -1;
-  };
+  const isRowSelected = useCallback(
+    (row: T) => {
+      return selectedRows.indexOf(row) !== -1;
+    },
+    [selectedRows],
+  );
+
+  const allSelected = useMemo(() => {
+    return selectedRows.length === data.length && data.length > 0;
+  }, [selectedRows.length, data.length]);
 
   return (
     <Table className={className} {...props}>
@@ -211,7 +244,7 @@ export function DataTable<T = any>({
             <TableHeaderCell>
               <input
                 type="checkbox"
-                checked={selectedRows.length === data.length && data.length > 0}
+                checked={allSelected}
                 onChange={(e) => {
                   if (onSelectAll) {
                     onSelectAll(e.target.checked);
@@ -219,6 +252,7 @@ export function DataTable<T = any>({
                     data.forEach((row) => handleRowSelect(row, e.target.checked));
                   }
                 }}
+                aria-label="Select all rows"
               />
             </TableHeaderCell>
           )}

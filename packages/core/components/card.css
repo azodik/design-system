@@ -1,88 +1,69 @@
-.card {
-  background: var(--color-background);
+.card, .az-Card {
+  background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  padding: var(--space-md);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-2);
   color: var(--color-text);
-  transition: none;
-  /* Mobile responsive */
-  width: 100%;
-  max-width: 100%;
+  overflow: hidden;
   box-sizing: border-box;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
+  transition: all 0.2s ease;
 }
 
-.card-outlined {
-  background: transparent;
-  border: 1px solid var(--color-border);
+.card:hover, .az-Card:hover {
+  box-shadow: var(--shadow-3);
+  border-color: var(--gray-5);
 }
 
-.card-shadow {
-  box-shadow: var(--shadow-md);
+[data-theme="dark"] .card,
+[data-theme="dark"] .az-Card {
+  background-color: var(--gray-2);
+  border-color: var(--gray-4);
+  box-shadow: var(--shadow-3);
 }
 
-.card-hover:hover {
-  box-shadow: var(--shadow-lg);
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .az-Card:hover {
+  box-shadow: var(--shadow-4);
+  border-color: var(--gray-5);
 }
 
-.card-content {
-  max-width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
+/* Variants */
+.az-variant-surface {
+  background-color: var(--gray-2);
+  border-color: var(--gray-4);
+  box-shadow: none;
 }
 
-.card-content p {
-  max-width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-  line-height: 1.4;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
+.az-variant-classic {
+  background-color: var(--gray-1);
+  border-color: var(--gray-4);
+  box-shadow: var(--shadow-3);
 }
 
-.card-content {
-  max-width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
+.az-variant-classic:hover {
+  box-shadow: var(--shadow-4);
 }
 
-.card-content * {
-  max-width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
+.az-variant-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
-/* Mobile responsive styles */
-@media (max-width: 768px) {
-  .card {
-    margin: 0 16px;
-    padding: var(--space-sm);
-    border-radius: var(--radius-md);
-  }
-  
-  .card-header {
-    padding: var(--space-sm) var(--space-sm) 0;
-  }
-  
-  .card-content {
-    padding: var(--space-sm);
-  }
-  
-  .card-footer {
-    padding: var(--space-sm);
-    padding-top: 0;
-  }
+.az-variant-ghost:hover {
+  background-color: var(--gray-2);
+  border-color: var(--gray-4);
+  box-shadow: var(--shadow-1);
 }
+
+/* Sizes */
+.card.az-r-size-1, .az-Card.az-r-size-1 { padding: var(--space-2); }
+.card.az-r-size-2, .az-Card.az-r-size-2 { padding: var(--space-4); }
+.card.az-r-size-3, .az-Card.az-r-size-3 { padding: var(--space-6); }
+
+/* Card Components */
+.card-header { padding-bottom: var(--space-2); }
+.card-title { font-size: var(--font-size-lg); font-weight: 600; margin: 0; }
+.card-description { color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: var(--space-1) 0 0; }
+.card-content { padding: var(--space-4) 0; }
+.card-footer { padding-top: var(--space-4); display: flex; gap: var(--space-2); }

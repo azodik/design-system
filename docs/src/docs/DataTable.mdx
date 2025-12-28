@@ -171,7 +171,7 @@ export const SelectableDataTableExample = () => {
         <Button 
           onClick={handleBulkAction}
           disabled={selectedRows.length === 0}
-          variant="destructive"
+          variant="solid" color="ruby"
         >
           Delete Selected ({selectedRows.length})
         </Button>
@@ -207,10 +207,10 @@ export const ActionDataTableExample = () => {
       label: 'Actions',
       render: (row) => (
         <div className="flex gap-sm">
-          <Button size="sm" variant="outline" onClick={() => console.log('Edit:', row.id)}>
+          <Button size="1" variant="outline" onClick={() => console.log('Edit:', row.id)}>
             Edit
           </Button>
-          <Button size="sm" variant="destructive" onClick={() => console.log('Delete:', row.id)}>
+          <Button size="1" variant="solid" color="ruby" onClick={() => console.log('Delete:', row.id)}>
             Delete
           </Button>
         </div>

@@ -186,6 +186,33 @@ export const AlternativePositionExample = () => {
 };`}
 </CodeBlockWithPreview>
 
+<CodeBlockWithPreview 
+  title="Switch Sizes"
+  preview={
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Switch id="small-switch" label="Small" size="1" position="default" />
+        <Switch id="medium-switch" label="Medium" size="2" position="default" />
+        <Switch id="large-switch" label="Large" size="3" position="default" />
+      </div>
+    </div>
+  }
+>
+{`import { Switch } from '@azodik/ui';
+
+export const SizedSwitchExample = () => {
+  return (
+    <div className="flex-vertical">
+      <div className="flex items-center gap-4">
+        <Switch id="small-switch" label="Small" size="1" position="default" />
+        <Switch id="medium-switch" label="Medium" size="2" position="default" />
+        <Switch id="large-switch" label="Large" size="3" position="default" />
+      </div>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
 <WithDisabledStateSection />
 
 <CodeBlockWithPreview 
@@ -234,6 +261,13 @@ export const DisabledSwitchExample = () => {
     required: false,
     default: '-',
     description: 'Error message to display below the switch'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3" | "sm" | "md" | "lg"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the switch'
   },
   {
     name: 'checked',

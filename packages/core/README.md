@@ -17,33 +17,28 @@ A comprehensive, modern design system built with CSS custom properties, featurin
 ### Installation
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd design-system
-
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm  dev
+npm install azodik-ui-core
 ```
 
 ### Usage
 
-Include the CSS files in your project:
+**Option 1: With Default Theme (Recommended)**
 
-```html
-<!-- Design tokens (required) -->
-<link rel="stylesheet" href="./tokens/tokens.css" />
-
-<!-- Global styles -->
-<link rel="stylesheet" href="./styles/globals.css" />
-
-<!-- Component styles -->
-<link rel="stylesheet" href="./components/button.css" />
-<link rel="stylesheet" href="./components/card.css" />
-<!-- Add other components as needed -->
+```tsx
+import "azodik-ui-core";
+// or
+import "azodik-ui-core/index.css";
 ```
+
+**Option 2: Without Default Theme (For Custom Themes)**
+
+```tsx
+import "azodik-ui-core/base.css";
+// Then import your custom theme
+import "./my-custom-theme.css";
+```
+
+See [THEMING.md](./THEMING.md) for detailed theming guide.
 
 ## 🎨 Color Palette
 

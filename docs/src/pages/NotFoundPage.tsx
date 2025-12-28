@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, CardContent } from "@azodik/ui";
-import { HomeIcon, LeftLongArrowIcon } from "@azodik/icons";
+import { HomeIcon, ChevronLeftIcon } from "@azodik/icons";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 import "@/styles/docs.css";
@@ -32,9 +32,7 @@ export default function NotFoundPage() {
             {/* Error Message */}
             <div className="not-found-message">
               <h2 className="not-found-title">{t("notFound.title")}</h2>
-              <p className="not-found-description">
-                {t("notFound.description")}
-              </p>
+              <p className="not-found-description">{t("notFound.description")}</p>
             </div>
 
             {/* Illustration */}
@@ -74,18 +72,12 @@ export default function NotFoundPage() {
 
             {/* Action Buttons */}
             <div className="not-found-actions">
-              <Button
-                onClick={handleGoHome}
-                className="btn-primary not-found-button"
-              >
+              <Button onClick={handleGoHome} variant="solid" className="not-found-button">
                 <HomeIcon size={16} />
                 <span>{t("notFound.goHome")}</span>
               </Button>
-              <Button
-                onClick={handleGoBack}
-                className="btn-outline not-found-button"
-              >
-                <LeftLongArrowIcon size={16} />
+              <Button onClick={handleGoBack} variant="outline" className="not-found-button">
+                <ChevronLeftIcon size={16} />
                 <span>{t("notFound.goBack")}</span>
               </Button>
             </div>
@@ -94,17 +86,11 @@ export default function NotFoundPage() {
             <div className="not-found-help">
               <p className="not-found-help-text">
                 {t("notFound.helpText")}{" "}
-                <a
-                  href="/components/docs/getting-started"
-                  className="not-found-link"
-                >
+                <a href="/components/docs/getting-started" className="not-found-link">
                   {t("notFound.gettingStarted")}
                 </a>{" "}
                 {t("notFound.orBrowse")}{" "}
-                <a
-                  href="/components"
-                  className="not-found-link"
-                >
+                <a href="/components" className="not-found-link">
                   {t("notFound.components")}
                 </a>
                 .

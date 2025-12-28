@@ -142,8 +142,8 @@ export const DesignGuidelinesList = () => {
   title={<AllButtonVariantsTitle />}
   preview={
     <div className="flex gap-sm">
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
+      <Button variant="solid">Primary</Button>
+      <Button variant="soft">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
@@ -155,11 +155,11 @@ export const DesignGuidelinesList = () => {
 export const ButtonExamples = () => {
   return (
     <div className="flex-vertical">
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
+      <Button variant="solid">Primary</Button>
+      <Button variant="soft">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
+      <Button variant="solid" color="ruby">Destructive</Button>
     </div>
   );
 };`}
@@ -170,7 +170,7 @@ export const ButtonExamples = () => {
 <CodeBlockWithPreview 
   title={<ButtonWithIconsTitle />}
   preview={
-    <Button variant="primary" size="md">
+    <Button variant="solid" size="2">
       + Add
     </Button>
   }
@@ -179,7 +179,7 @@ export const ButtonExamples = () => {
 
 export const IconButton = () => {
   return (
-    <Button variant="primary" size="md">
+    <Button variant="solid" size="2">
       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
       </svg>
@@ -194,7 +194,7 @@ export const IconButton = () => {
 <CodeBlockWithPreview 
   title={<DisabledButtonTitle />}
   preview={
-    <Button variant="primary" disabled>
+    <Button variant="solid" disabled>
       Disabled Button
     </Button>
   }
@@ -203,7 +203,7 @@ export const IconButton = () => {
 
 export const DisabledButton = () => {
   return (
-    <Button variant="primary" disabled>
+    <Button variant="solid" disabled>
       Disabled Button
     </Button>
   );
@@ -222,24 +222,38 @@ export const DisabledButton = () => {
   },
   {
     name: 'variant',
-    type: '"primary" | "secondary" | "tertiary" | "outline" | "link" | "ghost" | "destructive"',
+    type: '"solid" | "soft" | "outline" | "ghost" | "link"',
     required: false,
-    default: '"primary"',
+    default: '"solid"',
     description: 'Visual style variant of the button'
   },
   {
     name: 'size',
-    type: '"sm" | "md" | "lg"',
+    type: '"1" | "2" | "3" | "4"',
     required: false,
-    default: '"md"',
-    description: 'Size of the button'
+    default: '"2"',
+    description: 'Size preset for the button'
   },
   {
     name: 'color',
-    type: 'string',
+    type: 'ThemeAccentColor',
     required: false,
-    default: '-',
-    description: 'Custom color for the button. Applies to background or border depending on variant'
+    default: 'inherit',
+    description: 'Accent color for the button'
+  },
+  {
+    name: 'radius',
+    type: 'ThemeRadius',
+    required: false,
+    default: 'inherit',
+    description: 'Border radius of the button'
+  },
+  {
+    name: 'highContrast',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether to use high contrast colors'
   },
   {
     name: 'disabled',
@@ -247,13 +261,6 @@ export const DisabledButton = () => {
     required: false,
     default: 'false',
     description: 'Whether the button is disabled'
-  },
-  {
-    name: 'width',
-    type: 'string | number',
-    required: false,
-    default: '-',
-    description: 'Custom width for the button. Numbers are converted to pixels'
   },
   {
     name: 'className',

@@ -18,7 +18,7 @@ export default function Navigation({
   const navClasses = ["navbar", mobile && "navbar-mobile", className].filter(Boolean).join(" ");
 
   return (
-    <nav className={navClasses} style={{ width: '100%' }} {...props}>
+    <nav className={navClasses} style={{ width: "100%" }} {...props}>
       {brand && <div className="navbar-brand">{brand}</div>}
       <ul className={`navbar-nav ${isMobileOpen ? "open" : ""}`}>{children}</ul>
       {mobile && (

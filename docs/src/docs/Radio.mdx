@@ -251,11 +251,11 @@ export const SizedRadioExample = () => {
       <div>
         <h4>Small Radio</h4>
         <div className="flex items-center gap-sm">
-          <Radio id="small1" name="small" value="1" size="sm" />
+          <Radio id="small1" name="small" value="1" size="1" />
           <label htmlFor="small1">Option 1</label>
         </div>
         <div className="flex items-center gap-sm">
-          <Radio id="small2" name="small" value="2" size="sm" />
+          <Radio id="small2" name="small" value="2" size="1" />
           <label htmlFor="small2">Option 2</label>
         </div>
       </div>
@@ -263,11 +263,11 @@ export const SizedRadioExample = () => {
       <div>
         <h4>Medium Radio</h4>
         <div className="flex items-center gap-sm">
-          <Radio id="medium1" name="medium" value="1" size="md" />
+          <Radio id="medium1" name="medium" value="1" size="2" />
           <label htmlFor="medium1">Option 1</label>
         </div>
         <div className="flex items-center gap-sm">
-          <Radio id="medium2" name="medium" value="2" size="md" />
+          <Radio id="medium2" name="medium" value="2" size="2" />
           <label htmlFor="medium2">Option 2</label>
         </div>
       </div>
@@ -275,11 +275,11 @@ export const SizedRadioExample = () => {
       <div>
         <h4>Large Radio</h4>
         <div className="flex items-center gap-sm">
-          <Radio id="large1" name="large" value="1" size="lg" />
+          <Radio id="large1" name="large" value="1" size="3" />
           <label htmlFor="large1">Option 1</label>
         </div>
         <div className="flex items-center gap-sm">
-          <Radio id="large2" name="large" value="2" size="lg" />
+          <Radio id="large2" name="large" value="2" size="3" />
           <label htmlFor="large2">Option 2</label>
         </div>
       </div>
@@ -357,6 +357,44 @@ export const DefaultRadioGroupExample = () => {
 }`}
 </CodeBlockWithPreview>
 
+<h3>Radio Sizes</h3>
+<CodeBlockWithPreview 
+  title="Radio Sizes"
+  preview={<SizedRadioExample />}
+>
+{`import { Radio } from '@azodik/ui';
+
+export default function SizedRadio() {
+  return (
+    <div className="flex-vertical">
+      <div>
+        <h4>Small Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="small1" name="small" value="1" size="1" />
+          <label htmlFor="small1">Option 1</label>
+        </div>
+      </div>
+      
+      <div>
+        <h4>Medium Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="medium1" name="medium" value="1" size="2" />
+          <label htmlFor="medium1">Option 1</label>
+        </div>
+      </div>
+      
+      <div>
+        <h4>Large Radio</h4>
+        <div className="flex items-center gap-sm">
+          <Radio id="large1" name="large" value="1" size="3" />
+          <label htmlFor="large1">Option 1</label>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+</CodeBlockWithPreview>
+
 <PropsRadioSection />
 
 <PropsTable props={[
@@ -380,6 +418,13 @@ export const DefaultRadioGroupExample = () => {
     required: false,
     default: '-',
     description: 'Error message to display below the radio button'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the radio button'
   },
   {
     name: 'className',

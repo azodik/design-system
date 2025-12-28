@@ -150,6 +150,30 @@ export default function BasicTextarea() {
 }`}
 </CodeBlockWithPreview>
 
+<h3>Textarea Sizes</h3>
+<CodeBlockWithPreview 
+  title="Textarea Sizes"
+  preview={
+    <div className="flex-vertical">
+      <Textarea placeholder="Size 1" size="1" />
+      <Textarea placeholder="Size 2 (Default)" size="2" />
+      <Textarea placeholder="Size 3" size="3" />
+    </div>
+  }
+>
+{`import { Textarea } from '@azodik/ui';
+
+export const TextareaSizes = () => {
+  return (
+    <div className="flex-vertical">
+      <Textarea placeholder="Size 1" size="1" />
+      <Textarea placeholder="Size 2 (Default)" size="2" />
+      <Textarea placeholder="Size 3" size="3" />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
 <PropsTextareaSection />
 
 <PropsTable props={[
@@ -180,6 +204,27 @@ export default function BasicTextarea() {
     required: false,
     default: '-',
     description: 'Visual status of the textarea (success or error)'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'Size of the textarea'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '-',
+    description: 'Border radius of the textarea'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Accent color for focus states'
   },
   {
     name: 'autoResize',

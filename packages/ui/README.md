@@ -17,19 +17,92 @@ A modern, accessible React component library built with TypeScript, featuring a 
 ### Installation
 
 ```bash
-# Install the React components
+# Install the React components (includes CSS automatically)
 npm install @azodik/ui
-
-# Install the CSS design system (required)
-npm install azodik-ui-core
 ```
 
 ### Basic Usage
 
+**Standard Installation with ThemeProvider (Recommended)**
+
 ```tsx
-import React from 'react';
-import { Button, Card, Input } from '@azodik/ui';
-import 'azodik-ui-core'; // Import the CSS
+import React from "react";
+import { ThemeProvider, Button, Card, Input } from "@azodik/ui";
+import "@azodik/ui/styles.css"; // Import CSS (includes default theme)
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" accentColor="#f97316">
+      <Card>
+        <h2>Welcome to Azodik UI</h2>
+        <Input placeholder="Enter your name" />
+        <Button>Get Started</Button>
+      </Card>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+**With Custom Theme Configuration**
+
+```tsx
+import React from "react";
+import { ThemeProvider, Button, Card, Input } from "@azodik/ui";
+import "@azodik/ui/styles.css";
+
+function App() {
+  const themeConfig = {
+    primary: "#f97316",
+    primaryHover: "#ea580c",
+    background: "#ffffff",
+    text: "#111827",
+    // ... more theme tokens
+  };
+
+  return (
+    <ThemeProvider defaultTheme="light" config={themeConfig}>
+      <Card>
+        <h2>Welcome to Azodik UI</h2>
+        <Input placeholder="Enter your name" />
+        <Button>Get Started</Button>
+      </Card>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+**With System Theme Detection**
+
+```tsx
+import React from "react";
+import { ThemeProvider, Button, Card, Input } from "@azodik/ui";
+import "@azodik/ui/styles.css";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system" accentColor="#f97316">
+      <Card>
+        <h2>Welcome to Azodik UI</h2>
+        <Input placeholder="Enter your name" />
+        <Button>Get Started</Button>
+      </Card>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+**Legacy Usage (Without ThemeProvider)**
+
+```tsx
+import React from "react";
+import { Button, Card, Input } from "@azodik/ui";
+import "@azodik/ui/styles.css"; // Import CSS (includes default theme)
 
 function App() {
   return (
@@ -51,6 +124,7 @@ export default App;
 ### Form Components
 
 #### Input
+
 ```tsx
 import { Input, Textarea, Select, Checkbox, Radio, Switch } from '@azodik/ui';
 
@@ -73,28 +147,30 @@ import { Input, Textarea, Select, Checkbox, Radio, Switch } from '@azodik/ui';
 ```
 
 #### Button
+
 ```tsx
 import { Button } from '@azodik/ui';
 
 // Primary button
 <Button>Click me</Button>
 
-// Secondary button
-<Button variant="secondary">Cancel</Button>
+// Soft variant button
+<Button variant="soft">Cancel</Button>
 
 // Outline button
 <Button variant="outline">Learn More</Button>
 
 // Different sizes
-<Button size="sm">Small</Button>
-<Button size="lg">Large</Button>
+<Button size="1">Small</Button>
+<Button size="3">Large</Button>
 ```
 
 ### Layout Components
 
 #### Card
+
 ```tsx
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@azodik/ui';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@azodik/ui";
 
 <Card>
   <CardHeader>
@@ -106,23 +182,25 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@azodik/ui
   <CardFooter>
     <Button>Action</Button>
   </CardFooter>
-</Card>
+</Card>;
 ```
 
 #### Navigation
+
 ```tsx
-import { Navigation, NavItem } from '@azodik/ui';
+import { Navigation, NavItem } from "@azodik/ui";
 
 <Navigation>
   <NavItem href="/home">Home</NavItem>
   <NavItem href="/about">About</NavItem>
   <NavItem href="/contact">Contact</NavItem>
-</Navigation>
+</Navigation>;
 ```
 
 ### Feedback Components
 
 #### Alert
+
 ```tsx
 import { Alert } from '@azodik/ui';
 
@@ -144,8 +222,9 @@ import { Alert } from '@azodik/ui';
 ```
 
 #### Modal
+
 ```tsx
-import { Modal, ModalHeader, ModalFooter } from '@azodik/ui';
+import { Modal, ModalHeader, ModalFooter } from "@azodik/ui";
 
 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
   <ModalHeader>
@@ -157,24 +236,26 @@ import { Modal, ModalHeader, ModalFooter } from '@azodik/ui';
   <ModalFooter>
     <Button onClick={() => setIsOpen(false)}>Close</Button>
   </ModalFooter>
-</Modal>
+</Modal>;
 ```
 
 #### Toast
+
 ```tsx
-import { Toast } from '@azodik/ui';
+import { Toast } from "@azodik/ui";
 
 // Show a toast notification
 Toast.show({
   title: "Success!",
   message: "Your changes have been saved.",
-  type: "success"
+  type: "success",
 });
 ```
 
 ### Data Display Components
 
 #### Table
+
 ```tsx
 import { Table, TableHeader, TableBody, TableRow, TableCell, DataTable } from '@azodik/ui';
 
@@ -206,24 +287,26 @@ import { Table, TableHeader, TableBody, TableRow, TableCell, DataTable } from '@
 ```
 
 #### Badge
+
 ```tsx
 import { Badge } from '@azodik/ui';
 
-<Badge variant="primary">New</Badge>
-<Badge variant="success">Active</Badge>
-<Badge variant="warning">Pending</Badge>
-<Badge variant="error">Error</Badge>
+<Badge variant="solid" color="indigo">New</Badge>
+<Badge variant="solid" color="grass">Active</Badge>
+<Badge variant="solid" color="amber">Pending</Badge>
+<Badge variant="solid" color="ruby">Error</Badge>
 ```
 
 #### Avatar
+
 ```tsx
 import { Avatar, AvatarGroup } from '@azodik/ui';
 
 // Single avatar
-<Avatar src="/user.jpg" alt="User" size="lg" />
+<Avatar src="/user.jpg" alt="User" size="4" />
 
 // Avatar with fallback
-<Avatar name="John Doe" size="md" />
+<Avatar name="John Doe" size="3" />
 
 // Avatar group
 <AvatarGroup>
@@ -237,16 +320,17 @@ import { Avatar, AvatarGroup } from '@azodik/ui';
 ### Navigation Components
 
 #### Sidebar
+
 ```tsx
-import { 
-  Sidebar, 
-  SidebarHeader, 
-  SidebarContent, 
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarItem,
-  SidebarBrand
-} from '@azodik/ui';
+  SidebarBrand,
+} from "@azodik/ui";
 
 <Sidebar>
   <SidebarHeader>
@@ -264,12 +348,13 @@ import {
   <SidebarFooter>
     <SidebarItem href="/profile">Profile</SidebarItem>
   </SidebarFooter>
-</Sidebar>
+</Sidebar>;
 ```
 
 #### Tabs
+
 ```tsx
-import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';
+import { Tabs, TabList, TabTrigger, TabContent } from "@azodik/ui";
 
 <Tabs defaultValue="tab1">
   <TabList>
@@ -280,31 +365,27 @@ import { Tabs, TabList, TabTrigger, TabContent } from '@azodik/ui';
   <TabContent value="tab1">Content for tab 1</TabContent>
   <TabContent value="tab2">Content for tab 2</TabContent>
   <TabContent value="tab3">Content for tab 3</TabContent>
-</Tabs>
+</Tabs>;
 ```
 
 #### Breadcrumb
+
 ```tsx
-import { Breadcrumb } from '@azodik/ui';
+import { Breadcrumb } from "@azodik/ui";
 
 <Breadcrumb>
   <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
   <Breadcrumb.Item href="/products">Products</Breadcrumb.Item>
   <Breadcrumb.Item>Current Page</Breadcrumb.Item>
-</Breadcrumb>
+</Breadcrumb>;
 ```
 
 ### Interactive Components
 
 #### Dialog
+
 ```tsx
-import { 
-  Dialog, 
-  DialogTrigger, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle 
-} from '@azodik/ui';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@azodik/ui";
 
 <Dialog>
   <DialogTrigger asChild>
@@ -316,12 +397,13 @@ import {
     </DialogHeader>
     <p>Dialog content goes here.</p>
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 #### Popover
+
 ```tsx
-import { Popover } from '@azodik/ui';
+import { Popover } from "@azodik/ui";
 
 <Popover>
   <Popover.Trigger asChild>
@@ -330,19 +412,21 @@ import { Popover } from '@azodik/ui';
   <Popover.Content>
     <p>Popover content goes here.</p>
   </Popover.Content>
-</Popover>
+</Popover>;
 ```
 
 #### Tooltip
+
 ```tsx
-import { Tooltip } from '@azodik/ui';
+import { Tooltip } from "@azodik/ui";
 
 <Tooltip content="This is a tooltip">
   <Button>Hover me</Button>
-</Tooltip>
+</Tooltip>;
 ```
 
 ### Charts
+
 ```tsx
 import { LineChart, AreaChart, BarChart, PieChart } from '@azodik/ui';
 
@@ -360,9 +444,121 @@ const data = [
 
 ## 🎨 Theming
 
+### ThemeProvider
+
+The `ThemeProvider` component is the recommended way to set up theming in your application. It provides theme configuration, theme switching, and system theme detection.
+
+#### Basic ThemeProvider Usage
+
+```tsx
+import { ThemeProvider } from "@azodik/ui";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" accentColor="#f97316">
+      {/* Your app components */}
+    </ThemeProvider>
+  );
+}
+```
+
+#### ThemeProvider with Custom Configuration
+
+```tsx
+import { ThemeProvider } from "@azodik/ui";
+
+function App() {
+  const themeConfig = {
+    primary: "#f97316",
+    primaryHover: "#ea580c",
+    primaryLight: "#fff7ed",
+    secondary: "#ea580c",
+    background: "#ffffff",
+    surface: "#f9fafb",
+    text: "#111827",
+    textSecondary: "#6b7280",
+    border: "#e5e7eb",
+    radiusMd: "8px",
+    shadowMd: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    // ... more tokens
+  };
+
+  return (
+    <ThemeProvider defaultTheme="light" config={themeConfig}>
+      {/* Your app components */}
+    </ThemeProvider>
+  );
+}
+```
+
+#### Theme Switching with useTheme Hook
+
+```tsx
+import { ThemeProvider, useTheme, Button } from "@azodik/ui";
+
+function ThemeSwitcher() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+      Switch to {theme === "light" ? "dark" : "light"} mode
+    </Button>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <ThemeSwitcher />
+      {/* Your app components */}
+    </ThemeProvider>
+  );
+}
+```
+
+#### Using Theme Component for Local Theme Changes
+
+```tsx
+import { ThemeProvider, Theme, Button } from "@azodik/ui";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      {/* Default theme */}
+      <Button>Default Theme Button</Button>
+
+      {/* Local theme override */}
+      <Theme accentColor="#3b82f6" appearance="dark">
+        <Button>Blue Dark Theme Button</Button>
+      </Theme>
+
+      {/* Another local theme */}
+      <Theme accentColor="#10b981">
+        <Button>Green Theme Button</Button>
+      </Theme>
+    </ThemeProvider>
+  );
+}
+```
+
+#### ThemeToggle Component
+
+```tsx
+import { ThemeProvider, ThemeToggle } from "@azodik/ui";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <ThemeToggle />
+      {/* Your app components */}
+    </ThemeProvider>
+  );
+}
+```
+
 ### CSS Custom Properties
 
-The design system uses CSS custom properties for easy theming:
+The design system uses CSS custom properties for easy theming. When using `ThemeProvider`, these are automatically applied:
 
 ```css
 :root {
@@ -379,17 +575,17 @@ The design system uses CSS custom properties for easy theming:
 }
 ```
 
-### Theme Switching
+### Manual Theme Switching (Without ThemeProvider)
 
 ```tsx
-// Toggle theme
+// Toggle theme manually
 function toggleTheme() {
   const html = document.documentElement;
   const currentTheme = html.getAttribute("data-theme");
   const newTheme = currentTheme === "light" ? "dark" : "light";
-  
+
   html.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
+  localStorage.setItem("azodik-theme", newTheme);
 }
 ```
 
@@ -398,11 +594,11 @@ function toggleTheme() {
 ### useResponsive
 
 ```tsx
-import { useResponsive } from '@azodik/ui';
+import { useResponsive } from "@azodik/ui";
 
 function MyComponent() {
   const { isMobile, isTablet, isDesktop, deviceType } = useResponsive();
-  
+
   return (
     <div>
       {isMobile && <MobileLayout />}
@@ -419,7 +615,7 @@ All components are mobile-first and responsive:
 
 ```tsx
 // Components automatically adapt to screen size
-<Button size={{ base: "sm", md: "md", lg: "lg" }}>
+<Button size={{ base: "1", md: "2", lg: "3" }}>
   Responsive Button
 </Button>
 
@@ -457,11 +653,7 @@ All components use CSS classes that can be customized:
 All components accept standard HTML attributes and custom props:
 
 ```tsx
-<Button 
-  className="my-custom-class"
-  style={{ backgroundColor: 'red' }}
-  onClick={handleClick}
->
+<Button className="my-custom-class" style={{ backgroundColor: "red" }} onClick={handleClick}>
   Custom Button
 </Button>
 ```
@@ -473,7 +665,7 @@ All components accept standard HTML attributes and custom props:
 Full TypeScript definitions are included:
 
 ```tsx
-import { Button, ButtonProps } from '@azodik/ui';
+import { Button, ButtonProps } from "@azodik/ui";
 
 const MyButton: React.FC<ButtonProps> = (props) => {
   return <Button {...props} />;
@@ -486,10 +678,10 @@ Import only what you need:
 
 ```tsx
 // ✅ Good - tree shakeable
-import { Button } from '@azodik/ui';
+import { Button } from "@azodik/ui";
 
 // ❌ Avoid - imports everything
-import * as UI from '@azodik/ui';
+import * as UI from "@azodik/ui";
 ```
 
 ## 📦 Bundle Size

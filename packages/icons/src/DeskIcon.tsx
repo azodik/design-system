@@ -1,0 +1,31 @@
+import React from "react";
+
+interface DeskIconProps {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const DeskIcon: React.FC<DeskIconProps> = ({ size = 20, className, style }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      width={size}
+      height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
+    >
+      <path
+        fill="currentColor"
+        d="M3 6h18c.55 0 1 .45 1 1s-.45 1-1 1v11h-2v-2h-4v2h-2V8H5v11H3V8c-.55 0-1-.45-1-1s.45-1 1-1m13 4.5v.5h2v-.5c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5m0 4v.5h2v-.5c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5"
+      />
+    </svg>
+  );
+};
+
+export default DeskIcon;

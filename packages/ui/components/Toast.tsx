@@ -23,6 +23,13 @@ export function Toast({
 }: ToastProps) {
   const [isClosing, setIsClosing] = React.useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose?.();
+    }, 300); // Match animation duration
+  }, [onClose]);
+
   useEffect(() => {
     if (autoClose && onClose) {
       const timer = setTimeout(() => {
@@ -30,14 +37,7 @@ export function Toast({
       }, autoClose);
       return () => clearTimeout(timer);
     }
-  }, [autoClose, onClose]);
-
-  const handleClose = useCallback(() => {
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose?.();
-    }, 300); // Match animation duration
-  }, [onClose]);
+  }, [autoClose, onClose, handleClose]);
 
   const getIcon = useCallback(() => {
     if (icon) return icon;

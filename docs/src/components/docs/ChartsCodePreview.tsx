@@ -18,8 +18,6 @@ interface ChartsCodePreviewProps {
 }
 
 export default function ChartsCodePreview({
-  title,
-  description,
   preview,
   code,
   children,
@@ -33,12 +31,28 @@ export default function ChartsCodePreview({
   const { t } = useLanguageTranslation();
 
   const handleCopy = async () => {
+    const textToCopy = code || children || "";
     try {
-      await navigator.clipboard.writeText(code || children || '');
+      await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy code:", err);
+    } catch {
+      // Fallback for browsers that don't support clipboard API
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // If all methods fail, show user-friendly message
+        alert(t("copyFailed") || "Failed to copy code. Please select and copy manually.");
+      }
     }
   };
 
@@ -47,10 +61,10 @@ export default function ChartsCodePreview({
       <Tabs value={activeTab} onValueChange={setActiveTab} style={{ marginTop: "40px" }}>
         <TabList>
           <TabTrigger value="preview" borderWidth={4} width="100px">
-            {t('preview')}
+            {t("preview")}
           </TabTrigger>
           <TabTrigger value="code" borderWidth={4} width="100px">
-            {t('code')}
+            {t("code")}
           </TabTrigger>
         </TabList>
 
@@ -60,10 +74,10 @@ export default function ChartsCodePreview({
             style={{
               backgroundColor: "var(--color-surface)",
               borderColor: "var(--color-border)",
-              marginLeft: '0px',
-              overflowX: 'auto',
-              overflowY: 'hidden',
-              WebkitOverflowScrolling: 'touch',
+              marginLeft: "0px",
+              overflowX: "auto",
+              overflowY: "hidden",
+              WebkitOverflowScrolling: "touch",
             }}
           >
             {preview}
@@ -80,20 +94,16 @@ export default function ChartsCodePreview({
               minHeight: minHeight,
               width: width,
               position: "relative",
-              marginLeft: '0px',
+              marginLeft: "0px",
             }}
           >
             <button
               onClick={handleCopy}
               className="absolute top-4 right-4 z-10 p-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
               style={{ top: "10px", right: "10px" }}
-              title={copied ? t('copied') : t('copyCode')}
+              title={copied ? t("copied") : t("copyCode")}
             >
-              {copied ? (
-                <TickIcon size={16} color="currentColor" />
-              ) : (
-                <CopyIcon size={16} color="currentColor" />
-              )}
+              {copied ? <TickIcon size={16} /> : <CopyIcon size={16} />}
             </button>
             <SyntaxHighlighter
               language={language}

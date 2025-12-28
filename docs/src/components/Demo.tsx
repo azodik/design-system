@@ -122,7 +122,7 @@ export default function Demo() {
       {/* Back to Home Button */}
       <div className="mb-md">
         <Button
-          variant="tertiary"
+          variant="ghost"
           onClick={() => navigate("/")}
           style={{
             display: "flex",
@@ -153,17 +153,17 @@ export default function Demo() {
       {/* Alerts Section */}
       <section id="alerts" className="mb-lg">
         <h2>Alerts</h2>
-        <Alert variant="success" title="Success!" onClose={() => {}}>
+        <Alert variant="soft" color="grass" title="Success!">
           Your changes have been saved successfully.
         </Alert>
-        <Alert variant="warning" title="Warning">
+        <Alert variant="soft" color="amber" title="Warning">
           Please review your information before proceeding.
         </Alert>
-        <Alert variant="error" title="Error">
+        <Alert variant="soft" color="ruby" title="Error">
           Something went wrong. Please try again.
         </Alert>
-        <Alert variant="info" title="Info">
-          Here's some helpful information for you.
+        <Alert variant="soft" color="cyan" title="Info">
+          Here&apos;s some helpful information for you.
         </Alert>
       </section>
 
@@ -175,13 +175,13 @@ export default function Demo() {
         <div className="mb-md">
           <h3>Button Variants</h3>
           <div className="mb-sm">
-            <Button variant="primary" onClick={() => alert("Primary clicked!")}>
+            <Button variant="solid" onClick={() => alert("Primary clicked!")}>
               Primary Button
             </Button>
-            <Button variant="secondary" className="ml-sm">
+            <Button variant="soft" className="ml-sm">
               Secondary Button
             </Button>
-            <Button variant="tertiary" className="ml-sm">
+            <Button variant="ghost" className="ml-sm">
               Tertiary Button
             </Button>
           </div>
@@ -210,13 +210,13 @@ export default function Demo() {
               >
                 Primary
               </h4>
-              <Button size="sm" variant="primary">
+              <Button size="1" variant="solid">
                 Small Button
               </Button>
-              <Button size="md" variant="primary">
+              <Button size="2" variant="solid">
                 Medium Button
               </Button>
-              <Button size="lg" variant="primary">
+              <Button size="3" variant="solid">
                 Large Button
               </Button>
             </div>
@@ -240,33 +240,35 @@ export default function Demo() {
               >
                 Secondary
               </h4>
-              <Button size="sm" variant="secondary">
+              <Button size="1" variant="soft">
                 Small Secondary
               </Button>
-              <Button size="md" variant="secondary">
+              <Button size="2" variant="soft">
                 Medium Secondary
               </Button>
-              <Button size="lg" variant="secondary">
+              <Button size="3" variant="soft">
                 Large Secondary
               </Button>
             </div>
           </div>
         </div>
         <div className="mb-md">
-          <Badge variant="primary">Primary</Badge>
-          <Badge variant="success" className="ml-sm">
+          <Badge variant="solid" color="indigo">
+            Primary
+          </Badge>
+          <Badge variant="solid" color="grass" className="ml-sm">
             Success
           </Badge>
-          <Badge variant="warning" className="ml-sm">
+          <Badge variant="solid" color="amber" className="ml-sm">
             Warning
           </Badge>
-          <Badge variant="error" className="ml-sm">
+          <Badge variant="solid" color="ruby" className="ml-sm">
             Error
           </Badge>
-          <Badge variant="info" className="ml-sm">
+          <Badge variant="solid" color="cyan" className="ml-sm">
             Info
           </Badge>
-          <Badge variant="neutral" className="ml-sm">
+          <Badge variant="soft" className="ml-sm">
             Neutral
           </Badge>
         </div>
@@ -276,18 +278,18 @@ export default function Demo() {
       <section className="mb-lg">
         <h2>Avatars</h2>
         <div className="mb-md">
-          <Avatar size="sm" initials="JD" />
-          <Avatar size="md" initials="JS" className="ml-sm" />
-          <Avatar size="lg" initials="BJ" className="ml-sm" />
-          <Avatar size="xl" src="https://via.placeholder.com/64" className="ml-sm" />
+          <Avatar size="2" initials="JD" />
+          <Avatar size="3" initials="JS" className="ml-sm" />
+          <Avatar size="4" initials="BJ" className="ml-sm" />
+          <Avatar size="5" src="https://via.placeholder.com/64" className="ml-sm" />
         </div>
         <div className="mb-md">
           <AvatarGroup max={3}>
-            <Avatar size="md" initials="A" />
-            <Avatar size="md" initials="B" />
-            <Avatar size="md" initials="C" />
-            <Avatar size="md" initials="D" />
-            <Avatar size="md" initials="E" />
+            <Avatar size="3" initials="A" />
+            <Avatar size="3" initials="B" />
+            <Avatar size="3" initials="C" />
+            <Avatar size="3" initials="D" />
+            <Avatar size="3" initials="E" />
           </AvatarGroup>
         </div>
       </section>
@@ -329,8 +331,11 @@ export default function Demo() {
             className="mb-md"
           />
           <div className="mb-md">
-            <label className="form-label">Gender</label>
+            <label htmlFor="gender-male" className="form-label">
+              Gender
+            </label>
             <Radio
+              id="gender-male"
               name="gender"
               value="male"
               label="Male"
@@ -338,6 +343,7 @@ export default function Demo() {
               onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
             />
             <Radio
+              id="gender-female"
               name="gender"
               value="female"
               label="Female"
@@ -384,14 +390,14 @@ export default function Demo() {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Confirm Action"
-          size="md"
+          size="2"
         >
           <p>Are you sure you want to proceed with this action?</p>
           <ModalFooter>
-            <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
+            <Button variant="soft" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={() => setIsModalOpen(false)}>
+            <Button variant="solid" onClick={() => setIsModalOpen(false)}>
               Confirm
             </Button>
           </ModalFooter>
@@ -461,8 +467,12 @@ export default function Demo() {
           <DataTable
             data={users}
             columns={columns}
-            onSort={(key) => console.log("Sort by:", key)}
-            onRowClick={(row) => console.log("Row clicked:", row)}
+            onSort={(_key) => {
+              // Demo handler - in production, implement actual sorting logic
+            }}
+            onRowClick={(_row) => {
+              // Demo handler - in production, implement actual row click logic
+            }}
             selectable
             striped
             hover
@@ -514,7 +524,18 @@ export default function Demo() {
         <div style={{ display: "flex", gap: "1rem", height: "500px" }}>
           {/* Mobile & Tablet Overlay */}
           {isSmallScreen && isSidebarOpen && (
-            <div className="sidebar-overlay open" onClick={closeSidebar} />
+            <div
+              className="sidebar-overlay open"
+              onClick={closeSidebar}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  closeSidebar();
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label="Close sidebar"
+            />
           )}
 
           <Sidebar
@@ -522,9 +543,7 @@ export default function Demo() {
             className={`${!isSmallScreen && isSidebarCollapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""}`}
           >
             <SidebarHeader>
-              <SidebarBrand logo="A" subtitle="Enterprise">
-                Azodik Inc
-              </SidebarBrand>
+              <SidebarBrand logo="A" title="Azodik Inc" />
             </SidebarHeader>
 
             <SidebarContent>
@@ -576,12 +595,37 @@ export default function Demo() {
                 companyEmail="m@example.com"
                 collapsed={isSidebarCollapsed}
                 menuItems={[
-                  { label: "Upgrade to Pro", onClick: () => console.log("Upgrade to Pro clicked") },
-                  { label: "Account", onClick: () => console.log("Account clicked") },
-                  { label: "Billing", onClick: () => console.log("Billing clicked") },
-                  { label: "Notifications", onClick: () => console.log("Notifications clicked") },
+                  {
+                    label: "Upgrade to Pro",
+                    onClick: () => {
+                      // Demo handler - in production, implement actual navigation
+                    },
+                  },
+                  {
+                    label: "Account",
+                    onClick: () => {
+                      // Demo handler - in production, implement actual navigation
+                    },
+                  },
+                  {
+                    label: "Billing",
+                    onClick: () => {
+                      // Demo handler - in production, implement actual navigation
+                    },
+                  },
+                  {
+                    label: "Notifications",
+                    onClick: () => {
+                      // Demo handler - in production, implement actual navigation
+                    },
+                  },
                   { divider: true },
-                  { label: "Log out", onClick: () => console.log("Log out clicked") },
+                  {
+                    label: "Log out",
+                    onClick: () => {
+                      // Demo handler - in production, implement actual logout logic
+                    },
+                  },
                 ]}
               />
             </SidebarFooter>

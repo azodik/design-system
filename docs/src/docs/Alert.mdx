@@ -150,16 +150,16 @@ export const DesignGuidelinesList = () => {
   title={<AlertVariantsTitle />}
   preview={
     <div className="space-y-4">
-      <Alert variant="success" title="Success!">
+      <Alert variant="soft" color="grass" title="Success!">
         Your changes have been saved successfully.
       </Alert>
-      <Alert variant="error" title="Error!">
+      <Alert variant="soft" color="ruby" title="Error!">
         Something went wrong. Please try again.
       </Alert>
-      <Alert variant="warning" title="Warning!">
+      <Alert variant="soft" color="amber" title="Warning!">
         Please check your input before proceeding.
       </Alert>
-      <Alert variant="info" title="Info">
+      <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
     </div>
@@ -169,16 +169,16 @@ export const DesignGuidelinesList = () => {
 export default function AlertVariants() {
   return (
     <div className="space-y-4">
-      <Alert variant="success" title="Success!">
+      <Alert variant="soft" color="grass" title="Success!">
         Your changes have been saved successfully.
       </Alert>
-      <Alert variant="error" title="Error!">
+      <Alert variant="soft" color="ruby" title="Error!">
         Something went wrong. Please try again.
       </Alert>
-      <Alert variant="warning" title="Warning!">
+      <Alert variant="soft" color="amber" title="Warning!">
         Please check your input before proceeding.
       </Alert>
-      <Alert variant="info" title="Info">
+      <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
     </div>
@@ -192,10 +192,10 @@ export default function AlertVariants() {
   title={<AllAlertVariantsTitle />}
   preview={
     <div className="flex-vertical">
-      <Alert variant="error" title="Error">
+      <Alert variant="soft" color="ruby" title="Error">
         Something went wrong. Please try again.
       </Alert>
-      <Alert variant="info" title="Info">
+      <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
     </div>
@@ -206,10 +206,10 @@ export default function AlertVariants() {
 export default function AlertExamples() {
   return (
     <div className="flex-vertical">
-      <Alert variant="error" title="Error">
+      <Alert variant="soft" color="ruby" title="Error">
         Something went wrong. Please try again.
       </Alert>
-      <Alert variant="info" title="Info">
+      <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
     </div>
@@ -223,7 +223,7 @@ export default function AlertExamples() {
   title={<DismissibleAlertTitle />}
   preview={
     <Alert 
-      variant="warning" 
+      variant="soft" color="amber" 
       title="Warning" 
       onClose={() => console.log('Alert closed')}
     >
@@ -240,7 +240,7 @@ export default function DismissibleAlert() {
 
   return (
     <Alert 
-      variant="warning" 
+      variant="soft" color="amber" 
       title="Warning" 
       onClose={handleClose}
     >
@@ -258,7 +258,7 @@ export default function DismissibleAlert() {
     <div className="flex-vertical">
       {/* String values */}
       <Alert 
-        variant="info" 
+        variant="soft" color="indigo" 
         title="Custom Padding" 
         padding="10px"
       >
@@ -267,7 +267,7 @@ export default function DismissibleAlert() {
       
       {/* Number values (converted to pixels) */}
       <Alert 
-        variant="success" 
+        variant="soft" color="grass" 
         title="Numeric Values" 
         padding={16} 
         width="70%" 
@@ -278,7 +278,7 @@ export default function DismissibleAlert() {
       
       {/* All custom properties */}
       <Alert 
-        variant="warning" 
+        variant="soft" color="amber" 
         title="All Custom" 
         padding="12px 20px" 
         width="500px" 
@@ -296,7 +296,7 @@ export default function CustomSizedAlert() {
     <div className="flex-vertical">
       {/* String values */}
       <Alert 
-        variant="info" 
+        variant="soft" color="indigo" 
         title="Custom Padding" 
         padding="20px"
       >
@@ -305,7 +305,7 @@ export default function CustomSizedAlert() {
       
       {/* Number values (converted to pixels) */}
       <Alert 
-        variant="success" 
+        variant="soft" color="grass" 
         title="Numeric Values" 
         padding={16} 
         width="50%" 
@@ -316,7 +316,7 @@ export default function CustomSizedAlert() {
       
       {/* All custom properties */}
       <Alert 
-        variant="warning" 
+        variant="soft" color="amber" 
         title="All Custom" 
         padding="12px 20px" 
         width="500px" 
@@ -334,10 +334,31 @@ export default function CustomSizedAlert() {
 <PropsTable props={[
   {
     name: 'variant',
-    type: '"success" | "warning" | "error" | "info"',
+    type: '"soft" | "surface" | "outline"',
     required: false,
-    default: '"info"',
+    default: '"soft"',
     description: 'The visual style variant of the alert'
+  },
+  {
+    name: 'size',
+    type: '"1" | "2" | "3"',
+    required: false,
+    default: '"2"',
+    description: 'The size of the alert'
+  },
+  {
+    name: 'color',
+    type: 'ThemeAccentColor',
+    required: false,
+    default: 'indigo',
+    description: 'The accent color of the alert'
+  },
+  {
+    name: 'radius',
+    type: 'ThemeRadius',
+    required: false,
+    default: 'inherit',
+    description: 'The border radius of the alert'
   },
   {
     name: 'title',
@@ -361,32 +382,11 @@ export default function CustomSizedAlert() {
     description: 'Custom icon for the alert. If not provided, uses default icon based on variant'
   },
   {
-    name: 'onClose',
-    type: '() => void',
+    name: 'highContrast',
+    type: 'boolean',
     required: false,
-    default: '-',
-    description: 'Callback function called when the close button is clicked'
-  },
-  {
-    name: 'padding',
-    type: 'string | number',
-    required: false,
-    default: '-',
-    description: 'Custom padding for the alert. Numbers are converted to pixels'
-  },
-  {
-    name: 'width',
-    type: 'string | number',
-    required: false,
-    default: '-',
-    description: 'Custom width for the alert. Numbers are converted to pixels'
-  },
-  {
-    name: 'height',
-    type: 'string | number',
-    required: false,
-    default: '-',
-    description: 'Custom height for the alert. Numbers are converted to pixels'
+    default: 'false',
+    description: 'Whether to use high contrast colors'
   },
   {
     name: 'className',

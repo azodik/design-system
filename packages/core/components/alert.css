@@ -1,93 +1,51 @@
-/* Alert Components */
-.alert {
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-md);
-  border-left: 4px solid;
+.alert, .az-Alert {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-3);
+  font-family: inherit;
+  box-sizing: border-box;
 }
 
-.alert-icon {
-  font-size: 1.2em;
-  margin-top: 2px;
+/* Sizes */
+.alert.az-r-size-1, .az-Alert.az-r-size-1 { padding: var(--space-2); gap: var(--space-2); font-size: var(--font-size-xs); }
+.alert.az-r-size-2, .az-Alert.az-r-size-2 { padding: var(--space-3); gap: var(--space-3); font-size: var(--font-size-sm); }
+.alert.az-r-size-3, .az-Alert.az-r-size-3 { padding: var(--space-4); gap: var(--space-4); font-size: var(--font-size-md); }
+
+/* Variants (Callout-like) */
+.az-variant-soft {
+  background-color: var(--accent-3);
+  color: var(--accent-11);
 }
 
-.alert-content {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-word;
+.az-variant-surface {
+  background-color: var(--accent-2);
+  color: var(--accent-11);
+  box-shadow: inset 0 0 0 1px var(--accent-5);
 }
 
-.alert-title {
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-  color: var(--color-text);
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
+[data-theme="dark"] .az-variant-surface {
+  background-color: var(--accent-3);
+  border: 1px solid var(--accent-6);
+  box-shadow: inset 0 0 0 1px var(--accent-6);
 }
 
-.alert-message {
-  color: var(--color-text);
-  opacity: 0.9;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-  line-height: 1.4;
+.az-variant-outline {
+  background-color: transparent;
+  color: var(--accent-11);
+  box-shadow: inset 0 0 0 1px var(--accent-8);
 }
 
-/* Alert Variants */
-.alert-success {
-  background: rgba(22, 163, 74, 0.1);
-  border-left-color: #16a34a;
-  color: #16a34a;
+[data-theme="dark"] .az-variant-outline {
+  border: 1px solid var(--accent-7);
+  box-shadow: inset 0 0 0 1px var(--accent-7);
 }
 
-.alert-warning {
-  background: rgba(245, 158, 11, 0.1);
-  border-left-color: #f59e0b;
-  color: #f59e0b;
-}
+/* High Contrast */
+.az-high-contrast.az-variant-soft { background: var(--accent-11); color: white; }
 
-.alert-error {
-  background: rgba(220, 38, 38, 0.1);
-  border-left-color: #dc2626;
-  color: #dc2626;
-}
-
-.alert-info {
-  background: rgba(59, 130, 246, 0.1);
-  border-left-color: #3b82f6;
-  color: #3b82f6;
-}
-
-/* Dark mode adjustments */
-[data-theme="dark"] .alert-success {
-  background: rgba(34, 197, 94, 0.1);
-  color: #22c55e;
-}
-
-[data-theme="dark"] .alert-warning {
-  background: rgba(251, 191, 36, 0.1);
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .alert-error {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-}
-
-[data-theme="dark"] .alert-info {
-  background: rgba(96, 165, 250, 0.1);
-  color: #60a5fa;
-}
+/* Content Styles */
+.aleaz-icon { font-size: 1.2em; flex-shrink: 0; display: flex; align-items: flex-start; padding-top: 2px; }
+.aleaz-content { flex: 1; min-width: 0; }
+.aleaz-title { font-weight: 600; font-size: 14px; margin-bottom: var(--space-1); }
+.aleaz-message { font-size: 14px; line-height: 1.5; }

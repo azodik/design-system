@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Sidebar, 
-  SidebarHeader, 
-  SidebarContent, 
+import React, { useState, useEffect } from "react";
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
   SidebarFooter,
   SidebarBrand,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarUserDropdown,
-  SidebarMainContent
-} from '@azodik/ui';
+  SidebarMainContent,
+} from "@azodik/ui";
 
 export function SidebarWithUserProfileExample() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -46,10 +46,25 @@ export function SidebarWithUserProfileExample() {
   };
 
   const userMenuItems = [
-    { label: 'Profile', onClick: () => console.log('Profile clicked') },
-    { label: 'Settings', onClick: () => console.log('Settings clicked') },
+    {
+      label: "Profile",
+      onClick: () => {
+        // Demo handler - in production, implement actual navigation
+      },
+    },
+    {
+      label: "Settings",
+      onClick: () => {
+        // Demo handler - in production, implement actual navigation
+      },
+    },
     { divider: true },
-    { label: 'Sign Out', onClick: () => console.log('Sign out clicked') }
+    {
+      label: "Sign Out",
+      onClick: () => {
+        // Demo handler - in production, implement actual logout logic
+      },
+    },
   ];
 
   return (
@@ -126,86 +141,98 @@ export function SidebarWithUserProfileExample() {
           }
         }
       `}</style>
-      <div className="sidebar-user-profile-custom" style={{ display: 'flex', height: '100vh', border: '1px solid var(--color-border)' }}>
-      {/* Mobile & Tablet Overlay */}
-      {isSmallScreen && isSidebarOpen && (
-        <div 
-          className="sidebar-overlay open" 
-          onClick={closeSidebar}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 999,
-            opacity: isSidebarOpen ? 1 : 0,
-            visibility: isSidebarOpen ? 'visible' : 'hidden',
-            transition: 'opacity 0.3s ease, visibility 0.3s ease'
-          }}
-        />
-      )}
-
-      <Sidebar 
-        width={isSmallScreen ? 280 : 250}
-        className={`${isSmallScreen && isSidebarOpen ? "open" : ""}`}
-        style={{
-          ...(isSmallScreen && {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            height: '100vh',
-            transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
-            zIndex: 1000,
-            transition: 'transform 0.3s ease-in-out'
-          })
-        }}
+      <div
+        className="sidebar-user-profile-custom"
+        style={{ display: "flex", height: "100vh", border: "1px solid var(--color-border)" }}
       >
-        <SidebarHeader>
-          <SidebarBrand>Sidebar with User Profile</SidebarBrand>
-        </SidebarHeader>
-        <SidebarContent style={{ marginLeft: '-30px' }}>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton active>Dashboard</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Users</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Reports</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Settings</SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <SidebarUserDropdown
-            name="John Doe"
-            email="john@example.com"
-            menuItems={userMenuItems}
+        {/* Mobile & Tablet Overlay */}
+        {isSmallScreen && isSidebarOpen && (
+          <div
+            className="sidebar-overlay open"
+            onClick={closeSidebar}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                closeSidebar();
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label="Close sidebar"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.5)",
+              zIndex: 999,
+              opacity: isSidebarOpen ? 1 : 0,
+              visibility: isSidebarOpen ? "visible" : "hidden",
+              transition: "opacity 0.3s ease, visibility 0.3s ease",
+            }}
           />
-        </SidebarFooter>
-      </Sidebar>
-      
-      <SidebarMainContent
-        onSidebarToggle={handleSidebarToggle}
-        isSidebarCollapsed={false}
-        showToggleOnDesktop={false}
-        style={{
-          ...(isSmallScreen && {
-            width: '100%',
-            marginLeft: 0
-          })
-        }}
-      >
-        <div className="p-6">
-          <h1>Admin Dashboard</h1>
-          <p>Welcome back, John!</p>
-        </div>
-      </SidebarMainContent>
+        )}
+
+        <Sidebar
+          width={isSmallScreen ? 280 : 250}
+          className={`${isSmallScreen && isSidebarOpen ? "open" : ""}`}
+          style={{
+            ...(isSmallScreen && {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              height: "100vh",
+              transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
+              zIndex: 1000,
+              transition: "transform 0.3s ease-in-out",
+            }),
+          }}
+        >
+          <SidebarHeader>
+            <SidebarBrand>Sidebar with User Profile</SidebarBrand>
+          </SidebarHeader>
+          <SidebarContent style={{ marginLeft: "-30px" }}>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton active>Dashboard</SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>Users</SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>Reports</SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>Settings</SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+          <SidebarFooter>
+            <SidebarUserDropdown
+              name="John Doe"
+              email="john@example.com"
+              menuItems={userMenuItems}
+            />
+          </SidebarFooter>
+        </Sidebar>
+
+        <SidebarMainContent
+          onSidebarToggle={handleSidebarToggle}
+          isSidebarCollapsed={false}
+          showToggleOnDesktop={false}
+          style={{
+            ...(isSmallScreen && {
+              width: "100%",
+              marginLeft: 0,
+            }),
+          }}
+        >
+          <div className="p-6">
+            <h1>Admin Dashboard</h1>
+            <p>Welcome back, John!</p>
+          </div>
+        </SidebarMainContent>
       </div>
     </>
   );

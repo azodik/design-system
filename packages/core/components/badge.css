@@ -1,148 +1,56 @@
-/* Badge Components */
-.badge {
+/* Reset - uses shared reset utility */
+
+.badge, .az-Badge {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-xs) var(--space-sm);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  border-radius: var(--radius-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
+  justify-content: center;
   width: fit-content;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: var(--radius-round);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  gap: var(--space-1);
+  letter-spacing: 0.02em;
+  
+  /* Default to Size 2 logic if no size class */
+  height: 24px; 
+  padding: 0 var(--space-3); 
+  font-size: var(--font-size-sm);
+  cursor: default;
 }
 
-/* Badge Rounded Variants */
-.badge-rounded-xs {
-  border-radius: 4px;
+/* Badge Sizes override defaults */
+.badge.az-r-size-1, .az-Badge.az-r-size-1 { height: 20px; padding: 0 var(--space-2); font-size: var(--font-size-xs); }
+.badge.az-r-size-2, .az-Badge.az-r-size-2 { height: 24px; padding: 0 var(--space-3); font-size: var(--font-size-sm); }
+.badge.az-r-size-3, .az-Badge.az-r-size-3 { height: 32px; padding: 0 var(--space-4); font-size: var(--font-size-md); }
+
+/* Variants */
+.az-variant-solid {
+  background-color: var(--accent-9);
+  color: white;
 }
 
-.badge-rounded-sm {
-  border-radius: 6px;
+.az-variant-soft {
+  background-color: var(--accent-3);
+  color: var(--accent-11);
 }
 
-.badge-rounded-md {
-  border-radius: 8px;
+.az-variant-surface {
+  background-color: var(--accent-2);
+  color: var(--accent-11);
+  box-shadow: inset 0 0 0 1px var(--accent-5);
 }
 
-.badge-rounded-lg {
-  border-radius: 12px;
+.az-variant-outline {
+  background-color: transparent;
+  color: var(--accent-11);
+  box-shadow: inset 0 0 0 1px var(--accent-8);
 }
 
-.badge-rounded-xl {
-  border-radius: 20px;
-}
+/* High Contrast */
+.az-high-contrast.az-variant-solid { background: var(--accent-12); color: var(--accent-1); }
+.az-high-contrast.az-variant-soft { background: var(--accent-11); color: white; }
 
-/* Badge Variants */
-.badge-primary {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-  border: none;
-}
-
-.badge-secondary {
-  background: var(--color-secondary-light, var(--color-primary-light));
-  color: var(--color-secondary, var(--color-primary));
-  border: none;
-}
-
-.badge-success {
-  background: #dcfce7;
-  color: #16a34a;
-  border: none;
-}
-
-[data-theme="dark"] .badge-success {
-  background: #14532d;
-  color: #4ade80;
-}
-
-.badge-warning {
-  background: #fef3c7;
-  color: #d97706;
-  border: none;
-}
-
-[data-theme="dark"] .badge-warning {
-  background: #78350f;
-  color: #fbbf24;
-}
-
-.badge-error {
-  background: #fecaca;
-  color: #dc2626;
-  border: none;
-}
-
-[data-theme="dark"] .badge-error {
-  background: #7f1d1d;
-  color: #f87171;
-}
-
-.badge-info {
-  background: #dbeafe;
-  color: #2563eb;
-  border: none;
-}
-
-[data-theme="dark"] .badge-info {
-  background: #1e3a8a;
-  color: #60a5fa;
-}
-
-.badge-neutral {
-  background: var(--color-surface);
-  color: var(--color-text-secondary);
-  border: none;
-}
-
-/* Badge Sizes */
-.badge-sm {
-  padding: 2px var(--space-xs);
-  font-size: 0.75rem;
-}
-
-.badge-lg {
-  padding: var(--space-sm) var(--space-md);
-  font-size: var(--font-size-md);
-}
-
-/* Badge with Icon */
-.badge-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
-.badge-icon .icon {
-  width: 14px;
-  height: 14px;
-}
-
-/* Badge with Close */
-.badge-close {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
-.badge-close .close-btn {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  padding: 0;
-  margin-left: var(--space-xs);
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.badge-close .close-btn:hover {
-  opacity: 1;
-}
-
-.badge-close .close-btn::before {
-  content: "×";
-  font-size: 1.2em;
-  font-weight: bold;
-}

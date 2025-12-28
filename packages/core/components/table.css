@@ -4,14 +4,14 @@
   width: 100%;
   border-collapse: collapse;
   background: var(--color-background);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-3);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
 
 .table th,
 .table td {
-  padding: var(--space-md);
+  padding: var(--space-4);
   text-align: left;
   border-bottom: 1px solid var(--color-border);
 }
@@ -43,18 +43,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-xs);
+  gap: var(--space-1);
 }
 
 .table-header-sort:hover {
   background: transparent;
-  color: var(--color-primary);
+  color: var(--accent-9);
 }
 
 .table-header-sort:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--accent-9);
   outline-offset: -2px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-2);
 }
 
 .table-header-sort-icon {
@@ -100,15 +100,15 @@
 }
 
 /* Table Sizes */
-.table-sm th,
-.table-sm td {
-  padding: var(--space-sm);
+.table-size-1 th,
+.table-size-1 td {
+  padding: var(--space-2);
   font-size: var(--font-size-sm);
 }
 
-.table-lg th,
-.table-lg td {
-  padding: var(--space-lg);
+.table-size-3 th,
+.table-size-3 td {
+  padding: var(--space-5);
   font-size: var(--font-size-lg);
 }
 
@@ -122,7 +122,7 @@
 .list-item {
   display: flex;
   align-items: center;
-  padding: var(--space-md);
+  padding: var(--space-4);
   border-bottom: 1px solid var(--color-border);
   transition: background-color 0.3s ease;
 }
@@ -142,7 +142,7 @@
 .list-item-title {
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-1);
 }
 
 .list-item-description {
@@ -153,13 +153,13 @@
 
 .list-item-actions {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-2);
 }
 
 /* List Variants */
 .list-bordered {
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-3);
 }
 
 .list-bordered .list-item:last-child {
@@ -174,15 +174,15 @@
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
 }
 
 .stat-card {
   background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
+  border-radius: var(--radius-3);
+  padding: var(--space-5);
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -195,9 +195,9 @@
 .stat-icon {
   width: 48px;
   height: 48px;
-  margin: 0 auto var(--space-md);
-  background: var(--color-primary);
-  border-radius: var(--radius-md);
+  margin: 0 auto var(--space-4);
+  background: var(--accent-9);
+  border-radius: var(--radius-3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,7 +209,7 @@
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-1);
 }
 
 .stat-label {
@@ -223,8 +223,8 @@
 .stat-change {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
-  margin-top: var(--space-sm);
+  gap: var(--space-1);
+  margin-top: var(--space-2);
   font-size: var(--font-size-sm);
   font-weight: 500;
 }
@@ -245,31 +245,31 @@
 /* Empty State */
 .empty-state {
   text-align: center;
-  padding: var(--space-xl);
+  padding: var(--space-6);
   color: var(--color-text);
   opacity: 0.6;
 }
 
 .empty-state-icon {
   font-size: 3rem;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-4);
   opacity: 0.5;
 }
 
 .empty-state-title {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-2);
 }
 
 .empty-state-description {
   font-size: var(--font-size-md);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-5);
 }
 
 .empty-state-actions {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-4);
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -284,7 +284,7 @@
 
   .table th,
   .table td {
-    padding: var(--space-sm);
+    padding: var(--space-2);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -296,7 +296,7 @@
   }
 
   .stat-card {
-    padding: var(--space-md);
+    padding: var(--space-4);
   }
 
   .stat-value {

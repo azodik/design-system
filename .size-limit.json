@@ -1,0 +1,10 @@
+[
+  {
+    "path": "packages/ui/dist/index.js",
+    "limit": "120 KB"
+  },
+  {
+    "path": "packages/icons/dist/index.js",
+    "limit": "250 KB"
+  }
+]

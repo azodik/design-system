@@ -38,21 +38,17 @@
 }
 
 .scroll-area-content::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary) !important;
+  background: var(--accent-9) !important;
   background-clip: content-box;
   opacity: 0.8;
 }
 
 /* Firefox scrollbar width overrides */
-.scroll-area-sm .scroll-area-content {
+.scroll-area-1 .scroll-area-content {
   scrollbar-width: thin !important;
 }
 
-.scroll-area-md .scroll-area-content {
-  scrollbar-width: auto !important;
-}
-
-.scroll-area-lg .scroll-area-content {
+.scroll-area-2 .scroll-area-content {
   scrollbar-width: auto !important;
 }
 

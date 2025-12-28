@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Sidebar, 
-  SidebarHeader, 
-  SidebarContent, 
+import React, { useState, useEffect } from "react";
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
   SidebarFooter,
   SidebarBrand,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMainContent
-} from '@azodik/ui';
+  SidebarMainContent,
+} from "@azodik/ui";
 
 export function SidebarWithFooterExample() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,47 +45,56 @@ export function SidebarWithFooterExample() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', border: '1px solid var(--color-border)' }}>
+    <div style={{ display: "flex", height: "100vh", border: "1px solid var(--color-border)" }}>
       {/* Mobile & Tablet Overlay */}
       {isSmallScreen && isSidebarOpen && (
-        <div 
-          className="sidebar-overlay open" 
+        <div
+          className="sidebar-overlay open"
           onClick={closeSidebar}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              closeSidebar();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Close sidebar"
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
+            background: "rgba(0, 0, 0, 0.5)",
             zIndex: 999,
             opacity: isSidebarOpen ? 1 : 0,
-            visibility: isSidebarOpen ? 'visible' : 'hidden',
-            transition: 'opacity 0.3s ease, visibility 0.3s ease'
+            visibility: isSidebarOpen ? "visible" : "hidden",
+            transition: "opacity 0.3s ease, visibility 0.3s ease",
           }}
         />
       )}
 
-      <Sidebar 
+      <Sidebar
         width={isSmallScreen ? 280 : 250}
         showFooter={true}
         className={`${isSmallScreen && isSidebarOpen ? "open" : ""}`}
         style={{
           ...(isSmallScreen && {
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
-            height: '100vh',
-            transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+            height: "100vh",
+            transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
             zIndex: 1000,
-            transition: 'transform 0.3s ease-in-out'
-          })
+            transition: "transform 0.3s ease-in-out",
+          }),
         }}
       >
         <SidebarHeader>
           <SidebarBrand>Sidebar with Footer</SidebarBrand>
         </SidebarHeader>
-        <SidebarContent style={{ marginLeft: '-30px' }}>
+        <SidebarContent style={{ marginLeft: "-30px" }}>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton active>Dashboard</SidebarMenuButton>
@@ -105,22 +114,29 @@ export function SidebarWithFooterExample() {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-          <div style={{ padding: '12px', borderTop: '1px solid #e5e7eb', fontSize: '12px', color: '#6b7280' }}>
+          <div
+            style={{
+              padding: "12px",
+              borderTop: "1px solid #e5e7eb",
+              fontSize: "12px",
+              color: "#6b7280",
+            }}
+          >
             <div>Version 1.2.3</div>
             <div>© 2024 My App</div>
           </div>
         </SidebarFooter>
       </Sidebar>
-      
+
       <SidebarMainContent
         onSidebarToggle={handleSidebarToggle}
         isSidebarCollapsed={false}
         showToggleOnDesktop={false}
         style={{
           ...(isSmallScreen && {
-            width: '100%',
-            marginLeft: 0
-          })
+            width: "100%",
+            marginLeft: 0,
+          }),
         }}
       >
         <div className="p-6">

@@ -20,26 +20,42 @@ export const PropsTable: React.FC<PropsTableProps> = ({ props }) => {
         <TableHeader>
           <TableRow>
             <TableHeaderCell
-              className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              style={{ fontSize: "0.75rem", fontFamily: "Montserrat, sans-serif" }}
+              style={{
+                fontSize: "0.75rem",
+                fontFamily: "var(--font-family-sans)",
+                color: "var(--gray-11)",
+                textTransform: "uppercase",
+              }}
             >
               Prop
             </TableHeaderCell>
             <TableHeaderCell
-              className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              style={{ fontSize: "0.75rem", fontFamily: "Montserrat, sans-serif" }}
+              style={{
+                fontSize: "0.75rem",
+                fontFamily: "var(--font-family-sans)",
+                color: "var(--gray-11)",
+                textTransform: "uppercase",
+              }}
             >
               Type
             </TableHeaderCell>
             <TableHeaderCell
-              className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              style={{ fontSize: "0.75rem", fontFamily: "Montserrat, sans-serif" }}
+              style={{
+                fontSize: "0.75rem",
+                fontFamily: "var(--font-family-sans)",
+                color: "var(--gray-11)",
+                textTransform: "uppercase",
+              }}
             >
               Default
             </TableHeaderCell>
             <TableHeaderCell
-              className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              style={{ fontSize: "0.75rem", fontFamily: "Montserrat, sans-serif" }}
+              style={{
+                fontSize: "0.75rem",
+                fontFamily: "var(--font-family-sans)",
+                color: "var(--gray-11)",
+                textTransform: "uppercase",
+              }}
             >
               Description
             </TableHeaderCell>
@@ -49,27 +65,57 @@ export const PropsTable: React.FC<PropsTableProps> = ({ props }) => {
           {props.map((prop, index) => (
             <TableRow key={index}>
               <TableCell
-                className="px-4 py-3 text-sm font-mono text-gray-900"
-                style={{ fontSize: "0.8rem", fontFamily: "Montserrat, sans-serif" }}
+                style={{
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-family-sans)",
+                  color: "var(--gray-12)",
+                }}
               >
-                {prop.name}
-                {prop.required && <span className="text-red-500 ml-1">*</span>}
+                <code
+                  style={{
+                    background: "var(--gray-3)",
+                    padding: "2px 4px",
+                    borderRadius: "var(--radius-1)",
+                  }}
+                >
+                  {prop.name}
+                </code>
+                {prop.required && (
+                  <span style={{ color: "var(--ruby-9)", marginLeft: "4px" }}>*</span>
+                )}
               </TableCell>
               <TableCell
-                className="px-4 py-3 text-sm text-gray-600 font-mono"
-                style={{ fontSize: "0.8rem", fontFamily: "Montserrat, sans-serif" }}
+                style={{
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-family-sans)",
+                  color: "var(--accent-11)",
+                }}
               >
-                {prop.type}
+                <code
+                  style={{
+                    background: "var(--accent-3)",
+                    padding: "2px 4px",
+                    borderRadius: "var(--radius-1)",
+                  }}
+                >
+                  {prop.type}
+                </code>
               </TableCell>
               <TableCell
-                className="px-4 py-3 text-sm text-gray-500 font-mono"
-                style={{ fontSize: "0.8rem", fontFamily: "Montserrat, sans-serif" }}
+                style={{
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-family-sans)",
+                  color: "var(--gray-11)",
+                }}
               >
                 {prop.default || "-"}
               </TableCell>
               <TableCell
-                className="px-4 py-3 text-sm text-gray-600"
-                style={{ fontSize: "0.8rem", fontFamily: "Montserrat, sans-serif" }}
+                style={{
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-family-sans)",
+                  color: "var(--gray-12)",
+                }}
               >
                 {prop.description}
               </TableCell>

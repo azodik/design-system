@@ -5,10 +5,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-4) var(--space-5);
   background: var(--color-background) !important;
   border: 1px solid var(--color-border) !important;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-4);
   transition: none;
   box-shadow: var(--shadow-sm);
   width: 100%;
@@ -20,14 +20,14 @@
 .navbar-brand {
   font-size: var(--font-size-lg);
   font-weight: 700;
-  color: var(--color-primary) !important;
+  color: var(--accent-9) !important;
   text-decoration: none;
 }
 
 .navbar-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-4);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -37,19 +37,19 @@
   color: var(--color-text) !important;
   text-decoration: none;
   font-weight: 500;
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-3);
   transition: none;
   background: transparent;
 }
 
 .navbar-nav a:hover {
   background: var(--color-surface) !important;
-  color: var(--color-primary) !important;
+  color: var(--accent-9) !important;
 }
 
 .navbar-nav a.active {
-  background: var(--color-primary) !important;
+  background: var(--accent-9) !important;
   color: white !important;
 }
 
@@ -79,9 +79,9 @@
     border: 1px solid var(--color-border) !important;
     border-top: none;
     flex-direction: column;
-    padding: var(--space-md);
-    gap: var(--space-sm);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    padding: var(--space-4);
+    gap: var(--space-2);
+    border-radius: 0 0 var(--radius-4) var(--radius-4);
     box-shadow: var(--shadow-md);
     z-index: 1000;
   }
@@ -97,8 +97,8 @@
     border: none;
     font-size: 1.5em;
     cursor: pointer;
-    padding: var(--space-sm);
-    border-radius: var(--radius-sm);
+    padding: var(--space-2);
+    border-radius: var(--radius-2);
     transition: background-color 0.2s ease;
   }
 

@@ -1,26 +1,30 @@
 import React from "react";
 
 interface TickIconProps {
-  className?: string;
   size?: number;
-  color?: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-const TickIcon: React.FC<TickIconProps> = ({
-  className = "",
-  size = 24,
-  color = "currentColor",
-}) => {
+const TickIcon: React.FC<TickIconProps> = ({ size = 20, className, style }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill={color}
-      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       width={size}
       height={size}
+      className={className}
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
     >
-      <path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z" />
+      <polyline points="20 6 9 17 4 12" />
     </svg>
   );
 };

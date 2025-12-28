@@ -20,7 +20,7 @@ import {
 export interface ChartData {
   name: string;
   value?: number;
-  [key: string]: any;
+  [key: string]: string | number | undefined;
 }
 
 export interface ChartProps {
@@ -58,208 +58,272 @@ export interface PieChartProps extends ChartProps {
   colors?: string[];
 }
 
-// Line Chart Component
-export const LineChartComponent: React.FC<LineChartProps> = ({
-  data,
-  dataKey,
-  title,
-  subtitle,
-  width = "100%",
-  height = 400,
-  className = "",
-  strokeColor = "#3b82f6",
-  strokeWidth = 2,
-  showLegend = true,
-  showTooltip = true,
-  showGrid = true,
-}) => {
-  return (
-    <div className={`chart-container ${className}`}>
-      {title && <div className="chart-title">{title}</div>}
-      {subtitle && <div className="chart-subtitle">{subtitle}</div>}
-      <ResponsiveContainer width={width} height={height}>
-        <LineChart data={data}>
-          {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
-          <XAxis dataKey="name" stroke="#6b7280" />
-          <YAxis stroke="#6b7280" />
-          {showTooltip && (
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              }}
+/**
+ * LineChart component for displaying line charts
+ *
+ * @param data - Array of data points
+ * @param dataKey - Key in data object to use for the line
+ * @param title - Optional chart title
+ * @param subtitle - Optional chart subtitle
+ * @param width - Chart width (default: "100%")
+ * @param height - Chart height (default: 400)
+ * @param className - Additional CSS classes
+ * @param strokeColor - Line stroke color (default: "#3b82f6")
+ * @param strokeWidth - Line stroke width (default: 2)
+ * @param showLegend - Show legend (default: true)
+ * @param showTooltip - Show tooltip (default: true)
+ * @param showGrid - Show grid (default: true)
+ */
+export const LineChartComponent: React.FC<LineChartProps> = React.memo(
+  ({
+    data,
+    dataKey,
+    title,
+    subtitle,
+    width = "100%",
+    height = 400,
+    className = "",
+    strokeColor = "#3b82f6",
+    strokeWidth = 2,
+    showLegend = true,
+    showTooltip = true,
+    showGrid = true,
+  }) => {
+    return (
+      <div className={`chart-container ${className}`}>
+        {title && <div className="chart-title">{title}</div>}
+        {subtitle && <div className="chart-subtitle">{subtitle}</div>}
+        <ResponsiveContainer width={width} height={height}>
+          <LineChart data={data}>
+            {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
+            <XAxis dataKey="name" stroke="#6b7280" />
+            <YAxis stroke="#6b7280" />
+            {showTooltip && (
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
+              />
+            )}
+            {showLegend && <Legend />}
+            <Line
+              type="monotone"
+              dataKey={dataKey}
+              stroke={strokeColor}
+              strokeWidth={strokeWidth}
+              className="chart-line"
             />
-          )}
-          {showLegend && <Legend />}
-          <Line
-            type="monotone"
-            dataKey={dataKey}
-            stroke={strokeColor}
-            strokeWidth={strokeWidth}
-            className="chart-line"
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  },
+);
 
-// Area Chart Component
-export const AreaChartComponent: React.FC<AreaChartProps> = ({
-  data,
-  dataKey,
-  title,
-  subtitle,
-  width = "100%",
-  height = 400,
-  className = "",
-  fillColor = "#3b82f6",
-  strokeColor = "#3b82f6",
-  showLegend = true,
-  showTooltip = true,
-  showGrid = true,
-}) => {
-  return (
-    <div className={`chart-container ${className}`}>
-      {title && <div className="chart-title">{title}</div>}
-      {subtitle && <div className="chart-subtitle">{subtitle}</div>}
-      <ResponsiveContainer width={width} height={height}>
-        <AreaChart data={data}>
-          {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
-          <XAxis dataKey="name" stroke="#6b7280" />
-          <YAxis stroke="#6b7280" />
-          {showTooltip && (
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              }}
+LineChartComponent.displayName = "LineChartComponent";
+
+/**
+ * AreaChart component for displaying area charts
+ *
+ * @param data - Array of data points
+ * @param dataKey - Key in data object to use for the area
+ * @param title - Optional chart title
+ * @param subtitle - Optional chart subtitle
+ * @param width - Chart width (default: "100%")
+ * @param height - Chart height (default: 400)
+ * @param className - Additional CSS classes
+ * @param fillColor - Area fill color (default: "#3b82f6")
+ * @param strokeColor - Area stroke color (default: "#3b82f6")
+ * @param showLegend - Show legend (default: true)
+ * @param showTooltip - Show tooltip (default: true)
+ * @param showGrid - Show grid (default: true)
+ */
+export const AreaChartComponent: React.FC<AreaChartProps> = React.memo(
+  ({
+    data,
+    dataKey,
+    title,
+    subtitle,
+    width = "100%",
+    height = 400,
+    className = "",
+    fillColor = "#3b82f6",
+    strokeColor = "#3b82f6",
+    showLegend = true,
+    showTooltip = true,
+    showGrid = true,
+  }) => {
+    return (
+      <div className={`chart-container ${className}`}>
+        {title && <div className="chart-title">{title}</div>}
+        {subtitle && <div className="chart-subtitle">{subtitle}</div>}
+        <ResponsiveContainer width={width} height={height}>
+          <AreaChart data={data}>
+            {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
+            <XAxis dataKey="name" stroke="#6b7280" />
+            <YAxis stroke="#6b7280" />
+            {showTooltip && (
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
+              />
+            )}
+            {showLegend && <Legend />}
+            <Area
+              type="monotone"
+              dataKey={dataKey}
+              stroke={strokeColor}
+              fill={fillColor}
+              className="chart-area"
             />
-          )}
-          {showLegend && <Legend />}
-          <Area
-            type="monotone"
-            dataKey={dataKey}
-            stroke={strokeColor}
-            fill={fillColor}
-            className="chart-area"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  },
+);
 
-// Bar Chart Component
-export const BarChartComponent: React.FC<BarChartProps> = ({
-  data,
-  dataKey,
-  title,
-  subtitle,
-  width = "100%",
-  height = 400,
-  className = "",
-  fillColor = "#3b82f6",
-  showLegend = true,
-  showTooltip = true,
-  showGrid = true,
-}) => {
-  return (
-    <div className={`chart-container ${className}`}>
-      {title && <div className="chart-title">{title}</div>}
-      {subtitle && <div className="chart-subtitle">{subtitle}</div>}
-      <ResponsiveContainer width={width} height={height}>
-        <BarChart data={data}>
-          {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
-          <XAxis dataKey="name" stroke="#6b7280" />
-          <YAxis stroke="#6b7280" />
-          {showTooltip && (
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              }}
-            />
-          )}
-          {showLegend && <Legend />}
-          <Bar dataKey={dataKey} fill={fillColor} className="chart-bar" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+AreaChartComponent.displayName = "AreaChartComponent";
 
-// Pie Chart Component
-export const PieChartComponent: React.FC<PieChartProps> = ({
-  data,
-  dataKey,
-  nameKey,
-  title,
-  subtitle,
-  width = "100%",
-  height = 400,
-  className = "",
-  colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"],
-  showLegend = true,
-  showTooltip = true,
-}) => {
-  return (
-    <div className={`chart-container ${className}`}>
-      {title && <div className="chart-title">{title}</div>}
-      {subtitle && <div className="chart-subtitle">{subtitle}</div>}
-      <ResponsiveContainer width={width} height={height}>
-        <PieChart>
-          {showTooltip && (
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              }}
-            />
-          )}
-          {showLegend && <Legend />}
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={({ name, value, percent }: any) =>
-              `${name} ${((percent || 0) * 100).toFixed(0)}%`
-            }
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey={dataKey}
-            className="chart-pie"
-          >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-            ))}
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+/**
+ * BarChart component for displaying bar charts
+ *
+ * @param data - Array of data points
+ * @param dataKey - Key in data object to use for the bars
+ * @param title - Optional chart title
+ * @param subtitle - Optional chart subtitle
+ * @param width - Chart width (default: "100%")
+ * @param height - Chart height (default: 400)
+ * @param className - Additional CSS classes
+ * @param fillColor - Bar fill color (default: "#3b82f6")
+ * @param showLegend - Show legend (default: true)
+ * @param showTooltip - Show tooltip (default: true)
+ * @param showGrid - Show grid (default: true)
+ */
+export const BarChartComponent: React.FC<BarChartProps> = React.memo(
+  ({
+    data,
+    dataKey,
+    title,
+    subtitle,
+    width = "100%",
+    height = 400,
+    className = "",
+    fillColor = "#3b82f6",
+    showLegend = true,
+    showTooltip = true,
+    showGrid = true,
+  }) => {
+    return (
+      <div className={`chart-container ${className}`}>
+        {title && <div className="chart-title">{title}</div>}
+        {subtitle && <div className="chart-subtitle">{subtitle}</div>}
+        <ResponsiveContainer width={width} height={height}>
+          <BarChart data={data}>
+            {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
+            <XAxis dataKey="name" stroke="#6b7280" />
+            <YAxis stroke="#6b7280" />
+            {showTooltip && (
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
+              />
+            )}
+            {showLegend && <Legend />}
+            <Bar dataKey={dataKey} fill={fillColor} className="chart-bar" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  },
+);
 
-// Main Charts Component (wrapper)
-export default function Charts() {
-  return {
-    LineChart: LineChartComponent,
-    AreaChart: AreaChartComponent,
-    BarChart: BarChartComponent,
-    PieChart: PieChartComponent,
-  };
-}
+BarChartComponent.displayName = "BarChartComponent";
 
-// Export individual components
+/**
+ * PieChart component for displaying pie charts
+ *
+ * @param data - Array of data points
+ * @param dataKey - Key in data object to use for the pie slices
+ * @param nameKey - Key in data object to use for slice names
+ * @param title - Optional chart title
+ * @param subtitle - Optional chart subtitle
+ * @param width - Chart width (default: "100%")
+ * @param height - Chart height (default: 400)
+ * @param className - Additional CSS classes
+ * @param colors - Array of colors for pie slices
+ * @param showLegend - Show legend (default: true)
+ * @param showTooltip - Show tooltip (default: true)
+ */
+export const PieChartComponent: React.FC<PieChartProps> = React.memo(
+  ({
+    data,
+    dataKey,
+    nameKey: _nameKey,
+    title,
+    subtitle,
+    width = "100%",
+    height = 400,
+    className = "",
+    colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"],
+    showLegend = true,
+    showTooltip = true,
+  }) => {
+    return (
+      <div className={`chart-container ${className}`}>
+        {title && <div className="chart-title">{title}</div>}
+        {subtitle && <div className="chart-subtitle">{subtitle}</div>}
+        <ResponsiveContainer width={width} height={height}>
+          <PieChart>
+            {showTooltip && (
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
+              />
+            )}
+            {showLegend && <Legend />}
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={(props: { name?: string; value?: number; percent?: number }) =>
+                `${props.name || ""} ${((props.percent || 0) * 100).toFixed(0)}%`
+              }
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey={dataKey}
+              className="chart-pie"
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  },
+);
+
+PieChartComponent.displayName = "PieChartComponent";
+
+// Export individual components (no default wrapper needed)
 export {
   LineChartComponent as LineChart,
   AreaChartComponent as AreaChart,

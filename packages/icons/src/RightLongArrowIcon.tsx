@@ -2,25 +2,30 @@ import React from "react";
 
 interface RightLongArrowIconProps {
   size?: number;
-  color?: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const RightLongArrowIcon: React.FC<RightLongArrowIconProps> = ({
-  size = 16,
-  color = "currentColor",
-  className = "",
-}) => {
+const RightLongArrowIcon: React.FC<RightLongArrowIconProps> = ({ size = 20, className, style }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       width={size}
       height={size}
-      viewBox="0 0 24 24"
-      fill={color}
       className={className}
-      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        color: "currentColor",
+        ...style,
+      }}
     >
-      <path d="M1.99974 13.0001L1.9996 11.0002L18.1715 11.0002L14.2218 7.05044L15.636 5.63623L22 12.0002L15.636 18.3642L14.2218 16.9499L18.1716 13.0002L1.99974 13.0001Z" />
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
     </svg>
   );
 };

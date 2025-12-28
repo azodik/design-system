@@ -1,10 +1,13 @@
 import React from "react";
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   label?: string;
   help?: string;
   error?: string;
   status?: "success" | "error";
+  color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
+  radius?: "none" | "small" | "medium" | "large" | "full";
+  size?: "1" | "2" | "3";
   className?: string;
 }
 
@@ -13,15 +16,47 @@ export default function Input({
   help,
   error,
   status,
+  color,
+  radius,
+  size = "2",
   className = "",
+  style,
   id,
   name,
   ...props
 }: InputProps) {
   const generatedId = React.useId();
   const inputId = id || name || generatedId;
+  const isNamedColor =
+    color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
 
-  const inputClasses = ["input", status && status, error && "error", className]
+  const customStyle = {
+    ...(color && !isNamedColor ? { "--accent-9": color } : {}),
+    ...(radius
+      ? {
+          borderRadius:
+            radius === "none"
+              ? "0"
+              : radius === "small"
+                ? "var(--radius-1)"
+                : radius === "medium"
+                  ? "var(--radius-2)"
+                  : radius === "large"
+                    ? "var(--radius-4)"
+                    : "var(--radius-round)",
+        }
+      : {}),
+    ...style,
+  };
+
+  const inputClasses = [
+    "az-TextFieldInput input",
+    `az-r-size-${size}`,
+    status,
+    error && "error",
+    isNamedColor ? `az-accent-${color}` : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -32,7 +67,13 @@ export default function Input({
           {label}
         </label>
       )}
-      <input id={inputId} name={name || inputId} className={inputClasses} {...props} />
+      <input
+        id={inputId}
+        name={name || inputId}
+        className={inputClasses}
+        style={customStyle}
+        {...props}
+      />
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
     </div>
@@ -45,6 +86,9 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   help?: string;
   error?: string;
   status?: "success" | "error";
+  color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
+  radius?: "none" | "small" | "medium" | "large" | "full";
+  size?: "1" | "2" | "3";
   className?: string;
   autoResize?: boolean;
   minRows?: number;
@@ -56,18 +100,50 @@ export function Textarea({
   help,
   error,
   status,
+  color,
+  radius,
+  size = "2",
   className = "",
-  autoResize,
-  minRows,
-  maxRows,
+  style,
+  autoResize: _autoResize,
+  minRows: _minRows,
+  maxRows: _maxRows,
   id,
   name,
   ...props
 }: TextareaProps) {
   const generatedId = React.useId();
   const textareaId = id || name || generatedId;
+  const isNamedColor =
+    color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
 
-  const textareaClasses = ["textarea", status && status, error && "error", className]
+  const customStyle = {
+    ...(color && !isNamedColor ? { "--accent-9": color } : {}),
+    ...(radius
+      ? {
+          borderRadius:
+            radius === "none"
+              ? "0"
+              : radius === "small"
+                ? "var(--radius-1)"
+                : radius === "medium"
+                  ? "var(--radius-2)"
+                  : radius === "large"
+                    ? "var(--radius-4)"
+                    : "var(--radius-round)",
+        }
+      : {}),
+    ...style,
+  };
+
+  const textareaClasses = [
+    "az-TextAreaInput textarea",
+    `az-r-size-${size}`,
+    status,
+    error && "error",
+    isNamedColor ? `az-accent-${color}` : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -78,7 +154,13 @@ export function Textarea({
           {label}
         </label>
       )}
-      <textarea id={textareaId} name={name || textareaId} className={textareaClasses} {...props} />
+      <textarea
+        id={textareaId}
+        name={name || textareaId}
+        className={textareaClasses}
+        style={customStyle}
+        {...props}
+      />
       {error && <div className="form-error">{error}</div>}
       {help && !error && <div className="form-help">{help}</div>}
     </div>
@@ -91,8 +173,12 @@ export interface SelectProps {
   help?: string;
   error?: string;
   status?: "success" | "error";
+  color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
+  radius?: "none" | "small" | "medium" | "large" | "full";
+  size?: "1" | "2" | "3";
   options: { value: string; label: string }[];
   className?: string;
+  style?: React.CSSProperties;
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
@@ -104,8 +190,12 @@ export function Select({
   help,
   error,
   status,
+  color,
+  radius,
+  size = "2",
   options,
   className = "",
+  style,
   value = "",
   onChange,
   placeholder = "Select an option",
@@ -116,6 +206,8 @@ export function Select({
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(value);
   const selectRef = React.useRef<HTMLDivElement>(null);
+  const isNamedColor =
+    color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
 
   const selectedOption = options.find((option) => option.value === selectedValue);
 
@@ -130,9 +222,29 @@ export function Select({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    const handleSelectOpen = (event: CustomEvent) => {
+      // Close this select if another select opened
+      if (event.detail !== selectRef.current && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      // Dispatch event to close all other selects
+      const closeEvent = new CustomEvent("select:close-others", {
+        detail: selectRef.current,
+      });
+      document.dispatchEvent(closeEvent);
+
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("select:close-others", handleSelectOpen as EventListener);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("select:close-others", handleSelectOpen as EventListener);
+    };
+  }, [isOpen]);
 
   const handleSelect = (optionValue: string) => {
     setSelectedValue(optionValue);
@@ -140,12 +252,33 @@ export function Select({
     setIsOpen(false);
   };
 
+  const customStyle = {
+    ...(color && !isNamedColor ? { "--accent-9": color } : {}),
+    ...(radius
+      ? {
+          borderRadius:
+            radius === "none"
+              ? "0"
+              : radius === "small"
+                ? "var(--radius-1)"
+                : radius === "medium"
+                  ? "var(--radius-2)"
+                  : radius === "large"
+                    ? "var(--radius-4)"
+                    : "var(--radius-round)",
+        }
+      : {}),
+    ...style,
+  };
+
   const selectClasses = [
-    "custom-select",
-    status && status,
+    "az-Select custom-select",
+    `az-r-size-${size}`,
+    status,
     error && "error",
     disabled && "disabled",
     isOpen && "open",
+    isNamedColor ? `az-accent-${color}` : "",
     className,
   ]
     .filter(Boolean)
@@ -155,7 +288,7 @@ export function Select({
   const hiddenSelectId = `${selectId}-hidden`;
 
   return (
-    <div className="form-group">
+    <div className="form-group" style={customStyle}>
       {label && (
         <label id={labelId} htmlFor={hiddenSelectId} className="form-label">
           {label}
@@ -190,16 +323,37 @@ export function Select({
       <div className="custom-select-wrapper" ref={selectRef}>
         <div
           className={selectClasses}
-          onClick={() => !disabled && setIsOpen(!isOpen)}
+          onClick={() => {
+            if (!disabled) {
+              // Dispatch event to close all other selects before opening this one
+              if (!isOpen) {
+                const closeEvent = new CustomEvent("select:close-others", {
+                  detail: selectRef.current,
+                });
+                document.dispatchEvent(closeEvent);
+              }
+              setIsOpen(!isOpen);
+            }
+          }}
           role="combobox"
           aria-expanded={isOpen}
           aria-haspopup="listbox"
+          aria-controls={isOpen ? `${selectId}-listbox` : undefined}
           aria-labelledby={labelId}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              !disabled && setIsOpen(!isOpen);
+              if (!disabled) {
+                // Dispatch event to close all other selects before opening this one
+                if (!isOpen) {
+                  const closeEvent = new CustomEvent("select:close-others", {
+                    detail: selectRef.current,
+                  });
+                  document.dispatchEvent(closeEvent);
+                }
+                setIsOpen(!isOpen);
+              }
             }
             if (e.key === "Escape") {
               setIsOpen(false);
@@ -228,14 +382,26 @@ export function Select({
         </div>
 
         {isOpen && (
-          <div className="select-dropdown" role="listbox" aria-labelledby={labelId}>
+          <div
+            id={`${selectId}-listbox`}
+            className="select-dropdown"
+            role="listbox"
+            aria-labelledby={labelId}
+          >
             {options.map((option) => (
               <div
                 key={option.value}
                 className={`select-option ${selectedValue === option.value ? "selected" : ""}`}
                 onClick={() => handleSelect(option.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleSelect(option.value);
+                  }
+                }}
                 role="option"
                 aria-selected={selectedValue === option.value}
+                tabIndex={0}
               >
                 {option.label}
               </div>
@@ -250,12 +416,14 @@ export function Select({
 }
 
 // Checkbox Component
-export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "size"> {
+export interface CheckboxProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type" | "size"
+> {
   label?: string;
   help?: string;
   error?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "1" | "2" | "3";
   className?: string;
 }
 
@@ -263,13 +431,13 @@ export function Checkbox({
   label,
   help,
   error,
-  size = "md",
+  size = "2",
   className = "",
   id,
   name,
   ...props
 }: CheckboxProps) {
-  const checkboxClasses = ["checkbox", size !== "md" && `checkbox-${size}`, className]
+  const checkboxClasses = ["az-Checkbox checkbox", `az-r-size-${size}`, className]
     .filter(Boolean)
     .join(" ");
 
@@ -290,20 +458,33 @@ export function Checkbox({
 }
 
 // Radio Component
-export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+export interface RadioProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type" | "size"
+> {
   label?: string;
   help?: string;
   error?: string;
+  size?: "1" | "2" | "3";
   className?: string;
 }
 
-export function Radio({ label, help, error, className = "", id, name, ...props }: RadioProps) {
+export function Radio({
+  label,
+  help,
+  error,
+  size = "2",
+  className = "",
+  id,
+  name,
+  ...props
+}: RadioProps) {
   const generatedId = React.useId();
   const radioId = id || name || generatedId;
 
   return (
     <div className="form-group">
-      <div className={`radio ${className}`}>
+      <div className={`radio az-r-size-${size} ${className}`}>
         <input type="radio" id={radioId} name={name || radioId} {...props} />
         <span className="radio-custom" />
         {label && <label htmlFor={radioId}>{label}</label>}
@@ -315,12 +496,16 @@ export function Radio({ label, help, error, className = "", id, name, ...props }
 }
 
 // Switch Component
-export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+export interface SwitchProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type" | "size"
+> {
   label?: string;
   help?: string;
   error?: string;
   className?: string;
   position?: "default" | "space-between";
+  size?: "1" | "2" | "3";
 }
 
 export function Switch({
@@ -333,6 +518,7 @@ export function Switch({
   id,
   name,
   position = "space-between",
+  size = "2",
   ...props
 }: SwitchProps) {
   const generatedId = React.useId();
@@ -346,7 +532,7 @@ export function Switch({
           {label}
         </label>
       )}
-      <div className={`switch ${className}`}>
+      <div className={`switch az-r-size-${size} ${className}`}>
         <input
           type="checkbox"
           id={switchId}

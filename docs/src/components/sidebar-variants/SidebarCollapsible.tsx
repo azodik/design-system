@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Sidebar, 
-  SidebarHeader, 
-  SidebarContent, 
+import React, { useState, useEffect } from "react";
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
   SidebarBrand,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMainContent
-} from '@azodik/ui';
-import { 
-  HomeIcon, 
-  BarChartIcon, 
-  UserIcon 
-} from '@azodik/icons';
+  SidebarMainContent,
+} from "@azodik/ui";
+import { HomeIcon, BarChartIcon, UserIcon } from "@azodik/icons";
 
 export function SidebarCollapsibleExample() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -52,85 +48,81 @@ export function SidebarCollapsibleExample() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '75vh', border: '1px solid var(--color-border)' }}>
+    <div style={{ display: "flex", height: "75vh", border: "1px solid var(--color-border)" }}>
       {/* Mobile & Tablet Overlay */}
       {isSmallScreen && isSidebarOpen && (
-        <div 
-          className="sidebar-overlay open" 
+        <div
+          className="sidebar-overlay open"
           onClick={closeSidebar}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              closeSidebar();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Close sidebar"
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
+            background: "rgba(0, 0, 0, 0.5)",
             zIndex: 999,
             opacity: isSidebarOpen ? 1 : 0,
-            visibility: isSidebarOpen ? 'visible' : 'hidden',
-            transition: 'opacity 0.3s ease, visibility 0.3s ease'
+            visibility: isSidebarOpen ? "visible" : "hidden",
+            transition: "opacity 0.3s ease, visibility 0.3s ease",
           }}
         />
       )}
 
-      <Sidebar 
-        width={isSmallScreen ? 280 : (isCollapsed ? 60 : 250)}
+      <Sidebar
+        width={isSmallScreen ? 280 : isCollapsed ? 60 : 250}
         collapsed={!isSmallScreen && isCollapsed}
         className={`${isSmallScreen && isSidebarOpen ? "open" : ""}`}
         style={{
           ...(isSmallScreen && {
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
-            height: '100vh',
-            transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+            height: "100vh",
+            transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
             zIndex: 1000,
-            transition: 'transform 0.3s ease-in-out'
-          })
+            transition: "transform 0.3s ease-in-out",
+          }),
         }}
       >
         <SidebarHeader>
-        <SidebarBrand>
-              Collapsible Sidebar
-          </SidebarBrand>
+          <SidebarBrand>Collapsible Sidebar</SidebarBrand>
         </SidebarHeader>
-        <SidebarContent style={{ marginLeft: '-30px' }}>
+        <SidebarContent style={{ marginLeft: "-30px" }}>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton 
-                active
-                icon={<HomeIcon size={16} />}
-              >
+              <SidebarMenuButton active icon={<HomeIcon size={16} />}>
                 Home
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<BarChartIcon size={16} />}
-              >
-                Analytics
-              </SidebarMenuButton>
+              <SidebarMenuButton icon={<BarChartIcon size={16} />}>Analytics</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton 
-                icon={<UserIcon size={16} />}
-              >
-                Team
-              </SidebarMenuButton>
+              <SidebarMenuButton icon={<UserIcon size={16} />}>Team</SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarContent>
       </Sidebar>
-      
+
       <SidebarMainContent
         onSidebarToggle={handleSidebarToggle}
         isSidebarCollapsed={isSmallScreen ? false : isCollapsed}
         showToggleOnDesktop={true}
         style={{
           ...(isSmallScreen && {
-            width: '100%',
-            marginLeft: 0
-          })
+            width: "100%",
+            marginLeft: 0,
+          }),
         }}
       >
         <div className="p-6">

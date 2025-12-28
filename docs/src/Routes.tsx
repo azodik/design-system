@@ -21,6 +21,7 @@ const components = {
   DataTableDocs: lazy(() => import("@/pages/DataTableDocsPage")),
   FormDocs: lazy(() => import("@/pages/FormDocsPage")),
   InputDocs: lazy(() => import("@/pages/InputDocsPage")),
+  IconsDocs: lazy(() => import("@/pages/IconsDocsPage")),
   ModalDocs: lazy(() => import("@/pages/ModalDocsPage")),
   NavigationDocs: lazy(() => import("@/pages/NavigationDocsPage")),
   PaginationDocs: lazy(() => import("@/pages/PaginationDocsPage")),
@@ -28,6 +29,7 @@ const components = {
   RadioDocs: lazy(() => import("@/pages/RadioDocsPage")),
   ScrollAreaDocs: lazy(() => import("@/pages/ScrollAreaDocsPage")),
   SelectDocs: lazy(() => import("@/pages/SelectDocsPage")),
+  SelectWithSearchDocs: lazy(() => import("@/pages/SelectWithSearchDocsPage")),
   SidebarDocs: lazy(() => import("@/pages/SidebarDocsPage")),
   SwitchDocs: lazy(() => import("@/pages/SwitchDocsPage")),
   TableDocs: lazy(() => import("@/pages/TableDocsPage")),
@@ -35,6 +37,8 @@ const components = {
   TextareaDocs: lazy(() => import("@/pages/TextareaDocsPage")),
   ToastDocs: lazy(() => import("@/pages/ToastDocsPage")),
   TooltipDocs: lazy(() => import("@/pages/TooltipDocsPage")),
+  ThemingDocs: lazy(() => import("@/pages/ThemingDocsPage")),
+  TypographyDocs: lazy(() => import("@/pages/TypographyDocsPage")),
 };
 
 // Route mapping for easy access
@@ -58,6 +62,7 @@ const routeComponents = {
   [routes.datatableDocs]: components.DataTableDocs,
   [routes.formDocs]: components.FormDocs,
   [routes.inputDocs]: components.InputDocs,
+  [routes.iconsDocs]: components.IconsDocs,
   [routes.modalDocs]: components.ModalDocs,
   [routes.navigationDocs]: components.NavigationDocs,
   [routes.paginationDocs]: components.PaginationDocs,
@@ -65,6 +70,7 @@ const routeComponents = {
   [routes.radioDocs]: components.RadioDocs,
   [routes.scrollAreaDocs]: components.ScrollAreaDocs,
   [routes.selectDocs]: components.SelectDocs,
+  [routes.selectWithSearchDocs]: components.SelectWithSearchDocs,
   [routes.sidebarDocs]: components.SidebarDocs,
   [routes.switchDocs]: components.SwitchDocs,
   [routes.tableDocs]: components.TableDocs,
@@ -72,6 +78,8 @@ const routeComponents = {
   [routes.textareaDocs]: components.TextareaDocs,
   [routes.toastDocs]: components.ToastDocs,
   [routes.tooltipDocs]: components.TooltipDocs,
+  [routes.themingDocs]: components.ThemingDocs,
+  [routes.typographyDocs]: components.TypographyDocs,
 };
 
 // Static routes
@@ -91,8 +99,13 @@ export const publicRoutes = staticRoutes.filter(
     path === routes.home || path === routes.components || path === routes.playground,
 );
 
-export const protectedRoutes: any[] = [];
+export interface RouteConfig {
+  path: string;
+  element: React.ReactElement;
+}
 
-export const authRoutes: any[] = [];
+export const protectedRoutes: RouteConfig[] = [];
+
+export const authRoutes: RouteConfig[] = [];
 
 export { routes, components, routeComponents };
