@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Card, Input, Button } from "@azodik/ui";
+import { Card, Input, Button, Box, Container } from "@azodik/ui";
 import { SearchIcon } from "@azodik/icons";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -292,8 +292,8 @@ export default function IconsDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-6xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" style={{ maxWidth: "1200px" }} className="p-2">
+        <Box className="docs-content">
           <h1>Icons</h1>
           <p>
             A comprehensive collection of high-quality React icon components for the Azodik UI
@@ -526,7 +526,7 @@ export default NewIcon;`}</code>
             <li>
               <strong>Build the package</strong>:
               <pre className="code-block">
-                <code>{`cd packages/icons &amp;&amp; pnpm build`}</code>
+                <code>{`cd packages/icons && pnpm build`}</code>
               </pre>
             </li>
             <li>
@@ -570,8 +570,8 @@ export default NewIcon;`}</code>
             </li>
             <li>Custom designed icons following the design system guidelines</li>
           </ul>
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

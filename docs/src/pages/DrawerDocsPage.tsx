@@ -42,14 +42,14 @@ export default function DrawerDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider components={components}>
             <Drawer />
           </MDXProvider>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

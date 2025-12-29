@@ -1,14 +1,12 @@
 import { MDXProvider } from "@mdx-js/react";
-import Badge from "@/docs/Badge.mdx";
-import { Badge as BadgeComponent, Card, CardContent } from "@azodik/ui";
+import BadgeDocs from "../docs/Badge.mdx";
+import { Badge, Box, Container } from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 
 const components = {
-  Badge: BadgeComponent,
-  Card: Card,
-  CardContent: CardContent,
+  Badge,
 };
 
 export default function BadgeDocsPage() {
@@ -20,14 +18,14 @@ export default function BadgeDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider components={components}>
-            <Badge />
+            <BadgeDocs />
           </MDXProvider>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }
