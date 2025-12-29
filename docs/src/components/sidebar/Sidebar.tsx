@@ -163,6 +163,7 @@ export default function SidebarLayout({
         showHeader={true}
         showFooter={true}
         showBreadcrumb={true}
+        useNeutralStates={true}
       >
         <SidebarHeader show={true}>
           <SidebarBrand
@@ -182,6 +183,7 @@ export default function SidebarLayout({
                     onClick={() => handleComponentClick(item.href)}
                     active={isActive}
                     style={{ cursor: "pointer" }}
+                    useNeutralStates={true}
                   >
                     {t(item.nameKey)}
                   </SidebarMenuButton>

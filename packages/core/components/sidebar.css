@@ -216,6 +216,17 @@
   color: var(--accent-9);
 }
 
+/* Neutral states variant for group headers */
+.sidebar-neutral-states .sidebar-group-header:hover {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
+.sidebar-neutral-states .sidebar-group-header.active {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
 .sidebar-group-title {
   flex: 1;
   display: flex;
@@ -306,6 +317,20 @@
 .sidebar-item a.active {
   background: var(--accent-3);
   color: var(--accent-9);
+  font-weight: 500;
+}
+
+/* Neutral states variant - uses gray colors instead of accent colors */
+.sidebar-neutral-states .sidebar-item a:hover,
+.sidebar-neutral-states.sidebar-item a:hover {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
+.sidebar-neutral-states .sidebar-item a.active,
+.sidebar-neutral-states.sidebar-item a.active {
+  background: var(--gray-3);
+  color: var(--gray-12);
   font-weight: 500;
 }
 
@@ -630,6 +655,30 @@
 [data-theme="dark"] .sidebar-group-header.active {
   background: var(--accent-3);
   color: var(--accent-9);
+}
+
+/* Dark theme neutral states */
+[data-theme="dark"] .sidebar-neutral-states .sidebar-item a:hover,
+[data-theme="dark"] .sidebar-neutral-states.sidebar-item a:hover {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
+[data-theme="dark"] .sidebar-neutral-states .sidebar-item a.active,
+[data-theme="dark"] .sidebar-neutral-states.sidebar-item a.active {
+  background: var(--gray-3);
+  color: var(--gray-12);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .sidebar-neutral-states .sidebar-group-header:hover {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
+[data-theme="dark"] .sidebar-neutral-states .sidebar-group-header.active {
+  background: var(--gray-3);
+  color: var(--gray-12);
 }
 
 /* Light theme main content header styles */

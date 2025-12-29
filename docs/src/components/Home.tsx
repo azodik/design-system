@@ -149,10 +149,8 @@ export default function Home() {
           <div className="homepage-cta">
             <Button
               variant="solid"
-              color="amber"
               onClick={handleGetStarted}
               className="homepage-btn homepage-btn-primary"
-              style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               View Components
               <ArrowRightIcon size={16} />
@@ -163,7 +161,7 @@ export default function Home() {
               className="homepage-btn homepage-btn-secondary"
             >
               View Repository
-              <GithubIcon />
+              <GithubIcon size={16} />
             </Button>
           </div>
 

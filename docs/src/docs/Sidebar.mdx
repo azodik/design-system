@@ -660,6 +660,67 @@ function ResponsiveSidebarExample() {
 }`}
 />
 
+### Neutral States for Better Accent Compatibility
+
+By default, sidebar active and hover states use the current accent color. However, some accent colors may not look good in both light and dark modes. Use the `useNeutralStates` prop to use neutral gray colors instead, which work well with any accent color.
+
+<CodeBlock language="tsx">
+{`import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent
+} from '@azodik/ui';
+
+function SidebarWithNeutralStates() {
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar 
+        width={250}
+        useNeutralStates={true}
+      >
+        <SidebarHeader>
+          <SidebarBrand>My App</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                active
+                useNeutralStates={true}
+              >
+                Dashboard
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton useNeutralStates={true}>
+                Users
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton useNeutralStates={true}>
+                Settings
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      
+      <SidebarMainContent>
+        <div className="p-6">
+          <h1>Main Content</h1>
+          <p>Sidebar uses neutral gray colors that work with any accent.</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+</CodeBlock>
+
 <PropsSidebarSection />
 
 <PropsTable props={[
@@ -800,6 +861,13 @@ function ResponsiveSidebarExample() {
     required: false,
     default: 'true',
     description: 'Whether to show the sidebar item'
+  },
+  {
+    name: 'useNeutralStates',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Use neutral gray colors for active/hover states instead of accent colors'
   },
   {
     name: 'className',

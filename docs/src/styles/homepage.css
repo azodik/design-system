@@ -394,26 +394,27 @@
 }
 
 .homepage-btn-primary {
-  background: #FF7F41;
+  background: var(--color-primary);
   color: white;
   box-shadow: 0 4px 14px 0 rgba(255, 127, 65, 0.3);
 }
 
 .homepage-btn-primary:hover {
-  background: #e56a2e;
+  background: var(--color-primary-hover, #e56a2e);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px 0 rgba(255, 127, 65, 0.4);
 }
 
 .homepage-btn-secondary {
-  background: white;
-  color: #FF7F41;
-  border: 1px solid #FF7F41;
+  background: var(--color-background);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
 }
 
 .homepage-btn-secondary:hover {
-  background: #fff7ed;
+  background: var(--color-surface);
   transform: translateY(-1px);
+  border-color: var(--color-primary);
 }
 
 /* Features */

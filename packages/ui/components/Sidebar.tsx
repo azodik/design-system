@@ -63,6 +63,8 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   isSidebarOpen?: boolean;
   onSidebarToggle?: () => void;
   isSmallScreen?: boolean;
+  // Styling props
+  useNeutralStates?: boolean;
 }
 
 export function Sidebar({
@@ -78,6 +80,7 @@ export function Sidebar({
   isSidebarOpen = false,
   onSidebarToggle,
   isSmallScreen = false,
+  useNeutralStates = false,
   className = "",
   ...props
 }: SidebarProps) {
@@ -118,7 +121,7 @@ export function Sidebar({
       )}
 
       <div
-        className={`sidebar ${collapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""} ${className}`}
+        className={`sidebar ${collapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""} ${useNeutralStates ? "sidebar-neutral-states" : ""} ${className}`}
         style={{
           ...sidebarStyle,
           ...(isSmallScreen && {
@@ -281,6 +284,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   tooltip?: string;
   show?: boolean;
   size?: '1' | '2' | '3';
+  useNeutralStates?: boolean;
 }
 
 export function SidebarItem({
@@ -291,12 +295,14 @@ export function SidebarItem({
   tooltip,
   show = true,
   size = '2',
+  useNeutralStates = false,
   className = "",
   ...props
 }: SidebarItemProps) {
   const itemClasses = [
     'sidebar-item',
     size && `size-${size}`,
+    useNeutralStates && 'sidebar-neutral-states',
     className
   ].filter(Boolean).join(' ');
   const linkClasses = [active && "active"].filter(Boolean).join(" ");
@@ -541,16 +547,18 @@ export interface SidebarMenuButtonProps extends React.AnchorHTMLAttributes<HTMLA
   children: React.ReactNode;
   icon?: React.ReactNode;
   active?: boolean;
+  useNeutralStates?: boolean;
 }
 
 export function SidebarMenuButton({
   children,
   icon,
   active = false,
+  useNeutralStates = false,
   className = "",
   ...props
 }: SidebarMenuButtonProps) {
-  const buttonClasses = [active && "active", className].filter(Boolean).join(" ");
+  const buttonClasses = [active && "active", useNeutralStates && "sidebar-neutral-states", className].filter(Boolean).join(" ");
 
   return (
     <a className={buttonClasses} {...props}>
