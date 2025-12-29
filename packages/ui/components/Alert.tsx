@@ -4,7 +4,7 @@ import { resolveRadiusFactor } from "../utils/radius";
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  variant?: "soft" | "surface" | "outline";
+  variant?: "soft" | "surface" | "outline" | "glass";
   size?: "1" | "2" | "3";
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
@@ -52,18 +52,22 @@ export default function Alert({
   } as React.CSSProperties;
 
   const titleId = React.useId();
-  
+
   return (
-    <div 
-      className={alertClasses} 
-      style={customStyle} 
-      role="alert" 
+    <div
+      className={alertClasses}
+      style={customStyle}
+      role="alert"
       aria-labelledby={title ? titleId : undefined}
       {...props}
     >
       {icon && <div className="alert-icon">{icon}</div>}
       <div className="alert-content">
-        {title && <div id={titleId} className="alert-title">{title}</div>}
+        {title && (
+          <div id={titleId} className="alert-title">
+            {title}
+          </div>
+        )}
         <div className="alert-message">{children}</div>
       </div>
     </div>

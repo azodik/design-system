@@ -46,10 +46,11 @@ export default function ComponentNavigation() {
         disabled={!previous}
         variant="solid"
         size="2"
-        className="flex items-center gap-2"
       >
-        <ChevronLeftIcon size={16} />
-        <span className="font-medium">{previous ? t(previous.nameKey) : t("previous")}</span>
+        <span className="flex items-center gap-2">
+          <ChevronLeftIcon size={16} />
+          <span className="font-medium">{previous ? t(previous.nameKey) : t("previous")}</span>
+        </span>
       </Button>
 
       {/* Next Button */}
@@ -58,10 +59,11 @@ export default function ComponentNavigation() {
         disabled={!next}
         variant="solid"
         size="2"
-        className="flex items-center gap-2"
       >
-        <span className="font-medium">{next ? t(next.nameKey) : t("next")}</span>
-        <ChevronRightIcon size={16} />
+        <span className="flex items-center gap-2">
+          <span className="font-medium">{next ? t(next.nameKey) : t("next")}</span>
+          <ChevronRightIcon size={16} />
+        </span>
       </Button>
     </div>
   );

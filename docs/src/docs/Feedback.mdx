@@ -1,0 +1,77 @@
+
+import { Spinner, Skeleton, Progress, Flex, Card } from "@azodik/ui";
+import { CodeBlockWithPreview } from "@/components/docs";
+
+# Feedback Components
+
+A collection of components to provide feedback to the user about current system status.
+
+## Spinner
+Indicates a loading state.
+
+<CodeBlockWithPreview
+  title="Spinner"
+  preview={
+    <Flex gap="4" align="center">
+      <Spinner size="1" />
+      <Spinner size="2" color="var(--accent-9)" />
+      <Spinner size="3" />
+    </Flex>
+  }
+>
+{`<Flex gap="4" align="center">
+  <Spinner size="1" />
+  <Spinner size="2" color="var(--accent-9)" />
+  <Spinner size="3" />
+</Flex>`}
+</CodeBlockWithPreview>
+
+## Skeleton
+Placeholder for content while loading.
+
+<CodeBlockWithPreview
+  title="Skeleton"
+  preview={
+    <Card style={{ width: 300 }}>
+      <Flex gap="3" align="center" style={{ marginBottom: 16 }}>
+        <Skeleton variant="circular" width={40} height={40} />
+        <Flex direction="column" gap="1" style={{ flex: 1 }}>
+          <Skeleton variant="text" width="60%" />
+          <Skeleton variant="text" width="40%" />
+        </Flex>
+      </Flex>
+      <Skeleton variant="rectangular" height={100} />
+    </Card>
+  }
+>
+{`<Card style={{ width: 300 }}>
+  <Flex gap="3" align="center" style={{ marginBottom: 16 }}>
+    <Skeleton variant="circular" width={40} height={40} />
+    <Flex direction="column" gap="1" style={{ flex: 1 }}>
+      <Skeleton variant="text" width="60%" />
+      <Skeleton variant="text" width="40%" />
+    </Flex>
+  </Flex>
+  <Skeleton variant="rectangular" height={100} />
+</Card>`}
+</CodeBlockWithPreview>
+
+## Progress
+Displays the progress of a task.
+
+<CodeBlockWithPreview
+  title="Progress"
+  preview={
+    <Flex direction="column" gap="4" style={{ width: "100%" }}>
+      <Progress value={40} />
+      <Progress value={75} variant="soft" />
+      <Progress indeterminate />
+    </Flex>
+  }
+>
+{`<Flex direction="column" gap="4" style={{ width: "100%" }}>
+  <Progress value={40} />
+  <Progress value={75} variant="soft" />
+  <Progress indeterminate />
+</Flex>`}
+</CodeBlockWithPreview>

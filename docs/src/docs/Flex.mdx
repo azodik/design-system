@@ -1,0 +1,81 @@
+
+import { Flex } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Flex
+
+The `Flex` component is a layout primitive that helps you build flexible layouts using CSS Flexbox.
+
+## Features
+- **Polymorphic**: Can render as any HTML element using the `as` prop.
+- **Responsive**: Supports responsive gap and alignment props.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Flex } from "@azodik/ui";
+
+<Flex gap="4" align="center">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Flex>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Flex Example"
+  preview={
+    <Flex gap="4" align="center" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Flex>
+  }
+>
+{`<Flex gap="4" align="center" style={{ background: "var(--gray-3)", padding: 20 }}>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+</Flex>`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'direction',
+    type: '"row" | "column" | "row-reverse" | "column-reverse"',
+    required: false,
+    default: '"row"',
+    description: 'The flex direction'
+  },
+  {
+    name: 'align',
+    type: '"start" | "center" | "end" | "baseline" | "stretch"',
+    required: false,
+    default: '"stretch"',
+    description: 'The align-items value'
+  },
+  {
+    name: 'justify',
+    type: '"start" | "center" | "end" | "between"',
+    required: false,
+    default: '"start"',
+    description: 'The justify-content value'
+  },
+  {
+    name: 'gap',
+    type: '"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"',
+    required: false,
+    default: '"3"',
+    description: 'The gap between items'
+  },
+  {
+    name: 'wrap',
+    type: '"nowrap" | "wrap" | "wrap-reverse"',
+    required: false,
+    default: '"nowrap"',
+    description: 'The flex-wrap value'
+  }
+]} />

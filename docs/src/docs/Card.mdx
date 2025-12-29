@@ -142,6 +142,35 @@ export const DesignGuidelinesList = () => {
 
 <VariantsSection />
 
+<CodeBlockWithPreview 
+  title="Glass Variant"
+  preview={
+    <div className="p-4" style={{ background: "url('https://source.unsplash.com/random/800x600')", backgroundSize: "cover" }}>
+      <Card variant="glass">
+        <CardContent>
+          <h3 className="text-lg font-bold">Glass Card</h3>
+          <p>This card uses the glassmorphism effect.</p>
+        </CardContent>
+      </Card>
+    </div>
+  }
+>
+{`import { Card, CardContent } from '@azodik/ui';
+
+export const GlassCard = () => {
+  return (
+    <div style={{ background: "url(...)" }}>
+      <Card variant="glass">
+        <CardContent>
+          <h3 className="text-lg font-bold">Glass Card</h3>
+          <p>This card uses the glassmorphism effect.</p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
 <SomeVariantsExample />
 
 <CodeBlockWithPreview 
@@ -272,6 +301,13 @@ export const CardWithActionsExample = () => {
     required: false,
     default: '"2"',
     description: 'Size preset for the card'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: 'inherit',
+    description: 'Border radius of the card'
   },
   {
     name: 'className',

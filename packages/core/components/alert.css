@@ -49,3 +49,26 @@
 .alert-content { flex: 1; min-width: 0; }
 .alert-title { font-weight: 600; font-size: 14px; margin-bottom: var(--space-1); }
 .alert-message { font-size: 14px; line-height: 1.5; }
+/* Glass Variant */
+.az-variant-glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--border-glass);
+  color: var(--color-text);
+  box-shadow: var(--shadow-2);
+}
+
+[data-theme="dark"] .az-variant-glass {
+  background: var(--bg-glass-dark);
+  border: 1px solid var(--border-glass-dark);
+}
+
+.az-variant-glass .alert-title {
+  color: var(--accent-11);
+}
+
+.az-variant-glass.az-accent-indigo { --bg-glass: rgba(94, 106, 210, 0.1); --border-glass: rgba(94, 106, 210, 0.2); }
+.az-variant-glass.az-accent-ruby { --bg-glass: rgba(229, 72, 77, 0.1); --border-glass: rgba(229, 72, 77, 0.2); }
+.az-variant-glass.az-accent-grass { --bg-glass: rgba(70, 167, 88, 0.1); --border-glass: rgba(70, 167, 88, 0.2); }
+.az-variant-glass.az-accent-amber { --bg-glass: rgba(255, 193, 7, 0.1); --border-glass: rgba(255, 193, 7, 0.2); }

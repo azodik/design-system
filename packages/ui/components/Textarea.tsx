@@ -1,7 +1,7 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   help?: string;
   error?: string;
@@ -12,7 +12,7 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   className?: string;
 }
 
-export default function Input({
+export function Textarea({
   label,
   help,
   error,
@@ -25,9 +25,9 @@ export default function Input({
   id,
   name,
   ...props
-}: InputProps) {
+}: TextareaProps) {
   const generatedId = React.useId();
-  const inputId = id || name || generatedId;
+  const textareaId = id || name || generatedId;
   const isNamedColor =
     color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
 
@@ -37,8 +37,8 @@ export default function Input({
     ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
-  const inputClasses = [
-    "az-TextFieldInput input",
+  const textareaClasses = [
+    "az-TextAreaInput textarea",
     `az-r-size-${size}`,
     status,
     error && "error",
@@ -51,14 +51,14 @@ export default function Input({
   return (
     <div className="form-group">
       {label && (
-        <label htmlFor={inputId} className="form-label">
+        <label htmlFor={textareaId} className="form-label">
           {label}
         </label>
       )}
-      <input
-        id={inputId}
-        name={name || inputId}
-        className={inputClasses}
+      <textarea
+        id={textareaId}
+        name={name || textareaId}
+        className={textareaClasses}
         style={customStyle}
         {...props}
       />

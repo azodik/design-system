@@ -171,8 +171,11 @@ importers:
         specifier: workspace:*
         version: link:../core
       react:
-        specifier: ^19.2.3
+        specifier: '>=18.0.0'
         version: 19.2.3
+      react-dom:
+        specifier: '>=18.0.0'
+        version: 19.2.3(react@19.2.3)
       recharts:
         specifier: ^3.6.0
         version: 3.6.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react-is@19.2.0)(react@19.2.3)(redux@5.0.1)
@@ -180,6 +183,9 @@ importers:
       '@types/react':
         specifier: ^19.2.7
         version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)

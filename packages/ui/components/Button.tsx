@@ -2,6 +2,7 @@ import React from "react";
 import { useThemeContext } from "./Theme";
 import { useTheme as useGlobalTheme } from "../providers/ThemeProvider";
 import { resolveRadiusFactor } from "../utils/radius";
+import { Spinner } from "./Spinner";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -10,23 +11,12 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
   highContrast?: boolean;
+  loading?: boolean;
+  icon?: React.ReactNode;
 }
 
 /**
  * Button component with multiple variants, sizes, and colors
- *
- * @param children - Button content
- * @param variant - Visual style variant (default: "solid")
- * @param size - Button size (default: "2")
- * @param color - Button color theme (defaults to theme accent color)
- * @param radius - Border radius (defaults to theme radius)
- * @param highContrast - Use high contrast colors (default: false)
- * @example
- * ```tsx
- * <Button variant="solid" size="2" color="indigo">
- *   Click Me
- * </Button>
- * ```
  */
 export default function Button({
   children,
@@ -35,8 +25,11 @@ export default function Button({
   color,
   radius,
   highContrast = false,
+  loading = false,
+  icon,
   className,
   style,
+  disabled,
   ...props
 }: ButtonProps) {
   const context = useThemeContext();
@@ -56,6 +49,7 @@ export default function Button({
     `az-r-size-${size}`,
     isNamedColor ? `az-accent-${resolvedColor}` : "",
     highContrast ? "az-high-contrast" : "",
+    loading ? "az-loading" : "",
     className,
   ]
     .filter(Boolean)
@@ -68,8 +62,10 @@ export default function Button({
   } as React.CSSProperties;
 
   return (
-    <button className={buttonClasses} style={customStyle} {...props}>
-      {children}
+    <button className={buttonClasses} style={customStyle} disabled={disabled || loading} {...props}>
+      {loading && <Spinner size="1" color="currentColor" />}
+      {!loading && icon && <span className="btn-icon">{icon}</span>}
+      <span className="btn-content">{children}</span>
     </button>
   );
 }

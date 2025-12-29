@@ -1,9 +1,11 @@
 import React from "react";
+import { resolveRadiusFactor } from "../utils/radius";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  variant?: "surface" | "classic" | "ghost";
+  variant?: "surface" | "classic" | "ghost" | "glass";
   size?: "1" | "2" | "3";
+  radius?: "none" | "small" | "medium" | "large" | "full";
 }
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -37,26 +39,34 @@ export default function Card({
   className = "",
   variant = "surface",
   size = "2",
+  radius,
   style,
   ...props
 }: CardProps) {
   const titleId = React.useId();
-  const hasTitle = React.Children.toArray(children).some(
-    (child) => React.isValidElement(child) && child.type === CardHeader,
-  ) || React.Children.toArray(children).some(
-    (child) => React.isValidElement(child) && child.type === CardTitle,
-  );
+  const hasTitle =
+    React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.type === CardHeader,
+    ) ||
+    React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.type === CardTitle,
+    );
 
   const combinedClassName = ["az-Card", `az-variant-${variant}`, `az-r-size-${size}`, className]
     .filter(Boolean)
     .join(" ");
 
+  const customStyle: React.CSSProperties = {
+    ...style,
+    ...resolveRadiusFactor(radius),
+  } as React.CSSProperties;
+
   return (
     <CardContext.Provider value={{ titleId }}>
-      <div 
-        className={combinedClassName} 
-        style={style} 
-        role="section"
+      <div
+        className={combinedClassName}
+        style={customStyle}
+        role="region"
         aria-labelledby={hasTitle ? titleId : undefined}
         {...props}
       >

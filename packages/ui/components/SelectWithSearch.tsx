@@ -232,7 +232,7 @@ export function SelectWithSearch({
             style={{ maxHeight: `${maxHeight}px` }}
           >
             <div className="select-search-container">
-              <SearchIcon size={16} className="select-search-icon" />
+              <SearchIcon size={16} className="select-search-icon" style={{}} />
               <input
                 ref={searchInputRef}
                 type="text"
