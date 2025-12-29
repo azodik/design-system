@@ -1,5 +1,6 @@
 import React from "react";
 import { useThemeContext } from "./Theme";
+import { resolveRadiusFactor } from "../utils/radius";
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -47,27 +48,22 @@ export default function Alert({
   const customStyle: React.CSSProperties = {
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
-    ...(radius
-      ? {
-          "--radius-factor":
-            radius === "none"
-              ? "0"
-              : radius === "small"
-                ? "0.75"
-                : radius === "medium"
-                  ? "1"
-                  : radius === "large"
-                    ? "1.5"
-                    : "2",
-        }
-      : {}),
+    ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
+  const titleId = React.useId();
+  
   return (
-    <div className={alertClasses} style={customStyle} {...props}>
+    <div 
+      className={alertClasses} 
+      style={customStyle} 
+      role="alert" 
+      aria-labelledby={title ? titleId : undefined}
+      {...props}
+    >
       {icon && <div className="alert-icon">{icon}</div>}
       <div className="alert-content">
-        {title && <div className="alert-title">{title}</div>}
+        {title && <div id={titleId} className="alert-title">{title}</div>}
         <div className="alert-message">{children}</div>
       </div>
     </div>

@@ -181,6 +181,14 @@ export const AvailableComponentsSection = () => {
       <h2>{t('availableComponents')}</h2>
       <p>{t('ourDesignSystem')}</p>
       
+      <h3>Icons</h3>
+      <p>Azodik UI comes with a massive library of <strong>2,000+ icons</strong>. You can browse them all in the <a href="/components/icons">Icons Gallery</a>.</p>
+      <CodeBlock language="tsx">
+{`import { ZapIcon, SearchIcon, UserIcon } from '@azodik/icons';
+
+<ZapIcon size={20} />`}
+      </CodeBlock>
+
       <h3>{t('formComponentsDesc')}</h3>
       <ul>
         <li><strong>Input</strong> - {t('inputDesc')}</li>
@@ -359,11 +367,8 @@ export const IntroductionSection = () => {
 <InstallationSection />
 
 <CodeBlock language="bash">
-{`# Install the React components
-npm install @azodik/ui
-
-# Install the CSS design system (required)
-npm install azodik-ui-core`}
+{`# Install the complete package (includes components, icons, and CSS)
+npm install @azodik/ui`}
 </CodeBlock>
 
 <RequirementsList />

@@ -58,15 +58,16 @@
   "dependencies": {
     "@azodik/icons": "workspace:*",
     "azodik-ui-core": "workspace:*",
-    "react": "^19.2.3",
     "recharts": "^3.6.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.4",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "react": ">=18.0.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   }
 }

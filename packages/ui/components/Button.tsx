@@ -1,6 +1,7 @@
 import React from "react";
 import { useThemeContext } from "./Theme";
 import { useTheme as useGlobalTheme } from "../providers/ThemeProvider";
+import { resolveRadiusFactor } from "../utils/radius";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -63,20 +64,7 @@ export default function Button({
   const customStyle: React.CSSProperties = {
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
-    ...(radius
-      ? {
-          "--radius-factor":
-            radius === "none"
-              ? "0"
-              : radius === "small"
-                ? "0.75"
-                : radius === "medium"
-                  ? "1"
-                  : radius === "large"
-                    ? "1.5"
-                    : "2",
-        }
-      : {}),
+    ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
   return (

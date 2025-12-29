@@ -1,5 +1,6 @@
 import React from "react";
 import { useThemeContext } from "./Theme";
+import { resolveRadiusFactor } from "../utils/radius";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
@@ -43,24 +44,11 @@ export default function Badge({
   const customStyle: React.CSSProperties = {
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
-    ...(radius
-      ? {
-          "--radius-factor":
-            radius === "none"
-              ? "0"
-              : radius === "small"
-                ? "0.75"
-                : radius === "medium"
-                  ? "1"
-                  : radius === "large"
-                    ? "1.5"
-                    : "2",
-        }
-      : {}),
+    ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
   return (
-    <span className={badgeClasses} style={customStyle} {...props}>
+    <span className={badgeClasses} style={customStyle} role="status" {...props}>
       {children}
     </span>
   );
