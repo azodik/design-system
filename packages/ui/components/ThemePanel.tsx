@@ -3,6 +3,7 @@ import { useTheme, type GrayColor, type Radius } from "../providers/ThemeProvide
 import { PaletteIcon, MonitorIcon, SunIcon, MoonIcon } from "@azodik/icons";
 import { Popover } from "./Popover";
 import Badge from "./Badge";
+import { VERSION } from "../version";
 
 export interface ThemePanelProps {
   trigger?: React.ReactNode;
@@ -191,7 +192,7 @@ export const ThemePanel = React.memo(function ThemePanel({
           style={{ marginTop: "20px", paddingTop: "16px", borderTop: "1px solid var(--gray-4)" }}
         >
           <Badge variant="soft" color="indigo">
-            Version 1.0.0-beta
+            Version {VERSION}
           </Badge>
         </div>
       </div>
