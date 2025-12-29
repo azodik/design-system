@@ -205,6 +205,7 @@ export interface SidebarGroupProps extends React.HTMLAttributes<HTMLDivElement> 
   isOpen?: boolean;
   onToggle?: () => void;
   show?: boolean;
+  variant?: 'default' | 'compact' | 'icon-only';
 }
 
 export function SidebarGroup({
@@ -217,6 +218,7 @@ export function SidebarGroup({
   isOpen = false,
   onToggle,
   show = true,
+  variant = 'default',
   className = "",
   ...props
 }: SidebarGroupProps) {
@@ -228,8 +230,14 @@ export function SidebarGroup({
 
   if (!show) return null;
 
+  const groupClasses = [
+    'sidebar-group',
+    variant !== 'default' && `variant-${variant}`,
+    className
+  ].filter(Boolean).join(' ');
+
   return (
-    <div className={`sidebar-group ${className}`} {...props}>
+    <div className={groupClasses} {...props}>
       {title &&
         (collapsible ? (
           <button
@@ -272,6 +280,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   badge?: string | number;
   tooltip?: string;
   show?: boolean;
+  size?: '1' | '2' | '3';
 }
 
 export function SidebarItem({
@@ -281,16 +290,22 @@ export function SidebarItem({
   badge,
   tooltip,
   show = true,
+  size = '2',
   className = "",
   ...props
 }: SidebarItemProps) {
-  const itemClasses = [active && "active", className].filter(Boolean).join(" ");
+  const itemClasses = [
+    'sidebar-item',
+    size && `size-${size}`,
+    className
+  ].filter(Boolean).join(' ');
+  const linkClasses = [active && "active"].filter(Boolean).join(" ");
 
   if (!show) return null;
 
   return (
-    <li className="sidebar-item">
-      <a className={itemClasses} title={tooltip} {...props}>
+    <li className={itemClasses}>
+      <a className={linkClasses} title={tooltip} {...props}>
         {icon && <span className="sidebar-item-icon">{icon}</span>}
         <span className="sidebar-item-text">{children}</span>
         {badge && <span className="sidebar-item-badge">{badge}</span>}
