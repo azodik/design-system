@@ -9,13 +9,14 @@ export interface SelectProps {
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
   size?: "1" | "2" | "3";
-  options: { value: string; label: string }[];
+  options: { value: string; label: string; icon?: React.ReactNode }[];
   className?: string;
   style?: React.CSSProperties;
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
+  renderValue?: (option: { value: string; label: string; icon?: React.ReactNode }) => React.ReactNode;
 }
 
 export function Select({
@@ -33,6 +34,7 @@ export function Select({
   onChange,
   placeholder = "Select an option",
   disabled = false,
+  renderValue,
 }: SelectProps) {
   const generatedId = React.useId();
   const selectId = generatedId;
@@ -84,6 +86,7 @@ export function Select({
   };
 
   const customStyle: React.CSSProperties = {
+    margin: 0,
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
     ...resolveRadiusFactor(radius),
@@ -176,7 +179,18 @@ export function Select({
           }}
         >
           <span className="select-value">
-            {selectedOption ? selectedOption.label : placeholder}
+            {renderValue && selectedOption ? (
+              renderValue(selectedOption)
+            ) : selectedOption ? (
+              <>
+                {selectedOption.icon && (
+                  <span className="select-icon">{selectedOption.icon}</span>
+                )}
+                <span>{selectedOption.label}</span>
+              </>
+            ) : (
+              placeholder
+            )}
           </span>
           <svg
             className={`select-arrow ${isOpen ? "open" : ""}`}
@@ -218,7 +232,8 @@ export function Select({
                 aria-selected={selectedValue === option.value}
                 tabIndex={0}
               >
-                {option.label}
+                {option.icon && <span className="select-icon">{option.icon}</span>}
+                <span>{option.label}</span>
               </div>
             ))}
           </div>

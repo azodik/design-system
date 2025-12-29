@@ -90,3 +90,23 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
 }
+
+/* Select Component Icon Support */
+.select-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.select-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.select-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
