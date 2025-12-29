@@ -88,6 +88,11 @@
   line-height: 1.6;
 }
 
+/* Ensure code blocks have enough bottom margin before navigation */
+.docs-content > *:last-child {
+  margin-bottom: 4rem !important;
+}
+
 .docs-content table {
   margin: 2rem 0;
   border-collapse: collapse;

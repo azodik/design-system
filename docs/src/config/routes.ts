@@ -16,6 +16,7 @@ export const routes = {
   chartsDocs: "/components/docs/charts",
   checkboxDocs: "/components/docs/checkbox",
   containerDocs: "/components/docs/container",
+  themeTest: "/theme-test",
   dialogDocs: "/components/docs/dialog",
   drawerDocs: "/components/docs/drawer",
   datatableDocs: "/components/docs/datatable",

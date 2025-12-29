@@ -13,6 +13,14 @@ html {
   background: var(--color-background);
 }
 
+/* Ensure custom accents on ThemeProvider override root-level accent classes */
+/* This works by resetting the variable to initial, forcing it to use the inline style value */
+[data-custom-accent="true"] {
+  --accent-9: initial;
+  --accent-10: initial;
+  --accent-11: initial;
+}
+
 /* Common UI Elements */
 .theme-toggle-button,
 .theme-panel-trigger {

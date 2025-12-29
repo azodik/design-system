@@ -121,6 +121,53 @@ You can override any of the CSS variables in your own stylesheet. It's recommend
 }
 ```
 
+## Customization
+
+### Custom Accent Colors
+
+The `ThemeProvider` (and `Theme` component) supports custom accent colors. You can pass any valid CSS color value (hex, rgb, etc.) to the `accentColor` prop.
+
+<CodeBlock language="tsx">
+{`// Using a custom hex color for the primary accent
+<ThemeProvider accentColor="#D946EF">
+  {/* Buttons and other accented elements will use this pink color */}
+  <Button variant="solid">Pink Button</Button>
+</ThemeProvider>`}
+</CodeBlock>
+
+> [!IMPORTANT]
+> **Custom colors should be set at the root `ThemeProvider` level** (in your `main.tsx` or app entry point), not in nested `ThemeProvider` or `Theme` components. This ensures the custom color applies throughout your entire application without CSS specificity conflicts.
+
+### Custom Fonts
+
+To use a custom font family, you can override the `--font-family-sans` CSS variable using the `style` prop on the `ThemeProvider`.
+
+<CodeBlock language="tsx">
+{`// Using a custom font
+<ThemeProvider style={{ "--font-family-sans": "'Inter', sans-serif" }}>
+  <App />
+</ThemeProvider>`}
+</CodeBlock>
+
+> [!IMPORTANT]
+> **Custom fonts should also be set at the root `ThemeProvider` level** for consistent application-wide typography.
+
+### Complete Example
+
+<CodeBlock language="tsx">
+{`// In your main.tsx or app entry point
+<ThemeProvider
+  defaultTheme="system"
+  accentColor="#D946EF"  // Custom pink color
+  grayColor="slate"
+  radius="medium"
+  scaling="100%"
+  style={{ "--font-family-sans": "'Inter', sans-serif" }}  // Custom font
+>
+  <App />
+</ThemeProvider>`}
+</CodeBlock>
+
 ## Subtree Theming
 
 The `Theme` component allows you to override theme settings for a specific part of your application. This is useful for sections that need a different look (e.g., a dark sidebar in a light app).

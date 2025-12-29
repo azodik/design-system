@@ -39,7 +39,7 @@ export default function ComponentNavigation() {
   };
 
   return (
-    <div className="flex justify-between items-center" style={{ marginTop: "var(--space-lg)" }}>
+    <div className="flex justify-between items-center" style={{ marginTop: "var(--space-lg)", paddingBottom: "var(--space-xl)", marginBottom: "var(--space-lg)" }}>
       {/* Previous Button */}
       <Button
         onClick={handlePrevious}

@@ -15,9 +15,11 @@ export default function ThemingDocsPage() {
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
       <div className="max-w-4xl mx-auto p-2">
         <div className="docs-content">
-          <MDXProvider>
-            <Theming />
-          </MDXProvider>
+          <div style={{ paddingBottom: "4rem" }}>
+            <MDXProvider>
+              <Theming />
+            </MDXProvider>
+          </div>
           <ComponentNavigation />
         </div>
       </div>
