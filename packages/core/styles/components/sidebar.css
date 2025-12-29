@@ -20,19 +20,47 @@
   margin: 0.125rem 0.5rem;
 }
 
-.sidebar-item a:hover {
+/* Default hover - neutral by default when sidebar has neutral states class */
+.sidebar-neutral-states .sidebar-item a:hover,
+.sidebar.sidebar-neutral-states .sidebar-item a:hover,
+.sidebar-item a.sidebar-neutral-states:hover,
+a.sidebar-neutral-states:hover {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
+/* Default hover when NOT using neutral states */
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a:hover {
   background: var(--color-surface-hover);
   color: var(--color-text);
 }
 
-.sidebar-item a.active {
+/* Accent colors - only when NOT using neutral states */
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a.active {
   background: var(--accent-3);
   color: var(--accent-11);
   font-weight: 500;
 }
 
-.sidebar-item a.active:hover {
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a.active:hover {
   background: var(--accent-4);
+}
+
+/* Neutral states - default behavior */
+.sidebar-neutral-states .sidebar-item a.active,
+.sidebar.sidebar-neutral-states .sidebar-item a.active,
+.sidebar-item a.sidebar-neutral-states.active,
+a.sidebar-neutral-states.active {
+  background: var(--gray-3);
+  color: var(--gray-12);
+  font-weight: 500;
+}
+
+.sidebar-neutral-states .sidebar-item a.active:hover,
+.sidebar.sidebar-neutral-states .sidebar-item a.active:hover,
+.sidebar-item a.sidebar-neutral-states.active:hover,
+a.sidebar-neutral-states.active:hover {
+  background: var(--gray-4);
 }
 
 /* Sidebar Item Icon */

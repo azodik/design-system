@@ -206,12 +206,13 @@
   overflow: hidden;
 }
 
-.sidebar-group-header:hover {
+/* Default accent colors for group headers - only when NOT using neutral states */
+.sidebar:not(.sidebar-neutral-states) .sidebar-group-header:hover {
   background: var(--accent-3);
   color: var(--accent-9);
 }
 
-.sidebar-group-header.active {
+.sidebar:not(.sidebar-neutral-states) .sidebar-group-header.active {
   background: var(--accent-3);
   color: var(--accent-9);
 }
@@ -309,12 +310,13 @@
   overflow: hidden;
 }
 
-.sidebar-item a:hover {
+/* Default accent colors - only when NOT using neutral states */
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a:hover {
   background: var(--accent-3);
   color: var(--accent-9);
 }
 
-.sidebar-item a.active {
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a.active {
   background: var(--accent-3);
   color: var(--accent-9);
   font-weight: 500;
@@ -322,13 +324,18 @@
 
 /* Neutral states variant - uses gray colors instead of accent colors */
 .sidebar-neutral-states .sidebar-item a:hover,
-.sidebar-neutral-states.sidebar-item a:hover {
+.sidebar.sidebar-neutral-states .sidebar-item a:hover,
+.sidebar-neutral-states.sidebar-item a:hover,
+.sidebar-item a.sidebar-neutral-states:hover,
+a.sidebar-neutral-states:hover {
   background: var(--gray-3);
   color: var(--gray-12);
 }
 
 .sidebar-neutral-states .sidebar-item a.active,
-.sidebar-neutral-states.sidebar-item a.active {
+.sidebar-neutral-states.sidebar-item a.active,
+.sidebar-item a.sidebar-neutral-states.active,
+a.sidebar-neutral-states.active {
   background: var(--gray-3);
   color: var(--gray-12);
   font-weight: 500;
@@ -635,37 +642,42 @@
   border-bottom-color: var(--color-border) !important;
 }
 
-/* Dark theme sidebar menu hover and active states */
-[data-theme="dark"] .sidebar-item a:hover {
+/* Dark theme sidebar menu hover and active states - only when NOT using neutral states */
+[data-theme="dark"] .sidebar:not(.sidebar-neutral-states) .sidebar-item a:hover {
   background: var(--accent-3);
   color: var(--accent-9);
 }
 
-[data-theme="dark"] .sidebar-item a.active {
+[data-theme="dark"] .sidebar:not(.sidebar-neutral-states) .sidebar-item a.active {
   background: var(--accent-3);
   color: var(--accent-9);
   font-weight: 500;
 }
 
-[data-theme="dark"] .sidebar-group-header:hover {
+[data-theme="dark"] .sidebar:not(.sidebar-neutral-states) .sidebar-group-header:hover {
   background: var(--accent-3);
   color: var(--accent-9);
 }
 
-[data-theme="dark"] .sidebar-group-header.active {
+[data-theme="dark"] .sidebar:not(.sidebar-neutral-states) .sidebar-group-header.active {
   background: var(--accent-3);
   color: var(--accent-9);
 }
 
 /* Dark theme neutral states */
 [data-theme="dark"] .sidebar-neutral-states .sidebar-item a:hover,
-[data-theme="dark"] .sidebar-neutral-states.sidebar-item a:hover {
+[data-theme="dark"] .sidebar.sidebar-neutral-states .sidebar-item a:hover,
+[data-theme="dark"] .sidebar-neutral-states.sidebar-item a:hover,
+[data-theme="dark"] .sidebar-item a.sidebar-neutral-states:hover,
+[data-theme="dark"] a.sidebar-neutral-states:hover {
   background: var(--gray-3);
   color: var(--gray-12);
 }
 
 [data-theme="dark"] .sidebar-neutral-states .sidebar-item a.active,
-[data-theme="dark"] .sidebar-neutral-states.sidebar-item a.active {
+[data-theme="dark"] .sidebar-neutral-states.sidebar-item a.active,
+[data-theme="dark"] .sidebar-item a.sidebar-neutral-states.active,
+[data-theme="dark"] a.sidebar-neutral-states.active {
   background: var(--gray-3);
   color: var(--gray-12);
   font-weight: 500;

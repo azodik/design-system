@@ -80,7 +80,7 @@ export function Sidebar({
   isSidebarOpen = false,
   onSidebarToggle,
   isSmallScreen = false,
-  useNeutralStates = false,
+  useNeutralStates = true,
   className = "",
   ...props
 }: SidebarProps) {
@@ -295,7 +295,7 @@ export function SidebarItem({
   tooltip,
   show = true,
   size = '2',
-  useNeutralStates = false,
+  useNeutralStates = true,
   className = "",
   ...props
 }: SidebarItemProps) {
@@ -554,7 +554,7 @@ export function SidebarMenuButton({
   children,
   icon,
   active = false,
-  useNeutralStates = false,
+  useNeutralStates = true,
   className = "",
   ...props
 }: SidebarMenuButtonProps) {
