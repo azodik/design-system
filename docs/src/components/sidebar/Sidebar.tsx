@@ -167,7 +167,6 @@ export default function SidebarLayout({
         <SidebarHeader show={true}>
           <SidebarBrand
             title="Azodik UI"
-            logo={<ApplicationIcon size={24} style={{ color: "var(--color-primary)" }} />}
             onClick={() => navigate("/")}
           />
         </SidebarHeader>
