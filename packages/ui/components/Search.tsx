@@ -67,21 +67,18 @@ export default function Search({
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [recentSearches, setRecentSearches] = useState<SearchableItem[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
-
-  // Load recent searches from localStorage
-  useEffect(() => {
+  const [recentSearches, setRecentSearches] = useState<SearchableItem[]>(() => {
+    if (typeof window === "undefined") return [];
     try {
       const saved = localStorage.getItem("azodik_recent_searches");
-      if (saved) {
-        setRecentSearches(JSON.parse(saved).slice(0, 5));
-      }
+      return saved ? JSON.parse(saved).slice(0, 5) : [];
     } catch (e) {
       console.error("Failed to load recent searches", e);
+      return [];
     }
-  }, []);
+  });
+  const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   // Save search to recent searches
   const addToRecent = useCallback((item: SearchableItem) => {
@@ -108,7 +105,8 @@ export default function Search({
   // Handle keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const isMac = typeof navigator !== "undefined" && navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+      const isMac =
+        typeof navigator !== "undefined" && navigator.platform.toUpperCase().indexOf("MAC") >= 0;
       const modifier = isMac ? event.metaKey : event.ctrlKey;
 
       if (modifier && event.key.toLowerCase() === shortcutKey.toLowerCase()) {
@@ -129,14 +127,6 @@ export default function Search({
         inputRef.current?.focus();
       });
       return () => cancelAnimationFrame(frameId);
-    }
-  }, [isOpen]);
-
-  // Reset search state when modal closes
-  useEffect(() => {
-    if (!isOpen) {
-      setQuery("");
-      setSelectedIndex(0);
     }
   }, [isOpen]);
 
@@ -172,7 +162,7 @@ export default function Search({
         setIsOpen(false);
       }
     },
-    [results, selectedIndex, searchIndex, handleSelect],
+    [results, selectedIndex, handleSelect],
   );
 
   // Scroll selected result into view
@@ -235,7 +225,11 @@ export default function Search({
 
       <Modal
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setIsOpen(false);
+          setQuery("");
+          setSelectedIndex(0);
+        }}
         size="3"
         showCloseButton={false}
         className="search-modal"

@@ -42,7 +42,7 @@ export default function SidebarLayout({
   children,
   breadcrumbItems,
   breadcrumb,
-  showBreadcrumb = true,
+  showBreadcrumb,
 }: SidebarLayoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -59,7 +59,7 @@ export default function SidebarLayout({
   };
 
   // Sample notifications for testing
-  const [notifications, setNotifications] = useState<Notification[]>([
+  const [notifications, setNotifications] = useState<Notification[]>(() => [
     {
       id: "1",
       title: "Welcome to Azodik UI!",
@@ -97,7 +97,7 @@ export default function SidebarLayout({
   const handleNotificationClick = (notification: Notification) => {
     console.log("Notification clicked:", notification);
     setNotifications((prev) =>
-      prev.map((n) => (n.id === notification.id ? { ...n, read: true } : n))
+      prev.map((n) => (n.id === notification.id ? { ...n, read: true } : n)),
     );
   };
 
@@ -231,7 +231,7 @@ export default function SidebarLayout({
         className={`${!isSmallScreen && isSidebarCollapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""}`}
         showHeader={true}
         showFooter={true}
-        showBreadcrumb={true}
+        showBreadcrumb={showBreadcrumb}
       >
         <SidebarHeader show={true}>
           <SidebarBrand title="Azodik UI" onClick={() => navigate("/")} />
@@ -276,7 +276,7 @@ export default function SidebarLayout({
             language={currentLanguage}
           />
         }
-        showBreadcrumb={true}
+        showBreadcrumb={showBreadcrumb}
         breadcrumb={
           breadcrumb || (
             <div className="breadcrumb-container">

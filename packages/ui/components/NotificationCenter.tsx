@@ -245,7 +245,8 @@ export function NotificationCenter({
       if (Math.abs(hours) < 24) return `${hours}h ago`;
       if (Math.abs(days) < 7) return `${days}d ago`;
 
-      const currentLocale = locale || (typeof navigator !== "undefined" ? navigator.language : "en");
+      const currentLocale =
+        locale || (typeof navigator !== "undefined" ? navigator.language : "en");
       return date.toLocaleDateString(currentLocale, {
         year: "numeric",
         month: "short",
@@ -334,6 +335,14 @@ export function NotificationCenter({
                     notification.type ? `notification-${notification.type}` : ""
                   }`}
                   onClick={() => handleNotificationClick(notification)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleNotificationClick(notification);
+                    }
+                  }}
                 >
                   <div className="notification-icon-wrapper">
                     {getNotificationIcon(notification)}
@@ -349,7 +358,7 @@ export function NotificationCenter({
                       )}
                       {notification.actions && notification.actions.length > 0 && (
                         <div className="notification-actions">
-                          {notification.actions.map((action: any, index: number) => (
+                          {notification.actions.map((action, index: number) => (
                             <Button
                               key={index}
                               variant="soft"
