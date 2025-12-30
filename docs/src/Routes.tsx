@@ -46,6 +46,7 @@ const components = {
   TooltipDocs: lazy(() => import("@/pages/TooltipDocsPage")),
   ThemingDocs: lazy(() => import("@/pages/ThemingDocsPage")),
   TypographyDocs: lazy(() => import("@/pages/TypographyDocsPage")),
+  LLMDocs: lazy(() => import("@/pages/LLMDocsPage")),
 };
 
 // Route mapping for easy access
@@ -94,6 +95,7 @@ const routeComponents = {
   [routes.tooltipDocs]: components.TooltipDocs,
   [routes.themingDocs]: components.ThemingDocs,
   [routes.typographyDocs]: components.TypographyDocs,
+  [routes.llmResource]: components.LLMDocs,
 };
 
 // Static routes

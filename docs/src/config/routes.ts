@@ -44,4 +44,5 @@ export const routes = {
   tooltipDocs: "/components/docs/tooltip",
   themingDocs: "/components/docs/theming",
   typographyDocs: "/components/docs/typography",
+  llmResource: "/components/docs/llm-resource",
 };

@@ -1,0 +1,79 @@
+# Azodik Design System - LLM Resource
+
+This is a concise documentation of the Azodik Design System, optimized for LLMs.
+
+## Installation
+
+```bash
+npm install @azodik/ui
+```
+
+Import styles in your main entry file:
+```tsx
+import '@azodik/ui/styles.css';
+```
+
+## Theming
+
+Wrap your app with ThemeProvider:
+```tsx
+import { ThemeProvider } from '@azodik/ui';
+
+<ThemeProvider defaultTheme="light" accentColor="indigo">
+  {children}
+</ThemeProvider>
+```
+
+## Core Usage
+
+```tsx
+import { Button, Alert, Card } from '@azodik/ui';
+
+<Button variant="solid">Click me</Button>
+<Alert variant="soft" color="grass" title="Success!">Content</Alert>
+```
+
+## Available Components
+
+- Accordion: Collapsible content sections.
+- Alert: Important messages (success, warning, error, info).
+- Avatar: User profile images or initials.
+- Badge: Status indicators and labels.
+- Box: Basic layout primitive for generic containers.
+- Breadcrumb: Hierarchical navigation.
+- Button: Interactive elements (solid, soft, outline, ghost, link).
+- Card: Grouped content containers.
+- Charts: Line, Area, Bar, and Pie charts.
+- Checkbox: Binary choice controls.
+- Container: Component that constrains the maximum width of content.
+- DataTable: Advanced tables with sorting and pagination.
+- Dialog: Modal dialog overlays.
+- Drawer: Slide-up panels.
+- ErrorBoundary: Component for catching and handling React errors.
+- Flex: Layout primitive for building flexible layouts using CSS Flexbox.
+- Form: Comprehensive set of form controls.
+- Grid: Layout primitive for building grid layouts using CSS Grid.
+- Input: Text input fields.
+- Modal: Focused overlay content.
+- Navigation: Horizontal site navigation.
+- NotificationCenter: Panel for displaying and managing notifications.
+- Pagination: Data navigation controls.
+- Popover: Floating contextual panels.
+- Progress: Visual indicators for task completion status.
+- Radio: Single-choice selection.
+- ScrollArea: Custom scrollable containers.
+- Search: Full-featured search input with results modal.
+- Section: Layout component for providing consistent vertical spacing.
+- Select: Dropdown selection.
+- SelectWithSearch: Advanced select component with search functionality.
+- Sidebar: Application navigation sidebars.
+- Skeleton: Placeholder loading states.
+- Spinner: Loading indicator icon.
+- Switch: Toggle switches.
+- Table: Simple data tables.
+- Tabs: Tabbed content organization.
+- Textarea: Multi-line text inputs.
+- ThemePanel: Tool for previewing and adjusting theme settings.
+- Toast: Transient notification messages.
+- Tooltip: Hover contextual information.
+- Typography: Text styling components.

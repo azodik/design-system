@@ -43,4 +43,5 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "toast", href: "/components/docs/toast" },
   { nameKey: "tooltip", href: "/components/docs/tooltip" },
   { nameKey: "typography", href: "/components/docs/typography" },
+  { nameKey: "llmResource", href: "/components/docs/llm-resource" },
 ];
