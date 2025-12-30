@@ -654,7 +654,10 @@ a.sidebar-neutral-states.active {
 }
 
 .sidebar-search-wrapper {
-  max-width: 300px;
+  flex: 1;
+  min-width: 0;
+  max-width: 400px;
+  margin-right: auto;
 }
 
 .sidebar-controls-group {
@@ -666,6 +669,39 @@ a.sidebar-neutral-states.active {
 .sidebar-control-item {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+}
+
+/* Icons link styling */
+.sidebar-icons-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-2);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.sidebar-icons-link:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.sidebar-icons-link svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.sidebar-icons-link span {
+  white-space: nowrap;
+  margin-left: 0;
 }
 
 .theme-toggle-button {
@@ -843,6 +879,15 @@ a.sidebar-neutral-states.active {
   opacity: 1;
   transition: none;
   margin-right: var(--space-1);
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.sidebar-toggle-button svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .sidebar-toggle-button:hover {
@@ -857,62 +902,118 @@ a.sidebar-neutral-states.active {
 /* Hide toggle button on desktop by default */
 @media (min-width: 1025px) {
   .sidebar-toggle-button {
-    display: none;
+    display: none !important;
   }
 
   /* Show toggle button on desktop when showToggleOnDesktop is true */
   .sidebar-toggle-button.show-on-desktop {
-    display: flex;
+    display: flex !important;
+  }
+}
+
+/* Always show toggle button on mobile/tablet */
+@media (max-width: 1024px) {
+  .sidebar-toggle-button {
+    display: flex !important;
   }
 }
 
 /* Mobile and tablet styles */
 @media (max-width: 1024px) {
   /* Mobile header styles - Stack elements vertically on very small screens */
-  .main-content-header {
-    padding: var(--space-2);
-    min-height: auto;
-    gap: var(--space-2);
+  .sidebar-main-header {
+    padding: var(--space-2) var(--space-4);
+    min-height: 60px;
+    gap: var(--space-4);
     display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
-  /* Top row: Toggle + Breadcrumb */
-  .main-content-header > .sidebar-toggle-button {
-    position: absolute;
-    left: var(--space-2);
-    top: var(--space-2);
-    z-index: 11;
+  /* Ensure toggle button is visible on mobile */
+  /* Ensure toggle button is visible and aligned on mobile */
+  .sidebar-main-header-left > .sidebar-toggle-button {
+    position: static;
+    margin-right: var(--space-2);
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
-  .breadcrumb-section {
+  .sidebar-main-header {
+    position: relative;
+  }
+
+  .sidebar-main-header-left {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+    flex: 1;
+    width: 100%;
+  }
+
+  .sidebar-breadcrumb-wrapper {
     flex: 1;
     min-width: 0;
     display: flex !important;
     align-items: center !important;
-    padding-left: 40px; /* Space for toggle button */
-    margin-bottom: var(--space-3);
+    padding-left: 0 !important;
+    margin-bottom: 0;
+    overflow: hidden;
   }
 
-  /* Bottom row: Search + Controls */
-  .theme-toggle-section {
-    flex-shrink: 0;
-    margin-left: 0;
-    margin-top: 0;
+  .breadcrumb-container {
+    overflow: visible !important;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: var(--space-2);
+    align-items: center !important;
+    gap: var(--space-1) !important;
+    white-space: nowrap;
+    max-width: 100%;
     width: 100%;
   }
 
-  /* Target the nested flex container - make it column layout */
-  .theme-toggle-section > .flex {
+  .breadcrumb {
     display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+    align-items: center !important;
+    gap: var(--space-1) !important;
+    overflow: visible !important;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .breadcrumb a,
+  .breadcrumb span {
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+  }
+
+  /* Bottom row: Search + Controls */
+  .sidebar-main-header-right {
+    flex-shrink: 0;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     gap: var(--space-2);
+  }
+
+  .sidebar-controls-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: var(--space-2);
+  }
+
+  .sidebar-search-wrapper {
+    order: 1;
     width: 100%;
   }
 
@@ -973,13 +1074,13 @@ a.sidebar-neutral-states.active {
 
 /* Very small mobile screens */
 @media (max-width: 640px) {
-  .main-content-header {
+  .sidebar-main-header {
     padding: var(--space-2);
     gap: var(--space-1);
   }
 
-  .breadcrumb-section {
-    padding-left: 36px;
+  .sidebar-breadcrumb-wrapper {
+    padding-left: 44px !important;
     font-size: var(--font-size-sm);
     margin-bottom: var(--space-3);
   }
@@ -1002,14 +1103,20 @@ a.sidebar-neutral-states.active {
   }
 
   /* Hide icons link text on very small screens */
-  .icons-link-section .icons-header-link span {
+  .sidebar-control-item .sidebar-icons-link span {
     display: none;
   }
 
-  .icons-link-section .icons-header-link {
+  .sidebar-control-item .sidebar-icons-link {
     padding: var(--space-1);
     min-width: 36px;
     justify-content: center;
+    gap: 0;
+  }
+
+  .sidebar-control-item .sidebar-icons-link svg {
+    width: 18px;
+    height: 18px;
   }
 
   /* Additional controls on small screens */
@@ -1209,4 +1316,11 @@ a.sidebar-neutral-states.active {
 .sidebar-collapsed .sidebar-footer > div {
   justify-content: center;
   padding: var(--space-2);
+}
+
+/* Responsive Hiding Utilities */
+@media (max-width: 1024px) {
+  .hide-breadcrumb-on-mobile {
+    display: none !important;
+  }
 }

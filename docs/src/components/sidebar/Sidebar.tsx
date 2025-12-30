@@ -261,11 +261,12 @@ export default function SidebarLayout({
         onSidebarToggle={handleSidebarToggle}
         isSidebarCollapsed={isSidebarCollapsed}
         sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
-        showBreadcrumb={showBreadcrumb}
         showToggleOnDesktop={false}
+        isSmallScreen={isSmallScreen}
+        hideAdditionalControlsOnMobile={true}
+        hideBreadcrumbOnMobile={true}
         version={UI_VERSION}
         languageSelector={<LanguageSelector />}
-        themeToggle={<ThemeToggle />}
         searchComponent={
           <Search
             searchIndex={searchIndex}
@@ -275,12 +276,7 @@ export default function SidebarLayout({
             language={currentLanguage}
           />
         }
-        iconsLink={
-          <Link to={routes.iconsDocs} className="sidebar-icons-link">
-            <SparklesIcon size={18} />
-            <span>Icons</span>
-          </Link>
-        }
+        showBreadcrumb={true}
         breadcrumb={
           breadcrumb || (
             <div className="breadcrumb-container">
@@ -288,7 +284,13 @@ export default function SidebarLayout({
             </div>
           )
         }
-        additionalControls={[
+        additionalControls={[]}
+        primaryControls={[
+          <Link to={routes.iconsDocs} key="icons-link" className="sidebar-icons-link">
+            <SparklesIcon size={18} />
+            <span>Icons</span>
+          </Link>,
+          <ThemeToggle key="theme-toggle" />,
           <NotificationCenter
             key="notification-center"
             notifications={notifications}

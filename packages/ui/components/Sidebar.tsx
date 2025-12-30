@@ -619,15 +619,17 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
   showToggleOnDesktop?: boolean;
   themeToggle?: React.ReactNode;
   languageSelector?: React.ReactNode;
-  iconsLink?: React.ReactNode;
   searchComponent?: React.ReactNode;
   /**
    * Additional header actions/controls to display in the controls row
    * These will appear alongside iconsLink, languageSelector, and themeToggle
    */
   additionalControls?: React.ReactNode[];
+  primaryControls?: React.ReactNode[];
   isSmallScreen?: boolean;
   version?: string;
+  hideAdditionalControlsOnMobile?: boolean;
+  hideBreadcrumbOnMobile?: boolean;
 }
 
 export function SidebarMainContent({
@@ -641,11 +643,13 @@ export function SidebarMainContent({
   showToggleOnDesktop = false,
   themeToggle,
   languageSelector,
-  iconsLink,
   searchComponent,
   additionalControls = [],
+  primaryControls = [],
   isSmallScreen = false,
   version,
+  hideAdditionalControlsOnMobile = false,
+  hideBreadcrumbOnMobile = false,
   className = "",
   ...props
 }: SidebarMainContentProps) {
@@ -676,7 +680,11 @@ export function SidebarMainContent({
           )}
 
           {showBreadcrumb && (breadcrumbItemsParsed || breadcrumb) && (
-            <div className="sidebar-breadcrumb-wrapper">
+            <div
+              className={`sidebar-breadcrumb-wrapper ${
+                hideBreadcrumbOnMobile ? "hide-breadcrumb-on-mobile" : ""
+              }`}
+            >
               {breadcrumb ? (
                 breadcrumb
               ) : breadcrumbItemsParsed ? (
@@ -693,23 +701,35 @@ export function SidebarMainContent({
             </div>
           )}
 
-          {searchComponent && <div className="sidebar-search-wrapper">{searchComponent}</div>}
-
-          {(iconsLink ||
-            languageSelector ||
+          {(languageSelector ||
             themeToggle ||
-            (additionalControls && additionalControls.length > 0)) && (
+            searchComponent ||
+            (primaryControls && primaryControls.length > 0) ||
+            (additionalControls &&
+              additionalControls.length > 0 &&
+              (!isSmallScreen || !hideAdditionalControlsOnMobile))) && (
             <div className="sidebar-controls-group">
-              {iconsLink && <div className="sidebar-control-item">{iconsLink}</div>}
-              {languageSelector && <div className="sidebar-control-item">{languageSelector}</div>}
-              {themeToggle && <div className="sidebar-control-item">{themeToggle}</div>}
+              {searchComponent && <div className="sidebar-search-wrapper">{searchComponent}</div>}
+
               {additionalControls &&
                 additionalControls.length > 0 &&
+                (!isSmallScreen || !hideAdditionalControlsOnMobile) &&
                 additionalControls.map((control, index) => (
-                  <div key={index} className="sidebar-control-item">
+                  <div key={`additional-${index}`} className="sidebar-control-item">
                     {control}
                   </div>
                 ))}
+
+              {primaryControls &&
+                primaryControls.length > 0 &&
+                primaryControls.map((control, index) => (
+                  <div key={`primary-${index}`} className="sidebar-control-item">
+                    {control}
+                  </div>
+                ))}
+
+              {languageSelector && <div className="sidebar-control-item">{languageSelector}</div>}
+              {themeToggle && <div className="sidebar-control-item">{themeToggle}</div>}
             </div>
           )}
         </div>
