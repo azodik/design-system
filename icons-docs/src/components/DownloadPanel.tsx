@@ -79,13 +79,21 @@ export default function DownloadPanel({
         <Box as="label" style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)' }}>
           Color
         </Box>
-        <Flex gap="2" wrap="wrap" style={{ marginBottom: options.color === 'custom' ? '0.5rem' : '0' }}>
+        <Flex gap="2" wrap="wrap" style={{ marginBottom: options.color === 'custom' ? '1rem' : '0' }}>
           {(['default', 'primary', 'secondary', 'accent', 'custom'] as IconColor[]).map(
             color => (
               <Button
                 key={color}
                 variant={options.color === color ? 'solid' : 'outline'}
-                onClick={() => updateOption('color', color)}
+                onClick={() => {
+                  if (color === 'custom' && !options.customColor) {
+                    // Initialize customColor when switching to custom
+                    updateOption('color', color);
+                    updateOption('customColor', '#000000');
+                  } else {
+                    updateOption('color', color);
+                  }
+                }}
                 style={{ textTransform: 'capitalize' }}
               >
                 {color}
@@ -94,12 +102,99 @@ export default function DownloadPanel({
           )}
         </Flex>
         {options.color === 'custom' && (
-          <Input
-            type="color"
-            value={options.customColor || '#000000'}
-            onChange={(e) => updateOption('customColor', e.target.value)}
-            style={{ width: '100%', height: '2.5rem', borderRadius: 'var(--radius-2)' }}
-          />
+          <Box style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.75rem',
+            padding: '0.75rem',
+            background: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            borderRadius: 'var(--radius-3)',
+          }}>
+            <Box
+              style={{
+                position: 'relative',
+                width: '3rem',
+                height: '3rem',
+                borderRadius: 'var(--radius-2)',
+                background: options.customColor || '#000000',
+                border: '2px solid var(--color-border)',
+                cursor: 'pointer',
+                flexShrink: 0,
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                overflow: 'hidden',
+              }}
+              onClick={() => {
+                const input = document.getElementById('color-picker-input') as HTMLInputElement;
+                if (input) {
+                  input.click();
+                }
+              }}
+            >
+              <input
+                id="color-picker-input"
+                type="color"
+                value={options.customColor || '#000000'}
+                onChange={(e) => {
+                  const newColor = e.target.value.toUpperCase();
+                  updateOption('customColor', newColor);
+                }}
+                style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  opacity: 0,
+                  cursor: 'pointer',
+                  padding: 0,
+                  border: 'none',
+                  top: 0,
+                  left: 0,
+                }}
+              />
+            </Box>
+            <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              <Input
+                type="text"
+                value={options.customColor || '#000000'}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Allow partial input while typing
+                  if (/^#[0-9A-Fa-f]{0,6}$/.test(value) || value === '') {
+                    const finalValue = value === '' ? '#000000' : (value.length === 1 ? `#${value}` : value);
+                    updateOption('customColor', finalValue);
+                  }
+                }}
+                onBlur={(e) => {
+                  // Ensure valid hex on blur
+                  const value = e.target.value;
+                  if (!/^#[0-9A-Fa-f]{6}$/.test(value)) {
+                    // If invalid, try to fix it or default
+                    const cleaned = value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 6);
+                    const finalValue = cleaned.length === 6 ? `#${cleaned}` : '#000000';
+                    updateOption('customColor', finalValue);
+                  }
+                }}
+                placeholder="#000000"
+                style={{
+                  width: '100%',
+                  fontFamily: 'monospace',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  padding: '0.5rem 0.75rem',
+                  background: 'var(--color-background)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--radius-2)',
+                }}
+              />
+              <Box as="span" style={{ 
+                fontSize: '0.75rem', 
+                color: 'var(--color-text-secondary)',
+                fontWeight: 500,
+              }}>
+                Click the color box or enter hex value
+              </Box>
+            </Box>
+          </Box>
         )}
       </Box>
 

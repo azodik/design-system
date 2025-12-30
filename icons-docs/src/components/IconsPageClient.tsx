@@ -55,68 +55,89 @@ export default function IconsPageClient({ initialIcons }: IconsPageClientProps) 
   };
 
   return (
-    <Box style={{ minHeight: '100vh', background: 'var(--color-background)', display: 'flex', flexDirection: 'column' }}>
-      {/* Search & Filter Section */}
-      <Section
-        size="2"
-        style={{
-          background: 'rgba(var(--gray-2-rgb, 249, 249, 249), 0.5)',
-          borderBottom: '1px solid var(--color-border)',
-          zIndex: 10,
-          position: 'sticky',
-          top: '5rem',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-        }}
+    <Box style={{ 
+      minHeight: '100vh', 
+      background: 'var(--color-background)', 
+      display: 'flex', 
+      flexDirection: 'column',
+    }}>
+
+
+      {/* Search & Filter Section - Full Width */}
+      <Box style={{
+        width: '100%',
+        background: 'var(--color-background)',
+        paddingTop: 'var(--space-6)',
+        paddingBottom: 'var(--space-10)',
+        borderBottom: '1px solid var(--color-border-subtle)',
+        borderTop: '1px solid var(--color-border-subtle)',
+        marginBottom: 'var(--space-8)',
+        position: 'relative',
+        zIndex: 1,
+      }}
+      className="icons-search-section"
       >
-        <Container size="4">
-          <Flex 
-            gap="0" 
-            align="stretch" 
-            justify="center"
-            style={{ 
-              maxWidth: '900px', 
-              margin: '0 auto',
-              background: 'var(--color-background)', 
-              borderRadius: 'var(--radius-4)',
-              border: '2px solid var(--color-border)',
-              overflow: 'hidden',
-              boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.15)',
-              height: '4.5rem',
-            }}
-          >
-            <Box style={{ flex: 1 }}>
-              <SearchBar value={searchQuery} onChange={setSearchQuery} />
-            </Box>
-            <Box style={{ borderLeft: '2px solid var(--color-border)', width: '240px', background: 'var(--color-surface)' }}>
-              <CategoryFilter
-                categories={categories}
-                selected={selectedCategory}
-                onChange={setSelectedCategory}
-              />
-            </Box>
-          </Flex>
-          
+        <Container size="4" style={{ width: '100%' }}>
+          {/* Search Bar - Full Width */}
           <Box style={{ 
-            marginTop: '1.5rem', 
-            textAlign: 'center', 
-            fontSize: '1rem', 
-            color: 'var(--color-text-secondary)', 
-            fontWeight: 600,
-            fontFamily: 'var(--font-montserrat), sans-serif',
-            letterSpacing: '0.01em',
+            width: '100%',
+            marginBottom: 'var(--space-5)',
           }}>
-            Showing <Box as="span" style={{ color: 'var(--accent-9)', fontWeight: 800 }}>{filteredIcons.length}</Box> of <Box as="span" style={{ color: 'var(--color-text)', fontWeight: 800 }}>{initialIcons.length}</Box> icons
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
+          </Box>
+
+          {/* Category Filters */}
+          <Box style={{ 
+            width: '100%',
+            marginBottom: 'var(--space-4)',
+            position: 'relative',
+            zIndex: 2,
+            minHeight: '60px',
+          }}>
+            <CategoryFilter
+              categories={categories}
+              selected={selectedCategory}
+              onChange={setSelectedCategory}
+            />
+          </Box>
+
+          {/* Result Count */}
+          <Box style={{ 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-2)',
+            fontSize: '0.875rem',
+            color: 'var(--color-text-secondary)',
+            fontWeight: 500,
+            width: '100%',
+            marginTop: 'var(--space-2)',
+          }}>
+            <Box as="span" style={{ 
+              color: 'var(--accent-9)', 
+              fontWeight: 700,
+              fontSize: '1rem',
+            }}>
+              {filteredIcons.length}
+            </Box>
+            <Box as="span" style={{ opacity: 0.5 }}>of</Box>
+            <Box as="span" style={{ 
+              color: 'var(--color-text)', 
+              fontWeight: 600,
+            }}>
+              {initialIcons.length}
+            </Box>
+            <Box as="span" style={{ opacity: 0.5, marginLeft: 'var(--space-1)' }}>icons</Box>
           </Box>
         </Container>
-      </Section>
+      </Box>
 
       {/* Grid Section */}
-      <Section size="3" style={{ flex: 1 }}>
-        <Container size="4">
+      <Container size="4" style={{ width: '100%', paddingTop: 'var(--space-10)', position: 'relative', zIndex: 0 }}>
+        <Box style={{ paddingBottom: 'var(--space-12)' }}>
           <IconGrid icons={filteredIcons} onIconClick={handleIconClick} />
-        </Container>
-      </Section>
+        </Box>
+      </Container>
     </Box>
   );
 }

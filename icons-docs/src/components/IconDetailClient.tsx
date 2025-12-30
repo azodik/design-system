@@ -8,6 +8,7 @@ import { downloadSVG, downloadPNG } from '@/lib/icon-utils';
 import type { IconInfo, DownloadOptions } from '@/types/icon';
 import DownloadPanel from './DownloadPanel';
 import IconPreview from './IconPreview';
+import { ArrowLeftIcon } from '@azodik/icons';
 
 interface IconDetailClientProps {
   icon: IconInfo;
@@ -43,19 +44,14 @@ export default function IconDetailClient({ icon }: IconDetailClientProps) {
 
   return (
     <Box style={{ minHeight: '100vh', background: 'var(--color-background)' }}>
-      <Box
-        style={{
-          background: 'var(--color-surface)',
-          borderBottom: '1px solid var(--color-border)',
-        }}
-      >
+    
         <Container size="4" style={{ padding: '1rem' }}>
           <Button
             variant="ghost"
             onClick={() => router.back()}
             style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
           >
-            <Box as="span">←</Box>
+            <Box as="span"> <ArrowLeftIcon /> </Box>
             Back to Icons
           </Button>
           <Box as="h1" style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-text)' }}>
@@ -65,7 +61,7 @@ export default function IconDetailClient({ icon }: IconDetailClientProps) {
             {icon.componentName}
           </Box>
         </Container>
-      </Box>
+    
 
       <Container size="4" style={{ padding: '2rem 1rem' }}>
         <Grid columns="2" gap="4">

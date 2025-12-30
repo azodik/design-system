@@ -20,25 +20,27 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
 
   return (
     <Box
+      className="icon-card"
       onClick={onClick}
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '2.5rem 1.5rem',
+        padding: 'var(--space-6) var(--space-4)',
         background: 'var(--color-surface)',
-        border: '1px solid var(--color-border)',
+        border: '2px solid var(--color-border)',
         borderRadius: 'var(--radius-4)',
         cursor: 'pointer',
-        transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         position: 'relative',
         overflow: 'hidden',
         boxShadow: 'var(--shadow-1)',
+        height: '100%',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = 'var(--accent-9)';
-        e.currentTarget.style.transform = 'translateY(-12px)';
-        e.currentTarget.style.boxShadow = '0 30px 60px -12px rgba(0, 0, 0, 0.15), 0 18px 36px -18px rgba(0, 0, 0, 0.1)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.boxShadow = '0 12px 24px -8px rgba(var(--accent-9-rgb, 244, 129, 32), 0.25)';
         const copyBtn = e.currentTarget.querySelector('.copy-indicator') as HTMLElement;
         if (copyBtn) {
           copyBtn.style.opacity = '1';
@@ -52,7 +54,7 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
         const copyBtn = e.currentTarget.querySelector('.copy-indicator') as HTMLElement;
         if (copyBtn) {
           copyBtn.style.opacity = '0';
-          copyBtn.style.transform = 'translateY(-10px)';
+          copyBtn.style.transform = 'translateY(-8px)';
         }
       }}
     >
@@ -61,68 +63,59 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
         onClick={handleCopy}
         style={{
           position: 'absolute',
-          top: '1rem',
-          right: '1rem',
-          padding: '0.4rem 0.75rem',
-          fontSize: '0.625rem',
-          background: 'linear-gradient(135deg, var(--accent-9), var(--accent-11))',
+          top: 'var(--space-3)',
+          right: 'var(--space-3)',
+          padding: 'var(--space-2) var(--space-3)',
+          fontSize: '0.75rem',
+          background: 'var(--accent-9)',
           color: 'white',
           borderRadius: 'var(--radius-2)',
           opacity: 0,
-          transform: 'translateY(-10px)',
-          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          fontWeight: 800,
-          letterSpacing: '0.08em',
-          boxShadow: '0 4px 12px rgba(var(--accent-9-rgb), 0.3)',
+          transform: 'translateY(-8px)',
+          transition: 'all 0.2s ease',
+          fontWeight: 700,
+          letterSpacing: '0.05em',
+          boxShadow: '0 4px 12px rgba(var(--accent-9-rgb, 244, 129, 32), 0.4)',
           zIndex: 5,
+          cursor: 'pointer',
         }}
       >
-        COPY NAME
+        Copy
       </Box>
 
       <Box
         style={{
-          width: '80px',
-          height: '80px',
+          width: '72px',
+          height: '72px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           background: 'var(--color-background)',
           color: 'var(--color-text)',
-          borderRadius: 'var(--radius-4)',
-          marginBottom: '1.5rem',
-          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          borderRadius: 'var(--radius-3)',
+          marginBottom: 'var(--space-4)',
+          transition: 'all 0.3s ease',
           border: '1px solid var(--color-border-subtle)',
-          boxShadow: 'var(--shadow-2)',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = 'var(--accent-9)';
-          e.currentTarget.style.color = 'var(--accent-9)';
-          e.currentTarget.style.transform = 'rotate(10deg) scale(1.1)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = 'var(--color-border-subtle)';
-          e.currentTarget.style.color = 'var(--color-text)';
-          e.currentTarget.style.transform = 'rotate(0deg) scale(1)';
         }}
       >
         {IconComponent ? (
-          <IconComponent size={40} />
+          <IconComponent size={36} />
         ) : (
           <Box
             style={{
-              width: '40px',
-              height: '40px',
+              width: '36px',
+              height: '36px',
               background: 'var(--color-border)',
               borderRadius: 'var(--radius-2)',
             }}
           />
         )}
       </Box>
+      
       <Box
         as="span"
         style={{
-          fontSize: '1rem',
+          fontSize: '0.9375rem',
           fontWeight: 700,
           color: 'var(--color-text)',
           textAlign: 'center',
@@ -130,22 +123,23 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          marginBottom: '0.35rem',
+          marginBottom: 'var(--space-2)',
           fontFamily: 'var(--font-montserrat), sans-serif',
           letterSpacing: '-0.01em',
         }}
       >
         {icon.displayName}
       </Box>
+      
       <Box
         as="span"
         style={{
-          fontSize: '0.75rem',
+          fontSize: '0.8125rem',
           fontWeight: 600,
           color: 'var(--color-text-secondary)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          opacity: 0.6,
+          textTransform: 'capitalize',
+          letterSpacing: '0.02em',
+          opacity: 0.7,
         }}
       >
         {icon.category}
