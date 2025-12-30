@@ -1,14 +1,17 @@
 name: Release
 
 # This workflow handles automatic version bumping and publishing to npm
-# It runs on every push to main (except version bump commits)
-# Note: CI workflow runs in parallel to ensure code quality
-# For production, consider using branch protection to require CI to pass before merging
+# It runs after CI completes successfully on main branch
+# Flow: CI → Release → Deploy
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
     branches:
       - main
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -16,14 +19,18 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    # Skip if commit message contains [skip ci] (version bump commits from previous release)
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    # Only run if CI workflow succeeded and it's not a version bump commit
+    if: |
+      (github.event_name == 'workflow_dispatch' || 
+       (github.event.workflow_run.conclusion == 'success' &&
+        !contains(github.event.workflow_run.head_commit.message, '[skip ci]')))
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.workflow_run && github.event.workflow_run.head_branch || github.ref }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4

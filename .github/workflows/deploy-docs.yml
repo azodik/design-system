@@ -1,11 +1,12 @@
 name: Deploy Docs to Cloudflare Workers
 
-# This workflow deploys docs after CI passes successfully
-# It runs when CI completes on main branch, or can be manually triggered
+# This workflow deploys docs after Release completes successfully
+# Flow: CI → Release → Deploy
+# It runs when Release completes on main branch, or can be manually triggered
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["Release"]
     types:
       - completed
     branches:
@@ -15,7 +16,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Only deploy if CI workflow succeeded and it's not a version bump commit
+    # Only deploy if Release workflow succeeded and it's not a version bump commit
     if: |
       (github.event_name == 'workflow_dispatch' || 
        (github.event.workflow_run.conclusion == 'success' &&
@@ -25,6 +26,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run && github.event.workflow_run.head_branch || github.ref }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
