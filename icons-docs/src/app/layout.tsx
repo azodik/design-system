@@ -40,7 +40,16 @@ export default function RootLayout({
           <Box style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Header />
 
-            <Box as="main" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <Box 
+              as="main" 
+              style={{ 
+                flex: 1, 
+                display: 'flex', 
+                flexDirection: 'column',
+                width: '100%',
+                overflowX: 'hidden',
+              }}
+            >
               {children}
             </Box>
 
