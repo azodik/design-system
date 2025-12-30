@@ -19,13 +19,19 @@ export function extractIconMetadata(iconName: string): IconMetadata | null {
 
 /**
  * Downloads the given element as an SVG file.
+ * Note: The style option is captured from the preview element's rendered state.
  */
-export async function downloadSVG(element: HTMLElement, filename: string): Promise<void> {
+export async function downloadSVG(element: HTMLElement, filename: string, options?: DownloadOptions): Promise<void> {
   try {
-    const dataUrl = await toSvg(element, { backgroundColor: 'transparent' });
+    const dataUrl = await toSvg(element, { 
+      backgroundColor: 'transparent',
+      cacheBust: true,
+    });
     const link = document.createElement('a');
+    // Include style in filename if provided
+    const styleSuffix = options?.style && options.style !== 'solid' ? `-${options.style}` : '';
+    link.download = `${filename}${styleSuffix}.svg`;
     link.href = dataUrl;
-    link.download = `${filename}.svg`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -37,16 +43,19 @@ export async function downloadSVG(element: HTMLElement, filename: string): Promi
 
 /**
  * Downloads the given element as a PNG file.
+ * Note: The style option is captured from the preview element's rendered state.
  */
-export async function downloadPNG(element: HTMLElement, filename: string): Promise<void> {
+export async function downloadPNG(element: HTMLElement, filename: string, options?: DownloadOptions): Promise<void> {
   try {
     const dataUrl = await toPng(element, { 
       backgroundColor: 'transparent',
       cacheBust: true,
     });
     const link = document.createElement('a');
+    // Include style in filename if provided
+    const styleSuffix = options?.style && options.style !== 'solid' ? `-${options.style}` : '';
+    link.download = `${filename}${styleSuffix}.png`;
     link.href = dataUrl;
-    link.download = `${filename}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

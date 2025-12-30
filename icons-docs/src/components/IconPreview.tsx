@@ -66,6 +66,24 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
       return sizes;
     }, [size]);
 
+    // Apply style-based visual effects (note: actual icon variants not supported)
+    const getStyleEffects = (): React.CSSProperties => {
+      if (style === 'outline') {
+        return {
+          filter: 'drop-shadow(0 0 1px currentColor)',
+          opacity: 0.9,
+        };
+      }
+      if (style === 'duotone') {
+        return {
+          filter: 'contrast(1.2) saturate(1.3)',
+          opacity: 0.95,
+        };
+      }
+      // solid (default)
+      return {};
+    };
+
     return (
       <Box style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <Box
@@ -84,7 +102,10 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
           {IconComponent ? (
             <IconComponent 
               size={size} 
-              style={getIconStyle(size)} 
+              style={{
+                ...getIconStyle(size),
+                ...getStyleEffects(),
+              }} 
             />
           ) : (
             <Box

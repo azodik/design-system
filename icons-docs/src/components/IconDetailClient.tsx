@@ -32,9 +32,9 @@ export default function IconDetailClient({ icon }: IconDetailClientProps) {
     try {
       const filename = icon.componentName.toLowerCase();
       if (downloadOptions.format === 'svg') {
-        await downloadSVG(previewRef.current, filename);
+        await downloadSVG(previewRef.current, filename, downloadOptions);
       } else {
-        await downloadPNG(previewRef.current, filename);
+        await downloadPNG(previewRef.current, filename, downloadOptions);
       }
     } catch (error) {
       console.error('Download failed:', error);
