@@ -1,6 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import Input, { Checkbox, Radio, Switch } from "../Input";
+import Input from "../Input";
+import { Checkbox } from "../Checkbox";
+import { Radio } from "../Radio";
+import { Switch } from "../Switch";
 
 describe("Input", () => {
   it("renders with label", () => {

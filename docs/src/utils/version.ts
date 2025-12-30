@@ -7,7 +7,7 @@
  */
 
 // UI version - should match @azodik/ui package version
-export const UI_VERSION = "0.9.0";
+export const UI_VERSION = "0.10.5";
 
 /**
  * Check if current UI version matches expected version
