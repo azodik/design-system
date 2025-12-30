@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useEffect, useMemo, useState, useCallback } from "react";
 
 export type Appearance = "inherit" | "light" | "dark";
@@ -48,6 +49,7 @@ export function ThemeProvider({
   className = "",
   style,
 }: ThemeProviderProps) {
+  const [mounted, setMounted] = useState(false);
   const [internalAppearance, setInternalAppearance] = useState<"light" | "dark" | "system">(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(storageKey) as "light" | "dark" | "system" | null;
@@ -80,6 +82,10 @@ export function ThemeProvider({
     },
     [storageKey],
   );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Sync props to state if they change
   useEffect(() => {
@@ -187,7 +193,9 @@ export function ThemeProvider({
       <div
         className={wrapperClassName}
         style={wrapperStyle}
-        data-theme={theme}
+        data-theme={mounted ? theme : undefined}
+        data-debug="true"
+        suppressHydrationWarning
         {...(hasCustomAccentInStyle && { "data-custom-accent": "true" })}
       >
         {children}

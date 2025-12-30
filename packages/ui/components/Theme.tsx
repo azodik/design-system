@@ -1,5 +1,8 @@
-import React, { createContext, useContext, useMemo } from "react";
+"use client";
+import React, { createContext, useContext, useMemo, useState, useEffect } from "react";
 import { useTheme as useGlobalTheme } from "../providers/ThemeProvider";
+import { SunIcon, MoonIcon } from "@azodik/icons";
+import { Box } from "./Box";
 
 export type ThemeAppearance = "light" | "dark" | "inherit";
 export type ThemeAccentColor =
@@ -169,6 +172,11 @@ export interface ThemeToggleProps {
 
 export function ThemeToggle({ className = "", children }: ThemeToggleProps) {
   const { theme, setTheme } = useGlobalTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleToggle = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -194,6 +202,33 @@ export function ThemeToggle({ className = "", children }: ThemeToggleProps) {
     );
   }
 
+  // Prevent hydration mismatch by rendering a skeleton or a stable state
+  if (!mounted) {
+    return (
+      <button
+        className={`theme-toggle ${className}`}
+        aria-label="Toggle theme"
+        style={{
+          padding: "0.5rem",
+          border: "1px solid var(--color-border)",
+          borderRadius: "var(--radius-2)",
+          background: "var(--color-background)",
+          color: "var(--color-text)",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "36px",
+          height: "36px",
+          transition: "all 0.2s ease",
+          opacity: 0.5,
+        }}
+      >
+        <Box style={{ width: 20, height: 20 }} />
+      </button>
+    );
+  }
+
   return (
     <button
       onClick={handleToggle}
@@ -214,7 +249,7 @@ export function ThemeToggle({ className = "", children }: ThemeToggleProps) {
         transition: "all 0.2s ease",
       }}
     >
-      {theme === "light" ? "🌙" : "☀️"}
+      {theme === "light" ? <MoonIcon size={20} /> : <SunIcon size={20} />}
     </button>
   );
 }

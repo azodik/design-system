@@ -40,6 +40,12 @@
     },
     "./index.css": {
       "default": "./dist/index.css"
+    },
+    "./styles/*": {
+      "default": "./dist/styles/*"
+    },
+    "./tokens/*": {
+      "default": "./dist/tokens/*"
     }
   },
   "publishConfig": {

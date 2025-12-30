@@ -1,0 +1,20 @@
+/* Icons Docs Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-sans);
+  background: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+::selection {
+  background: var(--accent-3);
+  color: var(--accent-11);
+}
+
