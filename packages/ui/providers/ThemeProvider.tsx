@@ -50,28 +50,88 @@ export function ThemeProvider({
   style,
 }: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
-  const [internalAppearance, setInternalAppearance] = useState<"light" | "dark" | "system">(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem(storageKey) as "light" | "dark" | "system" | null;
-      if (stored) return stored;
-    }
-    return defaultTheme;
-  });
+  
+  // SSR-safe initial state - always use defaultTheme on server
+  const [internalAppearance, setInternalAppearance] = useState<"light" | "dark" | "system">(defaultTheme);
+  
+  // SSR-safe initial theme - default to light on server to prevent hydration mismatch
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
   const [accentColor, setAccentColor] = useState<AccentColor>(propsAccentColor);
   const [grayColor, setGrayColor] = useState<GrayColor>(propsGrayColor);
   const [radius, setRadius] = useState<Radius>(propsRadius);
   const [scaling, setScaling] = useState<string>(propsScaling);
 
-  const theme = useMemo(() => {
-    if (internalAppearance === "system") {
-      return typeof window !== "undefined" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+  // Initialize theme from localStorage and system preference on mount
+  useEffect(() => {
+    // SSR guard
+    if (typeof window === "undefined") return;
+
+    // Check if theme was already initialized by blocking script
+    const isInitialized = document.documentElement.classList.contains("az-theme-initialized");
+    const existingTheme = document.documentElement.getAttribute("data-theme") as "light" | "dark" | null;
+
+    // If already initialized by script, use that theme
+    if (isInitialized && existingTheme) {
+      // Read from localStorage to get the actual preference (light/dark/system)
+      const stored = localStorage.getItem(storageKey) as "light" | "dark" | "system" | null;
+      const appearance = stored || defaultTheme;
+      setInternalAppearance(appearance);
+      setResolvedTheme(existingTheme);
+      return;
     }
-    return internalAppearance;
-  }, [internalAppearance]) as "light" | "dark";
+
+    // Otherwise, initialize normally
+    // Read from localStorage
+    const stored = localStorage.getItem(storageKey) as "light" | "dark" | "system" | null;
+    const appearance = stored || defaultTheme;
+    setInternalAppearance(appearance);
+
+    // Resolve system theme
+    const resolveTheme = (app: "light" | "dark" | "system"): "light" | "dark" => {
+      if (app === "system") {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      return app;
+    };
+
+    const theme = resolveTheme(appearance);
+    setResolvedTheme(theme);
+    
+    // Mark as initialized
+    document.documentElement.classList.add("az-theme-initialized");
+  }, [defaultTheme, storageKey]);
+
+  // Update resolved theme when internalAppearance changes and listen for system theme changes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    
+    if (internalAppearance === "system") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      setResolvedTheme(mediaQuery.matches ? "dark" : "light");
+      
+      // Listen for system theme changes
+      const handleChange = () => {
+        setResolvedTheme(mediaQuery.matches ? "dark" : "light");
+      };
+      
+      // Modern browsers
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+      }
+      // Fallback for older browsers
+      else if (mediaQuery.addListener) {
+        mediaQuery.addListener(handleChange);
+        return () => mediaQuery.removeListener(handleChange);
+      }
+    } else {
+      setResolvedTheme(internalAppearance);
+    }
+  }, [internalAppearance]);
+
+  // Use resolvedTheme instead of computed theme to avoid hydration mismatch
+  const theme = resolvedTheme;
 
   const setTheme = useCallback(
     (newTheme: "light" | "dark" | "system") => {
@@ -101,6 +161,29 @@ export function ThemeProvider({
     setMounted(true);
   }, []);
 
+  // Apply theme to document on mount and when theme changes
+  useEffect(() => {
+    if (typeof document === "undefined" || !mounted) return;
+    
+    const root = document.documentElement;
+    
+    // Only apply if theme changed (avoid unnecessary updates if script already set it)
+    const currentTheme = root.getAttribute("data-theme");
+    if (currentTheme === theme && root.classList.contains("az-theme-initialized")) {
+      return;
+    }
+    
+    // Disable transitions during theme application
+    root.classList.add("az-theme-changing");
+    root.setAttribute("data-theme", theme);
+    root.classList.add("az-theme-initialized");
+    
+    // Re-enable transitions after theme is applied
+    requestAnimationFrame(() => {
+      root.classList.remove("az-theme-changing");
+    });
+  }, [theme, mounted]);
+
   // Sync props to state if they change
   useEffect(() => {
     setAccentColor(propsAccentColor);
@@ -115,13 +198,11 @@ export function ThemeProvider({
     setScaling(propsScaling);
   }, [propsScaling]);
 
+  // Apply theme configuration to document
   useEffect(() => {
-    if (typeof document === "undefined") return;
-    const root = document.documentElement;
+    if (typeof document === "undefined" || !mounted) return;
     
-    // Disable transitions during theme application
-    root.classList.add("az-theme-changing");
-    root.setAttribute("data-theme", theme);
+    const root = document.documentElement;
 
     // Apply Gray Scale
     const grayClasses = ["az-gray-gray", "az-gray-mauve", "az-gray-slate", "az-gray-sage"];
@@ -163,12 +244,7 @@ export function ThemeProvider({
               ? "1.5"
               : "2";
     root.style.setProperty("--radius-factor", radiusValue);
-    
-    // Re-enable transitions after theme is applied
-    requestAnimationFrame(() => {
-      root.classList.remove("az-theme-changing");
-    });
-  }, [theme, grayColor, accentColor, radius, scaling]);
+  }, [grayColor, accentColor, radius, scaling, mounted]);
 
   const contextValue = useMemo(
     () => ({
@@ -215,8 +291,7 @@ export function ThemeProvider({
       <div
         className={wrapperClassName}
         style={wrapperStyle}
-        data-theme={mounted ? theme : undefined}
-        data-debug="true"
+        data-theme={mounted ? theme : defaultTheme === "system" ? "light" : defaultTheme}
         suppressHydrationWarning
         {...(hasCustomAccentInStyle && { "data-custom-accent": "true" })}
       >

@@ -143,6 +143,9 @@ export { ErrorBoundary } from "./components/ErrorBoundary";
 export { useResponsive } from "./hooks/useResponsive";
 export { useBodyScrollLock } from "./hooks/useBodyScrollLock";
 
+// Utils
+export { getThemeScript, getThemeScriptTag } from "./utils/theme-script";
+
 // Types
 export type { AlertProps } from "./components/Alert";
 export type { AvatarProps, AvatarGroupProps } from "./components/Avatar";

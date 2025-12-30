@@ -491,6 +491,102 @@ function App() {
 }
 ```
 
+#### Preventing Theme Flicker in SSR (Next.js, Remix, etc.)
+
+To prevent theme flicker on page load in SSR environments, add a blocking script in your HTML `<head>` before React hydrates:
+
+**Next.js App Router (app/layout.tsx):**
+
+```tsx
+import { getThemeScript } from "@azodik/ui";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: getThemeScript({ 
+              storageKey: 'azodik-theme', 
+              defaultTheme: 'system' 
+            })
+          }}
+        />
+      </head>
+      <body>
+        <ThemeProvider defaultTheme="system">
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+**Next.js Pages Router (_document.tsx):**
+
+```tsx
+import { Html, Head, Main, NextScript } from 'next/document';
+import { getThemeScript } from "@azodik/ui";
+
+export default function Document() {
+  return (
+    <Html>
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: getThemeScript({ 
+              storageKey: 'azodik-theme', 
+              defaultTheme: 'system' 
+            })
+          }}
+        />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+```
+
+**Plain HTML:**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      (function() {
+        try {
+          const storageKey = 'azodik-theme';
+          const stored = localStorage.getItem(storageKey);
+          const defaultTheme = 'system';
+          let theme = stored || defaultTheme;
+          
+          if (theme === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            theme = prefersDark ? 'dark' : 'light';
+          }
+          
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.classList.add('az-theme-initialized');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.classList.add('az-theme-initialized');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Your app -->
+  </body>
+</html>
+```
+
+**Important:** Make sure the `storageKey` and `defaultTheme` in the script match your `ThemeProvider` props!
+
 #### Theme Switching with useTheme Hook
 
 ```tsx
