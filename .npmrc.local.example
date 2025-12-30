@@ -1,0 +1,28 @@
+# NPM Authentication Token Configuration
+# 
+# This file is gitignored and contains your personal npm token for publishing.
+# 
+# SETUP INSTRUCTIONS:
+# 
+# Option 1: Use the setup script (recommended)
+#   Run: pnpm run setup:auth
+#   This will prompt you for your token and create this file automatically.
+#
+# Option 2: Manual setup
+#   1. Copy this file: cp .npmrc.local.example .npmrc.local
+#   2. Get your npm token from: https://www.npmjs.com/settings/YOUR_USERNAME/tokens
+#     Or create a new token: npm token create
+#   3. Edit .npmrc.local and add your token:
+#
+# Format:
+# //registry.npmjs.org/:_authToken=YOUR_NPM_TOKEN_HERE
+#
+# Example:
+# //registry.npmjs.org/:_authToken=npm_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#
+# Option 3: Use environment variable
+#   Set NPM_TOKEN environment variable instead of using this file
+#   export NPM_TOKEN=your_token_here
+#
+# After setup, you can run 'pnpm run pub' without logging in!
+

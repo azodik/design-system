@@ -1,5 +1,10 @@
 name: Release
 
+# This workflow handles automatic version bumping and publishing to npm
+# It runs on every push to main (except version bump commits)
+# Note: CI workflow runs in parallel to ensure code quality
+# For production, consider using branch protection to require CI to pass before merging
+
 on:
   push:
     branches:
@@ -11,15 +16,17 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    # Skip if commit message contains [skip ci] (version bump commits from previous release)
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,18 +47,30 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm build
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish
-          version: pnpm changeset version
-          commit: "chore: version packages"
-          title: "chore: version packages"
+      - name: Bump patch version
+        run: node scripts/auto-version-patch.mjs
+
+      - name: Commit and push version bump
+        run: |
+          git add packages/*/package.json
+          if git diff --staged --quiet; then
+            echo "No version changes to commit"
+          else
+            git commit -m "chore: bump patch version [skip ci]"
+            git push
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Publish packages to npm
+        run: |
+          pnpm --filter azodik-ui-core publish --no-git-checks
+          pnpm --filter @azodik/icons publish --no-git-checks
+          pnpm --filter @azodik/ui publish --no-git-checks
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

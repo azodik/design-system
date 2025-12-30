@@ -1,6 +1,6 @@
 {
   "name": "azodik-ui-core",
-  "version": "0.10.0",
+  "version": "0.10.5",
   "main": "dist/index.css",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -42,6 +42,9 @@
       "default": "./dist/index.css"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "mkdir -p dist && cp -r components styles tokens *.css *.d.ts icons-catalog.json dist/",
     "dev": "vite dev --port 3003",
@@ -49,8 +52,7 @@
     "type-check": "echo 'No type checking needed for CSS'",
     "clean": "node ../../scripts/clean.mjs && rm -rf dist",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/core && pnpm build",
-    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/core",
-    "publish": "pnpm publish --access public --force"
+    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/core"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

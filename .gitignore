@@ -15,6 +15,9 @@ build/
 .env.test.local
 .env.production.local
 
+# NPM authentication (contains sensitive tokens)
+.npmrc.local
+
 # IDE
 .vscode/
 .idea/

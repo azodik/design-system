@@ -1,6 +1,6 @@
 {
   "name": "@azodik/icons",
-  "version": "0.10.0",
+  "version": "0.10.5",
   "description": "Icon components for Azodik UI design system",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -37,6 +37,9 @@
     "src",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup && tsup --watch",
@@ -45,8 +48,7 @@
     "type-check": "tsc --noEmit",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/icons && pnpm build",
-    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/icons",
-    "publish": "pnpm publish --access public --force"
+    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/icons"
   },
   "dependencies": {
     "react": "^19.2.3"

@@ -1,6 +1,6 @@
 {
   "name": "@azodik/ui",
-  "version": "0.10.0",
+  "version": "0.10.5",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -43,6 +43,9 @@
     "styles.css",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "node scripts/update-version.mjs",
     "build": "tsup",
@@ -53,12 +56,11 @@
     "type-check": "tsc --noEmit",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/ui && pnpm build",
-    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/ui",
-    "publish": "pnpm publish --access public"
+    "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/ui"
   },
   "dependencies": {
-    "@azodik/icons": "workspace:*",
-    "azodik-ui-core": "workspace:*",
+    "@azodik/icons": "^0.10.2",
+    "azodik-ui-core": "^0.10.2",
     "recharts": "^3.6.0"
   },
   "devDependencies": {
