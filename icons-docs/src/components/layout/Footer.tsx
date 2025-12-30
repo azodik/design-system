@@ -83,7 +83,7 @@ export default function DocsFooter() {
             opacity: 0.8,
           }}
         >
-          © {new Date().getFullYear()} Azodik Design System. All rights reserved.
+          © {new Date().getFullYear()} Azodik. All rights reserved.
         </Box>
         <Box
           style={{

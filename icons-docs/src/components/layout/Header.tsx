@@ -74,29 +74,6 @@ export default function Header() {
             <BookOpenIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
             LLM Resource
           </Navbar.Link>
-          <Navbar.Link
-            href="https://github.com/azodik/ui"
-            target="_blank"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
-          >
-            <GithubIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
-            GitHub
-          </Navbar.Link>
-          <Navbar.Link
-            href="/docs"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
-          >
-            <DocumentationIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
-            Docs
-          </Navbar.Link>
         </Navbar.Links>
       </Navbar.Content>
 
