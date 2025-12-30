@@ -29,6 +29,15 @@ export {
   HeroDescription,
   HeroActions
 } from "./components/Hero";
+export { 
+  Footer,
+  FooterBrand,
+  FooterContent,
+  FooterLinks,
+  FooterLink,
+  FooterBottom,
+  FooterSocial
+} from "./components/Footer";
 export { Popover } from "./components/Popover";
 export { default as Navigation, NavItem } from "./components/Navigation";
 export { Breadcrumb } from "./components/Breadcrumb";
