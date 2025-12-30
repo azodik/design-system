@@ -599,6 +599,39 @@ a.sidebar-neutral-states.active {
   display: flex;
   align-items: center;
   margin-left: var(--space-2);
+  gap: var(--space-2);
+}
+
+/* Desktop: flex container should be horizontal */
+.theme-toggle-section > .flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Controls row - desktop horizontal layout */
+.controls-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.icons-link-section,
+.language-selector-section,
+.theme-toggle-wrapper,
+.additional-control-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .theme-toggle-button {
@@ -801,13 +834,22 @@ a.sidebar-neutral-states.active {
 
 /* Mobile and tablet styles */
 @media (max-width: 1024px) {
-  /* Mobile header styles */
+  /* Mobile header styles - Stack elements vertically on very small screens */
   .main-content-header {
     padding: var(--space-2);
-    min-height: 50px;
-    gap: var(--space-1);
+    min-height: auto;
+    gap: var(--space-2);
     display: flex !important;
-    align-items: center !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Top row: Toggle + Breadcrumb */
+  .main-content-header > .sidebar-toggle-button {
+    position: absolute;
+    left: var(--space-2);
+    top: var(--space-2);
+    z-index: 11;
   }
 
   .breadcrumb-section {
@@ -815,13 +857,64 @@ a.sidebar-neutral-states.active {
     min-width: 0;
     display: flex !important;
     align-items: center !important;
+    padding-left: 40px; /* Space for toggle button */
+    margin-bottom: var(--space-3);
   }
 
+  /* Bottom row: Search + Controls */
   .theme-toggle-section {
     flex-shrink: 0;
-    margin-left: var(--space-1);
+    margin-left: 0;
+    margin-top: 0;
     display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: var(--space-2);
+    width: 100%;
+  }
+
+  /* Target the nested flex container - make it column layout */
+  .theme-toggle-section > .flex {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: var(--space-2);
+    width: 100%;
+  }
+
+  /* Search takes full width on its own row */
+  .search-section {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    order: 1;
+  }
+
+  .search-section .search-trigger {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Controls row container - horizontal layout */
+  .controls-row {
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
+    gap: var(--space-1);
+    flex-shrink: 0;
+    order: 2;
+  }
+
+  .icons-link-section,
+  .language-selector-section,
+  .theme-toggle-wrapper,
+  .additional-control-item {
+    flex-shrink: 0;
+  }
+
+  /* Additional controls styling */
+  .additional-control-item {
+    display: flex;
+    align-items: center;
   }
 
   /* Ensure breadcrumb is visible on mobile */
@@ -841,6 +934,55 @@ a.sidebar-neutral-states.active {
   .breadcrumb-item {
     display: flex !important;
     align-items: center !important;
+  }
+}
+
+/* Very small mobile screens */
+@media (max-width: 640px) {
+  .main-content-header {
+    padding: var(--space-2);
+    gap: var(--space-1);
+  }
+
+  .breadcrumb-section {
+    padding-left: 36px;
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-3);
+  }
+
+  .theme-toggle-section {
+    gap: var(--space-1);
+  }
+
+  .theme-toggle-section > .flex {
+    flex-direction: column !important;
+    gap: var(--space-1);
+  }
+
+  .search-section {
+    width: 100% !important;
+  }
+
+  .controls-row {
+    gap: var(--space-1);
+  }
+
+  /* Hide icons link text on very small screens */
+  .icons-link-section .icons-header-link span {
+    display: none;
+  }
+
+  .icons-link-section .icons-header-link {
+    padding: var(--space-1);
+    min-width: 36px;
+    justify-content: center;
+  }
+
+  /* Additional controls on small screens */
+  .additional-control-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
   }
 }
 

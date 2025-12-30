@@ -613,6 +613,12 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
   themeToggle?: React.ReactNode;
   languageSelector?: React.ReactNode;
   iconsLink?: React.ReactNode;
+  searchComponent?: React.ReactNode;
+  /**
+   * Additional header actions/controls to display in the controls row
+   * These will appear alongside iconsLink, languageSelector, and themeToggle
+   */
+  additionalControls?: React.ReactNode[];
   isSmallScreen?: boolean;
 }
 
@@ -628,6 +634,8 @@ export function SidebarMainContent({
   themeToggle,
   languageSelector,
   iconsLink,
+  searchComponent,
+  additionalControls = [],
   isSmallScreen = false,
   className = "",
   ...props
@@ -669,15 +677,26 @@ export function SidebarMainContent({
           </div>
         )}
 
-        {/* Language Selector, Icons Link, and Theme Toggle Section */}
-        {(languageSelector || themeToggle || iconsLink) && (
+        {/* Search, Language Selector, Icons Link, Theme Toggle, and Additional Controls Section */}
+        {(searchComponent || languageSelector || themeToggle || iconsLink || (additionalControls && additionalControls.length > 0)) && (
           <div className="theme-toggle-section">
             <div className="flex items-center gap-2">
-              {iconsLink && <div className="icons-link-section">{iconsLink}</div>}
-              {languageSelector && (
-                <div className="language-selector-section">{languageSelector}</div>
+              {searchComponent && <div className="search-section">{searchComponent}</div>}
+              {(iconsLink || languageSelector || themeToggle || (additionalControls && additionalControls.length > 0)) && (
+                <div className="controls-row">
+                  {iconsLink && <div className="icons-link-section">{iconsLink}</div>}
+                  {languageSelector && (
+                    <div className="language-selector-section">{languageSelector}</div>
+                  )}
+                  {themeToggle && <div className="theme-toggle-wrapper">{themeToggle}</div>}
+                  {/* Render additional controls */}
+                  {additionalControls && additionalControls.length > 0 && additionalControls.map((control, index) => (
+                    <div key={index} className="additional-control-item">
+                      {control}
+                    </div>
+                  ))}
+                </div>
               )}
-              {themeToggle && <div className="theme-toggle-wrapper">{themeToggle}</div>}
             </div>
           </div>
         )}

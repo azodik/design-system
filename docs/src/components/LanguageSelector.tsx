@@ -1,6 +1,5 @@
 import React from "react";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
-import { GlobeIcon } from "@azodik/icons";
 import { Select } from "@azodik/ui";
 
 const LanguageSelector: React.FC = () => {
@@ -21,7 +20,6 @@ const LanguageSelector: React.FC = () => {
         gap: "0.5rem",
       }}
     >
-      <GlobeIcon size={20} style={{ color: "var(--color-text-secondary)", flexShrink: 0 }} />
       <Select
         options={options}
         value={currentLanguage}

@@ -11,12 +11,16 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   Breadcrumb,
+  Search,
+  SearchIndex,
+  SearchableItem,
 } from "@azodik/ui";
 import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
 import ThemeToggle from "../ThemeToggle";
 import LanguageSelector from "../LanguageSelector";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 import { routes } from "@/config/routes";
+import { buildSearchIndex } from "@/utils/buildSearchIndex";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -42,7 +46,14 @@ export default function SidebarLayout({
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useLanguageTranslation();
+  const { t, currentLanguage } = useLanguageTranslation();
+  
+  // Initialize search index
+  const [searchIndex] = useState<SearchIndex>(() => buildSearchIndex());
+  
+  const handleSearchSelect = (item: SearchableItem) => {
+    navigate(item.url);
+  };
 
   // Check screen size on mount and resize
   useEffect(() => {
@@ -199,6 +210,15 @@ export default function SidebarLayout({
         showToggleOnDesktop={false}
         languageSelector={<LanguageSelector />}
         themeToggle={<ThemeToggle />}
+        searchComponent={
+          <Search
+            searchIndex={searchIndex}
+            onSelect={handleSearchSelect}
+            placeholder="Search components..."
+            maxResults={8}
+            language={currentLanguage}
+          />
+        }
         iconsLink={
           <Link
             to={routes.iconsDocs}

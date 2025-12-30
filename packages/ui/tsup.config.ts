@@ -9,7 +9,7 @@ export default defineConfig({
   clean: true,
   treeshake: true, // Enable tree-shaking
   minify: false, // Let consumers minify if needed
-  external: ["react", "react-dom", "azodik-ui-core", "@azodik/icons", "recharts"],
+  external: ["react", "react-dom", "azodik-ui-core", "@azodik/icons", "recharts", "minisearch"],
   esbuildOptions(options) {
     options.treeShaking = true;
     options.drop = ["console", "debugger"]; // Remove console/debugger in production

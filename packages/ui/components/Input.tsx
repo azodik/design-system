@@ -12,20 +12,23 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   className?: string;
 }
 
-export default function Input({
-  label,
-  help,
-  error,
-  status,
-  color,
-  radius,
-  size = "2",
-  className = "",
-  style,
-  id,
-  name,
-  ...props
-}: InputProps) {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
+  {
+    label,
+    help,
+    error,
+    status,
+    color,
+    radius,
+    size = "2",
+    className = "",
+    style,
+    id,
+    name,
+    ...props
+  }: InputProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
   const generatedId = React.useId();
   const inputId = id || name || generatedId;
   const isNamedColor =
@@ -56,6 +59,7 @@ export default function Input({
         </label>
       )}
       <input
+        ref={ref}
         id={inputId}
         name={name || inputId}
         className={inputClasses}
@@ -66,4 +70,6 @@ export default function Input({
       {help && !error && <div className="form-help">{help}</div>}
     </div>
   );
-}
+});
+
+export default Input;

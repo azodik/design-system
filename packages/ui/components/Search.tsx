@@ -1,0 +1,243 @@
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { SearchIndex, SearchableItem } from "../utils/search";
+import Input from "./Input";
+import Modal from "./Modal";
+import { SearchIcon, ArrowRightIcon } from "@azodik/icons";
+
+export interface SearchProps {
+  /**
+   * Search index instance
+   */
+  searchIndex: SearchIndex;
+  /**
+   * Callback when a result is selected
+   */
+  onSelect?: (item: SearchableItem) => void;
+  /**
+   * Placeholder text for search input
+   */
+  placeholder?: string;
+  /**
+   * Maximum number of results to display
+   */
+  maxResults?: number;
+  /**
+   * Keyboard shortcut to open search (default: "k")
+   */
+  shortcutKey?: string;
+  /**
+   * Current language code for filtering results (e.g., 'en', 'es')
+   */
+  language?: string;
+  /**
+   * Custom render function for search results
+   */
+  renderResult?: (item: SearchableItem, index: number) => React.ReactNode;
+  /**
+   * Custom empty state message
+   */
+  emptyMessage?: string;
+  /**
+   * Custom no results message
+   */
+  noResultsMessage?: string;
+  /**
+   * Show keyboard shortcut hint
+   */
+  showShortcutHint?: boolean;
+  /**
+   * Additional CSS classes
+   */
+  className?: string;
+}
+
+export default function Search({
+  searchIndex,
+  onSelect,
+  placeholder = "Search...",
+  maxResults = 10,
+  shortcutKey = "k",
+  language,
+  renderResult,
+  emptyMessage = "Start typing to search",
+  noResultsMessage = "No results found",
+  showShortcutHint = true,
+  className = "",
+}: SearchProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Search results
+  const results = useMemo(() => {
+    if (!query.trim()) {
+      return [];
+    }
+    return searchIndex.search(query, undefined, language).slice(0, maxResults);
+  }, [query, searchIndex, maxResults, language]);
+
+  // Handle keyboard shortcut
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+      const modifier = isMac ? event.metaKey : event.ctrlKey;
+
+      if (modifier && event.key.toLowerCase() === shortcutKey.toLowerCase()) {
+        event.preventDefault();
+        setIsOpen(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [shortcutKey]);
+
+  // Focus input when modal opens
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    } else {
+      setQuery("");
+      setSelectedIndex(0);
+    }
+  }, [isOpen]);
+
+  // Handle keyboard navigation
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        setSelectedIndex((prev) => Math.min(prev + 1, results.length - 1));
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        setSelectedIndex((prev) => Math.max(prev - 1, 0));
+      } else if (event.key === "Enter" && results[selectedIndex]) {
+        event.preventDefault();
+        const storedDoc = searchIndex.getStoredDocument(results[selectedIndex].id);
+        if (storedDoc) {
+          handleSelect(storedDoc);
+        }
+      } else if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    },
+    [results, selectedIndex],
+  );
+
+  // Scroll selected result into view
+  useEffect(() => {
+    if (resultsRef.current && selectedIndex >= 0) {
+      const selectedElement = resultsRef.current.children[selectedIndex] as HTMLElement;
+      if (selectedElement) {
+        selectedElement.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+  }, [selectedIndex]);
+
+  const handleSelect = useCallback(
+    (item: SearchableItem) => {
+      onSelect?.(item);
+      setIsOpen(false);
+      setQuery("");
+      setSelectedIndex(0);
+    },
+    [onSelect],
+  );
+
+  const defaultRenderResult = (item: SearchableItem, index: number) => {
+    const isSelected = index === selectedIndex;
+    const itemId = item.id || `result-${index}`;
+
+    return (
+      <div
+        key={itemId}
+        className={`search-result ${isSelected ? "selected" : ""}`}
+        onClick={() => handleSelect(item)}
+        onMouseEnter={() => setSelectedIndex(index)}
+      >
+        <div className="search-result-content">
+          <div className="search-result-title">{item.title}</div>
+          {item.description && (
+            <div className="search-result-description">{item.description}</div>
+          )}
+          {item.category && (
+            <div className="search-result-category">{item.category}</div>
+          )}
+        </div>
+        <ArrowRightIcon size={16} className="search-result-icon" />
+      </div>
+    );
+  };
+
+  const renderResultFn = renderResult || defaultRenderResult;
+
+  return (
+    <>
+      <button
+        className={`search-trigger ${className}`}
+        onClick={() => setIsOpen(true)}
+        aria-label="Open search"
+      >
+        <SearchIcon size={18} />
+        <span className="search-trigger-text">{placeholder}</span>
+        {showShortcutHint && (
+          <span className="search-shortcut">
+            <kbd>{navigator.platform.toUpperCase().indexOf("MAC") >= 0 ? "⌘" : "Ctrl"}</kbd>
+            <kbd>{shortcutKey.toUpperCase()}</kbd>
+          </span>
+        )}
+      </button>
+
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        size="3"
+        showCloseButton={false}
+        className="search-modal"
+      >
+        <div className="search-container">
+          <div className="search-input-wrapper">
+            <SearchIcon size={20} className="search-input-icon" />
+            <Input
+              ref={inputRef}
+              type="text"
+              placeholder={placeholder}
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setSelectedIndex(0);
+              }}
+              onKeyDown={handleKeyDown}
+              className="search-input"
+              autoComplete="off"
+            />
+          </div>
+
+          <div className="search-results" ref={resultsRef}>
+            {!query.trim() ? (
+              <div className="search-empty">{emptyMessage}</div>
+            ) : results.length === 0 ? (
+              <div className="search-empty">{noResultsMessage}</div>
+            ) : (
+              results.map((result, index) => {
+                // Get stored document from search index
+                const storedDoc = searchIndex.getStoredDocument(result.id);
+                const item: SearchableItem = storedDoc || {
+                  id: result.id,
+                  title: result.id,
+                  url: "",
+                };
+                return renderResultFn(item, index);
+              })
+            )}
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+}
+

@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/update-ui-version.mjs",
     "build": "vite build",
+    "predev": "node scripts/update-ui-version.mjs",
     "dev": "vite dev --port 3000",
     "preview": "vite preview",
     "lint": "echo 'No linting configured yet'",
@@ -22,6 +24,7 @@
     "azodik-ui-core": "workspace:*",
     "i18next": "^25.7.3",
     "lucide": "^0.562.0",
+    "minisearch": "^7.2.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-i18next": "^16.5.0",
