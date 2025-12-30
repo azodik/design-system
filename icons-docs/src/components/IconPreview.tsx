@@ -93,10 +93,10 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '3rem',
+            padding: 'clamp(1.5rem, 6vw, 3rem)',
             background: 'var(--color-surface)',
             borderRadius: 'var(--radius-3)',
-            minHeight: '200px',
+            minHeight: 'clamp(150px, 30vw, 200px)',
           }}
         >
           {IconComponent ? (
@@ -122,14 +122,20 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
         <Box>
           <Box as="label" style={{ 
             display: 'block', 
-            fontSize: '0.875rem', 
+            fontSize: 'clamp(0.8125rem, 2vw, 0.875rem)', 
             fontWeight: 600, 
             marginBottom: '0.75rem',
             color: 'var(--color-text)' 
           }}>
             Size Preview
           </Box>
-          <Grid columns="3" gap="2">
+          <Grid 
+            columns="repeat(auto-fit, minmax(80px, 1fr))"
+            gap="2"
+            style={{
+              gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+            }}
+          >
             {previewSizes.map(s => (
               <Box
                 key={s}

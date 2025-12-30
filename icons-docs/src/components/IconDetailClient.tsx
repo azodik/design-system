@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Box, Container, Grid, Card, CardHeader, CardTitle, CardContent, Button, Flex } from '@azodik/ui';
+import { Box, Container, Grid, Card, CardHeader, CardTitle, CardContent, Button, Flex, useResponsive } from '@azodik/ui';
 import { getIconComponent } from '@/lib/icon-loader';
 import { downloadSVG, downloadPNG } from '@/lib/icon-utils';
 import type { IconInfo, DownloadOptions } from '@/types/icon';
@@ -16,6 +16,7 @@ interface IconDetailClientProps {
 
 export default function IconDetailClient({ icon }: IconDetailClientProps) {
   const router = useRouter();
+  const { isMobile } = useResponsive();
   const [downloadOptions, setDownloadOptions] = useState<DownloadOptions>({
     format: 'svg',
     style: 'solid',
@@ -44,27 +45,43 @@ export default function IconDetailClient({ icon }: IconDetailClientProps) {
 
   return (
     <Box style={{ minHeight: '100vh', background: 'var(--color-background)' }}>
-    
-        <Container size="4" style={{ padding: '1rem' }}>
-          <Button
-            variant="ghost"
-            onClick={() => router.back()}
-            style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-          >
-            <Box as="span"> <ArrowLeftIcon /> </Box>
-            Back to Icons
-          </Button>
-          <Box as="h1" style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-text)' }}>
-            {icon.displayName}
-          </Box>
-          <Box as="p" style={{ color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>
-            {icon.componentName}
-          </Box>
-        </Container>
-    
+      <Container size="4" style={{ padding: 'clamp(1rem, 4vw, 1.5rem)' }}>
+        <Button
+          variant="ghost"
+          onClick={() => router.back()}
+          style={{ 
+            marginBottom: 'clamp(0.75rem, 3vw, 1rem)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.5rem',
+            fontSize: 'clamp(0.875rem, 2vw, 1rem)',
+          }}
+        >
+          <Box as="span"> <ArrowLeftIcon size={18} /> </Box>
+          Back to Icons
+        </Button>
+        <Box as="h1" style={{ 
+          fontSize: 'clamp(1.5rem, 5vw, 2rem)', 
+          fontWeight: 700, 
+          color: 'var(--color-text)',
+          lineHeight: 1.2,
+        }}>
+          {icon.displayName}
+        </Box>
+        <Box as="p" style={{ 
+          color: 'var(--color-text-secondary)', 
+          marginTop: '0.25rem',
+          fontSize: 'clamp(0.875rem, 2vw, 1rem)',
+        }}>
+          {icon.componentName}
+        </Box>
+      </Container>
 
-      <Container size="4" style={{ padding: '2rem 1rem' }}>
-        <Grid columns="2" gap="4">
+      <Container size="4" style={{ padding: 'clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 1rem)' }}>
+        <Grid 
+          columns={isMobile ? "1" : "2"}
+          gap="4"
+        >
           <Card>
             <CardHeader>
               <CardTitle>Preview</CardTitle>
@@ -95,12 +112,12 @@ export default function IconDetailClient({ icon }: IconDetailClientProps) {
         </Grid>
 
         {icon.category && (
-          <Card style={{ marginTop: '2rem' }}>
+          <Card style={{ marginTop: 'clamp(1.5rem, 4vw, 2rem)' }}>
             <CardHeader>
               <CardTitle>Details</CardTitle>
             </CardHeader>
             <CardContent>
-              <Flex direction="column" gap="2" style={{ fontSize: '0.875rem' }}>
+              <Flex direction="column" gap="2" style={{ fontSize: 'clamp(0.8125rem, 2vw, 0.875rem)' }}>
                 <Box>
                   <Box as="span" style={{ fontWeight: 600 }}>Category:</Box>{' '}
                   {icon.category}

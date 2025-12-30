@@ -104,4 +104,15 @@ h1, h2, h3, h4, h5, h6 {
   .icons-page-header p {
     font-size: 0.9375rem !important;
   }
+
+  /* Icon Detail Page Mobile Styles */
+  .icon-preview-container {
+    padding: 1.5rem !important;
+    min-height: 150px !important;
+  }
+
+  /* Adjust card padding on mobile */
+  .az-Card-content {
+    padding: var(--space-4) !important;
+  }
 }
