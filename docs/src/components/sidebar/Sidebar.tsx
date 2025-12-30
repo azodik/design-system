@@ -14,6 +14,8 @@ import {
   Search,
   SearchIndex,
   SearchableItem,
+  NotificationCenter,
+  Notification,
 } from "@azodik/ui";
 import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
 import ThemeToggle from "../ThemeToggle";
@@ -53,6 +55,61 @@ export default function SidebarLayout({
 
   const handleSearchSelect = (item: SearchableItem) => {
     navigate(item.url);
+  };
+
+  // Sample notifications for testing
+  const [notifications, setNotifications] = useState<Notification[]>([
+    {
+      id: "1",
+      title: "Welcome to Azodik UI!",
+      message: "Explore our components and start building amazing interfaces.",
+      type: "info",
+      timestamp: new Date(Date.now() - 3600 * 1000), // 1 hour ago
+      read: false,
+    },
+    {
+      id: "2",
+      title: "New Feature Alert",
+      message: "We just released a new Notification Center component. Check it out!",
+      type: "success",
+      timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000), // 2 days ago
+      read: false,
+      actions: [
+        {
+          label: "Learn More",
+          onClick: () => {
+            navigate("/components/docs/notification-center");
+          },
+        },
+      ],
+    },
+    {
+      id: "3",
+      title: "Documentation Updated",
+      message: "The sidebar documentation has been updated with new examples.",
+      type: "info",
+      timestamp: new Date(Date.now() - 7 * 24 * 3600 * 1000), // 7 days ago
+      read: true,
+    },
+  ]);
+
+  const handleNotificationClick = (notification: Notification) => {
+    console.log("Notification clicked:", notification);
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === notification.id ? { ...n, read: true } : n))
+    );
+  };
+
+  const handleNotificationDismiss = (id: string) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
+
+  const handleMarkAllAsRead = () => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  };
+
+  const handleClearAll = () => {
+    setNotifications([]);
   };
 
   // Check screen size on mount and resize
@@ -252,6 +309,17 @@ export default function SidebarLayout({
             </div>
           )
         }
+        additionalControls={[
+          <NotificationCenter
+            key="notification-center"
+            notifications={notifications}
+            onNotificationClick={handleNotificationClick}
+            onNotificationDismiss={handleNotificationDismiss}
+            onMarkAllAsRead={handleMarkAllAsRead}
+            onClearAll={handleClearAll}
+            locale={currentLanguage}
+          />,
+        ]}
       >
         {children}
       </SidebarMainContent>
