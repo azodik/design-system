@@ -14,9 +14,9 @@ const LanguageSelector: React.FC = () => {
   return (
     <div
       className="language-selector"
-      style={{ 
-        display: "flex", 
-        alignItems: "center", 
+      style={{
+        display: "flex",
+        alignItems: "center",
         gap: "0.5rem",
       }}
     >
@@ -34,4 +34,3 @@ const LanguageSelector: React.FC = () => {
 };
 
 export default LanguageSelector;
-

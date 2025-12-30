@@ -27,6 +27,7 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "input", href: "/components/docs/input" },
   { nameKey: "icons", href: "/components/docs/icons" },
   { nameKey: "modal", href: "/components/docs/modal" },
+  { nameKey: "notificationCenter", href: "/components/docs/notification-center" },
   { nameKey: "navigation", href: "/components/docs/navigation" },
   { nameKey: "pagination", href: "/components/docs/pagination" },
   { nameKey: "popover", href: "/components/docs/popover" },

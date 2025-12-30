@@ -3,7 +3,9 @@
  * These factors are used to multiply the base radius in CSS:
  * calc(var(--base-radius) * var(--radius-factor))
  */
-export function resolveRadiusFactor(radius: string | undefined): Record<string, string> | Record<string, never> {
+export function resolveRadiusFactor(
+  radius: string | undefined,
+): Record<string, string> | Record<string, never> {
   if (!radius) return {};
 
   const factorMap: Record<string, string> = {

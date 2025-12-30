@@ -1,41 +1,32 @@
 import { MDXProvider } from "@mdx-js/react";
-import AccordionDocs from "../docs/Accordion.mdx";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  Box,
-  Container,
-} from "@azodik/ui";
+import NotificationCenter from "@/docs/NotificationCenter.mdx";
+import { NotificationCenter as NotificationCenterComponent, Button } from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 
 const components = {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
+  NotificationCenter: NotificationCenterComponent,
+  Button: Button,
 };
 
-export default function AccordionDocsPage() {
+export default function NotificationCenterDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "Accordion", current: true },
+    { label: "Notification Center", current: true },
   ];
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <Container size="4" className="p-2">
-        <Box className="docs-content">
+      <div className="max-w-4xl mx-auto p-2">
+        <div className="docs-content">
           <MDXProvider components={components}>
-            <AccordionDocs />
+            <NotificationCenter />
           </MDXProvider>
           <ComponentNavigation />
-        </Box>
-      </Container>
+        </div>
+      </div>
     </SidebarLayout>
   );
 }

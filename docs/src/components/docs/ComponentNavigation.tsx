@@ -39,14 +39,16 @@ export default function ComponentNavigation() {
   };
 
   return (
-    <div className="flex justify-between items-center" style={{ marginTop: "var(--space-lg)", paddingBottom: "var(--space-xl)", marginBottom: "var(--space-lg)" }}>
+    <div
+      className="flex justify-between items-center"
+      style={{
+        marginTop: "var(--space-lg)",
+        paddingBottom: "var(--space-xl)",
+        marginBottom: "var(--space-lg)",
+      }}
+    >
       {/* Previous Button */}
-      <Button
-        onClick={handlePrevious}
-        disabled={!previous}
-        variant="solid"
-        size="2"
-      >
+      <Button onClick={handlePrevious} disabled={!previous} variant="solid" size="2">
         <span className="flex items-center gap-2">
           <ChevronLeftIcon size={16} />
           <span className="font-medium">{previous ? t(previous.nameKey) : t("previous")}</span>
@@ -54,12 +56,7 @@ export default function ComponentNavigation() {
       </Button>
 
       {/* Next Button */}
-      <Button
-        onClick={handleNext}
-        disabled={!next}
-        variant="solid"
-        size="2"
-      >
+      <Button onClick={handleNext} disabled={!next} variant="solid" size="2">
         <span className="flex items-center gap-2">
           <span className="font-medium">{next ? t(next.nameKey) : t("next")}</span>
           <ChevronRightIcon size={16} />

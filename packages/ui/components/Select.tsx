@@ -16,7 +16,11 @@ export interface SelectProps {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  renderValue?: (option: { value: string; label: string; icon?: React.ReactNode }) => React.ReactNode;
+  renderValue?: (option: {
+    value: string;
+    label: string;
+    icon?: React.ReactNode;
+  }) => React.ReactNode;
 }
 
 export function Select({
@@ -178,13 +182,19 @@ export function Select({
             }
           }}
         >
-          <span className="select-value" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1 }}>
+          <span
+            className="select-value"
+            style={{ display: "flex", alignItems: "center", gap: "0.5rem", flex: 1 }}
+          >
             {renderValue && selectedOption ? (
               renderValue(selectedOption)
             ) : selectedOption ? (
               <>
                 {selectedOption.icon && (
-                  <span className="select-icon" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                  <span
+                    className="select-icon"
+                    style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+                  >
                     {selectedOption.icon}
                   </span>
                 )}
@@ -233,10 +243,13 @@ export function Select({
                 role="option"
                 aria-selected={selectedValue === option.value}
                 tabIndex={0}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
               >
                 {option.icon && (
-                  <span className="select-icon" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                  <span
+                    className="select-icon"
+                    style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+                  >
                     {option.icon}
                   </span>
                 )}

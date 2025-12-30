@@ -27,6 +27,7 @@ export const routes = {
   inputDocs: "/components/docs/input",
   iconsDocs: "/components/docs/icons",
   modalDocs: "/components/docs/modal",
+  notificationCenterDocs: "/components/docs/notification-center",
   navigationDocs: "/components/docs/navigation",
   paginationDocs: "/components/docs/pagination",
   popoverDocs: "/components/docs/popover",

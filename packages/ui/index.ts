@@ -108,6 +108,8 @@ export { default as Search } from "./components/Search";
 export type { SearchProps } from "./components/Search";
 export { SearchIndex } from "./utils/search";
 export type { SearchableItem, SearchConfig } from "./utils/search";
+export { default as NotificationCenter } from "./components/NotificationCenter";
+export type { NotificationCenterProps, Notification } from "./components/NotificationCenter";
 
 // Error Boundary
 export { ErrorBoundary } from "./components/ErrorBoundary";

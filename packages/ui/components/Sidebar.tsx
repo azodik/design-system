@@ -208,7 +208,7 @@ export interface SidebarGroupProps extends React.HTMLAttributes<HTMLDivElement> 
   isOpen?: boolean;
   onToggle?: () => void;
   show?: boolean;
-  variant?: 'default' | 'compact' | 'icon-only';
+  variant?: "default" | "compact" | "icon-only";
 }
 
 export function SidebarGroup({
@@ -221,7 +221,7 @@ export function SidebarGroup({
   isOpen = false,
   onToggle,
   show = true,
-  variant = 'default',
+  variant = "default",
   className = "",
   ...props
 }: SidebarGroupProps) {
@@ -233,11 +233,9 @@ export function SidebarGroup({
 
   if (!show) return null;
 
-  const groupClasses = [
-    'sidebar-group',
-    variant !== 'default' && `variant-${variant}`,
-    className
-  ].filter(Boolean).join(' ');
+  const groupClasses = ["sidebar-group", variant !== "default" && `variant-${variant}`, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={groupClasses} {...props}>
@@ -283,7 +281,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   badge?: string | number;
   tooltip?: string;
   show?: boolean;
-  size?: '1' | '2' | '3';
+  size?: "1" | "2" | "3";
   useNeutralStates?: boolean;
 }
 
@@ -294,17 +292,19 @@ export function SidebarItem({
   badge,
   tooltip,
   show = true,
-  size = '2',
+  size = "2",
   useNeutralStates = true,
   className = "",
   ...props
 }: SidebarItemProps) {
   const itemClasses = [
-    'sidebar-item',
+    "sidebar-item",
     size && `size-${size}`,
-    useNeutralStates && 'sidebar-neutral-states',
-    className
-  ].filter(Boolean).join(' ');
+    useNeutralStates && "sidebar-neutral-states",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
   const linkClasses = [active && "active"].filter(Boolean).join(" ");
 
   if (!show) return null;
@@ -558,7 +558,13 @@ export function SidebarMenuButton({
   className = "",
   ...props
 }: SidebarMenuButtonProps) {
-  const buttonClasses = [active && "active", useNeutralStates && "sidebar-neutral-states", className].filter(Boolean).join(" ");
+  const buttonClasses = [
+    active && "active",
+    useNeutralStates && "sidebar-neutral-states",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <a className={buttonClasses} {...props}>
@@ -678,11 +684,18 @@ export function SidebarMainContent({
         )}
 
         {/* Search, Language Selector, Icons Link, Theme Toggle, and Additional Controls Section */}
-        {(searchComponent || languageSelector || themeToggle || iconsLink || (additionalControls && additionalControls.length > 0)) && (
+        {(searchComponent ||
+          languageSelector ||
+          themeToggle ||
+          iconsLink ||
+          (additionalControls && additionalControls.length > 0)) && (
           <div className="theme-toggle-section">
             <div className="flex items-center gap-2">
               {searchComponent && <div className="search-section">{searchComponent}</div>}
-              {(iconsLink || languageSelector || themeToggle || (additionalControls && additionalControls.length > 0)) && (
+              {(iconsLink ||
+                languageSelector ||
+                themeToggle ||
+                (additionalControls && additionalControls.length > 0)) && (
                 <div className="controls-row">
                   {iconsLink && <div className="icons-link-section">{iconsLink}</div>}
                   {languageSelector && (
@@ -690,11 +703,13 @@ export function SidebarMainContent({
                   )}
                   {themeToggle && <div className="theme-toggle-wrapper">{themeToggle}</div>}
                   {/* Render additional controls */}
-                  {additionalControls && additionalControls.length > 0 && additionalControls.map((control, index) => (
-                    <div key={index} className="additional-control-item">
-                      {control}
-                    </div>
-                  ))}
+                  {additionalControls &&
+                    additionalControls.length > 0 &&
+                    additionalControls.map((control, index) => (
+                      <div key={index} className="additional-control-item">
+                        {control}
+                      </div>
+                    ))}
                 </div>
               )}
             </div>

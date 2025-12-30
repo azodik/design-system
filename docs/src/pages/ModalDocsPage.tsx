@@ -1,6 +1,14 @@
 import { MDXProvider } from "@mdx-js/react";
 import Modal from "@/docs/Modal.mdx";
-import { Modal as ModalComponent, ModalFooter, Button, Card, CardContent, Box, Container } from "@azodik/ui";
+import {
+  Modal as ModalComponent,
+  ModalFooter,
+  Button,
+  Card,
+  CardContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";

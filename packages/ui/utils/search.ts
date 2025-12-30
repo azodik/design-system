@@ -10,10 +10,13 @@ export interface SearchableItem {
   tags?: string[];
   language?: string; // Language code (e.g., 'en', 'es', 'fr')
   // Multilingual support - store translations
-  translations?: Record<string, {
-    title?: string;
-    description?: string;
-  }>;
+  translations?: Record<
+    string,
+    {
+      title?: string;
+      description?: string;
+    }
+  >;
 }
 
 export interface SearchConfig {
@@ -30,7 +33,14 @@ export class SearchIndex {
 
   constructor(config: SearchConfig = {}) {
     const fields = config.fields || ["title", "description", "content", "category", "tags"];
-    const storeFields = config.storeFields || ["id", "title", "description", "url", "category", "language"];
+    const storeFields = config.storeFields || [
+      "id",
+      "title",
+      "description",
+      "url",
+      "category",
+      "language",
+    ];
     this.defaultLanguage = config.defaultLanguage || "en";
 
     this.minisearch = new MiniSearch<SearchableItem>({
@@ -76,17 +86,19 @@ export class SearchIndex {
     if (!query.trim()) {
       return [];
     }
-    
+
     const results = this.minisearch.search(query, options);
-    
+
     // Filter by language if specified
     if (language) {
       return results.filter((result) => {
         const item = this.getItemById(result.id);
-        return item?.language === language || (!item?.language && language === this.defaultLanguage);
+        return (
+          item?.language === language || (!item?.language && language === this.defaultLanguage)
+        );
       });
     }
-    
+
     return results;
   }
 
@@ -94,8 +106,8 @@ export class SearchIndex {
    * Get items by language
    */
   getItemsByLanguage(language: string): SearchableItem[] {
-    return this.items.filter((item) => 
-      item.language === language || (!item.language && language === this.defaultLanguage)
+    return this.items.filter(
+      (item) => item.language === language || (!item.language && language === this.defaultLanguage),
     );
   }
 
@@ -122,4 +134,3 @@ export class SearchIndex {
     return item || null;
   }
 }
-

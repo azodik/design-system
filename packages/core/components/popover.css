@@ -19,7 +19,8 @@
   z-index: 10000;
   pointer-events: auto;
   overflow-x: hidden;
-  overflow-y: visible;
+  overflow-y: auto;
+  max-height: calc(100vh - var(--space-4));
   /* Max constraints only applied when needed via JS - no default constraints */
 }
 
@@ -102,29 +103,159 @@
   border-radius: var(--radius-2);
 }
 
-/* Mobile responsive */
-@media (max-width: 480px) {
+/* Mobile responsive - Tablet (768px - 1127px) */
+@media (min-width: 768px) and (max-width: 1127px) {
   .popover-content {
-    min-width: 150px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-    max-width: calc(100vw - 2rem);
+    max-width: calc(100vw - var(--space-4));
+    max-height: calc(100vh - var(--space-4));
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: var(--space-4) !important;
+    bottom: auto !important;
+    right: auto !important;
   }
 
   .popover.open .popover-content {
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) !important;
+  }
+
+  .theme-panel {
+    min-width: calc(100vw - var(--space-8)) !important;
+    max-width: calc(100vw - var(--space-8)) !important;
+    width: calc(100vw - var(--space-8)) !important;
+    max-height: calc(100vh - var(--space-8)) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: var(--space-4) !important;
+  }
+}
+
+/* Mobile responsive - Large Tablet */
+@media (max-width: 1024px) {
+  .popover-content {
+    max-width: calc(100vw - var(--space-4));
+    max-height: calc(100vh - var(--space-4));
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .theme-panel {
     min-width: 280px !important;
-    max-width: calc(100vw - 2rem) !important;
-    max-height: calc(100vh - 2rem) !important;
+    max-width: calc(100vw - var(--space-4)) !important;
+    max-height: calc(100vh - var(--space-4)) !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* Mobile responsive - Mobile (below 768px) */
+@media (max-width: 767px) {
+  .popover-content {
+    max-width: calc(100vw - var(--space-4)) !important;
+    max-height: calc(100vh - var(--space-4)) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    position: fixed !important;
+    left: var(--space-2) !important;
+    right: var(--space-2) !important;
+    top: var(--space-4) !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: calc(100vw - var(--space-4)) !important;
+  }
+
+  .popover.open .popover-content {
+    transform: none !important;
+  }
+
+  .theme-panel {
+    min-width: calc(100vw - var(--space-4)) !important;
+    max-width: calc(100vw - var(--space-4)) !important;
+    width: calc(100vw - var(--space-4)) !important;
+    max-height: calc(100vh - var(--space-4)) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: var(--space-3) !important;
+    position: relative !important;
+  }
+}
+
+/* Mobile responsive - Small Mobile */
+@media (max-width: 480px) {
+  .popover-content {
+    min-width: calc(100vw - var(--space-4));
+    max-width: calc(100vw - var(--space-4));
+    left: var(--space-2) !important;
+    right: var(--space-2) !important;
+    transform: none !important;
+    max-height: calc(100vh - var(--space-4));
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed !important;
+  }
+
+  .popover.open .popover-content {
+    transform: none !important;
+  }
+
+  .theme-panel {
+    min-width: calc(100vw - var(--space-2)) !important;
+    max-width: calc(100vw - var(--space-2)) !important;
+    max-height: calc(100vh - var(--space-2)) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: var(--space-3) !important;
+  }
+}
+
+/* Landscape mobile */
+@media (max-width: 767px) and (max-height: 500px) {
+  .popover-content {
+    max-height: calc(100vh - var(--space-2));
+  }
+
+  .theme-panel {
+    max-height: calc(100vh - var(--space-2)) !important;
+    padding: var(--space-2) !important;
   }
 }
 
 /* Theme panel specific styles */
 .theme-panel {
   overflow-x: hidden;
+  box-sizing: border-box;
   /* Height will be constrained by JS when needed */
+}
+
+/* Ensure theme panel content is always visible */
+.theme-panel > * {
+  box-sizing: border-box;
+}
+
+/* Better mobile handling for theme panel */
+@media (max-width: 1127px) {
+  .popover-content .theme-panel {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .popover-content .theme-panel {
+    padding: var(--space-3) !important;
+  }
+  
+  .theme-panel h4 {
+    font-size: var(--font-size-sm) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+  
+  .theme-panel > div {
+    margin-bottom: var(--space-3) !important;
+  }
 }

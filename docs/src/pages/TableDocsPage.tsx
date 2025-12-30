@@ -9,6 +9,8 @@ import {
   TableCell,
   Card,
   CardContent,
+  Container,
+  Box,
 } from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";

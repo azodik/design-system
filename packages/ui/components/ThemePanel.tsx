@@ -101,10 +101,16 @@ export const ThemePanel = React.memo(function ThemePanel({
         style={{
           padding: "20px",
           minWidth: "300px",
+          maxWidth: "100%",
+          width: "100%",
+          maxHeight: "calc(100vh - var(--space-4))",
+          overflowY: "auto",
+          overflowX: "hidden",
           background: "var(--gray-1)",
           borderRadius: "var(--radius-4)",
           border: "1px solid var(--gray-6)",
           boxShadow: "var(--shadow-3)",
+          boxSizing: "border-box",
         }}
       >
         <div style={{ marginBottom: "20px" }}>

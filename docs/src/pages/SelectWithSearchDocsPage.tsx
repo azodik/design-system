@@ -1,6 +1,12 @@
 import { MDXProvider } from "@mdx-js/react";
 import SelectWithSearch from "@/docs/SelectWithSearch.mdx";
-import { SelectWithSearch as SelectWithSearchComponent, Card, CardContent, Box, Container } from "@azodik/ui";
+import {
+  SelectWithSearch as SelectWithSearchComponent,
+  Card,
+  CardContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 

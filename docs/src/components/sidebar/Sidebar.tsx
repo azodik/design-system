@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { SidebarToggleIcon, ApplicationIcon, SparklesIcon } from "@azodik/icons";
+import { SidebarToggleIcon, SparklesIcon } from "@azodik/icons";
 import {
   Sidebar as SidebarComponent,
   SidebarHeader,
@@ -47,10 +47,10 @@ export default function SidebarLayout({
   const location = useLocation();
   const navigate = useNavigate();
   const { t, currentLanguage } = useLanguageTranslation();
-  
+
   // Initialize search index
   const [searchIndex] = useState<SearchIndex>(() => buildSearchIndex());
-  
+
   const handleSearchSelect = (item: SearchableItem) => {
     navigate(item.url);
   };
@@ -176,10 +176,7 @@ export default function SidebarLayout({
         showBreadcrumb={true}
       >
         <SidebarHeader show={true}>
-          <SidebarBrand
-            title="Azodik UI"
-            onClick={() => navigate("/")}
-          />
+          <SidebarBrand title="Azodik UI" onClick={() => navigate("/")} />
         </SidebarHeader>
 
         <SidebarContent>

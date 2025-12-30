@@ -100,11 +100,30 @@ export default function Search({
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
-    } else {
-      setQuery("");
-      setSelectedIndex(0);
     }
   }, [isOpen]);
+
+  // Reset search state when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      // Use setTimeout to defer state update
+      const timeoutId = setTimeout(() => {
+        setQuery("");
+        setSelectedIndex(0);
+      }, 0);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isOpen]);
+
+  const handleSelect = useCallback(
+    (item: SearchableItem) => {
+      onSelect?.(item);
+      setIsOpen(false);
+      setQuery("");
+      setSelectedIndex(0);
+    },
+    [onSelect],
+  );
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback(
@@ -125,7 +144,7 @@ export default function Search({
         setIsOpen(false);
       }
     },
-    [results, selectedIndex],
+    [results, selectedIndex, searchIndex, handleSelect],
   );
 
   // Scroll selected result into view
@@ -138,16 +157,6 @@ export default function Search({
     }
   }, [selectedIndex]);
 
-  const handleSelect = useCallback(
-    (item: SearchableItem) => {
-      onSelect?.(item);
-      setIsOpen(false);
-      setQuery("");
-      setSelectedIndex(0);
-    },
-    [onSelect],
-  );
-
   const defaultRenderResult = (item: SearchableItem, index: number) => {
     const isSelected = index === selectedIndex;
     const itemId = item.id || `result-${index}`;
@@ -157,16 +166,20 @@ export default function Search({
         key={itemId}
         className={`search-result ${isSelected ? "selected" : ""}`}
         onClick={() => handleSelect(item)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleSelect(item);
+          }
+        }}
         onMouseEnter={() => setSelectedIndex(index)}
+        role="button"
+        tabIndex={0}
       >
         <div className="search-result-content">
           <div className="search-result-title">{item.title}</div>
-          {item.description && (
-            <div className="search-result-description">{item.description}</div>
-          )}
-          {item.category && (
-            <div className="search-result-category">{item.category}</div>
-          )}
+          {item.description && <div className="search-result-description">{item.description}</div>}
+          {item.category && <div className="search-result-category">{item.category}</div>}
         </div>
         <ArrowRightIcon size={16} className="search-result-icon" />
       </div>
@@ -240,4 +253,3 @@ export default function Search({
     </>
   );
 }
-
