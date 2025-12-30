@@ -28,7 +28,7 @@ export default function IconGrid({ icons, onIconClick }: IconGridProps) {
         </Box>
         <Box as="h3" style={{ 
           color: 'var(--color-text)', 
-          fontSize: '1.5rem',
+          fontSize: 'clamp(1.25rem, 4vw, 1.5rem)',
           fontWeight: 700,
           marginBottom: 'var(--space-2)',
           fontFamily: 'var(--font-montserrat), sans-serif',
@@ -37,9 +37,10 @@ export default function IconGrid({ icons, onIconClick }: IconGridProps) {
         </Box>
         <Box as="p" style={{ 
           color: 'var(--color-text-secondary)', 
-          fontSize: '1rem',
+          fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
           maxWidth: '400px',
           margin: '0 auto',
+          padding: '0 var(--space-4)',
         }}>
           Try adjusting your search or filter to find what you're looking for
         </Box>
@@ -49,10 +50,11 @@ export default function IconGrid({ icons, onIconClick }: IconGridProps) {
 
   return (
     <Grid
-      columns="repeat(auto-fill, minmax(180px, 1fr))"
+      columns="repeat(auto-fill, minmax(140px, 1fr))"
       gap="4"
       style={{ 
         paddingBottom: 'var(--space-12)',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(140px, 100%), 1fr))',
       }}
       className="icon-grid"
     >

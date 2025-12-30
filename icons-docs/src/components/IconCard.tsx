@@ -26,7 +26,7 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: 'var(--space-6) var(--space-4)',
+        padding: 'clamp(var(--space-4), 4vw, var(--space-6)) clamp(var(--space-3), 3vw, var(--space-4))',
         background: 'var(--color-surface)',
         border: '2px solid var(--color-border)',
         borderRadius: 'var(--radius-4)',
@@ -85,26 +85,26 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
 
       <Box
         style={{
-          width: '72px',
-          height: '72px',
+          width: 'clamp(56px, 12vw, 72px)',
+          height: 'clamp(56px, 12vw, 72px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           background: 'var(--color-background)',
           color: 'var(--color-text)',
           borderRadius: 'var(--radius-3)',
-          marginBottom: 'var(--space-4)',
+          marginBottom: 'clamp(var(--space-3), 3vw, var(--space-4))',
           transition: 'all 0.3s ease',
           border: '1px solid var(--color-border-subtle)',
         }}
       >
         {IconComponent ? (
-          <IconComponent size={36} />
+          <IconComponent size={36} style={{ width: 'clamp(28px, 6vw, 36px)', height: 'clamp(28px, 6vw, 36px)' }} />
         ) : (
           <Box
             style={{
-              width: '36px',
-              height: '36px',
+              width: 'clamp(28px, 6vw, 36px)',
+              height: 'clamp(28px, 6vw, 36px)',
               background: 'var(--color-border)',
               borderRadius: 'var(--radius-2)',
             }}
@@ -115,7 +115,7 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
       <Box
         as="span"
         style={{
-          fontSize: '0.9375rem',
+          fontSize: 'clamp(0.8125rem, 2.5vw, 0.9375rem)',
           fontWeight: 700,
           color: 'var(--color-text)',
           textAlign: 'center',
@@ -134,7 +134,7 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
       <Box
         as="span"
         style={{
-          fontSize: '0.8125rem',
+          fontSize: 'clamp(0.75rem, 2vw, 0.8125rem)',
           fontWeight: 600,
           color: 'var(--color-text-secondary)',
           textTransform: 'capitalize',

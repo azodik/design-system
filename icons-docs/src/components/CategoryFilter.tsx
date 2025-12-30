@@ -22,9 +22,14 @@ export default function CategoryFilter({
   return (
     <Box style={{ 
       display: 'flex',
-      gap: 'var(--space-2)',
+      gap: 'clamp(var(--space-1), 2vw, var(--space-2))',
       flexWrap: 'wrap',
       alignItems: 'center',
+      width: '100%',
+      position: 'relative',
+      zIndex: 1,
+      overflow: 'visible',
+      minHeight: 'auto',
     }}>
       {categories.map((category) => {
         const isSelected = selected === category;
@@ -34,8 +39,8 @@ export default function CategoryFilter({
             as="button"
             onClick={() => onChange(category)}
             style={{
-              padding: 'var(--space-2) var(--space-4)',
-              fontSize: '0.875rem',
+              padding: 'clamp(0.5rem, 2vw, var(--space-2)) clamp(0.75rem, 3vw, var(--space-4))',
+              fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
               fontWeight: isSelected ? 700 : 600,
               color: isSelected ? 'var(--accent-9)' : 'var(--color-text-secondary)',
               background: isSelected 
@@ -49,13 +54,17 @@ export default function CategoryFilter({
               fontFamily: 'var(--font-montserrat), sans-serif',
               letterSpacing: '0.01em',
               boxShadow: isSelected ? '0 2px 8px rgba(var(--accent-9-rgb, 244, 129, 32), 0.15)' : 'none',
+              whiteSpace: 'nowrap',
             }}
             onMouseEnter={(e) => {
               if (!isSelected) {
                 e.currentTarget.style.borderColor = 'var(--accent-9)';
                 e.currentTarget.style.color = 'var(--accent-9)';
                 e.currentTarget.style.background = 'var(--accent-1)';
-                e.currentTarget.style.transform = 'translateY(-1px)';
+                // Only apply transform on desktop
+                if (typeof window !== 'undefined' && window.innerWidth > 768) {
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }
               }
             }}
             onMouseLeave={(e) => {
