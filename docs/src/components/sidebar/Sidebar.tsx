@@ -23,6 +23,7 @@ import LanguageSelector from "../LanguageSelector";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 import { routes } from "@/config/routes";
 import { buildSearchIndex } from "@/utils/buildSearchIndex";
+import { UI_VERSION } from "../../utils/version";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -262,6 +263,7 @@ export default function SidebarLayout({
         sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
         showBreadcrumb={showBreadcrumb}
         showToggleOnDesktop={false}
+        version={UI_VERSION}
         languageSelector={<LanguageSelector />}
         themeToggle={<ThemeToggle />}
         searchComponent={
@@ -274,30 +276,7 @@ export default function SidebarLayout({
           />
         }
         iconsLink={
-          <Link
-            to={routes.iconsDocs}
-            className="icons-header-link"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.5rem",
-              borderRadius: "var(--radius-md)",
-              textDecoration: "none",
-              color: "var(--color-text-secondary)",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              transition: "all 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--color-text)";
-              e.currentTarget.style.background = "var(--color-surface)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--color-text-secondary)";
-              e.currentTarget.style.background = "transparent";
-            }}
-          >
+          <Link to={routes.iconsDocs} className="sidebar-icons-link">
             <SparklesIcon size={18} />
             <span>Icons</span>
           </Link>

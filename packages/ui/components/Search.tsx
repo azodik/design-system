@@ -67,21 +67,48 @@ export default function Search({
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [recentSearches, setRecentSearches] = useState<SearchableItem[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Load recent searches from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("azodik_recent_searches");
+      if (saved) {
+        setRecentSearches(JSON.parse(saved).slice(0, 5));
+      }
+    } catch (e) {
+      console.error("Failed to load recent searches", e);
+    }
+  }, []);
+
+  // Save search to recent searches
+  const addToRecent = useCallback((item: SearchableItem) => {
+    setRecentSearches((prev) => {
+      const filtered = prev.filter((i) => i.id !== item.id);
+      const updated = [item, ...filtered].slice(0, 5);
+      localStorage.setItem("azodik_recent_searches", JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
 
   // Search results
   const results = useMemo(() => {
     if (!query.trim()) {
-      return [];
+      return recentSearches;
     }
-    return searchIndex.search(query, undefined, language).slice(0, maxResults);
-  }, [query, searchIndex, maxResults, language]);
+    const searchResults = searchIndex.search(query, undefined, language).slice(0, maxResults);
+    return searchResults.map((res) => {
+      const doc = searchIndex.getStoredDocument(res.id);
+      return (doc || res) as SearchableItem;
+    });
+  }, [query, searchIndex, maxResults, language, recentSearches]);
 
   // Handle keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+      const isMac = typeof navigator !== "undefined" && navigator.platform.toUpperCase().indexOf("MAC") >= 0;
       const modifier = isMac ? event.metaKey : event.ctrlKey;
 
       if (modifier && event.key.toLowerCase() === shortcutKey.toLowerCase()) {
@@ -96,49 +123,50 @@ export default function Search({
 
   // Focus input when modal opens
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      setTimeout(() => {
+    if (isOpen) {
+      // Use requestAnimationFrame for cleaner focus transition
+      const frameId = requestAnimationFrame(() => {
         inputRef.current?.focus();
-      }, 100);
+      });
+      return () => cancelAnimationFrame(frameId);
     }
   }, [isOpen]);
 
   // Reset search state when modal closes
   useEffect(() => {
     if (!isOpen) {
-      // Use setTimeout to defer state update
-      const timeoutId = setTimeout(() => {
-        setQuery("");
-        setSelectedIndex(0);
-      }, 0);
-      return () => clearTimeout(timeoutId);
+      setQuery("");
+      setSelectedIndex(0);
     }
   }, [isOpen]);
 
   const handleSelect = useCallback(
     (item: SearchableItem) => {
+      addToRecent(item);
       onSelect?.(item);
       setIsOpen(false);
       setQuery("");
       setSelectedIndex(0);
     },
-    [onSelect],
+    [onSelect, addToRecent],
   );
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      if (results.length === 0) return;
+
       if (event.key === "ArrowDown") {
         event.preventDefault();
-        setSelectedIndex((prev) => Math.min(prev + 1, results.length - 1));
+        setSelectedIndex((prev) => (prev + 1) % results.length);
       } else if (event.key === "ArrowUp") {
         event.preventDefault();
-        setSelectedIndex((prev) => Math.max(prev - 1, 0));
-      } else if (event.key === "Enter" && results[selectedIndex]) {
+        setSelectedIndex((prev) => (prev - 1 + results.length) % results.length);
+      } else if (event.key === "Enter") {
         event.preventDefault();
-        const storedDoc = searchIndex.getStoredDocument(results[selectedIndex].id);
-        if (storedDoc) {
-          handleSelect(storedDoc);
+        const selected = results[selectedIndex];
+        if (selected) {
+          handleSelect(selected);
         }
       } else if (event.key === "Escape") {
         setIsOpen(false);
@@ -231,7 +259,12 @@ export default function Search({
           </div>
 
           <div className="search-results" ref={resultsRef}>
-            {!query.trim() ? (
+            {!query.trim() && recentSearches.length > 0 ? (
+              <>
+                <div className="search-section-header">Recent Searches</div>
+                {results.map((result, index) => renderResultFn(result, index))}
+              </>
+            ) : !query.trim() ? (
               <div className="search-empty">{emptyMessage}</div>
             ) : results.length === 0 ? (
               <div className="search-empty">{noResultsMessage}</div>

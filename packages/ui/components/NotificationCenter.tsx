@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import {
   BellIcon,
   XIcon,
@@ -119,13 +119,13 @@ export function NotificationCenter({
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  // Calculate unread count
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  // Calculate unread count (memoized)
+  const unreadCount = useMemo(() => notifications.filter((n) => !n.read).length, [notifications]);
 
-  // Filter and limit notifications
-  const displayedNotifications = maxNotifications
-    ? notifications.slice(0, maxNotifications)
-    : notifications;
+  // Filter and limit notifications (memoized)
+  const displayedNotifications = useMemo(() => {
+    return maxNotifications ? notifications.slice(0, maxNotifications) : notifications;
+  }, [notifications, maxNotifications]);
 
   // Close panel when clicking outside
   useEffect(() => {
@@ -197,6 +197,23 @@ export function NotificationCenter({
     [onClearAll],
   );
 
+  // Memoize the formatter instance to avoid re-creation
+  const rtf = useMemo(() => {
+    const currentLocale = locale || (typeof navigator !== "undefined" ? navigator.language : "en");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const IntlWithRTF = Intl as any;
+    if (typeof Intl !== "undefined" && IntlWithRTF.RelativeTimeFormat) {
+      try {
+        return new IntlWithRTF.RelativeTimeFormat(currentLocale, {
+          numeric: "auto",
+        });
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }, [locale]);
+
   const formatTimestamp = useCallback(
     (timestamp?: Date | string): string => {
       if (!timestamp) return "";
@@ -204,73 +221,38 @@ export function NotificationCenter({
       const now = new Date();
       const diff = now.getTime() - date.getTime();
 
-      const minutes = Math.floor(diff / 60000);
-      const hours = Math.floor(diff / 3600000);
-      const days = Math.floor(diff / 86400000);
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
       const weeks = Math.floor(days / 7);
       const months = Math.floor(days / 30);
       const years = Math.floor(days / 365);
 
-      const currentLocale =
-        locale || (typeof navigator !== "undefined" ? navigator.language : "en");
-
-      // Use Intl.RelativeTimeFormat if available for language-aware formatting
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const IntlWithRTF = Intl as any;
-      if (typeof Intl !== "undefined" && IntlWithRTF.RelativeTimeFormat) {
-        try {
-          const rtf = new IntlWithRTF.RelativeTimeFormat(currentLocale, {
-            numeric: "auto",
-          });
-
-          if (Math.abs(minutes) < 1) {
-            return rtf.format(0, "second");
-          }
-          if (Math.abs(minutes) < 60) {
-            return rtf.format(-minutes, "minute");
-          }
-          if (Math.abs(hours) < 24) {
-            return rtf.format(-hours, "hour");
-          }
-          if (Math.abs(days) < 7) {
-            return rtf.format(-days, "day");
-          }
-          if (Math.abs(weeks) < 4) {
-            return rtf.format(-weeks, "week");
-          }
-          if (Math.abs(months) < 12) {
-            return rtf.format(-months, "month");
-          }
-          if (Math.abs(years) >= 1) {
-            return rtf.format(-years, "year");
-          }
-        } catch {
-          // Fall through to fallback formatting
-        }
+      if (rtf) {
+        if (Math.abs(seconds) < 60) return rtf.format(-seconds, "second");
+        if (Math.abs(minutes) < 60) return rtf.format(-minutes, "minute");
+        if (Math.abs(hours) < 24) return rtf.format(-hours, "hour");
+        if (Math.abs(days) < 7) return rtf.format(-days, "day");
+        if (Math.abs(weeks) < 4) return rtf.format(-weeks, "week");
+        if (Math.abs(months) < 12) return rtf.format(-months, "month");
+        return rtf.format(-years, "year");
       }
 
-      // Fallback formatting with locale support
-      if (Math.abs(minutes) < 1) {
-        return "Just now";
-      }
-      if (Math.abs(minutes) < 60) {
-        return `${minutes}m ago`;
-      }
-      if (Math.abs(hours) < 24) {
-        return `${hours}h ago`;
-      }
-      if (Math.abs(days) < 7) {
-        return `${days}d ago`;
-      }
+      // Fallback formatting
+      if (Math.abs(minutes) < 1) return "Just now";
+      if (Math.abs(minutes) < 60) return `${minutes}m ago`;
+      if (Math.abs(hours) < 24) return `${hours}h ago`;
+      if (Math.abs(days) < 7) return `${days}d ago`;
 
-      // Fallback to locale-specific date format
+      const currentLocale = locale || (typeof navigator !== "undefined" ? navigator.language : "en");
       return date.toLocaleDateString(currentLocale, {
         year: "numeric",
         month: "short",
         day: "numeric",
       });
     },
-    [locale],
+    [rtf, locale],
   );
 
   const getNotificationIcon = (notification: Notification): React.ReactNode => {
@@ -338,31 +320,24 @@ export function NotificationCenter({
         <div className="notification-panel-body">
           {displayedNotifications.length === 0 ? (
             <div className="notification-empty">
-              <div className="notification-empty-icon">🔔</div>
+              <div className="notification-empty-icon">
+                <BellIcon size={48} />
+              </div>
               <p className="notification-empty-text">{emptyMessage}</p>
             </div>
           ) : (
             <div className="notification-list">
-              {displayedNotifications.map((notification) => (
+              {displayedNotifications.map((notification: Notification) => (
                 <div
                   key={notification.id}
-                  className={`notification-item ${!notification.read ? "unread" : ""}`}
+                  className={`notification-item ${notification.read ? "read" : "unread"} ${
+                    notification.type ? `notification-${notification.type}` : ""
+                  }`}
                   onClick={() => handleNotificationClick(notification)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      handleNotificationClick(notification);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
                 >
-                  {/* Icon */}
-                  <div className={`notification-icon ${notification.type || "info"}`}>
+                  <div className="notification-icon-wrapper">
                     {getNotificationIcon(notification)}
                   </div>
-
-                  {/* Content */}
                   <div className="notification-content">
                     <h4 className="notification-title">{notification.title}</h4>
                     <p className="notification-message">{notification.message}</p>
@@ -374,7 +349,7 @@ export function NotificationCenter({
                       )}
                       {notification.actions && notification.actions.length > 0 && (
                         <div className="notification-actions">
-                          {notification.actions.map((action, index) => (
+                          {notification.actions.map((action: any, index: number) => (
                             <Button
                               key={index}
                               variant="soft"

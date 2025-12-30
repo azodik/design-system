@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Avatar from "./Avatar";
 import { Breadcrumb } from "./Breadcrumb";
+import { MenuIcon } from "@azodik/icons";
 
 // Hook for responsive sidebar functionality
 export function useResponsiveSidebar() {
@@ -626,6 +627,7 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
    */
   additionalControls?: React.ReactNode[];
   isSmallScreen?: boolean;
+  version?: string;
 }
 
 export function SidebarMainContent({
@@ -643,12 +645,16 @@ export function SidebarMainContent({
   searchComponent,
   additionalControls = [],
   isSmallScreen = false,
+  version,
   className = "",
   ...props
 }: SidebarMainContentProps) {
+  const breadcrumbItemsParsed =
+    breadcrumbItems || (typeof breadcrumb === "string" ? [{ label: breadcrumb }] : undefined);
+
   return (
     <div
-      className={`main-content-area ${className}`}
+      className={`sidebar-main-content ${isSmallScreen ? "full-width" : ""} ${className}`}
       style={{
         ...(isSmallScreen && {
           width: "100%",
@@ -657,64 +663,56 @@ export function SidebarMainContent({
       }}
       {...props}
     >
-      {/* Main Header Section */}
-      <header className="main-content-header">
-        {onSidebarToggle && (
-          <button
-            className={`sidebar-toggle-button ${showToggleOnDesktop ? "show-on-desktop" : ""}`}
-            onClick={onSidebarToggle}
-          >
-            {sidebarToggleIcon || (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
-              </svg>
-            )}
-          </button>
-        )}
+      <header className="sidebar-main-header">
+        <div className="sidebar-main-header-left">
+          {onSidebarToggle && ((!isSmallScreen && showToggleOnDesktop) || isSmallScreen) && (
+            <button
+              className="sidebar-toggle-button"
+              onClick={onSidebarToggle}
+              aria-label={_isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {sidebarToggleIcon || <MenuIcon />}
+            </button>
+          )}
 
-        {/* Breadcrumb Section */}
-        {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
-          <div className="breadcrumb-section">
-            {breadcrumb ? (
-              breadcrumb
-            ) : breadcrumbItems ? (
-              <Breadcrumb items={breadcrumbItems} />
-            ) : null}
-          </div>
-        )}
-
-        {/* Search, Language Selector, Icons Link, Theme Toggle, and Additional Controls Section */}
-        {(searchComponent ||
-          languageSelector ||
-          themeToggle ||
-          iconsLink ||
-          (additionalControls && additionalControls.length > 0)) && (
-          <div className="theme-toggle-section">
-            <div className="flex items-center gap-2">
-              {searchComponent && <div className="search-section">{searchComponent}</div>}
-              {(iconsLink ||
-                languageSelector ||
-                themeToggle ||
-                (additionalControls && additionalControls.length > 0)) && (
-                <div className="controls-row">
-                  {iconsLink && <div className="icons-link-section">{iconsLink}</div>}
-                  {languageSelector && (
-                    <div className="language-selector-section">{languageSelector}</div>
-                  )}
-                  {themeToggle && <div className="theme-toggle-wrapper">{themeToggle}</div>}
-                  {/* Render additional controls */}
-                  {additionalControls &&
-                    additionalControls.length > 0 &&
-                    additionalControls.map((control, index) => (
-                      <div key={index} className="additional-control-item">
-                        {control}
-                      </div>
-                    ))}
-                </div>
-              )}
+          {showBreadcrumb && (breadcrumbItemsParsed || breadcrumb) && (
+            <div className="sidebar-breadcrumb-wrapper">
+              {breadcrumb ? (
+                breadcrumb
+              ) : breadcrumbItemsParsed ? (
+                <Breadcrumb items={breadcrumbItemsParsed} />
+              ) : null}
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        <div className="sidebar-main-header-right">
+          {version && (
+            <div className="sidebar-version-display" title={`Version ${version}`}>
+              v{version}
+            </div>
+          )}
+
+          {searchComponent && <div className="sidebar-search-wrapper">{searchComponent}</div>}
+
+          {(iconsLink ||
+            languageSelector ||
+            themeToggle ||
+            (additionalControls && additionalControls.length > 0)) && (
+            <div className="sidebar-controls-group">
+              {iconsLink && <div className="sidebar-control-item">{iconsLink}</div>}
+              {languageSelector && <div className="sidebar-control-item">{languageSelector}</div>}
+              {themeToggle && <div className="sidebar-control-item">{themeToggle}</div>}
+              {additionalControls &&
+                additionalControls.length > 0 &&
+                additionalControls.map((control, index) => (
+                  <div key={index} className="sidebar-control-item">
+                    {control}
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
       </header>
 
       {/* Scrollable Main Content */}
