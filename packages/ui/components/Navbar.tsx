@@ -22,9 +22,13 @@ const useNavbar = () => {
 
 // Hook to detect mobile viewport
 const useIsMobile = () => {
+  // SSR-safe default
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // SSR guard
+    if (typeof window === "undefined") return;
+
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -56,13 +60,18 @@ const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
 
     // Prevent body scroll when mobile menu is open
     useEffect(() => {
+      // SSR guard
+      if (typeof document === "undefined") return;
+
       if (isOpen && isMobile) {
         document.body.style.overflow = 'hidden';
       } else {
         document.body.style.overflow = '';
       }
       return () => {
-        document.body.style.overflow = '';
+        if (typeof document !== "undefined") {
+          document.body.style.overflow = '';
+        }
       };
     }, [isOpen, isMobile]);
 
@@ -81,23 +90,34 @@ const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
     }, [isOpen]);
 
     useEffect(() => {
+      // SSR guard
+      if (typeof document === "undefined") return;
       if (isOpen) {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
+          if (typeof document !== "undefined") {
+            document.removeEventListener('mousedown', handleClickOutside);
+          }
         };
       }
     }, [isOpen, handleClickOutside]);
 
     // Close menu on escape key
     useEffect(() => {
+      // SSR guard
+      if (typeof document === "undefined") return;
+
       const handleEscape = (event: KeyboardEvent) => {
         if (event.key === 'Escape' && isOpen) {
           setIsOpen(false);
         }
       };
       document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+      return () => {
+        if (typeof document !== "undefined") {
+          document.removeEventListener('keydown', handleEscape);
+        }
+      };
     }, [isOpen]);
 
     const classNames = useMemo(() => [
