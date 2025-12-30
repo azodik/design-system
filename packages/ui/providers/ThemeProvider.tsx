@@ -75,9 +75,23 @@ export function ThemeProvider({
 
   const setTheme = useCallback(
     (newTheme: "light" | "dark" | "system") => {
+      // Disable transitions during theme change
+      if (typeof document !== "undefined") {
+        document.documentElement.classList.add("az-theme-changing");
+      }
+      
       setInternalAppearance(newTheme);
       if (typeof window !== "undefined") {
         localStorage.setItem(storageKey, newTheme);
+      }
+      
+      // Re-enable transitions after theme change
+      if (typeof window !== "undefined") {
+        setTimeout(() => {
+          if (typeof document !== "undefined") {
+            document.documentElement.classList.remove("az-theme-changing");
+          }
+        }, 0);
       }
     },
     [storageKey],
@@ -104,6 +118,9 @@ export function ThemeProvider({
   useEffect(() => {
     if (typeof document === "undefined") return;
     const root = document.documentElement;
+    
+    // Disable transitions during theme application
+    root.classList.add("az-theme-changing");
     root.setAttribute("data-theme", theme);
 
     // Apply Gray Scale
@@ -146,6 +163,11 @@ export function ThemeProvider({
               ? "1.5"
               : "2";
     root.style.setProperty("--radius-factor", radiusValue);
+    
+    // Re-enable transitions after theme is applied
+    requestAnimationFrame(() => {
+      root.classList.remove("az-theme-changing");
+    });
   }, [theme, grayColor, accentColor, radius, scaling]);
 
   const contextValue = useMemo(

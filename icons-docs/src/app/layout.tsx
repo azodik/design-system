@@ -31,6 +31,34 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const storageKey = 'azodik-theme';
+                  const stored = localStorage.getItem(storageKey);
+                  const defaultTheme = 'system';
+                  let theme = stored || defaultTheme;
+                  
+                  if (theme === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    theme = prefersDark ? 'dark' : 'light';
+                  }
+                  
+                  document.documentElement.setAttribute('data-theme', theme);
+                  document.documentElement.classList.add('az-theme-initialized');
+                } catch (e) {
+                  // Fallback to light theme if there's an error
+                  document.documentElement.setAttribute('data-theme', 'light');
+                  document.documentElement.classList.add('az-theme-initialized');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body suppressHydrationWarning style={{ 
         fontFamily: 'var(--font-inter), sans-serif',
         background: 'var(--color-background)',
