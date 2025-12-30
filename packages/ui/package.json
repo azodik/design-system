@@ -70,7 +70,7 @@
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "minisearch": "^7.0.0"
+    "minisearch": "^7.2.0"
   },
   "peerDependenciesMeta": {
     "minisearch": {
