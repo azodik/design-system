@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { BellIcon, XIcon } from "@azodik/icons";
+import {
+  BellIcon,
+  XIcon,
+  CheckCircleIcon,
+  AlertCircleIcon,
+  AlertTriangleIcon,
+  InfoIcon,
+} from "@azodik/icons";
+import Button from "./Button";
 
 export interface Notification {
   id: string;
@@ -268,16 +276,17 @@ export function NotificationCenter({
   const getNotificationIcon = (notification: Notification): React.ReactNode => {
     if (notification.icon) return notification.icon;
 
+    const iconSize = 16;
     switch (notification.type) {
       case "success":
-        return "✓";
+        return <CheckCircleIcon size={iconSize} />;
       case "warning":
-        return "⚠";
+        return <AlertTriangleIcon size={iconSize} />;
       case "error":
-        return "✕";
+        return <AlertCircleIcon size={iconSize} />;
       case "info":
       default:
-        return "ℹ";
+        return <InfoIcon size={iconSize} />;
     }
   };
 
@@ -366,17 +375,17 @@ export function NotificationCenter({
                       {notification.actions && notification.actions.length > 0 && (
                         <div className="notification-actions">
                           {notification.actions.map((action, index) => (
-                            <button
+                            <Button
                               key={index}
-                              className="notification-action"
+                              variant="soft"
+                              size="1"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 action.onClick();
                               }}
-                              type="button"
                             >
                               {action.label}
-                            </button>
+                            </Button>
                           ))}
                         </div>
                       )}
