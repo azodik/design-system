@@ -30,20 +30,8 @@ h1, h2, h3, h4, h5, h6 {
 }
  */
 
-/* Prevent theme transition flicker */
-html:not(.az-theme-initialized) *,
-html:not(.az-theme-initialized) *::before,
-html:not(.az-theme-initialized) *::after {
-  transition: none !important;
-  animation: none !important;
-}
-
-/* Disable transitions during theme changes */
-html.az-theme-changing *,
-html.az-theme-changing *::before,
-html.az-theme-changing *::after {
-  transition: none !important;
-}
+/* Theme flicker prevention is now handled by @azodik/ui/styles.css */
+/* These styles are included in the core package, but kept here for reference */
 
 /* Hero Gradient Animation */
 @keyframes gradient-shift {

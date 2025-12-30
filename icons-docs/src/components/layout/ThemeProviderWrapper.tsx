@@ -10,6 +10,7 @@ export default function ThemeProviderWrapper({
   return (
     <ThemeProvider
       defaultTheme="system"
+      storageKey="azodik-theme"
       accentColor="azodik"
       grayColor="slate"
       radius="medium"

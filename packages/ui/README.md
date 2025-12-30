@@ -498,7 +498,7 @@ To prevent theme flicker on page load in SSR environments, add a blocking script
 **Next.js App Router (app/layout.tsx):**
 
 ```tsx
-import { getThemeScript } from "@azodik/ui";
+import { getThemeScript } from "@azodik/ui/server";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -527,7 +527,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```tsx
 import { Html, Head, Main, NextScript } from 'next/document';
-import { getThemeScript } from "@azodik/ui";
+import { getThemeScript } from "@azodik/ui/server";
 
 export default function Document() {
   return (

@@ -21,7 +21,7 @@ Add the theme initialization script to your HTML `<head>` **before React hydrate
 #### Next.js App Router (app/layout.tsx)
 
 ```tsx
-import { getThemeScript } from "@azodik/ui";
+import { getThemeScript } from "@azodik/ui/server";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```tsx
 import { Html, Head, Main, NextScript } from 'next/document';
-import { getThemeScript } from "@azodik/ui";
+import { getThemeScript } from "@azodik/ui/server";
 
 export default function Document() {
   return (
@@ -80,7 +80,7 @@ export default function Document() {
 #### Remix (app/root.tsx)
 
 ```tsx
-import { getThemeScript } from "@azodik/ui";
+import { getThemeScript } from "@azodik/ui/server";
 
 export default function Root() {
   return (

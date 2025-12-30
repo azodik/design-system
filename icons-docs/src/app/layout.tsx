@@ -3,6 +3,7 @@ import '@azodik/ui/styles.css';
 import '../styles/globals.css';
 import { Inter, Montserrat } from 'next/font/google';
 import { Box } from '@azodik/ui';
+import { getThemeScript } from '@azodik/ui/server';
 import ThemeProviderWrapper from '@/components/layout/ThemeProviderWrapper';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -34,28 +35,10 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const storageKey = 'azodik-theme';
-                  const stored = localStorage.getItem(storageKey);
-                  const defaultTheme = 'system';
-                  let theme = stored || defaultTheme;
-                  
-                  if (theme === 'system') {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    theme = prefersDark ? 'dark' : 'light';
-                  }
-                  
-                  document.documentElement.setAttribute('data-theme', theme);
-                  document.documentElement.classList.add('az-theme-initialized');
-                } catch (e) {
-                  // Fallback to light theme if there's an error
-                  document.documentElement.setAttribute('data-theme', 'light');
-                  document.documentElement.classList.add('az-theme-initialized');
-                }
-              })();
-            `,
+            __html: getThemeScript({
+              storageKey: 'azodik-theme',
+              defaultTheme: 'system',
+            }),
           }}
         />
       </head>

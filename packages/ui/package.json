@@ -13,6 +13,16 @@
     },
     "./styles.css": {
       "default": "./styles.css"
+    },
+    "./server": {
+      "types": "./server.ts",
+      "import": "./server.ts",
+      "require": "./server.ts"
+    },
+    "./utils/theme-script": {
+      "types": "./utils/theme-script.ts",
+      "import": "./utils/theme-script.ts",
+      "require": "./utils/theme-script.ts"
     }
   },
   "license": "MIT",
