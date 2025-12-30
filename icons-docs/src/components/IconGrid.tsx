@@ -21,16 +21,14 @@ export default function IconGrid({ icons, onIconClick }: IconGridProps) {
   }
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-        gap: '1.5rem',
-      }}
+    <Grid
+      columns="repeat(auto-fill, minmax(220px, 1fr))"
+      gap="6"
+      style={{ paddingBottom: '6rem' }}
     >
       {icons.map(icon => (
         <IconCard key={icon.componentName} icon={icon} onClick={() => onIconClick(icon)} />
       ))}
-    </div>
+    </Grid>
   );
 }

@@ -1,0 +1,208 @@
+/* Navbar Component */
+
+.az-Navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--navbar-height, 4.5rem);
+  padding: 0 var(--space-4);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1000;
+}
+
+/* Glassmorphism Variant */
+.az-Navbar.az-glass {
+  background: rgba(var(--gray-1-rgb, 252, 252, 252), 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+[data-theme="dark"] .az-Navbar.az-glass {
+  background: rgba(var(--gray-1-rgb, 13, 13, 13), 0.7);
+}
+
+/* Variations */
+.az-Navbar.az-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.az-Navbar.az-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.az-Navbar.az-floating {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  width: calc(100% - var(--space-8));
+  border-radius: var(--radius-4);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-5);
+}
+
+/* Inner Layout */
+.az-Navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-4, 1136px);
+  margin: 0 auto;
+}
+
+/* Brand */
+.az-Navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+/* Content & Links */
+.az-Navbar-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex: 1;
+  justify-content: center;
+}
+
+.az-Navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.az-Navbar-link {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0.25rem;
+  position: relative;
+}
+
+.az-Navbar-link:hover,
+.az-Navbar-link.active {
+  color: var(--accent-9);
+}
+
+.az-Navbar-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-9);
+  border-radius: 1px;
+}
+
+/* Actions (Right Side) */
+.az-Navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+/* Mobile Toggle */
+.az-Navbar-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .az-Navbar-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .az-Navbar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+  }
+
+  .az-Navbar-brand {
+    order: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .az-Navbar-actions {
+    order: 3;
+    display: flex;
+  }
+
+  .az-Navbar-content {
+    display: none; /* Default hidden on mobile */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--color-background);
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-4);
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .az-Navbar-content.open {
+    display: flex;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .az-Navbar-links {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+
+  .az-Navbar-link {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .az-Navbar-link:last-child {
+    border-bottom: none;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
-import { Box, Container, Flex } from '@azodik/ui';
+import { Box, Container, Flex, Section } from '@azodik/ui';
 import type { IconInfo } from '@/types/icon';
 import IconGrid from './IconGrid';
 import SearchBar from './SearchBar';
@@ -55,52 +55,40 @@ export default function IconsPageClient({ initialIcons }: IconsPageClientProps) 
   };
 
   return (
-    <Box style={{ minHeight: '100vh', background: 'var(--color-background)' }}>
-      {/* Hero Section */}
-      <Box
+    <Box style={{ minHeight: '100vh', background: 'var(--color-background)', display: 'flex', flexDirection: 'column' }}>
+      {/* Search & Filter Section */}
+      <Section
+        size="2"
         style={{
-          background: 'linear-gradient(to bottom, var(--color-surface), var(--color-background))',
-          padding: '4rem 0 2rem 0',
+          background: 'rgba(var(--gray-2-rgb, 249, 249, 249), 0.5)',
           borderBottom: '1px solid var(--color-border)',
+          zIndex: 10,
+          position: 'sticky',
+          top: '5rem',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
         }}
       >
         <Container size="4">
-          <Box style={{ maxWidth: '800px' }}>
-            <Box
-              as="h1"
-              style={{
-                fontSize: '3.5rem',
-                fontWeight: 800,
-                letterSpacing: '-0.02em',
-                marginBottom: '1rem',
-                color: 'var(--color-text)',
-                lineHeight: 1.1,
-              }}
-            >
-              Beautifully crafted <br />
-              <Box as="span" style={{ color: 'var(--accent-9)' }}>
-                Open Source Icons
-              </Box>
-            </Box>
-            <Box
-              as="p"
-              style={{
-                fontSize: '1.25rem',
-                color: 'var(--color-text-secondary)',
-                marginBottom: '2.5rem',
-                lineHeight: 1.6,
-              }}
-            >
-              Over {initialIcons.length} high-quality icons for your next project. 
-              Designed to be clean, consistent, and easy to use with Azodik UI.
-            </Box>
-          </Box>
-
-          <Flex gap="4" align="center" style={{ flexWrap: 'wrap' }}>
-            <Box style={{ flex: 1, minWidth: '300px' }}>
+          <Flex 
+            gap="0" 
+            align="stretch" 
+            justify="center"
+            style={{ 
+              maxWidth: '900px', 
+              margin: '0 auto',
+              background: 'var(--color-background)', 
+              borderRadius: 'var(--radius-4)',
+              border: '2px solid var(--color-border)',
+              overflow: 'hidden',
+              boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.15)',
+              height: '4.5rem',
+            }}
+          >
+            <Box style={{ flex: 1 }}>
               <SearchBar value={searchQuery} onChange={setSearchQuery} />
             </Box>
-            <Box style={{ minWidth: '200px' }}>
+            <Box style={{ borderLeft: '2px solid var(--color-border)', width: '240px', background: 'var(--color-surface)' }}>
               <CategoryFilter
                 categories={categories}
                 selected={selectedCategory}
@@ -109,15 +97,26 @@ export default function IconsPageClient({ initialIcons }: IconsPageClientProps) 
             </Box>
           </Flex>
           
-          <Box style={{ marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
-            Showing <Box as="span" style={{ color: 'var(--color-text)', fontWeight: 600 }}>{filteredIcons.length}</Box> unique icons
+          <Box style={{ 
+            marginTop: '1.5rem', 
+            textAlign: 'center', 
+            fontSize: '1rem', 
+            color: 'var(--color-text-secondary)', 
+            fontWeight: 600,
+            fontFamily: 'var(--font-montserrat), sans-serif',
+            letterSpacing: '0.01em',
+          }}>
+            Showing <Box as="span" style={{ color: 'var(--accent-9)', fontWeight: 800 }}>{filteredIcons.length}</Box> of <Box as="span" style={{ color: 'var(--color-text)', fontWeight: 800 }}>{initialIcons.length}</Box> icons
           </Box>
         </Container>
-      </Box>
+      </Section>
 
-      <Container size="4" style={{ padding: '3rem 1rem' }}>
-        <IconGrid icons={filteredIcons} onIconClick={handleIconClick} />
-      </Container>
+      {/* Grid Section */}
+      <Section size="3" style={{ flex: 1 }}>
+        <Container size="4">
+          <IconGrid icons={filteredIcons} onIconClick={handleIconClick} />
+        </Container>
+      </Section>
     </Box>
   );
 }

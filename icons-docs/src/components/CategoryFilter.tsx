@@ -1,6 +1,7 @@
 'use client';
 
-import { Select } from '@azodik/ui';
+import { Box, Select } from '@azodik/ui';
+
 
 interface CategoryFilterProps {
   categories: string[];
@@ -19,12 +20,23 @@ export default function CategoryFilter({
   }));
 
   return (
-    <Select
-      value={selected}
-      onChange={onChange}
-      options={options}
-      placeholder="Select category"
-      style={{ minWidth: '200px' }}
-    />
+    <Box style={{ height: '4.5rem', width: '100%' }}>
+      <Select
+        value={selected}
+        onChange={onChange}
+        options={options}
+        placeholder="All Categories"
+        style={{ 
+          width: '100%', 
+          border: 'none', 
+          background: 'transparent',
+          height: '100%',
+          boxShadow: 'none',
+          fontSize: '1rem',
+          fontWeight: 600,
+          color: 'var(--color-text-secondary)',
+        }}
+      />
+    </Box>
   );
 }
