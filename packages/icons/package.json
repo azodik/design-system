@@ -1,6 +1,6 @@
 {
   "name": "@azodik/icons",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Icon components for Azodik UI design system",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
