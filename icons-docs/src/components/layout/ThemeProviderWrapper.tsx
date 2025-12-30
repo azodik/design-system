@@ -1,12 +1,8 @@
-'use client';
+"use client";
 
-import { ThemeProvider } from '@azodik/ui';
+import { ThemeProvider } from "@azodik/ui";
 
-export default function ThemeProviderWrapper({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ThemeProviderWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
       defaultTheme="system"
@@ -20,4 +16,3 @@ export default function ThemeProviderWrapper({
     </ThemeProvider>
   );
 }
-

@@ -29,18 +29,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: getThemeScript({ 
-              storageKey: 'azodik-theme',  // Must match ThemeProvider storageKey
-              defaultTheme: 'system'        // Must match ThemeProvider defaultTheme
-            })
+            __html: getThemeScript({
+              storageKey: "azodik-theme", // Must match ThemeProvider storageKey
+              defaultTheme: "system", // Must match ThemeProvider defaultTheme
+            }),
           }}
         />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider 
-          defaultTheme="system" 
-          storageKey="azodik-theme"
-        >
+        <ThemeProvider defaultTheme="system" storageKey="azodik-theme">
           {children}
         </ThemeProvider>
       </body>
@@ -49,10 +46,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-#### Next.js Pages Router (_document.tsx)
+#### Next.js Pages Router (\_document.tsx)
 
 ```tsx
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript } from "next/document";
 import { getThemeScript } from "@azodik/ui/server";
 
 export default function Document() {
@@ -61,10 +58,10 @@ export default function Document() {
       <Head>
         <script
           dangerouslySetInnerHTML={{
-            __html: getThemeScript({ 
-              storageKey: 'azodik-theme',
-              defaultTheme: 'system'
-            })
+            __html: getThemeScript({
+              storageKey: "azodik-theme",
+              defaultTheme: "system",
+            }),
           }}
         />
       </Head>
@@ -88,10 +85,10 @@ export default function Root() {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: getThemeScript({ 
-              storageKey: 'azodik-theme',
-              defaultTheme: 'system'
-            })
+            __html: getThemeScript({
+              storageKey: "azodik-theme",
+              defaultTheme: "system",
+            }),
           }}
         />
       </head>
@@ -110,23 +107,23 @@ export default function Root() {
 <html>
   <head>
     <script>
-      (function() {
+      (function () {
         try {
-          const storageKey = 'azodik-theme';
+          const storageKey = "azodik-theme";
           const stored = localStorage.getItem(storageKey);
-          const defaultTheme = 'system';
+          const defaultTheme = "system";
           let theme = stored || defaultTheme;
-          
-          if (theme === 'system') {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            theme = prefersDark ? 'dark' : 'light';
+
+          if (theme === "system") {
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            theme = prefersDark ? "dark" : "light";
           }
-          
-          document.documentElement.setAttribute('data-theme', theme);
-          document.documentElement.classList.add('az-theme-initialized');
+
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.classList.add("az-theme-initialized");
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'light');
-          document.documentElement.classList.add('az-theme-initialized');
+          document.documentElement.setAttribute("data-theme", "light");
+          document.documentElement.classList.add("az-theme-initialized");
         }
       })();
     </script>
@@ -200,4 +197,3 @@ To verify it's working:
 ✅ **System theme support** - Detects system preference immediately  
 ✅ **Automatic** - ThemeProvider detects script initialization  
 ✅ **No breaking changes** - Works with existing code
-

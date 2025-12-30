@@ -1,9 +1,9 @@
 /**
  * Blocking script to prevent theme flicker in SSR
- * 
+ *
  * This script should be placed in the <head> of your HTML document,
  * before React hydrates, to prevent theme flicker.
- * 
+ *
  * Usage in Next.js (app/layout.tsx):
  * ```tsx
  * <head>
@@ -14,7 +14,7 @@
  *   />
  * </head>
  * ```
- * 
+ *
  * Usage in HTML:
  * ```html
  * <head>
@@ -64,4 +64,3 @@ export function getThemeScriptTag(options?: {
 }): string {
   return `<script dangerouslySetInnerHTML={{ __html: \`${getThemeScript(options)}\` }} />`;
 }
-

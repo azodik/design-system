@@ -1,39 +1,40 @@
-import { Box, Container, Card, CardHeader, CardTitle, CardContent, Flex } from '@azodik/ui';
-import LLMResourceContent from '@/components/llm-resource/LLMResourceContent';
-import DownloadButton from '@/components/llm-resource/DownloadButton';
+import { Box, Container, Card, CardHeader, CardTitle, CardContent, Flex } from "@azodik/ui";
+import LLMResourceContent from "@/components/llm-resource/LLMResourceContent";
+import DownloadButton from "@/components/llm-resource/DownloadButton";
 
 export const metadata = {
-  title: 'LLM Resource - Azodik Icons',
-  description: 'LLM resource guide for using Azodik Icons in your projects',
+  title: "LLM Resource - Azodik Icons",
+  description: "LLM resource guide for using Azodik Icons in your projects",
 };
 
 export default async function LLMResourcePage() {
   return (
-    <Box style={{ minHeight: '100vh', background: 'var(--color-background)' }}>
-      <Container size="4" style={{ padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)' }}>
-        <Box style={{ marginBottom: 'clamp(1.5rem, 4vw, 2rem)' }}>
-          <Box 
-            as="h1" 
-            style={{ 
-              fontSize: 'clamp(2rem, 5vw, 3rem)', 
-              fontWeight: 800, 
-              color: 'var(--color-text)',
-              marginBottom: 'var(--space-2)',
-              fontFamily: 'var(--font-montserrat), sans-serif',
-              letterSpacing: '-0.02em',
+    <Box style={{ minHeight: "100vh", background: "var(--color-background)" }}>
+      <Container size="4" style={{ padding: "clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)" }}>
+        <Box style={{ marginBottom: "clamp(1.5rem, 4vw, 2rem)" }}>
+          <Box
+            as="h1"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3rem)",
+              fontWeight: 800,
+              color: "var(--color-text)",
+              marginBottom: "var(--space-2)",
+              fontFamily: "var(--font-montserrat), sans-serif",
+              letterSpacing: "-0.02em",
             }}
           >
             LLM Resource Guide
           </Box>
-          <Box 
-            as="p" 
-            style={{ 
-              fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', 
-              color: 'var(--color-text-secondary)',
+          <Box
+            as="p"
+            style={{
+              fontSize: "clamp(1rem, 2.5vw, 1.125rem)",
+              color: "var(--color-text-secondary)",
               lineHeight: 1.6,
             }}
           >
-            Comprehensive guide for using Azodik Icons in your projects. Perfect for LLM assistants and developers.
+            Comprehensive guide for using Azodik Icons in your projects. Perfect for LLM assistants
+            and developers.
           </Box>
         </Box>
 
@@ -51,21 +52,22 @@ export default async function LLMResourcePage() {
             <Box
               as="pre"
               style={{
-                background: 'var(--color-surface)',
-                border: '1px solid var(--color-border)',
-                borderRadius: 'var(--radius-3)',
-                padding: 'clamp(1rem, 3vw, 1.5rem)',
-                fontSize: 'clamp(0.8125rem, 2vw, 0.875rem)',
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "var(--radius-3)",
+                padding: "clamp(1rem, 3vw, 1.5rem)",
+                fontSize: "clamp(0.8125rem, 2vw, 0.875rem)",
                 lineHeight: 1.7,
-                color: 'var(--color-text)',
-                fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
-                overflowX: 'auto',
-                whiteSpace: 'pre-wrap',
-                wordBreak: 'break-word',
+                color: "var(--color-text)",
+                fontFamily:
+                  'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
               }}
               id="llm-resource-content"
             >
-{`Azodik Icons - LLM Resource Guide
+              {`Azodik Icons - LLM Resource Guide
 
 Azodik Icons is a comprehensive icon library designed for modern web applications. Here's how you can utilize it in your projects:
 
@@ -119,4 +121,3 @@ For more information, visit: https://icons.azodik.com`}
     </Box>
   );
 }
-

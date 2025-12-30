@@ -1,0 +1,170 @@
+import { CodeBlock } from "@/components/docs/CodeBlock";
+import { CodeBlockWithPreview } from "@/components/docs/CodeBlockWithPreview";
+import { PropsTable } from "@/components/docs/PropsTable";
+import { Footer, FooterBrand, FooterContent, FooterLinks, FooterLink, FooterBottom, FooterSocial, Box, Flex } from "@azodik/ui";
+
+# Footer
+
+The `Footer` component provides flexible footer layouts for websites with multiple variants and sub-components.
+
+## Basic Usage
+
+<CodeBlock language="tsx">
+{`import { Footer, FooterBrand, FooterContent, FooterLinks, FooterLink, FooterBottom } from '@azodik/ui';
+
+function App() {
+  return (
+    <Footer variant="simple">
+      <FooterBottom>
+        © 2024 My App. All rights reserved.
+      </FooterBottom>
+    </Footer>
+  );
+}`}
+</CodeBlock>
+
+## Simple Footer
+
+<CodeBlockWithPreview
+  title="Simple Footer"
+  preview={
+    <div style={{ padding: '1rem', background: 'var(--color-background)', border: '1px solid var(--color-border)', borderRadius: '8px' }}>
+      <Footer variant="simple" style={{ padding: '2rem 0' }}>
+        <FooterBottom style={{ textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
+          © 2024 Azodik Design System. All rights reserved.
+        </FooterBottom>
+      </Footer>
+    </div>
+  }
+>
+{`<Footer variant="simple">
+  <FooterBottom>
+    © 2024 Azodik Design System. All rights reserved.
+  </FooterBottom>
+</Footer>`}
+</CodeBlockWithPreview>
+
+## Footer with Links
+
+<CodeBlock language="tsx">
+{`<Footer variant="columns">
+  <FooterContent>
+    <FooterBrand>
+      <h3>My App</h3>
+      <p>Building amazing experiences</p>
+    </FooterBrand>
+    
+    <FooterLinks title="Product">
+      <FooterLink href="/features">Features</FooterLink>
+      <FooterLink href="/pricing">Pricing</FooterLink>
+      <FooterLink href="/docs">Documentation</FooterLink>
+    </FooterLinks>
+    
+    <FooterLinks title="Company">
+      <FooterLink href="/about">About</FooterLink>
+      <FooterLink href="/blog">Blog</FooterLink>
+      <FooterLink href="/careers">Careers</FooterLink>
+    </FooterLinks>
+    
+    <FooterLinks title="Support">
+      <FooterLink href="/help">Help Center</FooterLink>
+      <FooterLink href="/contact">Contact</FooterLink>
+    </FooterLinks>
+  </FooterContent>
+  
+  <FooterBottom>
+    © 2024 My App. All rights reserved.
+  </FooterBottom>
+</Footer>`}
+</CodeBlock>
+
+## Footer with Social Links
+
+<CodeBlock language="tsx">
+{`<Footer variant="centered">
+  <FooterBrand>
+    <h3>My App</h3>
+  </FooterBrand>
+  
+  <FooterSocial>
+    <FooterLink href="https://twitter.com" target="_blank">Twitter</FooterLink>
+    <FooterLink href="https://github.com" target="_blank">GitHub</FooterLink>
+    <FooterLink href="https://linkedin.com" target="_blank">LinkedIn</FooterLink>
+  </FooterSocial>
+  
+  <FooterBottom>
+    © 2024 My App. All rights reserved.
+  </FooterBottom>
+</Footer>`}
+</CodeBlock>
+
+## Variants
+
+<CodeBlock language="tsx">
+{`// Simple footer (default)
+<Footer variant="simple">...</Footer>
+
+// Multi-column footer
+<Footer variant="columns">...</Footer>
+
+// Centered footer
+<Footer variant="centered">...</Footer>`}
+</CodeBlock>
+
+## Props
+
+### Footer Props
+
+<PropsTable props={[
+  {
+    name: "variant",
+    type: "'simple' | 'columns' | 'centered'",
+    default: "'simple'",
+    description: "Layout variant of the footer"
+  },
+  {
+    name: "containerSize",
+    type: "'1' | '2' | '3' | '4'",
+    default: "'4'",
+    description: "Container width size"
+  }
+]} />
+
+### FooterLinks Props
+
+<PropsTable props={[
+  {
+    name: "title",
+    type: "string",
+    description: "Optional title for the links section"
+  }
+]} />
+
+### FooterLink Props
+
+<PropsTable props={[
+  {
+    name: "href",
+    type: "string",
+    description: "Link URL"
+  },
+  {
+    name: "target",
+    type: "string",
+    description: "Link target (e.g., '_blank')"
+  }
+]} />
+
+## Sub-components
+
+- **FooterBrand**: Brand/logo section
+- **FooterContent**: Main content container (for columns layout)
+- **FooterLinks**: Group of links with optional title
+- **FooterLink**: Individual footer link
+- **FooterBottom**: Bottom section (copyright, etc.)
+- **FooterSocial**: Social media links container
+
+## Responsive
+
+The Footer component is fully responsive and adapts to different screen sizes. On mobile, multi-column layouts stack vertically.
+

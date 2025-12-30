@@ -23,20 +23,15 @@ export { SelectWithSearch } from "./components/SelectWithSearch";
 export { default as Modal, ModalHeader, ModalFooter } from "./components/Modal";
 export { Toast } from "./components/Toast";
 export { Tooltip } from "./components/Tooltip";
-export { 
-  Hero,
-  HeroTitle,
-  HeroDescription,
-  HeroActions
-} from "./components/Hero";
-export { 
+export { Hero, HeroTitle, HeroDescription, HeroActions } from "./components/Hero";
+export {
   Footer,
   FooterBrand,
   FooterContent,
   FooterLinks,
   FooterLink,
   FooterBottom,
-  FooterSocial
+  FooterSocial,
 } from "./components/Footer";
 export { Popover } from "./components/Popover";
 export { default as Navigation, NavItem } from "./components/Navigation";

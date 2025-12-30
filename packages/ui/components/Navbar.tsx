@@ -1,9 +1,18 @@
-'use client';
+"use client";
 
-import React, { useState, forwardRef, createContext, useContext, useRef, useEffect, useCallback, useMemo } from 'react';
-import { Box } from './Box';
-import { Container } from './Container';
-import { MenuIcon, XIcon } from '@azodik/icons';
+import React, {
+  useState,
+  forwardRef,
+  createContext,
+  useContext,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
+import { Box } from "./Box";
+import { Container } from "./Container";
+import { MenuIcon, XIcon } from "@azodik/icons";
 
 interface NavbarContextValue {
   isOpen: boolean;
@@ -16,7 +25,7 @@ const NavbarContext = createContext<NavbarContextValue | undefined>(undefined);
 
 const useNavbar = () => {
   const context = useContext(NavbarContext);
-  if (!context) throw new Error('Navbar sub-components must be used within a Navbar');
+  if (!context) throw new Error("Navbar sub-components must be used within a Navbar");
   return context;
 };
 
@@ -34,149 +43,176 @@ const useIsMobile = () => {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return isMobile;
 };
 
 interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'sticky' | 'fixed' | 'floating';
+  variant?: "sticky" | "fixed" | "floating";
   isGlass?: boolean;
   containerSize?: "1" | "2" | "3" | "4";
 }
 
-const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
-  ({ children, variant = 'sticky', isGlass = true, containerSize = "4", className = "", ...props }, ref) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const internalRef = useRef<HTMLDivElement>(null);
-    const navRef = (ref as React.RefObject<HTMLDivElement>) || internalRef;
-    const isMobile = useIsMobile();
+const Navbar = forwardRef<HTMLDivElement, NavbarProps>(function Navbar(
+  { children, variant = "sticky", isGlass = true, containerSize = "4", className = "", ...props },
+  ref,
+) {
+  const [isOpen, setIsOpen] = useState(false);
+  const internalRef = useRef<HTMLDivElement>(null);
+  const navRef = (ref as React.RefObject<HTMLDivElement>) || internalRef;
+  const isMobile = useIsMobile();
 
-    const closeMenu = useCallback(() => {
-      setIsOpen(false);
-    }, []);
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
-    // Prevent body scroll when mobile menu is open
-    useEffect(() => {
-      // SSR guard
-      if (typeof document === "undefined") return;
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    // SSR guard
+    if (typeof document === "undefined") return;
 
-      if (isOpen && isMobile) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
+    if (isOpen && isMobile) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = "";
       }
-      return () => {
-        if (typeof document !== "undefined") {
-          document.body.style.overflow = '';
-        }
-      };
-    }, [isOpen, isMobile]);
+    };
+  }, [isOpen, isMobile]);
 
-    // Close menu on window resize to desktop
-    useEffect(() => {
-      if (!isMobile && isOpen) {
+  // Close menu on window resize to desktop
+  useEffect(() => {
+    if (!isMobile && isOpen) {
+      // Use setTimeout to avoid setState in effect
+      setTimeout(() => {
         setIsOpen(false);
-      }
-    }, [isMobile, isOpen]);
+      }, 0);
+    }
+  }, [isMobile, isOpen]);
 
-    // Handle click outside
-    const handleClickOutside = useCallback((event: MouseEvent) => {
+  // Handle click outside
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
       if (isOpen && navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
-    }, [isOpen]);
+    },
+    [isOpen, navRef],
+  );
 
-    useEffect(() => {
-      // SSR guard
-      if (typeof document === "undefined") return;
-      if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-          if (typeof document !== "undefined") {
-            document.removeEventListener('mousedown', handleClickOutside);
-          }
-        };
-      }
-    }, [isOpen, handleClickOutside]);
-
-    // Close menu on escape key
-    useEffect(() => {
-      // SSR guard
-      if (typeof document === "undefined") return;
-
-      const handleEscape = (event: KeyboardEvent) => {
-        if (event.key === 'Escape' && isOpen) {
-          setIsOpen(false);
-        }
-      };
-      document.addEventListener('keydown', handleEscape);
+  useEffect(() => {
+    // SSR guard
+    if (typeof document === "undefined") return;
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
         if (typeof document !== "undefined") {
-          document.removeEventListener('keydown', handleEscape);
+          document.removeEventListener("mousedown", handleClickOutside);
         }
       };
-    }, [isOpen]);
+    }
+  }, [isOpen, handleClickOutside]);
 
-    const classNames = useMemo(() => [
-      'az-Navbar',
-      `az-${variant}`,
-      isGlass ? 'az-glass' : '',
-      className,
-    ].filter(Boolean).join(' '), [variant, isGlass, className]);
+  // Close menu on escape key
+  useEffect(() => {
+    // SSR guard
+    if (typeof document === "undefined") return;
 
-    const contextValue = useMemo(() => ({
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      if (typeof document !== "undefined") {
+        document.removeEventListener("keydown", handleEscape);
+      }
+    };
+  }, [isOpen]);
+
+  const classNames = useMemo(
+    () =>
+      ["az-Navbar", `az-${variant}`, isGlass ? "az-glass" : "", className]
+        .filter(Boolean)
+        .join(" "),
+    [variant, isGlass, className],
+  );
+
+  const contextValue = useMemo(
+    () => ({
       isOpen,
       setIsOpen,
       isMobile,
       closeMenu,
-    }), [isOpen, isMobile, closeMenu]);
+    }),
+    [isOpen, isMobile, closeMenu],
+  );
 
-    return (
-      <NavbarContext.Provider value={contextValue}>
-        <Box as="nav" className={classNames} ref={navRef} {...props}>
-          <Container size={containerSize} className="az-Navbar-container">
-            {children}
-          </Container>
-          {/* Mobile menu backdrop */}
-          {isOpen && isMobile && (
-            <Box
-              className="az-Navbar-backdrop"
-              onClick={closeMenu}
-              style={{
-                position: 'fixed',
-                top: 'var(--navbar-height, 4.5rem)',
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'rgba(0, 0, 0, 0.4)',
-                backdropFilter: 'blur(4px)',
-                WebkitBackdropFilter: 'blur(4px)',
-                zIndex: 998,
-                animation: 'fadeIn 0.3s ease-out',
-              }}
-            />
-          )}
-        </Box>
-      </NavbarContext.Provider>
-    );
-  }
-);
+  return (
+    <NavbarContext.Provider value={contextValue}>
+      <Box as="nav" className={classNames} ref={navRef} {...props}>
+        <Container size={containerSize} className="az-Navbar-container">
+          {children}
+        </Container>
+        {/* Mobile menu backdrop */}
+        {isOpen && isMobile && (
+          <Box
+            className="az-Navbar-backdrop"
+            onClick={closeMenu}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                closeMenu();
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label="Close menu"
+            style={{
+              position: "fixed",
+              top: "var(--navbar-height, 4.5rem)",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.4)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+              zIndex: 998,
+              animation: "fadeIn 0.3s ease-out",
+            }}
+          />
+        )}
+      </Box>
+    </NavbarContext.Provider>
+  );
+});
 
-const NavbarBrand = ({ children, className = "", ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+const NavbarBrand = ({
+  children,
+  className = "",
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <a className={`az-Navbar-brand ${className}`} {...props}>
     {children}
   </a>
 );
 
-const NavbarContent = ({ children, className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+const NavbarContent = ({
+  children,
+  className = "",
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => {
   const { isOpen } = useNavbar();
   return (
-    <Box 
+    <Box
       id="navbar-content"
-      className={`az-Navbar-content ${isOpen ? 'open' : ''} ${className}`}
+      className={`az-Navbar-content ${isOpen ? "open" : ""} ${className}`}
       role="menu"
       aria-hidden={!isOpen}
       {...props}
@@ -186,7 +222,11 @@ const NavbarContent = ({ children, className = "", ...props }: React.HTMLAttribu
   );
 };
 
-const NavbarLinks = ({ children, className = "", ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+const NavbarLinks = ({
+  children,
+  className = "",
+  ...props
+}: React.HTMLAttributes<HTMLUListElement>) => (
   <ul className={`az-Navbar-links ${className}`} {...props}>
     {children}
   </ul>
@@ -197,20 +237,42 @@ interface NavbarLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
   hasSubmenu?: boolean;
 }
 
-const NavbarLink = ({ children, active, className = "", onClick, hasSubmenu, ...props }: NavbarLinkProps) => {
+const NavbarLink = ({
+  children,
+  active,
+  className = "",
+  onClick,
+  hasSubmenu,
+  ...props
+}: NavbarLinkProps) => {
   const { closeMenu, isMobile } = useNavbar();
-  
-  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isMobile && !hasSubmenu) {
-      closeMenu();
-    }
-    onClick?.(e);
-  }, [isMobile, closeMenu, onClick, hasSubmenu]);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (isMobile && !hasSubmenu) {
+        closeMenu();
+      }
+      onClick?.(e);
+    },
+    [isMobile, closeMenu, onClick, hasSubmenu],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleClick(e as unknown as React.MouseEvent<HTMLAnchorElement>);
+      }
+    },
+    [handleClick],
+  );
 
   return (
-    <a 
-      className={`az-Navbar-link ${active ? 'active' : ''} ${hasSubmenu ? 'has-submenu' : ''} ${className}`} 
+    <a
+      href={props.href || "#"}
+      className={`az-Navbar-link ${active ? "active" : ""} ${hasSubmenu ? "has-submenu" : ""} ${className}`}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       {children}
@@ -231,14 +293,8 @@ const NavbarSubmenu = ({ title, icon, children, className = "", ...props }: Navb
     setIsOpen(!isOpen);
   }, [isOpen]);
 
-  const handleSubmenuClick = useCallback((e: React.MouseEvent) => {
-    if (isMobile) {
-      closeMenu();
-    }
-  }, [isMobile, closeMenu]);
-
   return (
-    <div className={`az-Navbar-submenu ${isOpen ? 'open' : ''} ${className}`} {...props}>
+    <div className={`az-Navbar-submenu ${isOpen ? "open" : ""} ${className}`} {...props}>
       <button
         className="az-Navbar-submenu-toggle"
         onClick={handleToggle}
@@ -248,27 +304,60 @@ const NavbarSubmenu = ({ title, icon, children, className = "", ...props }: Navb
         {icon && <span className="az-Navbar-submenu-icon">{icon}</span>}
         <span className="az-Navbar-submenu-title">{title}</span>
         <span className="az-Navbar-submenu-chevron">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <path d="M6 9l6 6 6-6" />
           </svg>
         </span>
       </button>
-      <div className="az-Navbar-submenu-content" onClick={handleSubmenuClick}>
-        {children}
+      <div className="az-Navbar-submenu-content" role="menu" aria-label="Submenu">
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            const originalOnClick = (child.props as { onClick?: (e: React.MouseEvent) => void })
+              .onClick;
+            return React.cloneElement(
+              child as React.ReactElement,
+              {
+                onClick: (e: React.MouseEvent) => {
+                  if (isMobile) {
+                    closeMenu();
+                  }
+                  if (originalOnClick) {
+                    originalOnClick(e);
+                  }
+                },
+              } as Partial<typeof child.props>,
+            );
+          }
+          return child;
+        })}
       </div>
     </div>
   );
 };
 
-const NavbarActions = ({ children, className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+const NavbarActions = ({
+  children,
+  className = "",
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
   <Box className={`az-Navbar-actions ${className}`} {...props}>
     {children}
   </Box>
 );
 
-const NavbarToggle = ({ className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+const NavbarToggle = ({
+  className = "",
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { isOpen, setIsOpen } = useNavbar();
-  
+
   const handleToggle = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen, setIsOpen]);
@@ -283,24 +372,24 @@ const NavbarToggle = ({ className = "", ...props }: React.ButtonHTMLAttributes<H
       {...props}
     >
       {isOpen ? (
-        <XIcon 
-          size={24} 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            color: 'currentColor',
-          }} 
+        <XIcon
+          size={24}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "currentColor",
+          }}
         />
       ) : (
-        <MenuIcon 
-          size={24} 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            color: 'currentColor',
-          }} 
+        <MenuIcon
+          size={24}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "currentColor",
+          }}
         />
       )}
     </button>
@@ -328,7 +417,7 @@ NavbarRoot.Submenu = NavbarSubmenu;
 
 export type { NavbarProps, NavbarLinkProps, NavbarContextValue };
 export type { NavbarSubmenuProps };
-export { 
+export {
   NavbarRoot as Navbar,
   NavbarBrand,
   NavbarContent,
@@ -336,6 +425,6 @@ export {
   NavbarLink,
   NavbarActions,
   NavbarToggle,
-  NavbarSubmenu
+  NavbarSubmenu,
 };
 export default NavbarRoot;

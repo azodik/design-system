@@ -50,10 +50,12 @@ export function ThemeProvider({
   style,
 }: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
-  
+
   // SSR-safe initial state - always use defaultTheme on server
-  const [internalAppearance, setInternalAppearance] = useState<"light" | "dark" | "system">(defaultTheme);
-  
+  const [internalAppearance, setInternalAppearance] = useState<"light" | "dark" | "system">(
+    defaultTheme,
+  );
+
   // SSR-safe initial theme - default to light on server to prevent hydration mismatch
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
@@ -69,7 +71,10 @@ export function ThemeProvider({
 
     // Check if theme was already initialized by blocking script
     const isInitialized = document.documentElement.classList.contains("az-theme-initialized");
-    const existingTheme = document.documentElement.getAttribute("data-theme") as "light" | "dark" | null;
+    const existingTheme = document.documentElement.getAttribute("data-theme") as
+      | "light"
+      | "dark"
+      | null;
 
     // If already initialized by script, use that theme
     if (isInitialized && existingTheme) {
@@ -97,7 +102,7 @@ export function ThemeProvider({
 
     const theme = resolveTheme(appearance);
     setResolvedTheme(theme);
-    
+
     // Mark as initialized
     document.documentElement.classList.add("az-theme-initialized");
   }, [defaultTheme, storageKey]);
@@ -105,16 +110,16 @@ export function ThemeProvider({
   // Update resolved theme when internalAppearance changes and listen for system theme changes
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     if (internalAppearance === "system") {
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
       setResolvedTheme(mediaQuery.matches ? "dark" : "light");
-      
+
       // Listen for system theme changes
       const handleChange = () => {
         setResolvedTheme(mediaQuery.matches ? "dark" : "light");
       };
-      
+
       // Modern browsers
       if (mediaQuery.addEventListener) {
         mediaQuery.addEventListener("change", handleChange);
@@ -139,12 +144,12 @@ export function ThemeProvider({
       if (typeof document !== "undefined") {
         document.documentElement.classList.add("az-theme-changing");
       }
-      
+
       setInternalAppearance(newTheme);
       if (typeof window !== "undefined") {
         localStorage.setItem(storageKey, newTheme);
       }
-      
+
       // Re-enable transitions after theme change
       if (typeof window !== "undefined") {
         setTimeout(() => {
@@ -164,20 +169,20 @@ export function ThemeProvider({
   // Apply theme to document on mount and when theme changes
   useEffect(() => {
     if (typeof document === "undefined" || !mounted) return;
-    
+
     const root = document.documentElement;
-    
+
     // Only apply if theme changed (avoid unnecessary updates if script already set it)
     const currentTheme = root.getAttribute("data-theme");
     if (currentTheme === theme && root.classList.contains("az-theme-initialized")) {
       return;
     }
-    
+
     // Disable transitions during theme application
     root.classList.add("az-theme-changing");
     root.setAttribute("data-theme", theme);
     root.classList.add("az-theme-initialized");
-    
+
     // Re-enable transitions after theme is applied
     requestAnimationFrame(() => {
       root.classList.remove("az-theme-changing");
@@ -201,7 +206,7 @@ export function ThemeProvider({
   // Apply theme configuration to document
   useEffect(() => {
     if (typeof document === "undefined" || !mounted) return;
-    
+
     const root = document.documentElement;
 
     // Apply Gray Scale

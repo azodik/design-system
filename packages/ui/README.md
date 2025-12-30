@@ -506,27 +506,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: getThemeScript({ 
-              storageKey: 'azodik-theme', 
-              defaultTheme: 'system' 
-            })
+            __html: getThemeScript({
+              storageKey: "azodik-theme",
+              defaultTheme: "system",
+            }),
           }}
         />
       </head>
       <body>
-        <ThemeProvider defaultTheme="system">
-          {children}
-        </ThemeProvider>
+        <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
       </body>
     </html>
   );
 }
 ```
 
-**Next.js Pages Router (_document.tsx):**
+**Next.js Pages Router (\_document.tsx):**
 
 ```tsx
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript } from "next/document";
 import { getThemeScript } from "@azodik/ui/server";
 
 export default function Document() {
@@ -535,10 +533,10 @@ export default function Document() {
       <Head>
         <script
           dangerouslySetInnerHTML={{
-            __html: getThemeScript({ 
-              storageKey: 'azodik-theme', 
-              defaultTheme: 'system' 
-            })
+            __html: getThemeScript({
+              storageKey: "azodik-theme",
+              defaultTheme: "system",
+            }),
           }}
         />
       </Head>
@@ -558,23 +556,23 @@ export default function Document() {
 <html>
   <head>
     <script>
-      (function() {
+      (function () {
         try {
-          const storageKey = 'azodik-theme';
+          const storageKey = "azodik-theme";
           const stored = localStorage.getItem(storageKey);
-          const defaultTheme = 'system';
+          const defaultTheme = "system";
           let theme = stored || defaultTheme;
-          
-          if (theme === 'system') {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            theme = prefersDark ? 'dark' : 'light';
+
+          if (theme === "system") {
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            theme = prefersDark ? "dark" : "light";
           }
-          
-          document.documentElement.setAttribute('data-theme', theme);
-          document.documentElement.classList.add('az-theme-initialized');
+
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.classList.add("az-theme-initialized");
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'light');
-          document.documentElement.classList.add('az-theme-initialized');
+          document.documentElement.setAttribute("data-theme", "light");
+          document.documentElement.classList.add("az-theme-initialized");
         }
       })();
     </script>

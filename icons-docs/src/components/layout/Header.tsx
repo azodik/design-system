@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { Box, Navbar, ThemeToggle } from '@azodik/ui';
-import { GithubIcon, DocumentationIcon, AppsIcon, BookOpenIcon } from '@azodik/icons';
+import { Box, Navbar, ThemeToggle } from "@azodik/ui";
+import { GithubIcon, DocumentationIcon, AppsIcon, BookOpenIcon } from "@azodik/icons";
 
 export default function Header() {
   return (
-    <Navbar 
-      variant="sticky" 
-      isGlass={true} 
+    <Navbar
+      variant="sticky"
+      isGlass={true}
       containerSize="4"
       style={{
-        position: 'sticky',
+        position: "sticky",
         top: 0,
         zIndex: 1000,
       }}
@@ -18,30 +18,30 @@ export default function Header() {
       <Navbar.Brand href="/">
         <Box
           style={{
-            width: '32px',
-            height: '32px',
-            background: 'linear-gradient(135deg, var(--accent-9), var(--accent-11))',
-            borderRadius: 'var(--radius-2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
+            width: "32px",
+            height: "32px",
+            background: "linear-gradient(135deg, var(--accent-9), var(--accent-11))",
+            borderRadius: "var(--radius-2)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
             fontWeight: 900,
-            fontSize: '1rem',
-            boxShadow: '0 4px 12px rgba(244, 129, 32, 0.3)',
+            fontSize: "1rem",
+            boxShadow: "0 4px 12px rgba(244, 129, 32, 0.3)",
             flexShrink: 0,
           }}
         >
           A
         </Box>
-        <Box 
-          as="span" 
-          style={{ 
-            fontWeight: 800, 
-            fontSize: '1.25rem', 
-            color: 'var(--color-text)', 
-            letterSpacing: '-0.02em',
-            fontFamily: 'var(--font-montserrat), sans-serif',
+        <Box
+          as="span"
+          style={{
+            fontWeight: 800,
+            fontSize: "1.25rem",
+            color: "var(--color-text)",
+            letterSpacing: "-0.02em",
+            fontFamily: "var(--font-montserrat), sans-serif",
           }}
         >
           Azodik Icons
@@ -52,49 +52,49 @@ export default function Header() {
 
       <Navbar.Content>
         <Navbar.Links>
-          <Navbar.Link 
+          <Navbar.Link
             href="/icons"
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              gap: '0.5rem',
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
             }}
           >
-            <AppsIcon size={18} style={{ display: 'flex', flexShrink: 0 }} />
+            <AppsIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
             Icons
           </Navbar.Link>
-          <Navbar.Link 
+          <Navbar.Link
             href="/llm-resource"
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              gap: '0.5rem',
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
             }}
           >
-            <BookOpenIcon size={18} style={{ display: 'flex', flexShrink: 0 }} />
+            <BookOpenIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
             LLM Resource
           </Navbar.Link>
-          <Navbar.Link 
-            href="https://github.com/azodik/ui" 
+          <Navbar.Link
+            href="https://github.com/azodik/ui"
             target="_blank"
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              gap: '0.5rem',
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
             }}
           >
-            <GithubIcon size={18} style={{ display: 'flex', flexShrink: 0 }} />
+            <GithubIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
             GitHub
           </Navbar.Link>
-          <Navbar.Link 
+          <Navbar.Link
             href="/docs"
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              gap: '0.5rem',
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
             }}
           >
-            <DocumentationIcon size={18} style={{ display: 'flex', flexShrink: 0 }} />
+            <DocumentationIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
             Docs
           </Navbar.Link>
         </Navbar.Links>
@@ -106,4 +106,3 @@ export default function Header() {
     </Navbar>
   );
 }
-

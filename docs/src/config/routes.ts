@@ -29,6 +29,9 @@ export const routes = {
   modalDocs: "/components/docs/modal",
   notificationCenterDocs: "/components/docs/notification-center",
   navigationDocs: "/components/docs/navigation",
+  navbarDocs: "/components/docs/navbar",
+  heroDocs: "/components/docs/hero",
+  footerDocs: "/components/docs/footer",
   paginationDocs: "/components/docs/pagination",
   popoverDocs: "/components/docs/popover",
   radioDocs: "/components/docs/radio",
@@ -44,5 +47,6 @@ export const routes = {
   tooltipDocs: "/components/docs/tooltip",
   themingDocs: "/components/docs/theming",
   typographyDocs: "/components/docs/typography",
+  hooksDocs: "/components/docs/hooks",
   llmResource: "/components/docs/llm-resource",
 };

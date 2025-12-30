@@ -14,9 +14,9 @@ export interface IconMetadata {
   strokeWidth?: number;
 }
 
-export type IconFormat = 'svg' | 'png';
-export type IconStyle = 'solid' | 'outline' | 'duotone';
-export type IconColor = 'default' | 'primary' | 'secondary' | 'accent' | 'custom';
+export type IconFormat = "svg" | "png";
+export type IconStyle = "solid" | "outline" | "duotone";
+export type IconColor = "default" | "primary" | "secondary" | "accent" | "custom";
 
 export interface DownloadOptions {
   format: IconFormat;
@@ -25,4 +25,3 @@ export interface DownloadOptions {
   customColor?: string;
   size: number;
 }
-

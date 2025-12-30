@@ -122,6 +122,9 @@ export default [
       "**/*.config.js",
       "**/*.config.mjs",
       "docs/dist/**",
+      "icons-docs/dist/**",
+      "icons-docs/node_modules/**",
+      "icons-docs/.next/**",
     ],
   },
 ];

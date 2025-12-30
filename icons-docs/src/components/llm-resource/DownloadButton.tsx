@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Button } from '@azodik/ui';
-import { DownloadIcon } from '@azodik/icons';
+import { Button } from "@azodik/ui";
+import { DownloadIcon } from "@azodik/icons";
 
 export default function DownloadButton() {
   const handleDownload = () => {
-    window.open('/llm-resource.txt', '_blank');
+    window.open("/llm-resource.txt", "_blank");
   };
 
   return (
@@ -13,9 +13,9 @@ export default function DownloadButton() {
       variant="outline"
       onClick={handleDownload}
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem',
+        display: "flex",
+        alignItems: "center",
+        gap: "0.5rem",
       }}
     >
       <DownloadIcon size={18} />
@@ -23,4 +23,3 @@ export default function DownloadButton() {
     </Button>
   );
 }
-

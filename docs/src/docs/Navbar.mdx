@@ -1,0 +1,205 @@
+import { CodeBlock } from "@/components/docs/CodeBlock";
+import { CodeBlockWithPreview } from "@/components/docs/CodeBlockWithPreview";
+import { PropsTable } from "@/components/docs/PropsTable";
+import { Navbar, NavbarBrand, NavbarContent, NavbarLinks, NavbarLink, NavbarActions, NavbarToggle, Button, ThemeToggle } from "@azodik/ui";
+import { GithubIcon, DocumentationIcon } from "@azodik/icons";
+
+# Navbar
+
+The `Navbar` component provides a responsive navigation bar with mobile menu support, nested menus, and glass morphism effects.
+
+## Basic Usage
+
+<CodeBlock language="tsx">
+{`import { Navbar, NavbarBrand, NavbarContent, NavbarLinks, NavbarLink, NavbarActions, NavbarToggle } from '@azodik/ui';
+
+function App() {
+  return (
+    <Navbar variant="sticky" isGlass={true}>
+      <NavbarBrand href="/">
+        My App
+      </NavbarBrand>
+      
+      <NavbarToggle />
+      
+      <NavbarContent>
+        <NavbarLinks>
+          <NavbarLink href="/home">Home</NavbarLink>
+          <NavbarLink href="/about">About</NavbarLink>
+          <NavbarLink href="/contact">Contact</NavbarLink>
+        </NavbarLinks>
+      </NavbarContent>
+      
+      <Navbar.Actions>
+        <Button>Sign In</Button>
+      </Navbar.Actions>
+    </Navbar>
+  );
+}`}
+</CodeBlock>
+
+## With Icons
+
+<CodeBlockWithPreview
+  title="Navbar with Icons"
+  preview={
+    <div style={{ 
+      width: '100%', 
+      position: 'relative',
+      overflow: 'visible',
+      margin: '0',
+      padding: '0',
+      background: 'var(--color-background)',
+      border: '1px solid var(--color-border)',
+      borderRadius: '8px',
+      minHeight: '80px',
+    }}>
+      <Navbar variant="sticky" isGlass={true} containerSize="4" style={{ position: 'relative', zIndex: 10, borderBottom: 'none' }}>
+        <NavbarBrand href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+          <span style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--color-text)' }}>Azodik</span>
+        </NavbarBrand>
+        
+        <NavbarToggle />
+        
+        <NavbarContent>
+          <NavbarLinks>
+            <NavbarLink href="/docs" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+              <DocumentationIcon size={18} />
+              Docs
+            </NavbarLink>
+            <NavbarLink href="https://github.com" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+              <GithubIcon size={18} />
+              GitHub
+            </NavbarLink>
+          </NavbarLinks>
+        </NavbarContent>
+        
+        <NavbarActions>
+          <ThemeToggle />
+        </NavbarActions>
+      </Navbar>
+    </div>
+  }
+>
+{`import { Navbar, NavbarBrand, NavbarContent, NavbarLinks, NavbarLink, NavbarActions, NavbarToggle, ThemeToggle } from '@azodik/ui';
+import { GithubIcon, DocumentationIcon } from '@azodik/icons';
+
+<Navbar variant="sticky" isGlass={true}>
+  <NavbarBrand href="/">
+    Azodik
+  </NavbarBrand>
+  
+  <NavbarToggle />
+  
+  <NavbarContent>
+    <NavbarLinks>
+      <NavbarLink href="/docs" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <DocumentationIcon size={18} />
+        Docs
+      </NavbarLink>
+      <NavbarLink href="https://github.com" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <GithubIcon size={18} />
+        GitHub
+      </NavbarLink>
+    </NavbarLinks>
+  </NavbarContent>
+  
+  <NavbarActions>
+    <ThemeToggle />
+  </NavbarActions>
+</Navbar>`}
+</CodeBlockWithPreview>
+
+## Nested Menus
+
+<CodeBlock language="tsx">
+{`import { Navbar, NavbarSubmenu } from '@azodik/ui';
+
+<Navbar>
+  <NavbarContent>
+    <NavbarLinks>
+      <NavbarLink href="/products">Products</NavbarLink>
+      
+      <Navbar.Submenu label="Resources">
+        <NavbarLink href="/docs">Documentation</NavbarLink>
+        <NavbarLink href="/blog">Blog</NavbarLink>
+        <NavbarLink href="/support">Support</NavbarLink>
+      </Navbar.Submenu>
+    </NavbarLinks>
+  </NavbarContent>
+</Navbar>`}
+</CodeBlock>
+
+## Variants
+
+<CodeBlock language="tsx">
+{`// Sticky navbar (default)
+<Navbar variant="sticky">...</Navbar>
+
+// Fixed navbar
+<Navbar variant="fixed">...</Navbar>
+
+// Floating navbar
+<Navbar variant="floating">...</Navbar>`}
+</CodeBlock>
+
+## Props
+
+### Navbar Props
+
+<PropsTable props={[
+  {
+    name: "variant",
+    type: "'sticky' | 'fixed' | 'floating'",
+    default: "'sticky'",
+    description: "Position variant of the navbar"
+  },
+  {
+    name: "isGlass",
+    type: "boolean",
+    default: "true",
+    description: "Apply glass morphism effect"
+  },
+  {
+    name: "containerSize",
+    type: "'1' | '2' | '3' | '4'",
+    default: "'4'",
+    description: "Container width size"
+  }
+]} />
+
+### NavbarLink Props
+
+<PropsTable props={[
+  {
+    name: "href",
+    type: "string",
+    description: "Link URL"
+  },
+  {
+    name: "target",
+    type: "string",
+    description: "Link target (e.g., '_blank')"
+  }
+]} />
+
+## Mobile Menu
+
+The Navbar automatically provides a mobile menu on small screens:
+
+- **Toggle Button**: Appears automatically on mobile
+- **Backdrop**: Dark overlay when menu is open
+- **Body Scroll Lock**: Prevents scrolling when menu is open
+- **Auto-close**: Closes on link click, Escape key, or window resize
+
+## Accessibility
+
+- Full keyboard navigation support
+- ARIA labels and roles
+- Focus management
+- Screen reader friendly
+
+## SSR Compatibility
+
+The Navbar is fully SSR-compatible and works with Next.js, Remix, and other SSR frameworks.
+

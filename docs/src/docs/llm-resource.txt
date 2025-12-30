@@ -24,6 +24,16 @@ import { ThemeProvider } from '@azodik/ui';
 </ThemeProvider>
 ```
 
+### SSR Flicker Prevention
+
+For Next.js and other SSR frameworks, use getThemeScript to prevent theme flicker:
+```tsx
+import { getThemeScript } from '@azodik/ui/server';
+
+// In layout.tsx or _document.tsx
+<script dangerouslySetInnerHTML={{ __html: getThemeScript({ storageKey: 'azodik-theme', defaultTheme: 'system' }) }} />
+```
+
 ## Core Usage
 
 ```tsx
@@ -56,6 +66,9 @@ import { Button, Alert, Card } from '@azodik/ui';
 - Input: Text input fields.
 - Modal: Focused overlay content.
 - Navigation: Horizontal site navigation.
+- Navbar: Responsive navigation bar with mobile menu support.
+- Hero: Flexible hero section for landing pages.
+- Footer: Website footer with multiple layout variants.
 - NotificationCenter: Panel for displaying and managing notifications.
 - Pagination: Data navigation controls.
 - Popover: Floating contextual panels.
@@ -77,3 +90,14 @@ import { Button, Alert, Card } from '@azodik/ui';
 - Toast: Transient notification messages.
 - Tooltip: Hover contextual information.
 - Typography: Text styling components.
+
+## Hooks
+
+- useResponsive: Detect device type (mobile, tablet, desktop) and check media queries.
+- useBodyScrollLock: Lock body scrolling when modals/overlays are open.
+- useTheme: Access and manipulate theme settings.
+- useResponsiveSidebar: Manage responsive sidebar state.
+
+## Utilities
+
+- getThemeScript: Generate blocking script for SSR flicker prevention (import from '@azodik/ui/server').

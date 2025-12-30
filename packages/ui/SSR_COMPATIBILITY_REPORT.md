@@ -1,7 +1,9 @@
 # SSR Compatibility Report for @azodik/ui
 
 ## Overview
+
 This report documents the SSR (Server-Side Rendering) compatibility status of all components in the `@azodik/ui` package for:
+
 - React Client-Side Rendering ✅
 - SSR (Next.js, Remix, etc.) ⚠️
 - Other JS Frameworks (Vite, CRA, etc.) ✅
@@ -9,6 +11,7 @@ This report documents the SSR (Server-Side Rendering) compatibility status of al
 ## Current Status
 
 ### ✅ Fully SSR Compatible Components
+
 These components work correctly in SSR environments:
 
 - **Box** - Pure presentational component
@@ -42,27 +45,34 @@ These components work correctly in SSR environments:
 ### ⚠️ Components Requiring Fixes for SSR
 
 #### 1. **useResponsive Hook** (`hooks/useResponsive.ts`)
+
 **Issue**: Initial state defaults to "desktop" which may cause hydration mismatch
 **Fix Needed**: Add SSR guard and default to safe value
 
 #### 2. **Navbar Component** (`components/Navbar.tsx`)
+
 **Issue**: `useIsMobile` hook accesses `window.innerWidth` immediately
 **Fix Needed**: Add SSR guard in `useIsMobile`
 
 #### 3. **Sidebar Component** (`components/Sidebar.tsx`)
+
 **Issue**: `useResponsiveSidebar` accesses `window.innerWidth` immediately
 **Fix Needed**: Add SSR guard
 
 #### 4. **useBodyScrollLock Hook** (`hooks/useBodyScrollLock.ts`)
+
 **Issue**: Accesses `document` and `window` without guards
 **Fix Needed**: Add `typeof document !== "undefined"` checks
 
 #### 5. **Search Component** (`components/Search.tsx`)
+
 **Issue**: localStorage access in initial state (has guard but could be improved)
 **Status**: Partially fixed - has guard but initial state could be better
 
 #### 6. **ThemeProvider** (`providers/ThemeProvider.tsx`)
+
 **Status**: ✅ **IMPROVED** - Now fully SSR compatible with:
+
 - SSR-safe initial state (no localStorage access during SSR)
 - Proper theme resolution in useEffect (prevents hydration mismatch)
 - System theme preference listener support
@@ -84,25 +94,31 @@ These components work correctly in SSR environments:
 ## Framework Compatibility
 
 ### Next.js (App Router)
+
 - ✅ Most components work out of the box
 - ⚠️ Components using hooks need "use client" directive (already added)
 - ⚠️ Some hooks need SSR guards (see fixes above)
 
 ### Next.js (Pages Router)
+
 - ✅ Fully compatible
 - ⚠️ Same hook fixes needed
 
 ### Remix
+
 - ✅ Fully compatible
 - ⚠️ Same hook fixes needed
 
 ### Vite + React
+
 - ✅ Fully compatible (client-side only)
 
 ### Create React App
+
 - ✅ Fully compatible (client-side only)
 
 ### Other Frameworks
+
 - ✅ React 18+ compatible
 - ✅ Works with any framework that supports React 18+
 
@@ -117,8 +133,8 @@ These components work correctly in SSR environments:
 ## Build Configuration
 
 The package already includes:
+
 - ✅ "use client" directive in built files (via build script)
 - ✅ Proper TypeScript types
 - ✅ ESM and CJS builds
 - ✅ Tree-shaking support
-
