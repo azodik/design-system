@@ -44,6 +44,9 @@ jobs:
           echo "@azodik:registry=https://registry.npmjs.org/" >> ~/.npmrc
           echo "//registry.npmjs.org/:always-auth=true" >> ~/.npmrc
 
+      - name: Restore packages (ensure clean state)
+        run: pnpm run restore-packages || true
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

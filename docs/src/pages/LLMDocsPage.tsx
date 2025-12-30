@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  Alert,
-} from "@azodik/ui";
+import { Button, Card, CardContent, Alert } from "@azodik/ui";
 import { CopyIcon, CheckIcon } from "@azodik/icons";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import llmContent from "@/docs/llm-resource.txt?raw";
@@ -29,8 +24,8 @@ export default function LLMDocsPage() {
       <div className="max-w-4xl mx-auto p-2">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">AI Friendly Documentation</h1>
-          <Button 
-            onClick={handleCopy} 
+          <Button
+            onClick={handleCopy}
             variant={copied ? "solid" : "outline"}
             color={copied ? "grass" : "indigo"}
             className="flex items-center gap-2"
@@ -49,9 +44,9 @@ export default function LLMDocsPage() {
         <Card className="mb-8">
           <CardContent className="pt-6">
             <p className="text-muted-foreground mb-4">
-              This page provides a concise, text-based version of the Azodik Design System documentation. 
-              It is designed to be easily consumed by Large Language Models (LLMs) to help them understand 
-              how to use our components.
+              This page provides a concise, text-based version of the Azodik Design System
+              documentation. It is designed to be easily consumed by Large Language Models (LLMs) to
+              help them understand how to use our components.
             </p>
           </CardContent>
         </Card>

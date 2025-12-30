@@ -59,8 +59,8 @@
     "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/ui"
   },
   "dependencies": {
-    "@azodik/icons": "^0.10.2",
-    "azodik-ui-core": "^0.10.2",
+    "@azodik/icons": "workspace:*",
+    "azodik-ui-core": "workspace:*",
     "recharts": "^3.6.0"
   },
   "devDependencies": {
