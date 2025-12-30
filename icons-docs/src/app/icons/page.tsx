@@ -1,9 +1,9 @@
-import IconsPageClient from '@/components/IconsPageClient';
+import IconsPage from '@/components/icons/IconsPage';
 import { getAllIcons } from '@/lib/icon-loader';
 
-export default async function IconsPage() {
+export default async function IconsPageRoute() {
   const icons = getAllIcons();
   
-  return <IconsPageClient initialIcons={icons} />;
+  return <IconsPage initialIcons={icons} />;
 }
 

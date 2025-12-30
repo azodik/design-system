@@ -6,15 +6,15 @@ import { Box, Container, Grid, Card, CardHeader, CardTitle, CardContent, Button,
 import { getIconComponent } from '@/lib/icon-loader';
 import { downloadSVG, downloadPNG } from '@/lib/icon-utils';
 import type { IconInfo, DownloadOptions } from '@/types/icon';
-import DownloadPanel from './DownloadPanel';
-import IconPreview from './IconPreview';
+import DownloadPanel from '@/components/download/DownloadPanel';
+import IconPreview from '../IconPreview';
 import { ArrowLeftIcon } from '@azodik/icons';
 
-interface IconDetailClientProps {
+interface IconDetailProps {
   icon: IconInfo;
 }
 
-export default function IconDetailClient({ icon }: IconDetailClientProps) {
+export default function IconDetail({ icon }: IconDetailProps) {
   const router = useRouter();
   const { isMobile } = useResponsive();
   const [downloadOptions, setDownloadOptions] = useState<DownloadOptions>({
@@ -136,3 +136,4 @@ export default function IconDetailClient({ icon }: IconDetailClientProps) {
     </Box>
   );
 }
+

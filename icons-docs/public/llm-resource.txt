@@ -1,0 +1,48 @@
+Azodik Icons - LLM Resource Guide
+
+Azodik Icons is a comprehensive icon library designed for modern web applications. Here's how you can utilize it in your projects:
+
+INSTALLATION:
+npm install @azodik/icons
+
+BASIC USAGE:
+import { IconName } from '@azodik/icons';
+
+// Example
+import { SearchIcon, HomeIcon, UserIcon } from '@azodik/icons';
+
+<SearchIcon size={24} />
+<HomeIcon size={32} color="var(--accent-9)" />
+<UserIcon size={20} style={{ color: '#ff0000' }} />
+
+ICON COMPONENT PROPS:
+- size: number (default: 20) - Size of the icon in pixels
+- className: string - CSS class name
+- style: React.CSSProperties - Inline styles
+- color: string - Icon color (uses currentColor by default)
+
+AVAILABLE ICONS:
+The library includes hundreds of icons organized by category:
+- Navigation icons (HomeIcon, ArrowLeftIcon, MenuIcon, etc.)
+- Action icons (SearchIcon, DownloadIcon, ShareIcon, etc.)
+- Social icons (GithubIcon, TwitterIcon, etc.)
+- UI icons (CheckIcon, XIcon, PlusIcon, etc.)
+- And many more...
+
+STYLING:
+Icons use currentColor by default, so they inherit the text color from their parent:
+<div style={{ color: 'blue' }}>
+  <SearchIcon size={24} /> {/* Will be blue */}
+</div>
+
+You can also use CSS variables:
+<SearchIcon size={24} style={{ color: 'var(--accent-9)' }} />
+
+TYPESCRIPT SUPPORT:
+The library is fully typed with TypeScript, providing autocomplete and type safety.
+
+BUNDLE SIZE:
+Icons are tree-shakeable, so only the icons you import will be included in your bundle.
+
+For more information, visit: https://icons.azodik.com
+

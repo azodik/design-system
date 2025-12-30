@@ -184,3 +184,4 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
 
 IconPreview.displayName = 'IconPreview';
 export default IconPreview;
+

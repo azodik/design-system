@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Navbar, ThemeToggle } from '@azodik/ui';
-import { GithubIcon, DocumentationIcon } from '@azodik/icons';
+import { GithubIcon, DocumentationIcon, AppsIcon, BookOpenIcon } from '@azodik/icons';
 
 export default function Header() {
   return (
@@ -53,6 +53,28 @@ export default function Header() {
       <Navbar.Content>
         <Navbar.Links>
           <Navbar.Link 
+            href="/icons"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <AppsIcon size={18} style={{ display: 'flex', flexShrink: 0 }} />
+            Icons
+          </Navbar.Link>
+          <Navbar.Link 
+            href="/llm-resource"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <BookOpenIcon size={18} style={{ display: 'flex', flexShrink: 0 }} />
+            LLM Resource
+          </Navbar.Link>
+          <Navbar.Link 
             href="https://github.com/azodik/ui" 
             target="_blank"
             style={{ 
@@ -84,3 +106,4 @@ export default function Header() {
     </Navbar>
   );
 }
+

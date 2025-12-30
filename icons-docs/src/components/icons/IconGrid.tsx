@@ -64,3 +64,4 @@ export default function IconGrid({ icons, onIconClick }: IconGridProps) {
     </Grid>
   );
 }
+

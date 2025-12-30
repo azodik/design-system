@@ -6,14 +6,14 @@ import Fuse from 'fuse.js';
 import { Box, Container, Flex, Section } from '@azodik/ui';
 import type { IconInfo } from '@/types/icon';
 import IconGrid from './IconGrid';
-import SearchBar from './SearchBar';
-import CategoryFilter from './CategoryFilter';
+import SearchBar from '@/components/search/SearchBar';
+import CategoryFilter from '@/components/search/CategoryFilter';
 
-interface IconsPageClientProps {
+interface IconsPageProps {
   initialIcons: IconInfo[];
 }
 
-export default function IconsPageClient({ initialIcons }: IconsPageClientProps) {
+export default function IconsPage({ initialIcons }: IconsPageProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const router = useRouter();
@@ -168,3 +168,4 @@ export default function IconsPageClient({ initialIcons }: IconsPageClientProps) 
     </Box>
   );
 }
+

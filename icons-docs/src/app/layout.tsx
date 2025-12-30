@@ -3,9 +3,9 @@ import '@azodik/ui/styles.css';
 import '../styles/globals.css';
 import { Inter, Montserrat } from 'next/font/google';
 import { Box } from '@azodik/ui';
-import ThemeProviderWrapper from '@/components/ThemeProviderWrapper';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import ThemeProviderWrapper from '@/components/layout/ThemeProviderWrapper';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const inter = Inter({
   subsets: ['latin'],

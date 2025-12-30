@@ -1,4 +1,4 @@
-import IconDetailClient from '@/components/IconDetailClient';
+import IconDetail from '@/components/icons/detail/IconDetail';
 import { getIconByName } from '@/lib/icon-loader';
 import { notFound } from 'next/navigation';
 
@@ -14,6 +14,6 @@ export default async function IconDetailPage({
     notFound();
   }
 
-  return <IconDetailClient icon={icon} />;
+  return <IconDetail icon={icon} />;
 }
 
