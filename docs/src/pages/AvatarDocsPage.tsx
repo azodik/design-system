@@ -1,6 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
 import Avatar from "@/docs/Avatar.mdx";
-import { Avatar as AvatarComponent, Card, CardContent } from "@azodik/ui";
+import { Avatar as AvatarComponent, Card, CardContent, Box, Container } from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -20,14 +20,14 @@ export default function AvatarDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider components={components}>
             <Avatar />
           </MDXProvider>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

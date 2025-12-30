@@ -660,6 +660,63 @@ function ResponsiveSidebarExample() {
 }`}
 />
 
+### Neutral States for Better Accent Compatibility
+
+By default, sidebar active and hover states use neutral gray colors, which work well with any accent color in both light and dark modes. If you prefer to use the current accent color instead, you can set `useNeutralStates={false}`.
+
+<CodeBlock language="tsx">
+{`import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarContent, 
+  SidebarBrand,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMainContent
+} from '@azodik/ui';
+
+function SidebarWithNeutralStates() {
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar 
+        width={250}
+      >
+        <SidebarHeader>
+          <SidebarBrand>My App</SidebarBrand>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton active>
+                Dashboard
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>
+                Users
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton>
+                Settings
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      
+      <SidebarMainContent>
+        <div className="p-6">
+          <h1>Main Content</h1>
+          <p>Sidebar uses neutral gray colors by default, which work with any accent.</p>
+        </div>
+      </SidebarMainContent>
+    </div>
+  );
+}`}
+</CodeBlock>
+
 <PropsSidebarSection />
 
 <PropsTable props={[
@@ -748,6 +805,13 @@ function ResponsiveSidebarExample() {
     description: 'Whether the current screen is small (for responsive behavior)'
   },
   {
+    name: 'useNeutralStates',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Use neutral gray colors for active/hover states instead of accent colors. Set to false to use accent colors.'
+  },
+  {
     name: 'className',
     type: 'string',
     required: false,
@@ -800,6 +864,13 @@ function ResponsiveSidebarExample() {
     required: false,
     default: 'true',
     description: 'Whether to show the sidebar item'
+  },
+  {
+    name: 'useNeutralStates',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Use neutral gray colors for active/hover states instead of accent colors. Set to false to use accent colors.'
   },
   {
     name: 'className',

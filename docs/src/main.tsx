@@ -21,7 +21,7 @@ ReactDOM.createRoot(rootElement).render(
     <LanguageProvider>
       <ThemeProvider
         defaultTheme="system"
-        accentColor="indigo"
+        accentColor="azodik"
         grayColor="slate"
         radius="medium"
         scaling="100%"

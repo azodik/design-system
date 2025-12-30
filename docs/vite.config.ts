@@ -8,7 +8,11 @@ import { watchWorkspacePackages } from "./vite-plugin-watch-workspace";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        compact: false,
+      },
+    }),
     mdx({
       jsxImportSource: "react",
     }),

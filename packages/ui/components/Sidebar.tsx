@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Avatar from "./Avatar";
 import { Breadcrumb } from "./Breadcrumb";
+import { MenuIcon } from "@azodik/icons";
 
 // Hook for responsive sidebar functionality
 export function useResponsiveSidebar() {
@@ -63,6 +64,8 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   isSidebarOpen?: boolean;
   onSidebarToggle?: () => void;
   isSmallScreen?: boolean;
+  // Styling props
+  useNeutralStates?: boolean;
 }
 
 export function Sidebar({
@@ -78,6 +81,7 @@ export function Sidebar({
   isSidebarOpen = false,
   onSidebarToggle,
   isSmallScreen = false,
+  useNeutralStates = true,
   className = "",
   ...props
 }: SidebarProps) {
@@ -118,7 +122,7 @@ export function Sidebar({
       )}
 
       <div
-        className={`sidebar ${collapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""} ${className}`}
+        className={`sidebar ${collapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""} ${useNeutralStates ? "sidebar-neutral-states" : ""} ${className}`}
         style={{
           ...sidebarStyle,
           ...(isSmallScreen && {
@@ -205,6 +209,7 @@ export interface SidebarGroupProps extends React.HTMLAttributes<HTMLDivElement> 
   isOpen?: boolean;
   onToggle?: () => void;
   show?: boolean;
+  variant?: "default" | "compact" | "icon-only";
 }
 
 export function SidebarGroup({
@@ -217,6 +222,7 @@ export function SidebarGroup({
   isOpen = false,
   onToggle,
   show = true,
+  variant = "default",
   className = "",
   ...props
 }: SidebarGroupProps) {
@@ -228,8 +234,12 @@ export function SidebarGroup({
 
   if (!show) return null;
 
+  const groupClasses = ["sidebar-group", variant !== "default" && `variant-${variant}`, className]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className={`sidebar-group ${className}`} {...props}>
+    <div className={groupClasses} {...props}>
       {title &&
         (collapsible ? (
           <button
@@ -272,6 +282,8 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   badge?: string | number;
   tooltip?: string;
   show?: boolean;
+  size?: "1" | "2" | "3";
+  useNeutralStates?: boolean;
 }
 
 export function SidebarItem({
@@ -281,16 +293,26 @@ export function SidebarItem({
   badge,
   tooltip,
   show = true,
+  size = "2",
+  useNeutralStates = true,
   className = "",
   ...props
 }: SidebarItemProps) {
-  const itemClasses = [active && "active", className].filter(Boolean).join(" ");
+  const itemClasses = [
+    "sidebar-item",
+    size && `size-${size}`,
+    useNeutralStates && "sidebar-neutral-states",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const linkClasses = [active && "active"].filter(Boolean).join(" ");
 
   if (!show) return null;
 
   return (
-    <li className="sidebar-item">
-      <a className={itemClasses} title={tooltip} {...props}>
+    <li className={itemClasses}>
+      <a className={linkClasses} title={tooltip} {...props}>
         {icon && <span className="sidebar-item-icon">{icon}</span>}
         <span className="sidebar-item-text">{children}</span>
         {badge && <span className="sidebar-item-badge">{badge}</span>}
@@ -526,16 +548,24 @@ export interface SidebarMenuButtonProps extends React.AnchorHTMLAttributes<HTMLA
   children: React.ReactNode;
   icon?: React.ReactNode;
   active?: boolean;
+  useNeutralStates?: boolean;
 }
 
 export function SidebarMenuButton({
   children,
   icon,
   active = false,
+  useNeutralStates = true,
   className = "",
   ...props
 }: SidebarMenuButtonProps) {
-  const buttonClasses = [active && "active", className].filter(Boolean).join(" ");
+  const buttonClasses = [
+    active && "active",
+    useNeutralStates && "sidebar-neutral-states",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <a className={buttonClasses} {...props}>
@@ -589,8 +619,17 @@ export interface SidebarMainContentProps extends React.HTMLAttributes<HTMLDivEle
   showToggleOnDesktop?: boolean;
   themeToggle?: React.ReactNode;
   languageSelector?: React.ReactNode;
-  iconsLink?: React.ReactNode;
+  searchComponent?: React.ReactNode;
+  /**
+   * Additional header actions/controls to display in the controls row
+   * These will appear alongside iconsLink, languageSelector, and themeToggle
+   */
+  additionalControls?: React.ReactNode[];
+  primaryControls?: React.ReactNode[];
   isSmallScreen?: boolean;
+  version?: string;
+  hideAdditionalControlsOnMobile?: boolean;
+  hideBreadcrumbOnMobile?: boolean;
 }
 
 export function SidebarMainContent({
@@ -604,14 +643,22 @@ export function SidebarMainContent({
   showToggleOnDesktop = false,
   themeToggle,
   languageSelector,
-  iconsLink,
+  searchComponent,
+  additionalControls = [],
+  primaryControls = [],
   isSmallScreen = false,
+  version,
+  hideAdditionalControlsOnMobile = false,
+  hideBreadcrumbOnMobile = false,
   className = "",
   ...props
 }: SidebarMainContentProps) {
+  const breadcrumbItemsParsed =
+    breadcrumbItems || (typeof breadcrumb === "string" ? [{ label: breadcrumb }] : undefined);
+
   return (
     <div
-      className={`main-content-area ${className}`}
+      className={`sidebar-main-content ${isSmallScreen ? "full-width" : ""} ${className}`}
       style={{
         ...(isSmallScreen && {
           width: "100%",
@@ -620,44 +667,72 @@ export function SidebarMainContent({
       }}
       {...props}
     >
-      {/* Main Header Section */}
-      <header className="main-content-header">
-        {onSidebarToggle && (
-          <button
-            className={`sidebar-toggle-button ${showToggleOnDesktop ? "show-on-desktop" : ""}`}
-            onClick={onSidebarToggle}
-          >
-            {sidebarToggleIcon || (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
-              </svg>
-            )}
-          </button>
-        )}
+      <header className="sidebar-main-header">
+        <div className="sidebar-main-header-left">
+          {onSidebarToggle && ((!isSmallScreen && showToggleOnDesktop) || isSmallScreen) && (
+            <button
+              className="sidebar-toggle-button"
+              onClick={onSidebarToggle}
+              aria-label={_isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {sidebarToggleIcon || <MenuIcon />}
+            </button>
+          )}
 
-        {/* Breadcrumb Section */}
-        {showBreadcrumb && (breadcrumbItems || breadcrumb) && (
-          <div className="breadcrumb-section">
-            {breadcrumb ? (
-              breadcrumb
-            ) : breadcrumbItems ? (
-              <Breadcrumb items={breadcrumbItems} />
-            ) : null}
-          </div>
-        )}
-
-        {/* Language Selector, Icons Link, and Theme Toggle Section */}
-        {(languageSelector || themeToggle || iconsLink) && (
-          <div className="theme-toggle-section">
-            <div className="flex items-center gap-2">
-              {iconsLink && <div className="icons-link-section">{iconsLink}</div>}
-              {languageSelector && (
-                <div className="language-selector-section">{languageSelector}</div>
-              )}
-              {themeToggle && <div className="theme-toggle-wrapper">{themeToggle}</div>}
+          {showBreadcrumb && (breadcrumbItemsParsed || breadcrumb) && (
+            <div
+              className={`sidebar-breadcrumb-wrapper ${
+                hideBreadcrumbOnMobile ? "hide-breadcrumb-on-mobile" : ""
+              }`}
+            >
+              {breadcrumb ? (
+                breadcrumb
+              ) : breadcrumbItemsParsed ? (
+                <Breadcrumb items={breadcrumbItemsParsed} />
+              ) : null}
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        <div className="sidebar-main-header-right">
+          {version && (
+            <div className="sidebar-version-display" title={`Version ${version}`}>
+              v{version}
+            </div>
+          )}
+
+          {(languageSelector ||
+            themeToggle ||
+            searchComponent ||
+            (primaryControls && primaryControls.length > 0) ||
+            (additionalControls &&
+              additionalControls.length > 0 &&
+              (!isSmallScreen || !hideAdditionalControlsOnMobile))) && (
+            <div className="sidebar-controls-group">
+              {searchComponent && <div className="sidebar-search-wrapper">{searchComponent}</div>}
+
+              {additionalControls &&
+                additionalControls.length > 0 &&
+                (!isSmallScreen || !hideAdditionalControlsOnMobile) &&
+                additionalControls.map((control, index) => (
+                  <div key={`additional-${index}`} className="sidebar-control-item">
+                    {control}
+                  </div>
+                ))}
+
+              {primaryControls &&
+                primaryControls.length > 0 &&
+                primaryControls.map((control, index) => (
+                  <div key={`primary-${index}`} className="sidebar-control-item">
+                    {control}
+                  </div>
+                ))}
+
+              {languageSelector && <div className="sidebar-control-item">{languageSelector}</div>}
+              {themeToggle && <div className="sidebar-control-item">{themeToggle}</div>}
+            </div>
+          )}
+        </div>
       </header>
 
       {/* Scrollable Main Content */}

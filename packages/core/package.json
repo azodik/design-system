@@ -1,8 +1,8 @@
 {
   "name": "azodik-ui-core",
   "version": "0.9.0",
-  "main": "index.css",
-  "types": "index.d.ts",
+  "main": "dist/index.css",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "type": "module",
   "author": "Bandna Paikaray <bandna.paikaray@azodik.com>",
@@ -33,21 +33,21 @@
   ],
   "exports": {
     ".": {
-      "default": "./index.css"
+      "default": "./dist/index.css"
     },
     "./base.css": {
-      "default": "./base.css"
+      "default": "./dist/base.css"
     },
     "./index.css": {
-      "default": "./index.css"
+      "default": "./dist/index.css"
     }
   },
   "scripts": {
-    "build": "echo 'Azodik UI CSS is ready'",
+    "build": "mkdir -p dist && cp -r components styles tokens *.css *.d.ts icons-catalog.json dist/",
     "dev": "vite dev --port 3003",
     "lint": "echo 'No linting needed for CSS'",
     "type-check": "echo 'No type checking needed for CSS'",
-    "clean": "node ../../scripts/clean.mjs",
+    "clean": "node ../../scripts/clean.mjs && rm -rf dist",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/core && pnpm build",
     "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/core",
     "publish": "pnpm publish --access public --force"

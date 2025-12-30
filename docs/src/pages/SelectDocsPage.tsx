@@ -1,6 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
 import Select from "@/docs/Select.mdx";
-import { Select as SelectComponent, Card, CardContent } from "@azodik/ui";
+import { Select as SelectComponent, Card, CardContent, Box, Container } from "@azodik/ui";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 
@@ -19,13 +19,13 @@ export default function SelectDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider components={components}>
             <Select />
           </MDXProvider>
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

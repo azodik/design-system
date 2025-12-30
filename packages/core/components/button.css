@@ -18,6 +18,40 @@
   white-space: nowrap;
 }
 
+/* Button Icon and Content Alignment */
+.az-Button .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-right: 0;
+}
+
+.az-Button .btn-content {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  margin-left: 0;
+}
+
+.az-Button svg,
+.az-Button .btn-icon svg,
+.az-Button .btn-content svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.az-Button:hover .btn-icon svg {
+  transform: scale(1.05);
+}
+
+.az-Button:active .btn-icon svg {
+  transform: scale(0.95);
+}
+
 /* Button Sizes (Radix-like 1-4) */
 .az-Button.az-r-size-1 { height: 24px; padding: 0 var(--space-2); font-size: var(--font-size-xs); gap: var(--space-1); }
 .az-Button.az-r-size-2 { height: 32px; padding: 0 var(--space-3); font-size: var(--font-size-sm); gap: var(--space-2); }

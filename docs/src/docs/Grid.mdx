@@ -1,0 +1,85 @@
+
+import { Grid } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Grid
+
+The `Grid` component is a layout primitive that helps you build grid layouts using CSS Grid.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Grid } from "@azodik/ui";
+
+<Grid columns="3" gap="4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Grid>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Grid Example"
+  preview={
+    <Grid columns="3" gap="4" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Grid>
+  }
+>
+{`<Grid columns="3" gap="4">
+  <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+  <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+  <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+</Grid>`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'columns',
+    type: '"1" | "2" | "3" | "4" | "5" | string',
+    required: false,
+    default: '"1"',
+    description: 'Number of columns'
+  },
+  {
+    name: 'gap',
+    type: '"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"',
+    required: false,
+    default: '"3"',
+    description: 'Gap between items'
+  },
+  {
+    name: 'rows',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Number of rows'
+  },
+  {
+    name: 'flow',
+    type: '"row" | "column" | "dense" | "row-dense" | "column-dense"',
+    required: false,
+    default: '"row"',
+    description: 'Grid auto flow'
+  },
+  {
+    name: 'align',
+    type: '"start" | "center" | "end" | "baseline" | "stretch"',
+    required: false,
+    default: '"stretch"',
+    description: 'Align items'
+  },
+  {
+    name: 'justify',
+    type: '"start" | "center" | "end" | "between"',
+    required: false,
+    default: '"start"',
+    description: 'Justify items'
+  }
+]} />

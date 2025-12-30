@@ -1,0 +1,73 @@
+
+import { Box } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Box
+
+The `Box` component is a fundamental layout primitive that renders a `div` by default. It supports polymorphism via the `as` prop, allowing it to render as any element while maintaining its props.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Box } from "@azodik/ui";
+
+<Box className="p-4 bg-gray-100">
+  This is a Box
+</Box>`}
+</CodeBlock>
+
+### Polymorphism
+
+You can use the `as` prop to render `Box` as a different element, such as a `span` or `section`.
+
+<CodeBlockWithPreview
+  title="Box as span"
+  preview={
+    <Box as="span" style={{ color: "var(--color-danger)" }}>
+      I am a span behaving like a Box
+    </Box>
+  }
+>
+{`<Box as="span" className="text-red-500">
+  I am a span behaving like a Box
+</Box>`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Default Box"
+  preview={
+    <Box style={{ padding: 20, background: "var(--gray-3)" }}>
+      This is a basic Box with custom styles.
+    </Box>
+  }
+>
+{`<Box style={{ padding: 20, background: "var(--gray-3)" }}>
+  This is a basic Box with custom styles.
+</Box>`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'as',
+    type: 'React.ElementType',
+    required: false,
+    default: '"div"',
+    description: 'The HTML element or component to render as'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: '-',
+    description: 'The content of the box'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    required: false,
+    default: '-',
+    description: 'Additional CSS classes'
+  }
+]} />

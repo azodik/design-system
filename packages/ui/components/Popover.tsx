@@ -72,9 +72,9 @@ export function Popover({
       const adjustments: React.CSSProperties = {};
       const padding = 16;
 
-      // Only apply constraints on mobile/small screens (<= 768px width or <= 600px height)
+      // Only apply constraints on mobile/small screens (<= 1127px width or <= 600px height)
       // Desktop should show full content without height constraints, but adjust position if needed
-      const isMobile = viewportWidth <= 768 || viewportHeight <= 600;
+      const isMobile = viewportWidth <= 1127 || viewportHeight <= 600;
 
       // On desktop, only adjust position to keep popover visible, but don't constrain height
       if (!isMobile) {
@@ -327,7 +327,8 @@ export function Popover({
             ...adjustedPosition,
             maxWidth: adjustedPosition.maxWidth || undefined,
             maxHeight: adjustedPosition.maxHeight || undefined,
-            overflowY: adjustedPosition.overflowY || undefined,
+            overflowY: adjustedPosition.overflowY || "auto",
+            overflowX: "hidden",
           }}
         >
           {title && <div className="popover-title">{title}</div>}

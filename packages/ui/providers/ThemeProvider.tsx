@@ -115,8 +115,14 @@ export function ThemeProvider({
       "az-accent-azodik",
     ];
     root.classList.remove(...accentClasses);
+
+    // Check if accentColor is a named color or a hex code
     if (accentClasses.includes(`az-accent-${accentColor}`)) {
       root.classList.add(`az-accent-${accentColor}`);
+      root.style.removeProperty("--accent-9");
+    } else {
+      // Assume it's a hex code or other CSS color value
+      root.style.setProperty("--accent-9", accentColor);
     }
 
     // Apply Scaling & Radius Factor
@@ -153,12 +159,36 @@ export function ThemeProvider({
     [theme, internalAppearance, accentColor, grayColor, radius, scaling, setTheme],
   );
 
+  const accentClasses = [
+    "az-accent-indigo",
+    "az-accent-ruby",
+    "az-accent-grass",
+    "az-accent-amber",
+    "az-accent-cyan",
+    "az-accent-azodik",
+  ];
+
+  // Check if user provided a custom --accent-9 in the style prop
+  const hasCustomAccentInStyle = style && typeof style === "object" && "--accent-9" in style;
+  const isNamedAccent =
+    !hasCustomAccentInStyle && accentClasses.includes(`az-accent-${accentColor}`);
+
+  const wrapperClassName =
+    `azodik-theme az-theme-background az-gray-${grayColor} ${isNamedAccent ? `az-accent-${accentColor}` : ""} ${className}`.trim();
+  const wrapperStyle = {
+    ...(!isNamedAccent &&
+      !hasCustomAccentInStyle &&
+      ({ "--accent-9": accentColor } as React.CSSProperties)),
+    ...style, // User-provided styles should override defaults
+  };
+
   return (
     <ThemeContext.Provider value={contextValue}>
       <div
-        className={`azodik-theme az-theme-background az-gray-${grayColor} az-accent-${accentColor} ${className}`}
-        style={style}
+        className={wrapperClassName}
+        style={wrapperStyle}
         data-theme={theme}
+        {...(hasCustomAccentInStyle && { "data-custom-accent": "true" })}
       >
         {children}
       </div>

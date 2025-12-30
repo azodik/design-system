@@ -44,11 +44,18 @@ export default function Avatar({
     .join(" ");
 
   return (
-    <div className={avatarClasses} {...props}>
+    <div
+      className={avatarClasses}
+      role="img"
+      aria-label={alt || initials || "User avatar"}
+      {...props}
+    >
       {src ? (
-        <img src={src} alt={alt || "Avatar"} />
+        <img src={src} alt="" />
       ) : (
-        <div className="avatar-initials">{getInitials()}</div>
+        <div className="avatar-initials" aria-hidden="true">
+          {getInitials()}
+        </div>
       )}
     </div>
   );
@@ -73,10 +80,12 @@ export function AvatarGroup({
   const remainingCount = childrenArray.length - max;
 
   return (
-    <div className={`avatar-group ${className}`} {...props}>
+    <div className={`avatar-group ${className}`} role="group" aria-label="Avatar group" {...props}>
       {visibleChildren}
       {remainingCount > 0 && (
-        <div className="avatar-more">{moreLabel.replace("{count}", remainingCount.toString())}</div>
+        <div className="avatar-more" aria-label={`${remainingCount} more avatars`}>
+          {moreLabel.replace("{count}", remainingCount.toString())}
+        </div>
       )}
     </div>
   );

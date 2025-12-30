@@ -1,0 +1,484 @@
+import { NotificationCenter, Button } from '@azodik/ui';
+import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { useState } from 'react';
+import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
+
+export const NotificationCenterComponentHeader = () => {
+  const { t } = useLanguageTranslation();
+  return <h1>Notification Center</h1>;
+};
+
+export const NotificationCenterComponentDescription = () => {
+  const { t } = useLanguageTranslation();
+  return <p>The Notification Center component provides a panel for displaying and managing notifications. It's perfect for showing user notifications, system alerts, and activity updates in a centralized location.</p>;
+};
+
+export const NotificationCenterIntroduction = () => {
+  const { t } = useLanguageTranslation();
+  return (
+    <>
+      <h2>Introduction</h2>
+      <p>The Notification Center component includes several features to handle various notification scenarios:</p>
+      <ul>
+        <li><strong>NotificationCenter:</strong> the main component for displaying a panel of notifications with a trigger button.</li>
+        <li><strong>Notification Types:</strong> support for info, success, warning, and error notification types with appropriate styling.</li>
+        <li><strong>Unread Badge:</strong> displays a count badge on the trigger button for unread notifications.</li>
+        <li><strong>Mark as Read:</strong> ability to mark individual or all notifications as read.</li>
+        <li><strong>Dismiss Notifications:</strong> allows users to dismiss individual notifications.</li>
+        <li><strong>Custom Actions:</strong> support for action buttons within notifications.</li>
+        <li><strong>Responsive Design:</strong> adapts to mobile and desktop screen sizes.</li>
+      </ul>
+    </>
+  );
+};
+
+export const WhenToUseNotificationCenterSection = () => {
+  return (
+    <>
+      <h3>When to use</h3>
+      <ul>
+        <li>Display user notifications and alerts</li>
+        <li>Show system updates and activity</li>
+        <li>Provide a centralized notification hub</li>
+        <li>Manage multiple notification types</li>
+        <li>Track unread notifications</li>
+      </ul>
+    </>
+  );
+};
+
+export const UsageNotificationCenterSection = () => {
+  const { currentLanguage } = useLanguageTranslation();
+  const [notifications, setNotifications] = useState([
+    {
+      id: '1',
+      title: 'New message',
+      message: 'You have a new message from John Doe',
+      type: 'info',
+      timestamp: new Date(Date.now() - 5 * 60000),
+      read: false,
+    },
+    {
+      id: '2',
+      title: 'Task completed',
+      message: 'Your task "Design review" has been completed',
+      type: 'success',
+      timestamp: new Date(Date.now() - 30 * 60000),
+      read: false,
+    },
+    {
+      id: '3',
+      title: 'Warning',
+      message: 'Your storage is almost full (85% used)',
+      type: 'warning',
+      timestamp: new Date(Date.now() - 2 * 3600000),
+      read: true,
+    },
+  ]);
+
+  const handleNotificationClick = (notification) => {
+    console.log('Notification clicked:', notification);
+    setNotifications(prev =>
+      prev.map(n => n.id === notification.id ? { ...n, read: true } : n)
+    );
+  };
+
+  const handleDismiss = (id) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+
+  const handleMarkAllAsRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  };
+
+  const handleClearAll = () => {
+    setNotifications([]);
+  };
+
+  return (
+    <>
+      <h3>Basic Usage</h3>
+      <CodeBlockWithPreview
+        title="Basic Notification Center"
+        preview={
+          <NotificationCenter
+            notifications={notifications}
+            onNotificationClick={handleNotificationClick}
+            onNotificationDismiss={handleDismiss}
+            onMarkAllAsRead={handleMarkAllAsRead}
+            onClearAll={handleClearAll}
+            locale={currentLanguage}
+          />
+        }
+      >
+{`import { NotificationCenter } from '@azodik/ui';
+
+const [notifications, setNotifications] = useState([
+  {
+    id: '1',
+    title: 'New message',
+    message: 'You have a new message from John Doe',
+    type: 'info',
+    timestamp: new Date(),
+    read: false,
+  },
+]);
+
+<NotificationCenter
+  notifications={notifications}
+  onNotificationClick={(notification) => {
+    // Handle notification click
+  }}
+  onNotificationDismiss={(id) => {
+    // Remove notification
+  }}
+  onMarkAllAsRead={() => {
+    // Mark all as read
+  }}
+/>`}
+      </CodeBlockWithPreview>
+    </>
+  );
+};
+
+export const NotificationTypesSection = () => {
+  const { currentLanguage } = useLanguageTranslation();
+  const [notifications, setNotifications] = useState([
+    {
+      id: '1',
+      title: 'Information',
+      message: 'This is an informational notification',
+      type: 'info',
+      timestamp: new Date(),
+      read: false,
+    },
+    {
+      id: '2',
+      title: 'Success',
+      message: 'Operation completed successfully',
+      type: 'success',
+      timestamp: new Date(),
+      read: false,
+    },
+    {
+      id: '3',
+      title: 'Warning',
+      message: 'Please review this important warning',
+      type: 'warning',
+      timestamp: new Date(),
+      read: false,
+    },
+    {
+      id: '4',
+      title: 'Error',
+      message: 'An error occurred while processing your request',
+      type: 'error',
+      timestamp: new Date(),
+      read: false,
+    },
+  ]);
+
+  return (
+    <>
+      <h3>Notification Types</h3>
+      <CodeBlockWithPreview
+        title="Different Notification Types"
+        preview={
+          <NotificationCenter
+            notifications={notifications}
+            onNotificationDismiss={(id) => {
+              setNotifications(prev => prev.filter(n => n.id !== id));
+            }}
+            locale={currentLanguage}
+          />
+        }
+      >
+{`<NotificationCenter
+  notifications={[
+    {
+      id: '1',
+      title: 'Information',
+      message: 'This is an informational notification',
+      type: 'info',
+      timestamp: new Date(),
+    },
+    {
+      id: '2',
+      title: 'Success',
+      message: 'Operation completed successfully',
+      type: 'success',
+      timestamp: new Date(),
+    },
+    {
+      id: '3',
+      title: 'Warning',
+      message: 'Please review this important warning',
+      type: 'warning',
+      timestamp: new Date(),
+    },
+    {
+      id: '4',
+      title: 'Error',
+      message: 'An error occurred',
+      type: 'error',
+      timestamp: new Date(),
+    },
+  ]}
+  locale="en" // Pass current language
+/>`}
+      </CodeBlockWithPreview>
+    </>
+  );
+};
+
+export const NotificationWithActionsSection = () => {
+  const { currentLanguage } = useLanguageTranslation();
+  const [notifications, setNotifications] = useState([
+    {
+      id: '1',
+      title: 'Friend request',
+      message: 'John Doe wants to connect with you',
+      type: 'info',
+      timestamp: new Date(),
+      read: false,
+      actions: [
+        {
+          label: 'Accept',
+          onClick: () => {
+            alert('Accepted!');
+            setNotifications(prev => prev.filter(n => n.id !== '1'));
+          },
+        },
+        {
+          label: 'Decline',
+          onClick: () => {
+            setNotifications(prev => prev.filter(n => n.id !== '1'));
+          },
+        },
+      ],
+    },
+  ]);
+
+  return (
+    <>
+      <h3>Notifications with Actions</h3>
+      <CodeBlockWithPreview
+        title="Notifications with Action Buttons"
+        preview={
+          <NotificationCenter
+            notifications={notifications}
+            onNotificationDismiss={(id) => {
+              setNotifications(prev => prev.filter(n => n.id !== id));
+            }}
+            locale={currentLanguage}
+          />
+        }
+      >
+{`<NotificationCenter
+  notifications={[
+    {
+      id: '1',
+      title: 'Friend request',
+      message: 'John Doe wants to connect with you',
+      type: 'info',
+      timestamp: new Date(),
+      actions: [
+        {
+          label: 'Accept',
+          onClick: () => {
+            // Handle accept
+          },
+        },
+        {
+          label: 'Decline',
+          onClick: () => {
+            // Handle decline
+          },
+        },
+      ],
+    },
+  ]}
+  locale="en" // Pass current language
+/>`}
+      </CodeBlockWithPreview>
+    </>
+  );
+};
+
+export const NotificationCenterPropsTable = () => {
+  return (
+    <PropsTable
+      props={[
+        {
+          name: 'notifications',
+          type: 'Notification[]',
+          required: true,
+          description: 'Array of notification objects to display',
+        },
+        {
+          name: 'onNotificationClick',
+          type: '(notification: Notification) => void',
+          required: false,
+          description: 'Callback when a notification is clicked',
+        },
+        {
+          name: 'onNotificationDismiss',
+          type: '(notificationId: string) => void',
+          required: false,
+          description: 'Callback when a notification is dismissed',
+        },
+        {
+          name: 'onMarkAllAsRead',
+          type: '() => void',
+          required: false,
+          description: 'Callback when "Mark all as read" is clicked',
+        },
+        {
+          name: 'onClearAll',
+          type: '() => void',
+          required: false,
+          description: 'Callback when "Clear all" is clicked',
+        },
+        {
+          name: 'position',
+          type: '"right" | "left" | "center"',
+          default: '"right"',
+          description: 'Panel position relative to trigger',
+        },
+        {
+          name: 'showFooter',
+          type: 'boolean',
+          default: 'true',
+          description: 'Show panel footer with "View all" link',
+        },
+        {
+          name: 'footerLinkText',
+          type: 'string',
+          default: '"View all notifications"',
+          description: 'Footer link text',
+        },
+        {
+          name: 'footerLink',
+          type: 'string | (() => void)',
+          required: false,
+          description: 'Footer link href or onClick handler',
+        },
+        {
+          name: 'trigger',
+          type: 'React.ReactNode',
+          required: false,
+          description: 'Custom trigger button',
+        },
+        {
+          name: 'showBadge',
+          type: 'boolean',
+          default: 'true',
+          description: 'Show unread badge on trigger',
+        },
+        {
+          name: 'maxNotifications',
+          type: 'number',
+          required: false,
+          description: 'Maximum number of notifications to display',
+        },
+        {
+          name: 'emptyMessage',
+          type: 'string',
+          default: '"No notifications"',
+          description: 'Custom empty state message',
+        },
+      ]}
+    />
+  );
+};
+
+export const NotificationInterfaceTable = () => {
+  return (
+    <>
+      <h3>Notification Interface</h3>
+      <PropsTable
+        props={[
+          {
+            name: 'id',
+            type: 'string',
+            required: true,
+            description: 'Unique identifier for the notification',
+          },
+          {
+            name: 'title',
+            type: 'string',
+            required: true,
+            description: 'Notification title',
+          },
+          {
+            name: 'message',
+            type: 'string',
+            required: true,
+            description: 'Notification message content',
+          },
+          {
+            name: 'type',
+            type: '"info" | "success" | "warning" | "error"',
+            required: false,
+            description: 'Notification type for styling',
+          },
+          {
+            name: 'icon',
+            type: 'React.ReactNode',
+            required: false,
+            description: 'Custom icon for the notification',
+          },
+          {
+            name: 'timestamp',
+            type: 'Date | string',
+            required: false,
+            description: 'Notification timestamp',
+          },
+          {
+            name: 'read',
+            type: 'boolean',
+            required: false,
+            description: 'Whether the notification has been read',
+          },
+          {
+            name: 'onClick',
+            type: '() => void',
+            required: false,
+            description: 'Click handler for the notification',
+          },
+          {
+            name: 'onDismiss',
+            type: '() => void',
+            required: false,
+            description: 'Dismiss handler for the notification',
+          },
+          {
+            name: 'actions',
+            type: 'Array<{ label: string; onClick: () => void }>',
+            required: false,
+            description: 'Action buttons for the notification',
+          },
+        ]}
+      />
+    </>
+  );
+};
+
+<NotificationCenterComponentHeader />
+
+<NotificationCenterComponentDescription />
+
+<NotificationCenterIntroduction />
+
+<WhenToUseNotificationCenterSection />
+
+<UsageNotificationCenterSection />
+
+<NotificationTypesSection />
+
+<NotificationWithActionsSection />
+
+<NotificationCenterPropsTable />
+
+<NotificationInterfaceTable />
+

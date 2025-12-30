@@ -2,6 +2,8 @@
   /* --- Scaling & Radius Factor --- */
   --scaling: 1;
   --radius-factor: 1;
+  --opacity-factor: 1;
+  --backdrop-blur: 8px;
 
   /* --- Light Mode Base Scales --- */
   
@@ -56,11 +58,26 @@
   --color-primary-hover: var(--accent-10);
   --color-secondary: var(--gray-9);
   --color-secondary-hover: var(--gray-10);
+  
+  /* Brand-level dynamic overrides */
+  --brand-primary: var(--accent-9);
+  --brand-primary-fg: white;
+  --brand-selection: var(--accent-3);
+
   --color-background: var(--gray-1);
   --color-text: var(--gray-12);
   --color-text-secondary: var(--gray-11);
   --color-surface: var(--gray-2);
+  --color-surface-hover: var(--gray-3);
+  --color-surface-elevated: var(--gray-4);
   --color-border: var(--gray-6);
+  --color-border-subtle: var(--gray-4);
+
+  /* Glassmorphism / Translucent Surfaces */
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --bg-glass-dark: rgba(0, 0, 0, 0.6);
+  --border-glass: rgba(255, 255, 255, 0.2);
+  --border-glass-dark: rgba(255, 255, 255, 0.1);
 
   /* --- Typography --- */
   --font-family-sans: "Inter", "Montserrat", system-ui, sans-serif;
@@ -88,16 +105,21 @@
   --radius-round: 9999px;
 
   /* --- Shadows --- */
+  /* Multi-layered shadows for premium depth */
   --shadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-2: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  --shadow-3: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-2: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  --shadow-3: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
   --shadow-4: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --shadow-5: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --shadow-6: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-6: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  
+  /* Rich Glossy Shadow */
+  --shadow-glossy: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
   
   /* Colored shadows for interactive elements */
   --shadow-accent: 0 0 0 3px var(--accent-4);
   --shadow-focus: 0 0 0 1px var(--accent-9), 0 0 0 4px var(--accent-4);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 }
 
 /* --- Gray Scales --- */

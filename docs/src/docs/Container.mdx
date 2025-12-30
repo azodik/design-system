@@ -1,0 +1,113 @@
+import { Container, Button, Card, Flex, Grid, Badge, Textarea, Avatar } from "@azodik/ui";
+import { CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Container
+
+The Container component constrains the maximum width of content. It ensures your content remains readable on large screens.
+
+<div className="flex gap-2 mb-4">
+  <Badge variant="solid" color="indigo">Layout</Badge>
+  <Badge variant="outline" color="neutral">Responsive</Badge>
+</div>
+
+## Usage
+
+```tsx
+import { Container } from "@azodik/ui";
+
+function App() {
+  return (
+    <Container size="2">
+      <div>My content</div>
+    </Container>
+  );
+}
+```
+
+## Examples
+
+### Sizes
+
+The `Container` component supports 4 distinct sizes to control the maximum width.
+
+<CodeBlockWithPreview
+  preview={
+    <div className="w-full flex flex-col gap-4">
+      <Container size="1" className="bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 p-4 rounded-md">
+        <div className="text-center font-medium">Size 1 (448px)</div>
+      </Container>
+      <Container size="2" className="bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 p-4 rounded-md">
+        <div className="text-center font-medium">Size 2 (688px)</div>
+      </Container>
+      <Container size="3" className="bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 p-4 rounded-md">
+        <div className="text-center font-medium">Size 3 (880px)</div>
+      </Container>
+      <Container size="4" className="bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 p-4 rounded-md">
+        <div className="text-center font-medium">Size 4 (1136px)</div>
+      </Container>
+    </div>
+  }
+  code={`<Container size="1" className="bg-slate-50 p-4 border rounded">
+  Size 1 (448px)
+</Container>
+
+<Container size="2" className="bg-slate-50 p-4 border rounded">
+  Size 2 (688px)
+</Container>
+
+<Container size="3" className="bg-slate-50 p-4 border rounded">
+  Size 3 (880px)
+</Container>
+
+<Container size="4" className="bg-slate-50 p-4 border rounded">
+  Size 4 (1136px)
+</Container>`}
+/>
+
+### Section
+
+The layout package also exports a `Section` component that goes well with `Container`. `Section` provides consistent vertical padding.
+
+<CodeBlockWithPreview
+  preview={
+    <div className="w-full border rounded-md overflow-hidden">
+      <div className="bg-slate-100 dark:bg-slate-900">
+        <Container size="2">
+          <div className="py-8 text-center">Hero Section</div>
+        </Container>
+      </div>
+      <Container size="2">
+        <div className="py-12 border-x border-dashed border-slate-300 dark:border-slate-700 h-32 flex items-center justify-center">
+          Content
+        </div>
+      </Container>
+    </div>
+  }
+  code={`<div className="bg-slate-100">
+  <Container size="2">
+    <div className="py-8">Hero Section</div>
+  </Container>
+</div>
+<Container size="2">
+  <div className="py-12">Content</div>
+</Container>`}
+/>
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: "size",
+      type: '"1" | "2" | "3" | "4"',
+      defaultValue: '"4"',
+      description: "Sets the maximum width of the container.",
+    },
+    {
+      name: "as",
+      type: "React.ElementType",
+      defaultValue: '"div"',
+      description: "Polymorphic prop to render as a different element.",
+    },
+  ]}
+/>

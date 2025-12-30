@@ -1,9 +1,11 @@
 import React from "react";
+import { resolveRadiusFactor } from "../utils/radius";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  variant?: "surface" | "classic" | "ghost";
+  variant?: "surface" | "classic" | "ghost" | "glass";
   size?: "1" | "2" | "3";
+  radius?: "none" | "small" | "medium" | "large" | "full";
 }
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -30,22 +32,47 @@ export interface CardActionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
+const CardContext = React.createContext<{ titleId?: string }>({});
+
 export default function Card({
   children,
   className = "",
   variant = "surface",
   size = "2",
+  radius,
   style,
   ...props
 }: CardProps) {
+  const titleId = React.useId();
+  const hasTitle =
+    React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.type === CardHeader,
+    ) ||
+    React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.type === CardTitle,
+    );
+
   const combinedClassName = ["az-Card", `az-variant-${variant}`, `az-r-size-${size}`, className]
     .filter(Boolean)
     .join(" ");
 
+  const customStyle: React.CSSProperties = {
+    ...style,
+    ...resolveRadiusFactor(radius),
+  } as React.CSSProperties;
+
   return (
-    <div className={combinedClassName} style={style} {...props}>
-      {children}
-    </div>
+    <CardContext.Provider value={{ titleId }}>
+      <div
+        className={combinedClassName}
+        style={customStyle}
+        role="region"
+        aria-labelledby={hasTitle ? titleId : undefined}
+        {...props}
+      >
+        {children}
+      </div>
+    </CardContext.Provider>
   );
 }
 
@@ -59,8 +86,9 @@ export function CardHeader({ children, className = "", ...props }: CardHeaderPro
 }
 
 export function CardTitle({ children, className = "", ...props }: CardTitleProps) {
+  const { titleId } = React.useContext(CardContext);
   return (
-    <h3 className={`card-title ${className}`} {...props}>
+    <h3 id={titleId} className={`card-title ${className}`} {...props}>
       {children}
     </h3>
   );

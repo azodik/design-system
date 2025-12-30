@@ -2,6 +2,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Theming from "@/docs/Theming.mdx";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
+import { Box, Container } from "@azodik/ui";
 import "@/styles/docs.css";
 
 export default function ThemingDocsPage() {
@@ -13,14 +14,16 @@ export default function ThemingDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
-          <MDXProvider>
-            <Theming />
-          </MDXProvider>
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
+          <Box style={{ paddingBottom: "4rem" }}>
+            <MDXProvider>
+              <Theming />
+            </MDXProvider>
+          </Box>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

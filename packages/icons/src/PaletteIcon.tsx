@@ -1,14 +1,13 @@
 import React from "react";
 
-interface PaletteIconProps {
+interface PaletteIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
-const PaletteIcon: React.FC<PaletteIconProps> = ({ size = 20, className, style }) => {
+const PaletteIcon: React.FC<PaletteIconProps> = ({ size = 20, className, style, ...props }) => {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"

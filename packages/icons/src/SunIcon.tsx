@@ -1,14 +1,13 @@
 import React from "react";
 
-interface SunIconProps {
+interface SunIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
-const SunIcon: React.FC<SunIconProps> = ({ size = 20, className, style }) => {
+const SunIcon: React.FC<SunIconProps> = ({ size = 20, className, style, ...props }) => {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"

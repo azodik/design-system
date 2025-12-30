@@ -1,15 +1,22 @@
 import { MDXProvider } from "@mdx-js/react";
-import Accordion from "@/docs/Accordion.mdx";
-import { Accordion as AccordionComponent, AccordionItem, Card, CardContent } from "@azodik/ui";
+import AccordionDocs from "../docs/Accordion.mdx";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 
 const components = {
-  Accordion: AccordionComponent,
-  AccordionItem: AccordionItem,
-  Card: Card,
-  CardContent: CardContent,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
 };
 
 export default function AccordionDocsPage() {
@@ -21,14 +28,14 @@ export default function AccordionDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider components={components}>
-            <Accordion />
+            <AccordionDocs />
           </MDXProvider>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

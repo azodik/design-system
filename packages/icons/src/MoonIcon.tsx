@@ -1,14 +1,13 @@
 import React from "react";
 
-interface MoonIconProps {
+interface MoonIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
-const MoonIcon: React.FC<MoonIconProps> = ({ size = 20, className, style }) => {
+const MoonIcon: React.FC<MoonIconProps> = ({ size = 20, className, style, ...props }) => {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"

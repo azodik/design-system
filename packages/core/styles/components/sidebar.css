@@ -1,0 +1,411 @@
+/* Sidebar Base Styles */
+.sidebar {
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  height: 100vh;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+}
+
+/* Sidebar Item Styles - Improved Active/Hover */
+.sidebar-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-2);
+  transition: all 0.2s ease;
+  margin: 0.125rem 0.5rem;
+}
+
+/* Default hover - neutral by default when sidebar has neutral states class */
+.sidebar-neutral-states .sidebar-item a:hover,
+.sidebar.sidebar-neutral-states .sidebar-item a:hover,
+.sidebar-item a.sidebar-neutral-states:hover,
+a.sidebar-neutral-states:hover {
+  background: var(--gray-3);
+  color: var(--gray-12);
+}
+
+/* Default hover when NOT using neutral states */
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+/* Accent colors - only when NOT using neutral states */
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a.active {
+  background: var(--accent-3);
+  color: var(--accent-11);
+  font-weight: 500;
+}
+
+.sidebar:not(.sidebar-neutral-states) .sidebar-item a.active:hover {
+  background: var(--accent-4);
+}
+
+/* Neutral states - default behavior */
+.sidebar-neutral-states .sidebar-item a.active,
+.sidebar.sidebar-neutral-states .sidebar-item a.active,
+.sidebar-item a.sidebar-neutral-states.active,
+a.sidebar-neutral-states.active {
+  background: var(--gray-3);
+  color: var(--gray-12);
+  font-weight: 500;
+}
+
+.sidebar-neutral-states .sidebar-item a.active:hover,
+.sidebar.sidebar-neutral-states .sidebar-item a.active:hover,
+.sidebar-item a.sidebar-neutral-states.active:hover,
+a.sidebar-neutral-states.active:hover {
+  background: var(--gray-4);
+}
+
+/* Sidebar Item Icon */
+.sidebar-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* Sidebar Item Text */
+.sidebar-item-text {
+  flex: 1;
+}
+
+/* Sidebar Item Badge */
+.sidebar-item-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--accent-9);
+  color: white;
+  border-radius: var(--radius-round);
+}
+
+/* Sidebar Group Styles */
+.sidebar-group {
+  margin-bottom: 1rem;
+}
+
+.sidebar-group-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-group-header.collapsible {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  background: none;
+  width: 100%;
+  transition: color 0.2s ease;
+  text-align: left;
+}
+
+.sidebar-group-header.collapsible:hover {
+  color: var(--color-text);
+}
+
+.sidebar-group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-group-arrow {
+  transition: transform 0.2s ease;
+  font-size: 0.625rem;
+}
+
+.sidebar-group-arrow.collapsed {
+  transform: rotate(-90deg);
+}
+
+.sidebar-group-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.sidebar-group-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Sidebar Group Variants */
+.sidebar-group.variant-compact .sidebar-group-header {
+  padding: 0.375rem 1rem;
+  font-size: 0.6875rem;
+  text-transform: none;
+}
+
+.sidebar-group.variant-compact .sidebar-item a {
+  padding: 0.5rem 1rem;
+}
+
+.sidebar-group.variant-icon-only .sidebar-item-text {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-group.variant-icon-only .sidebar-item-text {
+  display: none;
+}
+
+/* Sidebar Item Sizes */
+.sidebar-item.size-1 a {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.sidebar-item.size-2 a {
+  padding: 0.625rem 1rem;
+  font-size: 0.9375rem;
+}
+
+.sidebar-item.size-3 a {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+}
+
+/* Sidebar Brand */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-brand-logo {
+  flex-shrink: 0;
+}
+
+.sidebar-brand-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Sidebar Header & Footer */
+.sidebar-header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+}
+
+/* Sidebar Content */
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar User */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.sidebar-user-avatar {
+  flex-shrink: 0;
+}
+
+.sidebar-user-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-email {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sidebar User Dropdown */
+.sidebar-user-dropdown {
+  position: relative;
+}
+
+.sidebar-user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: var(--radius-2);
+  transition: background 0.2s ease;
+}
+
+.sidebar-user-trigger:hover {
+  background: var(--color-surface-hover);
+}
+
+.sidebar-user-chevrons {
+  display: flex;
+  flex-direction: column;
+  gap: -4px;
+  color: var(--color-text-secondary);
+}
+
+.sidebar-user-dropdown-content {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  margin-bottom: 0.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.sidebar-user-dropdown.open .sidebar-user-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.sidebar-user-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-user-dropdown-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-user-dropdown-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.sidebar-user-dropdown-email {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.sidebar-user-dropdown-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.sidebar-user-dropdown-item {
+  margin: 0;
+}
+
+.sidebar-user-dropdown-link {
+  display: block;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebar-user-dropdown-link:hover {
+  background: var(--color-surface-hover);
+}
+
+.sidebar-user-dropdown-divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  background: var(--color-border);
+}
+
+/* Responsive Sidebar */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}

@@ -2,6 +2,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Typography from "@/docs/Typography.mdx";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
+import { Box, Container } from "@azodik/ui";
 import "@/styles/docs.css";
 
 export default function TypographyDocsPage() {
@@ -13,14 +14,14 @@ export default function TypographyDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider>
             <Typography />
           </MDXProvider>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

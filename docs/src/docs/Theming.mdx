@@ -71,12 +71,12 @@ We use a 12-scale color system. The most important tokens are:
 ### Radii
 We use a standard radius scale mapped to the `radius` prop:
 
-- `--radius-1`: Small (approx 3-4px)
-- `--radius-2`: Medium (approx 6-8px)
-- `--radius-3`: Large (approx 12px)
-- `--radius-4`: X-Large (approx 16px)
-- `--radius-5`: XX-Large (approx 24px)
-- `--radius-round`: 9999px
+- `--radius-1`: X-Small (approx 2px)
+- `--radius-2`: Small (approx 4px)
+- `--radius-3`: Medium (approx 6px)
+- `--radius-4`: Large (approx 8px)
+- `--radius-5`: X-Large (approx 12px)
+- `--radius-round`: 9999px (Full)
 
 ## Theme Panel
 
@@ -120,3 +120,72 @@ You can override any of the CSS variables in your own stylesheet. It's recommend
   --accent-10: #4f46e5;
 }
 ```
+
+## Customization
+
+### Custom Accent Colors
+
+The `ThemeProvider` (and `Theme` component) supports custom accent colors. You can pass any valid CSS color value (hex, rgb, etc.) to the `accentColor` prop.
+
+<CodeBlock language="tsx">
+{`// Using a custom hex color for the primary accent
+<ThemeProvider accentColor="#D946EF">
+  {/* Buttons and other accented elements will use this pink color */}
+  <Button variant="solid">Pink Button</Button>
+</ThemeProvider>`}
+</CodeBlock>
+
+> [!IMPORTANT]
+> **Custom colors should be set at the root `ThemeProvider` level** (in your `main.tsx` or app entry point), not in nested `ThemeProvider` or `Theme` components. This ensures the custom color applies throughout your entire application without CSS specificity conflicts.
+
+### Custom Fonts
+
+To use a custom font family, you can override the `--font-family-sans` CSS variable using the `style` prop on the `ThemeProvider`.
+
+<CodeBlock language="tsx">
+{`// Using a custom font
+<ThemeProvider style={{ "--font-family-sans": "'Inter', sans-serif" }}>
+  <App />
+</ThemeProvider>`}
+</CodeBlock>
+
+> [!IMPORTANT]
+> **Custom fonts should also be set at the root `ThemeProvider` level** for consistent application-wide typography.
+
+### Complete Example
+
+<CodeBlock language="tsx">
+{`// In your main.tsx or app entry point
+<ThemeProvider
+  defaultTheme="system"
+  accentColor="#D946EF"  // Custom pink color
+  grayColor="slate"
+  radius="medium"
+  scaling="100%"
+  style={{ "--font-family-sans": "'Inter', sans-serif" }}  // Custom font
+>
+  <App />
+</ThemeProvider>`}
+</CodeBlock>
+
+## Subtree Theming
+
+The `Theme` component allows you to override theme settings for a specific part of your application. This is useful for sections that need a different look (e.g., a dark sidebar in a light app).
+
+<CodeBlock language="tsx">
+{`import { Theme, Button } from '@azodik/ui';
+
+export default function MyComponent() {
+  return (
+    <div>
+      <Button>Standard Button</Button>
+      
+      {/* Subtree with different radius and accent */}
+      <Theme radius="full" accentColor="ruby">
+        <Button>Custom Subtree Button</Button>
+      </Theme>
+    </div>
+  );
+}`}
+</CodeBlock>
+

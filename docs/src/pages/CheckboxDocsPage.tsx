@@ -1,6 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
 import Checkbox from "@/docs/Checkbox.mdx";
-import { Checkbox as CheckboxComponent, Card, CardContent } from "@azodik/ui";
+import { Checkbox as CheckboxComponent, Card, CardContent, Box, Container } from "@azodik/ui";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 import { ComponentNavigation } from "@/components/docs";
@@ -20,14 +20,14 @@ export default function CheckboxDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <div className="max-w-4xl mx-auto p-2">
-        <div className="docs-content">
+      <Container size="4" className="p-2">
+        <Box className="docs-content">
           <MDXProvider components={components}>
             <Checkbox />
           </MDXProvider>
           <ComponentNavigation />
-        </div>
-      </div>
+        </Box>
+      </Container>
     </SidebarLayout>
   );
 }

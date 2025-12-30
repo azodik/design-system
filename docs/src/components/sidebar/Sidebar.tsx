@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { SidebarToggleIcon, ApplicationIcon, SparklesIcon } from "@azodik/icons";
+import { SidebarToggleIcon, SparklesIcon } from "@azodik/icons";
 import {
   Sidebar as SidebarComponent,
   SidebarHeader,
@@ -11,12 +11,19 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   Breadcrumb,
+  Search,
+  SearchIndex,
+  SearchableItem,
+  NotificationCenter,
+  Notification,
 } from "@azodik/ui";
 import { componentsMenuItems, ComponentMenuItem } from "@/data/componentsMenu";
 import ThemeToggle from "../ThemeToggle";
 import LanguageSelector from "../LanguageSelector";
 import { useLanguageTranslation } from "@/hooks/useLanguageTranslation";
 import { routes } from "@/config/routes";
+import { buildSearchIndex } from "@/utils/buildSearchIndex";
+import { UI_VERSION } from "../../utils/version";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -35,14 +42,76 @@ export default function SidebarLayout({
   children,
   breadcrumbItems,
   breadcrumb,
-  showBreadcrumb = true,
+  showBreadcrumb,
 }: SidebarLayoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useLanguageTranslation();
+  const { t, currentLanguage } = useLanguageTranslation();
+
+  // Initialize search index
+  const [searchIndex] = useState<SearchIndex>(() => buildSearchIndex());
+
+  const handleSearchSelect = (item: SearchableItem) => {
+    navigate(item.url);
+  };
+
+  // Sample notifications for testing
+  const [notifications, setNotifications] = useState<Notification[]>(() => [
+    {
+      id: "1",
+      title: "Welcome to Azodik UI!",
+      message: "Explore our components and start building amazing interfaces.",
+      type: "info",
+      timestamp: new Date(Date.now() - 3600 * 1000), // 1 hour ago
+      read: false,
+    },
+    {
+      id: "2",
+      title: "New Feature Alert",
+      message: "We just released a new Notification Center component. Check it out!",
+      type: "success",
+      timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000), // 2 days ago
+      read: false,
+      actions: [
+        {
+          label: "Learn More",
+          onClick: () => {
+            navigate("/components/docs/notification-center");
+          },
+        },
+      ],
+    },
+    {
+      id: "3",
+      title: "Documentation Updated",
+      message: "The sidebar documentation has been updated with new examples.",
+      type: "info",
+      timestamp: new Date(Date.now() - 7 * 24 * 3600 * 1000), // 7 days ago
+      read: true,
+    },
+  ]);
+
+  const handleNotificationClick = (notification: Notification) => {
+    console.log("Notification clicked:", notification);
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === notification.id ? { ...n, read: true } : n)),
+    );
+  };
+
+  const handleNotificationDismiss = (id: string) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
+
+  const handleMarkAllAsRead = () => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  };
+
+  const handleClearAll = () => {
+    setNotifications([]);
+  };
 
   // Check screen size on mount and resize
   useEffect(() => {
@@ -162,14 +231,10 @@ export default function SidebarLayout({
         className={`${!isSmallScreen && isSidebarCollapsed ? "sidebar-collapsed" : ""} ${isSmallScreen && isSidebarOpen ? "open" : ""}`}
         showHeader={true}
         showFooter={true}
-        showBreadcrumb={true}
+        showBreadcrumb={showBreadcrumb}
       >
         <SidebarHeader show={true}>
-          <SidebarBrand
-            title="Azodik UI"
-            logo={<ApplicationIcon size={24} style={{ color: "var(--color-primary)" }} />}
-            onClick={() => navigate("/")}
-          />
+          <SidebarBrand title="Azodik UI" onClick={() => navigate("/")} />
         </SidebarHeader>
 
         <SidebarContent>
@@ -196,39 +261,22 @@ export default function SidebarLayout({
         onSidebarToggle={handleSidebarToggle}
         isSidebarCollapsed={isSidebarCollapsed}
         sidebarToggleIcon={<SidebarToggleIcon size={16} isCollapsed={isSidebarCollapsed} />}
-        showBreadcrumb={showBreadcrumb}
         showToggleOnDesktop={false}
+        isSmallScreen={isSmallScreen}
+        hideAdditionalControlsOnMobile={true}
+        hideBreadcrumbOnMobile={true}
+        version={UI_VERSION}
         languageSelector={<LanguageSelector />}
-        themeToggle={<ThemeToggle />}
-        iconsLink={
-          <Link
-            to={routes.iconsDocs}
-            className="icons-header-link"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.5rem",
-              borderRadius: "var(--radius-md)",
-              textDecoration: "none",
-              color: "var(--color-text-secondary)",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              transition: "all 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--color-text)";
-              e.currentTarget.style.background = "var(--color-surface)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--color-text-secondary)";
-              e.currentTarget.style.background = "transparent";
-            }}
-          >
-            <SparklesIcon size={18} />
-            <span>Icons</span>
-          </Link>
+        searchComponent={
+          <Search
+            searchIndex={searchIndex}
+            onSelect={handleSearchSelect}
+            placeholder="Search components..."
+            maxResults={8}
+            language={currentLanguage}
+          />
         }
+        showBreadcrumb={showBreadcrumb}
         breadcrumb={
           breadcrumb || (
             <div className="breadcrumb-container">
@@ -236,6 +284,23 @@ export default function SidebarLayout({
             </div>
           )
         }
+        additionalControls={[]}
+        primaryControls={[
+          <Link to={routes.iconsDocs} key="icons-link" className="sidebar-icons-link">
+            <SparklesIcon size={18} />
+            <span>Icons</span>
+          </Link>,
+          <ThemeToggle key="theme-toggle" />,
+          <NotificationCenter
+            key="notification-center"
+            notifications={notifications}
+            onNotificationClick={handleNotificationClick}
+            onNotificationDismiss={handleNotificationDismiss}
+            onMarkAllAsRead={handleMarkAllAsRead}
+            onClearAll={handleClearAll}
+            locale={currentLanguage}
+          />,
+        ]}
       >
         {children}
       </SidebarMainContent>
