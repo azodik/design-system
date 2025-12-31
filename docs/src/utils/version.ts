@@ -1,7 +1,7 @@
 /**
  * Version management for docs
  * Ensures docs stay compatible with the UI package version
- * 
+ *
  * This file is auto-generated. Do not edit manually.
  * The UI version is read from @azodik/ui package.json during build.
  */
@@ -14,7 +14,7 @@ export const UI_VERSION = "0.10.7";
  */
 export function checkVersionCompatibility(expectedVersion?: string): boolean {
   if (!expectedVersion) return true;
-  
+
   // Simple version check - can be enhanced for semver comparison
   return UI_VERSION === expectedVersion;
 }
