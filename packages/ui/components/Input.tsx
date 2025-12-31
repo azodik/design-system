@@ -2,6 +2,11 @@ import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import { ValidationRules, useFieldValidation } from "../utils/validation";
 import { useDebounce } from "../hooks/useDebounce";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+import { getSpacingVar } from "../utils/spacing-scale";
+import { getFontSize } from "../utils/typography-scale";
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   label?: string;
@@ -10,7 +15,8 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   status?: "success" | "error";
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
+  highContrast?: boolean;
   className?: string;
   /**
    * Validation rules for the input
@@ -40,7 +46,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     status,
     color,
     radius,
-    size = "2",
+    size = "sm",
+    highContrast: propHighContrast,
     className = "",
     style,
     id,
@@ -57,8 +64,28 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
 ) {
   const generatedId = React.useId();
   const inputId = id || name || generatedId;
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
   const isNamedColor =
     color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
+
+  // Use spacing and typography utilities
+  const sizeClassName = getSizeClassName(size);
+  const inputSpacing = getSpacingVar(
+    size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : size === "lg" ? 4 : 5,
+  );
+  const inputFontSize = getFontSize(
+    size === "xs"
+      ? "sm"
+      : size === "sm"
+        ? "base"
+        : size === "md"
+          ? "lg"
+          : size === "lg"
+            ? "xl"
+            : "2xl",
+  );
 
   // Internal state for debounced inputs
   const [internalValue, setInternalValue] = React.useState(
@@ -96,6 +123,29 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   const error = validation.error || externalError;
   const finalStatus = error ? "error" : status;
 
+  // Build input classes with size, high contrast, and reduced motion
+  const inputClasses = [
+    "az-Input",
+    "input",
+    sizeClassName,
+    isNamedColor ? `az-accent-${color}` : "",
+    finalStatus ? `az-status-${finalStatus}` : "",
+    highContrast ? "az-high-contrast" : "",
+    reducedMotion ? "az-reduced-motion" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  // Build custom styles with spacing and typography
+  const customStyle: React.CSSProperties = {
+    ...style,
+    ...(color && !isNamedColor ? { "--accent-9": color } : {}),
+    ...resolveRadiusFactor(radius),
+    padding: inputSpacing,
+    fontSize: inputFontSize,
+  } as React.CSSProperties;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInternalValue(newValue);
@@ -114,23 +164,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     validation.handleBlur();
     onBlur?.(e);
   };
-
-  const customStyle: React.CSSProperties = {
-    ...style,
-    ...(color && !isNamedColor ? { "--accent-9": color } : {}),
-    ...resolveRadiusFactor(radius),
-  } as React.CSSProperties;
-
-  const inputClasses = [
-    "az-TextFieldInput input",
-    `az-r-size-${size}`,
-    finalStatus,
-    error && "error",
-    isNamedColor ? `az-accent-${color}` : "",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
 
   return (
     <div className="form-group">

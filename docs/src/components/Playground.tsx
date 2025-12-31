@@ -290,14 +290,14 @@ export default function Playground() {
                         options={def.options.map((opt) => ({ value: opt, label: opt }))}
                         value={String(propValues[propName] || def.defaultValue)}
                         onChange={(val) => handlePropChange(propName, val)}
-                        size="2"
+                        size="md"
                       />
                     )}
                     {def.type === "string" && (
                       <Input
                         value={String(propValues[propName] || "")}
                         onChange={(e) => handlePropChange(propName, e.target.value)}
-                        size="2"
+                        size="md"
                       />
                     )}
                     {def.type === "number" && (
@@ -305,7 +305,7 @@ export default function Playground() {
                         type="number"
                         value={Number(propValues[propName] || 0)}
                         onChange={(e) => handlePropChange(propName, Number(e.target.value))}
-                        size="2"
+                        size="md"
                       />
                     )}
                     {def.type === "boolean" && (

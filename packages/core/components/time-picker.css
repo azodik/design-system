@@ -1,0 +1,18 @@
+/* Time Picker Component */
+.time-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.time-picker-separator {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+.time-picker-error .time-picker-separator {
+  color: var(--color-error, #dc2626);
+}
+

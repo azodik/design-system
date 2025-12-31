@@ -56,7 +56,7 @@ export default function IconDetail({ icon }: IconDetailProps) {
 
   return (
     <Box style={{ minHeight: "100vh", background: "var(--color-background)" }}>
-      <Container size="4" style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
+      <Container size="lg" style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
         <Button
           variant="ghost"
           onClick={() => router.back()}
@@ -97,7 +97,7 @@ export default function IconDetail({ icon }: IconDetailProps) {
         </Box>
       </Container>
 
-      <Container size="4" style={{ padding: "clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 1rem)" }}>
+      <Container size="lg" style={{ padding: "clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 1rem)" }}>
         <Grid columns={isMobile ? "1" : "2"} gap="4">
           <Card>
             <CardHeader>

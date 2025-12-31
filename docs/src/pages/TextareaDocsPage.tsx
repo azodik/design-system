@@ -20,7 +20,7 @@ export default function TextareaDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <Container size="4" className="p-2">
+      <Container size="lg" className="p-2">
         <Box className="docs-content">
           <MDXProvider components={components}>
             <Textarea />

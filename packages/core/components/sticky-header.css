@@ -1,0 +1,29 @@
+/* Sticky Header Component */
+.sticky-header {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sticky-header-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  box-shadow: var(--shadow-md);
+  background: var(--color-background);
+}
+
+.sticky-header-top {
+  top: 0;
+}
+
+.sticky-header-bottom {
+  bottom: 0;
+}
+
+.sticky-header-hidden {
+  transform: translateY(-100%);
+}
+
+.sticky-header-bottom.sticky-header-hidden {
+  transform: translateY(100%);
+}
+

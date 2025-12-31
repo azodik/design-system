@@ -82,7 +82,7 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
         className="icons-search-section"
       >
         <Container
-          size="4"
+          size="lg"
           style={{ width: "100%", padding: "0 clamp(var(--space-3), 4vw, var(--space-4))" }}
         >
           {/* Search Bar - Full Width */}
@@ -172,7 +172,7 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
 
       {/* Grid Section */}
       <Container
-        size="4"
+        size="lg"
         style={{
           width: "100%",
           paddingTop: 0,

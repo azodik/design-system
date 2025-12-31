@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Avatar from "./Avatar";
 import { Breadcrumb } from "./Breadcrumb";
 import { MenuIcon } from "@azodik/icons";
+import type { SemanticSize } from "../utils/size-variant-mapping";
 
 // Hook for responsive sidebar functionality
 export function useResponsiveSidebar() {
@@ -285,7 +286,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   badge?: string | number;
   tooltip?: string;
   show?: boolean;
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   useNeutralStates?: boolean;
 }
 
@@ -296,7 +297,7 @@ export function SidebarItem({
   badge,
   tooltip,
   show = true,
-  size = "2",
+  size = "md",
   useNeutralStates = true,
   className = "",
   ...props
@@ -452,7 +453,7 @@ export function SidebarUserDropdown({
       >
         {avatar || (
           <Avatar
-            size="3"
+            size="lg"
             initials={name.charAt(0).toUpperCase()}
             className="sidebar-user-avatar"
           />
@@ -479,7 +480,7 @@ export function SidebarUserDropdown({
       <div className="sidebar-user-dropdown-content">
         <div className="sidebar-user-dropdown-header">
           <Avatar
-            size="3"
+            size="lg"
             initials={name.charAt(0).toUpperCase()}
             className="sidebar-user-dropdown-avatar"
           />

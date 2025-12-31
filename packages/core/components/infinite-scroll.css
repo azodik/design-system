@@ -1,0 +1,19 @@
+/* Infinite Scroll Component */
+.infinite-scroll {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.infinite-scroll-loader {
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+.infinite-scroll-end {
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--color-text);
+  opacity: 0.6;
+}

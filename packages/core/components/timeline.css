@@ -1,0 +1,212 @@
+/* Timeline Component */
+.timeline {
+  position: relative;
+}
+
+.timeline-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-horizontal {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+}
+
+.timeline-vertical .timeline-item {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.timeline-horizontal .timeline-item {
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+  padding-bottom: 0;
+  padding-right: var(--space-6);
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+  padding-right: 0;
+}
+
+.timeline-line {
+  position: absolute;
+  background: var(--color-border);
+}
+
+.timeline-vertical .timeline-line {
+  left: 16px;
+  top: 32px;
+  bottom: 0;
+  width: 2px;
+}
+
+.timeline-horizontal .timeline-line {
+  top: 16px;
+  left: 32px;
+  right: 0;
+  height: 2px;
+}
+
+.timeline-item-completed .timeline-line {
+  background: var(--grass-9, #22c55e);
+}
+
+.timeline-item-active .timeline-line {
+  background: var(--accent-9, var(--color-primary));
+}
+
+.timeline-marker {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: all 0.2s ease;
+}
+
+.timeline-item-active .timeline-dot {
+  background: var(--accent-9, var(--color-primary));
+  border-color: var(--accent-9, var(--color-primary));
+  color: white;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+}
+
+.timeline-item-completed .timeline-dot {
+  background: var(--grass-9, #22c55e);
+  border-color: var(--grass-9, #22c55e);
+  color: white;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-top: var(--space-1);
+}
+
+.timeline-title {
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.timeline-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  opacity: 0.7;
+  margin-bottom: var(--space-2);
+}
+
+.timeline-timestamp {
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+.timeline-custom-content {
+  margin-top: var(--space-3);
+}
+
+/* Timeline Colors */
+.timeline-item-color-indigo .timeline-dot,
+.timeline-item-color-indigo.timeline-item-active .timeline-dot {
+  background: var(--indigo-9, #4f46e5);
+  border-color: var(--indigo-9, #4f46e5);
+}
+
+.timeline-item-color-ruby .timeline-dot,
+.timeline-item-color-ruby.timeline-item-active .timeline-dot {
+  background: var(--ruby-9, #e11d48);
+  border-color: var(--ruby-9, #e11d48);
+}
+
+.timeline-item-color-grass .timeline-dot,
+.timeline-item-color-grass.timeline-item-active .timeline-dot {
+  background: var(--grass-9, #22c55e);
+  border-color: var(--grass-9, #22c55e);
+}
+
+.timeline-item-color-amber .timeline-dot,
+.timeline-item-color-amber.timeline-item-active .timeline-dot {
+  background: var(--amber-9, #f59e0b);
+  border-color: var(--amber-9, #f59e0b);
+}
+
+.timeline-item-color-cyan .timeline-dot,
+.timeline-item-color-cyan.timeline-item-active .timeline-dot {
+  background: var(--cyan-9, #06b6d4);
+  border-color: var(--cyan-9, #06b6d4);
+}
+
+.timeline-item-color-azodik .timeline-dot,
+.timeline-item-color-azodik.timeline-item-active .timeline-dot {
+  background: var(--accent-9, #f97316);
+  border-color: var(--accent-9, #f97316);
+}
+
+.timeline-item[style*="--timeline-color"] .timeline-dot {
+  background: var(--timeline-color);
+  border-color: var(--timeline-color);
+}
+
+/* Alternate Layout (Horizontal) */
+.timeline-alternate.timeline-vertical .timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-alternate.timeline-vertical .timeline-item:nth-child(even) .timeline-line {
+  left: auto;
+  right: 16px;
+}
+
+.timeline-alternate.timeline-vertical .timeline-item:nth-child(even) .timeline-content {
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-horizontal {
+    flex-direction: column;
+  }
+
+  .timeline-horizontal .timeline-item {
+    min-width: auto;
+    padding-right: 0;
+    padding-bottom: var(--space-6);
+  }
+
+  .timeline-horizontal .timeline-line {
+    left: 16px;
+    top: 32px;
+    right: auto;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+  }
+}
+

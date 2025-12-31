@@ -1,0 +1,148 @@
+/* Segmented Control */
+.segmented-control {
+  display: inline-flex;
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  padding: var(--space-1);
+  gap: var(--space-1);
+}
+
+.segmented-control-full-width {
+  display: flex;
+  width: 100%;
+}
+
+.segmented-control-indicator {
+  position: absolute;
+  top: var(--space-1);
+  left: 0;
+  height: calc(100% - var(--space-2));
+  background: var(--accent-9, var(--color-primary));
+  border-radius: var(--radius-1);
+  transition: transform 0.2s ease, width 0.2s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.segmented-control-color-indigo .segmented-control-indicator {
+  background: var(--indigo-9, #4f46e5);
+}
+
+.segmented-control-color-ruby .segmented-control-indicator {
+  background: var(--ruby-9, #e11d48);
+}
+
+.segmented-control-color-grass .segmented-control-indicator {
+  background: var(--grass-9, #22c55e);
+}
+
+.segmented-control-color-amber .segmented-control-indicator {
+  background: var(--amber-9, #f59e0b);
+}
+
+.segmented-control-color-cyan .segmented-control-indicator {
+  background: var(--cyan-9, #06b6d4);
+}
+
+.segmented-control-color-azodik .segmented-control-indicator {
+  background: var(--accent-9, #f97316);
+}
+
+.segmented-control[style*="--segmented-color"] .segmented-control-indicator {
+  background: var(--segmented-color);
+}
+
+.segmented-control-option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-1);
+  transition: color 0.2s ease;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.segmented-control-option:hover:not(:disabled):not(.segmented-control-option-selected) {
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+.segmented-control-option-selected {
+  color: white;
+  font-weight: 600;
+}
+
+.segmented-control-option-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.segmented-control-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.segmented-control-label {
+  line-height: 1.2;
+}
+
+/* Sizes */
+.segmented-control-size-small {
+  padding: 2px;
+  gap: 2px;
+}
+
+.segmented-control-size-small .segmented-control-option {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.segmented-control-size-small .segmented-control-indicator {
+  top: 2px;
+  height: calc(100% - 4px);
+}
+
+.segmented-control-size-large {
+  padding: var(--space-2);
+  gap: var(--space-2);
+}
+
+.segmented-control-size-large .segmented-control-option {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-md);
+}
+
+.segmented-control-size-large .segmented-control-indicator {
+  top: var(--space-2);
+  height: calc(100% - var(--space-4));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .segmented-control {
+    width: 100%;
+  }
+
+  .segmented-control-option {
+    font-size: var(--font-size-xs);
+    padding: var(--space-2) var(--space-3);
+  }
+}
+

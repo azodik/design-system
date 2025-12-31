@@ -1,0 +1,77 @@
+/* Table Filters Component */
+.table-filters {
+  min-width: 400px;
+  padding: var(--space-4);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+}
+
+.table-filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.table-filters-header h4 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.table-filters-close {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-1);
+  transition: background-color 0.2s ease;
+}
+
+.table-filters-close:hover {
+  background: var(--color-surface);
+}
+
+.table-filters-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.table-filters-item {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.table-filters-item > *:first-child {
+  flex: 1;
+  min-width: 120px;
+}
+
+.table-filters-item > *:nth-child(2) {
+  flex: 1;
+  min-width: 150px;
+}
+
+.table-filters-item > *:nth-child(3) {
+  flex: 1;
+  min-width: 100px;
+}
+
+.table-filters-actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+

@@ -15,7 +15,7 @@ describe("Badge", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Badge size="1">Badge</Badge>);
+    const { container } = render(<Badge size="xs">Badge</Badge>);
     const badge = container.querySelector(".badge");
     expect(badge).toHaveClass("az-r-size-1");
   });

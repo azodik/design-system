@@ -94,19 +94,8 @@ export default function SidebarLayout({
     },
   ]);
 
-  const handleNotificationClick = (notification: Notification) => {
-    console.log("Notification clicked:", notification);
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === notification.id ? { ...n, read: true } : n)),
-    );
-  };
-
   const handleNotificationDismiss = (id: string) => {
     setNotifications((prev) => prev.filter((n) => n.id !== id));
-  };
-
-  const handleMarkAllAsRead = () => {
-    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
   };
 
   const handleClearAll = () => {
@@ -294,11 +283,8 @@ export default function SidebarLayout({
           <NotificationCenter
             key="notification-center"
             notifications={notifications}
-            onNotificationClick={handleNotificationClick}
-            onNotificationDismiss={handleNotificationDismiss}
-            onMarkAllAsRead={handleMarkAllAsRead}
+            onDismiss={handleNotificationDismiss}
             onClearAll={handleClearAll}
-            locale={currentLanguage}
           />,
         ]}
       >

@@ -1,19 +1,22 @@
 import React from "react";
 
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+
 export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  size?: "1" | "2" | "3" | "4";
+  size?: SemanticSize;
   as?: React.ElementType;
 }
 
 export function Container({
   children,
   className = "",
-  size = "4",
+  size = "lg",
   as: Component = "div",
   ...props
 }: ContainerProps) {
+  const sizeClassName = getSizeClassName(size);
   return (
-    <Component className={`az-Container az-size-${size} ${className}`} {...props}>
+    <Component className={`az-Container ${sizeClassName} ${className}`} {...props}>
       {children}
     </Component>
   );

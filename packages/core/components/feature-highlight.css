@@ -1,0 +1,59 @@
+/* Feature Highlight Component */
+.feature-highlight {
+  min-width: 300px;
+  max-width: 400px;
+  padding: var(--space-4);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-highlight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.feature-highlight-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.feature-highlight-close {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-1);
+  transition: background-color 0.2s ease;
+}
+
+.feature-highlight-close:hover {
+  background: var(--color-surface);
+}
+
+.feature-highlight-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  opacity: 0.8;
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.5;
+}
+
+.feature-highlight-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+

@@ -15,9 +15,9 @@ describe("Button", () => {
   });
 
   it("applies custom size class", () => {
-    const { container } = render(<Button size="3">Test</Button>);
+    const { container } = render(<Button size="lg">Test</Button>);
     const button = container.querySelector(".az-Button");
-    expect(button).toHaveClass("az-r-size-3");
+    expect(button).toHaveClass("az-r-size-4");
   });
 
   it("applies variant class", () => {

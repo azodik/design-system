@@ -1,0 +1,75 @@
+/* Tour Component */
+.tour-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  pointer-events: all;
+}
+
+.tour-content {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-4);
+  max-width: 400px;
+  z-index: 1000;
+}
+
+.tour-progress {
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+  opacity: 0.6;
+  margin-bottom: var(--space-2);
+}
+
+.tour-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.tour-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.tour-skip {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  opacity: 0.6;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  padding: 0;
+  text-decoration: underline;
+}
+
+.tour-skip:hover {
+  opacity: 1;
+}
+
+.tour-body {
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.tour-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tour-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+

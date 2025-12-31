@@ -1,0 +1,126 @@
+/* Color Picker Component */
+.color-picker {
+  position: relative;
+  display: inline-block;
+}
+
+.color-picker-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-picker-trigger:hover:not(.color-picker-disabled) {
+  border-color: var(--accent-9, var(--color-primary));
+  box-shadow: var(--shadow-sm);
+}
+
+.color-picker-preview {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-1);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.color-picker-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.color-picker-value {
+  font-size: var(--font-size-sm);
+  font-family: monospace;
+  color: var(--color-text);
+  min-width: 70px;
+}
+
+.color-picker-popup {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.color-picker-presets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.color-picker-preset {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.color-picker-preset:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-md);
+}
+
+.color-picker-custom {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.color-picker-custom-input {
+  width: 60px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+}
+
+.color-picker-custom-text {
+  flex: 1;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  font-family: monospace;
+  font-size: var(--font-size-sm);
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.color-picker-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.color-picker-disabled .color-picker-trigger {
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.color-picker-size-small .color-picker-preview {
+  width: 24px;
+  height: 24px;
+}
+
+.color-picker-size-large .color-picker-preview {
+  width: 40px;
+  height: 40px;
+}
+

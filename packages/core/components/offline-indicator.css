@@ -1,0 +1,41 @@
+/* Offline Indicator Component */
+.offline-indicator {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-lg);
+  animation: offline-indicator-slide-in 0.3s ease;
+}
+
+.offline-indicator-top {
+  top: var(--space-4);
+}
+
+.offline-indicator-bottom {
+  bottom: var(--space-4);
+}
+
+.offline-indicator-message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+@keyframes offline-indicator-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+

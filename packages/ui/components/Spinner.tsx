@@ -1,19 +1,22 @@
 import React from "react";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   color?: string;
 }
 
-export function Spinner({ size = "2", color, className = "", style, ...props }: SpinnerProps) {
+export function Spinner({ size = "md", color, className = "", style, ...props }: SpinnerProps) {
   const customStyle: React.CSSProperties = {
     borderTopColor: color,
     ...style,
   };
 
+  const sizeClassName = getSizeClassName(size);
+
   return (
     <span
-      className={`az-Spinner az-size-${size} ${className}`}
+      className={`az-Spinner ${sizeClassName} ${className}`}
       style={customStyle}
       role="status"
       {...props}

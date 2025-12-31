@@ -13,6 +13,7 @@ import React, {
 import { Box } from "./Box";
 import { Container } from "./Container";
 import { MenuIcon, XIcon } from "@azodik/icons";
+import { SemanticSize } from "../utils/size-variant-mapping";
 
 interface NavbarContextValue {
   isOpen: boolean;
@@ -53,11 +54,11 @@ const useIsMobile = () => {
 interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "sticky" | "fixed" | "floating";
   isGlass?: boolean;
-  containerSize?: "1" | "2" | "3" | "4";
+  containerSize?: SemanticSize;
 }
 
 const Navbar = forwardRef<HTMLDivElement, NavbarProps>(function Navbar(
-  { children, variant = "sticky", isGlass = true, containerSize = "4", className = "", ...props },
+  { children, variant = "sticky", isGlass = true, containerSize = "lg", className = "", ...props },
   ref,
 ) {
   const [isOpen, setIsOpen] = useState(false);

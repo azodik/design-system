@@ -1,0 +1,205 @@
+/* Slider Component */
+.slider {
+  width: 100%;
+  padding: var(--space-4) 0;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: var(--color-surface);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.slider-track-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--accent-9, var(--color-primary));
+  border-radius: var(--radius-full);
+  transition: width 0.1s ease;
+}
+
+.slider-range {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--accent-9, var(--color-primary));
+  border-radius: var(--radius-full);
+  transition: left 0.1s ease, width 0.1s ease;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid var(--accent-9, var(--color-primary));
+  border-radius: var(--radius-full);
+  cursor: grab;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  z-index: 2;
+}
+
+.slider-handle:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.slider-handle:active,
+.slider-dragging .slider-handle {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.slider-handle:focus {
+  outline: 2px solid var(--accent-9);
+  outline-offset: 2px;
+}
+
+.slider-handle-min,
+.slider-handle-max {
+  z-index: 3;
+}
+
+.slider-disabled .slider-track {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.slider-disabled .slider-handle {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+/* Slider Sizes */
+.slider-size-small .slider-track {
+  height: 2px;
+}
+
+.slider-size-small .slider-handle {
+  width: 16px;
+  height: 16px;
+}
+
+.slider-size-large .slider-track {
+  height: 6px;
+}
+
+.slider-size-large .slider-handle {
+  width: 24px;
+  height: 24px;
+}
+
+/* Slider Colors */
+.slider-color-indigo .slider-fill,
+.slider-color-indigo .slider-range,
+.slider-color-indigo .slider-handle {
+  border-color: var(--indigo-9, #4f46e5);
+}
+
+.slider-color-indigo .slider-fill,
+.slider-color-indigo .slider-range {
+  background: var(--indigo-9, #4f46e5);
+}
+
+.slider-color-ruby .slider-fill,
+.slider-color-ruby .slider-range,
+.slider-color-ruby .slider-handle {
+  border-color: var(--ruby-9, #e11d48);
+}
+
+.slider-color-ruby .slider-fill,
+.slider-color-ruby .slider-range {
+  background: var(--ruby-9, #e11d48);
+}
+
+.slider-color-grass .slider-fill,
+.slider-color-grass .slider-range,
+.slider-color-grass .slider-handle {
+  border-color: var(--grass-9, #22c55e);
+}
+
+.slider-color-grass .slider-fill,
+.slider-color-grass .slider-range {
+  background: var(--grass-9, #22c55e);
+}
+
+.slider-color-amber .slider-fill,
+.slider-color-amber .slider-range,
+.slider-color-amber .slider-handle {
+  border-color: var(--amber-9, #f59e0b);
+}
+
+.slider-color-amber .slider-fill,
+.slider-color-amber .slider-range {
+  background: var(--amber-9, #f59e0b);
+}
+
+.slider-color-cyan .slider-fill,
+.slider-color-cyan .slider-range,
+.slider-color-cyan .slider-handle {
+  border-color: var(--cyan-9, #06b6d4);
+}
+
+.slider-color-cyan .slider-fill,
+.slider-color-cyan .slider-range {
+  background: var(--cyan-9, #06b6d4);
+}
+
+.slider-color-azodik .slider-fill,
+.slider-color-azodik .slider-range,
+.slider-color-azodik .slider-handle {
+  border-color: var(--accent-9, #f97316);
+}
+
+.slider-color-azodik .slider-fill,
+.slider-color-azodik .slider-range {
+  background: var(--accent-9, #f97316);
+}
+
+.slider[style*="--slider-color"] .slider-fill,
+.slider[style*="--slider-color"] .slider-range,
+.slider[style*="--slider-color"] .slider-handle {
+  border-color: var(--slider-color);
+}
+
+.slider[style*="--slider-color"] .slider-fill,
+.slider[style*="--slider-color"] .slider-range {
+  background: var(--slider-color);
+}
+

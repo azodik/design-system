@@ -70,7 +70,7 @@ export const StatCard = React.memo(function StatCard({
   formatValue,
   className = "",
   variant = "surface",
-  size = "2",
+  size = "sm",
   radius = "medium",
   ...props
 }: StatCardProps) {

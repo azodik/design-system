@@ -62,7 +62,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
           placeholder="Search icons by name, category, or tag..."
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          size="3"
+          size="lg"
           style={{
             paddingLeft: "3.5rem",
             paddingRight: "var(--space-5)",

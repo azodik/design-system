@@ -1,11 +1,16 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+import { getSpacingVar } from "../utils/spacing-scale";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   variant?: "surface" | "classic" | "ghost" | "glass";
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   radius?: "none" | "small" | "medium" | "large" | "full";
+  highContrast?: boolean;
 }
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,12 +43,18 @@ export default function Card({
   children,
   className = "",
   variant = "surface",
-  size = "2",
+  size = "sm",
   radius,
+  highContrast: propHighContrast,
   style,
   ...props
 }: CardProps) {
   const titleId = React.useId();
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
+  const sizeClassName = getSizeClassName(size);
+
   const hasTitle =
     React.Children.toArray(children).some(
       (child) => React.isValidElement(child) && child.type === CardHeader,
@@ -52,13 +63,26 @@ export default function Card({
       (child) => React.isValidElement(child) && child.type === CardTitle,
     );
 
-  const combinedClassName = ["az-Card", `az-variant-${variant}`, `az-r-size-${size}`, className]
+  // Use spacing utilities
+  const cardPadding = getSpacingVar(
+    size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : size === "lg" ? 5 : 6,
+  );
+
+  const combinedClassName = [
+    "az-Card",
+    `az-variant-${variant}`,
+    sizeClassName,
+    highContrast ? "az-high-contrast" : "",
+    reducedMotion ? "az-reduced-motion" : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
   const customStyle: React.CSSProperties = {
     ...style,
     ...resolveRadiusFactor(radius),
+    padding: cardPadding,
   } as React.CSSProperties;
 
   return (

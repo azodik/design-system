@@ -179,16 +179,16 @@ export function DateRangePicker({
       <div className="date-range-picker-calendar">
         {showQuickSelect && (
           <div className="date-range-picker-quick-select">
-            <Button size="1" variant="outline" onClick={() => handleQuickSelect("today")}>
+            <Button size="xs" variant="outline" onClick={() => handleQuickSelect("today")}>
               Today
             </Button>
-            <Button size="1" variant="outline" onClick={() => handleQuickSelect("week")}>
+            <Button size="xs" variant="outline" onClick={() => handleQuickSelect("week")}>
               Week
             </Button>
-            <Button size="1" variant="outline" onClick={() => handleQuickSelect("month")}>
+            <Button size="xs" variant="outline" onClick={() => handleQuickSelect("month")}>
               Month
             </Button>
-            <Button size="1" variant="outline" onClick={() => handleQuickSelect("year")}>
+            <Button size="xs" variant="outline" onClick={() => handleQuickSelect("year")}>
               Year
             </Button>
           </div>
@@ -236,10 +236,10 @@ export function DateRangePicker({
         </div>
 
         <div className="date-range-picker-actions">
-          <Button size="2" variant="outline" onClick={handleClear}>
+          <Button size="sm" variant="outline" onClick={handleClear}>
             Clear
           </Button>
-          <Button size="2" variant="solid" onClick={handleApply}>
+          <Button size="sm" variant="solid" onClick={handleApply}>
             Apply
           </Button>
         </div>
@@ -261,6 +261,14 @@ export function DateRangePicker({
         readOnly
         className={className}
         onClick={() => !disabled && setIsOpen(true)}
+        onKeyDown={(e) => {
+          if (!disabled && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            setIsOpen(true);
+          }
+        }}
+        role="button"
+        tabIndex={disabled ? -1 : 0}
         style={{ cursor: disabled ? "not-allowed" : "pointer" }}
       />
     </Popover>

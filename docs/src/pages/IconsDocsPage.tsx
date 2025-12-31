@@ -292,7 +292,7 @@ export default function IconsDocsPage() {
 
   return (
     <SidebarLayout breadcrumbItems={breadcrumbItems}>
-      <Container size="4" style={{ maxWidth: "1200px" }} className="p-2">
+      <Container size="lg" style={{ maxWidth: "1200px" }} className="p-2">
         <Box className="docs-content">
           <h1>Icons</h1>
           <p>
@@ -371,7 +371,7 @@ function MyComponent() {
               <Button
                 onClick={() => setSelectedCategory("all")}
                 variant={selectedCategory === "all" ? "solid" : "soft"}
-                size="2"
+                size="md"
               >
                 All ({iconEntries.length})
               </Button>
@@ -381,7 +381,7 @@ function MyComponent() {
                     key={category}
                     onClick={() => setSelectedCategory(category)}
                     variant={selectedCategory === category ? "solid" : "soft"}
-                    size="2"
+                    size="md"
                   >
                     {category} ({icons.length})
                   </Button>

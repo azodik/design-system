@@ -1,0 +1,63 @@
+/* Drag and Drop Component */
+.drag-and-drop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.drag-and-drop-horizontal {
+  flex-direction: row;
+}
+
+.drag-and-drop-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  cursor: move;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.drag-and-drop-item:hover {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.drag-and-drop-item-dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.drag-and-drop-item-drag-over {
+  border-color: var(--accent-9, var(--color-primary));
+  background: var(--accent-1, rgba(249, 115, 22, 0.1));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.drag-and-drop-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-text);
+  opacity: 0.5;
+  cursor: grab;
+  font-size: 1.2rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.drag-and-drop-handle:active {
+  cursor: grabbing;
+}
+
+.drag-and-drop-content {
+  flex: 1;
+}
+

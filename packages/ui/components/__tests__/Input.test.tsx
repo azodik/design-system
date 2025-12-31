@@ -12,8 +12,8 @@ describe("Input", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Input size="1" />);
-    const input = container.querySelector(".az-TextFieldInput");
+    const { container } = render(<Input size="xs" />);
+    const input = container.querySelector("input");
     expect(input).toHaveClass("az-r-size-1");
   });
 
@@ -35,9 +35,9 @@ describe("Checkbox", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Checkbox size="3" />);
+    const { container } = render(<Checkbox size="lg" />);
     const checkbox = container.querySelector(".az-Checkbox");
-    expect(checkbox).toHaveClass("az-r-size-3");
+    expect(checkbox).toHaveClass("az-r-size-4");
   });
 });
 
@@ -48,9 +48,9 @@ describe("Radio", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Radio size="2" name="test" />);
+    const { container } = render(<Radio size="md" name="test" />);
     const radio = container.querySelector(".radio");
-    expect(radio).toHaveClass("az-r-size-2");
+    expect(radio).toHaveClass("az-r-size-3");
   });
 });
 
@@ -61,7 +61,7 @@ describe("Switch", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Switch size="1" />);
+    const { container } = render(<Switch size="xs" />);
     const switchElement = container.querySelector(".switch");
     expect(switchElement).toHaveClass("az-r-size-1");
   });

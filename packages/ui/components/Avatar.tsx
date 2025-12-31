@@ -1,10 +1,12 @@
 import React from "react";
+import type { SemanticSize } from "../utils/size-variant-mapping";
+import { mapSemanticToNumeric } from "../utils/size-variant-mapping";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   children?: React.ReactNode;
-  size?: "1" | "2" | "3" | "4" | "5" | "6";
+  size?: SemanticSize;
   status?: "online" | "away" | "offline" | "busy";
   initials?: string;
 }
@@ -13,7 +15,7 @@ export default function Avatar({
   src,
   alt,
   children,
-  size = "3",
+  size = "lg",
   status,
   initials,
   className = "",
@@ -35,7 +37,7 @@ export default function Avatar({
   const avatarClasses = [
     "avatar",
     "az-Avatar",
-    `az-r-size-${size}`,
+    `az-r-size-${mapSemanticToNumeric(size)}`,
     status && "avatar-status",
     status && `avatar-${status}`,
     className,

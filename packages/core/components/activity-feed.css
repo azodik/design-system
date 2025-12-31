@@ -1,0 +1,46 @@
+/* Activity Feed Component */
+.activity-feed {
+  width: 100%;
+}
+
+.activity-feed-actor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.activity-feed-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.activity-feed-actor-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+.activity-feed-load-more {
+  text-align: center;
+  margin-top: var(--space-4);
+}
+
+.activity-feed-load-more-button {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  transition: all 0.2s ease;
+}
+
+.activity-feed-load-more-button:hover {
+  background: var(--color-surface);
+  border-color: var(--accent-9, var(--color-primary));
+}
+

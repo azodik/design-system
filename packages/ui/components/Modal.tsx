@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+import { announceToScreenReader } from "../utils/screen-reader";
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
-  size?: "1" | "2" | "3" | "4";
+  size?: SemanticSize;
   showCloseButton?: boolean;
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
+  highContrast?: boolean;
 }
 
 /**
@@ -35,15 +40,28 @@ export default function Modal({
   onClose,
   title,
   children,
-  size = "2",
+  size = "sm",
   showCloseButton = true,
   closeOnOverlayClick = true,
   closeOnEscape = true,
+  highContrast: propHighContrast,
   className = "",
   ...props
 }: ModalProps) {
   // Lock body scroll when modal is open
   useBodyScrollLock(isOpen);
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
+  const sizeClassName = getSizeClassName(size);
+  const titleId = React.useId();
+
+  // Announce modal to screen reader
+  useEffect(() => {
+    if (isOpen && title) {
+      announceToScreenReader(`${title} dialog opened`);
+    }
+  }, [isOpen, title]);
 
   useEffect(() => {
     if (!closeOnEscape) return;
@@ -51,6 +69,9 @@ export default function Modal({
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
+        if (title) {
+          announceToScreenReader(`${title} dialog closed`);
+        }
       }
     };
 
@@ -61,7 +82,7 @@ export default function Modal({
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen, onClose, closeOnEscape]);
+  }, [isOpen, onClose, closeOnEscape, title]);
 
   const handleOverlayClick = (event: React.MouseEvent) => {
     if (closeOnOverlayClick && event.target === event.currentTarget) {
@@ -71,7 +92,15 @@ export default function Modal({
 
   if (!isOpen) return null;
 
-  const modalClasses = ["az-Modal modal", `az-r-size-${size}`, className].filter(Boolean).join(" ");
+  const modalClasses = [
+    "az-Modal modal",
+    sizeClassName,
+    highContrast ? "az-high-contrast" : "",
+    reducedMotion ? "az-reduced-motion" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   // Check if children contains ModalHeader to avoid duplicate headers
   const hasModalHeader = React.Children.toArray(children).some(
@@ -90,10 +119,18 @@ export default function Modal({
       role="button"
       tabIndex={0}
     >
-      <div className={modalClasses} {...props}>
+      <div
+        className={modalClasses}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? `${titleId}-title` : undefined}
+        {...props}
+      >
         {title && !hasModalHeader && (
           <ModalHeader onClose={onClose} showCloseButton={showCloseButton}>
-            <h2 className="modal-title">{title}</h2>
+            <h2 id={`${titleId}-title`} className="modal-title">
+              {title}
+            </h2>
           </ModalHeader>
         )}
         <div className="modal-body">{children}</div>

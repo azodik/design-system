@@ -24,7 +24,7 @@ const LanguageSelector: React.FC = () => {
         options={options}
         value={currentLanguage}
         onChange={changeLanguage}
-        size="2"
+        size="md"
         style={{
           minWidth: "150px",
         }}

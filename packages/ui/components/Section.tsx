@@ -1,19 +1,24 @@
 import React from "react";
+import type { SemanticSize } from "../utils/size-variant-mapping";
+import { mapSemanticToNumeric } from "../utils/size-variant-mapping";
 
 export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   as?: React.ElementType;
 }
 
 export function Section({
   children,
   className = "",
-  size = "2",
+  size = "md",
   as: Component = "section",
   ...props
 }: SectionProps) {
   return (
-    <Component className={`az-Section az-size-${size} ${className}`} {...props}>
+    <Component
+      className={`az-Section az-size-${mapSemanticToNumeric(size)} ${className}`}
+      {...props}
+    >
       {children}
     </Component>
   );

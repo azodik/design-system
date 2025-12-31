@@ -1,5 +1,7 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
+import type { SemanticSize } from "../utils/size-variant-mapping";
+import { mapSemanticToNumeric } from "../utils/size-variant-mapping";
 
 export interface RadioProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -8,7 +10,7 @@ export interface RadioProps extends Omit<
   label?: string;
   help?: string;
   error?: string;
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   radius?: "none" | "small" | "medium" | "large" | "full";
   className?: string;
 }
@@ -17,7 +19,7 @@ export function Radio({
   label,
   help,
   error,
-  size = "2",
+  size = "md",
   radius,
   className = "",
   id,
@@ -33,7 +35,7 @@ export function Radio({
     ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
-  const containerClasses = ["az-Radio radio", `az-r-size-${size}`, className]
+  const containerClasses = ["az-Radio radio", `az-r-size-${mapSemanticToNumeric(size)}`, className]
     .filter(Boolean)
     .join(" ");
 

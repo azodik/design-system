@@ -1,6 +1,7 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import { ValidationRules, useFieldValidation } from "../utils/validation";
+import type { SemanticSize } from "../utils/size-variant-mapping";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -9,7 +10,7 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   status?: "success" | "error";
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   className?: string;
   /**
    * Validation rules for the textarea
@@ -28,7 +29,7 @@ export function Textarea({
   status,
   color,
   radius,
-  size = "2",
+  size = "sm",
   className = "",
   style,
   id,

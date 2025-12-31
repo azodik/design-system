@@ -1,13 +1,14 @@
 import React, { forwardRef } from "react";
 import { Box } from "./Box";
 import { Container } from "./Container";
+import type { SemanticSize } from "../utils/size-variant-mapping";
 
 export interface HeroProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "centered" | "split" | "subtle";
   size?: "small" | "medium" | "large" | "full";
   isGlass?: boolean;
   hasGradient?: boolean;
-  containerSize?: "1" | "2" | "3" | "4";
+  containerSize?: SemanticSize;
 }
 
 const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
@@ -17,7 +18,7 @@ const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
     size = "medium",
     isGlass = false,
     hasGradient = false,
-    containerSize = "4",
+    containerSize = "lg",
     className = "",
     ...props
   },

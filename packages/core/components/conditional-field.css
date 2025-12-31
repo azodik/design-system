@@ -1,0 +1,20 @@
+/* Conditional Field Component */
+.conditional-field {
+  width: 100%;
+}
+
+.conditional-field-animate {
+  animation: conditional-field-fade-in 0.2s ease;
+}
+
+@keyframes conditional-field-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

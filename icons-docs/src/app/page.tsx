@@ -69,7 +69,7 @@ export default function HomePage() {
 
       <Hero.Actions>
         <Button
-          size="4"
+          size="lg"
           onClick={() => router.push("/icons")}
           style={{
             height: "clamp(2.75rem, 8vw, 3.5rem)",
@@ -93,7 +93,7 @@ export default function HomePage() {
 
         <Button
           variant="outline"
-          size="4"
+          size="lg"
           onClick={() => window.open("https://github.com/azodik/design-system", "_blank")}
           style={{
             height: "clamp(2.75rem, 8vw, 3.5rem)",

@@ -1,5 +1,7 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
+import type { SemanticSize } from "../utils/size-variant-mapping";
+import { mapSemanticToNumeric } from "../utils/size-variant-mapping";
 
 export interface SwitchProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -10,7 +12,7 @@ export interface SwitchProps extends Omit<
   error?: string;
   className?: string;
   position?: "default" | "space-between";
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   radius?: "none" | "small" | "medium" | "large" | "full";
 }
 
@@ -24,7 +26,7 @@ export function Switch({
   id,
   name,
   position = "space-between",
-  size = "2",
+  size = "md",
   radius,
   style,
   ...props
@@ -45,7 +47,7 @@ export function Switch({
           {label}
         </label>
       )}
-      <div className={`az-Switch switch az-r-size-${size} ${className}`}>
+      <div className={`az-Switch switch az-r-size-${mapSemanticToNumeric(size)} ${className}`}>
         <input
           type="checkbox"
           id={switchId}

@@ -1,0 +1,195 @@
+/* Floating Action Button (FAB) */
+.fab {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: none;
+  background: var(--accent-9, var(--color-primary));
+  color: white;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 0;
+  min-width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full, 50%);
+}
+
+.fab:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.fab:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+.fab:focus {
+  outline: 2px solid var(--accent-9);
+  outline-offset: 2px;
+}
+
+.fab:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* FAB Sizes */
+.fab-small {
+  min-width: 40px;
+  height: 40px;
+}
+
+.fab-medium {
+  min-width: 56px;
+  height: 56px;
+}
+
+.fab-large {
+  min-width: 96px;
+  height: 96px;
+}
+
+.fab-mini {
+  min-width: 40px;
+  height: 40px;
+}
+
+/* Extended FAB */
+.fab-extended {
+  border-radius: var(--radius-3, 28px);
+  padding: 0 var(--space-4);
+  min-width: auto;
+}
+
+.fab-extended .fab-label {
+  margin-left: var(--space-2);
+  white-space: nowrap;
+}
+
+/* FAB Icon */
+.fab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.fab-small .fab-icon,
+.fab-mini .fab-icon {
+  font-size: 1.25rem;
+}
+
+.fab-large .fab-icon {
+  font-size: 2rem;
+}
+
+/* FAB Label */
+.fab-label {
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* FAB Positions */
+.fab-position-bottom-right {
+  bottom: var(--space-6, 24px);
+  right: var(--space-6, 24px);
+}
+
+.fab-position-bottom-left {
+  bottom: var(--space-6, 24px);
+  left: var(--space-6, 24px);
+}
+
+.fab-position-top-right {
+  top: var(--space-6, 24px);
+  right: var(--space-6, 24px);
+}
+
+.fab-position-top-left {
+  top: var(--space-6, 24px);
+  left: var(--space-6, 24px);
+}
+
+.fab-position-bottom-center {
+  bottom: var(--space-6, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fab-position-bottom-center:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.fab-position-top-center {
+  top: var(--space-6, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fab-position-top-center:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* FAB Colors */
+.fab-color-indigo {
+  background: var(--indigo-9, #4f46e5);
+}
+
+.fab-color-ruby {
+  background: var(--ruby-9, #e11d48);
+}
+
+.fab-color-grass {
+  background: var(--grass-9, #22c55e);
+}
+
+.fab-color-amber {
+  background: var(--amber-9, #f59e0b);
+}
+
+.fab-color-cyan {
+  background: var(--cyan-9, #06b6d4);
+}
+
+.fab-color-azodik {
+  background: var(--accent-9, #f97316);
+}
+
+/* Custom color support */
+.fab[style*="--fab-color"] {
+  background: var(--fab-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fab {
+    bottom: var(--space-4, 16px);
+    right: var(--space-4, 16px);
+  }
+
+  .fab-position-bottom-left {
+    bottom: var(--space-4, 16px);
+    left: var(--space-4, 16px);
+  }
+
+  .fab-position-top-right {
+    top: var(--space-4, 16px);
+    right: var(--space-4, 16px);
+  }
+
+  .fab-position-top-left {
+    top: var(--space-4, 16px);
+    left: var(--space-4, 16px);
+  }
+}
+

@@ -24,12 +24,12 @@ describe("Modal", () => {
 
   it("applies correct size class", () => {
     const { container } = render(
-      <Modal isOpen={true} onClose={() => {}} size="3">
+      <Modal isOpen={true} onClose={() => {}} size="lg">
         <p>Content</p>
       </Modal>,
     );
     const modal = container.querySelector(".az-Modal");
-    expect(modal).toHaveClass("az-r-size-3");
+    expect(modal).toHaveClass("az-r-size-4");
   });
 
   it("calls onClose when close button is clicked", async () => {

@@ -1,0 +1,114 @@
+/* Rating Component */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.rating-stars {
+  display: inline-flex;
+  gap: var(--space-1);
+  align-items: center;
+}
+
+.rating-star {
+  position: relative;
+  display: inline-block;
+  color: var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  line-height: 1;
+}
+
+.rating-star:hover:not(.rating-readonly) {
+  transform: scale(1.1);
+}
+
+.rating-star-filled {
+  color: var(--amber-9, #f59e0b);
+}
+
+.rating-star-half {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: var(--amber-9, #f59e0b);
+}
+
+.rating-star-half-filled {
+  color: var(--amber-9, #f59e0b);
+}
+
+.rating-star-hover {
+  color: var(--amber-9, #f59e0b);
+}
+
+.rating-readonly .rating-star {
+  cursor: default;
+}
+
+.rating-value {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Rating Sizes */
+.rating-size-small .rating-star {
+  font-size: 1rem;
+}
+
+.rating-size-medium .rating-star {
+  font-size: 1.5rem;
+}
+
+.rating-size-large .rating-star {
+  font-size: 2rem;
+}
+
+/* Rating Colors */
+.rating-color-indigo .rating-star-filled,
+.rating-color-indigo .rating-star-half,
+.rating-color-indigo .rating-star-hover {
+  color: var(--indigo-9, #4f46e5);
+}
+
+.rating-color-ruby .rating-star-filled,
+.rating-color-ruby .rating-star-half,
+.rating-color-ruby .rating-star-hover {
+  color: var(--ruby-9, #e11d48);
+}
+
+.rating-color-grass .rating-star-filled,
+.rating-color-grass .rating-star-half,
+.rating-color-grass .rating-star-hover {
+  color: var(--grass-9, #22c55e);
+}
+
+.rating-color-amber .rating-star-filled,
+.rating-color-amber .rating-star-half,
+.rating-color-amber .rating-star-hover {
+  color: var(--amber-9, #f59e0b);
+}
+
+.rating-color-cyan .rating-star-filled,
+.rating-color-cyan .rating-star-half,
+.rating-color-cyan .rating-star-hover {
+  color: var(--cyan-9, #06b6d4);
+}
+
+.rating-color-azodik .rating-star-filled,
+.rating-color-azodik .rating-star-half,
+.rating-color-azodik .rating-star-hover {
+  color: var(--accent-9, #f97316);
+}
+
+.rating[style*="--rating-color"] .rating-star-filled,
+.rating[style*="--rating-color"] .rating-star-half,
+.rating[style*="--rating-color"] .rating-star-hover {
+  color: var(--rating-color);
+}
+

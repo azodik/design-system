@@ -1,0 +1,75 @@
+/* Stack Component */
+.stack {
+  display: flex;
+}
+
+.stack-direction-row {
+  flex-direction: row;
+}
+
+.stack-direction-column {
+  flex-direction: column;
+}
+
+.stack-wrap {
+  flex-wrap: wrap;
+}
+
+.stack-full-width {
+  width: 100%;
+}
+
+.stack-full-height {
+  height: 100%;
+}
+
+/* Alignment */
+.stack-align-start {
+  align-items: flex-start;
+}
+
+.stack-align-center {
+  align-items: center;
+}
+
+.stack-align-end {
+  align-items: flex-end;
+}
+
+.stack-align-stretch {
+  align-items: stretch;
+}
+
+.stack-align-baseline {
+  align-items: baseline;
+}
+
+/* Justification */
+.stack-justify-start {
+  justify-content: flex-start;
+}
+
+.stack-justify-center {
+  justify-content: center;
+}
+
+.stack-justify-end {
+  justify-content: flex-end;
+}
+
+.stack-justify-stretch {
+  justify-content: stretch;
+}
+
+.stack-justify-space-between {
+  justify-content: space-between;
+}
+
+.stack-justify-space-around {
+  justify-content: space-around;
+}
+
+.stack-justify-space-evenly {
+  justify-content: space-evenly;
+}
+

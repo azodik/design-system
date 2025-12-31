@@ -1,0 +1,32 @@
+/* Skip Links Component */
+.skip-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-background);
+  color: var(--color-text);
+  text-decoration: none;
+  border: 2px solid var(--accent-9, var(--color-primary));
+  border-radius: var(--radius-2);
+  font-weight: 600;
+  z-index: 10001;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+  outline: none;
+}
+
+.skip-link:hover {
+  background: var(--color-surface);
+}
+

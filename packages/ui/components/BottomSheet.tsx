@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+import { announceToScreenReader } from "../utils/screen-reader";
 
 export interface BottomSheetProps {
   /**
@@ -65,14 +68,24 @@ export function BottomSheet({
   maxHeight = "90vh",
   className = "",
 }: BottomSheetProps) {
+  const sheetId = React.useId();
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const sheetRef = useRef<HTMLDivElement>(null);
   const startYRef = useRef<number>(0);
   const currentYRef = useRef<number>(0);
   const isDraggingRef = useRef(false);
+  const reducedMotion = useReducedMotion();
+  const highContrast = useHighContrastMode();
 
   useBodyScrollLock(open);
+
+  // Announce to screen reader
+  useEffect(() => {
+    if (open && title) {
+      announceToScreenReader(`${title} sheet opened`);
+    }
+  }, [open, title]);
 
   useEffect(() => {
     if (open) {
@@ -189,8 +202,15 @@ export function BottomSheet({
     >
       <div
         ref={sheetRef}
-        className={`bottom-sheet ${className}`}
-        style={{ maxHeight }}
+        className={`bottom-sheet ${highContrast ? "az-high-contrast" : ""} ${reducedMotion ? "az-reduced-motion" : ""} ${className}`}
+        style={{
+          maxHeight,
+          transition: reducedMotion ? "none" : undefined,
+        }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? `bottom-sheet-title-${sheetId}` : undefined}
+        aria-describedby={description ? `bottom-sheet-description-${sheetId}` : undefined}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -203,11 +223,15 @@ export function BottomSheet({
           <div className="bottom-sheet-header">
             <div className="bottom-sheet-header-content">
               {title && (
-                <h2 id="bottom-sheet-title" className="bottom-sheet-title">
+                <h2 id={`bottom-sheet-title-${sheetId}`} className="bottom-sheet-title">
                   {title}
                 </h2>
               )}
-              {description && <p className="bottom-sheet-description">{description}</p>}
+              {description && (
+                <p id={`bottom-sheet-description-${sheetId}`} className="bottom-sheet-description">
+                  {description}
+                </p>
+              )}
             </div>
             {showClose && (
               <button className="bottom-sheet-close" onClick={handleClose} aria-label="Close">

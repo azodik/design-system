@@ -1,0 +1,28 @@
+/* Phone Input Component */
+.phone-input {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.phone-input-country {
+  flex-shrink: 0;
+  min-width: 150px;
+}
+
+.phone-input-field {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .phone-input {
+    flex-direction: column;
+  }
+
+  .phone-input-country {
+    width: 100%;
+    min-width: auto;
+  }
+}
+

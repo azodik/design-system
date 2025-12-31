@@ -10,7 +10,7 @@ export const metadata = {
 export default async function LLMResourcePage() {
   return (
     <Box style={{ minHeight: "100vh", background: "var(--color-background)" }}>
-      <Container size="4" style={{ padding: "clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)" }}>
+      <Container size="lg" style={{ padding: "clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)" }}>
         <Box style={{ marginBottom: "clamp(1.5rem, 4vw, 2rem)" }}>
           <Box
             as="h1"

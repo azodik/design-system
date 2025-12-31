@@ -1,0 +1,26 @@
+/* Center Component */
+.center {
+  display: flex;
+}
+
+.center-horizontal {
+  justify-content: center;
+}
+
+.center-vertical {
+  align-items: center;
+}
+
+.center-horizontal.center-vertical {
+  justify-content: center;
+  align-items: center;
+}
+
+.center-full-width {
+  width: 100%;
+}
+
+.center-full-height {
+  height: 100%;
+}
+

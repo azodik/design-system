@@ -1,7 +1,7 @@
 [
   {
     "path": "packages/ui/dist/index.js",
-    "limit": "130 KB"
+    "limit": "170 KB"
   },
   {
     "path": "packages/icons/dist/index.js",

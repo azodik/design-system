@@ -1,11 +1,16 @@
 import React from "react";
 import { useThemeContext } from "./Theme";
 import { resolveRadiusFactor } from "../utils/radius";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+import { getSpacingVar } from "../utils/spacing-scale";
+import { getFontSize } from "../utils/typography-scale";
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   variant?: "soft" | "surface" | "outline" | "glass";
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
   title?: string;
@@ -16,17 +21,21 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function Alert({
   children,
   variant = "soft",
-  size = "2",
+  size = "sm",
   color,
   radius,
   title,
   icon,
-  highContrast = false,
+  highContrast: propHighContrast,
   className = "",
   style,
   ...props
 }: AlertProps) {
   const context = useThemeContext();
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
+  const sizeClassName = getSizeClassName(size);
 
   const resolvedColor = color || context?.accentColor || "indigo";
 
@@ -34,12 +43,29 @@ export default function Alert({
     resolvedColor,
   );
 
+  // Use spacing and typography utilities
+  const alertPadding = getSpacingVar(
+    size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : size === "lg" ? 5 : 6,
+  );
+  const alertFontSize = getFontSize(
+    size === "xs"
+      ? "sm"
+      : size === "sm"
+        ? "base"
+        : size === "md"
+          ? "lg"
+          : size === "lg"
+            ? "xl"
+            : "2xl",
+  );
+
   const alertClasses = [
     "alert", // Use base alert class for structural styles
     `az-variant-${variant}`,
-    `az-r-size-${size}`,
+    sizeClassName,
     isNamedColor ? `az-accent-${resolvedColor}` : "",
     highContrast ? "az-high-contrast" : "",
+    reducedMotion ? "az-reduced-motion" : "",
     className,
   ]
     .filter(Boolean)
@@ -49,6 +75,8 @@ export default function Alert({
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
     ...resolveRadiusFactor(radius),
+    padding: alertPadding,
+    fontSize: alertFontSize,
   } as React.CSSProperties;
 
   const titleId = React.useId();

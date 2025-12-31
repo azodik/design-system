@@ -1,0 +1,25 @@
+/* Enhanced List Component */
+.enhanced-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.enhanced-list-item {
+  width: 100%;
+}
+
+.enhanced-list-empty {
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--color-text);
+  opacity: 0.5;
+}
+
+.enhanced-list-loading {
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+

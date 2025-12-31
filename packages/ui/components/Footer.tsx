@@ -1,14 +1,15 @@
 import React, { forwardRef } from "react";
 import { Box } from "./Box";
 import { Container } from "./Container";
+import { SemanticSize } from "../utils/size-variant-mapping";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "simple" | "columns" | "centered";
-  containerSize?: "1" | "2" | "3" | "4";
+  containerSize?: SemanticSize;
 }
 
 const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
-  { children, variant = "simple", containerSize = "4", className = "", ...props },
+  { children, variant = "simple", containerSize = "lg", className = "", ...props },
   ref,
 ) {
   const classNames = ["az-Footer", `az-${variant}`, className].filter(Boolean).join(" ");

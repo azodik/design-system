@@ -3,11 +3,14 @@ import { useThemeContext } from "./Theme";
 import { useTheme as useGlobalTheme } from "../providers/ThemeProvider";
 import { resolveRadiusFactor } from "../utils/radius";
 import { Spinner } from "./Spinner";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: "solid" | "soft" | "outline" | "ghost" | "link";
-  size?: "1" | "2" | "3" | "4";
+  size?: SemanticSize;
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
   highContrast?: boolean;
@@ -21,10 +24,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export default function Button({
   children,
   variant = "solid",
-  size = "2",
+  size = "sm",
   color,
   radius,
-  highContrast = false,
+  highContrast: propHighContrast,
   loading = false,
   icon,
   className,
@@ -34,6 +37,9 @@ export default function Button({
 }: ButtonProps) {
   const context = useThemeContext();
   const globalTheme = useGlobalTheme();
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
 
   // Resolve props from context if not provided, fallback to global theme
   const resolvedColor = color || context?.accentColor || globalTheme?.accentColor || "indigo";
@@ -42,14 +48,17 @@ export default function Button({
     resolvedColor,
   );
 
+  const sizeClassName = getSizeClassName(size);
+
   const buttonClasses = [
     "az-reset",
     "az-Button",
     `az-variant-${variant}`,
-    `az-r-size-${size}`,
+    sizeClassName,
     isNamedColor ? `az-accent-${resolvedColor}` : "",
     highContrast ? "az-high-contrast" : "",
     loading ? "az-loading" : "",
+    reducedMotion ? "az-reduced-motion" : "",
     className,
   ]
     .filter(Boolean)
@@ -63,7 +72,7 @@ export default function Button({
 
   return (
     <button className={buttonClasses} style={customStyle} disabled={disabled || loading} {...props}>
-      {loading && <Spinner size="1" color="currentColor" />}
+      {loading && <Spinner size="xs" color="currentColor" />}
       {!loading && icon && <span className="btn-icon">{icon}</span>}
       <span className="btn-content">{children}</span>
     </button>

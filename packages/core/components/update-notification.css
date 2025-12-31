@@ -1,0 +1,36 @@
+/* Update Notification Component */
+.update-notification {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400px;
+  width: calc(100% - var(--space-4) * 2);
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+}
+
+.update-notification-content {
+  padding: var(--space-4);
+}
+
+.update-notification-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.update-notification-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  opacity: 0.8;
+  margin: 0 0 var(--space-4) 0;
+}
+
+.update-notification-actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+

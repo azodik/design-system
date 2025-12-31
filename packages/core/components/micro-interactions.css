@@ -1,0 +1,15 @@
+/* Micro-interactions */
+.micro-interaction-pressed {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+.micro-interaction-hovering {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.micro-interaction-focused {
+  outline: 2px solid var(--accent-9, var(--color-primary));
+  outline-offset: 2px;
+}
+

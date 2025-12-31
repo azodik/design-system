@@ -230,7 +230,7 @@ export default function Search({
           setQuery("");
           setSelectedIndex(0);
         }}
-        size="3"
+        size="md"
         showCloseButton={false}
         className="search-modal"
       >

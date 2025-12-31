@@ -44,7 +44,7 @@ export function MetricCard({
   onClick,
   className = "",
   variant = "surface",
-  size = "2",
+  size = "sm",
   radius = "medium",
   ...props
 }: MetricCardProps) {

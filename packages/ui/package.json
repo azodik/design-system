@@ -71,8 +71,7 @@
   },
   "dependencies": {
     "@azodik/icons": "workspace:*",
-    "azodik-ui-core": "workspace:*",
-    "recharts": "^3.6.0"
+    "azodik-ui-core": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.7",
@@ -83,7 +82,8 @@
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "minisearch": "^7.2.0"
+    "minisearch": "^7.2.0",
+    "recharts": "^3.6.0"
   },
   "peerDependenciesMeta": {
     "minisearch": {

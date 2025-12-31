@@ -1,0 +1,40 @@
+/* Gauge Component */
+.gauge {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  display: block;
+}
+
+.gauge-background {
+  opacity: 0.2;
+}
+
+.gauge-value {
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.gauge-value-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  text-align: center;
+}
+
+.gauge-half .gauge-value-label {
+  top: 75%;
+}
+
+.gauge-quarter .gauge-value-label {
+  top: 60%;
+  left: 60%;
+}
+

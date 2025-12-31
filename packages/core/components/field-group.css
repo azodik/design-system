@@ -1,0 +1,48 @@
+/* Field Group Component */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field-group-row {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.field-group-bordered {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background: var(--color-surface);
+}
+
+.field-group-header {
+  margin-bottom: var(--space-2);
+}
+
+.field-group-label {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.field-group-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.field-group-fields {
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+}
+
+.field-group-row .field-group-fields {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+

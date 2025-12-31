@@ -210,13 +210,13 @@ export default function Demo() {
               >
                 Primary
               </h4>
-              <Button size="1" variant="solid">
+              <Button size="xs" variant="solid">
                 Small Button
               </Button>
-              <Button size="2" variant="solid">
+              <Button size="md" variant="solid">
                 Medium Button
               </Button>
-              <Button size="3" variant="solid">
+              <Button size="lg" variant="solid">
                 Large Button
               </Button>
             </div>
@@ -240,13 +240,13 @@ export default function Demo() {
               >
                 Secondary
               </h4>
-              <Button size="1" variant="soft">
+              <Button size="xs" variant="soft">
                 Small Secondary
               </Button>
-              <Button size="2" variant="soft">
+              <Button size="md" variant="soft">
                 Medium Secondary
               </Button>
-              <Button size="3" variant="soft">
+              <Button size="lg" variant="soft">
                 Large Secondary
               </Button>
             </div>
@@ -278,18 +278,18 @@ export default function Demo() {
       <section className="mb-lg">
         <h2>Avatars</h2>
         <div className="mb-md">
-          <Avatar size="2" initials="JD" />
-          <Avatar size="3" initials="JS" className="ml-sm" />
-          <Avatar size="4" initials="BJ" className="ml-sm" />
-          <Avatar size="5" src="https://via.placeholder.com/64" className="ml-sm" />
+          <Avatar size="sm" initials="JD" />
+          <Avatar size="lg" initials="JS" className="ml-sm" />
+          <Avatar size="xl" initials="BJ" className="ml-sm" />
+          <Avatar size="xl" src="https://via.placeholder.com/64" className="ml-sm" />
         </div>
         <div className="mb-md">
           <AvatarGroup max={3}>
-            <Avatar size="3" initials="A" />
-            <Avatar size="3" initials="B" />
-            <Avatar size="3" initials="C" />
-            <Avatar size="3" initials="D" />
-            <Avatar size="3" initials="E" />
+            <Avatar size="lg" initials="A" />
+            <Avatar size="lg" initials="B" />
+            <Avatar size="lg" initials="C" />
+            <Avatar size="lg" initials="D" />
+            <Avatar size="lg" initials="E" />
           </AvatarGroup>
         </div>
       </section>
@@ -390,7 +390,7 @@ export default function Demo() {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Confirm Action"
-          size="2"
+          size="md"
         >
           <p>Are you sure you want to proceed with this action?</p>
           <ModalFooter>

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import type { SemanticSize } from "../utils/size-variant-mapping";
 
 export type QuickFilterPeriod = "today" | "week" | "month" | "year" | "all";
 
@@ -32,7 +33,7 @@ export interface QuickFiltersProps extends Omit<React.HTMLAttributes<HTMLDivElem
   /**
    * Button size
    */
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
 }
 
 const DEFAULT_FILTERS: QuickFilter[] = [
@@ -59,7 +60,7 @@ export function QuickFilters({
   filters = DEFAULT_FILTERS,
   showAll = false,
   variant = "outline",
-  size = "2",
+  size = "sm",
   className = "",
   ...props
 }: QuickFiltersProps) {

@@ -161,8 +161,8 @@ import { Button } from '@azodik/ui';
 <Button variant="outline">Learn More</Button>
 
 // Different sizes
-<Button size="1">Small</Button>
-<Button size="3">Large</Button>
+<Button size="xs">Small</Button>
+<Button size="lg">Large</Button>
 ```
 
 ### Layout Components
@@ -303,10 +303,10 @@ import { Badge } from '@azodik/ui';
 import { Avatar, AvatarGroup } from '@azodik/ui';
 
 // Single avatar
-<Avatar src="/user.jpg" alt="User" size="4" />
+<Avatar src="/user.jpg" alt="User" size="xl" />
 
 // Avatar with fallback
-<Avatar name="John Doe" size="3" />
+<Avatar name="John Doe" size="lg" />
 
 // Avatar group
 <AvatarGroup>
@@ -709,7 +709,7 @@ All components are mobile-first and responsive:
 
 ```tsx
 // Components automatically adapt to screen size
-<Button size={{ base: "1", md: "2", lg: "3" }}>
+<Button size={{ base: "xs", md: "md", lg: "lg" }}>
   Responsive Button
 </Button>
 

@@ -1,5 +1,10 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+import { getSpacingVar } from "../utils/spacing-scale";
+import { getFontSize } from "../utils/typography-scale";
 
 export interface SelectProps {
   label?: string;
@@ -8,7 +13,8 @@ export interface SelectProps {
   status?: "success" | "error";
   color?: "indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string;
   radius?: "none" | "small" | "medium" | "large" | "full";
-  size?: "1" | "2" | "3";
+  size?: SemanticSize;
+  highContrast?: boolean;
   options: { value: string; label: string; icon?: React.ReactNode }[];
   className?: string;
   style?: React.CSSProperties;
@@ -30,7 +36,8 @@ export function Select({
   status,
   color,
   radius,
-  size = "2",
+  size = "sm",
+  highContrast: propHighContrast,
   options,
   className = "",
   style,
@@ -45,8 +52,28 @@ export function Select({
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(value);
   const selectRef = React.useRef<HTMLDivElement>(null);
+  const _reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const _highContrast = propHighContrast ?? systemHighContrast;
+  const _sizeClassName = getSizeClassName(size);
   const isNamedColor =
     color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
+
+  // Use spacing and typography utilities
+  const selectPadding = getSpacingVar(
+    size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : size === "lg" ? 5 : 6,
+  );
+  const selectFontSize = getFontSize(
+    size === "xs"
+      ? "sm"
+      : size === "sm"
+        ? "base"
+        : size === "md"
+          ? "lg"
+          : size === "lg"
+            ? "xl"
+            : "2xl",
+  );
 
   const selectedOption = options.find((option) => option.value === selectedValue);
 
@@ -94,6 +121,8 @@ export function Select({
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
     ...resolveRadiusFactor(radius),
+    padding: selectPadding,
+    fontSize: selectFontSize,
   } as React.CSSProperties;
 
   const selectClasses = [

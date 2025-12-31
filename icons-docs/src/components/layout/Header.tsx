@@ -8,7 +8,7 @@ export default function Header() {
     <Navbar
       variant="sticky"
       isGlass={true}
-      containerSize="4"
+      containerSize="lg"
       style={{
         position: "sticky",
         top: 0,
