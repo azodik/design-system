@@ -165,6 +165,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     onBlur?.(e);
   };
 
+  const errorId = error ? `${inputId}-error` : undefined;
+  const helpId = help && !error ? `${inputId}-help` : undefined;
+  const describedBy = errorId || helpId;
+
   return (
     <div className="form-group">
       {label && (
@@ -176,15 +180,27 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
         ref={ref}
         id={inputId}
         name={name || inputId}
+        type={props.type ?? "text"}
         className={inputClasses}
         style={customStyle}
         value={shouldUseDebounce ? internalValue : value}
         onChange={handleChange}
         onBlur={handleBlur}
+        aria-invalid={error ? "true" : undefined}
+        aria-required={props.required ? "true" : undefined}
+        aria-describedby={describedBy}
         {...props}
       />
-      {error && <div className="form-error">{error}</div>}
-      {help && !error && <div className="form-help">{help}</div>}
+      {error && (
+        <div id={errorId} className="form-error">
+          {error}
+        </div>
+      )}
+      {help && !error && (
+        <div id={helpId} className="form-help">
+          {help}
+        </div>
+      )}
     </div>
   );
 });

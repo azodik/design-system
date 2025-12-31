@@ -1,0 +1,94 @@
+{
+  "Azodik Button": {
+    "prefix": "az-button",
+    "body": [
+      "<Button",
+      "  variant=\"${1|solid,soft,outline,ghost,link|}\"",
+      "  size=\"${2|xs,sm,md,lg,xl|}\"",
+      "  color=\"${3|indigo,ruby,grass,amber,cyan|}\"",
+      "  ${4:onClick={handleClick}}",
+      ">",
+      "  ${5:Button Text}",
+      "</Button>"
+    ],
+    "description": "Azodik UI Button component"
+  },
+  "Azodik Input": {
+    "prefix": "az-input",
+    "body": [
+      "<Input",
+      "  label=\"${1:Label}\"",
+      "  type=\"${2|text,email,password,number|}\"",
+      "  value={${3:value}}",
+      "  onChange={(e) => set${3/(.*)/${3:/capitalize}/}(e.target.value)}",
+      "  ${4:error={errors.${3}}}",
+      "  ${5:required}",
+      "/>"
+    ],
+    "description": "Azodik UI Input component"
+  },
+  "Azodik Card": {
+    "prefix": "az-card",
+    "body": [
+      "<Card variant=\"${1|surface,classic,ghost,glass|}\" size=\"${2|xs,sm,md,lg,xl|}\">",
+      "  <CardHeader>",
+      "    <CardTitle>${3:Title}</CardTitle>",
+      "    ${4:<CardDescription>Description</CardDescription>}",
+      "  </CardHeader>",
+      "  <CardContent>",
+      "    ${5:Content}",
+      "  </CardContent>",
+      "  ${6:<CardFooter>",
+      "    <Button>Action</Button>",
+      "  </CardFooter>}",
+      "</Card>"
+    ],
+    "description": "Azodik UI Card component"
+  },
+  "Azodik Modal": {
+    "prefix": "az-modal",
+    "body": [
+      "<Modal",
+      "  isOpen={${1:isOpen}}",
+      "  onClose={() => set${1/(.*)/${1:/capitalize}/}(false)}",
+      "  title=\"${2:Modal Title}\"",
+      "  size=\"${3|xs,sm,md,lg,xl|}\"",
+      ">",
+      "  ${4:Modal content}",
+      "</Modal>"
+    ],
+    "description": "Azodik UI Modal component"
+  },
+  "Azodik Alert": {
+    "prefix": "az-alert",
+    "body": [
+      "<Alert",
+      "  variant=\"${1|soft,surface,outline,glass|}\"",
+      "  color=\"${2|indigo,ruby,grass,amber,cyan|}\"",
+      "  ${3:title=\"${4:Alert Title}\"}",
+      ">",
+      "  ${5:Alert message}",
+      "</Alert>"
+    ],
+    "description": "Azodik UI Alert component"
+  },
+  "Azodik Select": {
+    "prefix": "az-select",
+    "body": [
+      "<Select",
+      "  label=\"${1:Label}\"",
+      "  options={${2:options}}",
+      "  value={${3:value}}",
+      "  onChange={set${3/(.*)/${3:/capitalize}/}}",
+      "  ${4:error={errors.${3}}}",
+      "  ${5:help=\"Help text\"}",
+      "/>"
+    ],
+    "description": "Azodik UI Select component"
+  },
+  "Azodik Import": {
+    "prefix": "az-import",
+    "body": ["import { ${1|Button,Input,Card,Modal,Alert,Select|} } from \"@azodik/ui\";"],
+    "description": "Import Azodik UI components"
+  }
+}

@@ -64,6 +64,9 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "test": "vitest",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "create-component": "tsx scripts/cli/create-component.ts",
     "type-check": "tsc --noEmit",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/ui && pnpm build",
@@ -74,15 +77,23 @@
     "azodik-ui-core": "workspace:*"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.15",
+    "@storybook/addon-essentials": "^8.6.15",
+    "@storybook/addon-interactions": "^8.6.15",
+    "@storybook/react": "^8.6.15",
+    "@storybook/react-vite": "^8.6.15",
+    "@storybook/test": "^8.6.15",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "storybook": "^8.6.15",
     "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
+    "minisearch": "^7.2.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "minisearch": "^7.2.0",
     "recharts": "^3.6.0"
   },
   "peerDependenciesMeta": {

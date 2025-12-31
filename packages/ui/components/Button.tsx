@@ -71,7 +71,14 @@ export default function Button({
   } as React.CSSProperties;
 
   return (
-    <button className={buttonClasses} style={customStyle} disabled={disabled || loading} {...props}>
+    <button
+      className={buttonClasses}
+      style={customStyle}
+      disabled={disabled || loading}
+      aria-busy={loading ? "true" : undefined}
+      aria-disabled={disabled ? "true" : undefined}
+      {...props}
+    >
       {loading && <Spinner size="xs" color="currentColor" />}
       {!loading && icon && <span className="btn-icon">{icon}</span>}
       <span className="btn-content">{children}</span>

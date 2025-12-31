@@ -5,8 +5,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: ["./vitest.setup.ts"],
-    exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/e2e/**", "**/*.config.*"],
+    setupFiles: ["../../vitest.setup.ts"],
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],
@@ -18,13 +17,12 @@ export default defineConfig({
         "**/*.d.ts",
         "**/__tests__/**",
         "**/__mocks__/**",
-        "**/e2e/**",
       ],
     },
   },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./packages/ui"),
+      "@": resolve(__dirname, "."),
     },
   },
 });

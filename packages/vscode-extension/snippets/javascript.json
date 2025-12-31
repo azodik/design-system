@@ -1,0 +1,7 @@
+{
+  "Azodik Import": {
+    "prefix": "az-import",
+    "body": ["import { ${1|Button,Input,Card,Modal,Alert,Select|} } from \"@azodik/ui\";"],
+    "description": "Import Azodik UI components"
+  }
+}

@@ -192,6 +192,9 @@ export function Select({
           aria-haspopup="listbox"
           aria-controls={isOpen ? `${selectId}-listbox` : undefined}
           aria-labelledby={labelId}
+          aria-invalid={error ? "true" : undefined}
+          aria-disabled={disabled ? "true" : undefined}
+          aria-describedby={error ? `${selectId}-error` : help ? `${selectId}-help` : undefined}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -288,8 +291,16 @@ export function Select({
           </div>
         )}
       </div>
-      {error && <div className="form-error">{error}</div>}
-      {help && !error && <div className="form-help">{help}</div>}
+      {error && (
+        <div id={`${selectId}-error`} className="form-error">
+          {error}
+        </div>
+      )}
+      {help && !error && (
+        <div id={`${selectId}-help`} className="form-help">
+          {help}
+        </div>
+      )}
     </div>
   );
 }

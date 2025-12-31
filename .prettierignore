@@ -54,3 +54,9 @@ yarn.lock
 *.generated.*
 **/*.generated.*
 
+# Storybook build outputs
+storybook-static/
+**/storybook-static/
+.storybook-out/
+**/.storybook-out/
+

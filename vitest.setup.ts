@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { afterEach, beforeAll } from "vitest";
 import { cleanup } from "@testing-library/react";
+import { configure } from "@testing-library/react";
 
 // Mock window.matchMedia
 beforeAll(() => {
@@ -18,6 +19,9 @@ beforeAll(() => {
     }),
   });
 });
+
+// Configure testing library
+configure({ testIdAttribute: "data-testid" });
 
 // Cleanup after each test
 afterEach(() => {

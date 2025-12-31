@@ -196,6 +196,11 @@ export { Theme, ThemeToggle, useThemeContext } from "./components/Theme";
 export type { ThemeProps, ThemeToggleProps } from "./components/Theme";
 export { ThemePanel } from "./components/ThemePanel";
 export type { ThemePanelProps } from "./components/ThemePanel";
+export { default as ThemeBuilder } from "./components/ThemeBuilder";
+export type {
+  ThemeBuilderProps,
+  ThemeConfig as ThemeBuilderConfig,
+} from "./components/ThemeBuilder";
 export { default as Search } from "./components/Search";
 export type { SearchProps } from "./components/Search";
 export { SearchIndex } from "./utils/search";

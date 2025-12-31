@@ -1,0 +1,71 @@
+{
+  "name": "@azodik/vscode-extension",
+  "displayName": "Azodik UI IntelliSense",
+  "description": "IntelliSense and code snippets for @azodik/ui components",
+  "version": "0.1.0",
+  "publisher": "azodik",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescriptreact.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascriptreact.json"
+      }
+    ],
+    "configuration": {
+      "title": "Azodik UI",
+      "properties": {
+        "azodik.ui.enableIntelliSense": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable IntelliSense for @azodik/ui components"
+        },
+        "azodik.ui.showHoverDocs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show documentation on hover"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.9.3",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "dependencies": {}
+}
