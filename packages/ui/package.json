@@ -58,8 +58,7 @@
   },
   "scripts": {
     "prebuild": "node scripts/update-version.mjs",
-    "build": "tsup && pnpm run add-directives",
-    "add-directives": "node scripts/add-directives.mjs",
+    "build": "tsup",
     "dev": "node scripts/update-version.mjs && tsup && tsup --watch",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",

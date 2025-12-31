@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import { ValidationRules, useFieldValidation } from "../utils/validation";

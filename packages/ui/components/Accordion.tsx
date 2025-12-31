@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useState, useRef, useEffect } from "react";
 
 export interface AccordionContextValue {

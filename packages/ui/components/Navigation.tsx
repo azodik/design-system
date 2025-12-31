@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 export interface NavigationProps extends React.HTMLAttributes<HTMLElement> {

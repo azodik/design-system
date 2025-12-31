@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";

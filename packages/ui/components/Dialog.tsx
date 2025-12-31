@@ -1,3 +1,4 @@
+"use client";
 import React, {
   createContext,
   useContext,
@@ -7,6 +8,8 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import { useFocusTrap } from "../hooks/useFocusTrap";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 
 // Interfaces
 export interface DialogProps {
@@ -151,7 +154,8 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   onClose,
 }) => {
   const { open, setOpen } = useDialogContext();
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useFocusTrap(open);
+  useBodyScrollLock(open);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -163,13 +167,11 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 
     if (open && typeof document !== "undefined") {
       document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
     }
 
     return () => {
       if (typeof document !== "undefined") {
         document.removeEventListener("keydown", handleEscape);
-        document.body.style.overflow = "unset";
       }
     };
   }, [open, setOpen, onClose]);

@@ -1,33 +1,30 @@
+"use client";
 import React from "react";
+import { resolveResponsiveVars, ResponsiveProp } from "../utils/responsive";
 
 export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Stack direction
    */
-  direction?: "row" | "column";
+  direction?: ResponsiveProp<"row" | "column">;
   /**
    * Alignment along main axis
    */
-  align?:
-    | "start"
-    | "center"
-    | "end"
-    | "stretch"
-    | "space-between"
-    | "space-around"
-    | "space-evenly";
+  align?: ResponsiveProp<
+    "start" | "center" | "end" | "stretch" | "space-between" | "space-around" | "space-evenly"
+  >;
   /**
    * Alignment along cross axis
    */
-  justify?: "start" | "center" | "end" | "stretch" | "baseline";
+  justify?: ResponsiveProp<"start" | "center" | "end" | "stretch" | "baseline">;
   /**
    * Gap between items
    */
-  gap?: number | string;
+  gap?: ResponsiveProp<number | string>;
   /**
    * Wrap items
    */
-  wrap?: boolean;
+  wrap?: ResponsiveProp<boolean>;
   /**
    * Full width
    */
@@ -62,12 +59,35 @@ export function Stack({
   children,
   ...props
 }: StackProps) {
+  // Resolve responsive values
+  const resolveDirection = (val: string | number | boolean) => String(val);
+  const resolveAlign = (val: string | number | boolean) => String(val);
+  const resolveJustify = (val: string | number | boolean) => String(val);
+  const resolveGap = (val: string | number | boolean) =>
+    typeof val === "number" ? `${val}px` : String(val);
+  const resolveWrap = (val: string | number | boolean) => (val ? "wrap" : "nowrap");
+
+  const responsiveVars = {
+    ...resolveResponsiveVars(direction, "stack-direction", resolveDirection),
+    ...resolveResponsiveVars(align, "stack-align", resolveAlign),
+    ...resolveResponsiveVars(justify, "stack-justify", resolveJustify),
+    ...resolveResponsiveVars(gap, "stack-gap", resolveGap),
+    ...resolveResponsiveVars(wrap, "stack-wrap", resolveWrap),
+  };
+
+  // For non-responsive fallback, use direct values
+  const defaultDirection = typeof direction === "object" ? direction.base || "column" : direction;
+  const defaultAlign = typeof align === "object" ? align.base || "stretch" : align;
+  const defaultJustify = typeof justify === "object" ? justify.base || "start" : justify;
+  const defaultGap = typeof gap === "object" ? gap.base || 0 : gap;
+  const defaultWrap = typeof wrap === "object" ? wrap.base || false : wrap;
+
   const stackClasses = [
     "stack",
-    `stack-direction-${direction}`,
-    `stack-align-${align}`,
-    `stack-justify-${justify}`,
-    wrap && "stack-wrap",
+    `stack-direction-${defaultDirection}`,
+    `stack-align-${defaultAlign}`,
+    `stack-justify-${defaultJustify}`,
+    defaultWrap && "stack-wrap",
     fullWidth && "stack-full-width",
     fullHeight && "stack-full-height",
     className,
@@ -77,7 +97,8 @@ export function Stack({
 
   const customStyle: React.CSSProperties = {
     ...style,
-    gap: typeof gap === "number" ? `${gap}px` : gap,
+    ...responsiveVars,
+    gap: typeof defaultGap === "number" ? `${defaultGap}px` : defaultGap,
   } as React.CSSProperties;
 
   return (

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { useReducedMotion } from "../utils/reduced-motion";
 import { getTransitionStyles } from "../utils/transitions";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState, useCallback } from "react";
 
 export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {

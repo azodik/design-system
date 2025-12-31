@@ -1,6 +1,11 @@
 /* Stack Component */
 .stack {
   display: flex;
+  flex-direction: var(--stack-direction-base, column);
+  align-items: var(--stack-align-base, stretch);
+  justify-content: var(--stack-justify-base, flex-start);
+  gap: var(--stack-gap-base, 0);
+  flex-wrap: var(--stack-wrap-base, nowrap);
 }
 
 .stack-direction-row {
@@ -71,5 +76,46 @@
 
 .stack-justify-space-evenly {
   justify-content: space-evenly;
+}
+
+/* Responsive Stack */
+@media (min-width: 640px) {
+  .stack {
+    flex-direction: var(--stack-direction-sm, var(--stack-direction-base, column));
+    align-items: var(--stack-align-sm, var(--stack-align-base, stretch));
+    justify-content: var(--stack-justify-sm, var(--stack-justify-base, flex-start));
+    gap: var(--stack-gap-sm, var(--stack-gap-base, 0));
+    flex-wrap: var(--stack-wrap-sm, var(--stack-wrap-base, nowrap));
+  }
+}
+
+@media (min-width: 768px) {
+  .stack {
+    flex-direction: var(--stack-direction-md, var(--stack-direction-sm, var(--stack-direction-base, column)));
+    align-items: var(--stack-align-md, var(--stack-align-sm, var(--stack-align-base, stretch)));
+    justify-content: var(--stack-justify-md, var(--stack-justify-sm, var(--stack-justify-base, flex-start)));
+    gap: var(--stack-gap-md, var(--stack-gap-sm, var(--stack-gap-base, 0)));
+    flex-wrap: var(--stack-wrap-md, var(--stack-wrap-sm, var(--stack-wrap-base, nowrap)));
+  }
+}
+
+@media (min-width: 1024px) {
+  .stack {
+    flex-direction: var(--stack-direction-lg, var(--stack-direction-md, var(--stack-direction-sm, var(--stack-direction-base, column))));
+    align-items: var(--stack-align-lg, var(--stack-align-md, var(--stack-align-sm, var(--stack-align-base, stretch))));
+    justify-content: var(--stack-justify-lg, var(--stack-justify-md, var(--stack-justify-sm, var(--stack-justify-base, flex-start))));
+    gap: var(--stack-gap-lg, var(--stack-gap-md, var(--stack-gap-sm, var(--stack-gap-base, 0))));
+    flex-wrap: var(--stack-wrap-lg, var(--stack-wrap-md, var(--stack-wrap-sm, var(--stack-wrap-base, nowrap))));
+  }
+}
+
+@media (min-width: 1280px) {
+  .stack {
+    flex-direction: var(--stack-direction-xl, var(--stack-direction-lg, var(--stack-direction-md, var(--stack-direction-sm, var(--stack-direction-base, column)))));
+    align-items: var(--stack-align-xl, var(--stack-align-lg, var(--stack-align-md, var(--stack-align-sm, var(--stack-align-base, stretch)))));
+    justify-content: var(--stack-justify-xl, var(--stack-justify-lg, var(--stack-justify-md, var(--stack-justify-sm, var(--stack-justify-base, flex-start)))));
+    gap: var(--stack-gap-xl, var(--stack-gap-lg, var(--stack-gap-md, var(--stack-gap-sm, var(--stack-gap-base, 0)))));
+    flex-wrap: var(--stack-wrap-xl, var(--stack-wrap-lg, var(--stack-wrap-md, var(--stack-wrap-sm, var(--stack-wrap-base, nowrap)))));
+  }
 }
 

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 
 export interface InfiniteScrollProps extends React.HTMLAttributes<HTMLDivElement> {

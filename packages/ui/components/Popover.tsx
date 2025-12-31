@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 
 export interface PopoverProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {

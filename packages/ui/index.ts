@@ -16,6 +16,7 @@ export {
 export { default as StatCard } from "./components/StatCard";
 export { default as MetricCard } from "./components/MetricCard";
 export { default as QuickFilters } from "./components/QuickFilters";
+export { ThemeScript } from "./components/ThemeScript";
 export { default as BottomSheet } from "./components/BottomSheet";
 export { default as SwipeActions } from "./components/SwipeActions";
 export { default as PullToRefresh } from "./components/PullToRefresh";
@@ -193,7 +194,16 @@ export type { ThemeProviderProps, ThemeConfig } from "./providers/ThemeProvider"
 
 // Theme Components
 export { Theme, ThemeToggle, useThemeContext } from "./components/Theme";
-export type { ThemeProps, ThemeToggleProps } from "./components/Theme";
+export type {
+  ThemeProps,
+  ThemeToggleProps,
+  ThemeAppearance,
+  ThemeAccentColor,
+  ThemeGrayColor,
+  ThemeRadius,
+  ThemeScaling,
+  ThemeContextValue,
+} from "./components/Theme";
 export { ThemePanel } from "./components/ThemePanel";
 export type { ThemePanelProps } from "./components/ThemePanel";
 export { default as ThemeBuilder } from "./components/ThemeBuilder";

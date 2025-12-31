@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 export interface SegmentedControlOption {
@@ -135,6 +136,7 @@ export function SegmentedControl({
             type="button"
             role="tab"
             aria-selected={isSelected}
+            aria-label={option.label}
             className={optionClasses}
             onClick={() => !option.disabled && handleChange(option.value)}
             disabled={option.disabled}

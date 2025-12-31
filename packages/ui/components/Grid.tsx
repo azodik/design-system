@@ -1,11 +1,12 @@
 import React from "react";
+import { resolveResponsiveVars, ResponsiveProp } from "../utils/responsive";
 
-export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
-  columns?: "1" | "2" | "3" | "4" | "5" | "6" | "12" | string;
-  rows?: string;
-  gap?: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | string;
-  align?: "start" | "center" | "end" | "baseline" | "stretch";
-  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+export interface GridProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "align"> {
+  columns?: ResponsiveProp<"1" | "2" | "3" | "4" | "5" | "6" | "12" | string>;
+  rows?: ResponsiveProp<string>;
+  gap?: ResponsiveProp<"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | string>;
+  align?: ResponsiveProp<"start" | "center" | "end" | "baseline" | "stretch">;
+  justify?: ResponsiveProp<"start" | "center" | "end" | "between" | "around" | "evenly">;
   as?: React.ElementType;
 }
 
@@ -21,7 +22,7 @@ export function Grid({
   style,
   ...props
 }: GridProps) {
-  const alignMap = {
+  const alignMap: Record<string, string> = {
     start: "start",
     center: "center",
     end: "end",
@@ -29,7 +30,7 @@ export function Grid({
     stretch: "stretch",
   };
 
-  const justifyMap = {
+  const justifyMap: Record<string, string> = {
     start: "start",
     center: "center",
     end: "end",
@@ -38,21 +39,26 @@ export function Grid({
     evenly: "space-evenly",
   };
 
-  const customStyle: React.CSSProperties = {
-    gridTemplateColumns: columns
-      ? isNaN(Number(columns))
-        ? columns
-        : `repeat(${columns}, 1fr)`
-      : undefined,
-    gridTemplateRows: rows,
-    gap: gap ? `var(--space-${gap}, ${gap})` : undefined,
-    alignItems: align ? alignMap[align] : undefined,
-    justifyContent: justify ? justifyMap[justify] : undefined,
-    ...style,
+  const resolveAlign = (val: string | number) => alignMap[val] || String(val);
+  const resolveJustify = (val: string | number) => justifyMap[val] || String(val);
+  const resolveGap = (val: string | number) => `var(--space-${val}, ${val})`;
+  const resolveColumns = (val: string | number) =>
+    isNaN(Number(val)) ? String(val) : `repeat(${val}, 1fr)`;
+
+  const responsiveVars = {
+    ...resolveResponsiveVars(columns, "grid-cols", resolveColumns),
+    ...resolveResponsiveVars(rows, "grid-rows"),
+    ...resolveResponsiveVars(gap, "grid-gap", resolveGap),
+    ...resolveResponsiveVars(align, "grid-align", resolveAlign),
+    ...resolveResponsiveVars(justify, "grid-justify", resolveJustify),
   };
 
   return (
-    <Component className={`az-Grid ${className}`} style={customStyle} {...props}>
+    <Component
+      className={`az-Grid ${className}`}
+      style={{ ...style, ...responsiveVars }}
+      {...props}
+    >
       {children}
     </Component>
   );

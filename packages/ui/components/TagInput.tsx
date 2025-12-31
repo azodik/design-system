@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useCallback, KeyboardEvent } from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import type { SemanticSize } from "../utils/size-variant-mapping";

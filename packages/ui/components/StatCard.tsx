@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Card, { CardProps } from "./Card";
 import { Skeleton } from "./Skeleton";

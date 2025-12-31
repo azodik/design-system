@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useReducedMotion } from "../utils/reduced-motion";

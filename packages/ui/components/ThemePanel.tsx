@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useMemo, useCallback } from "react";
 import { useTheme, type GrayColor, type Radius } from "../providers/ThemeProvider";
 import { PaletteIcon, MonitorIcon, SunIcon, MoonIcon } from "@azodik/icons";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback, useState, useRef } from "react";
 import Button from "./Button";
 

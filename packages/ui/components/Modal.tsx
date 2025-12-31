@@ -1,5 +1,7 @@
+"use client";
 import React, { useEffect } from "react";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
 import { useReducedMotion } from "../utils/reduced-motion";
 import { useHighContrastMode } from "../utils/high-contrast";
@@ -50,6 +52,7 @@ export default function Modal({
 }: ModalProps) {
   // Lock body scroll when modal is open
   useBodyScrollLock(isOpen);
+  const modalRef = useFocusTrap(isOpen);
   const reducedMotion = useReducedMotion();
   const systemHighContrast = useHighContrastMode();
   const highContrast = propHighContrast ?? systemHighContrast;
@@ -112,8 +115,9 @@ export default function Modal({
       className={`modal-overlay ${isOpen ? "open" : ""}`}
       onClick={handleOverlayClick}
       onKeyDown={(e) => {
-        if (e.key === "Escape") {
-          onClose();
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleOverlayClick(e as unknown as React.MouseEvent);
         }
       }}
       role="button"
@@ -124,6 +128,7 @@ export default function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? `${titleId}-title` : undefined}
+        ref={modalRef}
         {...props}
       >
         {title && !hasModalHeader && (

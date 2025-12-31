@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
@@ -52,12 +53,30 @@ export function Select({
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(value);
   const selectRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLDivElement>(null);
   const _reducedMotion = useReducedMotion();
   const systemHighContrast = useHighContrastMode();
   const _highContrast = propHighContrast ?? systemHighContrast;
   const _sizeClassName = getSizeClassName(size);
   const isNamedColor =
     color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
+
+  // Refs for managing focus
+  const listboxRef = React.useRef<HTMLDivElement>(null);
+  const optionRefs = React.useRef<Map<string, HTMLDivElement>>(new Map());
+
+  // Update option refs map
+  const getOptionRef = (value: string) => {
+    return optionRefs.current.get(value);
+  };
+
+  const setOptionRef = (value: string, element: HTMLDivElement | null) => {
+    if (element) {
+      optionRefs.current.set(value, element);
+    } else {
+      optionRefs.current.delete(value);
+    }
+  };
 
   // Use spacing and typography utilities
   const selectPadding = getSpacingVar(
@@ -114,6 +133,8 @@ export function Select({
     setSelectedValue(optionValue);
     onChange?.(optionValue);
     setIsOpen(false);
+    // Focus back to trigger after selection
+    triggerRef.current?.focus();
   };
 
   const customStyle: React.CSSProperties = {
@@ -175,6 +196,7 @@ export function Select({
       </select>
       <div className="custom-select-wrapper" ref={selectRef}>
         <div
+          ref={triggerRef}
           className={selectClasses}
           onClick={() => {
             if (!disabled) {
@@ -205,8 +227,16 @@ export function Select({
                     detail: selectRef.current,
                   });
                   document.dispatchEvent(closeEvent);
+                  setIsOpen(true);
+                } else {
+                  setIsOpen(false);
                 }
-                setIsOpen(!isOpen);
+              }
+            }
+            if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+              e.preventDefault();
+              if (!disabled && !isOpen) {
+                setIsOpen(true);
               }
             }
             if (e.key === "Escape") {
@@ -260,21 +290,72 @@ export function Select({
             className="select-dropdown"
             role="listbox"
             aria-labelledby={labelId}
+            ref={listboxRef}
+            tabIndex={-1}
+            onKeyDown={(e) => {
+              const currentIndex = options.findIndex(
+                (opt) =>
+                  opt.value ===
+                  (document.activeElement?.getAttribute("data-value") ?? selectedValue),
+              );
+              let nextIndex = currentIndex;
+
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                nextIndex = Math.min(currentIndex + 1, options.length - 1);
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                nextIndex = Math.max(currentIndex - 1, 0);
+              } else if (e.key === "Home") {
+                e.preventDefault();
+                nextIndex = 0;
+              } else if (e.key === "End") {
+                e.preventDefault();
+                nextIndex = options.length - 1;
+              } else if (e.key === "Escape") {
+                e.preventDefault();
+                setIsOpen(false);
+                // Focus back to trigger using ref
+                triggerRef.current?.focus();
+              } else if (e.key === "Tab") {
+                setIsOpen(false);
+                // Focus back to trigger when tabbing away
+                triggerRef.current?.focus();
+              }
+
+              if (nextIndex !== currentIndex || isOpen) {
+                const nextOption = options[nextIndex];
+                if (nextOption) {
+                  const el = getOptionRef(nextOption.value);
+                  el?.focus();
+                }
+              }
+            }}
           >
             {options.map((option) => (
               <div
                 key={option.value}
+                ref={(el) => setOptionRef(option.value, el)}
+                data-value={option.value}
                 className={`select-option ${selectedValue === option.value ? "selected" : ""}`}
                 onClick={() => handleSelect(option.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     handleSelect(option.value);
+                    // Focus back to trigger after selection
+                    triggerRef.current?.focus();
                   }
                 }}
                 role="option"
                 aria-selected={selectedValue === option.value}
-                tabIndex={0}
+                tabIndex={
+                  isOpen &&
+                  (selectedValue === option.value ||
+                    (selectedValue === "" && options[0].value === option.value))
+                    ? 0
+                    : -1
+                }
                 style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
               >
                 {option.icon && (

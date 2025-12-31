@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import { useReducedMotion } from "../utils/reduced-motion";
 import { useHighContrastMode } from "../utils/high-contrast";

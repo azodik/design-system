@@ -1,3 +1,4 @@
+"use client";
 import React, { useMemo, useCallback, useState, useEffect } from "react";
 import type { SemanticSize } from "../utils/size-variant-mapping";
 

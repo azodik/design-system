@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useThemeContext } from "./Theme";
 import { useTheme as useGlobalTheme } from "../providers/ThemeProvider";

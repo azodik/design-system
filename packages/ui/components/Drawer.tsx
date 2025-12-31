@@ -1,3 +1,4 @@
+"use client";
 import React, {
   createContext,
   useContext,
@@ -7,6 +8,8 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import { useFocusTrap } from "../hooks/useFocusTrap";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 
 // Interfaces
 export interface DrawerProps {
@@ -151,7 +154,8 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
   onClose,
 }) => {
   const { open, setOpen } = useDrawerContext();
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useFocusTrap(open);
+  useBodyScrollLock(open);
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
 
@@ -191,13 +195,11 @@ export const DrawerContent: React.FC<DrawerContentProps> = ({
 
     if (open && typeof document !== "undefined") {
       document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
     }
 
     return () => {
       if (typeof document !== "undefined") {
         document.removeEventListener("keydown", handleEscape);
-        document.body.style.overflow = "unset";
       }
     };
   }, [open, handleClose]);

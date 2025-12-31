@@ -12,6 +12,12 @@ A modern, accessible React component library built with TypeScript, featuring a 
 - **🔧 Customizable** - Easy to customize with CSS custom properties
 - **📦 Lightweight** - Optimized bundle size
 
+## 📚 Documentation
+
+- **[SSR Guide](./docs/SSR_GUIDE.md)** - Complete guide for server-side rendering with Next.js, Remix, and more
+- **[Responsive Design](#-responsive-design)** - Mobile-first responsive patterns and breakpoints
+- **[Theming](#-theming)** - Theme setup, customization, and preventing flicker
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -493,6 +499,8 @@ function App() {
 
 #### Preventing Theme Flicker in SSR (Next.js, Remix, etc.)
 
+**⚠️ Critical**: To prevent theme flickering on page load, you **must** include `ThemeScript` in your HTML `<head>` before React hydrates.
+
 To prevent theme flicker on page load in SSR environments, add a blocking script in your HTML `<head>` before React hydrates:
 
 **Next.js App Router (app/layout.tsx):**
@@ -584,6 +592,28 @@ export default function Document() {
 ```
 
 **Important:** Make sure the `storageKey` and `defaultTheme` in the script match your `ThemeProvider` props!
+
+**Alternative: Using ThemeScript Component**
+
+For easier setup, use the `ThemeScript` component:
+
+```tsx
+// Next.js App Router (app/layout.tsx)
+import { ThemeScript } from "@azodik/ui";
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <head>
+        <ThemeScript />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+The `ThemeScript` component automatically generates the correct script with default settings.
 
 #### Theme Switching with useTheme Hook
 
@@ -705,17 +735,232 @@ function MyComponent() {
 
 ## 📱 Responsive Design
 
-All components are mobile-first and responsive:
+### Mobile-First Approach
+
+All components follow a **mobile-first** design philosophy:
+
+- ✅ Default values are optimized for mobile screens
+- ✅ Components scale up gracefully for larger screens
+- ✅ Touch-friendly targets (minimum 44px) for interactive elements
+- ✅ Mobile-optimized components available (`BottomSheet`, `TabBar`, `BottomNavigation`)
+
+### Responsive Props
+
+Layout components (`Grid`, `Stack`, `Flex`) support responsive props using breakpoint objects:
 
 ```tsx
-// Components automatically adapt to screen size
-<Button size={{ base: "xs", md: "md", lg: "lg" }}>
-  Responsive Button
-</Button>
+import { Grid, Stack, Flex } from "@azodik/ui";
 
-<Card className="w-full md:w-1/2 lg:w-1/3">
-  Responsive Card
-</Card>
+// Grid with responsive columns
+<Grid
+  columns={{
+    base: 1,    // Mobile: 1 column
+    sm: 2,      // Small: 2 columns
+    md: 3,      // Medium: 3 columns
+    lg: 4,      // Large: 4 columns
+  }}
+  gap={{ base: 2, md: 4 }}
+>
+  {/* Grid items */}
+</Grid>
+
+// Stack with responsive direction
+<Stack
+  direction={{
+    base: "column",  // Mobile: vertical
+    md: "row",       // Desktop: horizontal
+  }}
+  gap={{ base: 8, md: 16 }}
+  align={{ base: "stretch", md: "center" }}
+>
+  {/* Stack items */}
+</Stack>
+
+// Flex with responsive layout
+<Flex
+  direction={{ base: "column", md: "row" }}
+  justify={{ base: "start", md: "between" }}
+  gap={{ base: 2, md: 4 }}
+>
+  {/* Flex items */}
+</Flex>
+```
+
+### Breakpoints
+
+The design system uses consistent breakpoints:
+
+- **base**: Default (mobile-first)
+- **sm**: 640px and up
+- **md**: 768px and up
+- **lg**: 1024px and up
+- **xl**: 1280px and up
+- **2xl**: 1536px and up
+
+### Responsive Hooks
+
+Use hooks for conditional rendering based on breakpoints:
+
+```tsx
+import { useBreakpoint, useResponsive } from "@azodik/ui";
+
+function MyComponent() {
+  const { isMobile, isTablet, isDesktop } = useResponsive();
+  const { breakpoint, isAtLeast } = useBreakpoint();
+
+  if (isMobile) {
+    return <MobileView />;
+  }
+
+  if (isAtLeast("lg")) {
+    return <DesktopView />;
+  }
+
+  return <TabletView />;
+}
+```
+
+### Mobile-Optimized Components
+
+For better mobile experiences, use these components:
+
+- **BottomSheet**: Slide-up sheets (better than modals on mobile)
+- **TabBar**: Bottom navigation bar
+- **BottomNavigation**: Mobile-first navigation
+- **SwipeActions**: Swipe gestures for actions
+
+```tsx
+import { BottomSheet, TabBar } from "@azodik/ui";
+
+// Use BottomSheet instead of Modal on mobile
+<BottomSheet open={isOpen} onOpenChange={setIsOpen}>
+  <h2>Mobile-friendly content</h2>
+</BottomSheet>
+
+// Bottom navigation for mobile
+<TabBar
+  items={[
+    { id: "home", label: "Home", icon: <HomeIcon /> },
+    { id: "search", label: "Search", icon: <SearchIcon /> },
+  ]}
+  value={activeTab}
+  onChange={setActiveTab}
+/>
+```
+
+## 📱 Responsive Design
+
+### Mobile-First Approach
+
+All components follow a **mobile-first** design philosophy:
+
+- ✅ Default values are optimized for mobile screens
+- ✅ Components scale up gracefully for larger screens
+- ✅ Touch-friendly targets (minimum 44px) for interactive elements
+- ✅ Mobile-optimized components available (`BottomSheet`, `TabBar`, `BottomNavigation`)
+
+### Responsive Props
+
+Layout components (`Grid`, `Stack`, `Flex`) support responsive props using breakpoint objects:
+
+```tsx
+import { Grid, Stack, Flex } from "@azodik/ui";
+
+// Grid with responsive columns
+<Grid
+  columns={{
+    base: 1,    // Mobile: 1 column
+    sm: 2,      // Small: 2 columns
+    md: 3,      // Medium: 3 columns
+    lg: 4,      // Large: 4 columns
+  }}
+  gap={{ base: 2, md: 4 }}
+>
+  {/* Grid items */}
+</Grid>
+
+// Stack with responsive direction
+<Stack
+  direction={{
+    base: "column",  // Mobile: vertical
+    md: "row",       // Desktop: horizontal
+  }}
+  gap={{ base: 8, md: 16 }}
+  align={{ base: "stretch", md: "center" }}
+>
+  {/* Stack items */}
+</Stack>
+
+// Flex with responsive layout
+<Flex
+  direction={{ base: "column", md: "row" }}
+  justify={{ base: "start", md: "between" }}
+  gap={{ base: 2, md: 4 }}
+>
+  {/* Flex items */}
+</Flex>
+```
+
+### Breakpoints
+
+The design system uses consistent breakpoints:
+
+- **base**: Default (mobile-first)
+- **sm**: 640px and up
+- **md**: 768px and up
+- **lg**: 1024px and up
+- **xl**: 1280px and up
+- **2xl**: 1536px and up
+
+### Responsive Hooks
+
+Use hooks for conditional rendering based on breakpoints:
+
+```tsx
+import { useBreakpoint, useResponsive } from "@azodik/ui";
+
+function MyComponent() {
+  const { isMobile, isTablet, isDesktop } = useResponsive();
+  const { breakpoint, isAtLeast } = useBreakpoint();
+
+  if (isMobile) {
+    return <MobileView />;
+  }
+
+  if (isAtLeast("lg")) {
+    return <DesktopView />;
+  }
+
+  return <TabletView />;
+}
+```
+
+### Mobile-Optimized Components
+
+For better mobile experiences, use these components:
+
+- **BottomSheet**: Slide-up sheets (better than modals on mobile)
+- **TabBar**: Bottom navigation bar
+- **BottomNavigation**: Mobile-first navigation
+- **SwipeActions**: Swipe gestures for actions
+
+```tsx
+import { BottomSheet, TabBar } from "@azodik/ui";
+
+// Use BottomSheet instead of Modal on mobile
+<BottomSheet open={isOpen} onOpenChange={setIsOpen}>
+  <h2>Mobile-friendly content</h2>
+</BottomSheet>
+
+// Bottom navigation for mobile
+<TabBar
+  items={[
+    { id: "home", label: "Home", icon: <HomeIcon /> },
+    { id: "search", label: "Search", icon: <SearchIcon /> },
+  ]}
+  value={activeTab}
+  onChange={setActiveTab}
+/>
 ```
 
 ## 🎨 Customization
@@ -783,6 +1028,48 @@ import * as UI from "@azodik/ui";
 - **Core CSS**: ~19KB (gzipped)
 - **React Components**: ~35KB (gzipped)
 - **Tree Shakeable**: Import only what you use
+
+## ♿ Accessibility
+
+All components are built with accessibility in mind:
+
+- ✅ **ARIA attributes**: Proper labels, roles, and states
+- ✅ **Keyboard navigation**: Full keyboard support for all interactive components
+- ✅ **Focus management**: Focus traps in modals, drawers, and dialogs
+- ✅ **Screen reader support**: Announcements and proper semantic HTML
+- ✅ **Focus indicators**: Visible focus states for keyboard users
+
+### Focus Traps
+
+Overlay components (`Modal`, `Dialog`, `Drawer`, `Sheet`) automatically trap focus:
+
+```tsx
+// Focus is trapped within the modal
+<Modal isOpen={isOpen} onClose={handleClose}>
+  <button>First</button>
+  <button>Second</button>
+  {/* Tab key cycles between buttons, can't escape modal */}
+</Modal>
+```
+
+### Keyboard Navigation
+
+All interactive components support keyboard navigation:
+
+- **Select**: Arrow keys, Home, End, Escape, Enter
+- **Menu**: Arrow keys, Escape, Enter
+- **Tabs**: Arrow keys, Home, End
+- **Modal/Dialog**: Escape to close, Tab to navigate
+
+### ARIA Labels
+
+Icon-only buttons should include `aria-label`:
+
+```tsx
+<Button icon={<Icon />} aria-label="Close dialog">
+  {/* Icon-only button */}
+</Button>
+```
 
 ## 🤝 Contributing
 

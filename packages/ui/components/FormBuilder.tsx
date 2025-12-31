@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useCallback } from "react";
 import Input from "./Input";
 import { Select } from "./Select";

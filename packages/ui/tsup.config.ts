@@ -8,6 +8,9 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   minify: false,
+  banner: {
+    js: '"use client";',
+  },
   external: ["react", "react-dom", "azodik-ui-core", "@azodik/icons", "recharts", "minisearch"],
   esbuildOptions(options) {
     options.treeShaking = true;

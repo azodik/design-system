@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState, KeyboardEvent } from "react";
 
 export interface OTPInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {

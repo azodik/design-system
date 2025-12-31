@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useCallback } from "react";
 
 export interface ColorPickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
