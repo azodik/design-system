@@ -42,6 +42,35 @@
   border-radius: var(--radius-3);
 }
 
+/* Shimmer effect - enhanced */
+.az-Skeleton.az-skeleton-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    var(--gray-4) 0px,
+    var(--gray-2) 40%,
+    var(--gray-3) 50%,
+    var(--gray-2) 60%,
+    var(--gray-4) 100%
+  );
+  background-size: 200% 100%;
+  animation: az-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes az-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* No shimmer - static */
+.az-Skeleton:not(.az-skeleton-shimmer) {
+  animation: none;
+  background-image: none;
+}
+
 /* Spinner */
 .az-Spinner {
   display: inline-block;
@@ -97,4 +126,74 @@
   0% { transform: translateX(0) scaleX(0); }
   40% { transform: translateX(0) scaleX(0.4); }
   100% { transform: translateX(100%) scaleX(0.5); }
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8);
+  color: var(--color-text-secondary);
+}
+
+.empty-state-icon {
+  margin-bottom: var(--space-4);
+  color: var(--gray-8);
+  opacity: 0.6;
+}
+
+.empty-state-icon svg {
+  width: 64px;
+  height: 64px;
+}
+
+.empty-state-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.empty-state-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4) 0;
+  max-width: 400px;
+}
+
+.empty-state-content {
+  margin-bottom: var(--space-4);
+}
+
+.empty-state-action {
+  margin-top: var(--space-2);
+}
+
+.empty-state-sm {
+  padding: var(--space-4);
+}
+
+.empty-state-sm .empty-state-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.empty-state-sm .empty-state-title {
+  font-size: var(--font-size-base);
+}
+
+.empty-state-lg {
+  padding: var(--space-12);
+}
+
+.empty-state-lg .empty-state-icon svg {
+  width: 96px;
+  height: 96px;
+}
+
+.empty-state-lg .empty-state-title {
+  font-size: var(--font-size-xl);
 }

@@ -1,3 +1,3 @@
 // This file is auto-generated. Do not edit manually.
 // The version is read from package.json during build.
-export const VERSION = "0.10.7";
+export const VERSION = "0.10.8";

@@ -13,6 +13,13 @@ export {
   CardFooter,
   CardAction,
 } from "./components/Card";
+export { default as StatCard } from "./components/StatCard";
+export { default as MetricCard } from "./components/MetricCard";
+export { default as QuickFilters } from "./components/QuickFilters";
+export { default as BottomSheet } from "./components/BottomSheet";
+export { default as SwipeActions } from "./components/SwipeActions";
+export { default as PullToRefresh } from "./components/PullToRefresh";
+export { default as DateRangePicker } from "./components/DateRangePicker";
 export { default as Input } from "./components/Input";
 export { Textarea } from "./components/Textarea";
 export { Select } from "./components/Select";
@@ -76,6 +83,7 @@ export {
   TableCell,
   DataTable,
 } from "./components/Table";
+export { default as VirtualTable } from "./components/VirtualTable";
 export {
   default as Accordion,
   AccordionItem,
@@ -114,6 +122,7 @@ export { Section } from "./components/Section";
 export { Skeleton } from "./components/Skeleton";
 export { Spinner } from "./components/Spinner";
 export { Progress } from "./components/Progress";
+export { default as EmptyState } from "./components/EmptyState";
 
 // Providers
 export { ThemeProvider, useTheme } from "./providers/ThemeProvider";
@@ -136,10 +145,21 @@ export { ErrorBoundary } from "./components/ErrorBoundary";
 
 // Hooks
 export { useResponsive } from "./hooks/useResponsive";
+export { useBreakpoint } from "./hooks/useBreakpoint";
 export { useBodyScrollLock } from "./hooks/useBodyScrollLock";
+export { useDebounce, useDebouncedCallback } from "./hooks/useDebounce";
 
 // Utils
 export { getThemeScript, getThemeScriptTag } from "./utils/theme-script";
+export {
+  breakpoints,
+  resolveResponsiveProp,
+  createMediaQuery,
+  getCurrentBreakpoint,
+} from "./utils/breakpoints";
+export type { BreakpointKey, ResponsiveProp } from "./utils/breakpoints";
+export { normalizeRules, validateValue, useFieldValidation } from "./utils/validation";
+export type { ValidationRule, ValidationRules } from "./utils/validation";
 
 // Types
 export type { AlertProps } from "./components/Alert";
@@ -155,6 +175,13 @@ export type {
   CardFooterProps,
   CardActionProps,
 } from "./components/Card";
+export type { StatCardProps } from "./components/StatCard";
+export type { MetricCardProps } from "./components/MetricCard";
+export type { QuickFiltersProps, QuickFilterPeriod, QuickFilter } from "./components/QuickFilters";
+export type { BottomSheetProps } from "./components/BottomSheet";
+export type { SwipeActionsProps, SwipeAction } from "./components/SwipeActions";
+export type { PullToRefreshProps } from "./components/PullToRefresh";
+export type { DateRangePickerProps, DateRange } from "./components/DateRangePicker";
 export type { InputProps } from "./components/Input";
 export type { TextareaProps } from "./components/Textarea";
 export type { SelectProps } from "./components/Select";
@@ -199,6 +226,7 @@ export type {
   TableCellProps,
   DataTableProps,
 } from "./components/Table";
+export type { VirtualTableProps } from "./components/VirtualTable";
 export type {
   AccordionProps,
   AccordionItemProps,
@@ -230,4 +258,6 @@ export type { SectionProps } from "./components/Section";
 export type { SkeletonProps } from "./components/Skeleton";
 export type { SpinnerProps } from "./components/Spinner";
 export type { ProgressProps } from "./components/Progress";
+export type { EmptyStateProps } from "./components/EmptyState";
 export type { DeviceType, ResponsiveConfig, UseResponsiveReturn } from "./hooks/useResponsive";
+export type { UseBreakpointReturn } from "./hooks/useBreakpoint";

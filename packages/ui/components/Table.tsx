@@ -190,7 +190,9 @@ export interface DataTableProps<
  * @param onSelectAll - Callback when select all is toggled
  * @param selectable - Enable row selection
  */
-export function DataTable<T extends Record<string, unknown> = Record<string, unknown>>({
+export const DataTable = React.memo(function DataTable<
+  T extends Record<string, unknown> = Record<string, unknown>,
+>({
   data,
   columns,
   sortBy,
@@ -296,4 +298,6 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
       </TableBody>
     </Table>
   );
-}
+}) as <T extends Record<string, unknown> = Record<string, unknown>>(
+  props: DataTableProps<T>,
+) => React.ReactElement;

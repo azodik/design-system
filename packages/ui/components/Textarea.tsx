@@ -1,5 +1,6 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
+import { ValidationRules, useFieldValidation } from "../utils/validation";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -10,12 +11,20 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   radius?: "none" | "small" | "medium" | "large" | "full";
   size?: "1" | "2" | "3";
   className?: string;
+  /**
+   * Validation rules for the textarea
+   */
+  rules?: ValidationRules;
+  /**
+   * Validate on change (default: true)
+   */
+  validateOnChange?: boolean;
 }
 
 export function Textarea({
   label,
   help,
-  error,
+  error: externalError,
   status,
   color,
   radius,
@@ -24,12 +33,36 @@ export function Textarea({
   style,
   id,
   name,
+  rules,
+  validateOnChange = true,
+  value,
+  onChange,
+  onBlur,
   ...props
 }: TextareaProps) {
   const generatedId = React.useId();
   const textareaId = id || name || generatedId;
   const isNamedColor =
     color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
+
+  // Internal validation
+  const stringValue = typeof value === "string" ? value : value?.toString() || "";
+  const validation = useFieldValidation(stringValue, rules, validateOnChange);
+
+  // Use validation error if available, otherwise use external error
+  const error = validation.error || externalError;
+  const finalStatus = error ? "error" : status;
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target.value;
+    validation.handleChange(newValue);
+    onChange?.(e);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    validation.handleBlur();
+    onBlur?.(e);
+  };
 
   const customStyle: React.CSSProperties = {
     ...style,
@@ -40,7 +73,7 @@ export function Textarea({
   const textareaClasses = [
     "az-TextAreaInput textarea",
     `az-r-size-${size}`,
-    status,
+    finalStatus,
     error && "error",
     isNamedColor ? `az-accent-${color}` : "",
     className,
@@ -60,6 +93,9 @@ export function Textarea({
         name={name || textareaId}
         className={textareaClasses}
         style={customStyle}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
         {...props}
       />
       {error && <div className="form-error">{error}</div>}

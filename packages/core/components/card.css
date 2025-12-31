@@ -67,3 +67,159 @@
 .card-description { color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: var(--space-1) 0 0; }
 .card-content { padding: var(--space-4) 0; }
 .card-footer { padding-top: var(--space-4); display: flex; gap: var(--space-2); }
+
+/* StatCard Styles */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stat-card-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-4);
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-1);
+}
+
+.stat-card-title {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-card-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+}
+
+.stat-card-value {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: var(--space-2) 0;
+}
+
+.stat-card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  font-size: var(--font-size-sm);
+}
+
+.stat-card-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-2);
+}
+
+.stat-trend-up {
+  color: var(--grass-11);
+  background-color: var(--grass-3);
+}
+
+[data-theme="dark"] .stat-trend-up {
+  color: var(--grass-9);
+  background-color: var(--grass-2);
+}
+
+.stat-trend-down {
+  color: var(--ruby-11);
+  background-color: var(--ruby-3);
+}
+
+[data-theme="dark"] .stat-trend-down {
+  color: var(--ruby-9);
+  background-color: var(--ruby-2);
+}
+
+.stat-trend-neutral {
+  color: var(--color-text-secondary);
+  background-color: var(--gray-3);
+}
+
+.stat-card-description {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .stat-card-value {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* MetricCard Styles */
+.metric-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-card-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metric-card-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-4);
+}
+
+.metric-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.metric-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-1);
+}
+
+.metric-card-label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-card-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+}
+
+.metric-card-value {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.skeleton-placeholder {
+  background-color: var(--gray-4);
+  border-radius: var(--radius-2);
+  animation: az-skeleton-pulse 1.5s ease-in-out infinite;
+}

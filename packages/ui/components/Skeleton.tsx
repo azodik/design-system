@@ -5,6 +5,10 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   width?: string | number;
   height?: string | number;
   loading?: boolean;
+  /**
+   * Enable shimmer animation effect (default: true)
+   */
+  shimmer?: boolean;
 }
 
 export function Skeleton({
@@ -12,6 +16,7 @@ export function Skeleton({
   width,
   height,
   loading = true,
+  shimmer = true,
   className = "",
   children,
   style,
@@ -25,12 +30,14 @@ export function Skeleton({
     ...style,
   };
 
-  return (
-    <div
-      className={`az-Skeleton az-variant-${variant} ${className}`}
-      style={customStyle}
-      aria-hidden="true"
-      {...props}
-    />
-  );
+  const skeletonClasses = [
+    "az-Skeleton",
+    `az-variant-${variant}`,
+    shimmer && "az-skeleton-shimmer",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return <div className={skeletonClasses} style={customStyle} aria-hidden="true" {...props} />;
 }
