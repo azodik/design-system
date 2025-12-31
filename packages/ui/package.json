@@ -67,6 +67,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "create-component": "tsx scripts/cli/create-component.ts",
+    "create-theme": "tsx scripts/cli/create-theme.ts",
+    "create-azodik-app": "tsx scripts/cli/create-azodik-app.ts",
     "type-check": "tsc --noEmit",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/ui && pnpm build",
