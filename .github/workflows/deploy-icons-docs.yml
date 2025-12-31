@@ -28,16 +28,8 @@ jobs:
           ref: ${{ github.event.workflow_run && github.event.workflow_run.head_branch || github.ref }}
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24.12.0"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Build all packages
         run: pnpm build
@@ -49,4 +41,3 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: icons-docs
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-

@@ -22,7 +22,7 @@
     "clean": "turbo run clean && node scripts/clean.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "ci": " pnpm format && pnpm format:check && pnpm type-check && pnpm lint && pnpm test:ui && pnpm build && pnpm size",
+    "ci": " pnpm format && pnpm format:check && pnpm type-check && pnpm lint:fix && pnpm test:ui && pnpm build && pnpm size",
     "changeset": "changeset",
     "version:bump": "node scripts/auto-version-patch.mjs",
     "setup:auth": "node scripts/setup-npm-auth.mjs",

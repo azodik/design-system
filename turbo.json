@@ -32,6 +32,12 @@
     },
     "typegen": {
       "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "test:ui": {
+      "dependsOn": ["^build"]
     }
   }
 }
