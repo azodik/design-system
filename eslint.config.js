@@ -125,6 +125,8 @@ export default [
       "icons-docs/dist/**",
       "icons-docs/node_modules/**",
       "icons-docs/.next/**",
+      "icons-docs/.open-next/**",
+      "icons-docs/*.d.ts",
     ],
   },
 ];

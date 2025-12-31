@@ -27,7 +27,7 @@
   },
   "routes": [
     {
-      "pattern": "ui.azodik.com",
+      "pattern": "icons.azodik.com",
       "custom_domain": true
     }
   ]

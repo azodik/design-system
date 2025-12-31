@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Navbar, ThemeToggle } from "@azodik/ui";
-import { GithubIcon, DocumentationIcon, AppsIcon, BookOpenIcon } from "@azodik/icons";
+import { AppsIcon, BookOpenIcon } from "@azodik/icons";
 
 export default function Header() {
   return (
