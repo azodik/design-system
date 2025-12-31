@@ -213,42 +213,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Footer - Ensure proper layout - parent Box should be column */
-.footer-content-wrapper {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: var(--space-4) !important;
-  width: 100% !important;
-}
-
-/* Footer Links - Ensure horizontal layout for first Box (links) */
-.footer-content-wrapper > div:first-of-type,
-.footer-content-wrapper > div:first-child {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-}
-
-/* Ensure footer links don't wrap on mobile */
-.footer-content-wrapper > div:first-of-type a,
-.footer-content-wrapper > div:first-child a {
+/* Footer Links - Ensure links don't wrap on mobile */
+.footer-link {
   flex-shrink: 0 !important;
   white-space: nowrap !important;
-}
-
-/* Footer Links - Ensure horizontal layout for second Box (copyright) */
-.footer-content-wrapper > div:last-of-type:not(:first-of-type),
-.footer-content-wrapper > div:nth-child(2) {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Footer } from "@azodik/ui";
+import { Box, Footer, Stack, Flex } from "@azodik/ui";
 import Link from "next/link";
 import { AppsIcon, BookOpenIcon, GithubIcon } from "@azodik/icons";
 
@@ -14,30 +14,23 @@ export default function DocsFooter() {
         padding: "var(--space-10) 0 var(--space-8)",
       }}
     >
-      <Box
-        className="footer-content-wrapper"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "var(--space-4)",
-          width: "100%",
-        }}
-      >
+      <Stack direction="column" align="center" gap="4" fullWidth>
         {/* Navigation Links with Icons - First Line */}
-        <Box
+        <Flex
+          direction="row"
+          wrap="nowrap"
+          justify="center"
+          align="center"
+          gap={{ base: "3", md: "6" }}
           style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "nowrap",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "clamp(var(--space-4), 3vw, var(--space-6))",
             width: "100%",
+            overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           <Link
             href="/icons"
+            className="footer-link"
             style={{
               display: "flex",
               alignItems: "center",
@@ -67,6 +60,7 @@ export default function DocsFooter() {
 
           <Link
             href="/llm-resource"
+            className="footer-link"
             style={{
               display: "flex",
               alignItems: "center",
@@ -98,6 +92,7 @@ export default function DocsFooter() {
             href="https://github.com/azodik/ui"
             target="_blank"
             rel="noopener noreferrer"
+            className="footer-link"
             style={{
               display: "flex",
               alignItems: "center",
@@ -124,21 +119,22 @@ export default function DocsFooter() {
             <GithubIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
             <span>GitHub</span>
           </Link>
-        </Box>
+        </Flex>
 
         {/* Second Line: Copyright and Built with Azodik UI */}
-        <Box
+        <Flex
+          direction="row"
+          wrap="wrap"
+          justify="center"
+          align="center"
+          gap="4"
+
           style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "var(--space-4)",
             width: "100%",
             fontSize: "clamp(0.8125rem, 2vw, 0.875rem)",
             color: "var(--color-text-secondary)",
             opacity: 0.8,
+            marginTop: "var(--space-4)",
           }}
         >
           <Box
@@ -186,8 +182,8 @@ export default function DocsFooter() {
               Azodik UI
             </Box>
           </Box>
-        </Box>
-      </Box>
+        </Flex>
+      </Stack>
     </Footer>
   );
 }
