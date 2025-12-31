@@ -1,9 +1,9 @@
 "use client";
 
-import { Box } from "@azodik/ui";
+import { Box, Badge, Toast } from "@azodik/ui";
 import { getIconComponent } from "@/lib/icon-loader";
 import type { IconInfo } from "@/types/icon";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 interface IconCardProps {
   icon: IconInfo;
@@ -15,11 +15,17 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
   // This is intentional for dynamic icon loading from a large icon library
 
   const IconComponent = useMemo(() => getIconComponent(icon.componentName), [icon.componentName]);
+  const [showToast, setShowToast] = useState(false);
 
-  const handleCopy = (e: React.MouseEvent) => {
+  const handleCopy = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(icon.componentName);
-    // You could add a toast here if available
+    try {
+      await navigator.clipboard.writeText(icon.componentName);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2000);
+    } catch (error) {
+      console.error("Failed to copy:", error);
+    }
   };
 
   return (
@@ -141,19 +147,31 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
         {icon.displayName}
       </Box>
 
-      <Box
-        as="span"
+      <Badge
+        variant="soft"
         style={{
           fontSize: "clamp(0.75rem, 2vw, 0.8125rem)",
-          fontWeight: 600,
-          color: "var(--color-text-secondary)",
           textTransform: "capitalize",
-          letterSpacing: "0.02em",
-          opacity: 0.7,
         }}
       >
         {icon.category}
-      </Box>
+      </Badge>
+      {showToast && (
+        <Toast
+          variant="success"
+          title="Copied!"
+          onClose={() => setShowToast(false)}
+          autoClose={2000}
+          style={{
+            position: "fixed",
+            top: "1rem",
+            right: "1rem",
+            zIndex: 9999,
+          }}
+        >
+          {icon.componentName} copied to clipboard
+        </Toast>
+      )}
     </Box>
   );
 }

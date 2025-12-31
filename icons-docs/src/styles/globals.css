@@ -76,6 +76,29 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
+/* Icon Grid Base Styles - Force grid layout */
+.icon-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)) !important;
+  gap: var(--space-4) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  /* Override any flex or block display */
+  flex-direction: unset !important;
+  flex-wrap: unset !important;
+}
+
+/* Ensure icon cards are grid items, not flex items */
+.icon-grid > * {
+  display: block !important;
+  width: 100% !important;
+  /* Remove any flex properties */
+  flex: unset !important;
+  flex-grow: unset !important;
+  flex-shrink: unset !important;
+  flex-basis: unset !important;
+}
+
 /* Icons Page Mobile Styles */
 @media (max-width: 768px) {
   /* Adjust grid for mobile */
@@ -188,4 +211,44 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.75rem !important;
     padding: 0.5rem 0.75rem !important;
   }
+}
+
+/* Footer - Ensure proper layout - parent Box should be column */
+.footer-content-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: var(--space-4) !important;
+  width: 100% !important;
+}
+
+/* Footer Links - Ensure horizontal layout for first Box (links) */
+.footer-content-wrapper > div:first-of-type,
+.footer-content-wrapper > div:first-child {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Ensure footer links don't wrap on mobile */
+.footer-content-wrapper > div:first-of-type a,
+.footer-content-wrapper > div:first-child a {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Footer Links - Ensure horizontal layout for second Box (copyright) */
+.footer-content-wrapper > div:last-of-type:not(:first-of-type),
+.footer-content-wrapper > div:nth-child(2) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
 }

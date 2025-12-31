@@ -1,122 +1,193 @@
 "use client";
 
-import { Box, Footer, Flex } from "@azodik/ui";
+import { Box, Footer } from "@azodik/ui";
 import Link from "next/link";
+import { AppsIcon, BookOpenIcon, GithubIcon } from "@azodik/icons";
 
 export default function DocsFooter() {
   return (
-    <Footer variant="simple">
-      <Flex direction="column" align="center" gap="4" style={{ width: "100%" }}>
-        <Flex
-          gap="4"
-          wrap="wrap"
-          justify="center"
+    <Footer
+      variant="centered"
+      style={{
+        background: "var(--color-surface)",
+        borderTop: "1px solid var(--color-border-subtle)",
+        padding: "var(--space-10) 0 var(--space-8)",
+      }}
+    >
+      <Box
+        className="footer-content-wrapper"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--space-4)",
+          width: "100%",
+        }}
+      >
+        {/* Navigation Links with Icons - First Line */}
+        <Box
           style={{
-            fontSize: "clamp(0.8125rem, 2vw, 0.875rem)",
-            color: "var(--color-text-secondary)",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "clamp(var(--space-4), 3vw, var(--space-6))",
+            width: "100%",
           }}
         >
           <Link
             href="/icons"
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
               color: "var(--color-text-secondary)",
               textDecoration: "none",
-              transition: "color 0.2s ease",
+              transition: "all 0.2s ease",
+              padding: "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
+              borderRadius: "var(--radius-2)",
+              fontSize: "clamp(0.8125rem, 2vw, 0.9375rem)",
+              fontWeight: 500,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = "var(--accent-9)";
+              e.currentTarget.style.background = "var(--accent-2)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = "var(--color-text-secondary)";
+              e.currentTarget.style.background = "transparent";
             }}
           >
-            Icons
+            <AppsIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
+            <span>Icons</span>
           </Link>
-          <Box as="span" style={{ opacity: 0.3 }}>
-            •
-          </Box>
+
           <Link
             href="/llm-resource"
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
               color: "var(--color-text-secondary)",
               textDecoration: "none",
-              transition: "color 0.2s ease",
+              transition: "all 0.2s ease",
+              padding: "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
+              borderRadius: "var(--radius-2)",
+              fontSize: "clamp(0.8125rem, 2vw, 0.9375rem)",
+              fontWeight: 500,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = "var(--accent-9)";
+              e.currentTarget.style.background = "var(--accent-2)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = "var(--color-text-secondary)";
+              e.currentTarget.style.background = "transparent";
             }}
           >
-            LLM Resource
+            <BookOpenIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
+            <span>LLM Resource</span>
           </Link>
-          <Box as="span" style={{ opacity: 0.3 }}>
-            •
-          </Box>
+
           <Link
             href="https://github.com/azodik/ui"
             target="_blank"
+            rel="noopener noreferrer"
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
               color: "var(--color-text-secondary)",
               textDecoration: "none",
-              transition: "color 0.2s ease",
+              transition: "all 0.2s ease",
+              padding: "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
+              borderRadius: "var(--radius-2)",
+              fontSize: "clamp(0.8125rem, 2vw, 0.9375rem)",
+              fontWeight: 500,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = "var(--accent-9)";
+              e.currentTarget.style.background = "var(--accent-2)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = "var(--color-text-secondary)";
+              e.currentTarget.style.background = "transparent";
             }}
           >
-            GitHub
+            <GithubIcon size={18} style={{ display: "flex", flexShrink: 0 }} />
+            <span>GitHub</span>
           </Link>
-        </Flex>
+        </Box>
 
+        {/* Second Line: Copyright and Built with Azodik UI */}
         <Box
           style={{
-            fontSize: "clamp(0.875rem, 2vw, 0.9375rem)",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "var(--space-4)",
+            width: "100%",
+            fontSize: "clamp(0.8125rem, 2vw, 0.875rem)",
             color: "var(--color-text-secondary)",
-            fontWeight: 500,
-            lineHeight: 1.6,
-            textAlign: "center",
             opacity: 0.8,
           }}
         >
-          © {new Date().getFullYear()} Azodik. All rights reserved.
-        </Box>
-        <Box
-          style={{
-            fontSize: "clamp(0.875rem, 2vw, 0.9375rem)",
-            color: "var(--color-text-secondary)",
-            fontWeight: 600,
-            fontFamily: "var(--font-montserrat), sans-serif",
-            letterSpacing: "0.01em",
-            textAlign: "center",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <Box as="span" style={{ opacity: 0.7 }}>
-            Built with
+          <Box
+            as="span"
+            style={{
+              fontWeight: 400,
+              lineHeight: 1.6,
+            }}
+          >
+            © {new Date().getFullYear()} Azodik. All rights reserved.
           </Box>
           <Box
             as="span"
             style={{
-              color: "var(--accent-9)",
-              fontWeight: 700,
-              background: "linear-gradient(135deg, var(--accent-9), var(--accent-11))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              opacity: 0.5,
+              fontSize: "0.75rem",
             }}
           >
-            Azodik UI
+            •
+          </Box>
+          <Box
+            as="span"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              fontWeight: 400,
+              fontFamily: "var(--font-montserrat), sans-serif",
+              letterSpacing: "0.01em",
+            }}
+          >
+            <Box as="span" style={{ opacity: 0.7 }}>
+              Built with
+            </Box>
+            <Box
+              as="span"
+              style={{
+                fontWeight: 600,
+                background: "linear-gradient(135deg, var(--accent-9), var(--accent-11))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Azodik UI
+            </Box>
           </Box>
         </Box>
-      </Flex>
+      </Box>
     </Footer>
   );
 }

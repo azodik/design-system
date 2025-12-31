@@ -12,6 +12,9 @@ import {
   CardContent,
   Button,
   Flex,
+  Badge,
+  Stack,
+  Alert,
   useResponsive,
 } from "@azodik/ui";
 import { getIconComponent } from "@/lib/icon-loader";
@@ -34,14 +37,19 @@ export default function IconDetail({ icon }: IconDetailProps) {
     color: "default",
     size: 24,
   });
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const IconComponent = getIconComponent(icon.componentName);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
-    if (!previewRef.current) return;
+    if (!previewRef.current) {
+      setDownloadError("Preview not available");
+      return;
+    }
 
     try {
+      setDownloadError(null);
       const filename = icon.componentName.toLowerCase();
       if (downloadOptions.format === "svg") {
         await downloadSVG(previewRef.current, filename, downloadOptions);
@@ -50,7 +58,7 @@ export default function IconDetail({ icon }: IconDetailProps) {
       }
     } catch (error) {
       console.error("Download failed:", error);
-      alert("Download failed. Please try again.");
+      setDownloadError("Download failed. Please try again.");
     }
   };
 
@@ -98,35 +106,42 @@ export default function IconDetail({ icon }: IconDetailProps) {
       </Container>
 
       <Container size="lg" style={{ padding: "clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 1rem)" }}>
-        <Grid columns={isMobile ? "1" : "2"} gap="4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Preview</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <IconPreview
-                ref={previewRef}
-                icon={icon}
-                options={downloadOptions}
-                IconComponent={IconComponent}
-              />
-            </CardContent>
-          </Card>
+        <Stack direction="column" gap="4">
+          {downloadError && (
+            <Alert variant="soft" color="ruby" title="Error">
+              {downloadError}
+            </Alert>
+          )}
+          <Grid columns={isMobile ? "1" : "2"} gap="4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Preview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <IconPreview
+                  ref={previewRef}
+                  icon={icon}
+                  options={downloadOptions}
+                  IconComponent={IconComponent}
+                />
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Download</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <DownloadPanel
-                icon={icon}
-                options={downloadOptions}
-                onOptionsChange={setDownloadOptions}
-                onDownload={handleDownload}
-              />
-            </CardContent>
-          </Card>
-        </Grid>
+            <Card>
+              <CardHeader>
+                <CardTitle>Download</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <DownloadPanel
+                  icon={icon}
+                  options={downloadOptions}
+                  onOptionsChange={setDownloadOptions}
+                  onDownload={handleDownload}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+        </Stack>
 
         {icon.category && (
           <Card style={{ marginTop: "clamp(1.5rem, 4vw, 2rem)" }}>
@@ -139,20 +154,28 @@ export default function IconDetail({ icon }: IconDetailProps) {
                 gap="2"
                 style={{ fontSize: "clamp(0.8125rem, 2vw, 0.875rem)" }}
               >
-                <Box>
-                  <Box as="span" style={{ fontWeight: 600 }}>
-                    Category:
-                  </Box>{" "}
-                  {icon.category}
-                </Box>
-                {icon.tags && icon.tags.length > 0 && (
+                <Flex direction="column" gap="2">
                   <Box>
-                    <Box as="span" style={{ fontWeight: 600 }}>
-                      Tags:
-                    </Box>{" "}
-                    {icon.tags.join(", ")}
+                    <Box as="span" style={{ fontWeight: 600, marginRight: "0.5rem" }}>
+                      Category:
+                    </Box>
+                    <Badge variant="soft">{icon.category}</Badge>
                   </Box>
-                )}
+                  {icon.tags && icon.tags.length > 0 && (
+                    <Box>
+                      <Box as="span" style={{ fontWeight: 600, marginRight: "0.5rem", display: "block", marginBottom: "0.5rem" }}>
+                        Tags:
+                      </Box>
+                      <Flex gap="1" wrap="wrap">
+                        {icon.tags.map((tag) => (
+                          <Badge key={tag} variant="outline" style={{ textTransform: "capitalize" }}>
+                            {tag}
+                          </Badge>
+                        ))}
+                      </Flex>
+                    </Box>
+                  )}
+                </Flex>
               </Flex>
             </CardContent>
           </Card>
