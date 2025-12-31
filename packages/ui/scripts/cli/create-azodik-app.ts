@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * CLI Tool for scaffolding a new Azodik UI app
- * 
+ *
  * Usage: pnpm create-azodik-app my-app
  */
 
@@ -299,7 +299,10 @@ function createApp(options: AppOptions): void {
   writeFileSync(join(appDir, "package.json"), generatePackageJson(name, template));
   console.log(`✅ Created package.json`);
 
-  writeFileSync(join(srcDir, template === "next" ? "page.tsx" : "App.tsx"), generateAppTsx(name, template));
+  writeFileSync(
+    join(srcDir, template === "next" ? "page.tsx" : "App.tsx"),
+    generateAppTsx(name, template),
+  );
   console.log(`✅ Created App component`);
 
   if (template !== "next") {
@@ -331,4 +334,3 @@ function createApp(options: AppOptions): void {
 
 const options = parseArgs();
 createApp(options);
-

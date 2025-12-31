@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * CLI Tool for creating theme configurations
- * 
+ *
  * Usage: pnpm create-theme theme-name --colors indigo,blue --radius medium
  */
 
@@ -26,7 +26,9 @@ function parseArgs(): ThemeOptions {
 
   if (!name) {
     console.error("Error: Theme name is required");
-    console.log("Usage: pnpm create-theme theme-name [--colors color1,color2] [--radius small|medium|large] [--default-theme light|dark]");
+    console.log(
+      "Usage: pnpm create-theme theme-name [--colors color1,color2] [--radius small|medium|large] [--default-theme light|dark]",
+    );
     process.exit(1);
   }
 
@@ -40,18 +42,21 @@ function parseArgs(): ThemeOptions {
   for (let i = 1; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--colors" && args[i + 1]) {
-      options.colors = args[i + 1].split(",").map((c) => c.trim());
+      const colorsValue = args[i + 1];
+      if (colorsValue) {
+        options.colors = colorsValue.split(",").map((c) => c.trim());
+      }
       i++;
     } else if (arg === "--radius" && args[i + 1]) {
-      const radius = args[i + 1] as ThemeOptions["radius"];
-      if (["none", "small", "medium", "large", "full"].includes(radius)) {
-        options.radius = radius;
+      const radiusValue = args[i + 1];
+      if (radiusValue && ["none", "small", "medium", "large", "full"].includes(radiusValue)) {
+        options.radius = radiusValue as ThemeOptions["radius"];
       }
       i++;
     } else if (arg === "--default-theme" && args[i + 1]) {
-      const theme = args[i + 1] as "light" | "dark";
-      if (["light", "dark"].includes(theme)) {
-        options.defaultTheme = theme;
+      const themeValue = args[i + 1];
+      if (themeValue && ["light", "dark"].includes(themeValue)) {
+        options.defaultTheme = themeValue as "light" | "dark";
       }
       i++;
     }
@@ -61,7 +66,7 @@ function parseArgs(): ThemeOptions {
 }
 
 function generateThemeConfig(options: ThemeOptions): string {
-  const { name, colors, radius, defaultTheme } = options;
+  const { name, colors = ["indigo"], radius = "medium", defaultTheme = "light" } = options;
 
   return `import { ThemeProviderProps } from "@azodik/ui";
 
@@ -128,4 +133,3 @@ function createTheme(options: ThemeOptions): void {
 
 const options = parseArgs();
 createTheme(options);
-
