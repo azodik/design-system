@@ -1,0 +1,282 @@
+import { CodeBlock } from "@/components/docs/CodeBlock";
+import { CodeBlockWithPreview } from "@/components/docs/CodeBlockWithPreview";
+import { PropsTable } from "@/components/docs/PropsTable";
+
+# Hooks
+
+Azodik UI provides several React hooks to help you build responsive and interactive applications.
+
+## useResponsive
+
+The `useResponsive` hook detects the current device type and provides convenient boolean flags for responsive design.
+
+<CodeBlock language="tsx">
+{`import { useResponsive } from '@azodik/ui';
+
+function MyComponent() {
+  const { isMobile, isTablet, isDesktop, deviceType, matches } = useResponsive();
+
+  return (
+    <div>
+      {isMobile && <MobileLayout />}
+      {isTablet && <TabletLayout />}
+      {isDesktop && <DesktopLayout />}
+      
+      <p>Current device: {deviceType}</p>
+      
+      {matches('(min-width: 1200px)') && <LargeScreenContent />}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Props
+
+<PropsTable props={[
+  {
+    name: "config",
+    type: "ResponsiveConfig",
+    default: "undefined",
+    description: "Optional custom breakpoint configuration"
+  }
+]} />
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "deviceType",
+    type: "'mobile' | 'tablet' | 'desktop'",
+    description: "Current device type"
+  },
+  {
+    name: "isMobile",
+    type: "boolean",
+    description: "True if device is mobile (max-width: 767px)"
+  },
+  {
+    name: "isTablet",
+    type: "boolean",
+    description: "True if device is tablet (768px - 1023px)"
+  },
+  {
+    name: "isDesktop",
+    type: "boolean",
+    description: "True if device is desktop (min-width: 1024px)"
+  },
+  {
+    name: "matches",
+    type: "(query: string) => boolean",
+    description: "Function to check custom media queries"
+  }
+]} />
+
+### Custom Breakpoints
+
+<CodeBlock language="tsx">
+{`import { useResponsive } from '@azodik/ui';
+
+function MyComponent() {
+  const { isMobile, isDesktop } = useResponsive({
+    mobile: '(max-width: 639px)',
+    tablet: '(min-width: 640px) and (max-width: 1023px)',
+    desktop: '(min-width: 1024px)',
+  });
+
+  return (
+    <div>
+      {isMobile && <MobileView />}
+      {isDesktop && <DesktopView />}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+## useBodyScrollLock
+
+The `useBodyScrollLock` hook prevents body scrolling when a modal, drawer, or other overlay is open.
+
+<CodeBlock language="tsx">
+{`import { useBodyScrollLock } from '@azodik/ui';
+import { useState } from 'react';
+
+function MyModal() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Lock body scroll when modal is open
+  useBodyScrollLock(isOpen);
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      
+      {isOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button onClick={() => setIsOpen(false)}>Close</button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}`}
+</CodeBlock>
+
+### Props
+
+<PropsTable props={[
+  {
+    name: "isLocked",
+    type: "boolean",
+    description: "Whether to lock the body scroll"
+  }
+]} />
+
+## useTheme
+
+The `useTheme` hook provides access to the current theme and theme manipulation functions.
+
+<CodeBlock language="tsx">
+{`import { useTheme } from '@azodik/ui';
+
+function ThemeSwitcher() {
+  const { theme, setTheme, appearance, accentColor, setAccentColor } = useTheme();
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <p>Appearance: {appearance}</p>
+      
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle Theme
+      </button>
+      
+      <button onClick={() => setTheme('system')}>
+        Use System Theme
+      </button>
+      
+      <select value={accentColor} onChange={(e) => setAccentColor(e.target.value)}>
+        <option value="indigo">Indigo</option>
+        <option value="ruby">Ruby</option>
+        <option value="grass">Grass</option>
+        <option value="amber">Amber</option>
+      </select>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "theme",
+    type: "'light' | 'dark'",
+    description: "Current resolved theme (light or dark)"
+  },
+  {
+    name: "setTheme",
+    type: "(theme: 'light' | 'dark' | 'system') => void",
+    description: "Function to change the theme"
+  },
+  {
+    name: "appearance",
+    type: "'light' | 'dark' | 'system'",
+    description: "Current theme appearance setting"
+  },
+  {
+    name: "accentColor",
+    type: "string",
+    description: "Current accent color"
+  },
+  {
+    name: "setAccentColor",
+    type: "(color: string) => void",
+    description: "Function to change the accent color"
+  },
+  {
+    name: "grayColor",
+    type: "'gray' | 'mauve' | 'slate' | 'sage'",
+    description: "Current gray color scale"
+  },
+  {
+    name: "setGrayColor",
+    type: "(color: GrayColor) => void",
+    description: "Function to change the gray color scale"
+  },
+  {
+    name: "radius",
+    type: "'none' | 'small' | 'medium' | 'large' | 'full'",
+    description: "Current border radius setting"
+  },
+  {
+    name: "setRadius",
+    type: "(radius: Radius) => void",
+    description: "Function to change the border radius"
+  },
+  {
+    name: "scaling",
+    type: "string",
+    description: "Current scaling factor (e.g., '100%')"
+  },
+  {
+    name: "setScaling",
+    type: "(scaling: string) => void",
+    description: "Function to change the scaling factor"
+  }
+]} />
+
+## useResponsiveSidebar
+
+The `useResponsiveSidebar` hook manages sidebar state for responsive layouts. It's used internally by the `Sidebar` component but can also be used independently.
+
+<CodeBlock language="tsx">
+{`import { useResponsiveSidebar } from '@azodik/ui';
+
+function MyLayout() {
+  const {
+    isSidebarOpen,
+    isSmallScreen,
+    handleSidebarToggle,
+  } = useResponsiveSidebar();
+
+  return (
+    <div>
+      {isSmallScreen && (
+        <button onClick={handleSidebarToggle}>
+          {isSidebarOpen ? 'Close' : 'Open'} Sidebar
+        </button>
+      )}
+      
+      <aside className={isSidebarOpen ? 'open' : 'closed'}>
+        {/* Sidebar content */}
+      </aside>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "isSidebarOpen",
+    type: "boolean",
+    description: "Whether the sidebar is currently open"
+  },
+  {
+    name: "isSmallScreen",
+    type: "boolean",
+    description: "Whether the screen is small (mobile/tablet)"
+  },
+  {
+    name: "handleSidebarToggle",
+    type: "() => void",
+    description: "Function to toggle sidebar open/closed"
+  }
+]} />
+
+## SSR Compatibility
+
+All hooks are SSR-safe and will work correctly in Next.js, Remix, and other SSR frameworks. They default to safe values during server-side rendering and update on the client after hydration.
+

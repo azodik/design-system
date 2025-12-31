@@ -29,6 +29,9 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "modal", href: "/components/docs/modal" },
   { nameKey: "notificationCenter", href: "/components/docs/notification-center" },
   { nameKey: "navigation", href: "/components/docs/navigation" },
+  { nameKey: "navbar", href: "/components/docs/navbar" },
+  { nameKey: "hero", href: "/components/docs/hero" },
+  { nameKey: "footer", href: "/components/docs/footer" },
   { nameKey: "pagination", href: "/components/docs/pagination" },
   { nameKey: "popover", href: "/components/docs/popover" },
   { nameKey: "radio", href: "/components/docs/radio" },
@@ -43,5 +46,6 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "toast", href: "/components/docs/toast" },
   { nameKey: "tooltip", href: "/components/docs/tooltip" },
   { nameKey: "typography", href: "/components/docs/typography" },
+  { nameKey: "hooks", href: "/components/docs/hooks" },
   { nameKey: "llmResource", href: "/components/docs/llm-resource" },
 ];

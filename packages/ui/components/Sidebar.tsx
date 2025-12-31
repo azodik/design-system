@@ -10,6 +10,9 @@ export function useResponsiveSidebar() {
 
   // Check screen size on mount and resize
   useEffect(() => {
+    // SSR guard
+    if (typeof window === "undefined") return;
+
     const checkScreenSize = () => {
       const smallScreen = window.innerWidth <= 1024;
       setIsSmallScreen(smallScreen);

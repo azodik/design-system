@@ -1,3 +1,4 @@
+"use client";
 // Components
 export { default as Alert } from "./components/Alert";
 export { default as Avatar, AvatarGroup } from "./components/Avatar";
@@ -22,9 +23,28 @@ export { SelectWithSearch } from "./components/SelectWithSearch";
 export { default as Modal, ModalHeader, ModalFooter } from "./components/Modal";
 export { Toast } from "./components/Toast";
 export { Tooltip } from "./components/Tooltip";
+export { Hero, HeroTitle, HeroDescription, HeroActions } from "./components/Hero";
+export {
+  Footer,
+  FooterBrand,
+  FooterContent,
+  FooterLinks,
+  FooterLink,
+  FooterBottom,
+  FooterSocial,
+} from "./components/Footer";
 export { Popover } from "./components/Popover";
 export { default as Navigation, NavItem } from "./components/Navigation";
 export { Breadcrumb } from "./components/Breadcrumb";
+export { default as Navbar } from "./components/Navbar";
+export {
+  NavbarBrand,
+  NavbarContent,
+  NavbarLinks,
+  NavbarLink,
+  NavbarActions,
+  NavbarToggle,
+} from "./components/Navbar";
 export { Pagination } from "./components/Pagination";
 export { ScrollArea } from "./components/ScrollArea";
 export { Tabs, TabList, TabTrigger, TabContent } from "./components/Tabs";
@@ -118,6 +138,9 @@ export { ErrorBoundary } from "./components/ErrorBoundary";
 export { useResponsive } from "./hooks/useResponsive";
 export { useBodyScrollLock } from "./hooks/useBodyScrollLock";
 
+// Utils
+export { getThemeScript, getThemeScriptTag } from "./utils/theme-script";
+
 // Types
 export type { AlertProps } from "./components/Alert";
 export type { AvatarProps, AvatarGroupProps } from "./components/Avatar";
@@ -145,6 +168,7 @@ export type { TooltipProps } from "./components/Tooltip";
 export type { PopoverProps } from "./components/Popover";
 export type { NavigationProps, NavItemProps } from "./components/Navigation";
 export type { BreadcrumbProps } from "./components/Breadcrumb";
+export type { NavbarProps, NavbarLinkProps } from "./components/Navbar";
 export type { PaginationProps } from "./components/Pagination";
 export type { ScrollAreaProps } from "./components/ScrollArea";
 export type { TabsProps, TabListProps, TabTriggerProps, TabContentProps } from "./components/Tabs";

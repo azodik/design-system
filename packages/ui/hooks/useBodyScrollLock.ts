@@ -6,6 +6,8 @@ import { useEffect } from "react";
  */
 export function useBodyScrollLock(isLocked: boolean): void {
   useEffect(() => {
+    // SSR guard
+    if (typeof document === "undefined" || typeof window === "undefined") return;
     if (!isLocked) return;
 
     // Store the original overflow value
@@ -23,8 +25,10 @@ export function useBodyScrollLock(isLocked: boolean): void {
 
     // Cleanup: restore original styles
     return () => {
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+      }
     };
   }, [isLocked]);
 }

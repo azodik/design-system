@@ -1,0 +1,178 @@
+import { CodeBlock } from "@/components/docs/CodeBlock";
+import { CodeBlockWithPreview } from "@/components/docs/CodeBlockWithPreview";
+import { PropsTable } from "@/components/docs/PropsTable";
+import { Hero, HeroTitle, HeroDescription, HeroActions, Button } from "@azodik/ui";
+
+# Hero
+
+The `Hero` component provides a flexible hero section for landing pages with multiple variants and sizes.
+
+## Basic Usage
+
+<CodeBlock language="tsx">
+{`import { Hero, HeroTitle, HeroDescription, HeroActions, Button } from '@azodik/ui';
+
+function LandingPage() {
+  return (
+    <Hero variant="centered" size="large">
+      <HeroTitle>Welcome to Our Platform</HeroTitle>
+      <HeroDescription>
+        Build amazing applications with our design system
+      </HeroDescription>
+      <HeroActions>
+        <Button variant="solid">Get Started</Button>
+        <Button variant="outline">Learn More</Button>
+      </HeroActions>
+    </Hero>
+  );
+}`}
+</CodeBlock>
+
+## Variants
+
+### Centered (Default)
+
+<CodeBlockWithPreview
+  title="Centered Hero"
+  preview={
+    <div style={{ padding: '2rem', background: 'var(--color-background)', border: '1px solid var(--color-border)', borderRadius: '8px' }}>
+      <Hero variant="centered" size="medium" style={{ minHeight: '300px' }}>
+        <HeroTitle style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Centered Hero</HeroTitle>
+        <HeroDescription style={{ fontSize: '1.125rem', marginBottom: '2rem', opacity: 0.8 }}>
+          This is a centered hero section with title, description, and actions.
+        </HeroDescription>
+        <HeroActions style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <Button variant="solid">Get Started</Button>
+          <Button variant="outline">Learn More</Button>
+        </HeroActions>
+      </Hero>
+    </div>
+  }
+>
+{`<Hero variant="centered" size="medium">
+  <HeroTitle>Centered Hero</HeroTitle>
+  <HeroDescription>
+    This is a centered hero section with title, description, and actions.
+  </HeroDescription>
+  <HeroActions>
+    <Button variant="solid">Get Started</Button>
+    <Button variant="outline">Learn More</Button>
+  </HeroActions>
+</Hero>`}
+</CodeBlockWithPreview>
+
+### Split Layout
+
+<CodeBlock language="tsx">
+{`<Hero variant="split" size="large">
+  <div>
+    <HeroTitle>Split Hero Layout</HeroTitle>
+    <HeroDescription>
+      Content on the left, image or visual on the right
+    </HeroDescription>
+    <HeroActions>
+      <Button variant="solid">Get Started</Button>
+    </HeroActions>
+  </div>
+  <div>
+    {/* Image or visual content */}
+  </div>
+</Hero>`}
+</CodeBlock>
+
+### Subtle Variant
+
+<CodeBlock language="tsx">
+{`<Hero variant="subtle" size="small">
+  <HeroTitle>Subtle Hero</HeroTitle>
+  <HeroDescription>
+    A more understated hero section
+  </HeroDescription>
+</Hero>`}
+</CodeBlock>
+
+## Sizes
+
+<CodeBlock language="tsx">
+{`// Small hero
+<Hero size="small">...</Hero>
+
+// Medium hero (default)
+<Hero size="medium">...</Hero>
+
+// Large hero
+<Hero size="large">...</Hero>
+
+// Full viewport height
+<Hero size="full">...</Hero>`}
+</CodeBlock>
+
+## With Gradient
+
+<CodeBlock language="tsx">
+{`<Hero variant="centered" size="large" hasGradient={true}>
+  <HeroTitle>Hero with Gradient</HeroTitle>
+  <HeroDescription>
+    Beautiful gradient background effect
+  </HeroDescription>
+</Hero>`}
+</CodeBlock>
+
+## With Glass Effect
+
+<CodeBlock language="tsx">
+{`<Hero variant="centered" size="large" isGlass={true}>
+  <HeroTitle>Glass Morphism Hero</HeroTitle>
+  <HeroDescription>
+    Modern glass morphism effect
+  </HeroDescription>
+</Hero>`}
+</CodeBlock>
+
+## Props
+
+### Hero Props
+
+<PropsTable props={[
+  {
+    name: "variant",
+    type: "'centered' | 'split' | 'subtle'",
+    default: "'centered'",
+    description: "Layout variant of the hero section"
+  },
+  {
+    name: "size",
+    type: "'small' | 'medium' | 'large' | 'full'",
+    default: "'medium'",
+    description: "Size of the hero section"
+  },
+  {
+    name: "isGlass",
+    type: "boolean",
+    default: "false",
+    description: "Apply glass morphism effect"
+  },
+  {
+    name: "hasGradient",
+    type: "boolean",
+    default: "false",
+    description: "Apply gradient background"
+  },
+  {
+    name: "containerSize",
+    type: "'1' | '2' | '3' | '4'",
+    default: "'4'",
+    description: "Container width size"
+  }
+]} />
+
+## Sub-components
+
+- **HeroTitle**: Main heading (h1)
+- **HeroDescription**: Descriptive text (p)
+- **HeroActions**: Container for action buttons
+
+## Responsive
+
+The Hero component is fully responsive and adapts to different screen sizes automatically.
+

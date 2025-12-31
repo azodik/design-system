@@ -31,6 +31,9 @@ const components = {
   ModalDocs: lazy(() => import("@/pages/ModalDocsPage")),
   NotificationCenterDocs: lazy(() => import("@/pages/NotificationCenterDocsPage")),
   NavigationDocs: lazy(() => import("@/pages/NavigationDocsPage")),
+  NavbarDocs: lazy(() => import("@/pages/NavbarDocsPage")),
+  HeroDocs: lazy(() => import("@/pages/HeroDocsPage")),
+  FooterDocs: lazy(() => import("@/pages/FooterDocsPage")),
   PaginationDocs: lazy(() => import("@/pages/PaginationDocsPage")),
   PopoverDocs: lazy(() => import("@/pages/PopoverDocsPage")),
   RadioDocs: lazy(() => import("@/pages/RadioDocsPage")),
@@ -46,6 +49,7 @@ const components = {
   TooltipDocs: lazy(() => import("@/pages/TooltipDocsPage")),
   ThemingDocs: lazy(() => import("@/pages/ThemingDocsPage")),
   TypographyDocs: lazy(() => import("@/pages/TypographyDocsPage")),
+  HooksDocs: lazy(() => import("@/pages/HooksDocsPage")),
   LLMDocs: lazy(() => import("@/pages/LLMDocsPage")),
 };
 
@@ -80,6 +84,9 @@ const routeComponents = {
   [routes.modalDocs]: components.ModalDocs,
   [routes.notificationCenterDocs]: components.NotificationCenterDocs,
   [routes.navigationDocs]: components.NavigationDocs,
+  [routes.navbarDocs]: components.NavbarDocs,
+  [routes.heroDocs]: components.HeroDocs,
+  [routes.footerDocs]: components.FooterDocs,
   [routes.paginationDocs]: components.PaginationDocs,
   [routes.popoverDocs]: components.PopoverDocs,
   [routes.radioDocs]: components.RadioDocs,
@@ -95,6 +102,7 @@ const routeComponents = {
   [routes.tooltipDocs]: components.TooltipDocs,
   [routes.themingDocs]: components.ThemingDocs,
   [routes.typographyDocs]: components.TypographyDocs,
+  [routes.hooksDocs]: components.HooksDocs,
   [routes.llmResource]: components.LLMDocs,
 };
 

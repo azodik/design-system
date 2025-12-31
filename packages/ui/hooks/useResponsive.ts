@@ -24,9 +24,17 @@ const DEFAULT_BREAKPOINTS = {
 };
 
 export function useResponsive(config?: ResponsiveConfig): UseResponsiveReturn {
-  const [deviceType, setDeviceType] = useState<DeviceType>("desktop");
+  // Default to desktop for SSR safety
+  const [deviceType, setDeviceType] = useState<DeviceType>(() => {
+    // SSR-safe default
+    if (typeof window === "undefined") return "desktop";
+    return "desktop";
+  });
 
   useEffect(() => {
+    // SSR guard
+    if (typeof window === "undefined") return;
+
     // Use custom breakpoints or defaults
     const breakpoints = {
       mobile: config?.mobile || DEFAULT_BREAKPOINTS.mobile,
