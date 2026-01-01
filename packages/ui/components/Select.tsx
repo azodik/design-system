@@ -57,7 +57,7 @@ export function Select({
   const _reducedMotion = useReducedMotion();
   const systemHighContrast = useHighContrastMode();
   const _highContrast = propHighContrast ?? systemHighContrast;
-  const _sizeClassName = getSizeClassName(size);
+  const sizeClassName = getSizeClassName(size);
   const isNamedColor =
     color && ["indigo", "ruby", "grass", "amber", "cyan", "azodik"].includes(color);
 
@@ -148,7 +148,7 @@ export function Select({
 
   const selectClasses = [
     "az-Select custom-select",
-    `az-r-size-${size}`,
+    sizeClassName,
     status,
     error && "error",
     disabled && "disabled",

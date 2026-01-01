@@ -75,19 +75,8 @@ export function Stack({
     ...resolveResponsiveVars(wrap, "stack-wrap", resolveWrap),
   };
 
-  // For non-responsive fallback, use direct values
-  const defaultDirection = typeof direction === "object" ? direction.base || "column" : direction;
-  const defaultAlign = typeof align === "object" ? align.base || "stretch" : align;
-  const defaultJustify = typeof justify === "object" ? justify.base || "start" : justify;
-  const defaultGap = typeof gap === "object" ? gap.base || 0 : gap;
-  const defaultWrap = typeof wrap === "object" ? wrap.base || false : wrap;
-
   const stackClasses = [
     "stack",
-    `stack-direction-${defaultDirection}`,
-    `stack-align-${defaultAlign}`,
-    `stack-justify-${defaultJustify}`,
-    defaultWrap && "stack-wrap",
     fullWidth && "stack-full-width",
     fullHeight && "stack-full-height",
     className,
@@ -98,7 +87,6 @@ export function Stack({
   const customStyle: React.CSSProperties = {
     ...style,
     ...responsiveVars,
-    gap: typeof defaultGap === "number" ? `${defaultGap}px` : defaultGap,
   } as React.CSSProperties;
 
   return (

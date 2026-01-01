@@ -14,7 +14,7 @@ export function Container({
   as: Component = "div",
   ...props
 }: ContainerProps) {
-  const sizeClassName = getSizeClassName(size);
+  const sizeClassName = getSizeClassName(size, "az-size");
   return (
     <Component className={`az-Container ${sizeClassName} ${className}`} {...props}>
       {children}

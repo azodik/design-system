@@ -1,7 +1,7 @@
 import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import type { SemanticSize } from "../utils/size-variant-mapping";
-import { mapSemanticToNumeric } from "../utils/size-variant-mapping";
+import { getSizeClassName } from "../utils/size-variant-mapping";
 
 export interface CheckboxProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -30,6 +30,8 @@ export function Checkbox({
   const generatedId = React.useId();
   const checkboxId = id || name || generatedId;
 
+  const sizeClassName = getSizeClassName(size);
+
   const customStyle: React.CSSProperties = {
     ...style,
     ...resolveRadiusFactor(radius),
@@ -37,7 +39,7 @@ export function Checkbox({
 
   const containerClasses = [
     "az-Checkbox checkbox",
-    `az-r-size-${mapSemanticToNumeric(size)}`,
+    sizeClassName,
     className,
   ]
     .filter(Boolean)

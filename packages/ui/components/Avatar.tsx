@@ -1,6 +1,6 @@
 import React from "react";
 import type { SemanticSize } from "../utils/size-variant-mapping";
-import { mapSemanticToNumeric } from "../utils/size-variant-mapping";
+import { getSizeClassName } from "../utils/size-variant-mapping";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
@@ -34,10 +34,12 @@ export default function Avatar({
     return "";
   };
 
+  const sizeClassName = getSizeClassName(size);
+
   const avatarClasses = [
     "avatar",
     "az-Avatar",
-    `az-r-size-${mapSemanticToNumeric(size)}`,
+    sizeClassName,
     status && "avatar-status",
     status && `avatar-${status}`,
     className,

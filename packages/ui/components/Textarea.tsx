@@ -2,6 +2,7 @@ import React from "react";
 import { resolveRadiusFactor } from "../utils/radius";
 import { ValidationRules, useFieldValidation } from "../utils/validation";
 import type { SemanticSize } from "../utils/size-variant-mapping";
+import { getSizeClassName } from "../utils/size-variant-mapping";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -65,6 +66,8 @@ export function Textarea({
     onBlur?.(e);
   };
 
+  const sizeClassName = getSizeClassName(size);
+
   const customStyle: React.CSSProperties = {
     ...style,
     ...(color && !isNamedColor ? { "--accent-9": color } : {}),
@@ -73,7 +76,7 @@ export function Textarea({
 
   const textareaClasses = [
     "az-TextAreaInput textarea",
-    `az-r-size-${size}`,
+    sizeClassName,
     finalStatus,
     error && "error",
     isNamedColor ? `az-accent-${color}` : "",

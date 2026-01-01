@@ -52,25 +52,12 @@ export function Flex({
     ...resolveResponsiveVars(gap, "flex-gap", resolveGap),
   };
 
-  // For non-responsive fallback, use direct values
-  const defaultDirection = typeof direction === "object" ? direction.base : direction;
-  const defaultAlign = typeof align === "object" ? align.base : align;
-  const defaultJustify = typeof justify === "object" ? justify.base : justify;
-  const defaultWrap = typeof wrap === "object" ? wrap.base : wrap;
-  const defaultGap = typeof gap === "object" ? gap.base : gap;
-
-  const customStyle: React.CSSProperties = {
-    flexDirection: defaultDirection,
-    alignItems: defaultAlign ? alignMap[defaultAlign] : undefined,
-    justifyContent: defaultJustify ? justifyMap[defaultJustify] : undefined,
-    flexWrap: defaultWrap,
-    gap: defaultGap ? `var(--space-${defaultGap}, ${defaultGap})` : undefined,
-    ...style,
-    ...responsiveVars,
-  };
-
   return (
-    <Component className={`az-Flex ${className}`} style={customStyle} {...props}>
+    <Component
+      className={`az-Flex ${className}`}
+      style={{ ...style, ...responsiveVars }}
+      {...props}
+    >
       {children}
     </Component>
   );
