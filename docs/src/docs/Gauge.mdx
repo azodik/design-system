@@ -1,0 +1,112 @@
+
+import { Gauge, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Gauge
+
+The `Gauge` component displays a circular gauge/progress indicator.
+
+## Features
+- **Circular gauge**: Visual gauge display.
+- **Value display**: Show current value.
+- **Variants**: Full, half, or quarter circle.
+- **Customizable**: Size, color, and thickness.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Gauge } from "@azodik/ui";
+
+<Gauge
+  value={75}
+  min={0}
+  max={100}
+  size={120}
+  showValue
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Gauge Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)", alignItems: "center" }}>
+      <Gauge value={75} min={0} max={100} size={120} showValue />
+      <Gauge value={50} min={0} max={100} size={120} variant="half" showValue />
+    </Stack>
+  }
+>
+{`import { Gauge, Stack } from "@azodik/ui";
+
+export const GaugeExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)", alignItems: "center" }}>
+      <Gauge value={75} min={0} max={100} size={120} showValue />
+      <Gauge value={50} min={0} max={100} size={120} variant="half" showValue />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'number',
+    required: true,
+    default: 'undefined',
+    description: 'Current value'
+  },
+  {
+    name: 'min',
+    type: 'number',
+    required: false,
+    default: '0',
+    description: 'Minimum value'
+  },
+  {
+    name: 'max',
+    type: 'number',
+    required: false,
+    default: '100',
+    description: 'Maximum value'
+  },
+  {
+    name: 'size',
+    type: 'number',
+    required: false,
+    default: '120',
+    description: 'Size of gauge'
+  },
+  {
+    name: 'thickness',
+    type: 'number',
+    required: false,
+    default: '8',
+    description: 'Thickness of gauge arc'
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Color of gauge'
+  },
+  {
+    name: 'showValue',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show value label'
+  },
+  {
+    name: 'variant',
+    type: '"full" | "half" | "quarter"',
+    required: false,
+    default: '"full"',
+    description: 'Gauge variant'
+  }
+]} />
+

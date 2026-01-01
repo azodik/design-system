@@ -1,0 +1,104 @@
+
+import { TreeMap, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# TreeMap
+
+The `TreeMap` component displays hierarchical data as nested rectangles.
+
+## Features
+- **Hierarchical visualization**: Show nested data structures.
+- **Size encoding**: Rectangle size represents value.
+- **Color coding**: Optional color encoding.
+- **Interactive**: Click to navigate hierarchy.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { TreeMap } from "@azodik/ui";
+
+<TreeMap
+  data={[
+    { id: "1", label: "Category 1", value: 100, children: [
+      { id: "1-1", label: "Item 1", value: 50 },
+    ]},
+  ]}
+  width={400}
+  height={300}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="TreeMap Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)", alignItems: "center" }}>
+      <TreeMap
+        data={[
+          { id: "1", label: "Category 1", value: 100 },
+          { id: "2", label: "Category 2", value: 80 },
+          { id: "3", label: "Category 3", value: 60 },
+          { id: "4", label: "Category 4", value: 40 },
+        ]}
+        width={400}
+        height={300}
+        showLabels
+      />
+    </Stack>
+  }
+>
+{`import { TreeMap, Stack } from "@azodik/ui";
+
+export const TreeMapExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)", alignItems: "center" }}>
+      <TreeMap
+        data={[
+          { id: "1", label: "Category 1", value: 100 },
+          { id: "2", label: "Category 2", value: 80 },
+          { id: "3", label: "Category 3", value: 60 },
+          { id: "4", label: "Category 4", value: 40 },
+        ]}
+        width={400}
+        height={300}
+        showLabels
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'TreeMapNode[]',
+    required: true,
+    default: 'undefined',
+    description: 'Tree map data'
+  },
+  {
+    name: 'width',
+    type: 'number',
+    required: false,
+    default: '400',
+    description: 'Width of treemap'
+  },
+  {
+    name: 'height',
+    type: 'number',
+    required: false,
+    default: '300',
+    description: 'Height of treemap'
+  },
+  {
+    name: 'showLabels',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show labels'
+  }
+]} />
+

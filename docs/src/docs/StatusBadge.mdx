@@ -1,0 +1,88 @@
+
+import { StatusBadge, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# StatusBadge
+
+The `StatusBadge` component displays status indicators with color coding.
+
+## Features
+- **Status types**: Multiple status types (online, offline, success, error, etc.).
+- **Pulse animation**: Optional pulse animation.
+- **Labels**: Show or hide status labels.
+- **Customizable**: Size variants.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { StatusBadge } from "@azodik/ui";
+
+<StatusBadge status="online" label="Online" />
+<StatusBadge status="offline" />
+<StatusBadge status="success" label="Success" />`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="StatusBadge Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <StatusBadge status="online" label="Online" />
+      <StatusBadge status="offline" label="Offline" />
+      <StatusBadge status="success" label="Success" />
+      <StatusBadge status="error" label="Error" />
+      <StatusBadge status="warning" label="Warning" />
+      <StatusBadge status="online" pulse />
+    </Stack>
+  }
+>
+{`import { StatusBadge, Stack } from "@azodik/ui";
+
+export const StatusBadgeExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <StatusBadge status="online" label="Online" />
+      <StatusBadge status="offline" label="Offline" />
+      <StatusBadge status="success" label="Success" />
+      <StatusBadge status="error" label="Error" />
+      <StatusBadge status="warning" label="Warning" />
+      <StatusBadge status="online" pulse />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'status',
+    type: 'StatusType',
+    required: true,
+    default: 'undefined',
+    description: 'Status type'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Show label text'
+  },
+  {
+    name: 'pulse',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show pulse animation'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  }
+]} />
+

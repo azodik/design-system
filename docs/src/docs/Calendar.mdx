@@ -1,0 +1,153 @@
+
+import { Calendar, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Calendar
+
+The `Calendar` component provides a date picker interface for selecting dates.
+
+## Features
+- **Date selection**: Single date selection with validation.
+- **Date constraints**: Min/max date and disabled dates support.
+- **Customizable**: Size variants and week number display.
+- **Accessible**: Full keyboard navigation and ARIA support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Calendar } from "@azodik/ui";
+
+function App() {
+  const [date, setDate] = React.useState(new Date());
+  return (
+    <Calendar
+      value={date}
+      onChange={setDate}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Calendar Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Calendar defaultValue={new Date()} />
+    </Stack>
+  }
+>
+{`import { Calendar, Stack } from "@azodik/ui";
+
+export const CalendarExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Calendar defaultValue={new Date()} />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="With Date Constraints"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Calendar
+        defaultValue={new Date()}
+        minDate={new Date()}
+        showWeekNumbers
+      />
+    </Stack>
+  }
+>
+{`import { Calendar, Stack } from "@azodik/ui";
+
+export const CalendarConstraints = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Calendar
+        defaultValue={new Date()}
+        minDate={new Date()}
+        showWeekNumbers
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'Date',
+    required: false,
+    default: 'undefined',
+    description: 'Selected date (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'Date',
+    required: false,
+    default: 'undefined',
+    description: 'Default date (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(date: Date) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when date changes'
+  },
+  {
+    name: 'minDate',
+    type: 'Date',
+    required: false,
+    default: 'undefined',
+    description: 'Minimum selectable date'
+  },
+  {
+    name: 'maxDate',
+    type: 'Date',
+    required: false,
+    default: 'undefined',
+    description: 'Maximum selectable date'
+  },
+  {
+    name: 'disabledDates',
+    type: 'Date[]',
+    required: false,
+    default: 'undefined',
+    description: 'Disabled dates'
+  },
+  {
+    name: 'highlightedDates',
+    type: 'Date[]',
+    required: false,
+    default: 'undefined',
+    description: 'Highlighted dates'
+  },
+  {
+    name: 'showWeekNumbers',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show week numbers'
+  },
+  {
+    name: 'firstDayOfWeek',
+    type: '0 | 1',
+    required: false,
+    default: '0',
+    description: 'First day of week (0 = Sunday, 1 = Monday)'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  }
+]} />
+

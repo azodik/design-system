@@ -1,0 +1,121 @@
+
+import { FileUpload, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# FileUpload
+
+The `FileUpload` component provides file upload functionality with drag and drop support.
+
+## Features
+- **Drag and drop**: Support for drag and drop file uploads.
+- **File validation**: Size and type validation.
+- **Multiple files**: Support for multiple file selection.
+- **Preview**: File preview support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { FileUpload } from "@azodik/ui";
+
+function App() {
+  return (
+    <FileUpload
+      accept="image/*"
+      onFilesSelected={(files) => console.log(files)}
+      dragAndDrop
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="FileUpload Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <FileUpload
+        accept="image/*"
+        onFilesSelected={(files) => alert("Selected " + files.length + " file(s)")}
+        dragAndDrop
+        showFileList
+      />
+    </Stack>
+  }
+  code={`import { FileUpload, Stack } from "@azodik/ui";
+
+export const FileUploadExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <FileUpload
+        accept="image/*"
+        onFilesSelected={(files) => alert("Selected " + files.length + " file(s)")}
+        dragAndDrop
+        showFileList
+      />
+    </Stack>
+  );
+};`}
+/>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'onFilesSelected',
+    type: '(files: File[]) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when files are selected'
+  },
+  {
+    name: 'accept',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Accepted file types (e.g., "image/*", ".pdf,.doc")'
+  },
+  {
+    name: 'multiple',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Allow multiple file selection'
+  },
+  {
+    name: 'maxSize',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Maximum file size in bytes'
+  },
+  {
+    name: 'maxFiles',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Maximum number of files'
+  },
+  {
+    name: 'dragAndDrop',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Enable drag and drop'
+  },
+  {
+    name: 'showFileList',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show file list'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Disabled state'
+  }
+]} />
+

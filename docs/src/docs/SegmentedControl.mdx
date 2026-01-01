@@ -1,0 +1,116 @@
+
+import { SegmentedControl, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# SegmentedControl
+
+The `SegmentedControl` component provides iOS-style segmented control for selecting between multiple options.
+
+## Features
+- **Multiple options**: Select from multiple options.
+- **Icons**: Support for icons in options.
+- **Full width**: Optional full-width layout.
+- **Accessible**: Full keyboard navigation.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { SegmentedControl } from "@azodik/ui";
+
+function App() {
+  const [value, setValue] = React.useState("option1");
+  return (
+    <SegmentedControl
+      options={[
+        { value: "option1", label: "Option 1" },
+        { value: "option2", label: "Option 2" },
+      ]}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="SegmentedControl Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <SegmentedControl
+        options={[
+          { value: "list", label: "List" },
+          { value: "grid", label: "Grid" },
+          { value: "map", label: "Map" },
+        ]}
+        defaultValue="list"
+      />
+    </Stack>
+  }
+>
+{`import { SegmentedControl, Stack } from "@azodik/ui";
+
+export const SegmentedControlExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <SegmentedControl
+        options={[
+          { value: "list", label: "List" },
+          { value: "grid", label: "Grid" },
+          { value: "map", label: "Map" },
+        ]}
+        defaultValue="list"
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'options',
+    type: 'SegmentedControlOption[]',
+    required: true,
+    default: 'undefined',
+    description: 'Options for the segmented control'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Selected value (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Default value (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when selection changes'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  },
+  {
+    name: 'fullWidth',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Full width'
+  }
+]} />
+

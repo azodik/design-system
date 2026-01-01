@@ -1,0 +1,110 @@
+
+import { Tree, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Tree
+
+The `Tree` component displays hierarchical data in a tree structure.
+
+## Features
+- **Hierarchical data**: Display nested tree structures.
+- **Expand/collapse**: Expand and collapse nodes.
+- **Selection**: Single or multiple node selection.
+- **Icons**: Support for custom node icons.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Tree } from "@azodik/ui";
+
+<Tree
+  data={[
+    { id: "1", label: "Node 1", children: [
+      { id: "1-1", label: "Child 1" },
+      { id: "1-2", label: "Child 2" },
+    ]},
+  ]}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Tree Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Tree
+        data={[
+          { id: "1", label: "Documents", children: [
+            { id: "1-1", label: "File 1.pdf" },
+            { id: "1-2", label: "File 2.pdf" },
+          ]},
+          { id: "2", label: "Images", children: [
+            { id: "2-1", label: "Photo 1.jpg" },
+          ]},
+        ]}
+      />
+    </Stack>
+  }
+>
+{`import { Tree, Stack } from "@azodik/ui";
+
+export const TreeExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Tree
+        data={[
+          { id: "1", label: "Documents", children: [
+            { id: "1-1", label: "File 1.pdf" },
+            { id: "1-2", label: "File 2.pdf" },
+          ]},
+          { id: "2", label: "Images", children: [
+            { id: "2-1", label: "Photo 1.jpg" },
+          ]},
+        ]}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'TreeNode[]',
+    required: true,
+    default: 'undefined',
+    description: 'Tree data'
+  },
+  {
+    name: 'selectedIds',
+    type: 'string[]',
+    required: false,
+    default: 'undefined',
+    description: 'Selected node IDs'
+  },
+  {
+    name: 'expandedIds',
+    type: 'string[]',
+    required: false,
+    default: 'undefined',
+    description: 'Expanded node IDs'
+  },
+  {
+    name: 'onSelectionChange',
+    type: '(selectedIds: string[]) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when selection changes'
+  },
+  {
+    name: 'onExpansionChange',
+    type: '(expandedIds: string[]) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when expansion changes'
+  }
+]} />
+

@@ -1,0 +1,101 @@
+
+import { StickyHeader, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# StickyHeader
+
+The `StickyHeader` component creates a header that sticks to the top (or bottom) when scrolling.
+
+## Features
+- **Sticky positioning**: Header sticks when scrolling.
+- **Auto-hide**: Optionally hide on scroll down, show on scroll up.
+- **Threshold**: Configurable scroll threshold.
+- **Customizable**: Position and z-index control.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { StickyHeader } from "@azodik/ui";
+
+<StickyHeader autoHide threshold={100}>
+  <Navigation />
+</StickyHeader>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="StickyHeader Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: StickyHeader requires scrollable content. See code example.
+      </div>
+      <div style={{ height: "200px", overflow: "auto", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
+        <StickyHeader>
+          <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-2)", borderBottom: "1px solid var(--color-border)" }}>
+            Sticky Header
+          </div>
+        </StickyHeader>
+        {Array.from({ length: 20 }, (_, i) => (
+          <div key={i} style={{ padding: "var(--space-4)" }}>
+            Content item {i + 1}
+          </div>
+        ))}
+      </div>
+    </Stack>
+  }
+>
+{`import { StickyHeader } from "@azodik/ui";
+
+export const StickyHeaderExample = () => {
+  return (
+    <div style={{ height: "300px", overflow: "auto" }}>
+      <StickyHeader>
+        <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-2)" }}>
+          Sticky Header
+        </div>
+      </StickyHeader>
+      {Array.from({ length: 20 }, (_, i) => (
+        <div key={i} style={{ padding: "var(--space-4)" }}>
+          Content item {i + 1}
+        </div>
+      ))}
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'threshold',
+    type: 'number',
+    required: false,
+    default: '0',
+    description: 'Scroll threshold (px) before header becomes sticky'
+  },
+  {
+    name: 'autoHide',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Hide header on scroll down, show on scroll up'
+  },
+  {
+    name: 'position',
+    type: '"top" | "bottom"',
+    required: false,
+    default: '"top"',
+    description: 'Sticky position'
+  },
+  {
+    name: 'zIndex',
+    type: 'number',
+    required: false,
+    default: '1000',
+    description: 'Z-index'
+  }
+]} />
+

@@ -1,0 +1,136 @@
+
+import { SplitPane, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# SplitPane
+
+The `SplitPane` component creates resizable split panels for side-by-side layouts.
+
+## Features
+- **Resizable**: Drag to resize panels.
+- **Direction**: Horizontal or vertical split.
+- **Constraints**: Min/max size limits.
+- **Customizable**: Handle size and visibility.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { SplitPane } from "@azodik/ui";
+
+<SplitPane
+  left={<div>Left Panel</div>}
+  right={<div>Right Panel</div>}
+  defaultSplit={50}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="SplitPane Example"
+  preview={
+    <div style={{ width: "100%", height: "300px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
+      <SplitPane
+        left={
+          <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-2)", height: "100%" }}>
+            Left Panel
+          </div>
+        }
+        right={
+          <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)", height: "100%" }}>
+            Right Panel
+          </div>
+        }
+        defaultSplit={50}
+        minSize={20}
+        maxSize={80}
+      />
+    </div>
+  }
+>
+{`import { SplitPane } from "@azodik/ui";
+
+export const SplitPaneExample = () => {
+  return (
+    <div style={{ width: "100%", height: "300px" }}>
+      <SplitPane
+        left={
+          <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-2)", height: "100%" }}>
+            Left Panel
+          </div>
+        }
+        right={
+          <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)", height: "100%" }}>
+            Right Panel
+          </div>
+        }
+        defaultSplit={50}
+        minSize={20}
+        maxSize={80}
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'left',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'First pane content'
+  },
+  {
+    name: 'right',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'Second pane content'
+  },
+  {
+    name: 'direction',
+    type: '"horizontal" | "vertical"',
+    required: false,
+    default: '"horizontal"',
+    description: 'Split direction'
+  },
+  {
+    name: 'defaultSplit',
+    type: 'number',
+    required: false,
+    default: '50',
+    description: 'Initial split position (0-100)'
+  },
+  {
+    name: 'split',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Controlled split position'
+  },
+  {
+    name: 'onSplitChange',
+    type: '(split: number) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when split changes'
+  },
+  {
+    name: 'minSize',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Minimum size for first pane (%)'
+  },
+  {
+    name: 'maxSize',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Maximum size for first pane (%)'
+  }
+]} />
+

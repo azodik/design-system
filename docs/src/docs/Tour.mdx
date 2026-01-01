@@ -1,0 +1,112 @@
+
+import { Tour, Button, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Tour
+
+The `Tour` component provides an interactive guided tour for onboarding users.
+
+## Features
+- **Step-by-step**: Guide users through features.
+- **Target elements**: Highlight specific elements.
+- **Navigation**: Previous/next step navigation.
+- **Customizable**: Custom actions and content.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Tour, Button } from "@azodik/ui";
+
+function App() {
+  const [isActive, setIsActive] = React.useState(false);
+  return (
+    <>
+      <Button onClick={() => setIsActive(true)}>Start Tour</Button>
+      <Tour
+        isActive={isActive}
+        steps={[
+          { id: "1", title: "Welcome", content: "This is step 1" },
+          { id: "2", title: "Feature", content: "This is step 2" },
+        ]}
+        onEnd={() => setIsActive(false)}
+      />
+    </>
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Tour Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: Tour requires state management and target elements. See code example.
+      </div>
+      <Button onClick={() => alert("Start tour in your app")}>Start Tour</Button>
+    </Stack>
+  }
+>
+{`import { Tour, Button } from "@azodik/ui";
+import { useState } from "react";
+
+export const TourExample = () => {
+  const [isActive, setIsActive] = useState(false);
+  
+  return (
+    <>
+      <Button onClick={() => setIsActive(true)}>Start Tour</Button>
+      <Tour
+        isActive={isActive}
+        steps={[
+          { id: "1", title: "Welcome", content: "This is the first step of the tour" },
+          { id: "2", title: "Feature", content: "This is the second step of the tour" },
+        ]}
+        onEnd={() => setIsActive(false)}
+      />
+    </>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'steps',
+    type: 'TourStep[]',
+    required: true,
+    default: 'undefined',
+    description: 'Tour steps'
+  },
+  {
+    name: 'isActive',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Tour is active'
+  },
+  {
+    name: 'onStart',
+    type: '() => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when tour starts'
+  },
+  {
+    name: 'onEnd',
+    type: '() => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when tour ends'
+  },
+  {
+    name: 'onStepChange',
+    type: '(stepIndex: number) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when step changes'
+  }
+]} />
+

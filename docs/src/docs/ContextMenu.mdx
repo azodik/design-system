@@ -1,0 +1,104 @@
+
+import { ContextMenu, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# ContextMenu
+
+The `ContextMenu` component displays a context menu on right-click.
+
+## Features
+- **Right-click menu**: Context menu triggered by right-click.
+- **Menu items**: Support for icons, separators, and submenus.
+- **Accessible**: Full keyboard navigation.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { ContextMenu } from "@azodik/ui";
+
+<ContextMenu
+  items={[
+    { label: "Edit", onClick: () => console.log("Edit") },
+    { label: "Delete", onClick: () => console.log("Delete"), destructive: true },
+  ]}
+>
+  <div>Right-click me</div>
+</ContextMenu>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="ContextMenu Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <ContextMenu
+        items={[
+          { label: "Edit", onClick: () => alert("Edit clicked") },
+          { label: "Copy", onClick: () => alert("Copy clicked") },
+          { separator: true },
+          { label: "Delete", onClick: () => alert("Delete clicked"), destructive: true },
+        ]}
+      >
+        <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)", cursor: "context-menu" }}>
+          Right-click me
+        </div>
+      </ContextMenu>
+    </Stack>
+  }
+>
+{`import { ContextMenu, Stack } from "@azodik/ui";
+
+export const ContextMenuExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <ContextMenu
+        items={[
+          { label: "Edit", onClick: () => alert("Edit clicked") },
+          { label: "Copy", onClick: () => alert("Copy clicked") },
+          { separator: true },
+          { label: "Delete", onClick: () => alert("Delete clicked"), destructive: true },
+        ]}
+      >
+        <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+          Right-click me
+        </div>
+      </ContextMenu>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'ContextMenuItem[]',
+    required: true,
+    default: 'undefined',
+    description: 'Menu items array'
+  },
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'Children (for right-click trigger)'
+  },
+  {
+    name: 'open',
+    type: 'boolean',
+    required: false,
+    default: 'undefined',
+    description: 'Menu is open (controlled)'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when open state changes'
+  }
+]} />
+

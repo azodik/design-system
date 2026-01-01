@@ -1,0 +1,111 @@
+
+import { BottomSheet, Button, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# BottomSheet
+
+The `BottomSheet` component displays a mobile-friendly slide-up sheet from the bottom.
+
+## Features
+- **Mobile optimized**: Designed for mobile interactions.
+- **Smooth animation**: Slide-up animation.
+- **Scrollable**: Content can scroll if needed.
+- **Accessible**: Full keyboard and screen reader support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { BottomSheet, Button } from "@azodik/ui";
+
+function App() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Bottom Sheet</Button>
+      <BottomSheet open={open} onOpenChange={setOpen} title="Settings">
+        <div>Content here</div>
+      </BottomSheet>
+    </>
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="BottomSheet Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: BottomSheet requires state management. Click button to see example.
+      </div>
+      <Button onClick={() => alert("Open bottom sheet in your app")}>Open Bottom Sheet</Button>
+    </Stack>
+  }
+>
+{`import { BottomSheet, Button } from "@azodik/ui";
+import { useState } from "react";
+
+export const BottomSheetExample = () => {
+  const [open, setOpen] = useState(false);
+  
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Bottom Sheet</Button>
+      <BottomSheet open={open} onOpenChange={setOpen} title="Settings">
+        <div style={{ padding: "var(--space-4)" }}>
+          Bottom sheet content goes here
+        </div>
+      </BottomSheet>
+    </>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'open',
+    type: 'boolean',
+    required: true,
+    default: 'undefined',
+    description: 'Whether the bottom sheet is open'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: true,
+    default: 'undefined',
+    description: 'Callback when open state changes'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Title of the sheet'
+  },
+  {
+    name: 'description',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Description text'
+  },
+  {
+    name: 'showClose',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show close button'
+  },
+  {
+    name: 'maxHeight',
+    type: 'string',
+    required: false,
+    default: '"90vh"',
+    description: 'Maximum height'
+  }
+]} />
+

@@ -1,0 +1,88 @@
+
+import { ActionCenter, Button, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# ActionCenter
+
+The `ActionCenter` component displays actionable notifications that require user attention.
+
+## Features
+- **Actionable notifications**: Notifications with action buttons.
+- **Priority levels**: High, medium, and low priority.
+- **Dismissible**: Users can dismiss notifications.
+- **Accessible**: Full keyboard and screen reader support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { ActionCenter } from "@azodik/ui";
+
+<ActionCenter
+  actions={[
+    {
+      id: "1",
+      title: "Review Required",
+      description: "Please review this item",
+      primaryActionLabel: "Review",
+      onPrimaryAction: () => console.log("Reviewed"),
+    },
+  ]}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="ActionCenter Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: ActionCenter requires state management. See code example.
+      </div>
+      <Button onClick={() => alert("Open ActionCenter in your app")}>Open Action Center</Button>
+    </Stack>
+  }
+>
+{`import { ActionCenter, Button } from "@azodik/ui";
+import { useState } from "react";
+
+export const ActionCenterExample = () => {
+  const [actions, setActions] = useState([
+    {
+      id: "1",
+      title: "Review Required",
+      description: "Please review this item",
+      primaryActionLabel: "Review",
+      onPrimaryAction: () => alert("Reviewed"),
+      priority: "high" as const,
+    },
+  ]);
+
+  return (
+    <ActionCenter
+      actions={actions}
+      onDismiss={(id) => setActions(actions.filter(a => a.id !== id))}
+    />
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'actions',
+    type: 'ActionableNotification[]',
+    required: true,
+    default: 'undefined',
+    description: 'Actionable notifications'
+  },
+  {
+    name: 'onDismiss',
+    type: '(id: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when action is dismissed'
+  }
+]} />
+

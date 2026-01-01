@@ -1,0 +1,121 @@
+
+import { StatCard, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# StatCard
+
+The `StatCard` component displays key performance indicators (KPIs) with trend indicators.
+
+## Features
+- **KPI display**: Show metrics with values.
+- **Trend indicators**: Show percentage changes and trends.
+- **Icons**: Support for custom icons.
+- **Loading state**: Skeleton loading support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { StatCard } from "@azodik/ui";
+
+<StatCard
+  title="Total Revenue"
+  value="$12,345"
+  change={12.5}
+  trend="up"
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="StatCard Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <StatCard
+        title="Total Revenue"
+        value="$12,345"
+        change={12.5}
+        trend="up"
+        description="vs last month"
+      />
+      <StatCard
+        title="Active Users"
+        value="1,234"
+        change={-5.2}
+        trend="down"
+        description="vs last week"
+      />
+    </Stack>
+  }
+>
+{`import { StatCard, Stack } from "@azodik/ui";
+
+export const StatCardExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <StatCard
+        title="Total Revenue"
+        value="$12,345"
+        change={12.5}
+        trend="up"
+        description="vs last month"
+      />
+      <StatCard
+        title="Active Users"
+        value="1,234"
+        change={-5.2}
+        trend="down"
+        description="vs last week"
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'title',
+    type: 'string',
+    required: true,
+    default: 'undefined',
+    description: 'Title of the stat card'
+  },
+  {
+    name: 'value',
+    type: 'string | number',
+    required: true,
+    default: 'undefined',
+    description: 'Main value to display'
+  },
+  {
+    name: 'change',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Percentage change (can be positive or negative)'
+  },
+  {
+    name: 'trend',
+    type: '"up" | "down" | "neutral"',
+    required: false,
+    default: 'undefined',
+    description: 'Trend direction'
+  },
+  {
+    name: 'description',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Description text (e.g., "vs last month")'
+  },
+  {
+    name: 'loading',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Loading state - shows skeleton loader'
+  }
+]} />
+

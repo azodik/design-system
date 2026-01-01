@@ -1,0 +1,83 @@
+
+import { ColorPicker, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# ColorPicker
+
+The `ColorPicker` component provides a color selection interface.
+
+## Features
+- **Color selection**: Visual color picker interface.
+- **Hex values**: Support for hex color codes.
+- **Controlled/Uncontrolled**: Both controlled and uncontrolled modes.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { ColorPicker } from "@azodik/ui";
+
+function App() {
+  const [color, setColor] = React.useState("#000000");
+  return (
+    <ColorPicker
+      value={color}
+      onChange={setColor}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="ColorPicker Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <ColorPicker defaultValue="#3b82f6" />
+    </Stack>
+  }
+>
+{`import { ColorPicker, Stack } from "@azodik/ui";
+
+export const ColorPickerExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <ColorPicker defaultValue="#3b82f6" />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Color value (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: '"#000000"',
+    description: 'Default color value (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(color: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when color changes'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Disabled state'
+  }
+]} />
+

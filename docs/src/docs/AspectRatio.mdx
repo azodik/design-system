@@ -1,0 +1,108 @@
+
+import { AspectRatio, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# AspectRatio
+
+The `AspectRatio` component maintains a consistent aspect ratio for its children, useful for images and videos.
+
+## Features
+- **Ratio control**: Maintains aspect ratio using padding technique.
+- **Presets**: Common aspect ratio presets (square, video, photo, etc.).
+- **Custom ratios**: Support for custom numeric ratios.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { AspectRatio } from "@azodik/ui";
+
+<AspectRatio ratio={16/9}>
+  <img src="image.jpg" alt="Image" />
+</AspectRatio>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="AspectRatio Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <AspectRatio preset="video" style={{ backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--color-text-secondary)" }}>
+          16:9 Video
+        </div>
+      </AspectRatio>
+      <AspectRatio preset="square" style={{ backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--color-text-secondary)" }}>
+          1:1 Square
+        </div>
+      </AspectRatio>
+    </Stack>
+  }
+>
+{`import { AspectRatio, Stack } from "@azodik/ui";
+
+export const AspectRatioExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <AspectRatio preset="video" style={{ backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--color-text-secondary)" }}>
+          16:9 Video
+        </div>
+      </AspectRatio>
+      <AspectRatio preset="square" style={{ backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--color-text-secondary)" }}>
+          1:1 Square
+        </div>
+      </AspectRatio>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Custom Ratio"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <AspectRatio ratio={4/3} style={{ backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--color-text-secondary)" }}>
+          4:3 Custom
+        </div>
+      </AspectRatio>
+    </Stack>
+  }
+>
+{`import { AspectRatio, Stack } from "@azodik/ui";
+
+export const CustomAspectRatio = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <AspectRatio ratio={4/3} style={{ backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--color-text-secondary)" }}>
+          4:3 Custom
+        </div>
+      </AspectRatio>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'ratio',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Aspect ratio (width / height). Examples: 16/9, 4/3, 1/1'
+  },
+  {
+    name: 'preset',
+    type: '"square" | "video" | "photo" | "wide" | "portrait"',
+    required: false,
+    default: 'undefined',
+    description: 'Common aspect ratios'
+  }
+]} />
+

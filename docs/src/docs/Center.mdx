@@ -1,0 +1,96 @@
+
+import { Center } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Center
+
+The `Center` component is a utility component for centering content both horizontally and vertically.
+
+## Features
+- **Flexible**: Control horizontal and vertical centering independently.
+- **Full dimensions**: Support for full width and full height.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Center } from "@azodik/ui";
+
+<Center>
+  <div>Centered content</div>
+</Center>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Center Example"
+  preview={
+    <Center style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Centered Content</div>
+    </Center>
+  }
+>
+{`<Center style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Centered Content</div>
+</Center>`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Horizontal Only"
+  preview={
+    <Center horizontal vertical={false} style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Horizontally Centered</div>
+    </Center>
+  }
+>
+{`<Center horizontal vertical={false} style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Horizontally Centered</div>
+</Center>`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Full Width"
+  preview={
+    <Center fullWidth style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Full Width Centered</div>
+    </Center>
+  }
+>
+{`<Center fullWidth style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Full Width Centered</div>
+</Center>`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'horizontal',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Center horizontally'
+  },
+  {
+    name: 'vertical',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Center vertically'
+  },
+  {
+    name: 'fullWidth',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Make center full width'
+  },
+  {
+    name: 'fullHeight',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Make center full height'
+  }
+]} />
+

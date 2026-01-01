@@ -1,0 +1,133 @@
+
+import { FloatingActionButton, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# FloatingActionButton
+
+The `FloatingActionButton` (FAB) is a circular button that floats above the content for primary actions.
+
+## Features
+- **Floating**: Positioned absolutely on the screen.
+- **Extended**: Support for extended FAB with label.
+- **Positions**: Multiple position options.
+- **Accessible**: Full keyboard and screen reader support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { FloatingActionButton } from "@azodik/ui";
+
+<FloatingActionButton
+  icon={<PlusIcon />}
+  position="bottom-right"
+  onClick={() => console.log("Clicked")}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="FloatingActionButton Example"
+  preview={
+    <div style={{ position: "relative", width: "100%", height: "200px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
+      <FloatingActionButton
+        icon={<span>+</span>}
+        position="bottom-right"
+        onClick={() => alert("FAB clicked")}
+      />
+    </div>
+  }
+>
+{`import { FloatingActionButton } from "@azodik/ui";
+
+export const FloatingActionButtonExample = () => {
+  return (
+    <div style={{ position: "relative", width: "100%", height: "200px" }}>
+      <FloatingActionButton
+        icon={<span>+</span>}
+        position="bottom-right"
+        onClick={() => alert("FAB clicked")}
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Extended FAB"
+  preview={
+    <div style={{ position: "relative", width: "100%", height: "200px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
+      <FloatingActionButton
+        icon={<span>+</span>}
+        label="Add Item"
+        extended
+        position="bottom-right"
+        onClick={() => alert("Extended FAB clicked")}
+      />
+    </div>
+  }
+>
+{`import { FloatingActionButton } from "@azodik/ui";
+
+export const ExtendedFAB = () => {
+  return (
+    <div style={{ position: "relative", width: "100%", height: "200px" }}>
+      <FloatingActionButton
+        icon={<span>+</span>}
+        label="Add Item"
+        extended
+        position="bottom-right"
+        onClick={() => alert("Extended FAB clicked")}
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: true,
+    default: 'undefined',
+    description: 'Icon to display in the FAB'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Label text (shown on hover or when expanded)'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  },
+  {
+    name: 'position',
+    type: '"bottom-right" | "bottom-left" | "top-right" | "top-left" | "bottom-center" | "top-center"',
+    required: false,
+    default: '"bottom-right"',
+    description: 'Position on screen'
+  },
+  {
+    name: 'color',
+    type: '"indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string',
+    required: false,
+    default: '"azodik"',
+    description: 'Color variant'
+  },
+  {
+    name: 'extended',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Extended FAB (shows label)'
+  }
+]} />
+

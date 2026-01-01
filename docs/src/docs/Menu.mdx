@@ -1,0 +1,116 @@
+
+import { Menu, Button, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Menu
+
+The `Menu` component displays a dropdown menu with a list of actions.
+
+## Features
+- **Dropdown menu**: Context menu with items and actions.
+- **Submenus**: Support for nested menu items.
+- **Icons and shortcuts**: Rich menu item content.
+- **Accessible**: Full keyboard navigation.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Menu, Button } from "@azodik/ui";
+
+function App() {
+  return (
+    <Menu
+      trigger={<Button>Open Menu</Button>}
+      items={[
+        { label: "Edit", onClick: () => console.log("Edit") },
+        { label: "Delete", onClick: () => console.log("Delete"), destructive: true },
+      ]}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Menu Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Menu
+        trigger={<Button>Open Menu</Button>}
+        items={[
+          { label: "Edit", onClick: () => alert("Edit clicked") },
+          { label: "Duplicate", onClick: () => alert("Duplicate clicked") },
+          { separator: true },
+          { label: "Delete", onClick: () => alert("Delete clicked"), destructive: true },
+        ]}
+      />
+    </Stack>
+  }
+>
+{`import { Menu, Button, Stack } from "@azodik/ui";
+
+export const MenuExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Menu
+        trigger={<Button>Open Menu</Button>}
+        items={[
+          { label: "Edit", onClick: () => alert("Edit clicked") },
+          { label: "Duplicate", onClick: () => alert("Duplicate clicked") },
+          { separator: true },
+          { label: "Delete", onClick: () => alert("Delete clicked"), destructive: true },
+        ]}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'MenuItem[]',
+    required: true,
+    default: 'undefined',
+    description: 'Menu items array'
+  },
+  {
+    name: 'trigger',
+    type: 'React.ReactNode',
+    required: true,
+    default: 'undefined',
+    description: 'Trigger element'
+  },
+  {
+    name: 'open',
+    type: 'boolean',
+    required: false,
+    default: 'undefined',
+    description: 'Menu is open (controlled)'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when open state changes'
+  },
+  {
+    name: 'position',
+    type: '"top" | "bottom" | "left" | "right"',
+    required: false,
+    default: '"bottom"',
+    description: 'Menu position'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  }
+]} />
+

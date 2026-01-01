@@ -1,0 +1,119 @@
+
+import { Search, SearchIndex, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Search
+
+The `Search` component provides a powerful search interface with keyboard shortcuts and recent searches.
+
+## Features
+- **Keyboard shortcut**: Open search with Cmd/Ctrl+K.
+- **Recent searches**: Remembers recent search history.
+- **Customizable**: Custom result rendering and messages.
+- **Accessible**: Full keyboard navigation.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Search, SearchIndex } from "@azodik/ui";
+
+const searchIndex = new SearchIndex([
+  { id: "1", title: "Getting Started", content: "Learn how to get started" },
+  { id: "2", title: "Components", content: "Browse all components" },
+]);
+
+function App() {
+  return (
+    <Search
+      searchIndex={searchIndex}
+      onSelect={(item) => console.log("Selected:", item)}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Search Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Press Cmd/Ctrl+K to open search
+      </div>
+      <Search
+        searchIndex={new SearchIndex([
+          { id: "1", title: "Getting Started", content: "Learn how to get started" },
+          { id: "2", title: "Components", content: "Browse all components" },
+        ])}
+        onSelect={(item) => alert(`Selected: ${item.title}`)}
+      />
+    </Stack>
+  }
+>
+{`import { Search, SearchIndex, Stack } from "@azodik/ui";
+
+export const SearchExample = () => {
+  const searchIndex = new SearchIndex([
+    { id: "1", title: "Getting Started", content: "Learn how to get started" },
+    { id: "2", title: "Components", content: "Browse all components" },
+  ]);
+
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Search
+        searchIndex={searchIndex}
+        onSelect={(item) => alert(\`Selected: \${item.title}\`)}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'searchIndex',
+    type: 'SearchIndex',
+    required: true,
+    default: 'undefined',
+    description: 'Search index instance'
+  },
+  {
+    name: 'onSelect',
+    type: '(item: SearchableItem) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when a result is selected'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Search..."',
+    description: 'Placeholder text for search input'
+  },
+  {
+    name: 'maxResults',
+    type: 'number',
+    required: false,
+    default: '10',
+    description: 'Maximum number of results to display'
+  },
+  {
+    name: 'shortcutKey',
+    type: 'string',
+    required: false,
+    default: '"k"',
+    description: 'Keyboard shortcut to open search (default: "k")'
+  },
+  {
+    name: 'showShortcutHint',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show keyboard shortcut hint'
+  }
+]} />
+

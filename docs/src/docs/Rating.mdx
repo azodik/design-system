@@ -1,0 +1,147 @@
+
+import { Rating, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Rating
+
+The `Rating` component displays a star rating system for user feedback and reviews.
+
+## Features
+- **Interactive**: Click to set rating value.
+- **Half stars**: Support for half-star ratings.
+- **Read-only**: Display mode for showing ratings.
+- **Customizable**: Size and color variants.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Rating } from "@azodik/ui";
+
+function App() {
+  const [rating, setRating] = React.useState(0);
+  return (
+    <Rating
+      value={rating}
+      onChange={setRating}
+      max={5}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Rating Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Rating defaultValue={4} max={5} />
+      <Rating defaultValue={3.5} max={5} allowHalf />
+      <Rating defaultValue={5} max={5} readOnly showValue />
+    </Stack>
+  }
+>
+{`import { Rating, Stack } from "@azodik/ui";
+
+export const RatingExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Rating defaultValue={4} max={5} />
+      <Rating defaultValue={3.5} max={5} allowHalf />
+      <Rating defaultValue={5} max={5} readOnly showValue />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Different Sizes"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Rating defaultValue={4} max={5} size="small" />
+      <Rating defaultValue={4} max={5} size="medium" />
+      <Rating defaultValue={4} max={5} size="large" />
+    </Stack>
+  }
+>
+{`import { Rating, Stack } from "@azodik/ui";
+
+export const RatingSizes = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Rating defaultValue={4} max={5} size="small" />
+      <Rating defaultValue={4} max={5} size="medium" />
+      <Rating defaultValue={4} max={5} size="large" />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Current rating value (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'number',
+    required: false,
+    default: '0',
+    description: 'Default rating value (uncontrolled)'
+  },
+  {
+    name: 'max',
+    type: 'number',
+    required: false,
+    default: '5',
+    description: 'Maximum rating (number of stars)'
+  },
+  {
+    name: 'onChange',
+    type: '(value: number) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when rating changes'
+  },
+  {
+    name: 'readOnly',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Read-only mode'
+  },
+  {
+    name: 'allowHalf',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Allow half stars'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  },
+  {
+    name: 'color',
+    type: '"indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string',
+    required: false,
+    default: '"amber"',
+    description: 'Color variant'
+  },
+  {
+    name: 'showValue',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show rating value text'
+  }
+]} />
+

@@ -1,0 +1,105 @@
+
+import { ActivityFeed, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# ActivityFeed
+
+The `ActivityFeed` component displays a chronological feed of activities.
+
+## Features
+- **Activity timeline**: Show activities in chronological order.
+- **Activity types**: Support for different activity types.
+- **User avatars**: Show actor information.
+- **Metadata**: Support for custom metadata.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { ActivityFeed } from "@azodik/ui";
+
+<ActivityFeed
+  activities={[
+    {
+      id: "1",
+      title: "User logged in",
+      timestamp: new Date(),
+      type: "info",
+    },
+  ]}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="ActivityFeed Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <ActivityFeed
+        activities={[
+          {
+            id: "1",
+            title: "User logged in",
+            description: "John Doe logged in",
+            timestamp: new Date(),
+            type: "info",
+          },
+          {
+            id: "2",
+            title: "File uploaded",
+            description: "document.pdf was uploaded",
+            timestamp: new Date(),
+            type: "success",
+          },
+        ]}
+      />
+    </Stack>
+  }
+>
+{`import { ActivityFeed, Stack } from "@azodik/ui";
+
+export const ActivityFeedExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <ActivityFeed
+        activities={[
+          {
+            id: "1",
+            title: "User logged in",
+            description: "John Doe logged in",
+            timestamp: new Date(),
+            type: "info",
+          },
+          {
+            id: "2",
+            title: "File uploaded",
+            description: "document.pdf was uploaded",
+            timestamp: new Date(),
+            type: "success",
+          },
+        ]}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'activities',
+    type: 'Activity[]',
+    required: true,
+    default: 'undefined',
+    description: 'Activities to display'
+  },
+  {
+    name: 'maxItems',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Maximum number of activities to show'
+  }
+]} />
+

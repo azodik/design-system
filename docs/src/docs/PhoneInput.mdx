@@ -1,0 +1,117 @@
+
+import { PhoneInput, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# PhoneInput
+
+The `PhoneInput` component provides phone number input with country code selection.
+
+## Features
+- **Country selector**: Select country code.
+- **Formatting**: Automatic phone number formatting.
+- **Validation**: Built-in phone number validation.
+- **International**: Support for international formats.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { PhoneInput } from "@azodik/ui";
+
+function App() {
+  const [phone, setPhone] = React.useState("");
+  return (
+    <PhoneInput
+      value={phone}
+      onChange={(phone, countryCode) => {
+        setPhone(phone);
+        console.log("Country:", countryCode);
+      }}
+      defaultCountry="US"
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="PhoneInput Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <PhoneInput
+        placeholder="Enter phone number"
+        showCountrySelector
+        defaultCountry="US"
+      />
+    </Stack>
+  }
+>
+{`import { PhoneInput, Stack } from "@azodik/ui";
+
+export const PhoneInputExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <PhoneInput
+        placeholder="Enter phone number"
+        showCountrySelector
+        defaultCountry="US"
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Current phone value (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Default phone value (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(phone: string, countryCode: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when phone changes'
+  },
+  {
+    name: 'defaultCountry',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Default country code'
+  },
+  {
+    name: 'showCountrySelector',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show country selector'
+  },
+  {
+    name: 'size',
+    type: 'SemanticSize',
+    required: false,
+    default: '"md"',
+    description: 'Size variant'
+  },
+  {
+    name: 'error',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Error state'
+  }
+]} />
+

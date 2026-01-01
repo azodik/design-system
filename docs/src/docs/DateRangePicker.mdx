@@ -1,0 +1,97 @@
+
+import { DateRangePicker, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# DateRangePicker
+
+The `DateRangePicker` component allows users to select a date range.
+
+## Features
+- **Date range**: Select start and end dates.
+- **Quick select**: Predefined date range options.
+- **Validation**: Date range validation.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { DateRangePicker } from "@azodik/ui";
+
+function App() {
+  const [range, setRange] = React.useState({ start: null, end: null });
+  return (
+    <DateRangePicker
+      value={range}
+      onChange={setRange}
+      showQuickSelect
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="DateRangePicker Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <DateRangePicker
+        showQuickSelect
+        placeholder="Select date range"
+      />
+    </Stack>
+  }
+>
+{`import { DateRangePicker, Stack } from "@azodik/ui";
+
+export const DateRangePickerExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <DateRangePicker
+        showQuickSelect
+        placeholder="Select date range"
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'DateRange',
+    required: false,
+    default: 'undefined',
+    description: 'Selected date range'
+  },
+  {
+    name: 'onChange',
+    type: '(range: DateRange) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when date range changes'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: '"Select date range"',
+    description: 'Placeholder text'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Disable date picker'
+  },
+  {
+    name: 'showQuickSelect',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show quick select buttons'
+  }
+]} />
+

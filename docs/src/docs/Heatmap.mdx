@@ -1,0 +1,114 @@
+
+import { Heatmap, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Heatmap
+
+The `Heatmap` component displays a calendar heatmap visualization.
+
+## Features
+- **Calendar heatmap**: Visualize data over time.
+- **Color coding**: Color intensity based on values.
+- **Tooltips**: Show data on hover.
+- **Customizable**: Cell size, colors, and thresholds.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Heatmap } from "@azodik/ui";
+
+<Heatmap
+  data={[
+    { date: new Date(), value: 10 },
+    { date: new Date(), value: 20 },
+  ]}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Heatmap Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: Heatmap requires date data. See code example.
+      </div>
+      <Heatmap
+        data={Array.from({ length: 365 }, (_, i) => ({
+          date: new Date(2024, 0, i + 1),
+          value: Math.floor(Math.random() * 10),
+        }))}
+        cellSize={12}
+        gap={2}
+      />
+    </Stack>
+  }
+>
+{`import { Heatmap, Stack } from "@azodik/ui";
+
+export const HeatmapExample = () => {
+  const data = Array.from({ length: 365 }, (_, i) => ({
+    date: new Date(2024, 0, i + 1),
+    value: Math.floor(Math.random() * 10),
+  }));
+
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Heatmap
+        data={data}
+        cellSize={12}
+        gap={2}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'HeatmapData[]',
+    required: true,
+    default: 'undefined',
+    description: 'Heatmap data'
+  },
+  {
+    name: 'startDate',
+    type: 'Date',
+    required: false,
+    default: 'undefined',
+    description: 'Start date'
+  },
+  {
+    name: 'endDate',
+    type: 'Date',
+    required: false,
+    default: 'undefined',
+    description: 'End date'
+  },
+  {
+    name: 'cellSize',
+    type: 'number',
+    required: false,
+    default: '10',
+    description: 'Size of each cell'
+  },
+  {
+    name: 'gap',
+    type: 'number',
+    required: false,
+    default: '2',
+    description: 'Gap between cells'
+  },
+  {
+    name: 'showLabels',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show labels'
+  }
+]} />
+

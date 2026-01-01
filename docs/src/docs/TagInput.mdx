@@ -1,0 +1,114 @@
+
+import { TagInput, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# TagInput
+
+The `TagInput` component allows users to input multiple tags.
+
+## Features
+- **Multiple tags**: Add and remove multiple tags.
+- **Validation**: Custom tag validation.
+- **Removable**: Tags can be removed individually.
+- **Keyboard support**: Enter and comma to add tags.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { TagInput } from "@azodik/ui";
+
+function App() {
+  const [tags, setTags] = React.useState([]);
+  return (
+    <TagInput
+      value={tags}
+      onChange={setTags}
+      placeholder="Add tags"
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="TagInput Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <TagInput
+        defaultValue={["react", "typescript"]}
+        placeholder="Add tags"
+        removable
+      />
+    </Stack>
+  }
+>
+{`import { TagInput, Stack } from "@azodik/ui";
+
+export const TagInputExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <TagInput
+        defaultValue={["react", "typescript"]}
+        placeholder="Add tags"
+        removable
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'string[]',
+    required: false,
+    default: 'undefined',
+    description: 'Current tags (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string[]',
+    required: false,
+    default: 'undefined',
+    description: 'Default tags (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(tags: string[]) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when tags change'
+  },
+  {
+    name: 'maxTags',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Maximum number of tags'
+  },
+  {
+    name: 'validateTag',
+    type: '(tag: string) => boolean | string',
+    required: false,
+    default: 'undefined',
+    description: 'Validation function for tags'
+  },
+  {
+    name: 'removable',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show remove button on tags'
+  },
+  {
+    name: 'size',
+    type: 'SemanticSize',
+    required: false,
+    default: '"md"',
+    description: 'Size variant'
+  }
+]} />
+

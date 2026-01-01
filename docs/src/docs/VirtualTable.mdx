@@ -1,0 +1,119 @@
+
+import { VirtualTable, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# VirtualTable
+
+The `VirtualTable` component provides virtual scrolling for large datasets, rendering only visible rows.
+
+## Features
+- **Virtual scrolling**: Only render visible rows for performance.
+- **Large datasets**: Handle thousands of rows efficiently.
+- **Sorting**: Support for column sorting.
+- **Customizable**: All Table component features.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { VirtualTable } from "@azodik/ui";
+
+<VirtualTable
+  data={largeDataset}
+  columns={columns}
+  height={600}
+  estimatedRowHeight={50}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="VirtualTable Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: VirtualTable requires a fixed height. See code example.
+      </div>
+      <div style={{ height: "300px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
+        <VirtualTable
+          data={Array.from({ length: 1000 }, (_, i) => ({ id: i + 1, name: \`Item \${i + 1}\`, value: Math.random() * 100 }))}
+          columns={[
+            { key: "id", label: "ID", sortable: true },
+            { key: "name", label: "Name", sortable: true },
+            { key: "value", label: "Value", sortable: true },
+          ]}
+          height={300}
+          estimatedRowHeight={40}
+        />
+      </div>
+    </Stack>
+  }
+>
+{`import { VirtualTable, Stack } from "@azodik/ui";
+
+export const VirtualTableExample = () => {
+  const data = Array.from({ length: 1000 }, (_, i) => ({
+    id: i + 1,
+    name: \`Item \${i + 1}\`,
+    value: Math.random() * 100
+  }));
+
+  const columns = [
+    { key: "id", label: "ID", sortable: true },
+    { key: "name", label: "Name", sortable: true },
+    { key: "value", label: "Value", sortable: true },
+  ];
+
+  return (
+    <div style={{ height: "400px" }}>
+      <VirtualTable
+        data={data}
+        columns={columns}
+        height={400}
+        estimatedRowHeight={40}
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'data',
+    type: 'T[]',
+    required: true,
+    default: 'undefined',
+    description: 'Table data'
+  },
+  {
+    name: 'columns',
+    type: 'Column<T>[]',
+    required: true,
+    default: 'undefined',
+    description: 'Column definitions'
+  },
+  {
+    name: 'height',
+    type: 'number',
+    required: true,
+    default: 'undefined',
+    description: 'Container height in pixels'
+  },
+  {
+    name: 'estimatedRowHeight',
+    type: 'number',
+    required: false,
+    default: '50',
+    description: 'Estimated row height in pixels'
+  },
+  {
+    name: 'overscan',
+    type: 'number',
+    required: false,
+    default: '5',
+    description: 'Number of items to render outside visible area'
+  }
+]} />
+

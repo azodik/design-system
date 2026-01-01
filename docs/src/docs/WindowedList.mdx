@@ -1,0 +1,113 @@
+
+import { WindowedList, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# WindowedList
+
+The `WindowedList` component renders only visible items in a list for performance with large datasets.
+
+## Features
+- **Virtual rendering**: Only render visible items.
+- **Large lists**: Handle thousands of items efficiently.
+- **Dynamic heights**: Support for fixed or dynamic item heights.
+- **Smooth scrolling**: Optimized scrolling performance.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { WindowedList } from "@azodik/ui";
+
+<WindowedList
+  items={items}
+  renderItem={(item) => <div>{item.name}</div>}
+  itemHeight={50}
+  height={400}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="WindowedList Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ height: "300px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
+        <WindowedList
+          items={Array.from({ length: 1000 }, (_, i) => ({ id: i, name: \`Item \${i + 1}\` }))}
+          renderItem={(item) => (
+            <div style={{ padding: "var(--space-4)", borderBottom: "1px solid var(--color-border)" }}>
+              {item.name}
+            </div>
+          )}
+          itemHeight={50}
+          height={300}
+        />
+      </div>
+    </Stack>
+  }
+>
+{`import { WindowedList, Stack } from "@azodik/ui";
+
+export const WindowedListExample = () => {
+  const items = Array.from({ length: 1000 }, (_, i) => ({
+    id: i,
+    name: \`Item \${i + 1}\`
+  }));
+
+  return (
+    <div style={{ height: "400px" }}>
+      <WindowedList
+        items={items}
+        renderItem={(item) => (
+          <div style={{ padding: "var(--space-4)", borderBottom: "1px solid var(--color-border)" }}>
+            {item.name}
+          </div>
+        )}
+        itemHeight={50}
+        height={400}
+      />
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'T[]',
+    required: true,
+    default: 'undefined',
+    description: 'Items to render'
+  },
+  {
+    name: 'renderItem',
+    type: '(item: T, index: number) => React.ReactNode',
+    required: true,
+    default: 'undefined',
+    description: 'Render function for each item'
+  },
+  {
+    name: 'itemHeight',
+    type: 'number | ((item: T, index: number) => number)',
+    required: true,
+    default: 'undefined',
+    description: 'Item height (fixed) or function to calculate height'
+  },
+  {
+    name: 'height',
+    type: 'number',
+    required: true,
+    default: 'undefined',
+    description: 'Container height'
+  },
+  {
+    name: 'overscan',
+    type: 'number',
+    required: false,
+    default: '3',
+    description: 'Overscan (number of items to render outside viewport)'
+  }
+]} />
+

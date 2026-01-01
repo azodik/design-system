@@ -1,0 +1,104 @@
+
+import { SwipeActions, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# SwipeActions
+
+The `SwipeActions` component enables swipe gestures on mobile to reveal action buttons.
+
+## Features
+- **Swipe gestures**: Swipe left or right to reveal actions.
+- **Multiple actions**: Support for multiple action buttons.
+- **Color coding**: Color-coded actions.
+- **Mobile optimized**: Designed for touch interactions.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { SwipeActions } from "@azodik/ui";
+
+<SwipeActions
+  rightActions={[
+    { label: "Delete", color: "ruby", onClick: handleDelete },
+    { label: "Archive", color: "amber", onClick: handleArchive }
+  ]}
+>
+  <div>List item content</div>
+</SwipeActions>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="SwipeActions Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: SwipeActions works best on touch devices. Swipe left/right on the item below.
+      </div>
+      <SwipeActions
+        rightActions={[
+          { label: "Delete", color: "ruby", onClick: () => alert("Delete clicked") },
+          { label: "Archive", color: "amber", onClick: () => alert("Archive clicked") }
+        ]}
+      >
+        <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+          Swipe me left to reveal actions
+        </div>
+      </SwipeActions>
+    </Stack>
+  }
+>
+{`import { SwipeActions, Stack } from "@azodik/ui";
+
+export const SwipeActionsExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <SwipeActions
+        rightActions={[
+          { label: "Delete", color: "ruby", onClick: () => alert("Delete clicked") },
+          { label: "Archive", color: "amber", onClick: () => alert("Archive clicked") }
+        ]}
+      >
+        <div style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)", borderRadius: "var(--radius-2)" }}>
+          Swipe me left to reveal actions
+        </div>
+      </SwipeActions>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'leftActions',
+    type: 'SwipeAction[]',
+    required: false,
+    default: 'undefined',
+    description: 'Left swipe actions'
+  },
+  {
+    name: 'rightActions',
+    type: 'SwipeAction[]',
+    required: false,
+    default: 'undefined',
+    description: 'Right swipe actions'
+  },
+  {
+    name: 'threshold',
+    type: 'number',
+    required: false,
+    default: '100',
+    description: 'Threshold for swipe to trigger (default: 100px)'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Disable swipe actions'
+  }
+]} />
+

@@ -1,0 +1,123 @@
+
+import { OTPInput, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# OTPInput
+
+The `OTPInput` component provides a one-time password input with individual digit fields.
+
+## Features
+- **Multi-digit**: Support for multiple OTP digits.
+- **Auto-focus**: Automatically moves to next field.
+- **Masking**: Optional masking for security.
+- **Validation**: Built-in validation support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { OTPInput } from "@azodik/ui";
+
+function App() {
+  const [otp, setOtp] = React.useState("");
+  return (
+    <OTPInput
+      length={6}
+      value={otp}
+      onChange={setOtp}
+      onComplete={(value) => console.log("Complete:", value)}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="OTPInput Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <OTPInput length={6} />
+      <OTPInput length={4} mask />
+    </Stack>
+  }
+>
+{`import { OTPInput, Stack } from "@azodik/ui";
+
+export const OTPInputExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <OTPInput length={6} />
+      <OTPInput length={4} mask />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'length',
+    type: 'number',
+    required: false,
+    default: '6',
+    description: 'Number of OTP digits'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Current value (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Default value (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when value changes'
+  },
+  {
+    name: 'onComplete',
+    type: '(value: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when OTP is complete'
+  },
+  {
+    name: 'mask',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Mask input (show dots instead of numbers)'
+  },
+  {
+    name: 'numericOnly',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Numeric only'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  },
+  {
+    name: 'error',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Error state'
+  }
+]} />
+

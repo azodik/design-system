@@ -1,0 +1,101 @@
+
+import { MetricCard, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# MetricCard
+
+The `MetricCard` component displays simple key performance indicators (KPIs).
+
+## Features
+- **Simple KPI**: Display label and value.
+- **Icons**: Support for custom icons.
+- **Loading state**: Skeleton loading support.
+- **Clickable**: Optional click handler.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { MetricCard } from "@azodik/ui";
+
+<MetricCard
+  label="Total Users"
+  value="1,234"
+  icon={<UsersIcon />}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="MetricCard Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <MetricCard
+        label="Total Users"
+        value="1,234"
+      />
+      <MetricCard
+        label="Revenue"
+        value="$12,345"
+      />
+    </Stack>
+  }
+>
+{`import { MetricCard, Stack } from "@azodik/ui";
+
+export const MetricCardExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <MetricCard
+        label="Total Users"
+        value="1,234"
+      />
+      <MetricCard
+        label="Revenue"
+        value="$12,345"
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'label',
+    type: 'string',
+    required: true,
+    default: 'undefined',
+    description: 'Metric label/title'
+  },
+  {
+    name: 'value',
+    type: 'string | number',
+    required: true,
+    default: 'undefined',
+    description: 'Metric value'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'Optional icon'
+  },
+  {
+    name: 'loading',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Loading state'
+  },
+  {
+    name: 'onClick',
+    type: '() => void',
+    required: false,
+    default: 'undefined',
+    description: 'Click handler'
+  }
+]} />
+

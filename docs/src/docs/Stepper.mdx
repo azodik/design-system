@@ -1,0 +1,147 @@
+
+import { Stepper, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Stepper
+
+The `Stepper` component displays a multi-step process indicator.
+
+## Features
+- **Step tracking**: Visual progress through steps.
+- **Orientation**: Horizontal or vertical layout.
+- **Interactive**: Click to navigate steps.
+- **Customizable**: Show numbers, labels, and descriptions.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Stepper } from "@azodik/ui";
+
+<Stepper
+  steps={[
+    { label: "Step 1", completed: true },
+    { label: "Step 2", active: true },
+    { label: "Step 3" },
+  ]}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Stepper Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Stepper
+        steps={[
+          { label: "Step 1", description: "Completed", completed: true },
+          { label: "Step 2", description: "Active", active: true },
+          { label: "Step 3", description: "Pending" },
+        ]}
+        activeStep={1}
+        showNumbers
+      />
+    </Stack>
+  }
+>
+{`import { Stepper, Stack } from "@azodik/ui";
+
+export const StepperExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Stepper
+        steps={[
+          { label: "Step 1", description: "Completed", completed: true },
+          { label: "Step 2", description: "Active", active: true },
+          { label: "Step 3", description: "Pending" },
+        ]}
+        activeStep={1}
+        showNumbers
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Vertical Stepper"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Stepper
+        orientation="vertical"
+        steps={[
+          { label: "Step 1", completed: true },
+          { label: "Step 2", active: true },
+          { label: "Step 3" },
+        ]}
+        showNumbers
+      />
+    </Stack>
+  }
+>
+{`import { Stepper, Stack } from "@azodik/ui";
+
+export const VerticalStepper = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Stepper
+        orientation="vertical"
+        steps={[
+          { label: "Step 1", completed: true },
+          { label: "Step 2", active: true },
+          { label: "Step 3" },
+        ]}
+        showNumbers
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'steps',
+    type: 'StepperStep[]',
+    required: true,
+    default: 'undefined',
+    description: 'Steps configuration'
+  },
+  {
+    name: 'activeStep',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Current active step index'
+  },
+  {
+    name: 'orientation',
+    type: '"horizontal" | "vertical"',
+    required: false,
+    default: '"horizontal"',
+    description: 'Orientation'
+  },
+  {
+    name: 'showNumbers',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show step numbers'
+  },
+  {
+    name: 'alternativeLabel',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Alternative label (show labels below steps)'
+  },
+  {
+    name: 'onStepClick',
+    type: '(index: number) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when step is clicked'
+  }
+]} />
+

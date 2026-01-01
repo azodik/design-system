@@ -1,0 +1,131 @@
+
+import { InfiniteScroll, Stack, Spinner } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# InfiniteScroll
+
+The `InfiniteScroll` component automatically loads more content when the user scrolls near the bottom.
+
+## Features
+- **Auto-load**: Automatically loads more when scrolling.
+- **Loading state**: Shows loading indicator.
+- **End message**: Custom message when all items are loaded.
+- **Threshold**: Configurable scroll threshold.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { InfiniteScroll } from "@azodik/ui";
+
+<InfiniteScroll
+  onLoadMore={loadMore}
+  hasMore={hasMore}
+  loading={isLoading}
+>
+  {items.map(item => <Item key={item.id} />)}
+</InfiniteScroll>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="InfiniteScroll Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: InfiniteScroll requires state management. See code example.
+      </div>
+      <div style={{ height: "200px", overflow: "auto", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", padding: "var(--space-4)" }}>
+        {[1, 2, 3, 4, 5].map(i => (
+          <div key={i} style={{ padding: "var(--space-2)", marginBottom: "var(--space-2)" }}>
+            Item {i}
+          </div>
+        ))}
+      </div>
+    </Stack>
+  }
+>
+{`import { InfiniteScroll, Stack } from "@azodik/ui";
+import { useState } from "react";
+
+export const InfiniteScrollExample = () => {
+  const [items, setItems] = useState([1, 2, 3, 4, 5]);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  const loadMore = async () => {
+    setLoading(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setItems(prev => [...prev, ...Array.from({ length: 5 }, (_, i) => prev.length + i + 1)]);
+    setLoading(false);
+    if (items.length >= 20) setHasMore(false);
+  };
+
+  return (
+    <div style={{ height: "300px", overflow: "auto" }}>
+      <InfiniteScroll
+        onLoadMore={loadMore}
+        hasMore={hasMore}
+        loading={loading}
+        loader={<div>Loading...</div>}
+        endMessage={<div>No more items</div>}
+      >
+        {items.map(item => (
+          <div key={item} style={{ padding: "var(--space-4)" }}>
+            Item {item}
+          </div>
+        ))}
+      </InfiniteScroll>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'onLoadMore',
+    type: '() => void | Promise<void>',
+    required: true,
+    default: 'undefined',
+    description: 'Callback when more items should be loaded'
+  },
+  {
+    name: 'hasMore',
+    type: 'boolean',
+    required: true,
+    default: 'undefined',
+    description: 'Whether there are more items to load'
+  },
+  {
+    name: 'loading',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Whether currently loading'
+  },
+  {
+    name: 'threshold',
+    type: 'number',
+    required: false,
+    default: '100',
+    description: 'Distance from bottom to trigger load (px)'
+  },
+  {
+    name: 'loader',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'Loading component'
+  },
+  {
+    name: 'endMessage',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'End message'
+  }
+]} />
+

@@ -1,0 +1,94 @@
+
+import { Timeline, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Timeline
+
+The `Timeline` component displays chronological events in a timeline format.
+
+## Features
+- **Chronological display**: Show events in order.
+- **Icons and colors**: Custom icons and color variants.
+- **Orientation**: Vertical or horizontal layout.
+- **Status indicators**: Active and completed states.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Timeline } from "@azodik/ui";
+
+<Timeline
+  items={[
+    { title: "Step 1", description: "Completed", completed: true },
+    { title: "Step 2", description: "Active", active: true },
+    { title: "Step 3", description: "Pending" },
+  ]}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Timeline Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Timeline
+        items={[
+          { title: "Order Placed", description: "Your order has been placed", timestamp: "10:00 AM", completed: true },
+          { title: "Processing", description: "Your order is being processed", timestamp: "11:00 AM", active: true },
+          { title: "Shipped", description: "Your order has been shipped", timestamp: "12:00 PM" },
+        ]}
+      />
+    </Stack>
+  }
+>
+{`import { Timeline, Stack } from "@azodik/ui";
+
+export const TimelineExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Timeline
+        items={[
+          { title: "Order Placed", description: "Your order has been placed", timestamp: "10:00 AM", completed: true },
+          { title: "Processing", description: "Your order is being processed", timestamp: "11:00 AM", active: true },
+          { title: "Shipped", description: "Your order has been shipped", timestamp: "12:00 PM" },
+        ]}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'TimelineItem[]',
+    required: true,
+    default: 'undefined',
+    description: 'Timeline items'
+  },
+  {
+    name: 'orientation',
+    type: '"vertical" | "horizontal"',
+    required: false,
+    default: '"vertical"',
+    description: 'Orientation'
+  },
+  {
+    name: 'showLine',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show connecting line'
+  },
+  {
+    name: 'alternate',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Alternate item positions (for horizontal)'
+  }
+]} />
+

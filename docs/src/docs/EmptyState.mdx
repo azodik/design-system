@@ -1,0 +1,136 @@
+
+import { EmptyState, Button, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# EmptyState
+
+The `EmptyState` component displays a helpful message when there's no content to show.
+
+## Features
+- **Illustrations**: Support for icons or custom illustrations.
+- **Actions**: Optional action buttons for user guidance.
+- **Customizable**: Size and radius variants.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { EmptyState } from "@azodik/ui";
+
+<EmptyState
+  title="No items found"
+  description="Get started by creating a new item"
+  icon={<EmptyIcon />}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="EmptyState Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <EmptyState
+        title="No items found"
+        description="Get started by creating a new item"
+        icon={<span style={{ fontSize: "48px" }}>📦</span>}
+        action={{
+          label: "Create Item",
+          onClick: () => alert("Create clicked"),
+          variant: "solid"
+        }}
+      />
+    </Stack>
+  }
+>
+{`import { EmptyState, Stack } from "@azodik/ui";
+
+export const EmptyStateExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <EmptyState
+        title="No items found"
+        description="Get started by creating a new item"
+        icon={<span style={{ fontSize: "48px" }}>📦</span>}
+        action={{
+          label: "Create Item",
+          onClick: () => alert("Create clicked"),
+          variant: "solid"
+        }}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Simple EmptyState"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <EmptyState
+        title="Nothing here yet"
+        description="Check back later for updates"
+      />
+    </Stack>
+  }
+>
+{`import { EmptyState, Stack } from "@azodik/ui";
+
+export const SimpleEmptyState = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <EmptyState
+        title="Nothing here yet"
+        description="Check back later for updates"
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Title text'
+  },
+  {
+    name: 'description',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Description text'
+  },
+  {
+    name: 'icon',
+    type: 'React.ReactNode',
+    required: false,
+    default: 'undefined',
+    description: 'Icon or illustration'
+  },
+  {
+    name: 'action',
+    type: '{ label: string; onClick: () => void; variant?: "solid" | "soft" | "outline" | "ghost" }',
+    required: false,
+    default: 'undefined',
+    description: 'Action button'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg"',
+    required: false,
+    default: '"md"',
+    description: 'Size variant'
+  },
+  {
+    name: 'radius',
+    type: '"none" | "small" | "medium" | "large" | "full"',
+    required: false,
+    default: '"medium"',
+    description: 'Radius variant'
+  }
+]} />
+

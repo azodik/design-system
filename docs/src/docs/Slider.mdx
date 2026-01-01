@@ -1,0 +1,169 @@
+
+import { Slider, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Slider
+
+The `Slider` component allows users to select a numeric value from a range by dragging a handle.
+
+## Features
+- **Range support**: Single value or dual-handle range selection.
+- **Customizable**: Size, color, and value formatting options.
+- **Accessible**: Full keyboard navigation and ARIA support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Slider } from "@azodik/ui";
+
+function App() {
+  const [value, setValue] = React.useState(50);
+  return (
+    <Slider
+      min={0}
+      max={100}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Slider Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Slider min={0} max={100} defaultValue={50} showValue />
+      <Slider min={0} max={100} defaultValue={75} color="indigo" showValue />
+      <Slider min={0} max={100} defaultValue={25} size="large" showValue />
+    </Stack>
+  }
+>
+{`import { Slider, Stack } from "@azodik/ui";
+
+export const SliderExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Slider min={0} max={100} defaultValue={50} showValue />
+      <Slider min={0} max={100} defaultValue={75} color="indigo" showValue />
+      <Slider min={0} max={100} defaultValue={25} size="large" showValue />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Range Slider"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Slider
+        range
+        min={0}
+        max={100}
+        defaultRangeValue={[20, 80]}
+        showValue
+      />
+    </Stack>
+  }
+>
+{`import { Slider, Stack } from "@azodik/ui";
+
+export const RangeSliderExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Slider
+        range
+        min={0}
+        max={100}
+        defaultRangeValue={[20, 80]}
+        showValue
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Current value (controlled)'
+  },
+  {
+    name: 'defaultValue',
+    type: 'number',
+    required: false,
+    default: 'undefined',
+    description: 'Default value (uncontrolled)'
+  },
+  {
+    name: 'min',
+    type: 'number',
+    required: false,
+    default: '0',
+    description: 'Minimum value'
+  },
+  {
+    name: 'max',
+    type: 'number',
+    required: false,
+    default: '100',
+    description: 'Maximum value'
+  },
+  {
+    name: 'step',
+    type: 'number',
+    required: false,
+    default: '1',
+    description: 'Step increment'
+  },
+  {
+    name: 'onChange',
+    type: '(value: number) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when value changes'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Disabled state'
+  },
+  {
+    name: 'showValue',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show value label'
+  },
+  {
+    name: 'size',
+    type: '"small" | "medium" | "large"',
+    required: false,
+    default: '"medium"',
+    description: 'Size variant'
+  },
+  {
+    name: 'color',
+    type: '"indigo" | "ruby" | "grass" | "amber" | "cyan" | "azodik" | string',
+    required: false,
+    default: '"azodik"',
+    description: 'Color variant'
+  },
+  {
+    name: 'range',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Range slider (dual handles)'
+  }
+]} />
+

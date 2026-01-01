@@ -1,0 +1,83 @@
+
+import { Section, Container } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Section
+
+The `Section` component provides consistent vertical padding for content sections. It works well with the `Container` component.
+
+## Features
+- **Consistent spacing**: Provides standardized vertical padding.
+- **Polymorphic**: Can render as any HTML element using the `as` prop.
+- **Sized**: Supports size variants for different padding amounts.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Section, Container } from "@azodik/ui";
+
+<Section>
+  <Container size="md">
+    <div>Section content</div>
+  </Container>
+</Section>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Section Example"
+  preview={
+    <div style={{ width: "100%", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", overflow: "hidden" }}>
+      <Section style={{ backgroundColor: "var(--gray-2)" }}>
+        <Container size="md">
+          <div style={{ textAlign: "center", padding: "var(--space-4)" }}>Hero Section</div>
+        </Container>
+      </Section>
+      <Section>
+        <Container size="md">
+          <div style={{ textAlign: "center", padding: "var(--space-4)" }}>Content Section</div>
+        </Container>
+      </Section>
+    </div>
+  }
+>
+{`import { Section, Container } from "@azodik/ui";
+
+export const SectionExample = () => {
+  return (
+    <div style={{ width: "100%", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", overflow: "hidden" }}>
+      <Section style={{ backgroundColor: "var(--gray-2)" }}>
+        <Container size="md">
+          <div style={{ textAlign: "center", padding: "var(--space-4)" }}>Hero Section</div>
+        </Container>
+      </Section>
+      <Section>
+        <Container size="md">
+          <div style={{ textAlign: "center", padding: "var(--space-4)" }}>Content Section</div>
+        </Container>
+      </Section>
+    </div>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'size',
+    type: '"xs" | "sm" | "md" | "lg" | "xl"',
+    required: false,
+    default: '"md"',
+    description: 'Size variant for padding'
+  },
+  {
+    name: 'as',
+    type: 'React.ElementType',
+    required: false,
+    default: '"section"',
+    description: 'Polymorphic prop to render as a different element'
+  }
+]} />
+

@@ -1,0 +1,118 @@
+
+import { Sheet, Button, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Sheet
+
+The `Sheet` component displays a slide-up sheet panel, similar to a drawer but optimized for mobile.
+
+## Features
+- **Slide animation**: Smooth slide-up/down animation.
+- **Multiple positions**: Top, bottom, left, right.
+- **Sizes**: Multiple size variants.
+- **Accessible**: Full keyboard and screen reader support.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Sheet, Button } from "@azodik/ui";
+
+function App() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Sheet</Button>
+      <Sheet open={open} onOpenChange={setOpen} title="Settings">
+        <div>Sheet content</div>
+      </Sheet>
+    </>
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Sheet Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+        Note: Sheet requires state management. Click button to see example.
+      </div>
+      <Button onClick={() => alert("Open sheet in your app")}>Open Sheet</Button>
+    </Stack>
+  }
+>
+{`import { Sheet, Button } from "@azodik/ui";
+import { useState } from "react";
+
+export const SheetExample = () => {
+  const [open, setOpen] = useState(false);
+  
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Sheet</Button>
+      <Sheet open={open} onOpenChange={setOpen} title="Settings" position="bottom">
+        <div style={{ padding: "var(--space-4)" }}>
+          Sheet content goes here
+        </div>
+      </Sheet>
+    </>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'open',
+    type: 'boolean',
+    required: true,
+    default: 'undefined',
+    description: 'Sheet is open'
+  },
+  {
+    name: 'onOpenChange',
+    type: '(open: boolean) => void',
+    required: true,
+    default: 'undefined',
+    description: 'Callback when sheet should close'
+  },
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Sheet title'
+  },
+  {
+    name: 'description',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Sheet description'
+  },
+  {
+    name: 'position',
+    type: '"top" | "bottom" | "left" | "right"',
+    required: false,
+    default: '"bottom"',
+    description: 'Sheet position'
+  },
+  {
+    name: 'size',
+    type: '"sm" | "md" | "lg" | "xl" | "full"',
+    required: false,
+    default: '"md"',
+    description: 'Sheet size'
+  },
+  {
+    name: 'showClose',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show close button'
+  }
+]} />
+

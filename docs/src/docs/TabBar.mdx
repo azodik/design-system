@@ -1,0 +1,106 @@
+
+import { TabBar, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# TabBar
+
+The `TabBar` component provides a tab bar interface for navigation.
+
+## Features
+- **Tab navigation**: Switch between different views.
+- **Icons and badges**: Support for icons and badge counts.
+- **Responsive**: Adapts to mobile and desktop.
+- **Accessible**: Full keyboard navigation.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { TabBar } from "@azodik/ui";
+
+<TabBar
+  items={[
+    { id: "home", label: "Home", icon: <HomeIcon /> },
+    { id: "search", label: "Search", icon: <SearchIcon /> },
+  ]}
+  value="home"
+  onChange={(id) => console.log(id)}
+/>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="TabBar Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <TabBar
+        items={[
+          { id: "home", label: "Home", icon: <span>🏠</span> },
+          { id: "search", label: "Search", icon: <span>🔍</span> },
+          { id: "profile", label: "Profile", icon: <span>👤</span>, badge: 3 },
+        ]}
+        defaultValue="home"
+        showLabels
+      />
+    </Stack>
+  }
+>
+{`import { TabBar, Stack } from "@azodik/ui";
+
+export const TabBarExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <TabBar
+        items={[
+          { id: "home", label: "Home", icon: <span>🏠</span> },
+          { id: "search", label: "Search", icon: <span>🔍</span> },
+          { id: "profile", label: "Profile", icon: <span>👤</span>, badge: 3 },
+        ]}
+        defaultValue="home"
+        showLabels
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'items',
+    type: 'TabBarItem[]',
+    required: true,
+    default: 'undefined',
+    description: 'Tab items'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Active tab ID'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Default active tab ID (uncontrolled)'
+  },
+  {
+    name: 'onChange',
+    type: '(id: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when tab changes'
+  },
+  {
+    name: 'showLabels',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show labels'
+  }
+]} />
+

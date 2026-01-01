@@ -1,0 +1,107 @@
+
+import { RichTextEditor, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# RichTextEditor
+
+The `RichTextEditor` component provides a WYSIWYG rich text editing interface.
+
+## Features
+- **WYSIWYG editing**: What you see is what you get.
+- **Toolbar**: Formatting toolbar with common options.
+- **HTML output**: Outputs HTML content.
+- **Customizable**: Custom toolbar buttons.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { RichTextEditor } from "@azodik/ui";
+
+function App() {
+  const [content, setContent] = React.useState("");
+  return (
+    <RichTextEditor
+      value={content}
+      onChange={setContent}
+      placeholder="Start typing..."
+    />
+  );
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="RichTextEditor Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <RichTextEditor
+        placeholder="Start typing..."
+        showToolbar
+        height={200}
+      />
+    </Stack>
+  }
+>
+{`import { RichTextEditor, Stack } from "@azodik/ui";
+
+export const RichTextEditorExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <RichTextEditor
+        placeholder="Start typing..."
+        showToolbar
+        height={200}
+      />
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'value',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Editor content (HTML)'
+  },
+  {
+    name: 'onChange',
+    type: '(html: string) => void',
+    required: false,
+    default: 'undefined',
+    description: 'Callback when content changes'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Placeholder text'
+  },
+  {
+    name: 'height',
+    type: 'number | string',
+    required: false,
+    default: 'undefined',
+    description: 'Editor height'
+  },
+  {
+    name: 'showToolbar',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show toolbar'
+  },
+  {
+    name: 'readOnly',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Read-only mode'
+  }
+]} />
+

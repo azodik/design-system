@@ -1,0 +1,125 @@
+
+import { Widget, Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Widget
+
+The `Widget` component provides a reusable dashboard widget wrapper.
+
+## Features
+- **Dashboard widget**: Standardized widget container.
+- **Header and footer**: Optional header and footer sections.
+- **Actions**: Support for action buttons.
+- **Loading and error states**: Built-in state handling.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Widget } from "@azodik/ui";
+
+<Widget
+  title="Sales Overview"
+  description="Monthly sales data"
+  actions={[
+    { label: "Export", onClick: handleExport },
+  ]}
+>
+  <div>Widget content</div>
+</Widget>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Widget Example"
+  preview={
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Widget
+        title="Sales Overview"
+        description="Monthly sales data"
+        actions={[
+          { label: "Export", onClick: () => alert("Export clicked"), variant: "outline" },
+        ]}
+      >
+        <div style={{ padding: "var(--space-4)" }}>
+          Widget content goes here
+        </div>
+      </Widget>
+    </Stack>
+  }
+>
+{`import { Widget, Stack } from "@azodik/ui";
+
+export const WidgetExample = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
+      <Widget
+        title="Sales Overview"
+        description="Monthly sales data"
+        actions={[
+          { label: "Export", onClick: () => alert("Export clicked"), variant: "outline" },
+        ]}
+      >
+        <div style={{ padding: "var(--space-4)" }}>
+          Widget content goes here
+        </div>
+      </Widget>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'title',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Widget title'
+  },
+  {
+    name: 'description',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Widget description'
+  },
+  {
+    name: 'actions',
+    type: 'Array<{ label: string; onClick: () => void; variant?: "solid" | "soft" | "outline" | "ghost" }>',
+    required: false,
+    default: 'undefined',
+    description: 'Widget actions'
+  },
+  {
+    name: 'showHeader',
+    type: 'boolean',
+    required: false,
+    default: 'true',
+    description: 'Show header'
+  },
+  {
+    name: 'showFooter',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Show footer'
+  },
+  {
+    name: 'loading',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Loading state'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    required: false,
+    default: 'undefined',
+    description: 'Error state'
+  }
+]} />
+
