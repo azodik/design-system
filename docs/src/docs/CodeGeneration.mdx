@@ -1,0 +1,391 @@
+
+import { CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { Stack, Card, CardContent } from '@azodik/ui';
+
+# Code Generation
+
+Azodik UI provides powerful code generation tools to help you scaffold projects, create components, and generate boilerplate code quickly and consistently.
+
+## Overview
+
+Code generation in Azodik UI helps you:
+
+- **Scaffold new projects** with pre-configured setups
+- **Generate component boilerplate** with tests and stories
+- **Create theme configurations** with proper TypeScript types
+- **Maintain consistency** across your codebase
+- **Save time** by automating repetitive tasks
+
+---
+
+## Available Generators
+
+### 1. App Generator
+
+Scaffold complete React, Next.js, or Vite applications.
+
+### 2. Component Generator
+
+Generate component files with TypeScript, tests, and Storybook stories.
+
+### 3. Theme Generator
+
+Create theme configuration files with proper typing.
+
+---
+
+## App Generator
+
+The app generator creates a complete project structure with Azodik UI pre-configured.
+
+### What Gets Generated
+
+<CodeBlock language="text">
+{`my-app/
+├── src/
+│   ├── App.tsx          # Main app component
+│   └── main.tsx          # Entry point
+├── package.json          # Dependencies and scripts
+├── tsconfig.json         # TypeScript configuration
+├── index.html           # HTML template (Vite/React)
+├── vite.config.ts       # Vite config (Vite only)
+└── README.md            # Project documentation`}
+</CodeBlock>
+
+### Generated App Structure
+
+<CodeBlock language="tsx">
+{`// src/App.tsx
+import { ThemeProvider } from "@azodik/ui";
+import { Button } from "@azodik/ui";
+import "@azodik/ui/styles.css";
+
+function App() {
+  return (
+    <ThemeProvider 
+      defaultTheme="light" 
+      accentColor="indigo" 
+      grayColor="gray" 
+      radius="medium"
+    >
+      <div style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
+        <h1>Welcome to my-app</h1>
+        <p>This is a Vite app using Azodik UI.</p>
+        <Button>Get Started</Button>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;`}
+</CodeBlock>
+
+### Package.json Template
+
+<CodeBlock language="json">
+{`{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@azodik/ui": "latest",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "@vitejs/plugin-react": "^5.1.2"
+  }
+}`}
+</CodeBlock>
+
+---
+
+## Component Generator
+
+The component generator creates a complete component with TypeScript, tests, and Storybook stories.
+
+### Generated Files
+
+1. **Component** (`MyComponent.tsx`)
+2. **Test** (`__tests__/MyComponent.test.tsx`)
+3. **Story** (`stories/MyComponent.stories.tsx`)
+
+### Component Template
+
+<CodeBlock language="tsx">
+{`import React from "react";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+
+export interface MyComponentProps 
+  extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  size?: SemanticSize;
+  highContrast?: boolean;
+}
+
+/**
+ * MyComponent component
+ *
+ * @example
+ * \`\`\`tsx
+ * <MyComponent size="md">
+ *   Content
+ * </MyComponent>
+ * \`\`\`
+ */
+export default function MyComponent({
+  children,
+  size = "sm",
+  highContrast: propHighContrast,
+  className = "",
+  style,
+  ...props
+}: MyComponentProps) {
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
+  const sizeClassName = getSizeClassName(size);
+
+  const combinedClassName = [
+    "az-MyComponent",
+    sizeClassName,
+    highContrast ? "az-high-contrast" : "",
+    reducedMotion ? "az-reduced-motion" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <div
+      className={combinedClassName}
+      style={style}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Test Template
+
+<CodeBlock language="tsx">
+{`import { describe, it, expect } from "vitest";
+import { render, screen } from "./test-utils";
+import MyComponent from "../MyComponent";
+
+describe("MyComponent", () => {
+  it("renders with children", () => {
+    render(<MyComponent>Test content</MyComponent>);
+    expect(screen.getByText("Test content")).toBeInTheDocument();
+  });
+
+  it("applies size class", () => {
+    const { container } = render(
+      <MyComponent size="lg">Test</MyComponent>
+    );
+    const element = container.querySelector(".az-MyComponent");
+    expect(element).toBeInTheDocument();
+  });
+});`}
+</CodeBlock>
+
+### Story Template
+
+<CodeBlock language="tsx">
+{`import type { Meta, StoryObj } from "@storybook/react";
+import MyComponent from "../components/MyComponent";
+
+const meta: Meta<typeof MyComponent> = {
+  title: "Components/MyComponent",
+  component: MyComponent,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    size: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof MyComponent>;
+
+export const Default: Story = {
+  args: {
+    children: "MyComponent content",
+    size: "sm",
+  },
+};`}
+</CodeBlock>
+
+---
+
+## Theme Generator
+
+The theme generator creates TypeScript-typed theme configurations.
+
+### Generated Theme
+
+<CodeBlock language="tsx">
+{`import { ThemeProviderProps } from "@azodik/ui";
+
+/**
+ * my-theme Theme Configuration
+ * 
+ * Generated theme configuration for my-theme
+ */
+export const myTheme: ThemeProviderProps = {
+  defaultTheme: "light",
+  accentColor: "indigo",
+  grayColor: "gray",
+  radius: "medium",
+};
+
+/**
+ * Usage:
+ * 
+ * \`\`\`tsx
+ * import { ThemeProvider } from "@azodik/ui";
+ * import { myTheme } from "./themes/my-theme";
+ * 
+ * <ThemeProvider {...myTheme}>
+ *   <App />
+ * </ThemeProvider>
+ * \`\`\`
+ */`}
+</CodeBlock>
+
+---
+
+## Customization
+
+### Modifying Templates
+
+All generator templates are located in:
+- `packages/ui/scripts/cli/create-azodik-app.ts`
+- `packages/ui/scripts/cli/create-component.ts`
+- `packages/ui/scripts/cli/create-theme.ts`
+
+You can modify these files to customize the generated output.
+
+### Adding Custom Templates
+
+To add custom templates:
+
+1. Create a new template file in `packages/ui/scripts/cli/`
+2. Add template generation logic
+3. Update the CLI to support your new template
+
+### Example: Custom Component Template
+
+<CodeBlock language="tsx">
+{`function generateCustomComponent(name: string): string {
+  return \`import React from "react";
+
+export interface \${name}Props {
+  // Your custom props
+}
+
+export function \${name}({ ...props }: \${name}Props) {
+  return (
+    <div>
+      {/* Your custom component */}
+    </div>
+  );
+}\`;
+}`}
+</CodeBlock>
+
+---
+
+## Best Practices
+
+### 1. Use Descriptive Names
+
+<CodeBlock language="bash">
+{`# Good
+pnpm create-component UserProfileCard
+pnpm create-theme corporate-blue
+
+# Bad
+pnpm create-component Card
+pnpm create-theme theme1`}
+</CodeBlock>
+
+### 2. Follow Naming Conventions
+
+- **Components**: PascalCase (`UserProfile`, `DataTable`)
+- **Apps**: kebab-case (`my-app`, `dashboard-app`)
+- **Themes**: kebab-case (`corporate-blue`, `dark-theme`)
+
+### 3. Customize After Generation
+
+Generated files are starting points. Always:
+- Review and customize the generated code
+- Add your specific business logic
+- Update tests to match your requirements
+- Add documentation
+
+### 4. Version Control
+
+Always commit generated files:
+- They're part of your project structure
+- They help other developers understand the setup
+- They can be customized and improved over time
+
+### 5. Keep Templates Updated
+
+When Azodik UI updates, check if templates need updates:
+- Review new features
+- Update dependencies
+- Add new best practices
+
+---
+
+## Troubleshooting
+
+### Generated Files Have Errors
+
+1. Check TypeScript version compatibility
+2. Ensure all dependencies are installed
+3. Verify import paths are correct
+
+### Templates Not Found
+
+Ensure you're running commands from the correct directory:
+- App generator: From project root
+- Component generator: From `packages/ui/`
+- Theme generator: From `packages/ui/`
+
+### Permission Issues
+
+On Unix systems:
+<CodeBlock language="bash">
+{`chmod +x packages/ui/scripts/cli/*.ts`}
+</CodeBlock>
+
+---
+
+## Related Documentation
+
+- [CLI Tools](/components/docs/cli) - Command-line interface reference
+- [VSCode Extension](/components/docs/vscode-extension) - IDE integration
+- [Getting Started](/components/getting-started) - Quick start guide
+

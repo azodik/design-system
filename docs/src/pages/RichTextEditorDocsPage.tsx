@@ -1,6 +1,12 @@
 import { MDXProvider } from "@mdx-js/react";
 import RichTextEditor from "@/docs/RichTextEditor.mdx";
-import { RichTextEditor as RichTextEditorComponent, Card, CardContent, Box, Container } from "@azodik/ui";
+import {
+  RichTextEditor as RichTextEditorComponent,
+  Card,
+  CardContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -31,4 +37,3 @@ export default function RichTextEditorDocsPage() {
     </SidebarLayout>
   );
 }
-

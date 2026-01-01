@@ -1,0 +1,340 @@
+
+import { CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { Stack, Card, CardContent } from '@azodik/ui';
+
+# VSCode Extension
+
+The Azodik UI IntelliSense extension provides enhanced development experience in Visual Studio Code with auto-completion, hover documentation, and code snippets for all Azodik UI components.
+
+## Features
+
+- ✅ **IntelliSense**: Auto-completion for `@azodik/ui` components
+- ✅ **Hover Documentation**: Show component documentation on hover
+- ✅ **Code Snippets**: Quick snippets for common components
+- ✅ **TypeScript Support**: Full TypeScript/TSX support
+- ✅ **JavaScript Support**: Works with JavaScript/JSX files
+
+---
+
+## Installation
+
+### From Source
+
+1. Clone the repository:
+<CodeBlock language="bash">
+{`git clone https://github.com/azodik/design-system.git
+cd design-system`}
+</CodeBlock>
+
+2. Navigate to the extension directory:
+<CodeBlock language="bash">
+{`cd packages/vscode-extension`}
+</CodeBlock>
+
+3. Install dependencies:
+<CodeBlock language="bash">
+{`pnpm install`}
+</CodeBlock>
+
+4. Compile the extension:
+<CodeBlock language="bash">
+{`pnpm compile`}
+</CodeBlock>
+
+5. Package the extension:
+<CodeBlock language="bash">
+{`pnpm package`}
+</CodeBlock>
+
+6. Install the `.vsix` file:
+   - Open VS Code
+   - Go to Extensions view (Ctrl+Shift+X / Cmd+Shift+X)
+   - Click the "..." menu
+   - Select "Install from VSIX..."
+   - Choose the generated `.vsix` file
+
+### From Marketplace (Coming Soon)
+
+The extension will be available on the VS Code Marketplace. Once published, you can install it directly from VS Code:
+
+1. Open VS Code
+2. Go to Extensions view
+3. Search for "Azodik UI IntelliSense"
+4. Click Install
+
+---
+
+## Usage
+
+### IntelliSense
+
+When typing import statements, you'll get auto-completion for all `@azodik/ui` components:
+
+<CodeBlock language="tsx">
+{`import { Button, Input, Card } from "@azodik/ui";
+//     ^^^^^^  ^^^^^  ^^^^ - Auto-completed`}
+</CodeBlock>
+
+The extension provides:
+- Component name suggestions
+- Import statement completion
+- Type information
+- Component descriptions
+
+### Hover Documentation
+
+Hover over any component name to see:
+
+- **Component description**: What the component does
+- **Available props**: All props with types and descriptions
+- **Usage example**: Code example showing how to use the component
+
+<CodeBlock language="tsx">
+{`import { Button } from "@azodik/ui";
+
+// Hover over Button to see documentation
+<Button variant="solid" size="md">
+  Click me
+</Button>`}
+</CodeBlock>
+
+### Code Snippets
+
+Type the snippet prefix and press `Tab` to expand:
+
+#### Available Snippets
+
+- `az-button` - Button component
+- `az-input` - Input component
+- `az-card` - Card component
+- `az-modal` - Modal component
+- `az-alert` - Alert component
+- `az-select` - Select component
+- `az-import` - Import statement
+- `az-theme` - Theme Provider
+
+#### Example: Button Snippet
+
+Type `az-button` and press `Tab`:
+
+<CodeBlock language="tsx">
+{`<Button variant="solid" size="md" color="indigo" onClick={handleClick}>
+  Button Text
+</Button>`}
+</CodeBlock>
+
+#### Example: Import Snippet
+
+Type `az-import` and press `Tab`:
+
+<CodeBlock language="tsx">
+{`import { Button, Input, Card } from "@azodik/ui";`}
+</CodeBlock>
+
+#### Example: Theme Provider Snippet
+
+Type `az-theme` and press `Tab`:
+
+<CodeBlock language="tsx">
+{`<ThemeProvider defaultTheme="light" accentColor="indigo" grayColor="gray" radius="medium">
+  <App />
+</ThemeProvider>`}
+</CodeBlock>
+
+---
+
+## Configuration
+
+The extension can be configured in VS Code settings:
+
+### Settings
+
+Open VS Code settings (File > Preferences > Settings) and search for "Azodik UI":
+
+#### `azodik.ui.enableIntelliSense`
+
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Enable/disable IntelliSense for `@azodik/ui` components
+
+#### `azodik.ui.showHoverDocs`
+
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Show/hide hover documentation
+
+### Settings JSON
+
+You can also configure in `settings.json`:
+
+<CodeBlock language="json">
+{`{
+  "azodik.ui.enableIntelliSense": true,
+  "azodik.ui.showHoverDocs": true
+}`}
+</CodeBlock>
+
+---
+
+## Supported Components
+
+The extension provides IntelliSense and snippets for all Azodik UI components:
+
+### Form Components
+- Button
+- Input
+- Textarea
+- Select
+- Checkbox
+- Radio
+- Switch
+
+### Layout Components
+- Card
+- Container
+- Flex
+- Grid
+- Stack
+- Center
+- Section
+
+### Feedback Components
+- Alert
+- Modal
+- Dialog
+- Toast
+- Tooltip
+- Popover
+
+### Data Display
+- Table
+- DataTable
+- VirtualTable
+- Pagination
+
+### Navigation
+- Navigation
+- Sidebar
+- Breadcrumb
+- Tabs
+
+### And More...
+
+The extension supports all 100+ components in the Azodik UI library.
+
+---
+
+## Development
+
+### Building the Extension
+
+<CodeBlock language="bash">
+{`cd packages/vscode-extension
+pnpm install
+pnpm compile`}
+</CodeBlock>
+
+### Watching for Changes
+
+<CodeBlock language="bash">
+{`pnpm watch`}
+</CodeBlock>
+
+### Testing
+
+<CodeBlock language="bash">
+{`pnpm test`}
+</CodeBlock>
+
+### Project Structure
+
+<CodeBlock language="text">
+{`packages/vscode-extension/
+├── src/
+│   └── extension.ts      # Main extension code
+├── snippets/
+│   ├── typescript.json
+│   ├── typescriptreact.json
+│   ├── javascript.json
+│   └── javascriptreact.json
+├── package.json
+└── tsconfig.json`}
+</CodeBlock>
+
+---
+
+## Troubleshooting
+
+### IntelliSense Not Working
+
+1. **Check extension is active**: Look for "Azodik UI IntelliSense is now active!" in VS Code output
+2. **Verify file type**: Ensure you're working with `.ts`, `.tsx`, `.js`, or `.jsx` files
+3. **Reload window**: Press `Ctrl+Shift+P` (Cmd+Shift+P on Mac) and run "Developer: Reload Window"
+4. **Check settings**: Verify `azodik.ui.enableIntelliSense` is set to `true`
+
+### Snippets Not Appearing
+
+1. **Check file language**: Snippets work in TypeScript, TSX, JavaScript, and JSX files
+2. **Verify snippet prefix**: Type the exact prefix (e.g., `az-button`)
+3. **Check IntelliSense**: Press `Ctrl+Space` (Cmd+Space on Mac) to trigger suggestions
+
+### Hover Documentation Not Showing
+
+1. **Check settings**: Verify `azodik.ui.showHoverDocs` is set to `true`
+2. **Hover correctly**: Hover directly over the component name, not the import
+3. **Wait a moment**: Documentation may take a second to load
+
+### Extension Not Activating
+
+1. **Check VS Code version**: Requires VS Code 1.80.0 or higher
+2. **View output**: Go to View > Output and select "Azodik UI IntelliSense" to see logs
+3. **Check dependencies**: Ensure all dependencies are installed
+
+---
+
+## Contributing
+
+To contribute to the extension:
+
+1. Fork the repository
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
+
+### Adding New Snippets
+
+Edit the snippet files in `packages/vscode-extension/snippets/`:
+
+<CodeBlock language="json">
+{`{
+  "My New Snippet": {
+    "prefix": "az-my-snippet",
+    "body": [
+      "<MyComponent>",
+      "  $1",
+      "</MyComponent>"
+    ],
+    "description": "My new component snippet"
+  }
+}`}
+</CodeBlock>
+
+---
+
+## Related Documentation
+
+- [CLI Tools](/components/docs/cli) - Command-line tools
+- [Code Generation](/components/docs/code-generation) - Code generation features
+- [Getting Started](/components/getting-started) - Quick start guide
+- [Components](/components/docs/button) - Component documentation
+
+---
+
+## Support
+
+For issues, questions, or feature requests:
+
+- **GitHub Issues**: [Report an issue](https://github.com/azodik/design-system/issues)
+- **Documentation**: [Full documentation](https://azodik.dev)
+- **Community**: Join our community discussions
+

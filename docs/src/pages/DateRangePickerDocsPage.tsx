@@ -1,6 +1,12 @@
 import { MDXProvider } from "@mdx-js/react";
 import DateRangePicker from "@/docs/DateRangePicker.mdx";
-import { DateRangePicker as DateRangePickerComponent, Card, CardContent, Box, Container } from "@azodik/ui";
+import {
+  DateRangePicker as DateRangePickerComponent,
+  Card,
+  CardContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -31,4 +37,3 @@ export default function DateRangePickerDocsPage() {
     </SidebarLayout>
   );
 }
-

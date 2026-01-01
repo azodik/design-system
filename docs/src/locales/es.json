@@ -1167,5 +1167,8 @@
     "gettingStarted": "guía de inicio",
     "orBrowse": "o explora nuestros",
     "components": "Componentes"
-  }
+  },
+  "cli": "Herramientas CLI",
+  "codeGeneration": "Generación de código",
+  "vscodeExtension": "Extensión VSCode"
 }

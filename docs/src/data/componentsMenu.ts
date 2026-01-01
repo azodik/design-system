@@ -94,4 +94,7 @@ export const componentsMenuItems: ComponentMenuItem[] = [
   { nameKey: "typography", href: "/components/docs/typography" },
   { nameKey: "hooks", href: "/components/docs/hooks" },
   { nameKey: "llmResource", href: "/components/docs/llm-resource" },
+  { nameKey: "cli", href: "/components/docs/cli" },
+  { nameKey: "codeGeneration", href: "/components/docs/code-generation" },
+  { nameKey: "vscodeExtension", href: "/components/docs/vscode-extension" },
 ];

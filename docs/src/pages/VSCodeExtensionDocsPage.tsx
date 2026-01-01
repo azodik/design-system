@@ -1,21 +1,21 @@
 import { MDXProvider } from "@mdx-js/react";
-import BottomSheet from "@/docs/BottomSheet.mdx";
-import { BottomSheet as BottomSheetComponent, Card, CardContent, Box, Container } from "@azodik/ui";
+import VSCodeExtension from "@/docs/VSCodeExtension.mdx";
+import { Card, CardContent, Box, Container, Stack } from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
 
 const components = {
-  BottomSheet: BottomSheetComponent,
   Card: Card,
   CardContent: CardContent,
+  Stack: Stack,
 };
 
-export default function BottomSheetDocsPage() {
+export default function VSCodeExtensionDocsPage() {
   const breadcrumbItems = [
     { label: "Components", href: "/components" },
     { label: "Docs", href: "/components/docs" },
-    { label: "BottomSheet", current: true },
+    { label: "VSCode Extension", current: true },
   ];
 
   return (
@@ -23,7 +23,7 @@ export default function BottomSheetDocsPage() {
       <Container size="lg" className="p-2">
         <Box className="docs-content">
           <MDXProvider components={components}>
-            <BottomSheet />
+            <VSCodeExtension />
           </MDXProvider>
           <ComponentNavigation />
         </Box>

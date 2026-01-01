@@ -1,6 +1,12 @@
 import { MDXProvider } from "@mdx-js/react";
 import FloatingActionButton from "@/docs/FloatingActionButton.mdx";
-import { FloatingActionButton as FloatingActionButtonComponent, Card, CardContent, Box, Container } from "@azodik/ui";
+import {
+  FloatingActionButton as FloatingActionButtonComponent,
+  Card,
+  CardContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -31,4 +37,3 @@ export default function FloatingActionButtonDocsPage() {
     </SidebarLayout>
   );
 }
-

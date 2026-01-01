@@ -36,7 +36,7 @@ The `VirtualTable` component provides virtual scrolling for large datasets, rend
       </div>
       <div style={{ height: "300px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
         <VirtualTable
-          data={Array.from({ length: 1000 }, (_, i) => ({ id: i + 1, name: \`Item \${i + 1}\`, value: Math.random() * 100 }))}
+          data={Array.from({ length: 1000 }, (_, i) => ({ id: i + 1, name: "Item " + (i + 1), value: Math.random() * 100 }))}
           columns={[
             { key: "id", label: "ID", sortable: true },
             { key: "name", label: "Name", sortable: true },
@@ -54,7 +54,7 @@ The `VirtualTable` component provides virtual scrolling for large datasets, rend
 export const VirtualTableExample = () => {
   const data = Array.from({ length: 1000 }, (_, i) => ({
     id: i + 1,
-    name: \`Item \${i + 1}\`,
+    name: "Item " + (i + 1),
     value: Math.random() * 100
   }));
 

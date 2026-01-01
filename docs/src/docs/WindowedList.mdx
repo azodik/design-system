@@ -33,7 +33,7 @@ The `WindowedList` component renders only visible items in a list for performanc
     <Stack gap={16} style={{ width: "100%", padding: "var(--space-4)" }}>
       <div style={{ height: "300px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)" }}>
         <WindowedList
-          items={Array.from({ length: 1000 }, (_, i) => ({ id: i, name: \`Item \${i + 1}\` }))}
+          items={Array.from({ length: 1000 }, (_, i) => ({ id: i, name: "Item " + (i + 1) }))}
           renderItem={(item) => (
             <div style={{ padding: "var(--space-4)", borderBottom: "1px solid var(--color-border)" }}>
               {item.name}
@@ -51,7 +51,7 @@ The `WindowedList` component renders only visible items in a list for performanc
 export const WindowedListExample = () => {
   const items = Array.from({ length: 1000 }, (_, i) => ({
     id: i,
-    name: \`Item \${i + 1}\`
+    name: "Item " + (i + 1)
   }));
 
   return (

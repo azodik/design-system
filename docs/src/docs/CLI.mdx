@@ -1,0 +1,342 @@
+
+import { CodeBlock, CodeBlockWithPreview } from '@/components/docs';
+import { Stack, Card, CardContent } from '@azodik/ui';
+
+# CLI Tools
+
+Azodik UI provides powerful CLI tools to help you scaffold projects, create themes, and generate components quickly.
+
+## Available CLI Tools
+
+### 1. Create Azodik App
+
+Scaffold a new React, Next.js, or Vite application with Azodik UI pre-configured.
+
+### 2. Create Theme
+
+Generate custom theme configurations for your application.
+
+### 3. Create Component
+
+Generate new component files with tests and stories.
+
+---
+
+## Create Azodik App
+
+The `create-azodik-app` CLI tool scaffolds a new application with Azodik UI already set up.
+
+### Installation
+
+The CLI tool is included with `@azodik/ui`. No additional installation needed.
+
+### Usage
+
+<CodeBlock language="bash">
+{`# Create a new app with default Vite template
+pnpm create-azodik-app my-app
+
+# Create with React template
+pnpm create-azodik-app my-app --template react
+
+# Create with Next.js template
+pnpm create-azodik-app my-app --template next
+
+# Create with Vite template (explicit)
+pnpm create-azodik-app my-app --template vite`}
+</CodeBlock>
+
+### Templates
+
+#### Vite Template (Default)
+
+A modern Vite + React setup with TypeScript:
+
+- Fast HMR (Hot Module Replacement)
+- TypeScript support
+- Optimized build output
+- Modern ES modules
+
+#### React Template
+
+A Create React App-style setup:
+
+- React Scripts configuration
+- TypeScript support
+- Standard React tooling
+
+#### Next.js Template
+
+A Next.js application setup:
+
+- App Router support
+- Server-side rendering ready
+- TypeScript configuration
+- Next.js optimizations
+
+### Generated Files
+
+The CLI generates a complete project structure:
+
+<CodeBlock language="text">
+{`my-app/
+├── src/
+│   ├── App.tsx (or page.tsx for Next.js)
+│   └── main.tsx (not for Next.js)
+├── package.json
+├── tsconfig.json
+├── index.html (not for Next.js)
+├── vite.config.ts (Vite only)
+└── README.md`}
+</CodeBlock>
+
+### Example Output
+
+<CodeBlock language="tsx">
+{`// src/App.tsx (Vite/React)
+import { ThemeProvider } from "@azodik/ui";
+import { Button } from "@azodik/ui";
+import "@azodik/ui/styles.css";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" accentColor="indigo" grayColor="gray" radius="medium">
+      <div style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
+        <h1>Welcome to my-app</h1>
+        <p>This is a Vite app using Azodik UI.</p>
+        <Button>Get Started</Button>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;`}
+</CodeBlock>
+
+### Next Steps
+
+After creating your app:
+
+<CodeBlock language="bash">
+{`cd my-app
+pnpm install
+pnpm dev`}
+</CodeBlock>
+
+---
+
+## Create Theme
+
+The `create-theme` CLI tool generates custom theme configurations for your application.
+
+### Usage
+
+<CodeBlock language="bash">
+{`# Create a basic theme
+pnpm create-theme my-theme
+
+# Create theme with custom colors
+pnpm create-theme my-theme --colors indigo,blue,purple
+
+# Create theme with custom radius
+pnpm create-theme my-theme --radius large
+
+# Create theme with dark mode as default
+pnpm create-theme my-theme --default-theme dark
+
+# Combine options
+pnpm create-theme my-theme --colors blue,cyan --radius small --default-theme dark`}
+</CodeBlock>
+
+### Options
+
+- **`--colors`**: Comma-separated list of accent colors (default: `indigo`)
+- **`--radius`**: Border radius (`none`, `small`, `medium`, `large`, `full`) (default: `medium`)
+- **`--default-theme`**: Default theme mode (`light` or `dark`) (default: `light`)
+
+### Generated Theme
+
+<CodeBlock language="tsx">
+{`import { ThemeProviderProps } from "@azodik/ui";
+
+/**
+ * my-theme Theme Configuration
+ * 
+ * Generated theme configuration for my-theme
+ */
+export const myTheme: ThemeProviderProps = {
+  defaultTheme: "light",
+  accentColor: "indigo",
+  grayColor: "gray",
+  radius: "medium",
+};
+
+/**
+ * Usage:
+ * 
+ * \`\`\`tsx
+ * import { ThemeProvider } from "@azodik/ui";
+ * import { myTheme } from "./themes/my-theme";
+ * 
+ * <ThemeProvider {...myTheme}>
+ *   <App />
+ * </ThemeProvider>
+ * \`\`\`
+ */`}
+</CodeBlock>
+
+### Using Your Theme
+
+<CodeBlock language="tsx">
+{`import { ThemeProvider } from "@azodik/ui";
+import { myTheme } from "./themes/my-theme";
+
+function App() {
+  return (
+    <ThemeProvider {...myTheme}>
+      {/* Your app content */}
+    </ThemeProvider>
+  );
+}`}
+</CodeBlock>
+
+---
+
+## Create Component
+
+The `create-component` CLI tool generates new component files with tests and stories.
+
+### Usage
+
+<CodeBlock language="bash">
+{`# Create a new component
+pnpm create-component MyComponent
+
+# Component name will be converted to PascalCase
+pnpm create-component my-component
+# Creates: MyComponent`}
+</CodeBlock>
+
+### Generated Files
+
+The CLI generates three files:
+
+1. **Component file** (`packages/ui/components/MyComponent.tsx`)
+2. **Test file** (`packages/ui/components/__tests__/MyComponent.test.tsx`)
+3. **Story file** (`packages/ui/stories/MyComponent.stories.tsx`)
+
+### Generated Component Template
+
+<CodeBlock language="tsx">
+{`import React from "react";
+import { SemanticSize, getSizeClassName } from "../utils/size-variant-mapping";
+import { useReducedMotion } from "../utils/reduced-motion";
+import { useHighContrastMode } from "../utils/high-contrast";
+
+export interface MyComponentProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  size?: SemanticSize;
+  highContrast?: boolean;
+}
+
+/**
+ * MyComponent component
+ *
+ * @example
+ * \`\`\`tsx
+ * <MyComponent size="md">
+ *   Content
+ * </MyComponent>
+ * \`\`\`
+ */
+export default function MyComponent({
+  children,
+  size = "sm",
+  highContrast: propHighContrast,
+  className = "",
+  style,
+  ...props
+}: MyComponentProps) {
+  const reducedMotion = useReducedMotion();
+  const systemHighContrast = useHighContrastMode();
+  const highContrast = propHighContrast ?? systemHighContrast;
+  const sizeClassName = getSizeClassName(size);
+
+  const combinedClassName = [
+    "az-MyComponent",
+    sizeClassName,
+    highContrast ? "az-high-contrast" : "",
+    reducedMotion ? "az-reduced-motion" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <div
+      className={combinedClassName}
+      style={style}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Next Steps
+
+After creating a component:
+
+1. **Add CSS styles** in `packages/core/components/my-component.css`
+2. **Export the component** from `packages/ui/index.ts`
+3. **Run tests**: `pnpm test`
+4. **View in Storybook**: `pnpm storybook`
+
+---
+
+## Troubleshooting
+
+### CLI Command Not Found
+
+If you get a "command not found" error, ensure you're running the command from the correct directory:
+
+<CodeBlock language="bash">
+{`# From the project root
+cd packages/ui
+pnpm create-azodik-app my-app`}
+</CodeBlock>
+
+### Permission Errors
+
+On Unix systems, you may need to make the CLI scripts executable:
+
+<CodeBlock language="bash">
+{`chmod +x packages/ui/scripts/cli/*.ts`}
+</CodeBlock>
+
+### Template Not Found
+
+Ensure you're using a valid template name:
+- `react`
+- `next`
+- `vite`
+
+---
+
+## Best Practices
+
+1. **Use descriptive names**: Choose clear, descriptive names for apps, themes, and components
+2. **Follow conventions**: Use PascalCase for components, kebab-case for apps
+3. **Customize after generation**: The generated files are templates - customize them to fit your needs
+4. **Version control**: Commit generated files to version control
+5. **Test components**: Always write tests for your components
+
+---
+
+## Related Documentation
+
+- [Getting Started](/components/getting-started) - Learn how to use Azodik UI
+- [Theming](/components/docs/theming) - Customize themes and colors
+- [Components](/components/docs/button) - Browse all available components
+

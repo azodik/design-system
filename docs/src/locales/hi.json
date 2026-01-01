@@ -1167,5 +1167,8 @@
     "gettingStarted": "शुरुआती गाइड",
     "orBrowse": "या हमारे",
     "components": "कंपोनेंट्स"
-  }
+  },
+  "cli": "CLI उपकरण",
+  "codeGeneration": "कोड जेनरेशन",
+  "vscodeExtension": "VSCode एक्सटेंशन"
 }

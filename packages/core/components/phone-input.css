@@ -2,16 +2,28 @@
 .phone-input {
   display: flex;
   gap: var(--space-2);
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .phone-input-country {
   flex-shrink: 0;
   min-width: 150px;
+  display: flex;
+  align-items: stretch;
+}
+
+.phone-input-country > * {
+  width: 100%;
 }
 
 .phone-input-field {
   flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.phone-input-field > * {
+  width: 100%;
 }
 
 /* Responsive */

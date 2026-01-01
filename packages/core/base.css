@@ -52,6 +52,7 @@
 @import "./components/context-menu.css";
 @import "./components/color-picker.css";
 @import "./components/calendar.css";
+@import "./components/date-range-picker.css";
 @import "./components/tree.css";
 @import "./components/split-pane.css";
 @import "./components/status-badge.css";

@@ -97,6 +97,9 @@ const components = {
   TypographyDocs: lazy(() => import("@/pages/TypographyDocsPage")),
   HooksDocs: lazy(() => import("@/pages/HooksDocsPage")),
   LLMDocs: lazy(() => import("@/pages/LLMDocsPage")),
+  CLIDocs: lazy(() => import("@/pages/CLIDocsPage")),
+  CodeGenerationDocs: lazy(() => import("@/pages/CodeGenerationDocsPage")),
+  VSCodeExtensionDocs: lazy(() => import("@/pages/VSCodeExtensionDocsPage")),
 };
 
 // Route mapping for easy access
@@ -196,6 +199,9 @@ const routeComponents = {
   [routes.typographyDocs]: components.TypographyDocs,
   [routes.hooksDocs]: components.HooksDocs,
   [routes.llmResource]: components.LLMDocs,
+  [routes.cliDocs]: components.CLIDocs,
+  [routes.codeGenerationDocs]: components.CodeGenerationDocs,
+  [routes.vscodeExtensionDocs]: components.VSCodeExtensionDocs,
 };
 
 // Static routes

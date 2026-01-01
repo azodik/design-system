@@ -137,19 +137,36 @@ export function DateRangePicker({
     switch (period) {
       case "today":
         start = new Date(today);
+        start.setHours(0, 0, 0, 0);
         break;
-      case "week":
+      case "week": {
+        // Last 7 days (including today)
         start = new Date(today);
         start.setDate(today.getDate() - 6);
+        start.setHours(0, 0, 0, 0);
         break;
-      case "month":
+      }
+      case "month": {
+        // First day of current month
         start = new Date(today.getFullYear(), today.getMonth(), 1);
+        start.setHours(0, 0, 0, 0);
         break;
-      case "year":
+      }
+      case "year": {
+        // January 1st of current year
         start = new Date(today.getFullYear(), 0, 1);
+        start.setHours(0, 0, 0, 0);
         break;
+      }
       default:
         start = new Date(today);
+        start.setHours(0, 0, 0, 0);
+    }
+
+    // Ensure dates are valid
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      console.error("Invalid date range selected");
+      return;
     }
 
     setTempStartDate(start);
@@ -209,10 +226,27 @@ export function DateRangePicker({
                 return <div key={index} className="date-range-picker-day-empty" />;
               }
 
-              const isStart = tempStartDate && date.getTime() === tempStartDate.getTime();
-              const isEnd = tempEndDate && date.getTime() === tempEndDate.getTime();
+              // Normalize dates for comparison (set to start of day)
+              const dateNormalized = new Date(date);
+              dateNormalized.setHours(0, 0, 0, 0);
+
+              const startNormalized = tempStartDate ? new Date(tempStartDate) : null;
+              if (startNormalized) startNormalized.setHours(0, 0, 0, 0);
+
+              const endNormalized = tempEndDate ? new Date(tempEndDate) : null;
+              if (endNormalized) {
+                // For end date, we want to include the full day, so compare with start of day
+                endNormalized.setHours(0, 0, 0, 0);
+              }
+
+              const isStart =
+                startNormalized && dateNormalized.getTime() === startNormalized.getTime();
+              const isEnd = endNormalized && dateNormalized.getTime() === endNormalized.getTime();
               const isInRange =
-                tempStartDate && tempEndDate && date >= tempStartDate && date <= tempEndDate;
+                startNormalized &&
+                endNormalized &&
+                dateNormalized >= startNormalized &&
+                dateNormalized <= endNormalized;
               const isToday = date.toDateString() === today.toDateString();
 
               return (

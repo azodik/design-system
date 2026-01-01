@@ -24,6 +24,15 @@
   /* Max constraints only applied when needed via JS - no default constraints */
 }
 
+/* Ensure date range picker calendar styles are not overridden */
+.popover-content .date-range-picker-calendar {
+  padding: var(--space-4) !important;
+  background: var(--color-background) !important;
+  border-radius: var(--radius-3) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
 .popover.open .popover-content {
   opacity: 1;
   visibility: visible;

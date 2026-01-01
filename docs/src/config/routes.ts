@@ -95,4 +95,7 @@ export const routes = {
   typographyDocs: "/components/docs/typography",
   hooksDocs: "/components/docs/hooks",
   llmResource: "/components/docs/llm-resource",
+  cliDocs: "/components/docs/cli",
+  codeGenerationDocs: "/components/docs/code-generation",
+  vscodeExtensionDocs: "/components/docs/vscode-extension",
 };

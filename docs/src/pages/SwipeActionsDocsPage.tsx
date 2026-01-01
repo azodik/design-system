@@ -1,6 +1,12 @@
 import { MDXProvider } from "@mdx-js/react";
 import SwipeActions from "@/docs/SwipeActions.mdx";
-import { SwipeActions as SwipeActionsComponent, Card, CardContent, Box, Container } from "@azodik/ui";
+import {
+  SwipeActions as SwipeActionsComponent,
+  Card,
+  CardContent,
+  Box,
+  Container,
+} from "@azodik/ui";
 import { ComponentNavigation } from "@/components/docs";
 import SidebarLayout from "@/components/sidebar/Sidebar";
 import "@/styles/docs.css";
@@ -31,4 +37,3 @@ export default function SwipeActionsDocsPage() {
     </SidebarLayout>
   );
 }
-

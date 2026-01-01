@@ -3,6 +3,11 @@
 .date-range-picker-calendar {
   padding: var(--space-4);
   min-width: 300px;
+  max-width: 350px;
+  background: var(--color-background);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
 }
 
 .date-range-picker-quick-select {
@@ -37,12 +42,13 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: var(--space-1);
+  width: 100%;
 }
 
 .date-range-picker-day {
   aspect-ratio: 1;
-  border: none;
-  background: transparent;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
   color: var(--color-text);
   cursor: pointer;
   border-radius: var(--radius-2);
@@ -51,10 +57,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  font-weight: 400;
 }
 
 .date-range-picker-day:hover:not(:disabled) {
   background: var(--gray-3);
+  border-color: var(--accent-9);
+}
+
+.date-range-picker-day:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .date-range-picker-day.today {
@@ -67,15 +85,21 @@
   background: var(--accent-9);
   color: white;
   font-weight: 600;
+  border-color: var(--accent-9);
 }
 
 .date-range-picker-day.in-range {
   background: var(--accent-3);
   color: var(--accent-11);
+  border-color: var(--accent-5);
 }
 
 .date-range-picker-day-empty {
   aspect-ratio: 1;
+  border: 1px solid transparent;
+  background: transparent;
+  width: 100%;
+  height: auto;
 }
 
 .date-range-picker-actions {
