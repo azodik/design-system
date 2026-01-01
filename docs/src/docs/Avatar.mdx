@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup, Card, CardContent } from '@azodik/ui';
+import { Avatar, AvatarGroup, Card, CardContent, Flex, Center } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -143,27 +143,31 @@ export const DesignGuidelinesList = () => {
 <CodeBlockWithPreview 
   title={<AllAvatarVariantsTitle />}
   preview={
-    <div className="flex-horizontal items-center justify-center">
-      <Avatar name="Henna Morris" size="1" initials="HM"/>
-      <Avatar name="Shane John" size="2" initials="SJ"/>
-      <Avatar name="Pedro Pascal" size="3" initials="PP"/>
-      <Avatar name="Alice Brown" size="4" initials="AB" />
-    </div>
+    <Center>
+      <Flex align="center" gap="4" wrap="wrap">
+        <Avatar name="Henna Morris" size="xs" initials="HM"/>
+        <Avatar name="Shane John" size="sm" initials="SJ"/>
+        <Avatar name="Pedro Pascal" size="md" initials="PP"/>
+        <Avatar name="Alice Brown" size="lg" initials="AB" />
+      </Flex>
+    </Center>
   }
 >
-{`import { Avatar } from '@azodik/ui';
+{`import { Avatar, Flex, Center } from '@azodik/ui';
 
 export const AvatarExamples = () => {
   return (
-    <div className="flex-horizontal items-center justify-center">
-      <Avatar 
-        src="/path/to/image.jpg"
-        alt="John Doe"
-        size="2"
-      />
-      <Avatar name="Jane Smith" size="3" />
-      <Avatar name="Bob Wilson" size="1" />
-    </div>
+    <Center>
+      <Flex align="center" gap="4">
+        <Avatar 
+          src="/path/to/image.jpg"
+          alt="John Doe"
+          size="sm"
+        />
+        <Avatar name="Jane Smith" size="md" />
+        <Avatar name="Bob Wilson" size="xs" />
+      </Flex>
+    </Center>
   );
 };`}
 </CodeBlockWithPreview>
@@ -175,7 +179,7 @@ export const AvatarExamples = () => {
   preview={
     <Avatar 
       name="John Doe"
-      size="3"
+      size="md"
       initials="JD"
     />
   }
@@ -184,9 +188,9 @@ export const AvatarExamples = () => {
 
 export const UserAvatarExample = () => {
   return (
-    <Avatar 
+      <Avatar 
       name="John Doe"
-      size="3"
+      size="md"
     />
   );
 }`}
@@ -197,28 +201,32 @@ export const UserAvatarExample = () => {
 <CodeBlockWithPreview 
   title={<AvatarSizesTitle />}
   preview={
-    <div className="flex items-center gap-md">
-      <AvatarGroup max={3}>
-        <Avatar size="2" initials="A" />
-        <Avatar size="2" initials="B" />
-        <Avatar size="2" initials="C" />
-        <Avatar size="2" initials="D" />
-        <Avatar size="2" initials="E" />
-        <Avatar size="2" initials="F" />
-      </AvatarGroup>
-    </div>
+    <Center>
+      <Flex align="center" gap="4">
+        <AvatarGroup max={3}>
+          <Avatar size="sm" initials="A" />
+          <Avatar size="sm" initials="B" />
+          <Avatar size="sm" initials="C" />
+          <Avatar size="sm" initials="D" />
+          <Avatar size="sm" initials="E" />
+          <Avatar size="sm" initials="F" />
+        </AvatarGroup>
+      </Flex>
+    </Center>
   }
 >
-{`import { Avatar } from '@azodik/ui';
+{`import { Avatar, Flex, Center } from '@azodik/ui';
 
 export const AvatarSizesExample = () => {
   return (
-    <div className="flex items-center gap-md">
-      <Avatar name="John Doe" size="1" />
-      <Avatar name="Jane Smith" size="2" />
-      <Avatar name="Bob Wilson" size="3" />
-      <Avatar name="Alice Brown" size="4" />
-    </div>
+    <Center>
+      <Flex align="center" gap="4">
+        <Avatar name="John Doe" size="xs" />
+        <Avatar name="Jane Smith" size="sm" />
+        <Avatar name="Bob Wilson" size="md" />
+        <Avatar name="Alice Brown" size="lg" />
+      </Flex>
+    </Center>
   );
 }`}
 </CodeBlockWithPreview>
@@ -249,9 +257,9 @@ export const AvatarSizesExample = () => {
   },
   {
     name: 'size',
-    type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+    type: '"xs" | "sm" | "md" | "lg" | "xl"',
     required: false,
-    default: '"md"',
+    default: '"lg"',
     description: 'Size of the avatar'
   },
   {

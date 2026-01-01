@@ -1,4 +1,4 @@
-import { Checkbox, Card, CardContent } from '@azodik/ui';
+import { Checkbox, Card, CardContent, Stack, Flex } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -132,7 +132,7 @@ export const DesignGuidelinesCheckboxList = () => {
 <CodeBlockWithPreview 
   title={<AllCheckboxVariantsTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Checkbox
         label="I agree to the terms and conditions"
         defaultChecked={false}
@@ -145,14 +145,14 @@ export const DesignGuidelinesCheckboxList = () => {
         label="Disabled checkbox"
         disabled={true}
       />
-    </div>
+    </Stack>
   }
 >
-{`import { Checkbox } from '@azodik/ui';
+{`import { Checkbox, Stack } from '@azodik/ui';
 
 export const CheckboxExamples = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Checkbox
         label="I agree to the terms and conditions"
         checked={false}
@@ -165,7 +165,7 @@ export const CheckboxExamples = () => {
         label="Disabled checkbox"
         disabled={true}
       />
-    </div>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -198,26 +198,26 @@ export const CheckboxExample = () => {
 <CodeBlockWithPreview 
   title="Checkbox Sizes"
   preview={
-    <div className="flex-vertical">
-      <div className="flex items-center gap-4">
-        <Checkbox label="Size 1" size="1" defaultChecked />
-        <Checkbox label="Size 2" size="2" defaultChecked />
-        <Checkbox label="Size 3" size="3" defaultChecked />
-      </div>
-    </div>
+    <Stack gap={16}>
+      <Flex align="center" gap="4">
+        <Checkbox label="Size xs" size="xs" defaultChecked />
+        <Checkbox label="Size sm" size="sm" defaultChecked />
+        <Checkbox label="Size md" size="md" defaultChecked />
+      </Flex>
+    </Stack>
   }
 >
-{`import { Checkbox } from '@azodik/ui';
+{`import { Checkbox, Stack, Flex } from '@azodik/ui';
 
 export const CheckboxSizes = () => {
   return (
-    <div className="flex-vertical">
-      <div className="flex items-center gap-4">
-        <Checkbox label="Size 1" size="1" defaultChecked />
-        <Checkbox label="Size 2" size="2" defaultChecked />
-        <Checkbox label="Size 3" size="3" defaultChecked />
-      </div>
-    </div>
+    <Stack gap={16}>
+      <Flex align="center" gap="4">
+        <Checkbox label="Size xs" size="xs" defaultChecked />
+        <Checkbox label="Size sm" size="sm" defaultChecked />
+        <Checkbox label="Size md" size="md" defaultChecked />
+      </Flex>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>

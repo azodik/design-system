@@ -1,4 +1,4 @@
-import { LineChart, AreaChart, BarChart, PieChart, Card, CardContent } from '@azodik/ui';
+import { LineChart, AreaChart, BarChart, PieChart, Card, CardContent, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import ChartsCodePreview from '@/components/docs/ChartsCodePreview';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -380,7 +380,7 @@ export default function PieChartExample() {
 <ChartsCodePreview 
   title={<CustomizedChartsTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <LineChart
         data={[
           { name: "Jan", sales: 4000, target: 3500 },
@@ -394,7 +394,7 @@ export default function PieChartExample() {
         strokeWidth={3}
         showLegend={false}
       />
-    </div>
+    </Stack>
   }
 >
 {`import { LineChart } from '@azodik/ui';

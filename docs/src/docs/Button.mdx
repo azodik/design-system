@@ -1,4 +1,4 @@
-import { Button, Card, CardContent } from '@azodik/ui';
+import { Button, Card, CardContent, Flex, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -141,26 +141,26 @@ export const DesignGuidelinesList = () => {
 <CodeBlockWithPreview 
   title={<AllButtonVariantsTitle />}
   preview={
-    <div className="flex gap-sm">
+    <Flex gap="2" wrap="wrap">
       <Button variant="solid">Primary</Button>
       <Button variant="soft">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
-    </div>
+    </Flex>
   }
 >
-{`import { Button } from '@azodik/ui';
+{`import { Button, Stack } from '@azodik/ui';
 
 export const ButtonExamples = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Button variant="solid">Primary</Button>
       <Button variant="soft">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="solid" color="ruby">Destructive</Button>
-    </div>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -170,21 +170,20 @@ export const ButtonExamples = () => {
 <CodeBlockWithPreview 
   title={<ButtonWithIconsTitle />}
   preview={
-    <div className="flex gap-sm">
+    <Flex gap="2" wrap="wrap">
       <Button icon={<span>+</span>}>Add Item</Button>
       <Button loading>Loading</Button>
-      <Button loading variant="outline">Loading</Button>
-    </div>
+    </Flex>
   }
 >
-{`import { Button } from '@azodik/ui';
+{`import { Button, Flex } from '@azodik/ui';
 
 export const ButtonWithIcons = () => {
   return (
-    <div className="flex gap-2">
+    <Flex gap="2">
       <Button icon={<span>+</span>}>Add Item</Button>
       <Button loading>Loading</Button>
-    </div>
+    </Flex>
   );
 }`}
 </CodeBlockWithPreview>

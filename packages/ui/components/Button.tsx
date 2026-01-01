@@ -80,9 +80,14 @@ export default function Button({
       aria-disabled={disabled ? "true" : undefined}
       {...props}
     >
-      {loading && <Spinner size="xs" color="currentColor" />}
-      {!loading && icon && <span className="btn-icon">{icon}</span>}
-      <span className="btn-content">{children}</span>
+      {loading ? (
+        <Spinner size="xs" color="currentColor" />
+      ) : (
+        <>
+          {icon && <span className="btn-icon">{icon}</span>}
+          <span className="btn-content">{children}</span>
+        </>
+      )}
     </button>
   );
 }

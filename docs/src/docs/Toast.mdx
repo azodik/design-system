@@ -1,4 +1,4 @@
-import { Toast, Button, Card, CardContent } from '@azodik/ui';
+import { Toast, Button, Card, CardContent, Stack, Flex } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -122,7 +122,7 @@ export const BasicToastExample = () => {
   const [showToast, setShowToast] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <Stack gap={16}>
       <Button onClick={() => setShowToast(true)}>
         Show Toast
       </Button>
@@ -137,7 +137,7 @@ export const BasicToastExample = () => {
           This is a basic toast notification.
         </Toast>
       )}
-    </div>
+    </Stack>
   );
 };
 
@@ -154,8 +154,8 @@ export const ToastVariantsExample = () => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
+    <Stack gap={16}>
+      <Flex gap="2" wrap="wrap">
         <Button onClick={() => addToast('success', 'Success!', 'Operation completed successfully.')}>
           Success Toast
         </Button>
@@ -168,7 +168,7 @@ export const ToastVariantsExample = () => {
         <Button onClick={() => addToast('info', 'Info', 'Here is some information.')}>
           Info Toast
         </Button>
-      </div>
+      </Flex>
       
       {toasts.map(toast => (
         <Toast
@@ -181,7 +181,7 @@ export const ToastVariantsExample = () => {
           {toast.message}
         </Toast>
       ))}
-    </div>
+    </Stack>
   );
 };
 
@@ -198,8 +198,8 @@ export const ToastPositionsExample = () => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
+    <Stack gap={16}>
+      <Flex gap="2" wrap="wrap">
         <Button onClick={() => addToast('top-center', 'Top Center Toast')}>
           Top Center
         </Button>
@@ -209,7 +209,7 @@ export const ToastPositionsExample = () => {
         <Button onClick={() => addToast('bottom-right', 'Bottom Right Toast')}>
           Bottom Right
         </Button>
-      </div>
+      </Flex>
       
       {toasts.map(toast => (
         <Toast
@@ -222,7 +222,7 @@ export const ToastPositionsExample = () => {
           {toast.message}
         </Toast>
       ))}
-    </div>
+    </Stack>
   );
 };
 
@@ -230,7 +230,7 @@ export const PersistentToastExample = () => {
   const [showToast, setShowToast] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <Stack gap={16}>
       <Button onClick={() => setShowToast(true)}>
         Show Persistent Toast
       </Button>
@@ -245,7 +245,7 @@ export const PersistentToastExample = () => {
           This toast will stay until you close it.
         </Toast>
       )}
-    </div>
+    </Stack>
   );
 };
 
@@ -276,7 +276,7 @@ export default function BasicToast() {
   const [showToast, setShowToast] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <Stack gap={16}>
       <Button onClick={() => setShowToast(true)}>
         Show Toast
       </Button>
@@ -291,7 +291,7 @@ export default function BasicToast() {
           This is a basic toast notification.
         </Toast>
       )}
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>
@@ -316,8 +316,8 @@ export default function ToastVariants() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
+    <Stack gap={16}>
+      <Flex gap="2" wrap="wrap">
         <Button onClick={() => addToast('success', 'Success!', 'Operation completed successfully.')}>
           Success Toast
         </Button>
@@ -330,7 +330,7 @@ export default function ToastVariants() {
         <Button onClick={() => addToast('info', 'Info', 'Here is some information.')}>
           Info Toast
         </Button>
-      </div>
+      </Flex>
       
       {toasts.map(toast => (
         <Toast
@@ -343,7 +343,7 @@ export default function ToastVariants() {
           {toast.message}
         </Toast>
       ))}
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>
@@ -368,8 +368,8 @@ export default function ToastPositions() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
+    <Stack gap={16}>
+      <Flex gap="2" wrap="wrap">
         <Button onClick={() => addToast('top-center', 'Top Center Toast')}>
           Top Center
         </Button>
@@ -379,7 +379,7 @@ export default function ToastPositions() {
         <Button onClick={() => addToast('bottom-right', 'Bottom Right Toast')}>
           Bottom Right
         </Button>
-      </div>
+      </Flex>
       
       {toasts.map(toast => (
         <Toast
@@ -392,7 +392,7 @@ export default function ToastPositions() {
           {toast.message}
         </Toast>
       ))}
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>
@@ -408,7 +408,7 @@ export default function PersistentToast() {
   const [showToast, setShowToast] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <Stack gap={16}>
       <Button onClick={() => setShowToast(true)}>
         Show Persistent Toast
       </Button>
@@ -423,7 +423,7 @@ export default function PersistentToast() {
           This toast will stay until you manually close it.
         </Toast>
       )}
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tabs, TabList, TabTrigger, TabContent, Card } from "@azodik/ui";
+import { Tabs, TabList, TabTrigger, TabContent, Card, Flex, Center, Button } from "@azodik/ui";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CopyIcon, TickIcon } from "@azodik/icons";
@@ -63,7 +63,6 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
 
         <TabContent value="preview">
           <Card
-            className="border rounded-lg p-4 w-full flex items-center justify-center"
             style={{
               backgroundColor: "var(--preview-bg)",
               borderColor: "var(--preview-border)",
@@ -72,20 +71,19 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
               minHeight: "200px",
               position: "relative",
               zIndex: 1,
+              padding: "var(--space-4)",
             }}
           >
-            <div
-              className="flex items-center justify-center w-full"
-              style={{ overflow: "visible", minHeight: "150px", position: "relative", zIndex: 1 }}
+            <Center
+              style={{ overflow: "visible", minHeight: "150px", position: "relative", zIndex: 1, width: "100%" }}
             >
               {preview}
-            </div>
+            </Center>
           </Card>
         </TabContent>
 
         <TabContent value="code">
           <Card
-            className="border rounded-lg overflow-y-auto"
             style={{
               backgroundColor: "var(--color-surface)",
               borderColor: "var(--color-border)",
@@ -94,16 +92,28 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
               position: "relative",
               width: "100%",
               padding: "0",
+              overflowY: "auto",
             }}
           >
-            <button
+            <Button
+              variant="ghost"
+              size="xs"
               onClick={handleCopy}
-              className="absolute top-4 right-4 z-10 p-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
-              style={{ top: "10px", right: "10px" }}
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                zIndex: 10,
+                padding: "var(--space-2)",
+                backgroundColor: "var(--gray-7)",
+                color: "var(--color-text)",
+              }}
               title={copied ? t("copied") : t("copyCode")}
             >
-              {copied ? <TickIcon size={16} /> : <CopyIcon size={16} />}
-            </button>
+              <Flex align="center" gap="2">
+                {copied ? <TickIcon size={16} /> : <CopyIcon size={16} />}
+              </Flex>
+            </Button>
             <SyntaxHighlighter
               language={language}
               style={vscDarkPlus}

@@ -6,7 +6,7 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   color?: string;
 }
 
-export function Spinner({ size = "md", color, className = "", style, ...props }: SpinnerProps) {
+export function Spinner({ size = "md", color, className = "", style, children, ...props }: SpinnerProps) {
   const customStyle: React.CSSProperties = {
     borderTopColor: color,
     ...style,
@@ -19,9 +19,10 @@ export function Spinner({ size = "md", color, className = "", style, ...props }:
       className={`az-Spinner ${sizeClassName} ${className}`}
       style={customStyle}
       role="status"
+      aria-label="Loading"
       {...props}
     >
-      <span className="sr-only">Loading...</span>
+      {children || <span className="sr-only">Loading...</span>}
     </span>
   );
 }

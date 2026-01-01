@@ -1,4 +1,4 @@
-import { Alert, Card, CardContent } from '@azodik/ui';
+import { Alert, Card, CardContent, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -181,7 +181,7 @@ export default function AlertVariants() {
       <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
-    </div>
+    </Stack>
   );
 }`}
 />
@@ -191,28 +191,28 @@ export default function AlertVariants() {
 <CodeBlockWithPreview 
   title={<AllAlertVariantsTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Alert variant="soft" color="ruby" title="Error">
         Something went wrong. Please try again.
       </Alert>
       <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
-    </div>
+    </Stack>
   }
 >
-{`import { Alert } from '@azodik/ui';
+{`import { Alert, Stack } from '@azodik/ui';
 
 export default function AlertExamples() {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Alert variant="soft" color="ruby" title="Error">
         Something went wrong. Please try again.
       </Alert>
       <Alert variant="soft" color="indigo" title="Info">
         Here's some helpful information for you.
       </Alert>
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>
@@ -255,7 +255,7 @@ export default function DismissibleAlert() {
 <CodeBlockWithPreview 
   title={<CustomSizingExampleTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       {/* String values */}
       <Alert 
         variant="soft" color="indigo" 
@@ -286,14 +286,14 @@ export default function DismissibleAlert() {
       >
         You can use any valid CSS value for padding, width, and height.
       </Alert>
-    </div>
+    </Stack>
   }
 >
-{`import { Alert } from '@azodik/ui';
+{`import { Alert, Stack } from '@azodik/ui';
 
 export default function CustomSizedAlert() {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       {/* String values */}
       <Alert 
         variant="soft" color="indigo" 
@@ -324,7 +324,7 @@ export default function CustomSizedAlert() {
       >
         You can use any valid CSS value for padding, width, and height.
       </Alert>
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>

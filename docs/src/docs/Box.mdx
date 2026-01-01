@@ -11,7 +11,7 @@ The `Box` component is a fundamental layout primitive that renders a `div` by de
 <CodeBlock language="tsx">
 {`import { Box } from "@azodik/ui";
 
-<Box className="p-4 bg-gray-100">
+<Box style={{ padding: "var(--space-4)", backgroundColor: "var(--gray-3)" }}>
   This is a Box
 </Box>`}
 </CodeBlock>
@@ -28,7 +28,7 @@ You can use the `as` prop to render `Box` as a different element, such as a `spa
     </Box>
   }
 >
-{`<Box as="span" className="text-red-500">
+{`<Box as="span" style={{ color: "var(--ruby-9)" }}>
   I am a span behaving like a Box
 </Box>`}
 </CodeBlockWithPreview>

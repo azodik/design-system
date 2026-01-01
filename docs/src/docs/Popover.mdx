@@ -1,4 +1,4 @@
-import { Popover, Button, Card, CardContent, Input, Select } from '@azodik/ui';
+import { Popover, Button, Card, CardContent, Input, Select, Flex, Stack, Center } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -109,7 +109,7 @@ export const PositionPopoverExample = () => {
   const positions = ['top', 'right', 'bottom', 'left'];
 
   return (
-    <div className="flex gap-4">
+    <Flex gap="4" wrap="wrap">
       {positions.map(position => (
         <Popover
           key={position}
@@ -117,8 +117,8 @@ export const PositionPopoverExample = () => {
           onClose={() => setOpenPopover(null)}
           position={position}
           content={
-            <div className="p-4">
-              <h3 className="font-semibold mb-2">Popover {position}</h3>
+            <div style={{ padding: "var(--space-4)" }}>
+              <h3 style={{ fontWeight: "600", marginBottom: "var(--space-2)" }}>Popover {position}</h3>
               <p>This popover appears on the {position}.</p>
             </div>
           }
@@ -145,21 +145,21 @@ export const ActionPopoverExample = () => {
       isOpen={isOpen}
       onClose={() => setIsOpen(false)}
       content={
-        <div className="p-2">
+        <div style={{ padding: "var(--space-2)" }}>
           <button
-            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            style={{ width: "100%", textAlign: "left", padding: "var(--space-2) var(--space-3)", borderRadius: "var(--radius-2)" }}
             onClick={() => handleAction('profile')}
           >
             View Profile
           </button>
           <button
-            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            style={{ width: "100%", textAlign: "left", padding: "var(--space-2) var(--space-3)", borderRadius: "var(--radius-2)" }}
             onClick={() => handleAction('settings')}
           >
             Settings
           </button>
           <button
-            className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded"
+            style={{ width: "100%", textAlign: "left", padding: "var(--space-2) var(--space-3)", borderRadius: "var(--radius-2)" }}
             onClick={() => handleAction('logout')}
           >
             Logout
@@ -189,11 +189,11 @@ export const FormPopoverExample = () => {
       isOpen={isOpen}
       onClose={() => setIsOpen(false)}
       content={
-        <form onSubmit={handleSubmit} className="p-4 flex-vertical w-64">
-          <h3 className="font-semibold">Add New Item</h3>
+        <form onSubmit={handleSubmit} style={{ padding: "var(--space-4)", display: "flex", flexDirection: "column", gap: "var(--space-4)", width: "256px" }}>
+          <h3 style={{ fontWeight: "600" }}>Add New Item</h3>
           
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+            <label htmlFor="name" style={{ display: "block", fontSize: "var(--font-size-sm)", fontWeight: "500", marginBottom: "var(--space-1)" }}>Name</label>
             <Input
               id="name-preview"
               value={formData.name}
@@ -203,7 +203,7 @@ export const FormPopoverExample = () => {
           </div>
           
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+            <label htmlFor="email" style={{ display: "block", fontSize: "var(--font-size-sm)", fontWeight: "500", marginBottom: "var(--space-1)" }}>Email</label>
             <Input
               id="email-preview"
               type="email"
@@ -213,12 +213,12 @@ export const FormPopoverExample = () => {
             />
           </div>
           
-          <div className="flex gap-2">
-            <Button type="submit" size="1">Add</Button>
-            <Button type="button" variant="outline" size="1" onClick={() => setIsOpen(false)}>
+          <Flex gap="2">
+            <Button type="submit" size="xs">Add</Button>
+            <Button type="button" variant="outline" size="xs" onClick={() => setIsOpen(false)}>
               Cancel
             </Button>
-          </div>
+          </Flex>
         </form>
       }
     >
@@ -244,8 +244,8 @@ export const InteractivePopoverExample = () => {
   const offsets = [4, 8, 12, 16, 20, 24];
 
   return (
-    <div className="flex-vertical gap-4 preview-popover">
-      <div className="flex gap-4 items-center">
+    <Stack gap={16} className="preview-popover">
+      <Flex gap="4" align="center">
         <Select
           label="Position:"
           value={position}
@@ -263,19 +263,19 @@ export const InteractivePopoverExample = () => {
         />
       </div>
 
-      <div className="flex justify-center">
+      <Center>
         <Popover
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           position={position}
           offset={offset}
           content={
-            <div className="p-1 bg-white border rounded shadow-lg">
-              <p className="text-sm text-gray-600">
-                Position: <span className="font-mono">{position}</span>
+            <div style={{ padding: "var(--space-1)", backgroundColor: "var(--color-background)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", boxShadow: "var(--shadow-2)" }}>
+              <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+                Position: <span style={{ fontFamily: "monospace" }}>{position}</span>
               </p>
-              <p className="text-sm text-gray-600">
-                Offset: <span className="font-mono">{offset}px</span>
+              <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+                Offset: <span style={{ fontFamily: "monospace" }}>{offset}px</span>
               </p>
             </div>
           }
@@ -284,8 +284,8 @@ export const InteractivePopoverExample = () => {
             Open Popover
           </Button>
         </Popover>
-      </div>
-    </div>
+      </Center>
+    </Stack>
   );
 };
 
@@ -327,8 +327,8 @@ export const InteractivePopoverExample = () => {
   const offsets = [4, 8, 12, 16, 20, 24];
 
   return (
-    <div className="flex-vertical gap-4 preview-popover">
-      <div className="flex gap-4 items-center">
+    <Stack gap={16} className="preview-popover">
+      <Flex gap="4" align="center">
         <Select
           label="Position:"
           value={position}
@@ -346,20 +346,20 @@ export const InteractivePopoverExample = () => {
         />
       </div>
 
-      <div className="flex justify-center">
+      <Center>
         <Popover
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           position={position}
           offset={offset}
           content={
-            <div className="p-4 bg-white border rounded shadow-lg">
-              <h3 className="font-semibold mb-2">Interactive Popover</h3>
-              <p className="text-sm text-gray-600 mb-2">
-                Position: <span className="font-mono">{position}</span>
+            <div style={{ padding: "var(--space-4)", backgroundColor: "var(--color-background)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", boxShadow: "var(--shadow-2)" }}>
+              <h3 style={{ fontWeight: "600", marginBottom: "var(--space-2)" }}>Interactive Popover</h3>
+              <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)", marginBottom: "var(--space-2)" }}>
+                Position: <span style={{ fontFamily: "monospace" }}>{position}</span>
               </p>
-              <p className="text-sm text-gray-600">
-                Offset: <span className="font-mono">{offset}px</span>
+              <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
+                Offset: <span style={{ fontFamily: "monospace" }}>{offset}px</span>
               </p>
             </div>
           }
@@ -368,8 +368,8 @@ export const InteractivePopoverExample = () => {
             Open Popover
           </Button>
         </Popover>
-      </div>
-    </div>
+      </Center>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>

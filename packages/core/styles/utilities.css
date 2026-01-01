@@ -44,6 +44,19 @@
   pointer-events: none;
 }
 
+/* Screen reader only - visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* Shared size utilities - Use these for consistency */
 .az-size-1 { height: 24px; padding: 0 var(--space-2); font-size: var(--font-size-xs); }
 .az-size-2 { height: 32px; padding: 0 var(--space-3); font-size: var(--font-size-sm); }

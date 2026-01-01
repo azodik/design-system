@@ -40,42 +40,66 @@ The `Flex` component is a layout primitive that helps you build flexible layouts
 </Flex>`}
 </CodeBlockWithPreview>
 
+## Responsive Props
+
+All layout props support responsive values. You can pass a single value or an object with breakpoint-specific values:
+
+```tsx
+<Flex
+  direction={{ base: "column", md: "row" }}
+  gap={{ base: "2", md: "4" }}
+  align={{ base: "start", md: "center" }}
+>
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Flex>
+```
+
+Available breakpoints: `base`, `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
+
 ## Props
 
 <PropsTable props={[
   {
     name: 'direction',
-    type: '"row" | "column" | "row-reverse" | "column-reverse"',
+    type: 'ResponsiveProp<"row" | "column" | "row-reverse" | "column-reverse">',
     required: false,
-    default: '"row"',
-    description: 'The flex direction'
+    default: 'undefined',
+    description: 'The flex direction. Supports responsive values via object: { base: "column", md: "row" }'
   },
   {
     name: 'align',
-    type: '"start" | "center" | "end" | "baseline" | "stretch"',
+    type: 'ResponsiveProp<"start" | "center" | "end" | "baseline" | "stretch">',
     required: false,
-    default: '"stretch"',
-    description: 'The align-items value'
+    default: 'undefined',
+    description: 'The align-items value. Supports responsive values.'
   },
   {
     name: 'justify',
-    type: '"start" | "center" | "end" | "between"',
+    type: 'ResponsiveProp<"start" | "center" | "end" | "between" | "around" | "evenly">',
     required: false,
-    default: '"start"',
-    description: 'The justify-content value'
+    default: 'undefined',
+    description: 'The justify-content value. Supports responsive values.'
   },
   {
     name: 'gap',
-    type: '"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"',
+    type: 'ResponsiveProp<"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | string>',
     required: false,
-    default: '"3"',
-    description: 'The gap between items'
+    default: 'undefined',
+    description: 'The gap between items. Supports responsive values and custom spacing strings.'
   },
   {
     name: 'wrap',
-    type: '"nowrap" | "wrap" | "wrap-reverse"',
+    type: 'ResponsiveProp<"nowrap" | "wrap" | "wrap-reverse">',
     required: false,
-    default: '"nowrap"',
-    description: 'The flex-wrap value'
+    default: 'undefined',
+    description: 'The flex-wrap value. Supports responsive values.'
+  },
+  {
+    name: 'as',
+    type: 'React.ElementType',
+    required: false,
+    default: '"div"',
+    description: 'Polymorphic prop to render as a different element.'
   }
 ]} />

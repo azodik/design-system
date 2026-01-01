@@ -1,4 +1,4 @@
-import { Tooltip, Button, Card, CardContent } from '@azodik/ui';
+import { Tooltip, Button, Card, CardContent, Flex } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -109,17 +109,17 @@ export const DesignGuidelinesTooltipList = () => {
 
 export const BasicTooltipExample = () => {
   return (
-    <div className="flex gap-4 items-center">
+    <Flex gap="4" align="center">
       <Tooltip content="This is a basic tooltip">
         <Button variant="outline">Hover me</Button>
       </Tooltip>
-    </div>
+    </Flex>
   );
 };
 
 export const MultipleTooltipsExample = () => {
   return (
-    <div className="flex gap-4 items-center flex-wrap">
+    <Flex gap="4" align="center" wrap="wrap">
       <Tooltip content="Save your changes">
         <Button>Save</Button>
       </Tooltip>
@@ -132,7 +132,7 @@ export const MultipleTooltipsExample = () => {
       <Tooltip content="View more options">
         <Button variant="ghost">⋯</Button>
       </Tooltip>
-    </div>
+    </Flex>
   );
 };
 
@@ -160,11 +160,11 @@ export const MultipleTooltipsExample = () => {
 
 export default function BasicTooltip() {
   return (
-    <div className="flex gap-4 items-center">
+    <Flex gap="4" align="center">
       <Tooltip content="This is a basic tooltip">
         <Button variant="outline">Hover me</Button>
       </Tooltip>
-    </div>
+    </Flex>
   );
 }`}
 </CodeBlockWithPreview>
@@ -177,7 +177,7 @@ export default function BasicTooltip() {
 
 export default function MultipleTooltips() {
   return (
-    <div className="flex gap-4 items-center flex-wrap">
+    <Flex gap="4" align="center" wrap="wrap">
       <Tooltip content="Save your changes">
         <Button>Save</Button>
       </Tooltip>
@@ -190,7 +190,7 @@ export default function MultipleTooltips() {
       <Tooltip content="View more options">
         <Button variant="ghost">⋯</Button>
       </Tooltip>
-    </div>
+    </Flex>
   );
 }`}
 </CodeBlockWithPreview>

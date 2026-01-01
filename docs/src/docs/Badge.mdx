@@ -1,4 +1,4 @@
-import { Badge, Card, CardContent } from '@azodik/ui';
+import { Badge, Card, CardContent, Flex, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -137,25 +137,25 @@ export const DesignGuidelinesList = () => {
 <CodeBlockWithPreview 
   title={<AllBadgeVariantsTitle />}
   preview={
-    <div className="flex-horizontal">
+    <Flex gap="2" wrap="wrap">
       <Badge variant="soft" color="grass">Success</Badge>
       <Badge variant="soft" color="amber">Warning</Badge>
       <Badge variant="soft" color="ruby">Error</Badge>
       <Badge variant="soft" color="indigo">Info</Badge>
-    </div>
+    </Flex>
   }
 >
-{`import { Badge } from '@azodik/ui';
+{`import { Badge, Stack } from '@azodik/ui';
 
 export const BadgeExamples = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Badge variant="soft" color="grass">Success</Badge>
       <Badge variant="soft" color="amber">Warning</Badge>
       <Badge variant="soft" color="ruby">Error</Badge>
       <Badge variant="soft" color="indigo">Info</Badge>
       <Badge variant="soft">Neutral</Badge>
-    </div>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -165,22 +165,22 @@ export const BadgeExamples = () => {
 <CodeBlockWithPreview 
   title={<BadgeSizesTitle />}
   preview={
-    <div className="flex-vertical-lg">
-      <Badge variant="soft" color="grass" size="1">Small</Badge>
-      <Badge variant="soft" color="grass" size="2">Medium</Badge>
-      <Badge variant="soft" color="grass" size="3">Large</Badge>
-    </div>
+    <Stack gap={16}>
+      <Badge variant="soft" color="grass" size="xs">Small</Badge>
+      <Badge variant="soft" color="grass" size="sm">Medium</Badge>
+      <Badge variant="soft" color="grass" size="md">Large</Badge>
+    </Stack>
   }
 >
-{`import { Badge } from '@azodik/ui';
+{`import { Badge, Stack } from '@azodik/ui';
 
 export const BadgeSizesExample = () => {
   return (
-    <div className="flex-vertical-lg">
-      <Badge variant="soft" color="grass" size="1">Small</Badge>
-      <Badge variant="soft" color="grass" size="2">Medium</Badge>
-      <Badge variant="soft" color="grass" size="3">Large</Badge>
-    </div>
+    <Stack gap={16}>
+      <Badge variant="soft" color="grass" size="xs">Small</Badge>
+      <Badge variant="soft" color="grass" size="sm">Medium</Badge>
+      <Badge variant="soft" color="grass" size="md">Large</Badge>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>

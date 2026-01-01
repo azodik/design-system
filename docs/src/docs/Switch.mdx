@@ -1,4 +1,4 @@
-import { Switch, Card, CardContent } from '@azodik/ui';
+import { Switch, Card, CardContent, Stack, Flex } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -143,22 +143,22 @@ export const DesignGuidelinesSwitchList = () => {
 <CodeBlockWithPreview 
   title="Default Position (Label on Left, Switch on Right)"
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Switch id="switch-space-1" label="Enable notifications" />
       <Switch id="switch-space-2" label="Enable dark mode" checked />
-      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between" />
-    </div>
+      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between"       />
+    </Stack>
   }
 >
-{`import { Switch } from '@azodik/ui';
+{`import { Switch, Stack } from '@azodik/ui';
 
 export const DefaultPositionExample = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Switch id="switch-space-1" label="Enable notifications" />
       <Switch id="switch-space-2" label="Enable dark mode" checked />
-      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between" />
-    </div>
+      <Switch id="switch-space-3" label="Auto-save enabled" position="space-between"       />
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -166,22 +166,22 @@ export const DefaultPositionExample = () => {
 <CodeBlockWithPreview 
   title="Alternative Position (Switch on Left, Label on Right)"
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Switch id="switch-default-1" label="Enable notifications" position="default" />
       <Switch id="switch-default-2" label="Enable dark mode" checked position="default" />
-      <Switch id="switch-default-3" label="Auto-save enabled" position="default" />
-    </div>
+      <Switch id="switch-default-3" label="Auto-save enabled" position="default"       />
+    </Stack>
   }
 >
-{`import { Switch } from '@azodik/ui';
+{`import { Switch, Stack } from '@azodik/ui';
 
 export const AlternativePositionExample = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Switch id="switch-default-1" label="Enable notifications" position="default" />
       <Switch id="switch-default-2" label="Enable dark mode" checked position="default" />
-      <Switch id="switch-default-3" label="Auto-save enabled" position="default" />
-    </div>
+      <Switch id="switch-default-3" label="Auto-save enabled" position="default"       />
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -189,26 +189,26 @@ export const AlternativePositionExample = () => {
 <CodeBlockWithPreview 
   title="Switch Sizes"
   preview={
-    <div className="flex-vertical">
-      <div className="flex items-center gap-4">
-        <Switch id="small-switch" label="Small" size="1" position="default" />
-        <Switch id="medium-switch" label="Medium" size="2" position="default" />
-        <Switch id="large-switch" label="Large" size="3" position="default" />
-      </div>
-    </div>
+    <Stack gap={16}>
+      <Flex align="center" gap="4">
+        <Switch id="small-switch" label="Small" size="xs" position="default" />
+        <Switch id="medium-switch" label="Medium" size="sm" position="default" />
+        <Switch id="large-switch" label="Large" size="md" position="default" />
+      </Flex>
+    </Stack>
   }
 >
-{`import { Switch } from '@azodik/ui';
+{`import { Switch, Stack, Flex } from '@azodik/ui';
 
 export const SizedSwitchExample = () => {
   return (
-    <div className="flex-vertical">
-      <div className="flex items-center gap-4">
-        <Switch id="small-switch" label="Small" size="1" position="default" />
-        <Switch id="medium-switch" label="Medium" size="2" position="default" />
-        <Switch id="large-switch" label="Large" size="3" position="default" />
-      </div>
-    </div>
+    <Stack gap={16}>
+      <Flex align="center" gap="4">
+        <Switch id="small-switch" label="Small" size="xs" position="default" />
+        <Switch id="medium-switch" label="Medium" size="sm" position="default" />
+        <Switch id="large-switch" label="Large" size="md" position="default" />
+      </Flex>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -218,22 +218,22 @@ export const SizedSwitchExample = () => {
 <CodeBlockWithPreview 
   title={<DisabledSwitchTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Switch id="enabled" label="Enabled switch" />
       <Switch id="disabled" label="Disabled switch" disabled />
-      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled />
-    </div>
+      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled       />
+    </Stack>
   }
 >
-{`import { Switch } from '@azodik/ui';
+{`import { Switch, Stack } from '@azodik/ui';
 
 export const DisabledSwitchExample = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Switch id="enabled" label="Enabled switch" />
       <Switch id="disabled" label="Disabled switch" disabled />
-      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled />
-    </div>
+      <Switch id="disabled-checked" label="Disabled checked switch" checked disabled       />
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>

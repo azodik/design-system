@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, Button } from '@azodik/ui';
+import { Card, CardContent, CardHeader, CardTitle, Button, Flex, Stack, Center } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -145,10 +145,10 @@ export const DesignGuidelinesList = () => {
 <CodeBlockWithPreview 
   title="Glass Variant"
   preview={
-    <div className="p-4" style={{ background: "url('https://source.unsplash.com/random/800x600')", backgroundSize: "cover" }}>
+    <div style={{ background: "url('https://source.unsplash.com/random/800x600')", backgroundSize: "cover", padding: "var(--space-4)" }}>
       <Card variant="glass">
         <CardContent>
-          <h3 className="text-lg font-bold">Glass Card</h3>
+          <h3 style={{ fontSize: "var(--font-size-lg)", fontWeight: "bold" }}>Glass Card</h3>
           <p>This card uses the glassmorphism effect.</p>
         </CardContent>
       </Card>
@@ -159,10 +159,10 @@ export const DesignGuidelinesList = () => {
 
 export const GlassCard = () => {
   return (
-    <div style={{ background: "url(...)" }}>
+    <div style={{ background: "url(...)", padding: "var(--space-4)" }}>
       <Card variant="glass">
         <CardContent>
-          <h3 className="text-lg font-bold">Glass Card</h3>
+          <h3 style={{ fontSize: "var(--font-size-lg)", fontWeight: "bold" }}>Glass Card</h3>
           <p>This card uses the glassmorphism effect.</p>
         </CardContent>
       </Card>
@@ -176,34 +176,34 @@ export const GlassCard = () => {
 <CodeBlockWithPreview 
   title={<AllCardVariantsTitle />}
   preview={
-    <div className="space-y-4">
-      <Card size="1">
-        <CardContent>Size 1 card (smaller padding)</CardContent>
+    <Stack gap={16}>
+      <Card size="xs">
+        <CardContent>Size xs card (smaller padding)</CardContent>
       </Card>
-      <Card size="2">
-        <CardContent>Size 2 card (medium padding)</CardContent>
+      <Card size="sm">
+        <CardContent>Size sm card (medium padding)</CardContent>
       </Card>
-      <Card size="3">
-        <CardContent>Size 3 card (larger padding)</CardContent>
+      <Card size="md">
+        <CardContent>Size md card (larger padding)</CardContent>
       </Card>
-    </div>
+    </Stack>
   }
 >
-{`import { Card, CardContent } from '@azodik/ui';
+{`import { Card, CardContent, Stack } from '@azodik/ui';
 
 export const CardExamples = () => {
   return (
-    <div className="space-y-4">
-      <Card size="1">
-        <CardContent>Size 1 card</CardContent>
+    <Stack gap={16}>
+      <Card size="xs">
+        <CardContent>Size xs card</CardContent>
       </Card>
-      <Card size="2">
-        <CardContent>Size 2 card</CardContent>
+      <Card size="sm">
+        <CardContent>Size sm card</CardContent>
       </Card>
-      <Card size="3">
-        <CardContent>Size 3 card</CardContent>
+      <Card size="md">
+        <CardContent>Size md card</CardContent>
       </Card>
-    </div>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -250,15 +250,15 @@ export const CardWithHeaderExample = () => {
       </CardHeader>
       <CardContent>
         <p>Product description goes here. test test test test test</p>
-        <div className="flex gap-2 mt-4 justify-center items-center">
-          <Button variant="solid" size="1">Buy Now</Button>
-          <Button variant="outline" size="1">Learn More</Button>
-        </div>
+        <Flex gap="2" justify="center" align="center" style={{ marginTop: "var(--space-4)" }}>
+          <Button variant="solid" size="xs">Buy Now</Button>
+          <Button variant="outline" size="xs">Learn More</Button>
+        </Flex>
       </CardContent>
     </Card>
   }
 >
-{`import { Card, CardContent, CardHeader, CardTitle, Button } from '@azodik/ui';
+{`import { Card, CardContent, CardHeader, CardTitle, Button, Flex } from '@azodik/ui';
 
 export const CardWithActionsExample = () => {
   return (
@@ -268,10 +268,10 @@ export const CardWithActionsExample = () => {
       </CardHeader>
       <CardContent>
         <p>Product description goes here.</p>
-        <div className="flex gap-2 mt-4">
+        <Flex gap="2" style={{ marginTop: "var(--space-4)" }}>
           <Button variant="solid">Buy Now</Button>
           <Button variant="outline">Learn More</Button>
-        </div>
+        </Flex>
       </CardContent>
     </Card>
   );

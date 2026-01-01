@@ -1,4 +1,4 @@
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent, Input, Select, Textarea } from '@azodik/ui';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose, Button, Card, CardContent, Input, Select, Textarea, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
 
@@ -191,13 +191,13 @@ export const DesignGuidelinesDialogList = () => {
               label="Full Name"
               type="text" 
               placeholder="Enter full name"
-              className="w-full"
+              style={{ width: "100%" }}
             />
             <Input 
               label="Email"
               type="email" 
               placeholder="Enter email address"
-              className="w-full"
+              style={{ width: "100%" }}
             />
             <Select 
               label="Role"
@@ -207,7 +207,7 @@ export const DesignGuidelinesDialogList = () => {
                 { value: "moderator", label: "Moderator" }
               ]}
               placeholder="Select a role"
-              className="w-full"
+              style={{ width: "100%" }}
             />
           </form>
         </DialogBody>
@@ -243,13 +243,13 @@ export default function BasicDialogForm() {
               label="Full Name"
               type="text" 
               placeholder="Enter full name"
-              className="w-full"
+              style={{ width: "100%" }}
             />
             <Input 
               label="Email"
               type="email" 
               placeholder="Enter email address"
-              className="w-full"
+              style={{ width: "100%" }}
             />
             <Select 
               label="Role"
@@ -259,7 +259,7 @@ export default function BasicDialogForm() {
                 { value: "moderator", label: "Moderator" }
               ]}
               placeholder="Select a role"
-              className="w-full"
+              style={{ width: "100%" }}
             />
           </form>
         </DialogBody>
@@ -284,7 +284,7 @@ export default function BasicDialogForm() {
       <DialogTrigger asChild>
         <Button>Open Custom Dialog</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-xl">
+      <DialogContent style={{ maxWidth: "36rem" }}>
         <DialogHeader>
           <DialogTitle>Custom Styled Dialog</DialogTitle>
           <DialogDescription>

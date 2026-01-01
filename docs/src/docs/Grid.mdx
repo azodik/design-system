@@ -37,49 +37,67 @@ The `Grid` component is a layout primitive that helps you build grid layouts usi
 </Grid>`}
 </CodeBlockWithPreview>
 
+## Responsive Props
+
+All layout props support responsive values. You can pass a single value or an object with breakpoint-specific values:
+
+```tsx
+<Grid
+  columns={{ base: "1", md: "2", lg: "3" }}
+  gap={{ base: "2", md: "4" }}
+  align={{ base: "start", md: "center" }}
+>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Grid>
+```
+
+Available breakpoints: `base`, `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
+
 ## Props
 
 <PropsTable props={[
   {
     name: 'columns',
-    type: '"1" | "2" | "3" | "4" | "5" | string',
+    type: 'ResponsiveProp<"1" | "2" | "3" | "4" | "5" | "6" | "12" | string>',
     required: false,
-    default: '"1"',
-    description: 'Number of columns'
+    default: 'undefined',
+    description: 'Number of columns. Numbers are converted to repeat(n, 1fr). Supports responsive values via object: { base: "1", md: "2", lg: "3" }'
   },
   {
     name: 'gap',
-    type: '"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"',
+    type: 'ResponsiveProp<"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | string>',
     required: false,
-    default: '"3"',
-    description: 'Gap between items'
+    default: 'undefined',
+    description: 'Gap between items. Supports responsive values and custom spacing strings.'
   },
   {
     name: 'rows',
-    type: 'string',
+    type: 'ResponsiveProp<string>',
     required: false,
-    default: '-',
-    description: 'Number of rows'
-  },
-  {
-    name: 'flow',
-    type: '"row" | "column" | "dense" | "row-dense" | "column-dense"',
-    required: false,
-    default: '"row"',
-    description: 'Grid auto flow'
+    default: 'undefined',
+    description: 'Grid template rows. Supports responsive values.'
   },
   {
     name: 'align',
-    type: '"start" | "center" | "end" | "baseline" | "stretch"',
+    type: 'ResponsiveProp<"start" | "center" | "end" | "baseline" | "stretch">',
     required: false,
-    default: '"stretch"',
-    description: 'Align items'
+    default: 'undefined',
+    description: 'Align items. Supports responsive values.'
   },
   {
     name: 'justify',
-    type: '"start" | "center" | "end" | "between"',
+    type: 'ResponsiveProp<"start" | "center" | "end" | "between" | "around" | "evenly">',
     required: false,
-    default: '"start"',
-    description: 'Justify items'
+    default: 'undefined',
+    description: 'Justify items. Supports responsive values.'
+  },
+  {
+    name: 'as',
+    type: 'React.ElementType',
+    required: false,
+    default: '"div"',
+    description: 'Polymorphic prop to render as a different element.'
   }
 ]} />

@@ -1,4 +1,4 @@
-import { Input, Button, Card, CardContent, Textarea, Checkbox } from '@azodik/ui';
+import { Input, Button, Card, CardContent, Textarea, Checkbox, Stack, Flex, Center } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -213,7 +213,7 @@ export const ValidatedFormExample = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex-vertical">
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
       <div>
         <Input
           type="email"
@@ -235,11 +235,11 @@ export const ValidatedFormExample = () => {
         />
       </div>
       
-      <div className="flex justify-center">
+      <Center>
         <Button type="submit">
           Submit
         </Button>
-      </div>
+      </Center>
     </form>
   );
 };
@@ -263,7 +263,7 @@ export const VariousInputsFormExample = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex-vertical">
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
       <div>
         <label className="block text-sm font-medium mb-1">Name</label>
         <Input
@@ -313,11 +313,11 @@ export const VariousInputsFormExample = () => {
         />
       </div>
       
-      <div className="flex justify-center">
+      <Center>
         <Button type="submit">
           Submit
         </Button>
-      </div>
+      </Center>
     </form>
   );
 };
@@ -343,7 +343,7 @@ export const VariousInputsFormExample = () => {
 <CodeBlockWithPreview 
   title={<AllFormVariantsTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <form>
         <div>
           <Input id="name-preview" name="name" label="Name" placeholder="Enter your name" />
@@ -351,13 +351,11 @@ export const VariousInputsFormExample = () => {
         <div>
           <Input id="email-preview" name="email" type="email" label="Email" placeholder="Enter your email" />
         </div>
-        <div className="flex justify-center">
-          <div className="flex justify-center">
+        <Center>
           <Button type="submit">Submit</Button>
-        </div>
-        </div>
+        </Center>
       </form>
-    </div>
+    </Stack>
   }
 >
 {`import { Input, Button, Checkbox } from '@azodik/ui';
@@ -384,7 +382,7 @@ export const FormExamples = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex-vertical">
+      <Stack gap={16}>
         <div>
           <Input
             id="name"
@@ -418,10 +416,10 @@ export const FormExamples = () => {
           />
         </div>
         
-        <div className="flex justify-center">
+        <Center>
           <Button type="submit">Submit</Button>
-        </div>
-      </div>
+        </Center>
+      </Stack>
     </form>
   );
 };`}
@@ -485,7 +483,7 @@ export const ValidatedFormExample = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex-vertical">
+      <Stack gap={16}>
         <div>
           <Input
             id="email"
@@ -511,10 +509,10 @@ export const ValidatedFormExample = () => {
           />
         </div>
         
-        <div className="flex justify-center">
+        <Center>
           <Button type="submit">Submit</Button>
-        </div>
-      </div>
+        </Center>
+      </Stack>
     </form>
   );
 }`}
@@ -555,7 +553,7 @@ export const ComprehensiveFormExample = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex-vertical">
+      <Stack gap={16}>
         <div>
           <Input
             id="name"
@@ -626,8 +624,8 @@ export const ComprehensiveFormExample = () => {
         </div>
         
         <div>
-          <div className="flex-vertical">
-            <div className="flex items-center gap-sm">
+          <Stack gap={16}>
+            <Flex align="center" gap="2">
               <Radio
                 id="male"
                 name="gender"
@@ -636,8 +634,8 @@ export const ComprehensiveFormExample = () => {
                 checked={formData.gender === 'male'}
                 onChange={handleChange}
               />
-            </div>
-            <div className="flex items-center gap-sm">
+            </Flex>
+            <Flex align="center" gap="2">
               <Radio
                 id="female"
                 name="gender"
@@ -646,15 +644,15 @@ export const ComprehensiveFormExample = () => {
                 checked={formData.gender === 'female'}
                 onChange={handleChange}
               />
-            </div>
-          </div>
+            </Flex>
+          </Stack>
         </div>
         
-        <div className="flex justify-center">
+        <Center>
           <Button type="submit">Submit</Button>
-        </div>
-      </div>
-    </form>
+        </Center>
+      </form>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>

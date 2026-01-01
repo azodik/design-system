@@ -1,4 +1,4 @@
-import { Textarea, Card, CardContent } from '@azodik/ui';
+import { Textarea, Card, CardContent, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -105,13 +105,13 @@ export const DesignGuidelinesTextareaList = () => {
 
 export const BasicTextareaExample = () => {
   return (
-    <div className="space-y-4">
+    <Stack gap={16}>
       <Textarea
         label="Message"
         placeholder="Enter your message here..."
         rows={4}
       />
-    </div>
+    </Stack>
   );
 };
 
@@ -139,13 +139,13 @@ export const BasicTextareaExample = () => {
 
 export default function BasicTextarea() {
   return (
-    <div className="space-y-4">
+    <Stack gap={16}>
       <Textarea
         label="Message"
         placeholder="Enter your message here..."
         rows={4}
       />
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>
@@ -154,22 +154,22 @@ export default function BasicTextarea() {
 <CodeBlockWithPreview 
   title="Textarea Sizes"
   preview={
-    <div className="flex-vertical">
-      <Textarea placeholder="Size 1" size="1" />
-      <Textarea placeholder="Size 2 (Default)" size="2" />
-      <Textarea placeholder="Size 3" size="3" />
-    </div>
+    <Stack gap={16}>
+      <Textarea placeholder="Size xs" size="xs" />
+      <Textarea placeholder="Size sm (Default)" size="sm" />
+      <Textarea placeholder="Size md" size="md" />
+    </Stack>
   }
 >
-{`import { Textarea } from '@azodik/ui';
+{`import { Textarea, Stack } from '@azodik/ui';
 
 export const TextareaSizes = () => {
   return (
-    <div className="flex-vertical">
-      <Textarea placeholder="Size 1" size="1" />
-      <Textarea placeholder="Size 2 (Default)" size="2" />
-      <Textarea placeholder="Size 3" size="3" />
-    </div>
+    <Stack gap={16}>
+      <Textarea placeholder="Size xs" size="xs" />
+      <Textarea placeholder="Size sm (Default)" size="sm" />
+      <Textarea placeholder="Size md" size="md" />
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>

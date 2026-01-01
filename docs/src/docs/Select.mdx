@@ -1,4 +1,4 @@
-import { Select, Card, CardContent } from '@azodik/ui';
+import { Select, Card, CardContent, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview, ComponentNavigation } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -126,7 +126,7 @@ export const ControlledSelectExample = () => {
         onChange={handleChange}
         options={options}
       />
-      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+      <p style={{ fontSize: "var(--font-size-sm)", marginTop: "var(--space-1)", color: "var(--color-text-secondary)" }}>
         Selected: {selectedCountry || 'None'}
       </p>
     </div>
@@ -179,7 +179,7 @@ export default function BasicSelect() {
         onChange={handleChange}
         options={options}
       />
-      <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
+      <p style={{ fontSize: "var(--font-size-sm)", marginTop: "var(--space-1)", color: "var(--color-text-secondary)" }}>
         Selected: {selectedCountry || 'None'}
       </p>
     </div>
@@ -191,10 +191,10 @@ export default function BasicSelect() {
 <CodeBlockWithPreview 
   title="Select Sizes"
   preview={
-    <div className="flex-vertical" style={{ gap: '1rem', minHeight: '250px' }}>
+    <Stack gap={16} style={{ minHeight: '250px' }}>
       <Select 
-        placeholder="Size 1" 
-        size="1" 
+        placeholder="Size xs" 
+        size="xs" 
         options={[
           { value: '1', label: 'Option 1' },
           { value: '2', label: 'Option 2' },
@@ -202,8 +202,8 @@ export default function BasicSelect() {
         ]} 
       />
       <Select 
-        placeholder="Size 2 (Default)" 
-        size="2" 
+        placeholder="Size sm (Default)" 
+        size="sm" 
         options={[
           { value: '1', label: 'Option 1' },
           { value: '2', label: 'Option 2' },
@@ -211,18 +211,18 @@ export default function BasicSelect() {
         ]} 
       />
       <Select 
-        placeholder="Size 3" 
-        size="3" 
+        placeholder="Size md" 
+        size="md" 
         options={[
           { value: '1', label: 'Option 1' },
           { value: '2', label: 'Option 2' },
           { value: '3', label: 'Option 3' }
         ]} 
       />
-    </div>
+    </Stack>
   }
 >
-{`import { Select } from '@azodik/ui';
+{`import { Select, Stack } from '@azodik/ui';
 
 export const SelectSizes = () => {
   const options = [
@@ -231,11 +231,11 @@ export const SelectSizes = () => {
     { value: '3', label: 'Option 3' }
   ];
   return (
-    <div className="flex-vertical">
-      <Select placeholder="Size 1" size="1" options={options} />
-      <Select placeholder="Size 2 (Default)" size="2" options={options} />
-      <Select placeholder="Size 3" size="3" options={options} />
-    </div>
+    <Stack gap={16}>
+      <Select placeholder="Size xs" size="xs" options={options} />
+      <Select placeholder="Size sm (Default)" size="sm" options={options} />
+      <Select placeholder="Size md" size="md" options={options} />
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>

@@ -1,0 +1,113 @@
+
+import { Stack } from "@azodik/ui";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
+
+# Stack
+
+The `Stack` component is a layout primitive that helps you build flexible layouts using CSS Flexbox with a simpler API than `Flex`.
+
+## Features
+- **Responsive**: Supports responsive gap, direction, and alignment props.
+- **Simple API**: Easier to use than Flex for common layout patterns.
+
+## Usage
+
+<CodeBlock language="tsx">
+{`import { Stack } from "@azodik/ui";
+
+<Stack direction="row" gap={16} align="center">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Stack>`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Stack Example"
+  preview={
+    <Stack direction="row" gap={16} align="center" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Stack>
+  }
+>
+{`<Stack direction="row" gap={16} align="center" style={{ background: "var(--gray-3)", padding: 20 }}>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+  <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+</Stack>`}
+</CodeBlockWithPreview>
+
+## Responsive Props
+
+All layout props support responsive values. You can pass a single value or an object with breakpoint-specific values:
+
+```tsx
+<Stack
+  direction={{ base: "column", md: "row" }}
+  gap={{ base: 8, md: 16 }}
+  align={{ base: "start", md: "center" }}
+>
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Stack>
+```
+
+Available breakpoints: `base`, `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
+
+## Props
+
+<PropsTable props={[
+  {
+    name: 'direction',
+    type: 'ResponsiveProp<"row" | "column">',
+    required: false,
+    default: '"column"',
+    description: 'Stack direction. Supports responsive values via object: { base: "column", md: "row" }'
+  },
+  {
+    name: 'align',
+    type: 'ResponsiveProp<"start" | "center" | "end" | "stretch" | "space-between" | "space-around" | "space-evenly">',
+    required: false,
+    default: '"stretch"',
+    description: 'Alignment along main axis. Supports responsive values.'
+  },
+  {
+    name: 'justify',
+    type: 'ResponsiveProp<"start" | "center" | "end" | "stretch" | "baseline">',
+    required: false,
+    default: '"start"',
+    description: 'Alignment along cross axis. Supports responsive values.'
+  },
+  {
+    name: 'gap',
+    type: 'ResponsiveProp<number | string>',
+    required: false,
+    default: '0',
+    description: 'Gap between items. Can be a number (in pixels) or a string. Supports responsive values.'
+  },
+  {
+    name: 'wrap',
+    type: 'ResponsiveProp<boolean>',
+    required: false,
+    default: 'false',
+    description: 'Wrap items. Supports responsive values.'
+  },
+  {
+    name: 'fullWidth',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Make stack full width.'
+  },
+  {
+    name: 'fullHeight',
+    type: 'boolean',
+    required: false,
+    default: 'false',
+    description: 'Make stack full height.'
+  }
+]} />
+

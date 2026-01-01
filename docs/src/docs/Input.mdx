@@ -1,4 +1,4 @@
-import { Input, Card, CardContent } from '@azodik/ui';
+import { Input, Card, CardContent, Stack } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -211,7 +211,7 @@ export const ValidatedInputPreview = () => {
 <CodeBlockWithPreview 
   title={<AllInputVariantsTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Input 
         type="text" 
         label="Text Input"
@@ -222,14 +222,14 @@ export const ValidatedInputPreview = () => {
         label="Email Input"
         placeholder="Enter email" 
       />
-    </div>
+    </Stack>
   }
 >
 {`import { Input } from '@azodik/ui';
 
 export const InputExamples = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Input 
         type="text" 
         label="Text Input"
@@ -246,7 +246,7 @@ export const InputExamples = () => {
         placeholder="Enter password" 
         autoComplete="current-password" 
       />
-    </div>
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>
@@ -281,7 +281,7 @@ export const InputExample = () => {
 <CodeBlockWithPreview 
   title={<InputTypesTitle />}
   preview={
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Input 
         type="text" 
         label="Text Input"
@@ -303,14 +303,14 @@ export const InputExample = () => {
         label="Number Input"
         placeholder="Enter number" 
       />
-    </div>
+    </Stack>
   }
 >
-{`import { Input } from '@azodik/ui';
+{`import { Input, Stack } from '@azodik/ui';
 
 export const InputTypesExample = () => {
   return (
-    <div className="flex-vertical">
+    <Stack gap={16}>
       <Input 
         type="text" 
         label="Text Input"
@@ -332,7 +332,7 @@ export const InputTypesExample = () => {
         label="Number Input"
         placeholder="Enter number" 
       />
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>
@@ -377,22 +377,22 @@ export const ValidatedInputExample = () => {
 <CodeBlockWithPreview 
   title="Input Sizes"
   preview={
-    <div className="flex-vertical">
-      <Input placeholder="Size 1" size="1" />
-      <Input placeholder="Size 2 (Default)" size="2" />
-      <Input placeholder="Size 3" size="3" />
-    </div>
+    <Stack gap={16}>
+      <Input placeholder="Size xs" size="xs" />
+      <Input placeholder="Size sm (Default)" size="sm" />
+      <Input placeholder="Size md" size="md" />
+    </Stack>
   }
 >
-{`import { Input } from '@azodik/ui';
+{`import { Input, Stack } from '@azodik/ui';
 
 export const InputSizes = () => {
   return (
-    <div className="flex-vertical">
-      <Input placeholder="Size 1" size="1" />
-      <Input placeholder="Size 2 (Default)" size="2" />
-      <Input placeholder="Size 3" size="3" />
-    </div>
+    <Stack gap={16}>
+      <Input placeholder="Size xs" size="xs" />
+      <Input placeholder="Size sm (Default)" size="sm" />
+      <Input placeholder="Size md" size="md" />
+    </Stack>
   );
 };`}
 </CodeBlockWithPreview>

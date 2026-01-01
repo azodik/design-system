@@ -1,4 +1,4 @@
-import { Pagination, Card, CardContent, Button, Select } from '@azodik/ui';
+import { Pagination, Card, CardContent, Button, Select, Stack, Flex } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -129,20 +129,20 @@ export const PageSizePaginationExample = () => {
   };
 
   return (
-    <div className="flex-vertical">
-      <div className="flex items-center gap-4">
+    <Stack gap={16}>
+      <Flex align="center" gap="4">
         <span>Items per page:</span>
         <select 
           value={pageSize} 
           onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-          className="border rounded px-2 py-1"
+          style={{ border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", padding: "var(--space-1) var(--space-2)" }}
         >
           <option value={5}>5</option>
           <option value={10}>10</option>
           <option value={20}>20</option>
           <option value={50}>50</option>
         </select>
-      </div>
+      </Flex>
       
       <Pagination
         currentPage={currentPage}
@@ -152,7 +152,7 @@ export const PageSizePaginationExample = () => {
         pageSize={pageSize}
         onPageSizeChange={handlePageSizeChange}
       />
-    </div>
+    </Stack>
   );
 };
 
@@ -201,15 +201,15 @@ export const JumpPaginationExample = () => {
   }));
 
   return (
-    <div className="flex-vertical">
-      <div className="flex items-center gap-2">
+    <Stack gap={16}>
+      <Flex align="center" gap="2">
         <span>Jump to page:</span>
         <Select
           value={currentPage.toString()}
           onChange={handleJumpToPage}
           options={pageOptions}
           placeholder="Select page"
-          className="w-32"
+          style={{ width: "8rem" }}
         />
       </div>
       
@@ -222,8 +222,8 @@ export const JumpPaginationExample = () => {
           showPrevNext
           maxVisiblePages={3}
         />
-      </div>
-    </div>
+      </Flex>
+    </Stack>
   );
 };
 
@@ -301,17 +301,17 @@ export const JumpPaginationExample = () => {
   }));
 
   return (
-    <div className="flex-vertical">
-      <div className="flex items-center gap-2">
+    <Stack gap={16}>
+      <Flex align="center" gap="2">
         <span>Jump to page:</span>
         <Select
           value={currentPage.toString()}
           onChange={handleJumpToPage}
           options={pageOptions}
           placeholder="Select page"
-          className="w-32"
+          style={{ width: "8rem" }}
         />
-      </div>
+      </Flex>
       
       <Pagination
         currentPage={currentPage}
@@ -320,7 +320,7 @@ export const JumpPaginationExample = () => {
         showFirstLast
         showPrevNext
       />
-    </div>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>

@@ -1,4 +1,4 @@
-import { DataTable, Card, CardContent, Button, Pagination } from '@azodik/ui';
+import { DataTable, Card, CardContent, Button, Pagination, Flex, Stack, Center } from '@azodik/ui';
 import { PropsTable, CodeBlock, CodeBlockWithPreview } from '@/components/docs';
 import { useState } from 'react';
 import { useLanguageTranslation } from '@/hooks/useLanguageTranslation';
@@ -167,7 +167,7 @@ export const SelectableDataTableExample = () => {
 
   return (
     <div style={{ width: '100%', overflow: 'hidden' }}>
-      <div className="mb-4">
+      <div style={{ marginBottom: "var(--space-4)" }}>
         <Button 
           onClick={handleBulkAction}
           disabled={selectedRows.length === 0}
@@ -175,7 +175,7 @@ export const SelectableDataTableExample = () => {
         >
           Delete Selected ({selectedRows.length})
         </Button>
-      </div>
+      </div> 
       
       <div style={{ width: '100%', overflow: 'hidden' }}>
         <DataTable
@@ -206,14 +206,14 @@ export const ActionDataTableExample = () => {
       key: 'actions', 
       label: 'Actions',
       render: (row) => (
-        <div className="flex gap-sm">
-          <Button size="1" variant="outline" onClick={() => console.log('Edit:', row.id)}>
+        <Flex gap="2">
+          <Button size="xs" variant="outline" onClick={() => console.log('Edit:', row.id)}>
             Edit
           </Button>
-          <Button size="1" variant="solid" color="ruby" onClick={() => console.log('Delete:', row.id)}>
+          <Button size="xs" variant="solid" color="ruby" onClick={() => console.log('Delete:', row.id)}>
             Delete
           </Button>
-        </div>
+        </Flex>
       )
     }
   ];
@@ -270,7 +270,7 @@ export const PaginatedDataTableExample = () => {
         />
       </div>
       
-      <div className="mt-4 flex justify-center">
+      <Center style={{ marginTop: "var(--space-4)" }}>
         <div className="pagination-responsive">
           <Pagination
             currentPage={currentPage}
@@ -279,7 +279,7 @@ export const PaginatedDataTableExample = () => {
             maxVisiblePages={3}
           />
         </div>
-      </div>
+      </Center>
     </div>
   );
 };
@@ -305,7 +305,7 @@ export const PaginatedDataTableExample = () => {
 <CodeBlockWithPreview 
   title={<AllDataTableVariantsTitle />}
   preview={
-    <div className="flex-vertical" style={{ width: '100%', overflow: 'hidden' }}>
+    <Stack gap={16} style={{ width: '100%', overflow: 'hidden' }}>
       <div style={{ width: '100%', overflow: 'hidden' }}>
         <DataTable 
           data={[
@@ -320,7 +320,7 @@ export const PaginatedDataTableExample = () => {
           onSort={() => {}}
         />
       </div>
-    </div>
+    </Stack>
   }
 >
 {`import { DataTable } from '@azodik/ui';
@@ -467,7 +467,7 @@ export const PaginatedDataTableExample = () => {
         onSort={(key, direction) => console.log('Sort:', key, direction)}
       />
       
-      <div className="mt-4 flex justify-center">
+      <Center style={{ marginTop: "var(--space-4)" }}>
         <div className="pagination-responsive">
           <Pagination
             currentPage={currentPage}
@@ -476,8 +476,8 @@ export const PaginatedDataTableExample = () => {
             maxVisiblePages={3}
           />
         </div>
-      </div>
-    </div>
+      </Center>
+    </Stack>
   );
 }`}
 </CodeBlockWithPreview>

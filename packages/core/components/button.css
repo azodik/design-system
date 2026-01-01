@@ -153,6 +153,60 @@
   color: white;
 }
 
+/* Loading State */
+.az-Button.az-loading {
+  position: relative;
+  pointer-events: none;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Ensure spinner is properly isolated and centered */
+.az-Button.az-loading .az-Spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  isolation: isolate;
+  will-change: transform;
+  transition: none !important;
+}
+
+/* Ensure text and icon are completely hidden when loading */
+.az-Button.az-loading .btn-content,
+.az-Button.az-loading .btn-icon {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  transform: none !important;
+}
+
+/* Prevent any animation from affecting button or its content when loading */
+.az-Button.az-loading > *:not(.az-Spinner) {
+  display: none !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Prevent any transforms or animations on button content when loading */
+.az-Button.az-loading *:not(.az-Spinner) {
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Prevent hover transforms when loading */
+.az-Button.az-loading:hover {
+  transform: none !important;
+}
+
+.az-Button.az-loading:active {
+  transform: none !important;
+}
+
 /* Disabled Button Styles */
 .az-Button:disabled {
   opacity: 0.5;
