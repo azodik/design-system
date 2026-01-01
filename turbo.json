@@ -31,7 +31,8 @@
       "dependsOn": ["^build"]
     },
     "typegen": {
-      "dependsOn": ["^build"]
+      "cache": false,
+      "persistent": false
     },
     "test": {
       "dependsOn": ["^build"]
