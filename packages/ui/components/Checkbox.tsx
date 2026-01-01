@@ -37,11 +37,7 @@ export function Checkbox({
     ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
-  const containerClasses = [
-    "az-Checkbox checkbox",
-    sizeClassName,
-    className,
-  ]
+  const containerClasses = ["az-Checkbox checkbox", sizeClassName, className]
     .filter(Boolean)
     .join(" ");
 

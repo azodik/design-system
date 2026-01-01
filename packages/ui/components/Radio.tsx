@@ -37,9 +37,7 @@ export function Radio({
     ...resolveRadiusFactor(radius),
   } as React.CSSProperties;
 
-  const containerClasses = ["az-Radio radio", sizeClassName, className]
-    .filter(Boolean)
-    .join(" ");
+  const containerClasses = ["az-Radio radio", sizeClassName, className].filter(Boolean).join(" ");
 
   return (
     <div className="form-group">

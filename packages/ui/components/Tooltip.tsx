@@ -86,14 +86,18 @@ export function Tooltip({
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`tooltip tooltip-${position} ${highContrast ? "az-high-contrast" : ""} ${reducedMotion ? "az-reduced-motion" : ""}`}
+          className={`tooltip tooltip-${position}`}
           role="tooltip"
           aria-live="polite"
-          style={{
-            transition: reducedMotion ? "none" : undefined,
-          }}
         >
-          {content}
+          <div
+            className={`tooltip-content ${highContrast ? "az-high-contrast" : ""} ${reducedMotion ? "az-reduced-motion" : ""}`}
+            style={{
+              transition: reducedMotion ? "none" : "opacity 0.2s ease, visibility 0.2s ease",
+            }}
+          >
+            {content}
+          </div>
         </div>
       )}
     </div>

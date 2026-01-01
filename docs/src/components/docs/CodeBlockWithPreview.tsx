@@ -75,7 +75,13 @@ export const CodeBlockWithPreview: React.FC<CodeBlockWithPreviewProps> = ({
             }}
           >
             <Center
-              style={{ overflow: "visible", minHeight: "150px", position: "relative", zIndex: 1, width: "100%" }}
+              style={{
+                overflow: "visible",
+                minHeight: "150px",
+                position: "relative",
+                zIndex: 1,
+                width: "100%",
+              }}
             >
               {preview}
             </Center>
