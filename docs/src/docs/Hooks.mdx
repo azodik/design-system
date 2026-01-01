@@ -92,6 +92,87 @@ function MyComponent() {
 }`}
 </CodeBlock>
 
+## useBreakpoint
+
+The `useBreakpoint` hook tracks the current breakpoint and provides utility functions for responsive design based on predefined breakpoints.
+
+<CodeBlock language="tsx">
+{`import { useBreakpoint } from '@azodik/ui';
+
+function MyComponent() {
+  const { breakpoint, isXs, isSm, isMd, isLg, isXl, is2Xl, isAtLeast, isAtMost, matches } = useBreakpoint();
+
+  return (
+    <div>
+      <p>Current breakpoint: {breakpoint}</p>
+      
+      {isXs && <MobileView />}
+      {isLg && <LargeView />}
+      
+      {isAtLeast('md') && <MediumAndAbove />}
+      {isAtMost('lg') && <LargeAndBelow />}
+      
+      {matches('(min-width: 1200px)') && <CustomQuery />}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "breakpoint",
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    description: "Current breakpoint key"
+  },
+  {
+    name: "isXs",
+    type: "boolean",
+    description: "True if current breakpoint is xs"
+  },
+  {
+    name: "isSm",
+    type: "boolean",
+    description: "True if current breakpoint is sm"
+  },
+  {
+    name: "isMd",
+    type: "boolean",
+    description: "True if current breakpoint is md"
+  },
+  {
+    name: "isLg",
+    type: "boolean",
+    description: "True if current breakpoint is lg"
+  },
+  {
+    name: "isXl",
+    type: "boolean",
+    description: "True if current breakpoint is xl"
+  },
+  {
+    name: "is2Xl",
+    type: "boolean",
+    description: "True if current breakpoint is 2xl"
+  },
+  {
+    name: "isAtLeast",
+    type: "(bp: BreakpointKey) => boolean",
+    description: "Returns true if current breakpoint is at least the specified breakpoint"
+  },
+  {
+    name: "isAtMost",
+    type: "(bp: BreakpointKey) => boolean",
+    description: "Returns true if current breakpoint is at most the specified breakpoint"
+  },
+  {
+    name: "matches",
+    type: "(query: string) => boolean",
+    description: "Function to check custom media queries"
+  }
+]} />
+
 ## useBodyScrollLock
 
 The `useBodyScrollLock` hook prevents body scrolling when a modal, drawer, or other overlay is open.
@@ -132,9 +213,537 @@ function MyModal() {
   }
 ]} />
 
+## useDebounce
+
+The `useDebounce` hook debounces a value, updating it only after a specified delay. It also provides `useDebouncedCallback` for debouncing function calls.
+
+<CodeBlock language="tsx">
+{`import { useDebounce, useDebouncedCallback } from '@azodik/ui';
+import { useState } from 'react';
+
+function SearchComponent() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  
+  // Debounced callback
+  const handleSearch = useDebouncedCallback((value: string) => {
+    console.log('Searching for:', value);
+  }, 500);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      // Perform search
+      console.log('Searching:', debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm]);
+
+  return (
+    <input
+      value={searchTerm}
+      onChange={(e) => {
+        setSearchTerm(e.target.value);
+        handleSearch(e.target.value);
+      }}
+      placeholder="Search..."
+    />
+  );
+}`}
+</CodeBlock>
+
+### useDebounce Props
+
+<PropsTable props={[
+  {
+    name: "value",
+    type: "T",
+    description: "The value to debounce"
+  },
+  {
+    name: "delay",
+    type: "number",
+    default: "300",
+    description: "Delay in milliseconds"
+  }
+]} />
+
+### useDebounce Return Value
+
+Returns the debounced value of type `T`.
+
+### useDebouncedCallback Props
+
+<PropsTable props={[
+  {
+    name: "callback",
+    type: "T extends (...args: unknown[]) => unknown",
+    description: "The function to debounce"
+  },
+  {
+    name: "delay",
+    type: "number",
+    default: "300",
+    description: "Delay in milliseconds"
+  }
+]} />
+
+### useDebouncedCallback Return Value
+
+Returns the debounced callback function.
+
+## useAutoSave
+
+The `useAutoSave` hook automatically saves form data after a debounce delay, useful for auto-saving user input.
+
+<CodeBlock language="tsx">
+{`import { useAutoSave } from '@azodik/ui';
+import { useState } from 'react';
+
+function FormComponent() {
+  const [formData, setFormData] = useState({ name: '', email: '' });
+  
+  const { isSaving, lastSaved } = useAutoSave({
+    data: formData,
+    onSave: async (data) => {
+      await saveToServer(data);
+    },
+    delay: 1000,
+    enabled: true,
+    saveOnUnmount: true,
+  });
+
+  return (
+    <form>
+      <input
+        value={formData.name}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+      />
+      {isSaving && <span>Saving...</span>}
+      {lastSaved && <span>Last saved: {lastSaved.toLocaleTimeString()}</span>}
+    </form>
+  );
+}`}
+</CodeBlock>
+
+### Props
+
+<PropsTable props={[
+  {
+    name: "data",
+    type: "T",
+    description: "Data to save"
+  },
+  {
+    name: "onSave",
+    type: "(data: T) => void | Promise<void>",
+    description: "Save function"
+  },
+  {
+    name: "delay",
+    type: "number",
+    default: "1000",
+    description: "Debounce delay in milliseconds"
+  },
+  {
+    name: "enabled",
+    type: "boolean",
+    default: "true",
+    description: "Enable auto-save"
+  },
+  {
+    name: "saveOnUnmount",
+    type: "boolean",
+    default: "true",
+    description: "Save on unmount if data has changed"
+  }
+]} />
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "isSaving",
+    type: "boolean",
+    description: "Whether a save operation is currently in progress"
+  },
+  {
+    name: "lastSaved",
+    type: "Date | null",
+    description: "Timestamp of the last successful save"
+  }
+]} />
+
+## useTouch
+
+The `useTouch` hook provides touch gesture detection and tracking for mobile interactions.
+
+<CodeBlock language="tsx">
+{`import { useTouch } from '@azodik/ui';
+
+function TouchableComponent() {
+  const { state, handlers } = useTouch({
+    onTouchStart: (touchState) => {
+      console.log('Touch started at:', touchState.startX, touchState.startY);
+    },
+    onTouchMove: (touchState) => {
+      console.log('Moving:', touchState.deltaX, touchState.deltaY);
+    },
+    onTouchEnd: (touchState) => {
+      console.log('Touch ended. Total distance:', touchState.distance);
+    },
+    threshold: 5,
+  });
+
+  return (
+    <div {...handlers} style={{ touchAction: 'none' }}>
+      <p>Touch me!</p>
+      {state.isTouching && (
+        <p>
+          Delta: ({state.deltaX}, {state.deltaY}) | Distance: {state.distance.toFixed(2)}
+        </p>
+      )}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Props
+
+<PropsTable props={[
+  {
+    name: "onTouchStart",
+    type: "(state: TouchState) => void",
+    description: "Callback when touch starts"
+  },
+  {
+    name: "onTouchMove",
+    type: "(state: TouchState) => void",
+    description: "Callback when touch moves"
+  },
+  {
+    name: "onTouchEnd",
+    type: "(state: TouchState) => void",
+    description: "Callback when touch ends"
+  },
+  {
+    name: "threshold",
+    type: "number",
+    default: "0",
+    description: "Threshold for touch movement in pixels"
+  }
+]} />
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "state",
+    type: "TouchState",
+    description: "Current touch state"
+  },
+  {
+    name: "handlers",
+    type: "{ onTouchStart, onTouchMove, onTouchEnd }",
+    description: "Touch event handlers to spread on element"
+  }
+]} />
+
+### TouchState
+
+<PropsTable props={[
+  {
+    name: "isTouching",
+    type: "boolean",
+    description: "Whether a touch is currently active"
+  },
+  {
+    name: "startX",
+    type: "number",
+    description: "Initial X coordinate"
+  },
+  {
+    name: "startY",
+    type: "number",
+    description: "Initial Y coordinate"
+  },
+  {
+    name: "currentX",
+    type: "number",
+    description: "Current X coordinate"
+  },
+  {
+    name: "currentY",
+    type: "number",
+    description: "Current Y coordinate"
+  },
+  {
+    name: "deltaX",
+    type: "number",
+    description: "Horizontal movement distance"
+  },
+  {
+    name: "deltaY",
+    type: "number",
+    description: "Vertical movement distance"
+  },
+  {
+    name: "distance",
+    type: "number",
+    description: "Total distance moved"
+  }
+]} />
+
+## useSwipe
+
+The `useSwipe` hook detects swipe gestures in four directions (left, right, up, down) based on touch movements.
+
+<CodeBlock language="tsx">
+{`import { useSwipe } from '@azodik/ui';
+
+function SwipeableComponent() {
+  const { direction, distance, isSwiping, handlers } = useSwipe({
+    threshold: 50,
+    maxDuration: 300,
+    onSwipe: (direction, distance) => {
+      console.log('Swiped', direction, 'by', distance, 'px');
+      if (direction === 'left') {
+        // Handle left swipe
+      }
+    },
+    onSwipeStart: () => {
+      console.log('Swipe started');
+    },
+    onSwipeEnd: () => {
+      console.log('Swipe ended');
+    },
+  });
+
+  return (
+    <div {...handlers} style={{ touchAction: 'pan-y' }}>
+      <p>Swipe me!</p>
+      {isSwiping && <p>Swiping {direction}...</p>}
+      {direction && <p>Swiped {direction} by {distance}px</p>}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Props
+
+<PropsTable props={[
+  {
+    name: "threshold",
+    type: "number",
+    default: "50",
+    description: "Minimum distance in pixels for a swipe"
+  },
+  {
+    name: "maxDuration",
+    type: "number",
+    default: "300",
+    description: "Maximum time in milliseconds for a swipe"
+  },
+  {
+    name: "onSwipe",
+    type: "(direction: SwipeDirection, distance: number) => void",
+    description: "Callback when swipe is detected"
+  },
+  {
+    name: "onSwipeStart",
+    type: "() => void",
+    description: "Callback when swipe starts"
+  },
+  {
+    name: "onSwipeEnd",
+    type: "() => void",
+    description: "Callback when swipe ends"
+  }
+]} />
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "direction",
+    type: "'left' | 'right' | 'up' | 'down' | null",
+    description: "Detected swipe direction"
+  },
+  {
+    name: "distance",
+    type: "number",
+    description: "Swipe distance in pixels"
+  },
+  {
+    name: "isSwiping",
+    type: "boolean",
+    description: "Whether a swipe is currently in progress"
+  },
+  {
+    name: "handlers",
+    type: "{ onTouchStart, onTouchMove, onTouchEnd }",
+    description: "Touch event handlers to spread on element"
+  }
+]} />
+
+## useOrientation
+
+The `useOrientation` hook detects device orientation changes and provides the current orientation state.
+
+<CodeBlock language="tsx">
+{`import { useOrientation } from '@azodik/ui';
+
+function OrientationAwareComponent() {
+  const { type, angle } = useOrientation();
+
+  return (
+    <div>
+      <p>Orientation: {type}</p>
+      <p>Angle: {angle}°</p>
+      {type === 'landscape' && <LandscapeLayout />}
+      {type === 'portrait' && <PortraitLayout />}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "type",
+    type: "'portrait' | 'landscape'",
+    description: "Current device orientation"
+  },
+  {
+    name: "angle",
+    type: "number",
+    description: "Device orientation angle in degrees"
+  }
+]} />
+
+## useViewportHeight
+
+The `useViewportHeight` hook provides the dynamic viewport height, accounting for mobile browser UI bars that can change the visible viewport.
+
+<CodeBlock language="tsx">
+{`import { useViewportHeight } from '@azodik/ui';
+
+function FullHeightComponent() {
+  const vh = useViewportHeight();
+
+  return (
+    <div style={{ height: \`\${vh}px\` }}>
+      <p>This component fills the viewport height: {vh}px</p>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Return Value
+
+Returns a `number` representing the current viewport height in pixels.
+
+## usePullToRefresh
+
+The `usePullToRefresh` hook manages pull-to-refresh state and provides handlers for implementing pull-to-refresh functionality.
+
+<CodeBlock language="tsx">
+{`import { usePullToRefresh } from '@azodik/ui';
+
+function RefreshableList() {
+  const { state, handlers } = usePullToRefresh({
+    onRefresh: async () => {
+      await fetchData();
+    },
+    threshold: 80,
+    maxDistance: 120,
+    resistance: 0.5,
+  });
+
+  return (
+    <div {...handlers} style={{ touchAction: 'pan-y' }}>
+      {state.isPulling && (
+        <div style={{ transform: \`translateY(\${state.distance}px)\` }}>
+          {state.progress >= 1 ? 'Release to refresh' : 'Pull to refresh'}
+        </div>
+      )}
+      {state.isRefreshing && <div>Refreshing...</div>}
+      <div>List content</div>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### Props
+
+<PropsTable props={[
+  {
+    name: "onRefresh",
+    type: "() => void | Promise<void>",
+    description: "Callback when refresh is triggered"
+  },
+  {
+    name: "threshold",
+    type: "number",
+    default: "80",
+    description: "Pull distance threshold in pixels"
+  },
+  {
+    name: "maxDistance",
+    type: "number",
+    default: "120",
+    description: "Maximum pull distance in pixels"
+  },
+  {
+    name: "resistance",
+    type: "number",
+    default: "0.5",
+    description: "Resistance factor (0-1) for pull beyond threshold"
+  }
+]} />
+
+### Return Value
+
+<PropsTable props={[
+  {
+    name: "state",
+    type: "PullToRefreshState",
+    description: "Current pull-to-refresh state"
+  },
+  {
+    name: "handlers",
+    type: "{ onTouchStart, onTouchMove, onTouchEnd }",
+    description: "Touch event handlers to spread on element"
+  }
+]} />
+
+### PullToRefreshState
+
+<PropsTable props={[
+  {
+    name: "isPulling",
+    type: "boolean",
+    description: "Whether user is currently pulling"
+  },
+  {
+    name: "isRefreshing",
+    type: "boolean",
+    description: "Whether refresh is in progress"
+  },
+  {
+    name: "distance",
+    type: "number",
+    description: "Current pull distance in pixels"
+  },
+  {
+    name: "progress",
+    type: "number",
+    description: "Pull progress (0-1)"
+  }
+]} />
+
 ## useTheme
 
-The `useTheme` hook provides access to the current theme and theme manipulation functions.
+The `useTheme` hook provides access to the current theme and theme manipulation functions. Must be used within a `ThemeProvider`.
 
 <CodeBlock language="tsx">
 {`import { useTheme } from '@azodik/ui';
