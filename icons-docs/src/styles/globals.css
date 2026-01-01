@@ -47,11 +47,21 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
+    overflow-y: auto !important;
+    height: auto !important;
+    position: relative !important;
+  }
+
+  html {
+    overflow-y: auto !important;
+    height: auto !important;
   }
 
   /* Ensure proper spacing on mobile */
   main {
     padding: 0;
+    overflow-y: visible !important;
+    height: auto !important;
   }
 }
 
@@ -88,6 +98,26 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: unset !important;
 }
 
+/* Responsive grid columns */
+@media (max-width: 480px) {
+  .icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(120px, 100%), 1fr)) !important;
+    gap: var(--space-3) !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(130px, 100%), 1fr)) !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)) !important;
+  }
+}
+
 /* Ensure icon cards are grid items, not flex items */
 .icon-grid > * {
   display: block !important;
@@ -103,13 +133,13 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   /* Adjust grid for mobile */
   .icon-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
     gap: var(--space-3) !important;
   }
 
   /* Adjust icon cards for mobile */
   .icon-card {
-    padding: var(--space-4) var(--space-3) !important;
+    padding: var(--space-3) var(--space-2) !important;
   }
 
   /* Adjust search section for mobile */
@@ -117,16 +147,34 @@ h1, h2, h3, h4, h5, h6 {
     position: relative !important;
     top: 0 !important;
     padding-top: var(--space-4) !important;
-    padding-bottom: var(--space-12) !important;
+    padding-bottom: var(--space-6) !important;
     margin-bottom: 0 !important;
     z-index: 1 !important;
   }
 
   /* Spacer between sections on mobile */
   .icons-section-spacer {
-    height: var(--space-12) !important;
-    min-height: var(--space-12) !important;
+    height: var(--space-6) !important;
+    min-height: var(--space-6) !important;
   }
+
+  /* Category filter on mobile - ensure proper scrolling */
+  .category-filter-scroll {
+    paddingLeft: var(--space-4) !important;
+    paddingRight: var(--space-4) !important;
+    marginLeft: calc(-1 * var(--space-4)) !important;
+    marginRight: calc(-1 * var(--space-4)) !important;
+    width: calc(100% + 2 * var(--space-4)) !important;
+  }
+
+  /* Better button sizing on mobile */
+  .category-filter-scroll button {
+    padding: var(--space-2) var(--space-4) !important;
+    fontSize: 0.875rem !important;
+    minHeight: 40px !important;
+    fontWeight: 500 !important;
+  }
+}
 
   /* Ensure category filters don't overlap grid */
   .icons-search-section > div {
@@ -206,10 +254,76 @@ h1, h2, h3, h4, h5, h6 {
     padding: var(--space-4) !important;
   }
 
-  /* Category filter buttons on mobile */
-  .icons-search-section button {
-    font-size: 0.75rem !important;
-    padding: 0.5rem 0.75rem !important;
+/* Category filter container - horizontal scroll on mobile */
+.category-filter-container {
+  width: 100% !important;
+  position: relative !important;
+}
+
+.category-filter-scroll {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: var(--space-2) !important;
+  align-items: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  paddingBottom: var(--space-2) !important;
+  paddingRight: var(--space-2) !important;
+  scrollPaddingLeft: var(--space-4) !important;
+  scrollPaddingRight: var(--space-4) !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.category-filter-scroll::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Category filter buttons - ensure they don't shrink */
+.category-filter-scroll button {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  min-width: fit-content !important;
+  pointer-events: auto !important;
+}
+
+/* Category filter buttons on mobile */
+@media (max-width: 768px) {
+  .category-filter-scroll {
+    gap: var(--space-2) !important;
+    paddingRight: var(--space-4) !important;
+    paddingLeft: 0 !important;
+  }
+
+  .category-filter-scroll button {
+    font-size: 0.875rem !important;
+    padding: var(--space-2) var(--space-3) !important;
+    minHeight: 36px !important;
+  }
+
+  /* Add padding to first and last items for better scroll experience */
+  .category-filter-scroll button:first-child {
+    marginLeft: 0 !important;
+  }
+
+  .category-filter-scroll button:last-child {
+    marginRight: var(--space-4) !important;
+  }
+}
+
+/* Desktop - allow wrapping */
+@media (min-width: 769px) {
+  .category-filter-scroll {
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+    paddingRight: 0 !important;
   }
 }
 

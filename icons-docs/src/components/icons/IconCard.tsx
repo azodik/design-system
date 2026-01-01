@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Badge, Toast } from "@azodik/ui";
+import { Box, Toast } from "@azodik/ui";
 import { getIconComponent } from "@/lib/icon-loader";
 import type { IconInfo } from "@/types/icon";
 import { useMemo, useState } from "react";
@@ -35,7 +35,7 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: "flex-start",
         padding:
           "clamp(var(--space-4), 4vw, var(--space-6)) clamp(var(--space-3), 3vw, var(--space-4))",
         background: "var(--color-surface)",
@@ -97,65 +97,66 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
 
       <Box
         style={{
-          width: "clamp(56px, 12vw, 72px)",
-          height: "clamp(56px, 12vw, 72px)",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "var(--color-background)",
-          color: "var(--color-text)",
-          borderRadius: "var(--radius-3)",
-          marginBottom: "clamp(var(--space-3), 3vw, var(--space-4))",
-          transition: "all 0.3s ease",
-          border: "1px solid var(--color-border-subtle)",
-        }}
-      >
-        {IconComponent ? (
-          // eslint-disable-next-line react-hooks/static-components
-          <IconComponent
-            size={36}
-            style={{ width: "clamp(28px, 6vw, 36px)", height: "clamp(28px, 6vw, 36px)" }}
-          />
-        ) : (
-          <Box
-            style={{
-              width: "clamp(28px, 6vw, 36px)",
-              height: "clamp(28px, 6vw, 36px)",
-              background: "var(--color-border)",
-              borderRadius: "var(--radius-2)",
-            }}
-          />
-        )}
-      </Box>
-
-      <Box
-        as="span"
-        style={{
-          fontSize: "clamp(0.8125rem, 2.5vw, 0.9375rem)",
-          fontWeight: 700,
-          color: "var(--color-text)",
-          textAlign: "center",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "var(--space-3)",
           width: "100%",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          marginBottom: "var(--space-2)",
-          fontFamily: "var(--font-montserrat), sans-serif",
-          letterSpacing: "-0.01em",
         }}
       >
-        {icon.displayName}
+        <Box
+          style={{
+            width: "clamp(40px, 10vw, 48px)",
+            height: "clamp(40px, 10vw, 48px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "var(--color-background)",
+            color: "var(--color-text)",
+            borderRadius: "var(--radius-3)",
+            transition: "all 0.3s ease",
+            border: "1px solid var(--color-border-subtle)",
+            flexShrink: 0,
+          }}
+        >
+          {IconComponent ? (
+            // eslint-disable-next-line react-hooks/static-components
+            <IconComponent
+              size={24}
+              style={{ width: "clamp(20px, 5vw, 24px)", height: "clamp(20px, 5vw, 24px)" }}
+            />
+          ) : (
+            <Box
+              style={{
+                width: "clamp(20px, 5vw, 24px)",
+                height: "clamp(20px, 5vw, 24px)",
+                background: "var(--color-border)",
+                borderRadius: "var(--radius-2)",
+              }}
+            />
+          )}
+        </Box>
+
+        <Box
+          as="span"
+          style={{
+            fontSize: "clamp(0.8125rem, 2.5vw, 0.9375rem)",
+            fontWeight: 700,
+            color: "var(--color-text)",
+            textAlign: "left",
+            width: "100%",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            fontFamily: "var(--font-montserrat), sans-serif",
+            letterSpacing: "-0.01em",
+            lineHeight: 1.4,
+          }}
+        >
+          {icon.displayName}
+        </Box>
       </Box>
 
-      <Badge
-        variant="soft"
-        style={{
-          fontSize: "clamp(0.75rem, 2vw, 0.8125rem)",
-          textTransform: "capitalize",
-        }}
-      >
-        {icon.category}
-      </Badge>
       {showToast && (
         <Toast
           variant="success"

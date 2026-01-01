@@ -63,6 +63,7 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
         flexDirection: "column",
         position: "relative",
         overflowX: "hidden",
+        overflowY: "visible",
       }}
     >
       {/* Search & Filter Section - Full Width */}
@@ -71,7 +72,7 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
           width: "100%",
           background: "var(--color-background)",
           paddingTop: "clamp(var(--space-4), 4vw, var(--space-6))",
-          paddingBottom: "clamp(var(--space-8), 10vw, var(--space-12))",
+          paddingBottom: "clamp(var(--space-6), 6vw, var(--space-8))",
           borderBottom: "1px solid var(--color-border-subtle)",
           borderTop: "1px solid var(--color-border-subtle)",
           marginBottom: 0,
@@ -85,14 +86,14 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
           size="lg"
           style={{ width: "100%", padding: "0 clamp(var(--space-3), 4vw, var(--space-4))" }}
         >
-          <Stack direction="column" gap="4">
+          <Stack direction="column" gap="4" fullWidth>
             {/* Search Bar - Full Width */}
             <Box style={{ width: "100%" }}>
               <SearchBar value={searchQuery} onChange={setSearchQuery} />
             </Box>
 
             {/* Category Filters */}
-            <Box style={{ width: "100%" }}>
+            <Box style={{ width: "100%", overflow: "hidden" }}>
               <CategoryFilter
                 categories={categories}
                 selected={selectedCategory}
@@ -112,7 +113,7 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
                 color: "var(--color-text-secondary)",
                 fontWeight: 500,
                 width: "100%",
-                paddingBottom: "clamp(var(--space-4), 5vw, var(--space-6))",
+                paddingTop: "var(--space-2)",
               }}
             >
               <Box
@@ -150,10 +151,10 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
         className="icons-section-spacer"
         style={{
           width: "100%",
-          height: "clamp(var(--space-10), 12vw, var(--space-12))",
+          height: "clamp(var(--space-6), 6vw, var(--space-8))",
           flexShrink: 0,
           background: "transparent",
-          minHeight: "var(--space-10)",
+          minHeight: "var(--space-6)",
         }}
       />
 

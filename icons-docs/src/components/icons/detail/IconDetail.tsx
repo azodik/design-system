@@ -63,7 +63,7 @@ export default function IconDetail({ icon }: IconDetailProps) {
   };
 
   return (
-    <Box style={{ minHeight: "100vh", background: "var(--color-background)" }}>
+    <Box style={{ minHeight: "100vh", background: "var(--color-background)", overflowY: "visible" }}>
       <Container size="lg" style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
         <Button
           variant="ghost"

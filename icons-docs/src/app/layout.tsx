@@ -58,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 flexDirection: "column",
                 width: "100%",
                 overflowX: "hidden",
+                overflowY: "visible",
               }}
             >
               {children}

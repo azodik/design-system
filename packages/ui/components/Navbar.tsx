@@ -77,12 +77,18 @@ const Navbar = forwardRef<HTMLDivElement, NavbarProps>(function Navbar(
 
     if (isOpen && isMobile) {
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
     } else {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     }
     return () => {
       if (typeof document !== "undefined") {
         document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
       }
     };
   }, [isOpen, isMobile]);
