@@ -1,173 +1,114 @@
 "use client";
-import React, { useState, useCallback } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
+import { HexColorPicker } from "react-colorful";
 
 export interface ColorPickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
-  /**
-   * Current color value (hex)
-   */
   value?: string;
-  /**
-   * Default color value (uncontrolled)
-   */
   defaultValue?: string;
-  /**
-   * Callback when color changes
-   */
   onChange?: (color: string) => void;
-  /**
-   * Format: hex, rgb, hsl
-   */
-  format?: "hex" | "rgb" | "hsl";
-  /**
-   * Show alpha channel
-   */
-  showAlpha?: boolean;
-  /**
-   * Preset colors
-   */
-  presets?: string[];
-  /**
-   * Size variant
-   */
-  size?: "small" | "medium" | "large";
-  /**
-   * Disabled state
-   */
   disabled?: boolean;
 }
 
-const DEFAULT_PRESETS = [
-  "#000000",
-  "#FFFFFF",
-  "#FF0000",
-  "#00FF00",
-  "#0000FF",
-  "#FFFF00",
-  "#FF00FF",
-  "#00FFFF",
-  "#FFA500",
-  "#800080",
-  "#FFC0CB",
-  "#A52A2A",
-  "#808080",
-  "#000080",
-  "#008000",
-];
-
-/**
- * Color Picker component for color selection
- *
- * @example
- * ```tsx
- * <ColorPicker
- *   value={color}
- *   onChange={setColor}
- *   presets={customPresets}
- * />
- * ```
- */
 export function ColorPicker({
-  value: controlledValue,
+  value,
   defaultValue = "#000000",
   onChange,
-  format: _format = "hex",
-  showAlpha: _showAlpha = false,
-  presets = DEFAULT_PRESETS,
-  size = "medium",
   disabled = false,
   className = "",
   ...props
 }: ColorPickerProps) {
-  const [internalValue, setInternalValue] = useState(defaultValue);
-  const [showPicker, setShowPicker] = useState(false);
+  const [internalColor, setInternalColor] = useState(value ?? defaultValue);
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const color = controlledValue !== undefined ? controlledValue : internalValue;
+  const color = value ?? internalColor;
 
-  const handleColorChange = useCallback(
-    (newColor: string) => {
-      if (controlledValue === undefined) {
-        setInternalValue(newColor);
+  /* Sync controlled value */
+  useEffect(() => {
+    if (value !== undefined && value !== internalColor) {
+      setInternalColor(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  const updateColor = (newColor: string) => {
+    setInternalColor(newColor);
+    onChange?.(newColor);
+  };
+
+  /* Close on outside click */
+  useEffect(() => {
+    if (!open) return;
+
+    const handler = (e: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setOpen(false);
       }
-      onChange?.(newColor);
-    },
-    [controlledValue, onChange],
-  );
+    };
 
-  const handlePresetClick = useCallback(
-    (presetColor: string) => {
-      handleColorChange(presetColor);
-    },
-    [handleColorChange],
-  );
-
-  const colorPickerClasses = [
-    "color-picker",
-    `color-picker-size-${size}`,
-    disabled && "color-picker-disabled",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
 
   return (
-    <div className={colorPickerClasses} {...props}>
-      <div
+    <div
+      ref={wrapperRef}
+      className={`color-picker ${className}`}
+      {...props}
+      style={{ position: "relative", display: "inline-block" }}
+    >
+      {/* Trigger */}
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => setOpen((v) => !v)}
         className="color-picker-trigger"
-        onClick={() => !disabled && setShowPicker(!showPicker)}
-        onKeyDown={(e) => {
-          if (!disabled && (e.key === "Enter" || e.key === " ")) {
-            e.preventDefault();
-            setShowPicker(!showPicker);
-          }
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "6px 10px",
+          borderRadius: 6,
+          border: "1px solid #d0d0d0",
+          background: "#fff",
+          cursor: disabled ? "not-allowed" : "pointer",
         }}
-        role="button"
-        tabIndex={disabled ? -1 : 0}
-        aria-label="Open color picker"
       >
-        <div className="color-picker-preview" style={{ backgroundColor: color }} />
-        <input
-          type="color"
-          value={color}
-          onChange={(e) => handleColorChange(e.target.value)}
-          disabled={disabled}
-          className="color-picker-input"
+        <span
+          style={{
+            width: 20,
+            height: 20,
+            borderRadius: 4,
+            backgroundColor: color,
+            border: "1px solid #aaa",
+          }}
         />
-        <span className="color-picker-value">{color.toUpperCase()}</span>
-      </div>
+        <span
+          style={{
+            fontFamily: "monospace",
+            fontSize: 13,
+          }}
+        >
+          {color.toUpperCase()}
+        </span>
+      </button>
 
-      {showPicker && !disabled && (
-        <div className="color-picker-popup">
-          <div className="color-picker-presets">
-            {presets.map((preset, index) => (
-              <button
-                key={index}
-                type="button"
-                className="color-picker-preset"
-                style={{ backgroundColor: preset }}
-                onClick={() => handlePresetClick(preset)}
-                aria-label={`Select color ${preset}`}
-              />
-            ))}
-          </div>
-          <div className="color-picker-custom">
-            <input
-              type="color"
-              value={color}
-              onChange={(e) => handleColorChange(e.target.value)}
-              className="color-picker-custom-input"
-            />
-            <input
-              type="text"
-              value={color}
-              onChange={(e) => {
-                if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
-                  handleColorChange(e.target.value);
-                }
-              }}
-              placeholder="#000000"
-              className="color-picker-custom-text"
-            />
-          </div>
+      {/* Popup */}
+      {open && !disabled && (
+        <div
+          className="color-picker-popup"
+          style={{
+            position: "absolute",
+            top: "calc(100% + 8px)",
+            zIndex: 1000,
+            padding: 12,
+            borderRadius: 8,
+            background: "#fff",
+            boxShadow: "0 10px 25px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1)",
+          }}
+        >
+          <HexColorPicker color={color} onChange={updateColor} />
         </div>
       )}
     </div>

@@ -37,7 +37,8 @@ export default function CategoryFilter({ categories, selected, onChange }: Categ
         className="category-filter-scroll"
       >
         {categories.map((category) => {
-          const label = category === "all" ? "All" : category.charAt(0).toUpperCase() + category.slice(1);
+          const label =
+            category === "all" ? "All" : category.charAt(0).toUpperCase() + category.slice(1);
           const isSelected = selected === category;
 
           return (

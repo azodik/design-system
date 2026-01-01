@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   Box,
@@ -37,6 +37,17 @@ export default function IconDetail({ icon }: IconDetailProps) {
     color: "default",
     size: 24,
   });
+
+  // Wrap setDownloadOptions to add logging
+  const handleOptionsChange = useCallback(
+    (newOptions: DownloadOptions) => {
+      console.log("[IconDetail] setDownloadOptions called with:", newOptions);
+      console.log("[IconDetail] Previous options:", downloadOptions);
+      setDownloadOptions(newOptions);
+      console.log("[IconDetail] State updated");
+    },
+    [downloadOptions, setDownloadOptions],
+  );
   const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const IconComponent = getIconComponent(icon.componentName);
@@ -63,7 +74,9 @@ export default function IconDetail({ icon }: IconDetailProps) {
   };
 
   return (
-    <Box style={{ minHeight: "100vh", background: "var(--color-background)", overflowY: "visible" }}>
+    <Box
+      style={{ minHeight: "100vh", background: "var(--color-background)", overflowY: "visible" }}
+    >
       <Container size="lg" style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
         <Button
           variant="ghost"
@@ -135,7 +148,7 @@ export default function IconDetail({ icon }: IconDetailProps) {
                 <DownloadPanel
                   icon={icon}
                   options={downloadOptions}
-                  onOptionsChange={setDownloadOptions}
+                  onOptionsChange={handleOptionsChange}
                   onDownload={handleDownload}
                 />
               </CardContent>
@@ -163,12 +176,24 @@ export default function IconDetail({ icon }: IconDetailProps) {
                   </Box>
                   {icon.tags && icon.tags.length > 0 && (
                     <Box>
-                      <Box as="span" style={{ fontWeight: 600, marginRight: "0.5rem", display: "block", marginBottom: "0.5rem" }}>
+                      <Box
+                        as="span"
+                        style={{
+                          fontWeight: 600,
+                          marginRight: "0.5rem",
+                          display: "block",
+                          marginBottom: "0.5rem",
+                        }}
+                      >
                         Tags:
                       </Box>
                       <Flex gap="1" wrap="wrap">
                         {icon.tags.map((tag) => (
-                          <Badge key={tag} variant="outline" style={{ textTransform: "capitalize" }}>
+                          <Badge
+                            key={tag}
+                            variant="outline"
+                            style={{ textTransform: "capitalize" }}
+                          >
                             {tag}
                           </Badge>
                         ))}

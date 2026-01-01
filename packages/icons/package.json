@@ -41,8 +41,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup && tsup --watch",
+    "build": "NODE_OPTIONS=\"--max-old-space-size=4096\" tsup",
+    "dev": "NODE_OPTIONS=\"--max-old-space-size=4096\" tsup --watch",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",

@@ -14,6 +14,11 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
   ({ icon: _icon, options, IconComponent }, ref) => {
     const { size, color, customColor, style } = options;
 
+    // Debug log when options change
+    React.useEffect(() => {
+      console.log("[IconPreview] Options changed:", { size, color, customColor, style });
+    }, [size, color, customColor, style]);
+
     // Get the actual color value
     const getIconColor = (): string => {
       if (color === "custom" && customColor) {
@@ -103,6 +108,7 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
         >
           {IconComponent ? (
             <IconComponent
+              key={`icon-${size}-${color}-${customColor || ""}`}
               size={size}
               style={{
                 ...getIconStyle(size),
@@ -158,7 +164,11 @@ const IconPreview = React.forwardRef<HTMLDivElement, IconPreviewProps>(
                 }}
               >
                 {IconComponent ? (
-                  <IconComponent size={s} style={getIconStyle(s)} />
+                  <IconComponent
+                    key={`icon-preview-${s}-${color}-${customColor || ""}`}
+                    size={s}
+                    style={getIconStyle(s)}
+                  />
                 ) : (
                   <Box
                     style={{

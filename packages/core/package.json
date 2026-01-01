@@ -53,7 +53,7 @@
   },
   "scripts": {
     "build": "mkdir -p dist && cp -r components styles tokens *.css *.d.ts icons-catalog.json dist/",
-    "dev": "vite dev --port 3003",
+    "dev": "pnpm run build && chokidar 'components/**/*.css' 'styles/**/*.css' 'tokens/**/*.css' '*.css' -c 'pnpm run build'",
     "lint": "echo 'No linting needed for CSS'",
     "type-check": "echo 'No type checking needed for CSS'",
     "clean": "node ../../scripts/clean.mjs && rm -rf dist",
@@ -61,6 +61,7 @@
     "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/core"
   },
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"
   }

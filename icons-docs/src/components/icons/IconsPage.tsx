@@ -171,7 +171,9 @@ export default function IconsPage({ initialIcons }: IconsPageProps) {
           marginTop: 0,
         }}
       >
-        <div style={{ paddingBottom: "clamp(var(--space-6), 8vw, var(--space-12))", width: "100%" }}>
+        <div
+          style={{ paddingBottom: "clamp(var(--space-6), 8vw, var(--space-12))", width: "100%" }}
+        >
           <IconGrid icons={filteredIcons} onIconClick={handleIconClick} />
         </div>
       </Container>

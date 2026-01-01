@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Box, Button, Flex, Input, ColorPicker } from "@azodik/ui";
 import type { IconInfo, DownloadOptions, IconFormat, IconStyle, IconColor } from "@/types/icon";
 
@@ -30,9 +30,21 @@ export default function DownloadPanel({
     }
   };
 
-  const updateOption = <K extends keyof DownloadOptions>(key: K, value: DownloadOptions[K]) => {
-    onOptionsChange({ ...options, [key]: value });
-  };
+  const updateOption = React.useCallback(
+    <K extends keyof DownloadOptions>(key: K, value: DownloadOptions[K]) => {
+      onOptionsChange({ ...options, [key]: value });
+    },
+    [options, onOptionsChange],
+  );
+
+  // Memoize the color change handler to ensure stable reference
+  const handleColorChange = useCallback(
+    (newColor: string) => {
+      const newOptions = { ...options, customColor: newColor };
+      onOptionsChange(newOptions);
+    },
+    [options, onOptionsChange],
+  );
 
   return (
     <Box style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -112,11 +124,12 @@ export default function DownloadPanel({
             <Button
               key={color}
               variant={options.color === color ? "solid" : "outline"}
-              onClick={() => {
-                if (color === "custom" && !options.customColor) {
-                  // Initialize customColor when switching to custom
-                  updateOption("color", color);
-                  updateOption("customColor", "#000000");
+              onClick={(e) => {
+                e.stopPropagation();
+                if (color === "custom") {
+                  // Initialize customColor when switching to custom - update both at once
+                  const newCustomColor = options.customColor || "#000000";
+                  onOptionsChange({ ...options, color: "custom", customColor: newCustomColor });
                 } else {
                   updateOption("color", color);
                 }
@@ -128,12 +141,7 @@ export default function DownloadPanel({
           ))}
         </Flex>
         {options.color === "custom" && (
-          <ColorPicker
-            value={options.customColor || "#000000"}
-            onChange={(color) => updateOption("customColor", color.toUpperCase())}
-            format="hex"
-            size="medium"
-          />
+          <ColorPicker value={options.customColor || "#000000"} onChange={handleColorChange} />
         )}
       </Box>
 

@@ -59,7 +59,7 @@
   "scripts": {
     "prebuild": "node scripts/update-version.mjs",
     "build": "tsup",
-    "dev": "node scripts/update-version.mjs && tsup && tsup --watch",
+    "dev": "tsup --watch",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "test": "vitest",
@@ -75,7 +75,8 @@
   },
   "dependencies": {
     "@azodik/icons": "workspace:*",
-    "azodik-ui-core": "workspace:*"
+    "azodik-ui-core": "workspace:*",
+    "react-colorful": "^5.6.1"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^8.6.15",

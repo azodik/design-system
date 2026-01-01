@@ -38,7 +38,8 @@ export default function DocsFooter() {
               color: "var(--color-text-secondary)",
               textDecoration: "none",
               transition: "all 0.2s ease",
-              padding: "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
+              padding:
+                "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
               borderRadius: "var(--radius-2)",
               fontSize: "clamp(0.8125rem, 2vw, 0.9375rem)",
               fontWeight: 500,
@@ -68,7 +69,8 @@ export default function DocsFooter() {
               color: "var(--color-text-secondary)",
               textDecoration: "none",
               transition: "all 0.2s ease",
-              padding: "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
+              padding:
+                "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
               borderRadius: "var(--radius-2)",
               fontSize: "clamp(0.8125rem, 2vw, 0.9375rem)",
               fontWeight: 500,
@@ -100,7 +102,8 @@ export default function DocsFooter() {
               color: "var(--color-text-secondary)",
               textDecoration: "none",
               transition: "all 0.2s ease",
-              padding: "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
+              padding:
+                "clamp(var(--space-1), 1vw, var(--space-2)) clamp(var(--space-2), 2vw, var(--space-3))",
               borderRadius: "var(--radius-2)",
               fontSize: "clamp(0.8125rem, 2vw, 0.9375rem)",
               fontWeight: 500,
@@ -128,7 +131,6 @@ export default function DocsFooter() {
           justify="center"
           align="center"
           gap="4"
-
           style={{
             width: "100%",
             fontSize: "clamp(0.8125rem, 2vw, 0.875rem)",
