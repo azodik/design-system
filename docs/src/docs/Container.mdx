@@ -1,5 +1,5 @@
 import { Container, Button, Card, Flex, Grid, Badge, Textarea, Avatar, Stack, Center } from "@azodik/ui";
-import { CodeBlockWithPreview, PropsTable } from "@/components/docs";
+import { CodeBlock, CodeBlockWithPreview, PropsTable } from "@/components/docs";
 
 # Container
 
@@ -12,8 +12,8 @@ The Container component constrains the maximum width of content. It ensures your
 
 ## Usage
 
-```tsx
-import { Container } from "@azodik/ui";
+<CodeBlock language="tsx">
+{`import { Container } from "@azodik/ui";
 
 function App() {
   return (
@@ -21,8 +21,23 @@ function App() {
       <div>My content</div>
     </Container>
   );
-}
-```
+}`}
+</CodeBlock>
+
+### Example
+
+<CodeBlockWithPreview
+  title="Container Example"
+  preview={
+    <Container size="md" style={{ backgroundColor: "var(--indigo-3)", border: "1px solid var(--indigo-6)", padding: "var(--space-4)", borderRadius: "var(--radius-2)" }}>
+      <div style={{ textAlign: "center", fontWeight: "500" }}>My content</div>
+    </Container>
+  }
+>
+{`<Container size="md" style={{ backgroundColor: "var(--indigo-3)", border: "1px solid var(--indigo-6)", padding: "var(--space-4)", borderRadius: "var(--radius-2)" }}>
+  <div style={{ textAlign: "center", fontWeight: "500" }}>My content</div>
+</Container>`}
+</CodeBlockWithPreview>
 
 ## Examples
 
@@ -47,21 +62,26 @@ The `Container` component supports 4 distinct sizes to control the maximum width
       </Container>
     </Stack>
   }
-  code={`<Container size="xs" className="bg-slate-50 p-4 border rounded">
-  Size xs (448px)
-</Container>
+  code={`import { Container, Stack } from "@azodik/ui";
 
-<Container size="sm" className="bg-slate-50 p-4 border rounded">
-  Size sm (688px)
-</Container>
-
-<Container size="md" className="bg-slate-50 p-4 border rounded">
-  Size md (880px)
-</Container>
-
-<Container size="lg" className="bg-slate-50 p-4 border rounded">
-  Size lg (1136px)
-</Container>`}
+export const ContainerSizes = () => {
+  return (
+    <Stack gap={16} style={{ width: "100%" }}>
+      <Container size="xs" style={{ backgroundColor: "var(--indigo-3)", border: "1px solid var(--indigo-6)", padding: "var(--space-4)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ textAlign: "center", fontWeight: "500" }}>Size xs (448px)</div>
+      </Container>
+      <Container size="sm" style={{ backgroundColor: "var(--indigo-3)", border: "1px solid var(--indigo-6)", padding: "var(--space-4)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ textAlign: "center", fontWeight: "500" }}>Size sm (688px)</div>
+      </Container>
+      <Container size="md" style={{ backgroundColor: "var(--indigo-3)", border: "1px solid var(--indigo-6)", padding: "var(--space-4)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ textAlign: "center", fontWeight: "500" }}>Size md (880px)</div>
+      </Container>
+      <Container size="lg" style={{ backgroundColor: "var(--indigo-3)", border: "1px solid var(--indigo-6)", padding: "var(--space-4)", borderRadius: "var(--radius-2)" }}>
+        <div style={{ textAlign: "center", fontWeight: "500" }}>Size lg (1136px)</div>
+      </Container>
+    </Stack>
+  );
+};`}
 />
 
 ### Section
@@ -83,14 +103,24 @@ The layout package also exports a `Section` component that goes well with `Conta
       </Container>
     </div>
   }
-  code={`<div className="bg-slate-100">
-  <Container size="md">
-    <div className="py-8">Hero Section</div>
-  </Container>
-</div>
-<Container size="md">
-  <div className="py-12">Content</div>
-</Container>`}
+  code={`import { Container, Center } from "@azodik/ui";
+
+export const ContainerSection = () => {
+  return (
+    <div style={{ width: "100%", border: "1px solid var(--color-border)", borderRadius: "var(--radius-2)", overflow: "hidden" }}>
+      <div style={{ backgroundColor: "var(--gray-2)" }}>
+        <Container size="md">
+          <div style={{ paddingTop: "var(--space-8)", paddingBottom: "var(--space-8)", textAlign: "center" }}>Hero Section</div>
+        </Container>
+      </div>
+      <Container size="md">
+        <Center style={{ paddingTop: "var(--space-12)", paddingBottom: "var(--space-12)", borderLeft: "1px dashed var(--gray-6)", borderRight: "1px dashed var(--gray-6)", height: "8rem" }}>
+          Content
+        </Center>
+      </Container>
+    </div>
+  );
+};`}
 />
 
 ## Props

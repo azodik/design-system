@@ -30,28 +30,82 @@ The `Grid` component is a layout primitive that helps you build grid layouts usi
     </Grid>
   }
 >
-{`<Grid columns="3" gap="4">
-  <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
-  <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
-  <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
-</Grid>`}
+{`import { Grid } from "@azodik/ui";
+
+export const GridExample = () => {
+  return (
+    <Grid columns="3" gap="4" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Grid>
+  );
+};`}
 </CodeBlockWithPreview>
 
 ## Responsive Props
 
 All layout props support responsive values. You can pass a single value or an object with breakpoint-specific values:
 
-```tsx
-<Grid
-  columns={{ base: "1", md: "2", lg: "3" }}
-  gap={{ base: "2", md: "4" }}
-  align={{ base: "start", md: "center" }}
+<CodeBlockWithPreview
+  title="Responsive Grid"
+  preview={
+    <Grid
+      columns={{ base: "1", md: "2", lg: "3" }}
+      gap={{ base: "2", md: "4" }}
+      style={{ background: "var(--gray-3)", padding: 20 }}
+    >
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 4</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 5</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 6</div>
+    </Grid>
+  }
 >
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Grid>
-```
+{`import { Grid } from "@azodik/ui";
+
+export const ResponsiveGrid = () => {
+  return (
+    <Grid
+      columns={{ base: "1", md: "2", lg: "3" }}
+      gap={{ base: "2", md: "4" }}
+      style={{ background: "var(--gray-3)", padding: 20 }}
+    >
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 4</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 5</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 6</div>
+    </Grid>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Grid with Alignment"
+  preview={
+    <Grid columns="3" gap="4" align="center" justify="center" style={{ background: "var(--gray-3)", padding: 20, minHeight: "200px" }}>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Grid>
+  }
+>
+{`import { Grid } from "@azodik/ui";
+
+export const GridAlignment = () => {
+  return (
+    <Grid columns="3" gap="4" align="center" justify="center" style={{ background: "var(--gray-3)", padding: 20, minHeight: "200px" }}>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 20, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Grid>
+  );
+};`}
+</CodeBlockWithPreview>
 
 Available breakpoints: `base`, `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
 

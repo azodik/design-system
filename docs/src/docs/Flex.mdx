@@ -44,16 +44,86 @@ The `Flex` component is a layout primitive that helps you build flexible layouts
 
 All layout props support responsive values. You can pass a single value or an object with breakpoint-specific values:
 
-```tsx
-<Flex
-  direction={{ base: "column", md: "row" }}
-  gap={{ base: "2", md: "4" }}
-  align={{ base: "start", md: "center" }}
+<CodeBlockWithPreview
+  title="Responsive Flex"
+  preview={
+    <Flex
+      direction={{ base: "column", md: "row" }}
+      gap={{ base: "2", md: "4" }}
+      align={{ base: "start", md: "center" }}
+      style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}
+    >
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Flex>
+  }
 >
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Flex>
-```
+{`import { Flex } from "@azodik/ui";
+
+export const ResponsiveFlex = () => {
+  return (
+    <Flex
+      direction={{ base: "column", md: "row" }}
+      gap={{ base: "2", md: "4" }}
+      align={{ base: "start", md: "center" }}
+      style={{ background: "var(--gray-3)", padding: 20 }}
+    >
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Flex>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Flex with Justify"
+  preview={
+    <Flex gap="4" justify="between" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Left</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Right</div>
+    </Flex>
+  }
+>
+{`import { Flex } from "@azodik/ui";
+
+export const FlexJustify = () => {
+  return (
+    <Flex gap="4" justify="between" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Left</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Right</div>
+    </Flex>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Flex with Wrap"
+  preview={
+    <Flex gap="4" wrap="wrap" style={{ background: "var(--gray-3)", padding: 20, maxWidth: "300px" }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 4</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 5</div>
+    </Flex>
+  }
+>
+{`import { Flex } from "@azodik/ui";
+
+export const FlexWrap = () => {
+  return (
+    <Flex gap="4" wrap="wrap" style={{ background: "var(--gray-3)", padding: 20, maxWidth: "300px" }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 4</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 5</div>
+    </Flex>
+  );
+};`}
+</CodeBlockWithPreview>
 
 Available breakpoints: `base`, `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
 

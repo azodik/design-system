@@ -44,16 +44,82 @@ The `Stack` component is a layout primitive that helps you build flexible layout
 
 All layout props support responsive values. You can pass a single value or an object with breakpoint-specific values:
 
-```tsx
-<Stack
-  direction={{ base: "column", md: "row" }}
-  gap={{ base: 8, md: 16 }}
-  align={{ base: "start", md: "center" }}
+<CodeBlockWithPreview
+  title="Responsive Stack"
+  preview={
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      gap={{ base: 8, md: 16 }}
+      align={{ base: "start", md: "center" }}
+      style={{ background: "var(--gray-3)", padding: 20, minHeight: "150px" }}
+    >
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Stack>
+  }
 >
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Stack>
-```
+{`import { Stack } from "@azodik/ui";
+
+export const ResponsiveStack = () => {
+  return (
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      gap={{ base: 8, md: 16 }}
+      align={{ base: "start", md: "center" }}
+      style={{ background: "var(--gray-3)", padding: 20 }}
+    >
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Stack with Justify"
+  preview={
+    <Stack direction="row" gap={16} justify="between" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Left</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Right</div>
+    </Stack>
+  }
+>
+{`import { Stack } from "@azodik/ui";
+
+export const StackJustify = () => {
+  return (
+    <Stack direction="row" gap={16} justify="between" style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Left</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Right</div>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
+
+<CodeBlockWithPreview
+  title="Stack Column Direction"
+  preview={
+    <Stack direction="column" gap={16} style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Stack>
+  }
+>
+{`import { Stack } from "@azodik/ui";
+
+export const StackColumn = () => {
+  return (
+    <Stack direction="column" gap={16} style={{ background: "var(--gray-3)", padding: 20 }}>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 1</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 2</div>
+      <div style={{ padding: 10, background: "var(--accent-9)", color: "white" }}>Item 3</div>
+    </Stack>
+  );
+};`}
+</CodeBlockWithPreview>
 
 Available breakpoints: `base`, `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
 
