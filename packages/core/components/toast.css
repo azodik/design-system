@@ -116,13 +116,13 @@
 }
 
 .toast.show {
-  transform: translateX(0);
-  opacity: 1;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
 }
 
 .toast-top-center.show {
-  transform: translate(-50%, 0);
-  opacity: 1;
+  transform: translate(-50%, 0) !important;
+  opacity: 1 !important;
 }
 
 /* Animation keyframes for better effect */

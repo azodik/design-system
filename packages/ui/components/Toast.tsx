@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useCallback, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { useReducedMotion } from "../utils/reduced-motion";
 import { useHighContrastMode } from "../utils/high-contrast";
 import { announceToScreenReader } from "../utils/screen-reader";
@@ -81,7 +82,7 @@ export function Toast({
     [variant, position, isClosing, highContrast, reducedMotion, className],
   );
 
-  return (
+  const toastContent = (
     <div className={toastClassName} role="alert" aria-live="polite" {...props}>
       <div className="toast-icon" aria-hidden="true">
         {getIcon()}
@@ -102,4 +103,11 @@ export function Toast({
       )}
     </div>
   );
+
+  // Render toast in a portal to document body to ensure it appears above all content
+  if (typeof document !== "undefined") {
+    return createPortal(toastContent, document.body);
+  }
+
+  return toastContent;
 }
