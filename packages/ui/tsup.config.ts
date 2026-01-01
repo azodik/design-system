@@ -1,9 +1,9 @@
 import { defineConfig } from "tsup";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["index.ts"],
   format: ["cjs", "esm"],
-  dts: true,
+  dts: !options.watch, // Only generate types in build mode, not in watch/dev mode
   splitting: true,
   sourcemap: true,
   clean: true,
@@ -16,4 +16,4 @@ export default defineConfig({
     options.treeShaking = true;
     options.drop = ["console", "debugger"];
   },
-});
+}));

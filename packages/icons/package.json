@@ -46,6 +46,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
+    "typegen": "NODE_OPTIONS=\"--max-old-space-size=6144\" tsup",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/icons && pnpm build",
     "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/icons"

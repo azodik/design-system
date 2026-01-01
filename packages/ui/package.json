@@ -69,6 +69,7 @@
     "create-theme": "tsx scripts/cli/create-theme.ts",
     "create-azodik-app": "tsx scripts/cli/create-azodik-app.ts",
     "type-check": "tsc --noEmit",
+    "typegen": "tsup",
     "clean": "node ../../scripts/clean.mjs",
     "prepublishOnly": "node ../../scripts/prepare-publish.mjs prepare packages/ui && pnpm build",
     "postpublish": "node ../../scripts/prepare-publish.mjs restore packages/ui"
